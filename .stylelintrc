@@ -1,0 +1,19 @@
+{
+  "extends": [
+    "stylelint-config-shopify",
+    "stylelint-config-prettier"
+  ],
+  "rules": {
+    "color-no-hex": null,
+    "selector-class-pattern": null,
+    "selector-no-qualifying-type": null,
+    "selector-max-type": null,
+    "selector-max-combinators": null,
+    "selector-max-class": 5,
+    "selector-id-pattern": null,
+    "selector-max-compound-selectors": 5,
+    "selector-max-id": 1,
+    "selector-max-specificity": null,
+    "scss/at-extend-no-missing-placeholder": null
+  }
+}

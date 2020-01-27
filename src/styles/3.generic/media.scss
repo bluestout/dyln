@@ -1,0 +1,26 @@
+figure {
+  margin: 0;
+}
+
+img,
+picture {
+  margin: 0;
+  max-width: 100%;
+}
+
+img {
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+  height: auto;
+  border: none;
+  user-select: none;
+}
+
+iframe {
+  max-width: 100%;
+}
+
+video {
+  max-width: 100%;
+}

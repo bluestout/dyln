@@ -1,0 +1,32 @@
+@charset 'UTF-8';
+
+/**
+* itcss file structure:
+* https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/
+*/
+
+// 1. Settings
+@import "./1.settings/settings";
+
+// 2. Tools
+@import "./2.tools/tools";
+
+// 3. Generic
+@import "~normalize.css/normalize";
+@import "./3.generic/generic";
+
+// 4. Elements
+@import "./4.elements/elements";
+
+// 5. Objects
+@import "~bootstrap/scss/bootstrap-grid";
+@import "~slick-carousel/slick/slick";
+@import "./5.objects/objects";
+
+// 6. Components
+@import "./6.components/components";
+
+// 7. Utilities
+@import "./7.utilities/utilities";
+
+// TODO change container width & remove padding?

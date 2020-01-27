@@ -1,0 +1,32 @@
+// defaults
+$color-black: black;
+$color-white: white;
+$color-red: #d21e1e;
+$color-blue: #0000ff;
+
+// theme main
+
+// theme complementary
+
+// theme background & type
+
+// slate variables
+$color-disabled: $color-black;
+$color-disabled-border: $color-black;
+$color-error: $color-red;
+$color-error-bg: rgba($color-red, 0.3);
+$color-success: $color-blue;
+$color-success-bg: rgba($color-blue, 0.3);
+
+$placeholder-color-foreground: rgba($color-black, 0.8);
+$placeholder-color-background: rgba($color-black, 0.05);
+
+// Text colors
+$color-body-text: $color-black;
+
+// Background colors
+$color-body: $color-white;
+
+// Other colors
+$color-accent: $color-black;
+$color-border: $color-black;

@@ -1,0 +1,22 @@
+Run yarn install / npm install first
+add files: 
+
+.env
+.env.dev
+.env.prod
+
+with structure:
+
+SLATE_STORE= STORE.myshopify.com
+
+SLATE_PASSWORD= Private APP password
+
+SLATE_THEME_ID= theme id, choose correct one
+
+SLATE_IGNORE_FILES=
+
+Insert Shopify path and credentials
+
+Run yarn start/watch to start working on developer theme (env.dev)
+Run yarn deploy to deploy to production theme (env.prod)
+Check package.json for other commands

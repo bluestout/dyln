@@ -1,0 +1,68 @@
+// Transitions
+$animation-duration: 200ms;
+$animation-timing: ease-in-out;
+
+// added for specific breakpoints
+$grid-xxs: 375px;
+$grid-xs: 425px;
+
+// Grid
+$grid-small: 576px;
+$grid-medium: 768px;
+$grid-large: 992px;
+$grid-widescreen: 1200px;
+$grid-xl: 1441px;
+$grid-max-width: 1170px;
+$grid-gutter: 30px;
+$grid-max: 1920px;
+$container-max: 1300px;
+
+// Breakpoints used with the media-query mixin
+$small: "v-small";
+$small-up: "v-small-up";
+$medium: "small";
+$medium-down: "small-down";
+$medium-up: "small-up";
+$large: "medium";
+$large-down: "medium-down";
+$large-up: "medium-up";
+$xl: "large";
+$xl-down: "large-down";
+$xl-up: "large-up";
+$xxl: "xl";
+$xxl-down: "xl-down";
+$xxl-up: "xl-up";
+$large-max: "large-max";
+
+$breakpoints: (
+  $small "(max-width: #{$grid-small - 1})",
+  $small-up "(min-width: #{$grid-small})",
+  $medium "(min-width: #{$grid-small}) and (max-width: #{$grid-medium - 1})",
+  $medium-down "(max-width: #{$grid-medium - 1})",
+  $medium-up "(min-width: #{$grid-medium})",
+  $large "(min-width: #{$grid-medium}) and (max-width: #{$grid-large - 1})",
+  $large-down "(max-width: #{$grid-large - 1})",
+  $large-up "(min-width: #{$grid-large})",
+  $xl "(min-width: #{$grid-large}) and (max-width: #{$grid-widescreen - 1})",
+  $xl-down "(max-width: #{$grid-widescreen - 1})",
+  $xl-up "(min-width: #{$grid-widescreen})",
+  $xxl "(min-width: #{$grid-widescreen}) and (max-width: #{$grid-xl - 1})",
+  $xxl-down "(max-width: #{$grid-xl - 1})",
+  $xxl-up "(min-width: #{$grid-xl})",
+  $large-max "(min-width: #{$grid-widescreen}) and (max-width: #{$grid-max})"
+);
+
+$font-heading: var(--font-heading);
+$font-body: var(--font-body);
+$font-body-weight: var(--font-body-weight);
+$font-body-style: var(--font-body-style);
+$font-body-bold-weight: var(--font-body-bold-weight);
+
+$z-product-hover: 1;
+$z-cart-loader: 2;
+$z-select: 3;
+$z-chapter-modal: 4;
+$z-quickproduct: 4;
+$z-header: 5;
+$z-quickcart: 6;
+$z-chapter-modal-wide: 7;

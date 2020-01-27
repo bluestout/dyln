@@ -1,0 +1,148 @@
+.clearfix {
+  @include clearfix;
+}
+
+.visually-hidden {
+  @include visually-hidden;
+}
+
+.js-focus-hidden:focus {
+  outline: none;
+}
+
+.label-hidden {
+  @include visually-hidden;
+
+  // No placeholders, so force show labels
+  .no-placeholder & {
+    @include visually-shown;
+  }
+}
+
+.visually-shown {
+  @include visually-shown;
+}
+
+// Only show when JS is not supported
+.no-js:not(html) {
+  display: none;
+
+  .no-js & {
+    display: block;
+  }
+}
+
+// Only show when JS is supported
+.js {
+  .no-js & {
+    display: none;
+  }
+}
+
+// Only show when browser cookies are not supported
+.supports-no-cookies:not(html) {
+  display: none;
+
+  html.supports-no-cookies & {
+    display: block;
+  }
+}
+
+// Only show when browser cookies are supported
+.supports-cookies {
+  html.supports-no-cookies & {
+    display: none;
+  }
+}
+
+// Skip to content button
+// Overrides .visually-hidden when focused
+.skip-link:focus {
+  @include visually-shown(absolute);
+  z-index: 10000;
+  padding: $grid-gutter / 2;
+  background-color: $color-body;
+  color: $color-body-text;
+  transition: none;
+}
+
+// Hide outline on focus for elements which are given focus by JS
+[tabindex="-1"]:focus {
+  outline: none;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-end {
+  align-self: flex-end;
+}
+
+.flex-middle {
+  align-self: center;
+}
+
+.flex-col-wrap {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.flex-row-wrap {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+// no-gutter class, this one keeps row margins so content takes 100% width (good for container-fluid content)
+// bootstrap no-gutters class removes row margins, so only column content has no padding (good for container content)
+.row.no-gutter > [class*="col"] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.row.no-gutter-nested [class*="col"] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.flex-shaper {
+  flex: 1;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+@mixin no-font-size {
+  font-size: 0;
+  line-height: 0;
+}
+
+.semibold,
+.fw-500 {
+  font-weight: 500;
+  a,
+  p,
+  span,
+  li {
+    font-weight: 500;
+  }
+}
+
+.fw-400 {
+  font-weight: 400;
+  a,
+  p,
+  span,
+  li {
+    font-weight: 400;
+  }
+}

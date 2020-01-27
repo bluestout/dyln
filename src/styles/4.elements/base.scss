@@ -1,0 +1,207 @@
+p {
+  margin: 0 0 15px;
+  word-break: break-word;
+}
+
+li {
+  margin: 0 0 3px;
+  word-break: break-word;
+}
+
+a {
+  text-decoration: none;
+  word-break: break-word;
+}
+
+a:focus {
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+h1 {
+  word-break: break-word;
+}
+
+h2 {
+  word-break: break-word;
+}
+
+h3 {
+  word-break: break-word;
+}
+
+h4 {
+  word-break: break-word;
+}
+
+h5 {
+  word-break: break-word;
+}
+
+h6 {
+  word-break: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  a,
+  span,
+  p {
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+    text-decoration: inherit;
+  }
+}
+
+ul,
+ol {
+  margin: 0;
+}
+
+div {
+  word-break: break-word;
+}
+
+label {
+  word-break: break-word;
+}
+
+input {
+  border: none;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="search"] {
+  font-size: 16px;
+  line-height: 1;
+  background-color: transparent;
+  padding: 20px 15px;
+  border-radius: 0;
+  border: 1px solid $color-black;
+  width: 100%;
+  &::placeholder {
+    font-weight: 400;
+  }
+}
+
+textarea {
+  font-size: 16px;
+  line-height: 1;
+  background-color: transparent;
+  padding: 20px 15px;
+  border-radius: 0;
+  border: 1px solid $color-black;
+  width: 100%;
+  &::placeholder {
+    color: $color-black;
+  }
+}
+
+input[type="submit"],
+button[type="submit"] {
+  @include Text(13px, 14px, $color-white, 0.1px);
+  @include transition(background-color);
+  text-align: center;
+  text-decoration: none;
+  padding: 12px 24px;
+  background: none;
+  background-color: $color-black;
+  border-radius: 0;
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
+  width: auto;
+  border: 0;
+  white-space: normal;
+  user-select: none;
+  appearance: none;
+  margin: 0 auto;
+
+  &:hover,
+  &:active {
+    background-color: $color-accent;
+  }
+}
+
+select {
+  font-size: 16px;
+  line-height: 1;
+  background-color: $color-white;
+  padding: 20px 15px;
+  border: 1px solid $color-black;
+  border-radius: 0;
+  appearance: none;
+  font-weight: 700;
+  &::placeholder {
+    font-weight: 400;
+    color: $color-black;
+  }
+}
+
+input[type="checkbox"] {
+  position: relative;
+  appearance: none;
+  border-radius: 50%;
+  border: none;
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 10px 0 0;
+
+  &:checked {
+    &::before {
+      @include icoMoon;
+      content: "\e90e";
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      display: block;
+      width: 12px;
+      height: 12px;
+      background-color: transparent;
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    border: 1px solid $color-black;
+    width: 22px;
+    height: 22px;
+  }
+}
+
+table {
+  border-spacing: 0;
+}
+
+table th {
+  text-align: left;
+  padding: 5px;
+
+  &:last-of-type {
+    text-align: right;
+  }
+}
+
+table td {
+  text-align: left;
+  padding: 5px;
+  vertical-align: top;
+
+  &:last-of-type {
+    text-align: right;
+  }
+}

@@ -1,0 +1,8 @@
+.max-wrap {
+  @include clearfix;
+  position: relative;
+  display: block;
+  max-width: $grid-xl;
+  margin-left: auto;
+  margin-right: auto;
+}

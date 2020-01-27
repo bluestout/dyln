@@ -1,0 +1,56 @@
+/* @mixin neue-haas($weight: 400, $style: normal) {
+  @if $weight == 400 {
+    @if $style == italic {
+      font-family: "NeueHaasUnicaW1G-Italic", sans-serif;
+      font-weight: 400;
+      font-style: italic;
+    } @else {
+      font-family: "NeueHaasUnicaW1G-Regular", sans-serif;
+      font-weight: 400;
+    }
+  } @else if $weight == 500 {
+    @if $style == italic {
+      font-family: "NeueHaasUnicaW1G-MediumIt", sans-serif;
+      font-weight: 400;
+      font-style: italic;
+    } @else {
+      font-family: "NeueHaasUnicaW1G-Medium", sans-serif;
+      font-weight: 400;
+    }
+  } @else if $weight == 700 {
+    @if $style == italic {
+      font-family: "NeueHaasUnicaW1G-BoldItalic", sans-serif;
+      font-weight: 400;
+      font-style: italic;
+    } @else {
+      font-family: "NeueHaasUnicaW1G-Bold", sans-serif;
+      font-weight: 400;
+    }
+  } @else {
+    font-family: "NeueHaasUnicaW1G-Regular", sans-serif;
+    font-weight: 400;
+  }
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  // needs fw: 400, 500, 700;
+}
+
+@mixin neue-haas-sb {
+  font-family: "NeueHaasUnicaW1G-Medium", sans-serif;
+  font-weight: 400;
+}
+
+@mixin neue-haas-b {
+  font-family: "NeueHaasUnicaW1G-Bold", sans-serif;
+  font-weight: 400;
+}
+
+@mixin orpheus-pro($weight: 400, $style: normal) {
+  font-family: "OrpheusPro", sans-serif;
+  font-weight: $weight;
+  font-style: $style;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+ */

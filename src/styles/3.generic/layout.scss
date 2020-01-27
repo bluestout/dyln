@@ -1,0 +1,45 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: auto;
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  background-color: $color-body;
+  box-sizing: border-box;
+  &.no-scroll {
+    overflow: hidden;
+    height: 100%;
+  }
+}
+
+body {
+  min-width: 320px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+input,
+label,
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+}
