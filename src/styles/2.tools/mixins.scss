@@ -108,34 +108,35 @@
   clip: auto;
 }
 
-@mixin backgroundImage() {
+@mixin bg-image() {
   background-color: #f3f4f5;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
 }
 
-@mixin backgroundImageOnly() {
+@mixin bg-image-only() {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
 }
-@mixin Text($size: 15px, $line: 1.25, $color: initial, $spacing: normal) {
+@mixin text($size: 15px, $line: 1.25, $color: initial, $spacing: normal) {
   font-size: $size;
   line-height: $line;
   color: $color;
   letter-spacing: $spacing;
 }
 
-@mixin icoMoon($size: 14px, $color: #000) {
-  font-family: icomoon !important;
-  font-weight: 400;
-  font-size: $size;
-  line-height: 1;
-  font-style: normal;
-  font-variant: normal;
-  color: $color;
-  text-transform: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@mixin font-body($isBold: false) {
+  font-family: $font-body;
+  font-style: $font-body-style;
+  $weight: $font-body-weight;
+  @if $isBold == true {
+    $weight: $font-body-bold-weight;
+  }
+  font-weight: $weight;
+}
+
+@mixin font-header {
+  $font-heading: var(--font-heading);
 }

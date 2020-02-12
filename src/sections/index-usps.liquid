@@ -1,0 +1,124 @@
+<div class="index-usps__wave-top"></div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="index-usps__content">
+
+        {% if section.settings.title != blank %}
+          <h2 class="index-usps__title">{{ section.settings.title }}</h2>
+        {% endif %}
+
+        {% if section.blocks.size > 0 %}
+          <div class="index-usps__usps" data-accordion-parent=true>
+          {% for usp in section.blocks %}
+            <div class="index-usps__usp">
+              <button class="index-usps__usp-btn" data-accordion-button>
+                <span class="index-usps__usp-icon">
+                  {% if usp.settings.icon == "acid-reflux" %}
+                    {% render 'icon-acid-reflux' %}
+                  {% elsif usp.settings.icon == "detoxifying-spin" %}
+                    {% render 'icon-detoxifying-spin' %}
+                  {% elsif usp.settings.icon == "hydration" %}
+                    {% render 'icon-hydration' %}
+                  {% elsif usp.settings.icon == "scale" %}
+                    {% render 'icon-scale' %}
+                  {% endif %}
+                </span>
+                <span class="index-usps__usp-title">
+                  {{ usp.settings.title }}
+                </span>
+                <span class="index-usps__usp-closed">+</span>
+                <span class="index-usps__usp-open">-</span>
+              </button>
+              <div class="index-usps__usp-content" data-accordion-content>{{ usp.settings.content }}</div>
+            </div>
+          {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-lg-6">
+
+      {% if section.settings.background %}
+        {% assign wrapper_class = "index-usps__bg-wrap" %}
+
+        {% if section.settings.background_rsp %}
+          {% assign wrapper_class = "index-usps__bg-wrap d-none d-sm-block" %}
+          {% render 'responsive-image' with
+            image: section.settings.background_rsp,
+            max_width: 576,
+            max_height: 576,
+            wrapper_class: "index-usps__bg-wrap d-sm-none",
+            image_class: "index-usps__bg",
+          %}
+        {% endif %}
+
+        {% render 'responsive-image' with
+          image: section.settings.background,
+          max_width: 800,
+          max_height: 700,
+          wrapper_class: wrapper_class,
+          image_class: "index-usps__bg",
+        %}
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+
+<div class="index-usps__wave-btm"></div>
+
+{% schema %}
+  {
+    "name": "Index Usps",
+    "class": "index-usps",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "background",
+        "label": "Background",
+        "info": "800x700"
+      },
+      {
+        "type": "image_picker",
+        "id": "background_rsp",
+        "label": "Background Mobile",
+        "info": "768x768"
+      },
+      {
+        "type": "textarea",
+        "id": "title",
+        "label": "Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "usp",
+        "name": "USP",
+        "settings": [
+          {
+            "type": "text",
+            "id": "icon",
+            "label": "Icon",
+            "info": "Icon to be used. Icons available: acid-reflux, detoxifying-spin, hydration, scale. Copy one of these and paste it in the text field."
+          },
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "textarea",
+            "id": "content",
+            "label": "Content"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "Index Usps",
+      "category": "Front Page"
+    }]
+  }
+{% endschema %}

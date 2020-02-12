@@ -1,0 +1,91 @@
+<div class="container">
+  {% if section.settings.title != blank %}
+    <h2 class="index-features__title">{{ section.settings.title }}</h2>
+  {% endif %}
+  {% for block in section.blocks %}
+    {% assign modulo = forloop.index | modulo: 2 %}
+    {% assign image_order = " order-lg-2" %}
+    {% if modulo == 0  %}
+      {% assign image_order = " order-lg-0" %}
+    {% endif %}
+    <div class="index-features__feature">
+      <div class="row">
+        <div class="col-lg-8 d-lg-flex order-lg-1">
+          <div class="index-features__content">
+            {% if block.settings.title != blank %}
+              <h3 class="index-features__f-title">{{ block.settings.title }}</h3>
+            {% endif %}
+
+            {% if block.settings.content != blank %}
+              <div class="index-features__f-content">{{ block.settings.content }}</div>
+            {% endif %}
+
+            {% if block.settings.bottom != blank %}
+              <div class="index-features__f-bottom">{{ block.settings.bottom }}</div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="col-lg-4{{ image_order }}">
+          {% if block.settings.image %}
+            {% render 'responsive-image' with
+              image: block.settings.image,
+              max_width: 425,
+              max_height: 425,
+              wrapper_class: "index-header__bg-wrap",
+              image_class: "index-header__bg",
+            %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+
+{% schema %}
+  {
+    "name": "Index Features",
+    "class": "index-features",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "block",
+        "name": "Block",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image",
+            "info": "425x425"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "textarea",
+            "id": "content",
+            "label": "Content",
+            "info": "You can use basic html to style the section. Use <span class=\"brand-green\">#yourtexthere</span> To color a segment of text blue. Use brand-green for green."
+          },
+          {
+            "type": "textarea",
+            "id": "bottom",
+            "label": "Bottom Content"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "Index Features",
+      "category": "Front Page"
+    }]
+  }
+{% endschema %}

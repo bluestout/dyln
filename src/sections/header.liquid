@@ -48,7 +48,6 @@
     {% endif %}
 
     <a href="/cart">
-      {% include 'icon-cart' %}
       {{ 'layout.cart.title' | t }}
       ({{ cart.item_count }} {{ 'layout.cart.items_count' | t: count: cart.item_count }})
     </a>
@@ -90,7 +89,6 @@
         placeholder="{{ 'general.search.placeholder' | t }}">
 
       <button type="submit" class="button">
-        {% include 'icon-search' %}
         <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
       </button>
     </form>
@@ -103,7 +101,6 @@
           <li>
             <a href="{{ link.url }}">
               {{ link.title }}
-              {% include 'icon-arrow-down' %}
             </a>
             <ul>
               {% for childlink in link.links %}

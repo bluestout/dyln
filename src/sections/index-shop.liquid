@@ -1,0 +1,104 @@
+<div class="container">
+  {% if section.settings.title != blank %}
+    <h2 class="index-shop__title">
+      {{ section.settings.title }}
+    </h2>
+  {% endif %}
+
+  <div class="index-shop__products">
+    {% for block in section.blocks %}
+      {% if block.type == "product" %}
+        <div class="col-md-4">
+          {% render 'product-item' with block.settings.product %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="index-shop__collections">
+    <div class="row justify-content-center">
+      {% for block in section.blocks %}
+        {% if block.type == "collection" %}
+          <div class="col-4">
+            <div class="index-shop__collection">
+              {%- assign block_coll = collections[block.settings.collection] -%}
+              {% if block.settings.image %}
+                {% assign block_image = block.settings.image %}
+              {% else %}
+                {% assign block_image = block_coll.image %}
+              {% endif %}
+
+              {% render 'responsive-image' with
+                image: block_image,
+                max_width: 300,
+                max_height: 300,
+                wrapper_class: "index-shop__c-img-wrap",
+                image_class: "index-shop__c-img",
+              %}
+
+              {% assign block_title = "Shop " | append: block_coll.title %}
+              {% if block.settings.title != empty %}
+                {% assign block_title = block.settings.title %}
+              {% endif %}
+              <a class="index-shop__c-title" href="{{ block_coll.url }}">{{ block_title }}</a>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Index Shop",
+    "class": "index-shop",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "title",
+        "label": "Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "product",
+        "name": "Products",
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product"
+          }
+        ]
+      },
+      {
+        "type": "collection",
+        "name": "Collections",
+        "settings": [
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection",
+            "info": "Additional collections to show under the featured prodcuts."
+          },
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Title",
+            "info": "Optional, will default to Shop #CollectionName."
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image",
+            "info": "300x300. Optional, will default to the collection image."
+          }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "Index Shop",
+      "category": "Front Page"
+    }]
+  }
+{% endschema %}

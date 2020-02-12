@@ -30,28 +30,24 @@
     <meta name="description" content="{{ page_description | escape }}">
   {%- endif -%}
 
-  {% include 'social-meta-tags' %}
-  {% include 'style-tags', layout: 'theme' %}
-  {% include 'css-variables' %}
+  {% render 'social-meta-tags' %}
+  {% render 'style-tags', layout: 'theme' %}
+  {% render 'css-variables' %}
+
+  {% comment %} Fonts {% endcomment %}
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins&display=swap" rel="stylesheet">
+
+  {% comment %} this is needed so translated strings can be used in js {% endcomment %}
+  {%- render 'theme-strings' -%}
 
   <script>
     document.documentElement.className = document.documentElement.className.replace('no-js', '');
-
-    window.theme = {
-      strings: {
-        addToCart: {{ 'products.product.add_to_cart' | t | json }},
-        soldOut: {{ 'products.product.sold_out' | t | json }},
-        unavailable: {{ 'products.product.unavailable' | t | json }}
-      },
-      moneyFormat: {{ shop.money_format | json }}
-    };
-
     {% if template.directory == 'customers' %}
       theme.allCountryOptionTags = {{ all_country_option_tags | json }};
     {% endif %}
   </script>
 
-  {% include 'script-tags', layout: 'theme' %}
+  {% render 'script-tags', layout: 'theme' %}
 
   {{ content_for_header }}
 </head>

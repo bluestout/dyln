@@ -1,44 +1,21 @@
 p {
-  margin: 0 0 15px;
-  word-break: break-word;
+  &:not(:last-of-type) {
+    margin: 0 0 15px;
+  }
 }
 
 li {
-  margin: 0 0 3px;
-  word-break: break-word;
+  &:not(:last-of-type) {
+    margin: 0 0 10px;
+  }
 }
 
 a {
   text-decoration: none;
-  word-break: break-word;
 }
 
 a:focus {
   outline: -webkit-focus-ring-color auto 5px;
-}
-
-h1 {
-  word-break: break-word;
-}
-
-h2 {
-  word-break: break-word;
-}
-
-h3 {
-  word-break: break-word;
-}
-
-h4 {
-  word-break: break-word;
-}
-
-h5 {
-  word-break: break-word;
-}
-
-h6 {
-  word-break: break-word;
 }
 
 h1,
@@ -58,17 +35,24 @@ p {
   }
 }
 
-ul,
-ol {
-  margin: 0;
-}
-
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+span,
+label,
+li,
 div {
   word-break: break-word;
 }
 
-label {
-  word-break: break-word;
+ul,
+ol {
+  margin: 0;
 }
 
 input {
@@ -107,7 +91,7 @@ textarea {
 
 input[type="submit"],
 button[type="submit"] {
-  @include Text(13px, 14px, $color-white, 0.1px);
+  @include text(13px, 14px, $color-white, 0.1px);
   @include transition(background-color);
   text-align: center;
   text-decoration: none;
@@ -159,8 +143,7 @@ input[type="checkbox"] {
 
   &:checked {
     &::before {
-      @include icoMoon;
-      content: "\e90e";
+      content: "";
       position: absolute;
       top: 4px;
       left: 4px;

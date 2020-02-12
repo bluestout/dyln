@@ -1,0 +1,106 @@
+{% assign block_p = product-item %}
+{% assign block_p_img = "" %}
+
+<div class="product-item__wrap">
+  <a class="product-item" href="{{ block_p.url }}">
+
+    {% assign colors = "" %}
+    {% for option in block_p.options_with_values %}
+      {% if option.name == "Color" %}
+        {% for value in option.values %}
+          {% assign colors =  colors  | append: value | append: ',' %}
+        {% endfor %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+
+    {% assign colors_array = colors | split: ',' %}
+
+    <span class="product-item__image-link">
+      <span class="product-item__gallery" data-c-image-gallery>
+
+        {% assign first = true %}
+        {% for color in colors_array %}
+          {% assign color_satisfied = false %}
+          {% for block_p_img in block_p.images %}
+            {% unless color_satisfied  %}
+              {% if block_p_img.alt contains color %}
+
+                {% if first %}
+                  {% assign gallery_attribute = 'data-c-image="' | append: color  | append: '"' %}
+                  {% assign gallery_wrapper = "active product-item__g-img-wrap" %}
+                {% else %}
+                  {% assign gallery_attribute = 'style="display:none;"' | append: 'data-c-image="' | append: color  | append: '"' %}
+                  {% assign gallery_wrapper = "product-item__g-img-wrap" %}
+                {% endif %}
+
+                {% render 'responsive-image' with
+                  image: block_p_img,
+                  max_width: 300,
+                  max_height: 450,
+                  wrapper_class: gallery_wrapper,
+                  image_class: "product-item__gallery-img",
+                  wrapper_attributes: gallery_attribute,
+                  span: true
+                %}
+
+                {% assign first = false %}
+                {% assign color_satisfied = true %}
+              {% endif %}
+            {% endunless %}
+          {% endfor %}
+        {% endfor %}
+      </span>
+    </span>
+
+    <h3 class="product-item__title">
+      {{ block_p.title }}
+    </h3>
+
+    {% if block_p.metafields.info.collection_description != blank %}
+      <div class="product-item__content">
+        {{ block_p.metafields.info.collection_description | strip_html | truncatewords: 30, '...'  }}
+      </div>
+    {% else %}
+      <div class="product-item__content">
+        {{ block_p.description | strip_html | truncatewords: 30, '...'  }}
+      </div>
+    {% endif %}
+
+    <span class="product-item__link-wrap">
+      {% if block_p.metafields.info.shop_button %}
+        <span class="product-item__link">
+          {{ block_p.metafields.info.shop_button | strip_html | truncate: 30 }}
+        </span>
+      {% else %}
+        <span class="product-item__link">
+          {{ 'products.product.view' | t }}
+        </span>
+      {% endif %}
+    </span>
+
+  </a>
+
+  <span class="product-item__colors" data-c-image-colors>
+    {% for option in block_p.options_with_values %}
+      {% if option.name == "Color" %}
+        {% for color in option.values %}
+          <button type="button" data-c-image-button="{{ color }}" class="product-item__color" title="{{ color | remove: '1' | remove: '2' | remove: '3' | remove: '4' | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9' | remove: '0' | remove: '_' }}"></button>
+        {% endfor %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  </span>
+</div>
+
+<script>
+  var colorSpans = document.querySelectorAll("[data-c-image-button]");
+  var colors = window.theme.collectionColors;
+  for (let i = 0; i < colorSpans.length; i++) {
+    var colorSpan = colorSpans[i];
+    var name = colorSpan.dataset.cImageButton;
+    if (colors[name]) {
+      colorSpan.setAttribute("style", 'background-color: ' + colors[name] + ';');
+    }
+  }
+</script>

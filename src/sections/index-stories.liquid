@@ -1,0 +1,98 @@
+{% if sections.settings.title != blank %}
+  <div class="container">
+    <h2 class="index-stories__title">{{ sections.settings.title }}</h2>
+  </div>
+{% endif %}
+
+<div class="index-stories__stories">
+  {% for block in section.blocks %}
+    {% assign modulo = forloop.index | modulo: 2 %}
+    {% assign content_order = " order-md-2" %}
+    {% if modulo == 0 %}
+      {% assign content_order = " order-md-0" %}
+    {% endif %}
+    <div class="index-stories__story">
+      <div class="index-stories__s-media order-md-1">
+        {% if block.settings.image %}
+          {% render 'responsive-image' with
+            image: block.settings.image,
+            max_width: 425,
+            max_height: 425,
+            wrapper_class: "index-stories__img-wrap",
+            image_class: "index-stories__img",
+          %}
+        {% endif %}
+      </div>
+      <div class="index-stories__s-content">
+        <h4 class="index-stories__s-title">{{ block.settings.title }}</h4>
+        <div class="index-stories__s-rating">
+          {% assign star_count = block.settings.rating %}
+          {% for i in (1..star_count) %}
+            <span class="index-stories__s-star">
+              {% render 'icon-star' %}
+            </span>
+          {% endfor %}
+        </div>
+        <div class="index-stories__s-content">{{ block.settings.content }}</div>
+        <div class="index-stories__s-author">{{ block.settings.author }}</div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% schema %}
+  {
+    "name": "Index Stories",
+    "class": "index-stories",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "story",
+        "name": "Story",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image",
+            "info": "425x425"
+          },
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Story Title"
+          },
+          {
+            "type": "textarea",
+            "id": "content",
+            "label": "Story Content"
+          },
+          {
+            "type": "range",
+            "id": "rating",
+            "min": 1,
+            "max": 5,
+            "step": 1,
+            "label": "Rating",
+            "default": 3
+          },
+          {
+            "type": "textarea",
+            "id": "author",
+            "label": "Author"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "Index Stories",
+      "category": "Front Page"
+    }]
+  }
+{% endschema %}
+

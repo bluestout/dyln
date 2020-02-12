@@ -16,7 +16,7 @@
 
   @if $type == main {
     @include neue-haas;
-    @include Text(13px, 14px, $color-white, 0.1px);
+    @include text(13px, 14px, $color-white, 0.1px);
     @include transition(background-color);
     text-align: center;
     text-decoration: none;
@@ -58,7 +58,7 @@
     }
   } @else if $type == wire {
     @include neue-haas;
-    @include Text(13px, 14px, $color-black, 0.1px);
+    @include text(13px, 14px, $color-black, 0.1px);
     @include transition(background-color, color);
     text-align: center;
     text-decoration: none;
