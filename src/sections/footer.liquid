@@ -1,12 +1,107 @@
-<footer>
-  <div>
-    <small>{{ 'layout.footer.copyright' | t }} &copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: '/' }}. {{ powered_by_link }}</small>
+{% if template == "index" %}
+  <div class="site-footer__lifestyle">
+    <div class="site-footer__wave-top"></div>
+    <div class="site-footer__lifestyle-bg">
+      <div class="container" data-tabs-container>
+        <div class="row">
+          <div class="col-5">
+            <h3 class="site-footer__lf-title">The DYLN Lifestyle</h3>
+            <p class="site-footer__lf-content">We are passionate about all health and environment issues, read more on our DYLN Blog</p>
+            <p class="site-footer__lf-links-header">SELECT TOPIC</p>
+            {% comment %} for each blog, create a a separate link {% endcomment %}
+            <div class="site-footer__lf-links">
+              <a class="site-footer__lf-link active" href="#" data-tab-link="1">Recent</a>
+              <a class="site-footer__lf-link" href="#" data-tab-link="2">Talking Health</a>
+              <a class="site-footer__lf-link" href="#" data-tab-link="3">Community</a>
+              <a class="site-footer__lf-link" href="#" data-tab-link="4">Alkaline Living</a>
+              <a class="site-footer__lf-link" href="#" data-tab-link="5">Customer Stories</a>
+            </div>
+          </div>
+          <div class="col-7">
+            <div class="site-footer__lf-list-wrap">
+              {% comment %} for each blog, create a new section {% endcomment %}
+              <div class="site-footer__lf-list active" data-tab="1">
+                {% assign lf_blog = blogs["chapters"] %}
+                {% for lf_article in lf_blog.articles limit: 10 %}
+                  <div class="site-footer__lf-article">
+                    {% if lf_article.image %}
+                      {% render 'responsive-image' with
+                        image: lf_article.image,
+                        max_width: 312,
+                        max_height: 312,
+                        wrapper_class: "site-footer__lf-a-img-wrap",
+                        image_class: "site-footer__lf-a-img",
+                      %}
+                    {% endif %}
+                    <div class="site-footer__lf-a-overlay"></div>
+                    <div class="site-footer__lf-a-content">
+                      <span class="site-footer__lf-a-blog">{{ lf_blog.title }}</span>
+                      <h6 class="site-footer__lf-a-title">{{ lf_article.title }}</h6>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+              <div class="site-footer__lf-list" style="display:none;" data-tab="2"></div>
+              <div class="site-footer__lf-list" style="display:none;" data-tab="3"></div>
+              <div class="site-footer__lf-list" style="display:none;" data-tab="4"></div>
+              <div class="site-footer__lf-list" style="display:none;" data-tab="5"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+<footer class="site-footer__footer">
+  <div class="site-footer__wave-middle"></div>
+  <div class="site-footer__footer-bg">
+    <div class="container">
+      <div class="row">
+        {% for link in linklists[section.settings.menu].links %}
+          <div class="col">
+            <a class="site-footer__parent-link" href="{{ link.url }}">
+              {{ link.title }}
+            </a>
+            {% if link.links != blank %}
+              <ul class="site-footer__menu-list">
+                {% for childlink in link.links %}
+                  <li class="site-footer__menu-item">
+                    <a class="site-footer__menu-link" href="{{ childlink.url }}">
+                      {{ childlink.title }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        {% endfor %}
+        <div class="col">
+          {% render 'footer-newsletter' %}
+
+          {% render 'social-links' %}
+
+        </div>
+      </div>
+
+      <div class="footer-copyright">
+         © {{ "now" | date: "%Y" }}, DYLN Inspired | <a href="">Privacy Policy</a> | <a href="">Terms</a> | <a href="">IP</a>
+      </div>
+
+    </div>
   </div>
 </footer>
 
 {% schema %}
   {
-    "name": "Footer"
+    "name": "Footer",
+    "class": "site-footer",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Menu"
+      }
+    ]
   }
-
 {% endschema %}

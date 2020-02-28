@@ -1,0 +1,102 @@
+.index-header {
+  position: relative;
+
+  &__outer {
+    position: relative;
+  }
+
+  &__bg-wrap {
+  }
+
+  &__bg {
+  }
+
+  &__content-wrap {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__container {
+    height: 100%;
+  }
+  &__row {
+    height: 90%;
+  }
+
+  &__content {
+    align-self: center;
+  }
+
+  &__title {
+    @include poppins(700);
+    @include text(24px, 35px, $color-title-light);
+  }
+
+  &__link-wrap {
+    margin: 20px 0 0;
+  }
+
+  &__link {
+    @include button(solid, r, 1);
+  }
+
+  &__features {
+    margin: 60px 0 0;
+  }
+
+  &__f {
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    &:not(:last-of-type) {
+      margin: 0 20px 0 0;
+    }
+  }
+
+  &__f-icon {
+    position: relative;
+    border-radius: 50%;
+    background-color: $color-main-1;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+  }
+
+  &__f-icon svg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__f-text {
+    @include poppins(700);
+    @include text(12px, 16px, $color-white, 0.71px);
+    // max-width: 90px;;
+  }
+
+  &__btm {
+    height: 10%;
+    text-align: center;
+  }
+
+  &__btm-link {
+    @include open-sans;
+    @include text(14px, 16px, $color-white);
+  }
+
+  &__wave-wrap {
+    overflow-y: hidden;
+  }
+
+  &__wave {
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+}

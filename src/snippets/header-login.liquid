@@ -1,0 +1,63 @@
+<a class="header-login__main-link" href="" data-header-login-link>
+  <span class="header-login__main-text">Account</span>
+  <span class="header-login__main-icon">
+    {% render 'icon-plus-vertical' %}
+    {% render 'icon-plus-horizontal' %}
+  </span>
+</a>
+
+<div class="header-login" data-header-login-block>
+  <h3 class="header-login__title">Login</h3>
+  <button class="header-login__close"></button>
+  <div class="header-login__socials">
+    <a class="header-login__social" href="">Login with Facebook</a>
+    <a class="header-login__social" href="">Login with Google</a>
+  </div>
+  {% form 'customer_login', class: 'header-login__form' %}
+
+    {{ form.errors | default_errors }}
+
+    <label for="HCustomerEmail" class="label-hidden">
+      {{ 'customer.login.email' | t }}
+    </label>
+    <input type="email"
+      name="customer[email]"
+      id="HCustomerEmail"
+      class="header-login__input{% if form.errors contains 'email' %} error{% endif %}"
+      placeholder="{{ 'customer.login.email' | t }}"
+      spellcheck="false"
+      autocomplete="off"
+      autocapitalize="off"
+      autofocus
+      required>
+
+    {% if form.password_needed %}
+      <label for="HCustomerPassword" class="label-hidden">
+        {{ 'customer.login.password' | t }}
+      </label>
+      <input type="password"
+        name="customer[password]"
+        id="HCustomerPassword"
+        class="header-login__input{% if form.errors contains 'password' %} error{% endif %}"
+        placeholder="{{ 'customer.login.password' | t }}"
+        required />
+    {% endif %}
+
+    <div class="header-login__account-links">
+      <a class="header-login__account-link" href="/account/register">{{ 'layout.customer.create_account' | t }}</a>
+      <a class="header-login__account-link" href="/account/login#forgot">{{ 'customer.login.forgot_password' | t }}</a>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="header-login__submit">{{ 'customer.login.sign_in' | t }}</button>
+    </div>
+  {% endform %}
+  <div class="header-login__separator"></div>
+
+  <a class="header-login__bottle-link" href="" >
+    <span class="header-login__bottle-wrap">
+      <img class="header-login__bottle-img" src="{{ 'dyln-register-bottle.png' | asset_url }}" alt="Register your new bottle" />
+    </span>
+    <span class="header-login__bottle-text">Register your new bottle</span>
+  </a>
+</div>

@@ -1,4 +1,7 @@
-import {load} from '@shopify/theme-sections';
-import '../sections/product';
+import { load } from "@shopify/theme-sections";
 
-load('*');
+import "../components/index";
+
+import "../../styles/index.scss";
+
+load("*");

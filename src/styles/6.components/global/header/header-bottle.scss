@@ -1,0 +1,204 @@
+.header-bottle {
+  @include transition(opacity);
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  opacity: 0;
+  pointer-events: none;
+  width: 100vw;
+
+  &:hover {
+    pointer-events: auto;
+    opacity: 1;
+  }
+
+  &__main-link {
+    display: inline-block;
+    vertical-align: middle;
+
+    &:hover {
+      .header-bottle__main-text {
+        color: $color-main-1;
+      }
+      .icon-plus-vert path {
+        stroke: $color-main-1;
+      }
+      .icon-plus-hor path {
+        stroke: $color-main-1;
+      }
+    }
+
+    &:active,
+    &.active {
+      .header-bottle__main-text::after {
+        width: 100%;
+      }
+      .header-bottle__main-text {
+        color: $color-body-text;
+      }
+
+      .icon-plus-vert {
+        top: 3px;
+        height: 2px;
+      }
+
+      .icon-plus-vert path {
+        stroke: $color-body-text;
+      }
+      .icon-plus-hor path {
+        stroke: $color-body-text;
+      }
+
+      + .header-bottle {
+        pointer-events: auto;
+        opacity: 1;
+      }
+    }
+  }
+
+  &__main-text {
+    @include poppins(700);
+    @include text(19px, 27px, $color-body-text, 1.5px);
+    @include transition(color);
+    @include underline($color-body-text, false);
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__main-icon {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 8px;
+    height: 8px;
+
+    .icon-plus-vert path,
+    .icon-plus-hor path {
+      @include transition(stroke);
+    }
+
+    .icon-plus-vert {
+      @include transition(top, height);
+      position: absolute;
+      top: 0;
+      left: 3px;
+    }
+
+    .icon-plus-hor {
+      position: absolute;
+      left: 0;
+      top: 3px;
+    }
+  }
+
+  &__body {
+    position: relative;
+    z-index: 1;
+    background-color: $color-background;
+    padding: 60px 0 0;
+  }
+
+  &__video {
+  }
+
+  &__content-wrap {
+  }
+
+  &__c-title {
+    @include poppins(700);
+    @include text(40px, 56px, $color-main-1, 2.36px);
+    margin: 0 0 10px;
+  }
+
+  &__c-subtitle {
+    @include poppins(500);
+    @include text(30px, 56px, $color-main-1, 1.77px);
+    margin: 0 0 20px;
+  }
+
+  &__c-content {
+    @include poppins(500);
+    @include text(16px, 23px, $color-body-text, 0.15px);
+    margin: 0 0 30px;
+  }
+
+  &__c-link {
+    @include button(solid, r, 1);
+  }
+
+  &__usps {
+    position: relative;
+    margin: 20px 0 0;
+    padding: 60px 0 0;
+  }
+
+  &__usps-wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='1600' height='274' viewBox='0 0 1600 274' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M.5 18.447c610 84.033 1039.676-69.017 1600 0v255H.5c-.667-115.333-.667-200.333 0-255z' fill='%23E7F0F2' fill-rule='evenodd'/%3E%3C/svg%3E");
+  }
+
+  &__usps-title {
+    @include poppins(700);
+    @include text(20px, 28px, $color-title, 0.48px);
+    position: relative;
+    margin: 5px 0 0;
+  }
+  &__usp {
+    position: relative;
+  }
+
+  &__usp-header {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  &__usp-icon {
+    margin: 0 20px 0 0;
+    flex: 0 0 40px;
+    align-self: center;
+  }
+
+  &__usp-title {
+    @include poppins(700);
+    @include text(20px, 28px, $color-title, 0.23px);
+    flex: 0 0 1;
+    align-self: flex-end;
+    padding: 0 0 3px;
+  }
+
+  &__usp-body {
+    @include poppins(500);
+    @include text(14px, 20px, $color-body-text, 0.16px);
+  }
+
+  &__close {
+    @include no-font-size;
+    text-align: center;
+    padding: 10px 0 20px;
+    background-color: $color-theme-13;
+  }
+
+  &__close-btn {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    border-radius: 0;
+    margin: 0;
+    padding: 1px 3px;
+    display: inline-block;
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($color-black, 0.5);
+  }
+}

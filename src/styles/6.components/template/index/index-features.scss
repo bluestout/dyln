@@ -1,0 +1,70 @@
+.index-features {
+  position: relative;
+  background-color: $color-theme-5;
+  padding: 70px 0 60px;
+  margin: 0 0 40px;
+
+  &__wave-top {
+    @include animated-wave;
+    top: 0;
+    height: 61px;
+    background-image: url("data:image/svg+xml,%3Csvg width='1600' height='61' viewBox='0 0 1600 61' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 24s237.919 1.791 476.193 10.739C599.292 39.362 753.49 53.487 856 58.665c82.98 4.19 129.8 0 164.422 0C1109.81 58.665 1303.336 47.11 1601 24V0H0v24z' fill='%23FFF' fill-rule='evenodd'/%3E%3C/svg%3E");
+  }
+
+  &__title {
+    @include poppins(700);
+    @include text(40px, 56px, $color-title, 2.36px);
+    margin: 0 0 30px;
+    text-align: center;
+  }
+
+  &__feature {
+  }
+  &__content {
+    align-self: center;
+  }
+  &__f-title {
+    @include poppins(700);
+    font-size: 30px;
+    line-height: 45px;
+    letter-spacing: 1.77px;
+    color: $color-main-1;
+    margin: 0 0 10px;
+
+    &.alt {
+      color: $color-main-2;
+    }
+  }
+
+  &__f-content {
+    @include open-sans;
+    color: $color-body-text;
+    margin: 0 0 20px;
+
+    p,
+    a {
+      @include open-sans;
+      color: $color-body-text;
+    }
+  }
+
+  &__f-bottom {
+    p {
+      @include poppins(500);
+      color: $color-body-text;
+    }
+
+    a {
+      @include poppins(500);
+      color: $color-main-1;
+      text-decoration: underline;
+    }
+  }
+
+  &__wave-btm {
+    @include animated-wave;
+    bottom: 0;
+    height: 48px;
+    background-image: url("data:image/svg+xml,%3Csvg width='1600' height='48' viewBox='0 0 1600 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 48h1600V1c-15.883.092-28.05.758-36.5 2-123.082 18.084-222.005 31-292.03 31-132.135 0-265.365-2.296-380.427-4.104-172.457-2.71-261.137-3.213-508.476-11.73-47.69-1.643-103.026 6.664-219.75 0C140.791 16.907 93.393 7.711 35.972 1 26.93-.057 14.94-.057 0 1v47z' fill='%23FFF' fill-rule='evenodd'/%3E%3C/svg%3E");
+  }
+}

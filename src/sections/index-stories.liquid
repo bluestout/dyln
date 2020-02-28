@@ -1,10 +1,10 @@
-{% if sections.settings.title != blank %}
+{% if section.settings.title != blank %}
   <div class="container">
-    <h2 class="index-stories__title">{{ sections.settings.title }}</h2>
+    <h2 class="index-stories__title">{{ section.settings.title }}</h2>
   </div>
 {% endif %}
 
-<div class="index-stories__stories">
+<div class="index-stories__stories" data-index-stories>
   {% for block in section.blocks %}
     {% assign modulo = forloop.index | modulo: 2 %}
     {% assign content_order = " order-md-2" %}
@@ -13,17 +13,19 @@
     {% endif %}
     <div class="index-stories__story">
       <div class="index-stories__s-media order-md-1">
-        {% if block.settings.image %}
-          {% render 'responsive-image' with
-            image: block.settings.image,
-            max_width: 425,
-            max_height: 425,
-            wrapper_class: "index-stories__img-wrap",
-            image_class: "index-stories__img",
-          %}
-        {% endif %}
+        <div class="index-stories__s-media-inner">
+          {% if block.settings.image %}
+            {% render 'responsive-image' with
+              image: block.settings.image,
+              max_width: 425,
+              max_height: 425,
+              wrapper_class: "index-stories__img-wrap",
+              image_class: "index-stories__img",
+            %}
+          {% endif %}
+        </div>
       </div>
-      <div class="index-stories__s-content">
+      <div class="index-stories__s-c-wrap">
         <h4 class="index-stories__s-title">{{ block.settings.title }}</h4>
         <div class="index-stories__s-rating">
           {% assign star_count = block.settings.rating %}
@@ -38,6 +40,18 @@
       </div>
     </div>
   {% endfor %}
+</div>
+
+<div class="index-stories__slider-wrap">
+  {% assign b_size = section.blocks | size %}
+  {% assign blocks_0 = b_size | minus: 1 | times: 10 %}
+  <input class="index-stories__slider" type="range" max="{{ blocks_0 }}" min="0" step="1" value="0" data-index-stories-input>
+  {% assign isi_width = 100 | divided_by: b_size | append: '%'%}
+  <style>
+    :root {
+      --index-stories-input-w: {{ isi_width }};
+    }
+  </style>
 </div>
 
 {% schema %}

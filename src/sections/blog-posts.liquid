@@ -34,9 +34,9 @@
         <a href="{{ article.url }}">
           {% if article.image %}
             {% render 'responsive-image' with
-                image: article.image,
-                max_width: 400,
-                max_height: 400
+              image: article.image,
+              max_width: 400,
+              max_height: 400
             %}
           {% endif %}
           <h3>{{ article.title }}</h3>

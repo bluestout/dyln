@@ -1,0 +1,23 @@
+<a class="header-about__main-link" href="#" data-header-about-link>
+  <span class="header-about__main-text">{{ about_title }}</span>
+  <span class="header-about__main-icon">
+    {% render 'icon-plus-vertical' %}
+    {% render 'icon-plus-horizontal' %}
+  </span>
+</a>
+
+<div class="header-about" data-header-about-block>
+  <div class="header-about__body">
+    <div class="header-about__menu">
+      {% for link in linklists[header-about].links %}
+        <a class="header-about__menu-link" href="{{ link.url }}">{{ link.title }}</a>
+      {% endfor %}
+    </div>
+    <div class="header-about__close">
+      <button type="button" class="header-about__close-btn" data-header-block-close>
+        {% render 'icon-chevron-up' %}
+      </button>
+    </div>
+  </div>
+  <div class="header-about__overlay"></div>
+</div>

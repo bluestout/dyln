@@ -6,12 +6,19 @@
  * @namespace password
  */
 
+import "../../../styles/account.scss";
+
 const selectors = {
-  recoverPasswordFormTriggers: '[data-recover-toggle]',
-  recoverPasswordForm: '[data-recover-form]',
-  loginForm: '[data-login-form]',
-  formState: '[data-form-state]',
-  resetSuccess: '[data-reset-success]',
+  recoverPasswordFormTriggers: "[data-recover-toggle]",
+  recoverPasswordForm: "[data-recover-form]",
+  loginForm: "[data-login-form]",
+  formState: "[data-form-state]",
+  resetSuccess: "[data-reset-success]",
+};
+
+const classes = {
+  hide: "hide",
+  blur: "blur-out",
 };
 
 function onShowHidePasswordForm(evt) {
@@ -23,7 +30,7 @@ function checkUrlHash() {
   const hash = window.location.hash;
 
   // Allow deep linking to recover password form
-  if (hash === '#recover') {
+  if (hash === "#recover") {
     toggleRecoverPasswordForm();
   }
 }
@@ -32,8 +39,31 @@ function checkUrlHash() {
  *  Show/Hide recover password form
  */
 function toggleRecoverPasswordForm() {
-  document.querySelector(selectors.recoverPasswordForm).classList.toggle('hide');
-  document.querySelector(selectors.loginForm).classList.toggle('hide');
+  const login = document.querySelector(selectors.loginForm);
+  const recover = document.querySelector(selectors.recoverPasswordForm);
+
+  if (login.classList.contains(classes.hide)) {
+    recover.classList.add(classes.blur);
+    setTimeout(() => {
+      recover.classList.add(classes.hide);
+      login.classList.remove(classes.hide);
+
+      setTimeout(() => {
+        login.classList.remove(classes.blur);
+      }, 10);
+    }, 250);
+  } else {
+    login.classList.add(classes.blur);
+
+    setTimeout(() => {
+      login.classList.add(classes.hide);
+      recover.classList.remove(classes.hide);
+
+      setTimeout(() => {
+        recover.classList.remove(classes.blur);
+      }, 10);
+    }, 250);
+  }
 }
 
 /**
@@ -44,7 +74,9 @@ function resetPasswordSuccess() {
   // successfully submitted and show success message.
 
   if (document.querySelector(selectors.formState)) {
-    document.querySelector(selectors.resetSuccess).classList.remove('hide');
+    document
+      .querySelector(selectors.resetSuccess)
+      .classList.remove(classes.hide);
   }
 }
 
@@ -52,7 +84,11 @@ if (document.querySelector(selectors.recoverPasswordForm)) {
   checkUrlHash();
   resetPasswordSuccess();
 
-  document.querySelectorAll(selectors.recoverPasswordFormTriggers).forEach((trigger) => {
-    trigger.addEventListener('click', onShowHidePasswordForm);
-  });
+  const triggers = document.querySelectorAll(
+    selectors.recoverPasswordFormTriggers,
+  );
+
+  for (let i = 0; i < triggers.length; i++) {
+    triggers[i].addEventListener("click", onShowHidePasswordForm);
+  }
 }

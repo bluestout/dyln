@@ -1,0 +1,103 @@
+.index-video {
+  position: relative;
+
+  &__outer {
+    margin: -18px 0 0;
+    overflow: hidden;
+    padding: 0 0 40px;
+  }
+
+  &__bg-outer {
+    position: relative;
+    left: 90px;
+  }
+
+  &__bg-wrap {
+  }
+
+  &__bg {
+  }
+
+  &__content-outer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 18px 0 0;
+  }
+
+  &__content {
+    align-self: center;
+    text-align: center;
+
+    a {
+      position: relative;
+    }
+  }
+
+  &__container {
+    height: 100%;
+  }
+
+  &__row {
+    height: 100%;
+  }
+
+  &__title {
+    @include poppins(700);
+    @include text(30px, 45px, $color-title, 1.77px);
+    margin: 0 0 10px;
+  }
+
+  &__text {
+    @include poppins(500);
+    @include text(20px, 28px, $color-title, 1.77px);
+    margin: 0 0 20px;
+  }
+
+  &__link {
+    &:hover {
+      .index-video__link-text {
+        color: $color-main-1;
+        border-color: $color-main-1;
+      }
+    }
+  }
+
+  &__link-text {
+    @include poppins(500);
+    @include text(18px, 25px, $color-title, 1.06px);
+    @include transition(color, border);
+    border-bottom: 2px solid $color-title;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__link-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0 0 5px;
+  }
+
+  &__format-wrap {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    background-color: rgba($color-theme-2, 0.5);
+    display: flex;
+  }
+
+  &__format {
+    @include poppins(700);
+    @include text(26px, 36px, $color-white);
+    margin: auto;
+  }
+
+  &__video-outer {
+    display: none;
+  }
+
+  &__video {
+  }
+}

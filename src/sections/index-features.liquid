@@ -1,3 +1,5 @@
+<div class="index-features__wave-top"></div>
+
 <div class="container">
   {% if section.settings.title != blank %}
     <h2 class="index-features__title">{{ section.settings.title }}</h2>
@@ -5,15 +7,17 @@
   {% for block in section.blocks %}
     {% assign modulo = forloop.index | modulo: 2 %}
     {% assign image_order = " order-lg-2" %}
+    {% assign title_class = "" %}
     {% if modulo == 0  %}
       {% assign image_order = " order-lg-0" %}
+      {% assign title_class = " alt" %}
     {% endif %}
     <div class="index-features__feature">
       <div class="row">
-        <div class="col-lg-8 d-lg-flex order-lg-1">
+        <div class="col-lg-7 d-lg-flex order-lg-1">
           <div class="index-features__content">
             {% if block.settings.title != blank %}
-              <h3 class="index-features__f-title">{{ block.settings.title }}</h3>
+              <h3 class="index-features__f-title{{ title_class }}">{{ block.settings.title }}</h3>
             {% endif %}
 
             {% if block.settings.content != blank %}
@@ -25,7 +29,7 @@
             {% endif %}
           </div>
         </div>
-        <div class="col-lg-4{{ image_order }}">
+        <div class="col-lg-5{{ image_order }}">
           {% if block.settings.image %}
             {% render 'responsive-image' with
               image: block.settings.image,
@@ -41,6 +45,7 @@
   {% endfor %}
 </div>
 
+<div class="index-features__wave-btm"></div>
 
 {% schema %}
   {

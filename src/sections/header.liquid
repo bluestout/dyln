@@ -1,132 +1,126 @@
-{%- comment -%}
-  This is a required section for the Shopify Theme Store.
-  It is available in the "Header" section in the theme editor.
-
-  Theme Store required settings
-  - Show announcement
-  - Text: message to announce
-  - Link: link of the announcement bar
-
-  Theme Store optional settings
-  - Home page only: only shows on the home page
-{%- endcomment -%}
 <section data-section-id="{{ section.id }}" data-section-type="header">
-  {%- if section.settings.announcement_bar_enabled -%}
-    <div>
-      {%- if section.settings.announcement_bar_home_page_only == false or template.name == 'index' -%}
-        {%- if section.settings.announcement_bar_link != blank -%}
-          <a href="{{ section.settings.announcement_bar_link }}">
-            {{ section.settings.announcement_bar_text | escape }}
-          </a>
-        {%- else -%}
-          <p>{{ section.settings.announcement_bar_text | escape }}</p>
-        {%- endif -%}
-      {%- endif -%}
-    </div>
-  {%- endif -%}
+  {% render 'announcement-bar'
+    with section.settings.announcement_bar_enabled
+    home_only: section.settings.announcement_bar_home_page_only
+    content: section.settings.announcement_bar_text
+  %}
 
-  <header role="banner">
-    {% if template.name == 'index' %}
-      <h1>
-    {% else %}
-      <div class="h1">
-    {% endif %}
-        <a href="/" class="logo-image">
-          {% if section.settings.logo != blank %}
-            {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
-            <img src="{{ section.settings.logo | img_url: image_size }}"
-                srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
-                alt="{{ section.settings.logo.alt | default: shop.name }}">
-          {% else %}
-            {{ shop.name }}
+  <header role="banner" class="site-header__main">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col align-self-center">
+          {% render 'header-logo' %}
+        </div>
+
+        <div class="col align-self-center static">
+          {% if section.settings.bottle_enabled %}
+            {% render 'header-bottle' with section.settings.bottle_title
+              b_title: section.settings.bottle_section_title
+              b_subtitle: section.settings.bottle_section_subtitle
+              b_content: section.settings.bottle_section_content
+              b_link: section.settings.bottle_section_link
+              b_link_text: section.settings.bottle_section_link_text
+              b_video: section.settings.bottle_section_video
+              b_usp: section.settings.bottle_section_usp_title
+              b_usp_icon_1: section.settings.bottle_section_usp_icon_1
+              b_usp_title_1: section.settings.bottle_section_usp_title_1
+              b_usp_content_1: section.settings.bottle_section_usp_content_1
+              b_usp_icon_2: section.settings.bottle_section_usp_icon_2
+              b_usp_title_2: section.settings.bottle_section_usp_title_2
+              b_usp_content_2: section.settings.bottle_section_usp_content_2
+              b_usp_icon_3: section.settings.bottle_section_usp_icon_3
+              b_usp_title_3: section.settings.bottle_section_usp_title_3
+              b_usp_content_3: section.settings.bottle_section_usp_content_3
+             %}
           {% endif %}
-        </a>
-    {% if template.name == 'index' %}
-      </h1>
-    {% else %}
-      </div>
-    {% endif %}
 
-    <a href="/cart">
-      {{ 'layout.cart.title' | t }}
-      ({{ cart.item_count }} {{ 'layout.cart.items_count' | t: count: cart.item_count }})
-    </a>
+          {% if section.settings.shop_enabled %}
+            {% render 'header-shop' with section.settings.shop_menu
+              shop_title: section.settings.shop_title
+              prominent_links: section.settings.shop_prominent_links
+              show_featured: section.settings.shop_show_featured
+              featured_content: section.settings.shop_featured_content
+              featured_image: section.settings.shop_featured_image
+              featured_link_text: section.settings.shop_featured_link_text
+              featured_link: section.settings.shop_featured_link
+             %}
+          {% endif %}
 
-    {% if shop.customer_accounts_enabled %}
-      <ul>
-        {% if customer %}
-          <li>
-            {% if customer.first_name != blank %}
-              {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
-              {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
-            {% else %}
-              <a href="/account">{{ 'layout.customer.account' | t }}</a>
+          {% if section.settings.about_enabled %}
+            {% render 'header-about' with section.settings.about_menu
+              about_title: section.settings.about_title
+             %}
+          {% endif %}
+        </div>
+
+        <div class="col align-self-center static">
+          <div class="site-header__utils">
+
+            {% if section.settings.login_enabled %}
+              <div class="site-header__utils-block">
+                {% render 'header-login' %}
+              </div>
             {% endif %}
-          </li>
-          <li>
-            {{ 'layout.customer.log_out' | t | customer_logout_link }}
-          </li>
-        {% else %}
-          <li>
-            {{ 'layout.customer.log_in' | t | customer_login_link }}
-          </li>
-          <li>
-            {{ 'layout.customer.create_account' | t | customer_register_link }}
-          </li>
-        {% endif %}
-      </ul>
-    {% endif %}
 
-    <form action="/search" method="get" role="search">
-      <label for="Search-{{ section.id }}" class="label-hidden">
-        {{ 'general.search.placeholder' | t }}
-      </label>
+            {% if section.settings.help_enabled %}
+              <div class="site-header__utils-block static">
+                {% render 'header-help' with section.settings.help_menu,
+                  s_title: section.settings.help_title
+                  s_image: section.settings.help_image
+                  s_link_1: section.settings.help_link_1
+                  s_link_text_1: section.settings.help_link_1_text
+                  s_link_2: section.settings.help_link_2
+                  s_link_text_2: section.settings.help_link_2_text
+                  s_link_3: section.settings.help_link_3
+                  s_link_text_3: section.settings.help_link_3_text
+                  s_faq_title: section.settings.faq_title
+                  s_faq_link: section.settings.faq_link
+                  s_faq_link_text: section.settings.faq_link_text
+                  s_faq_q_1: section.settings.faq_q_1
+                  s_faq_a_1: section.settings.faq_a_1
+                  s_faq_q_2: section.settings.faq_q_2
+                  s_faq_a_2: section.settings.faq_a_2
+                  s_faq_q_3: section.settings.faq_q_3
+                  s_faq_a_3: section.settings.faq_a_3
+                %}
+              </div>
+            {% endif %}
 
-      <input type="search"
-        name="q"
-        id="Search-{{ section.id }}"
-        value="{{ search.terms | escape }}"
-        placeholder="{{ 'general.search.placeholder' | t }}">
+            {% if section.settings.search_enabled %}
+              <div class="site-header__utils-block static">
+                {% render 'header-search' with
+                  enable_ajax: section.settings.s_ajax
+                  manual_popular: section.settings.s_pop_manual
+                  popular_terms: section.settings.s_pop_terms
+                  popular_title: section.settings.s_pop_title
+                %}
+              </div>
+            {% endif %}
 
-      <button type="submit" class="button">
-        <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
-      </button>
-    </form>
+            <div class="site-header__utils-block">
+              <a href="/cart" class="site-header__utils-cart">
+                <span class="icon-fallback-text hide">{{ 'layout.cart.title' | t }}</span>
+                <span class="site-header__utils-cart-num" data-cart-item-count>
+                  {{ cart.item_count }}
+                </span>
+                <span class="site-header__utils-cart-icon">
+                  {% render 'icon-cart' %}
+                </span>
+              </a>
+              {% render 'header-cart' %}
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </header>
 
-  <nav role="navigation">
-    <ul>
-      {% for link in linklists[section.settings.menu].links %}
-        {% if link.links != blank %}
-          <li>
-            <a href="{{ link.url }}">
-              {{ link.title }}
-            </a>
-            <ul>
-              {% for childlink in link.links %}
-                <li>
-                  <a href="{{ childlink.url }}">
-                    {{ childlink.title }}
-                  </a>
-                </li>
-              {% endfor %}
-            </ul>
-          </li>
-        {% else %}
-          <li>
-            <a href="{{ link.url }}">
-              {{ link.title }}
-            </a>
-          </li>
-        {% endif %}
-      {% endfor %}
-    </ul>
-  </nav>
 </section>
 
 {% if section.settings.logo != blank %}
   <style>
-    .logo-image {
+    .header-logo__link {
       display: block;
       max-width: {{ section.settings.logo_max_width }}px;
     }
@@ -136,6 +130,7 @@
 {% schema %}
   {
     "name": "Header",
+    "class": "site-header",
     "settings": [
       {
         "type": "header",
@@ -160,35 +155,322 @@
         "default": "Announce something here"
       },
       {
+        "type": "header",
+        "content": "Bottle"
+      },
+      {
+        "type": "checkbox",
+        "id": "bottle_enabled",
+        "label": "Show this menu",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "bottle_title",
+        "label": "Bottle Link Title",
+        "default": "The Bottle"
+      },
+      {
+        "type": "textarea",
+        "id": "bottle_section_title",
+        "label": "Title"
+      },
+      {
+        "type": "textarea",
+        "id": "bottle_section_subtitle",
+        "label": "Subtitle"
+      },
+      {
+        "type": "textarea",
+        "id": "bottle_section_content",
+        "label": "Content"
+      },
+      {
         "type": "url",
-        "id": "announcement_bar_link",
-        "label": "Announcement link",
-        "info": "Optional"
+        "id": "bottle_section_link",
+        "label": "Link URL"
+      },
+      {
+        "type": "text",
+        "id": "bottle_section_link_text",
+        "label": "Link Text"
+      },
+      {
+        "type": "textarea",
+        "id": "bottle_section_video",
+        "label": "Video Embed",
+        "info": "Paste the youtube video embed code here."
+      },
+      {
+        "type": "textarea",
+        "id": "bottle_section_usp_title",
+        "label": "USPs Title"
+      },
+      {
+        "type": "text",
+        "id": "bottle_section_usp_icon_1",
+        "label": "USP Icon 1",
+        "info": "Possible input: alkaline, antioxidant, infused"
+      },
+      {
+        "type": "textarea",
+        "id": "bottle_section_usp_title_1",
+        "label": "USP Title 1"
+      },
+      {
+        "type": "textarea",
+        "id": "bottle_section_usp_content_1",
+        "label": "USP Content 1"
+      },
+      {
+        "type": "text",
+        "id": "bottle_section_usp_icon_2",
+        "label": "USP Icon 2",
+        "info": "Possible input: alkaline, antioxidant, infused"
+      },
+      {
+        "type": "textarea",
+        "id": "bottle_section_usp_title_2",
+        "label": "USP Title 2"
+      },
+      {
+        "type": "textarea",
+        "id": "bottle_section_usp_content_2",
+        "label": "USP Content 2"
+      },
+      {
+        "type": "text",
+        "id": "bottle_section_usp_icon_3",
+        "label": "USP Icon 3",
+        "info": "Possible input: alkaline, antioxidant, infused"
+      },
+      {
+        "type": "textarea",
+        "id": "bottle_section_usp_title_3",
+        "label": "USP Title 3"
+      },
+      {
+        "type": "textarea",
+        "id": "bottle_section_usp_content_3",
+        "label": "USP Content 3"
       },
       {
         "type": "header",
-        "content": "Header"
+        "content": "Shop"
       },
       {
-        "type": "image_picker",
-        "id": "logo",
-        "label": "Logo image"
-      },
-      {
-        "type": "range",
-        "id": "logo_max_width",
-        "min": 50,
-        "max": 450,
-        "step": 10,
-        "unit": "px",
-        "label": "Custom logo width",
-        "default": 250
+        "type": "checkbox",
+        "id": "shop_enabled",
+        "label": "Show this menu",
+        "default": true
       },
       {
         "type": "link_list",
-        "id": "menu",
-        "label": "Menu",
-        "default": "main-menu"
+        "id": "shop_menu",
+        "label": "Shop Menu"
+      },
+      {
+        "type": "text",
+        "id": "shop_title",
+        "label": "Shop Link Title",
+        "default": "Shop"
+      },
+      {
+        "type": "textarea",
+        "id": "shop_prominent_links",
+        "label": "Prominent Links",
+        "info": "Which links should have a more prominent display? (Full width, with featured images if available). Paste them here and separate with comma."
+      },
+      {
+        "type": "checkbox",
+        "id": "shop_show_featured",
+        "label": "Show Featured"
+      },
+      {
+        "type": "textarea",
+        "id": "shop_featured_content",
+        "label": "Featured content"
+      },
+      {
+        "type": "image_picker",
+        "id": "shop_featured_image",
+        "label": "Featured Image"
+      },
+      {
+        "type": "url",
+        "id": "shop_featured_link",
+        "label": "Featured Link"
+      },
+      {
+        "type": "text",
+        "id": "shop_featured_link_text",
+        "label": "Featured Link Text"
+      },
+      {
+        "type": "header",
+        "content": "About Us"
+      },
+      {
+        "type": "checkbox",
+        "id": "about_enabled",
+        "label": "Show this menu",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "about_title",
+        "label": "About Link Title",
+        "default": "About Us"
+      },
+      {
+        "type": "link_list",
+        "id": "about_menu",
+        "label": "About Menu"
+      },
+      {
+        "type": "header",
+        "content": "Login/Account"
+      },
+      {
+        "type": "checkbox",
+        "id": "login_enabled",
+        "label": "Show this menu",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Help"
+      },
+      {
+        "type": "checkbox",
+        "id": "help_enabled",
+        "label": "Show this menu",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "help_title",
+        "label": "Help Title",
+        "default": "Help"
+      },
+      {
+        "type": "link_list",
+        "id": "help_menu",
+        "label": "Help Menu"
+      },
+      {
+        "type": "image_picker",
+        "id": "help_image",
+        "label": "Help menu Image"
+      },
+      {
+        "type": "url",
+        "id": "help_link_1",
+        "label": "Phone Link"
+      },
+      {
+        "type": "text",
+        "id": "help_link_1_text",
+        "label": "Phone Link Text"
+      },
+      {
+        "type": "url",
+        "id": "help_link_2",
+        "label": "Email Link"
+      },
+      {
+        "type": "text",
+        "id": "help_link_2_text",
+        "label": "Email Link Text"
+      },
+      {
+        "type": "url",
+        "id": "help_link_3",
+        "label": "Chat Link"
+      },
+      {
+        "type": "text",
+        "id": "help_link_3_text",
+        "label": "Chat Link Text"
+      },
+      {
+        "type": "text",
+        "id": "faq_title",
+        "label": "FAQs Title",
+        "default": "FAQs"
+      },
+      {
+        "type": "url",
+        "id": "faq_link",
+        "label": "FAQ link"
+      },
+      {
+        "type": "text",
+        "id": "faq_link_text",
+        "label": "FAQ link text"
+      },
+      {
+        "type": "textarea",
+        "id": "faq_q_1",
+        "label": "FAQ Question 1"
+      },
+      {
+        "type": "textarea",
+        "id": "faq_a_1",
+        "label": "FAQ Answer 1"
+      },
+      {
+        "type": "textarea",
+        "id": "faq_q_2",
+        "label": "FAQ Question 2"
+      },
+      {
+        "type": "textarea",
+        "id": "faq_a_2",
+        "label": "FAQ Answer 2"
+      },
+      {
+        "type": "textarea",
+        "id": "faq_q_3",
+        "label": "FAQ Question 3"
+      },
+      {
+        "type": "textarea",
+        "id": "faq_a_3",
+        "label": "FAQ Answer 3"
+      },
+      {
+        "type": "header",
+        "content": "Search"
+      },
+      {
+        "type": "checkbox",
+        "id": "search_enabled",
+        "label": "Show this menu",
+        "default": true
+      },
+      {
+        "type": "textarea",
+        "id": "s_pop_title",
+        "label": "Popular Title"
+      },
+      {
+        "type": "checkbox",
+        "id": "s_ajax",
+        "label": "Use Ajax Search",
+        "info": "If turned off, and no search app present, this will send users to a separate search page with the search results."
+      },
+      {
+        "type": "checkbox",
+        "id": "s_pop_manual",
+        "label": "Show Popular Terms",
+        "info": "Manual setting, any search app will have separate popular term functionality and display."
+      },
+      {
+        "type": "textarea",
+        "id": "s_pop_terms",
+        "label": "Popular Terms",
+        "info": "Manually list popular terms. Separate with comma(,).   "
       }
     ]
   }

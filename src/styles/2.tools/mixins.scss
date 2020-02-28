@@ -140,3 +140,218 @@
 @mixin font-header {
   $font-heading: var(--font-heading);
 }
+
+@mixin no-font-size {
+  font-size: 0;
+  line-height: 0;
+}
+
+// usage: @include button(type, size);
+// types: solid, wire, none
+// sizes: normal(any), big, small, tiny
+// defaults go to button framework
+
+@mixin button($type: none, $borders: square, $color: 1) {
+  display: inline-block;
+  vertical-align: middle;
+  width: auto;
+  height: auto;
+  border: 0;
+  text-align: center;
+  white-space: normal;
+  text-decoration: none;
+  user-select: none;
+
+  $btn-text-c: $color-white;
+  $btn-text-c-alt: $color-white;
+  $btn-def-c: $color-main-1;
+  $btn-acc-c: $color-accent-1;
+  $btn-sup-c: $color-sup-1;
+
+  @if $borders == round {
+    border-radius: 24px;
+  } @else if $borders == r {
+    border-radius: 24px;
+  } @else {
+    border-radius: 0;
+  }
+
+  @if $type == wire {
+    $btn-text-c: $color-main-1;
+    $btn-text-c-alt: $color-accent-1;
+  }
+
+  @if $color == 2 {
+    $btn-def-c: $color-main-2;
+    $btn-acc-c: $color-accent-2;
+    $btn-sup-c: $color-sup-2;
+
+    @if $type == wire {
+      $btn-text-c: $color-main-2;
+      $btn-text-c-alt: $color-accent-2;
+    }
+  } @else if $color == 3 {
+    $btn-def-c: $color-main-3;
+    $btn-acc-c: $color-accent-3;
+    $btn-sup-c: $color-sup-3;
+
+    @if $type == wire {
+      $btn-text-c: $color-main-3;
+      $btn-text-c-alt: $color-accent-3;
+    }
+  } @else if $color == white {
+    $btn-def-c: $color-white;
+    $btn-acc-c: $color-white;
+    $btn-sup-c: transparent;
+
+    @if $type == wire {
+      $btn-text-c: $color-white;
+      $btn-text-c-alt: $color-white;
+    }
+  }
+
+  @if $type == solid {
+    @include poppins(700);
+    @include text(0.83, 18px, $btn-text-c);
+    @include transition(background, bottom, box-shadow);
+    position: relative;
+    bottom: 0;
+    box-shadow: none;
+    text-decoration: none;
+    padding: 13px 39px;
+    background-color: $btn-acc-c;
+    background-image: linear-gradient(
+      to right,
+      $btn-def-c 0%,
+      $btn-def-c 33.33%,
+      $btn-acc-c 66.66%,
+      $btn-acc-c 100%
+    );
+    background-repeat: repeat-x;
+    background-size: 300% 100%;
+    background-position: 0 100%;
+    outline: none;
+
+    &:not(:disabled) {
+      &:focus {
+        background-position: 50% 100%;
+      }
+
+      &:hover {
+        bottom: 5px;
+        background-position: 50% 100%;
+        box-shadow: 0 2px 2px $btn-sup-c;
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          display: block;
+          width: 100%;
+          height: 5px;
+        }
+      }
+
+      &:active {
+        background-position: 100% 100%;
+        box-shadow: none;
+        bottom: 0;
+        &::after {
+          bottom: 0;
+        }
+      }
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  } @else if $type == wire {
+    @include poppins(700);
+    @include text(0.83, 18px, $btn-text-c);
+    @include transition(bottom, box-shadow, border, color);
+    position: relative;
+    bottom: 0;
+    box-shadow: none;
+    text-decoration: none;
+    padding: 10px 36px;
+    background-color: transparent;
+    border: 3px solid $btn-def-c;
+    outline: none;
+
+    &:not(:disabled) {
+      &:focus {
+        border-color: $btn-acc-c;
+        color: $btn-text-c-alt;
+      }
+
+      &:hover {
+        bottom: 5px;
+        box-shadow: 0 2px 2px $btn-sup-c;
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          display: block;
+          width: 100%;
+          height: 5px;
+        }
+      }
+
+      &:active {
+        bottom: 0;
+        border-color: $btn-acc-c;
+        box-shadow: none;
+        color: $btn-text-c-alt;
+        &::after {
+          bottom: 0;
+        }
+      }
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+}
+
+@mixin button-width {
+  @include media-query($medium-up) {
+    max-width: 260px;
+    width: 100%;
+    display: block;
+  }
+}
+
+@mixin underline($color: $color-main-1, $is_active: true) {
+  position: relative;
+
+  &::after {
+    @include transition(width);
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: $color;
+  }
+
+  @if $is_active {
+    &:hover {
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@mixin animated-wave($time: 1000ms) {
+  @include transition(background-position $time);
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  background-position: 0;
+  background-repeat: repeat-x;
+  width: 100%;
+}

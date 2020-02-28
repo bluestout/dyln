@@ -1,0 +1,125 @@
+<a class="header-help__main-link" href="#" data-header-help-link>
+  <span class="header-help__main-text">{{ s_title }}</span>
+  <span class="header-help__main-icon">
+    {% render 'icon-plus-vertical' %}
+    {% render 'icon-plus-horizontal' %}
+  </span>
+</a>
+
+<div class="header-help" data-header-help-block>
+  <div class="header-help__body">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-3">
+          {% render 'responsive-image' with
+            image: s_image,
+            max_width: 312,
+            max_height: 312,
+            image_class: "header-help__img",
+            wrapper_class: "header-help__img-wrap",
+          %}
+        </div>
+
+        <div class="col-2">
+          <nav class="header-help__nav">
+            <ul class="header-help__nav-list">
+              {% for link in linklists[header-help].links %}
+                <li class="header-help__nav-item">
+                  <a href="{{ link.url }}" class="header-help__nav-link">
+                    {{ link.title }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </nav>
+        </div>
+
+        <div class="col-7">
+          <div class="header-help__big-links">
+            {% if s_link_text_1 != empty %}
+              <a class="header-help__big-link" href="{{ s_link_1 }}">
+                <span class="header-help__big-link-i">{% render 'icon-phone' %}</span>
+                <span class="header-help__big-link-t">{{ s_link_text_1 }}</span>
+              </a>
+            {% endif %}
+
+            {% if s_link_text_2 != empty %}
+              <a class="header-help__big-link" href="{{ s_link_2 }}">
+                <span class="header-help__big-link-i">{% render 'icon-mail' %}</span>
+                <span class="header-help__big-link-t">{{ s_link_text_2 }}</span>
+              </a>
+            {% endif %}
+
+            {% if s_link_text_3 != empty %}
+              <a class="header-help__big-link" href="{{ s_link_3 }}">
+                <span class="header-help__big-link-i">{% render 'icon-chat' %}</span>
+                <span class="header-help__big-link-t">{{ s_link_text_3 }}</span>
+              </a>
+            {% endif %}
+          </div>
+
+          <div class="header-help__faq-header">
+            {% if s_faq_title != empty %}
+              <div class="header-help__faq-title">{{ s_faq_title }}</div>
+            {% endif %}
+
+            {% if s_faq_link_text != empty %}
+              <a href="{{ s_faq_link }}" class="header-help__faq-link">{{ s_faq_link_text }}</a>
+            {% endif %}
+          </div>
+
+          <div class="header-help__faqs" data-accordion-parent=true>
+            {% if s_faq_q_1 != empty %}
+              <div class="header-help__faq">
+                <button class="header-help__faq-btn" data-accordion-button>
+                  <span class="header-help__faq-q">
+                    {{ s_faq_q_1 }}
+                  </span>
+                  <span class="header-help__faq-closed">+</span>
+                  <span class="header-help__faq-open">-</span>
+                </button>
+                <div class="header-help__faq-a" data-accordion-content>{{ s_faq_a_1 }}</div>
+              </div>
+            {% endif %}
+
+            {% if s_faq_q_2 != empty %}
+              <div class="header-help__faq">
+                <button class="header-help__faq-btn" data-accordion-button>
+                  <span class="header-help__faq-q">
+                    {{ s_faq_q_2 }}
+                  </span>
+                  <span class="header-help__faq-closed">+</span>
+                  <span class="header-help__faq-open">-</span>
+                </button>
+                <div class="header-help__faq-a" data-accordion-content>{{ s_faq_a_2 }}</div>
+              </div>
+            {% endif %}
+
+            {% if s_faq_q_3 != empty %}
+              <div class="header-help__faq">
+                <button class="header-help__faq-btn" data-accordion-button>
+                  <span class="header-help__faq-q">
+                    {{ s_faq_q_3 }}
+                  </span>
+                  <span class="header-help__faq-closed">+</span>
+                  <span class="header-help__faq-open">-</span>
+                </button>
+                <div class="header-help__faq-a" data-accordion-content>{{ s_faq_a_3 }}</div>
+              </div>
+            {% endif %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-help__close">
+      <button type="button" class="header-help__close-btn" data-header-block-close>
+        {% render 'icon-chevron-up' %}
+      </button>
+    </div>
+  </div>
+
+  <div class="header-help__overlay"></div>
+</div>

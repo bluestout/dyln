@@ -1,76 +1,82 @@
 <div class="index-header__outer">
 
-  {% if section.settings.background %}
-    {% assign wrapper_class = "index-header__bg-wrap" %}
+  {%- if section.settings.background -%}
+    {%- assign wrapper_class = "index-header__bg-wrap" -%}
 
-    {% if section.settings.background_rsp %}
-      {% assign wrapper_class = "index-header__bg-wrap d-none d-md-block" %}
-      {% render 'responsive-image' with
+    {%- if section.settings.background_rsp -%}
+      {%- assign wrapper_class = "index-header__bg-wrap d-none d-md-block" -%}
+      {%- render 'responsive-image' with
         image: section.settings.background_rsp,
         max_width: 768,
         max_height: 768,
         wrapper_class: "index-header__bg-wrap d-md-none",
         image_class: "index-header__bg",
-      %}
-    {% endif %}
+      -%}
+    {%- endif -%}
 
-    {% render 'responsive-image' with
+    {%- render 'responsive-image' with
       image: section.settings.background,
       max_width: 1600,
       max_height: 720,
       wrapper_class: wrapper_class,
       image_class: "index-header__bg",
-    %}
-  {% endif %}
+    -%}
+  {%- endif -%}
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-4">
-        <div class="index-header__content">
-          {% if section.settings.title != blank %}
-            <h2 class="index-header__title">{{ section.settings.title }}</h2>
-          {% endif %}
+  <div class="index-header__content-wrap">
+    <div class="container index-header__container">
+      <div class="row index-header__row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4 d-flex">
+          <div class="index-header__content">
+            {%- if section.settings.title != blank -%}
+              <h2 class="index-header__title">{{- section.settings.title -}}</h2>
+            {%- endif -%}
 
-          {% if section.settings.link_text != blank %}
-            <div class="index-header__link-wrap">
-              <a class="index-header__link" href="{{  }}">{{ section.settings.link_text }}</a>
-            </div>
-          {% endif %}
-
-          {% if section.blocks.size > 0 %}
-            <div class="index-header__features">
-            {% for feature in section.blocks %}
-              <div class="index-header__f">
-                {% if feature.settings.icon != blank %}
-                  <div class="index-header__f-icon">
-                    {% if feature.settings.icon == "acid-reflux" %}
-                      {% render 'icon-acid-reflux' %}
-                    {% elsif feature.settings.icon == "detoxifying" %}
-                      {% render 'icon-detoxifying' %}
-                    {% elsif feature.settings.icon == "hydration" %}
-                      {% render 'icon-hydration' %}
-                    {% endif %}
-                  </div>
-                {% endif %}
-                <div class="index-header__f-text">{{ feature.settings.title }}</div>
+            {%- if section.settings.link_text != blank -%}
+              <div class="index-header__link-wrap">
+                <a class="index-header__link" href="{{- section.settings.link_url -}}">{{- section.settings.link_text -}}</a>
               </div>
-            {% endfor %}
-            </div>
-          {% endif %}
+            {%- endif -%}
+
+            {%- if section.blocks.size > 0 -%}
+              <div class="index-header__features">
+              {%- for feature in section.blocks -%}
+                <div class="index-header__f">
+                  {%- if feature.settings.icon != blank -%}
+                    <div class="index-header__f-icon">
+                      {%- if feature.settings.icon == "acid-reflux" -%}
+                        {%- render 'icon-acid-reflux' -%}
+                      {%- elsif feature.settings.icon == "detoxifying" -%}
+                        {%- render 'icon-detoxifying' -%}
+                      {%- elsif feature.settings.icon == "hydration" -%}
+                        {%- render 'icon-hydration' -%}
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                  <div class="index-header__f-text">{{- feature.settings.title -}}</div>
+                </div>
+              {%- endfor -%}
+              </div>
+            {%- endif -%}
+          </div>
         </div>
+        <div class="col-md-6"></div>
       </div>
-      <div class="col-md-6"></div>
+      {%- if section.settings.bottom_text -%}
+        <div class="index-header__btm">
+          <a class="index-header__btm-link" href="{{- section.settings.bottom_url -}}">{{- section.settings.bottom_text -}}</a>
+        </div>
+      {%- endif -%}
     </div>
-    {% if section.settings.bottom_text %}
-      <div class="index-header__btm">
-        <a class="index-header__btm-link" href="{{ section.settings.bottom_url }}">{{ section.settings.bottom_text }}</a>
-      </div>
-    {% endif %}
   </div>
 </div>
 
-<div class="index-header__wave"></div>
+<div class="index-header__wave-wrap">
+  <svg class="index-header__wave" width="1600" height="81" viewBox="0 0 1600 81" xmlns="http://www.w3.org/2000/svg">
+    <path d="M-1 0c75.092 0 537.706 31.863 834.545 31.863 293.692 0 548.351-28.4 766.819-29.002-.129 2.974-.193 29.02-.193 78.139H-1V0z" fill="#FFF" fill-rule="evenodd"/>
+  </svg>
+</div>
 
 {% schema %}
   {

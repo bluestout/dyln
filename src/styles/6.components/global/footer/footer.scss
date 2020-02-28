@@ -1,0 +1,164 @@
+.site-footer {
+  position: relative;
+
+  &__wave-top {
+    @include animated-wave;
+    top: 0;
+    height: 74px;
+    background-image: url("data:image/svg+xml,%3Csvg width='1600' height='74' viewBox='0 0 1600 74' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1600 46c266.667 4.641 266.667 13.923 0 27.846H0V46c20.745-2.053 36.344-4.607 46.798-7.66C115.553 18.251 226.984-1.572 330 .174c112.97 1.914 463.096 54.137 593 58.944 95.694 3.541 184.524 3.816 227.548 4.02C1270.503 63.707 1523.704 44.672 1600 46z' fill='%23F4F4F4' fill-rule='evenodd'/%3E%3C/svg%3E");
+  }
+
+  &__lifestyle {
+    position: relative;
+    padding: 74px 0 0;
+  }
+
+  &__lifestyle-bg {
+    padding: 50px 0;
+    background-color: $color-theme-4;
+  }
+
+  &__lf-title {
+    @include poppins(700);
+    @include text(40px, 56px, $color-title, 2.36px);
+    margin: 0 0 10px;
+  }
+
+  &__lf-content {
+    @include open-sans;
+    @include text(20px, 20px, $color-body-text, 1.18px);
+    margin: 0 0 20px;
+  }
+
+  &__lf-links-header {
+    @include poppins(700);
+    @include text(18px, 26px, $color-main-1, 1.06px);
+    margin: 0 0 10px;
+    text-transform: uppercase;
+  }
+
+  &__lf-links {
+    @include clearfix;
+  }
+
+  &__lf-link {
+    @include poppins(700);
+    @include text(18px, 26px, $color-theme-8, 1.06px);
+    @include transition(color);
+    margin: 0 0 5px;
+    width: 50%;
+    float: left;
+    padding: 0 10px 0 0;
+
+    &.active {
+      color: $color-body-text;
+    }
+  }
+
+  &__lf-list-wrap {
+  }
+
+  &__lf-list {
+    display: flex;
+    flex-flow: row nowrap;
+    overflow-y: scroll;
+  }
+
+  &__lf-article {
+    position: relative;
+    width: 312px;
+    height: 312px;
+    flex: 0 0 312px;
+  }
+
+  &__lf-a-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      $color-theme-9 100%
+    );
+  }
+
+  &__lf-a-img-wrap {
+    height: 100%;
+    width: 100%;
+    max-height: 100%;
+    max-width: 100%;
+  }
+  &__lf-a-img {
+    height: 100%;
+    width: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+  }
+
+  &__lf-a-content {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    max-width: calc(100% - 30px);
+  }
+
+  &__lf-a-blog {
+    @include poppins(500);
+    @include text(14, 20px, $color-white, 1.5px);
+    text-transform: uppercase;
+  }
+
+  &__lf-a-title {
+    @include poppins(700);
+    @include text(20px, 20px, $color-white, 1.18px);
+  }
+
+  &__footer {
+    position: relative;
+    margin: -50px 0 0;
+    padding: 50px 0 0;
+  }
+
+  &__footer-bg {
+    padding: 40px 0 20px;
+    background-color: $color-main-1;
+  }
+
+  &__wave-middle {
+    @include animated-wave;
+    top: 0;
+    height: 50px;
+    background-image: url("data:image/svg+xml,%3Csvg width='1600' height='50' viewBox='0 0 1600 50' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1600 19v31H-1l1-31c155.944 10.783 257.436 28.006 376 26 230.594-3.9 462.386-24.566 642-35C1181.383.509 1268.85 0 1301 0c85.667 0 185.333 6.333 299 19z' fill='%2300AEDB' fill-rule='evenodd'/%3E%3C/svg%3E");
+  }
+
+  &__parent-link {
+    @include poppins(700);
+    @include text(24px, 33px, $color-white, 0.22px);
+    margin: 0 0 40px;
+  }
+
+  &__menu-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__menu-item {
+    margin: 0;
+    padding: 0;
+  }
+
+  &__menu-link {
+    @include open-sans;
+    @include text(18px, 24px, $color-white, 0.16px);
+    margin: 0;
+    text-decoration: none;
+  }
+}
+
+@import "./footer-copyright";
+@import "./footer-newsletter";
+@import "./social-links";

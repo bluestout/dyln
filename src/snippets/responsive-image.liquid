@@ -38,15 +38,15 @@
     {%- assign max_height_image = max_width_image | divided_by: image.aspect_ratio -%}
   {%- endif -%}
 
-  #Image-{{ image.id }}-{{ responsive_image_counter }} {
+  .Image-{{ image.id }}-{{ responsive_image_counter }} {
     max-width: {{ max_width_image }}px;
     max-height: {{ max_height_image }}px;
   }
-  #ImageWrapper-{{ image.id }}-{{ responsive_image_counter }} {
+  .ImageWrapper-{{ image.id }}-{{ responsive_image_counter }} {
     max-width: {{ max_width_image }}px;
   }
 
-  #ImageWrapper-{{ image.id }}-{{ responsive_image_counter }}::before {
+  .ImageWrapper-{{ image.id }}-{{ responsive_image_counter }}::before {
     {%- comment -%}
       When you change the window screen width, we want to make sure that the container's size is proportionally calculated.
       Note regarding padding percentage: The percentage is calculated with respect to the width of the generated box's containing block (source: http://www.w3.org/TR/2011/REC-CSS2-20110607/box.html#padding-properties)
@@ -69,9 +69,14 @@
 {%- endcapture -%}
 {%- assign image_widths = image_widths | strip -%}
 
-<div id="ImageWrapper-{{ image.id }}-{{ responsive_image_counter }}" data-image-id="{{ image.id }}" class="responsive-image__wrapper {{ wrapper_class }}" {{ wrapper_attributes }}>
-  <img id="Image-{{ image.id }}-{{ responsive_image_counter }}"
-    class="responsive-image__image lazyload {{ image_class }}"
+{% if span %}
+<span data-image-id="{{ image.id }}" class="ImageWrapper-{{ image.id }}-{{ responsive_image_counter }} responsive-image__wrapper {{ wrapper_class }}" {{ wrapper_attributes }}>
+{% else %}
+<div data-image-id="{{ image.id }}" class="ImageWrapper-{{ image.id }}-{{ responsive_image_counter }} responsive-image__wrapper {{ wrapper_class }}" {{ wrapper_attributes }}>
+{% endif %}
+
+  <img
+    class="Image-{{ image.id }}-{{ responsive_image_counter }} responsive-image__image lazyload {{ image_class }}"
     src="{{ image | img_url: '300x' }}"
     data-src="{{ img_url }}"
     data-widths="[{{ image_widths }}]"
@@ -79,9 +84,13 @@
     data-sizes="auto"
     tabindex="-1"
     alt="{{ image.alt | escape }}"
-    {{ image_attributes }}
-  >
+    {{ image_attributes }}/>
+
+{% if span %}
+</span>
+{% else %}
 </div>
+{% endif %}
 
 <noscript>
   <img class="{{ image_class }}" src="{{ image | img_url: '2048x2048' }}" alt="{{ image.alt | escape }}">

@@ -1,0 +1,23 @@
+.announcement-bar {
+  background-color: $color-main-1;
+  padding: 10px;
+
+  &__member {
+    @include poppins(500);
+    @include text(14px, 20px, $color-white, 0.83px);
+  }
+
+  &__content {
+    @include poppins(700);
+    @include text(18px, 26px, $color-white, 1.06px);
+    margin: 0;
+
+    a,
+    p,
+    span {
+      @include poppins(700);
+      @include text(18px, 26px, $color-white, 1.06px);
+      margin: 0;
+    }
+  }
+}

@@ -1,0 +1,285 @@
+.header-help {
+  @include transition(opacity);
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  opacity: 0;
+  pointer-events: none;
+  width: 100vw;
+
+  &:hover {
+    pointer-events: auto;
+    opacity: 1;
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($color-black, 0.5);
+  }
+
+  &__main-link {
+    display: inline-block;
+    vertical-align: middle;
+
+    &:hover {
+      .header-help__main-text {
+        color: $color-main-1;
+      }
+      .icon-plus-vert path {
+        stroke: $color-main-1;
+      }
+      .icon-plus-hor path {
+        stroke: $color-main-1;
+      }
+    }
+
+    &:active,
+    &.active {
+      .header-help__main-text::after {
+        width: 100%;
+      }
+      .header-help__main-text {
+        color: $color-body-text;
+      }
+
+      .icon-plus-vert {
+        top: 3px;
+        height: 2px;
+      }
+
+      .icon-plus-vert path {
+        stroke: $color-body-text;
+      }
+      .icon-plus-hor path {
+        stroke: $color-body-text;
+      }
+
+      + .header-help {
+        pointer-events: auto;
+        opacity: 1;
+      }
+    }
+  }
+
+  &__main-text {
+    @include poppins(500);
+    @include text(18px, 25px, $color-body-text, 1.5px);
+    @include transition(color);
+    @include underline($color-body-text, false);
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__main-icon {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 8px;
+    height: 8px;
+
+    .icon-plus-vert path,
+    .icon-plus-hor path {
+      @include transition(stroke);
+    }
+
+    .icon-plus-vert {
+      @include transition(top, height);
+      position: absolute;
+      top: 0;
+      left: 3px;
+    }
+
+    .icon-plus-hor {
+      position: absolute;
+      left: 0;
+      top: 3px;
+    }
+  }
+
+  &__body {
+    position: relative;
+    z-index: 1;
+    background-color: $color-background;
+    padding: 45px 0 20px;
+  }
+
+  &__nav {
+  }
+
+  &__nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__nav-item {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__nav-link {
+    @include poppins(500);
+    @include text(18px, 35px, $color-body-text, 1.06px);
+    @include underline($color-main-1);
+    @include transition(color);
+
+    &:hover {
+      color: $color-main-1;
+    }
+  }
+
+  &__big-links {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin: 0 0 35px;
+  }
+
+  &__big-link {
+    height: 40px;
+    padding: 0 25px;
+    border-radius: 20px;
+    background-color: $color-theme-13;
+    display: inline-block;
+  }
+
+  &__big-link-i {
+    @include no-font-size;
+    margin: 0 5px 0 0;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__big-link-t {
+    @include poppins(700);
+    @include text(18px, 40px, $color-body-text, 1.06px);
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__faq-header {
+    @include clearfix;
+    padding: 0 0 10px;
+    border-bottom: 1px solid $color-main-1;
+    margin: 0 0 15px;
+  }
+
+  &__faq-title {
+    @include poppins(700);
+    @include text(20px, 28px, $color-main-1, 1.18px);
+    float: left;
+  }
+
+  &__faq-link {
+    @include poppins(700);
+    @include text(14px, 28px, $color-theme-8, 0.63px);
+    @include underline($color-theme-8);
+    float: right;
+  }
+
+  &__faqs {
+  }
+
+  &__faq {
+    padding: 0 0 15px;
+    border-bottom: 1px solid $color-main-1;
+    margin: 0 0 15px;
+  }
+
+  &__faq-btn {
+    @include clearfix;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    display: block;
+
+    &.open {
+      .header-help__faq-closed {
+        display: none;
+      }
+      .header-help__faq-open {
+        display: block;
+      }
+    }
+
+    &:not(.open) {
+      .header-help__faq-closed {
+        display: block;
+      }
+      .header-help__faq-open {
+        display: none;
+      }
+    }
+  }
+
+  &__faq-closed {
+    @include poppins(700);
+    @include text(20px, 28px, $color-main-1, 1.77px);
+    text-align: center;
+    width: 10px;
+    margin: 0 30px 0 0;
+    float: right;
+  }
+
+  &__faq-open {
+    @include poppins(700);
+    @include text(20px, 28px, $color-main-1, 1.77px);
+    text-align: center;
+    width: 10px;
+    margin: 0 30px 0 0;
+    float: right;
+  }
+
+  &__usp-icon {
+    width: 60px;
+    display: inline-block;
+    vertical-align: middle;
+
+    svg {
+      max-width: 59px;
+      max-height: 47px;
+      height: auto;
+      width: auto;
+    }
+  }
+
+  &__faq-q {
+    @include poppins(700);
+    @include text(1.18, 28px, $color-title);
+    display: inline-block;
+    vertical-align: middle;
+    width: calc(100% - 111px);
+  }
+
+  &__faq-a {
+    @include open-sans;
+    @include text(18px, 24px, $color-body-text, 1.08px);
+    padding: 10px 0 0;
+  }
+
+  &__close {
+    @include no-font-size;
+    text-align: center;
+    margin: 10px auto 0;
+  }
+
+  &__close-btn {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    border-radius: 0;
+    margin: 0;
+    padding: 1px 3px;
+    display: inline-block;
+  }
+}

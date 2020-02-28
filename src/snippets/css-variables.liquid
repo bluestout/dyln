@@ -9,8 +9,15 @@
   {{ font_body_bold_italic | font_face }}
 
   :root {
-    --color-accent: {{ settings.color_accent }};
+    --color-main: {{ settings.color_accent }};
+    --color-main-2: {{ settings.color_accent_2 }};
+    --color-main-3: {{ settings.color_accent_3 }};
+    --color-accent: {{ settings.color_accent_1_s }};
+    --color-accent-2: {{ settings.color_accent_2_s }};
+    --color-accent-3: {{ settings.color_accent_3_s }};
     --color-body-text: {{ settings.color_body_text }};
+    --color-title: {{ settings.color_title }};
+    --color-title-light: {{ settings.color_title_light }};
     --color-main-background: {{ settings.color_main_bg }};
     --color-border: {{ settings.color_body_text | color_lighten: 50 }};
 

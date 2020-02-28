@@ -13,9 +13,53 @@
       {
         "type": "color",
         "id": "color_accent",
-        "label": "Accent",
-        "default": "#c4cdd5",
-        "info": "Buttons and special ornaments"
+        "label": "Theme color",
+        "default": "#00aedb"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_2",
+        "label": "Theme color 2",
+        "default": "#20D480"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_3",
+        "label": "Theme color 3",
+        "default": "#E7F0F2"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_1_s",
+        "label": "Theme accent",
+        "default": "#0080B7",
+        "info": "Theme color accent - Used for button transitions and similar."
+      },
+      {
+        "type": "color",
+        "id": "color_accent_2_s",
+        "label": "Theme accent 2",
+        "default": "#00BF76",
+        "info": "Theme color 2 accent - Used for button transitions and similar."
+      },
+      {
+        "type": "color",
+        "id": "color_accent_3_s",
+        "label": "Theme accent 3",
+        "default": "#B3D8E1",
+        "info": "Theme color 3 accent - Used for button transitions and similar."
+      },
+      {
+        "type": "color",
+        "id": "color_title",
+        "label": "Title",
+        "default": "#333C41"
+      },
+      {
+        "type": "color",
+        "id": "color_title_light",
+        "label": "Title - Light",
+        "default": "#fff"
       },
       {
         "type": "color",

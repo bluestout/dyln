@@ -19,9 +19,15 @@
 }
 
 .brand-blue {
-  color: $color-theme-1 !important;
+  color: $color-main-1 !important;
 }
 
 .brand-green {
-  color: $color-theme-2 !important;
+  color: $color-main-2 !important;
+}
+
+.container {
+  @media screen and (min-width: 1360px) {
+    max-width: 1330px;
+  }
 }

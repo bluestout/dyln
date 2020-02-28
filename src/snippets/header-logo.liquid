@@ -1,0 +1,14 @@
+
+{% if template.name == 'index' %}
+  <h1 class="header-logo">
+{% else %}
+  <div class="header-logo">
+{% endif %}
+  <a href="/" class="header-logo__link">
+    {% render 'logo-blue' %}
+  </a>
+{% if template.name == 'index' %}
+  </h1>
+{% else %}
+  </div>
+{% endif %}

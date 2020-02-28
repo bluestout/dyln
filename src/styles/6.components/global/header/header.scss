@@ -1,0 +1,55 @@
+.site-header {
+  position: relative;
+
+  &__main {
+    position: relative;
+    padding: 15px;
+  }
+
+  &__utils {
+  }
+  &__utils-block {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__utils-cart {
+    position: relative;
+    display: block;
+
+    &:hover {
+      .site-header__utils-cart-icon {
+        g {
+          stroke: $color-main-1;
+        }
+      }
+    }
+  }
+
+  &__utils-cart-num {
+    @include poppins(bold);
+    @include text(12px, 12px, $color-main-1, 0.71px);
+    position: absolute;
+    top: 0;
+    left: 8%;
+    width: 70%;
+    text-align: center;
+  }
+
+  &__utils-cart-icon {
+    g {
+      @include transition(stroke);
+    }
+  }
+}
+
+@import "./announcement-bar";
+@import "./header-logo";
+@import "./header-nav";
+@import "./header-login";
+@import "./header-help";
+@import "./header-search";
+@import "./header-shop";
+@import "./header-about";
+@import "./header-bottle";

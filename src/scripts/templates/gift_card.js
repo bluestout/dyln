@@ -1,4 +1,4 @@
-import QRCode from 'qrcode';
+import QRCode from "qrcode";
 
 /**
  * Gift Card Template Script
@@ -7,29 +7,32 @@ import QRCode from 'qrcode';
  */
 
 const selectors = {
-  qrCodeCanvas: '[data-gift-card-qr]',
-  printButton: '[data-gift-card-print]',
-  giftCardCode: '[data-gift-card-digits]',
+  qrCodeCanvas: "[data-gift-card-qr]",
+  printButton: "[data-gift-card-print]",
+  giftCardCode: "[data-gift-card-digits]",
 };
 
 // This is the QR code that allows customers to use at a POS
-document.querySelectorAll(selectors.qrCodeCanvas).forEach((element) => {
-  QRCode.toCanvas(element, element.dataset.identifier);
-});
+const canvas = document.querySelectorAll(selectors.qrCodeCanvas);
+for (let i = 0; i < canvas.length; i++) {
+  QRCode.toCanvas(canvas[i], canvas[i].dataset.identifier);
+}
 
-document.querySelectorAll(selectors.printButton).forEach((element) => {
-  element.addEventListener('click', () => {
+const printButtons = document.querySelectorAll(selectors.printButton);
+for (let i = 0; i < printButtons.length; i++) {
+  printButtons[i].addEventListener("click", () => {
     window.print();
   });
-});
+}
 
 // Auto-select gift card code on click, based on ID passed to the function
-document.querySelectorAll(selectors.giftCardCode).forEach((element) => {
-  element.addEventListener('click', (evt) => {
+const giftCardCodes = document.querySelectorAll(selectors.giftCardCode);
+for (let i = 0; i < giftCardCodes.length; i++) {
+  giftCardCodes[i].addEventListener("click", (evt) => {
     const selection = window.getSelection();
     const range = document.createRange();
     range.selectNodeContents(evt.target);
     selection.removeAllRanges();
     selection.addRange(range);
   });
-});
+}

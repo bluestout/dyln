@@ -1,0 +1,25 @@
+<div class="social-links">
+  {% if settings.social_instagram_link %}
+    <a class="social-links__link" target="_blank" href="{{ settings.social_instagram_link }}">
+      {% render 'icon-instagram' %}
+    </a>
+  {% endif %}
+
+  {% if settings.social_facebook_link %}
+    <a class="social-links__link" target="_blank" href="{{ settings.social_facebook_link }}">
+      {% render 'icon-facebook' %}
+    </a>
+  {% endif %}
+
+  {% if settings.social_twitter_link %}
+    <a class="social-links__link" target="_blank" href="{{ settings.social_twitter_link }}">
+      {% render 'icon-twitter' %}
+    </a>
+  {% endif %}
+
+  {% if settings.social_pinterest_link %}
+    <a class="social-links__link" target="_blank" href="{{ settings.social_pinterest_link }}">
+      {% render 'icon-pinterest' %}
+    </a>
+  {% endif %}
+</div>

@@ -1,0 +1,136 @@
+.index-stories {
+  margin: 0 0 50px;
+
+  .slick-initialized .slick-slide {
+  }
+
+  &__title {
+    @include poppins(700);
+    @include text(40px, 56px, $color-title, 2.36px);
+    margin: 0 0 30px;
+    text-align: center;
+  }
+
+  &__stories {
+    &:not(.slick-initialized) {
+      display: flex;
+      flex-flow: row nowrap;
+      overflow-x: scroll;
+
+      .index-stories__story {
+        flex: 0 0 25%;
+        max-width: 25%;
+      }
+    }
+  }
+
+  &__story {
+    padding: 0 12px;
+  }
+
+  &__s-media {
+    background-color: $color-theme-4;
+    position: relative;
+    padding-top: 100%;
+  }
+
+  &__s-media-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__s-c-wrap {
+    background-color: $color-theme-4;
+    min-height: 425px;
+    padding: 40px;
+  }
+
+  &__s-title {
+    @include poppins(700);
+    @include text(24px, 33px, $color-main-1, 1.42px);
+    margin: 0 0 15px;
+  }
+
+  &__s-content {
+    @include open-sans;
+    @include text(20px, 27px, $color-body-text, 1.18px);
+    margin: 0 0 10px;
+  }
+
+  &__s-rating {
+    margin: 0 0 12px;
+  }
+
+  &__s-star {
+    &:not(:last-of-type) {
+      margin: 0 9px 0 0;
+    }
+  }
+
+  &__s-author {
+    @include open-sans(700);
+    @include text(20px, 27px, $color-body-text, 1.18px);
+    margin: 0;
+  }
+
+  &__slider-wrap {
+    width: calc(100% - 200px);
+    margin: 10px auto 0;
+  }
+
+  &__slider {
+    width: 100%;
+    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+    width: 100%; /* Specific width is required for Firefox. */
+    background: transparent; /* Otherwise white in Chrome */
+    outline: none;
+
+    &::-webkit-slider-thumb {
+      width: 15%;
+      width: var(--index-stories-input-w);
+      height: 4px;
+      border-radius: 2px;
+      border: none;
+      background-color: $color-theme-7;
+    }
+
+    &::-moz-range-thumb {
+      width: 15%;
+      width: var(--index-stories-input-w);
+      height: 4px;
+      border-radius: 2px;
+      border: none;
+      background-color: $color-theme-7;
+    }
+
+    &::-ms-thumb {
+      width: 15%;
+      width: var(--index-stories-input-w);
+      height: 4px;
+      border-radius: 2px;
+      border: none;
+      background-color: $color-theme-7;
+    }
+
+    &::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 2px;
+      background-color: $color-theme-6;
+    }
+
+    &::-moz-range-track {
+      width: 100%;
+      height: 2px;
+      background-color: $color-theme-6;
+    }
+
+    &::-ms-track {
+      width: 100%;
+      height: 2px;
+      background-color: $color-theme-6;
+    }
+  }
+}

@@ -1,50 +1,55 @@
 <div class="index-video__outer">
-  {% if section.settings.background %}
+  {%- if section.settings.background -%}
     <div class="index-video__bg-outer">
-      {% render 'responsive-image' with
+      {%- render 'responsive-image' with
         image: section.settings.background,
         max_width: 700,
         max_height: 500,
         wrapper_class: "index-video__bg-wrap",
         image_class: "index-video__bg",
-      %}
+      -%}
     </div>
-  {% endif %}
+  {%- endif -%}
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-4">
-        <div class="index-video__content">
-          {% if section.settings.title != blank %}
-            <h2 class="index-video__title">{{ section.settings.title }}</h2>
-          {% endif %}
+  <div class="index-video__content-outer">
+    <div class="index-video__container container">
+      <div class="index-video__row row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4 d-flex">
+          <div class="index-video__content">
+            {%- if section.settings.title != blank -%}
+              <h2 class="index-video__title">{{- section.settings.title -}}</h2>
+            {%- endif -%}
 
-          {% if section.settings.text != blank %}
-            <p class="index-video__text">{{ section.settings.text }}</p>
-          {% endif %}
+            {%- if section.settings.text != blank -%}
+              <p class="index-video__text">{{- section.settings.text -}}</p>
+            {%- endif -%}
 
-          {% if section.settings.video != blank %}
-            <a class="index-video__link" href="#">
-              <span class="index-video__link-text">{{ section.settings.link_text }}</span>
-              <span class="index-video__link-icon">{% render 'icon-play' %}</span>
-            </a>
-          {% endif %}
-
+            {%- if section.settings.video != blank -%}
+              <a class="index-video__link" href="#">
+                <span class="index-video__link-text">{{- section.settings.link_text -}}</span>
+                <span class="index-video__link-icon">{%- render 'icon-play' -%}</span>
+              </a>
+            {%- endif -%}
+          </div>
+        </div>
+        <div class="col-md-6 d-flex">
+          <div class="index-video__format-wrap" style="position:relative; top: 160px; left:30px;">
+            {%- if section.settings.format != blank -%}
+              <span class="index-video__format">{{- section.settings.format -}}</span>
+            {%- endif -%}
+          </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="index-video__format-wrap">
-          {% if section.settings.format != blank %}
-            <span class="index-video__format">{{ section.settings.format }}</span>
-          {% endif %}
-        </div>
-      </div>
-    </div>
 
-    <div class="index-video__video-outer">
-      <video class="index-video__video" src=""></video>
     </div>
+  </div>
+
+  <div class="index-video__video-outer">
+    <video class="index-video__video" playsinline width="500" height="300">
+      <source src="{{- section.settings.video -}}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
   </div>
 </div>
 
@@ -74,6 +79,12 @@
         "id": "link_text",
         "label": "Link Text",
         "default": "Watch full Video"
+      },
+      {
+        "type": "textarea",
+        "id": "video",
+        "label": "Video",
+        "info": "Upload a video to Shopify files and paste the source url here."
       },
       {
         "type": "text",

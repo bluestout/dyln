@@ -1,0 +1,125 @@
+<a class="header-shop__main-link" href="#" data-header-shop-link>
+  <span class="header-shop__main-text">{{ shop_title }}</span>
+  <span class="header-shop__main-icon">
+    {% render 'icon-plus-vertical' %}
+    {% render 'icon-plus-horizontal' %}
+  </span>
+</a>
+
+<div class="header-shop" data-header-shop-block>
+  <div class="header-shop__body">
+    <div class="header-shop__wave"></div>
+    <div class="container">
+      <div class="row">
+        {% if show_featured %}
+          <div class="col-8">
+        {% else %}
+          <div class="col-12">
+        {% endif %}
+
+          {% assign prominent_links_a = prominent_links | split: ',' %}
+          <div class="header-shop__menu">
+            {% for link in linklists[header-shop].links %}
+              {% assign is_prominent = false %}
+              {% assign p_link_clean = "1" %}
+              {% assign title_clean = "2" %}
+
+              {% for p_link in prominent_links_a %}
+                {% assign p_link_clean = p_link | strip | handleize %}
+                {% assign title_clean = link.title | strip | handleize %}
+                {% if p_link_clean == title_clean %}
+                  {% assign is_prominent = true %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+
+              <div class="header-shop__link-parent{% if is_prominent == true %} prominent{% endif %}">
+                <div class="header-shop__link-header">
+                  <a class="header-shop__link-top" href="{{ link.url }}">{{ link.title }}</a>
+                  {% if is_prominent == true %}
+                    <a class="header-shop__shop-all" href="{{ link.url }}">{{ 'header.shop.shop_all' | t }}</a>
+                  {% endif %}
+                </div>
+                {% if link.links != blank %}
+                  {% if is_prominent == true %}
+                    <div class="header-shop__link-list prominent">
+                      {% for childlink in link.links limit: 6 %}
+                        <a class="header-shop__link-sub prominent" href="{{ childlink.url }}">
+                          {% assign link_image = childlink.object.featured_image %}
+                          {% if childlink.object.image %}
+                            {% assign link_image = childlink.object.image %}
+                          {% endif %}
+
+                          {% if link_image %}
+                            {% render 'responsive-image' with
+                              image: link_image,
+                              max_width: 120,
+                              max_height: 170,
+                              wrapper_class: "header-shop__link-img-wrap",
+                              image_class: "header-shop__link-img",
+                              span: true
+                            %}
+                          {% endif %}
+
+                          <span class="header-shop__link-sub-a-p">
+                            {{ childlink.title }}
+                          </span>
+                        </a>
+                      {% endfor %}
+                    </div>
+                  {% else %}
+                    <div class="header-shop__link-list">
+                      {% for childlink in link.links %}
+                        {% assign child_class = "" %}
+                        {% if childlink.title == "Learn More" %}
+                          {% assign child_class = " brand" %}
+                        {% endif %}
+                        <div>
+                          <a class="header-shop__link-sub-a{{ child_class }}" href="{{ childlink.url }}">
+                            {{ childlink.title }}
+                          </a>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+
+        {% if show_featured %}
+          </div>
+          <div class="col-4">
+            <div class="header-shop__featured">
+              <div class="header-shop__f-content-wrap">
+                <div class="header-shop__f-content">{{ featured_content }}</div>
+                {% if featured_link_text != empty %}
+                  <a href="{{ featured_link }}" class="header-shop__f-link">{{ featured_link_text }}</a>
+                {% endif %}
+              </div>
+              {% if featured_image %}
+                {% render 'responsive-image' with
+                  image: featured_image,
+                  max_width: 71,
+                  max_height: 210,
+                  wrapper_class: "header-shop__f-img-wrap",
+                  image_class: "header-shop__f-img",
+                %}
+              {% endif %}
+            </div>
+          </div>
+        {% else %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="header-shop__close">
+      <button type="button" class="header-shop__close-btn" data-header-block-close>
+        {% render 'icon-chevron-up' %}
+      </button>
+    </div>
+  </div>
+
+  <div class="header-shop__overlay"></div>
+</div>

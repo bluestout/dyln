@@ -1,0 +1,45 @@
+<div class="header-cart">
+  <div class="header-cart__header">
+    <button type="button" class="header-cart__close"></button>
+    <h4 class="header-cart__title"></h4>
+    <a href="/cart" class="header-cart__cart">
+      <span class="icon-fallback-text hide">{{ 'layout.cart.title' | t }}</span>
+      <span class="site-header__utils-cart-num" data-cart-item-count>
+        {{ cart.item_count }}
+      </span>
+      <span class="site-header__utils-cart-icon">
+        {% render 'icon-cart' %}
+      </span>
+    </a>
+  </div>
+  <div class="header-cart__body">
+    <div class="header-cart__shipping-bar"></div>
+
+    {% if cart.item_count == 0 %}
+      <p class="header-cart__empty-cart"></p>
+      <a class="header-cart__empty-block">
+        <span class="header-cart__empty-title"></span>
+        <span class="header-cart__empty-image"></span>
+      </a>
+    {% else %}
+
+    {% endif %}
+  </div>
+  <div class="header-cart__footer">
+    <div class="header-cart__totals-bar">
+      <span class="header-cart__total-text"></span>
+      <span class="header-cart__total-price"></span>
+    </div>
+    <div class="header-cart__ship-bar">
+      <span class="header-cart__ship-text"></span>
+      <span class="header-cart__ship-price"></span>
+    </div>
+    <div class="header-cart__checkout-wrap">
+      <button type="button" class="header-cart__checkout"></button>
+    </div>
+    <div class="header-cart__payments">
+      <span class="header-cart__payments-text"></span>
+      <img src="" alt="">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="footer-newsletter">
+  <h5 class="footer-newsletter__title">{{ 'layout.footer.newsletter_title' | t }}</h5>
+  {% form 'customer' %}
+    {{ form.errors | default_errors }}
+    {% if form.posted_successfully? %}
+      <p class="footer-newsletter__success">{{ 'general.newsletter_form.confirmation' | t }}</p>
+    {% else %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <input type="email"
+        class="footer-newsletter__input"
+        name="contact[email]"
+        value="{% if customer.email != blank %}{{ customer.email }}{% endif %}"
+        placeholder="{{ 'layout.footer.email' | t }}"
+        autocorrect="off"
+        autocapitalize="off"
+        required />
+      <button class="footer-newsletter__button" type="submit" name="commit">{{ 'layout.footer.submit' | t }}</button>
+    {% endif %}
+  {% endform %}
+</div>

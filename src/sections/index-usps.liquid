@@ -11,29 +11,29 @@
 
         {% if section.blocks.size > 0 %}
           <div class="index-usps__usps" data-accordion-parent=true>
-          {% for usp in section.blocks %}
-            <div class="index-usps__usp">
-              <button class="index-usps__usp-btn" data-accordion-button>
-                <span class="index-usps__usp-icon">
-                  {% if usp.settings.icon == "acid-reflux" %}
-                    {% render 'icon-acid-reflux' %}
-                  {% elsif usp.settings.icon == "detoxifying-spin" %}
-                    {% render 'icon-detoxifying-spin' %}
-                  {% elsif usp.settings.icon == "hydration" %}
-                    {% render 'icon-hydration' %}
-                  {% elsif usp.settings.icon == "scale" %}
-                    {% render 'icon-scale' %}
-                  {% endif %}
-                </span>
-                <span class="index-usps__usp-title">
-                  {{ usp.settings.title }}
-                </span>
-                <span class="index-usps__usp-closed">+</span>
-                <span class="index-usps__usp-open">-</span>
-              </button>
-              <div class="index-usps__usp-content" data-accordion-content>{{ usp.settings.content }}</div>
-            </div>
-          {% endfor %}
+            {% for usp in section.blocks %}
+              <div class="index-usps__usp">
+                <button class="index-usps__usp-btn" data-accordion-button>
+                  <span class="index-usps__usp-icon">
+                    {% if usp.settings.icon == "acid-reflux" %}
+                      {% render 'icon-usp-acid-reflux' %}
+                    {% elsif usp.settings.icon == "detoxifying-spin" %}
+                      {% render 'icon-detoxifying-spin' %}
+                    {% elsif usp.settings.icon == "hydration" %}
+                      {% render 'icon-usp-hydration' %}
+                    {% elsif usp.settings.icon == "scale" %}
+                      {% render 'icon-scale' %}
+                    {% endif %}
+                  </span>
+                  <span class="index-usps__usp-title">
+                    {{ usp.settings.title }}
+                  </span>
+                  <span class="index-usps__usp-closed">+</span>
+                  <span class="index-usps__usp-open">-</span>
+                </button>
+                <div class="index-usps__usp-content" data-accordion-content>{{ usp.settings.content }}</div>
+              </div>
+            {% endfor %}
           </div>
         {% endif %}
       </div>
