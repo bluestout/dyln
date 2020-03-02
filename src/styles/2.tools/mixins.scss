@@ -141,6 +141,11 @@
   $font-heading: var(--font-heading);
 }
 
+@mixin text-title($color: $color-title) {
+  @include poppins(700);
+  @include text(40px, 56px, $color, 2.36px);
+}
+
 @mixin no-font-size {
   font-size: 0;
   line-height: 0;
@@ -350,7 +355,7 @@
   @include transition(background-position $time);
   position: absolute;
   left: 0;
-  z-index: 1;
+  z-index: $z-base;
   background-position: 0;
   background-repeat: repeat-x;
   width: 100%;

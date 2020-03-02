@@ -1,6 +1,6 @@
 .header-bottle {
   @include transition(opacity);
-  z-index: 1;
+  z-index: $z-header-blocks;
   position: absolute;
   left: 0;
   top: 100%;
@@ -94,7 +94,7 @@
 
   &__body {
     position: relative;
-    z-index: 1;
+    z-index: $z-base;
     background-color: $color-background;
     padding: 60px 0 0;
   }
@@ -106,8 +106,7 @@
   }
 
   &__c-title {
-    @include poppins(700);
-    @include text(40px, 56px, $color-main-1, 2.36px);
+    @include text-title($color-main-1);
     margin: 0 0 10px;
   }
 

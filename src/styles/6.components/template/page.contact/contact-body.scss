@@ -1,0 +1,107 @@
+.contact-body {
+  margin: 40px 0;
+
+  &__container {
+    max-width: 880px;
+  }
+
+  &__big-links {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin: 0 0 55px;
+  }
+
+  &__big-link {
+    height: 40px;
+    padding: 0 25px;
+    border-radius: 20px;
+    background-color: $color-theme-13;
+    display: inline-block;
+  }
+
+  &__big-link-i {
+    @include no-font-size;
+    margin: 0 5px 0 0;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__big-link-t {
+    @include poppins(700);
+    @include text(18px, 40px, $color-body-text, 1.06px);
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__form-title {
+    @include poppins(700);
+    @include text(18px, 25px, $color-body-text, 1.06px);
+    text-align: right;
+  }
+
+  &__form {
+    margin: 0 0 25px;
+
+    input[type="email"],
+    input[type="text"] {
+      @include poppins;
+      @include text(14px, 20px, $color-body-text, 0.83px);
+      border: none;
+      border-radius: 0;
+      border-bottom: 1px solid $color-main;
+      padding: 5px 0;
+
+      &::placeholder {
+        opacity: 1;
+      }
+    }
+
+    select {
+      @include poppins;
+      @include text(14px, 20px, $color-body-text, 0.83px);
+      padding: 5px 0;
+      border: none;
+      border-radius: 0;
+    }
+
+    textarea {
+      @include poppins;
+      @include text(14px, 20px, $color-body-text, 0.83px);
+      border: 1px solid $color-main;
+      border-radius: 0;
+      padding: 5px;
+
+      &::placeholder {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__form-footer {
+    @include clearfix;
+    margin: 10px 0 0;
+  }
+
+  &__form-note {
+    @include poppins;
+    @include text(9px, 12px, $color-body-text, 0.53px);
+    float: left;
+  }
+
+  &__form-submit {
+    @include button(solid, round, 1);
+    float: right;
+  }
+
+  &__success {
+    @include poppins(500);
+    @include text(18px, 28px, $color-body-text, 1.06px);
+    margin: 0 0 20px;
+  }
+
+  &__address {
+    @include poppins(500);
+    @include text(16px, 23px, $color-body-text, 0.95px);
+  }
+}

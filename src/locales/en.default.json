@@ -120,8 +120,14 @@
       "name": "Name",
       "email": "Email",
       "phone": "Phone Number",
+      "subject": "Subject",
+      "returns": "Returns",
+      "order": "Order",
+      "delivery": "Delivery",
+      "other": "Other",
       "message": "Message",
       "send": "Send",
+      "required_fields": "* Required fields",
       "post_success": "Thanks for contacting us. We'll get back to you as soon as possible."
     }
   },

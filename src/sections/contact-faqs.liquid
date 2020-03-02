@@ -1,0 +1,74 @@
+
+<div class="container" data-accordion-parent=true>
+  {% if section.settings.title != empty %}
+    <div class="contact-faqs__title">{{ section.settings.title }}</div>
+  {% endif %}
+
+  <div class="row">
+    {% for block in section.blocks %}
+      <div class="col-md-6">
+        <div class="contact-faqs__faq">
+          <button class="contact-faqs__faq-btn" data-accordion-button>
+            <span class="contact-faqs__faq-q">
+              {{ block.settings.title }}
+            </span>
+            <span class="contact-faqs__faq-closed">+</span>
+            <span class="contact-faqs__faq-open">-</span>
+          </button>
+          <div class="contact-faqs__faq-a" data-accordion-content>{{ block.settings.answer }}</div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if section.settings.bottom_link_text != empty %}
+    <div class="contact-faqs__bottom-box">
+      <a
+        href="{{ section.settings.bottom_link }}"
+        class="contact-faqs__bottom-link">{{ section.settings.bottom_link_text }}</a>
+    </div>
+  {% endif %}
+</div>
+
+
+{% schema %}
+  {
+    "name": "Contact FAQs",
+    "class": "contact-faqs",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title"
+      },
+      {
+        "type": "url",
+        "id": "bottom_link",
+        "label": "Bottom Link URL"
+      },
+      {
+        "type": "text",
+        "id": "bottom_link_text",
+        "label": "Bottom Link Text"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "faq",
+        "name": "FAQ",
+        "settings": [
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Question"
+          },
+          {
+            "type": "textarea",
+            "id": "answer",
+            "label": "Answer"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

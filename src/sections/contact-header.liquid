@@ -1,0 +1,41 @@
+<div class="contact-header__wave"></div>
+
+<div class="contact-header__body">
+  <div class="container">
+    <h1 class="contact-header__title">
+    {% if section.settings.title != blank %}
+      {{ section.settings.title }}
+    {% else %}
+      {{ page.title }}
+    {% endif %}
+    </h1>
+    <div class="contact-header__content">
+      {% if section.settings.content != blank %}
+        {{ section.settings.content | strip_html | strip | truncatewords: 30, '...' }}
+      {% else %}
+        {{ page.content | strip_html | strip | truncatewords: 30, '...' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Contact Header",
+    "class": "contact-header",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "info": "Optional, defaults to page title."
+      },
+      {
+        "type": "textarea",
+        "id": "content",
+        "label": "Description",
+        "info": "Optional, defaults to page content."
+      }
+    ]
+  }
+{% endschema %}

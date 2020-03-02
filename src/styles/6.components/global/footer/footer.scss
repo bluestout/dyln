@@ -19,8 +19,7 @@
   }
 
   &__lf-title {
-    @include poppins(700);
-    @include text(40px, 56px, $color-title, 2.36px);
+    @include text-title;
     margin: 0 0 10px;
   }
 

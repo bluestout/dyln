@@ -1,6 +1,6 @@
 .header-search {
   @include transition(opacity);
-  z-index: 1;
+  z-index: $z-header-blocks;
   position: absolute;
   left: 0;
   top: 100%;
@@ -39,7 +39,7 @@
 
   &__body {
     position: relative;
-    z-index: 1;
+    z-index: $z-base;
     background-color: $color-background;
     padding: 65px 0 20px;
   }
