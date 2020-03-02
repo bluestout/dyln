@@ -18,6 +18,13 @@
     border-radius: 20px;
     background-color: $color-theme-13;
     display: inline-block;
+
+    &:active {
+      + .contact-body__modal-wrap {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
   }
 
   &__big-link-i {
@@ -32,6 +39,98 @@
     @include text(18px, 40px, $color-body-text, 1.06px);
     display: inline-block;
     vertical-align: middle;
+  }
+
+  &__modal-wrap {
+    @include transition(opacity);
+    z-index: $z-contact-modal;
+    position: fixed;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color-black, 0.5);
+    display: flex;
+    flex-flow: row wrap;
+    opacity: 0;
+    pointer-events: none;
+
+    &.active,
+    &:hover {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  &__modal {
+    position: relative;
+    background-color: $color-background;
+    flex: 0 0 540px;
+    width: 540px;
+    margin: auto;
+    padding: 20px 30px 30px;
+  }
+
+  &__modal-title {
+    @include poppins(700);
+    @include text(16px, 20px, $color-body-text, 0.95px);
+    margin: 0 0 20px;
+    text-align: center;
+  }
+
+  &__modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 2px;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+
+    g {
+      stroke: $color-body-text;
+    }
+  }
+
+  &__modal-buttons {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+
+  &__modal-button {
+    height: 45px;
+    padding: 0 25px;
+    border-radius: 20px;
+    background-color: $color-theme-13;
+    display: inline-block;
+  }
+
+  &__modal-b-i {
+    @include no-font-size;
+    margin: 0 5px 0 0;
+    display: inline-block;
+    vertical-align: middle;
+
+    svg {
+      max-width: 30px;
+      max-height: 20px;
+    }
+  }
+
+  &__modal-b-t {
+    @include poppins;
+    @include text(12px, 45px, $color-body-text, 0.71px);
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__modal-note {
+    @include poppins(700);
+    @include text(10px, 12px, $color-body-text, 0.59px);
+    margin: 20px 0 0;
+    text-align: center;
   }
 
   &__form-title {
