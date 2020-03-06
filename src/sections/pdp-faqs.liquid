@@ -1,0 +1,63 @@
+{% if section.settings.show %}
+  <div class="container" data-accordion-parent=true>
+    {% if section.settings.title != empty %}
+      <div class="pdp-faqs__title">{{ section.settings.title }}</div>
+    {% endif %}
+
+    <div class="row">
+      {% for block in section.blocks %}
+        <div class="col-md-6">
+          <div class="pdp-faqs__faq">
+            <button class="pdp-faqs__faq-btn" data-accordion-button>
+              <span class="pdp-faqs__faq-q">
+                {{ block.settings.title }}
+              </span>
+              <span class="pdp-faqs__faq-closed">+</span>
+              <span class="pdp-faqs__faq-open">-</span>
+            </button>
+            <div class="pdp-faqs__faq-a" data-accordion-content>{{ block.settings.answer }}</div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "FAQs",
+    "class": "pdp-faqs",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show",
+        "label": "Show Section",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "faq",
+        "name": "FAQ",
+        "settings": [
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Question"
+          },
+          {
+            "type": "textarea",
+            "id": "answer",
+            "label": "Answer"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

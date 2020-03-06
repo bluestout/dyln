@@ -1,0 +1,31 @@
+.pdp-content {
+  &__title {
+    @include text-title;
+    margin: 0 0 10px;
+  }
+
+  &__reviews {
+    margin: 0 0 10px;
+  }
+
+  &__content {
+    @include open-sans;
+    @include text(16px, 20px, $color-body-text, 0.65px);
+    margin: 0 0 5px;
+
+    a,
+    p,
+    span {
+      @include open-sans;
+      @include text(16px, 20px, $color-body-text, 0.65px);
+    }
+
+    a {
+      color: $color-main-1;
+      text-decoration: underline;
+    }
+  }
+
+  &__link {
+  }
+}

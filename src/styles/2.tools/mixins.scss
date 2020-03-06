@@ -351,12 +351,33 @@
   }
 }
 
-@mixin animated-wave($time: 1000ms) {
+@mixin animated-wave($time: 1000ms, $z-index: $z-base) {
   @include transition(background-position $time);
   position: absolute;
   left: 0;
-  z-index: $z-base;
+  @if $z-index != 0 {
+    z-index: $z-index;
+  }
   background-position: 0;
   background-repeat: repeat-x;
   width: 100%;
+}
+
+@mixin no-browser-styling {
+  border: none;
+  background: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  appearance: none;
+}
+
+@mixin no-input-spinner {
+  -moz-appearance: textfield;
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }

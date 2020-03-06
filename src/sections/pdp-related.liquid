@@ -1,0 +1,106 @@
+{% if section.settings.type == "shopify" and recommendations.products_count > 0 %}
+  <div class="container pdp-related__container">
+    <h2 class="pdp-related__title">{{ section.settings.title }}</h2>
+    <div class="row">
+      {% for r_product in recommendations.products limit: section.settings.r_limit %}
+        <div class="col-md-4">
+          {% render 'related-product-item' with r_product %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% elsif section.settings.type == "custom" %}
+  {% for block in section.blocks %}
+    {%- if product.handle == block.settings.product -%}
+      <div class="container pdp-related__container">
+        <h2 class="pdp-related__title">{{ section.settings.title }}</h2>
+        <div class="row">
+          {% if block.settings.product_1 != empty %}
+            <div class="col-md-4">
+              {% render 'related-product-item' with all_products[block.settings.product_1] %}
+            </div>
+          {% endif %}
+
+          {% if block.settings.product_2 != empty %}
+            <div class="col-md-4">
+              {% render 'related-product-item' with all_products[block.settings.product_2] %}
+            </div>
+          {% endif %}
+
+          {% if block.settings.product_3 != empty %}
+            <div class="col-md-4">
+              {% render 'related-product-item' with all_products[block.settings.product_3] %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Related",
+    "class": "pdp-related",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "radio",
+        "id": "type",
+        "options": [
+            { "value": "shopify", "label": "Shopify"},
+            { "value": "custom", "label": "Custom"},
+            { "value": "none", "label": "None"}
+        ],
+        "default": "shopify",
+        "label": "Type",
+        "info": "Choose recommendations logic. Set to Shopify to use the Shopify Logic - the algorithm makes better recommendations as more sales are made. Set to custom to use the settings in the blocks below. Set to none to hide this section. "
+      },
+      {
+        "type": "range",
+        "id": "r_limit",
+        "label": "Number of Recommendations",
+        "min": 1,
+        "max": 6,
+        "step": 1,
+        "default": 3,
+        "info": "Only has an effect if using Shopify logic."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "Product",
+        "name": "Product",
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product",
+            "info": "On which product will the selected recommended products appear?"
+          },
+          {
+            "type": "product",
+            "id": "product_1",
+            "label": "Recommended Product 1"
+          },
+          {
+            "type": "product",
+            "id": "product_2",
+            "label": "Recommended Product 2"
+          },
+          {
+            "type": "product",
+            "id": "product_3",
+            "label": "Recommended Product 3"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,4 +1,57 @@
-{% section 'product' %}
+<section data-section-id="{{ section.id }}" data-section-type="product">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+
+        {% section 'pdp-gallery' %}
+
+        {% section 'pdp-gallery-index' %}
+
+      </div>
+
+      <div class="col-lg-5">
+
+        {% section 'pdp-content' %}
+
+        {% section 'pdp-form' %}
+
+        {% section 'pdp-diffusers' %}
+
+      </div>
+    </div>
+  </div>
+
+  {% section 'pdp-usps' %}
+
+  {% section 'pdp-video' %}
+
+  <div class="pdp-tabs" data-tabs-container>
+    <div id="pdp-tabs-anchor"></div>
+    {% section 'pdp-tabs-header' %}
+
+    <div class="pdp-tab-1 active" data-tab=0>
+      {% section 'pdp-tab-features' %}
+    </div>
+
+    <div class="pdp-tab-2" data-tab=1 style="display:none">
+      {% section 'pdp-tab-included' %}
+    </div>
+
+    <div class="pdp-tab-3" data-tab=2 style="display:none">
+      {% section 'pdp-tab-specs' %}
+    </div>
+
+  </div>
+
+  {% section 'pdp-related' %}
+
+  {% section 'pdp-faqs' %}
+
+  {% section 'pdp-reviews' %}
+
+</section>
+
 
 <script type="application/ld+json">
 {

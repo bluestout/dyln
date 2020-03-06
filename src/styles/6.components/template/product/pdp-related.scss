@@ -1,0 +1,65 @@
+.pdp-related {
+  margin: 0 0 50px;
+
+  &__container {
+    max-width: 1000px;
+  }
+
+  &__title {
+    @include text-title;
+    text-align: center;
+    margin: 0 0 30px;
+  }
+}
+
+.related-product {
+  text-align: center;
+  display: block;
+
+  &:hover {
+    .related-product__title {
+      color: $color-main-1;
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  &__img {
+    object-fit: cover;
+  }
+
+  &__img-wrap {
+    margin: 0 auto 10px;
+  }
+
+  &__wrap {
+  }
+
+  &__img-link {
+    display: block;
+  }
+
+  &__title {
+    @include poppins(500);
+    @include text(14px, 20px, $color-body-text, 0.83px);
+    @include underline($color-main-1, false);
+    @include transition(color);
+    display: inline-block;
+    margin: 0 0 5px;
+  }
+
+  &__content {
+    @include poppins(700);
+    @include text(12px, 20px, $color-body-text, 0.71px);
+    text-align: center;
+    display: block;
+  }
+
+  &__price {
+    @include poppins(700);
+    @include text(18px, 20px, $color-body-text, 1.06px);
+    margin: 10px 0 0;
+    display: block;
+  }
+}

@@ -1,0 +1,84 @@
+{% for block in section.blocks %}
+  {%- assign section_p = all_products[block.settings.product] -%}
+  {% if section_p.handle == product.handle %}
+    {% if block.settings.tab_1 %}
+      <a href="#" class="pdp-tabs-header__link active" data-tab-link=0>
+        <span class="active-text">{{ block.settings.title_1 }}</span>
+        <span class="inactive-text">{{ block.settings.title_1 }}</span>
+      </a>
+    {% endif %}
+
+    {% if block.settings.tab_1 %}
+      <a href="#" class="pdp-tabs-header__link" data-tab-link=1>
+        <span class="active-text">{{ block.settings.title_2 }}</span>
+        <span class="inactive-text">{{ block.settings.title_2 }}</span>
+      </a>
+    {% endif %}
+
+    {% if block.settings.tab_3 %}
+      <a href="#" class="pdp-tabs-header__link" data-tab-link=2>
+        <span class="active-text">{{ block.settings.title_3 }}</span>
+        <span class="inactive-text">{{ block.settings.title_3 }}</span>
+      </a>
+    {% endif %}
+
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% schema %}
+  {
+    "name": "Tab Header",
+    "class": "pdp-tabs-header",
+    "blocks": [
+      {
+        "type": "block",
+        "name": "Product",
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product",
+            "info": "Select a specific product for which you want to set specific tabs."
+          },
+          {
+            "type": "checkbox",
+            "id": "tab_1",
+            "label": "Tab 1",
+            "info": "Show first tab?"
+          },
+          {
+            "type": "textarea",
+            "id": "title_1",
+            "label": "Tab 1 Title",
+            "info": "First Tab Title."
+          },
+          {
+            "type": "checkbox",
+            "id": "tab_2",
+            "label": "Tab 2",
+            "info": "Show Second tab?"
+          },
+          {
+            "type": "textarea",
+            "id": "title_2",
+            "label": "Tab 2 Title",
+            "info": "Second Tab Title."
+          },
+          {
+            "type": "checkbox",
+            "id": "tab_3",
+            "label": "Tab 3",
+            "info": "Show Third tab?"
+          },
+          {
+            "type": "textarea",
+            "id": "title_3",
+            "label": "Tab 3 Title",
+            "info": "Third Tab Title."
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

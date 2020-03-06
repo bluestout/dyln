@@ -1,0 +1,98 @@
+{% if section.settings.show %}
+<div class="pdp-video__outer" data-pdp-video-parent>
+  {%- if section.settings.background -%}
+    <div class="pdp-video__bg-outer">
+      {%- render 'responsive-image' with
+        image: section.settings.background,
+        max_width: 700,
+        max_height: 500,
+        wrapper_class: "pdp-video__bg-wrap",
+        image_class: "pdp-video__bg",
+        wrapper_attributes: "data-pdp-video-bg"
+      -%}
+    </div>
+  {%- endif -%}
+
+  <div class="pdp-video__content-outer">
+    <div class="pdp-video__container container" data-pdp-video-non-video>
+      <div class="pdp-video__row row">
+        <div class="col-md-1"></div>
+        <div class="col-md-5 d-flex">
+          <div class="pdp-video__content">
+            {%- if section.settings.text != blank -%}
+              <p class="pdp-video__text">{{- section.settings.text -}}</p>
+            {%- endif -%}
+
+            {%- if section.settings.video != blank -%}
+              <button type="button" class="pdp-video__button" data-pdp-video-button>
+                <span class="pdp-video__button-text">{{- section.settings.link_text -}}</span>
+                <span class="pdp-video__button-icon">{%- render 'icon-play' -%}</span>
+              </button>
+            {%- endif -%}
+          </div>
+        </div>
+        <div class="col-md-6 d-flex">
+          {%- if section.settings.format != blank -%}
+            <div class="pdp-video__format-wrap" style="position:relative; top: 160px; left:30px;">
+              <span class="pdp-video__format">{{- section.settings.format -}}</span>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    <div class="pdp-video__video-outer" data-pdp-video-wrap>
+      <div class="container">
+        <video class="pdp-video__video" controls playsinline width="900">
+          <source src="{{- section.settings.video -}}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Product Video",
+    "class": "pdp-video",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show",
+        "label": "Show Section",
+        "default": true
+      },
+      {
+        "type": "image_picker",
+        "id": "background",
+        "label": "Background",
+        "info": "700x500"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Text"
+      },
+      {
+        "type": "text",
+        "id": "link_text",
+        "label": "Link Text",
+        "default": "Watch full Video"
+      },
+      {
+        "type": "textarea",
+        "id": "video",
+        "label": "Video",
+        "info": "Upload a video to Shopify files and paste the source url here."
+      },
+      {
+        "type": "text",
+        "id": "format",
+        "label": "Video Format"
+      }
+    ]
+  }
+{% endschema %}

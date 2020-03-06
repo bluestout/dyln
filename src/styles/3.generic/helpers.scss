@@ -121,11 +121,6 @@
   text-align: center;
 }
 
-@mixin no-font-size {
-  font-size: 0;
-  line-height: 0;
-}
-
 .semibold,
 .fw-500 {
   font-weight: 500;

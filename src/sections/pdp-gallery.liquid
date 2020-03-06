@@ -1,0 +1,51 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
+
+<div class="pdp-gallery__images" data-pdp-gallery>
+  {% for image in product.images %}
+
+    {% unless image.alt contains "featured-collection-image" or image.alt contains "featured-collection-image-2" %}
+      {% capture wrapper_class %}pdp-gallery__img-wrap{% unless featured_image == image %}{% endunless %}{% endcapture %}
+      {% capture wrapper_attributes %}data-product-image-wrapper data-gallery-image="{{ forloop.index }}"{% endcapture %}
+
+      <div
+        class="pdp-gallery__image-item"
+        >
+        {% render 'responsive-image' with
+          image: image,
+          max_width: 700,
+          max_height: 700,
+          image_attributes: "data-product-featured-image",
+          wrapper_class: wrapper_class,
+          image_class: "pdp-gallery__img",
+          wrapper_attributes: wrapper_attributes,
+          snippet_index: 2,
+        %}
+      </div>
+
+    {% endunless %}
+  {% endfor %}
+
+  {% if product.metafields.info.video != blank %}
+    <div class="pdp-gallery__image-item video" data-pdp-video-wrap>
+      <button class="pdp-gallery__play" type="button" data-pdp-gallery-play>
+        <span class="pdp-gallery__play-icon"></span>
+        <span>{{ 'products.product.watch_video' | t }}</span>
+      </button>
+      <div class="pdp-gallery__video-wrap">
+        <video width="700" class="pdp-gallery__video-item">
+          <source src="{{ product.metafields.info.video }}" type="video/mp4">
+          <source src="{{ product.metafields.info.video }}" type="video/ogg">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+  {
+    "name": "Product Gallery",
+    "class": "pdp-gallery"
+  }
+{% endschema %}

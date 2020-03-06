@@ -1,0 +1,222 @@
+{% for block in section.blocks %}
+  {%- assign section_p = all_products[block.settings.product] -%}
+  {% if section_p.handle == product.handle %}
+    <div class="container">
+      <div class="pdp-tab-3__content-wrap">
+        <div class="pdp-tab-3__elements-wrap" data-pdp-specs-elements>
+          <h4 class="pdp-tab-3__title">{{ block.settings.title }}</h4>
+          <div class="pdp-tab-3__elements">
+            {% for n in (1..4) %}
+              {% assign e_image_name = "element_image_" | append: n %}
+              {% assign e_illustration_name = "element_illustration_" | append: n %}
+              {% assign e_text_name = "element_text_" | append: n %}
+
+              {% assign e_image = block.settings[b_image_name] %}
+              {% assign e_illustration = block.settings[e_illustration_name] %}
+              {% assign e_text = block.settings[e_text_name] %}
+
+              {% if e_image or e_illustration != empty %}
+                <button type="button" class="pdp-tab-3__element" data-pdp-specs-element={{ n }}>
+                  {% if e_illustration != empty %}
+                    <span class="pdp-tab-3__illustration">
+                      {% if e_illustration == "bottle-cap" %}
+                        {% render 'illustration-bottle-cap' %}
+                      {% elsif e_illustration == "bottle" %}
+                        {% render 'illustration-bottle' %}
+                      {% elsif e_illustration == "diffuser" %}
+                        {% render 'illustration-diffuser' %}
+                      {% endif %}
+                    </span>
+                  {% elsif e_image %}
+                    {% render 'responsive-image' with
+                      image: e_image,
+                      max_width: 400,
+                      max_height: 400,
+                      wrapper_class: "pdp-tab-3__img-wrap",
+                      image_class: "pdp-tab-3__img",
+                      span: true
+                    %}
+                  {% endif %}
+                  <span class="pdp-tab-3__el-text">{{ e_text }}</span>
+                </button>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="pdp-tab-3__videos" style="display: none;" data-pdp-specs-videos>
+          {% for n in (1..4) %}
+            {% assign e_video_name = "element_video_" | append: n %}
+            {% assign e_embed_name = "element_embed_" | append: n %}
+            {% assign e_video = block.settings[e_video_name] %}
+            {% assign e_embed = block.settings[e_embed_name] %}
+
+            {% if e_embed != empty %}
+              <div class="pdp-tab-3__video-wrap" data-pdp-specs-video-wrap={{ n }} style="display:none;">
+                {{ e_embed }}
+              </div>
+            {% elsif e_video != empty %}
+              <div class="pdp-tab-3__video-wrap" data-pdp-specs-video-wrap={{ n }} style="display:none;">
+                <video class="pdp-tab-3__video" playsinline  width="500" height="300">
+                  <source src="{{- e_video -}}" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            {% endif %}
+
+          {% endfor %}
+
+          <button class="pdp-tab-3__return" type="button" data-pdp-specs-return>
+            <span class="icon">{% render 'icon-chevron-l' %}</span>
+            <span class="text">&nbsp;  {{ block.settings.back }}</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  {% endif %}
+{% endfor %}
+
+{% schema %}
+  {
+    "name": "Specs Tab",
+    "class": "pdp-tab-3",
+    "blocks": [
+      {
+        "type": "block",
+        "name": "Product",
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product",
+            "info": "Select a specific product for which to set the specs."
+          },
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Section Title"
+          },
+          {
+            "type": "textarea",
+            "id": "back",
+            "label": "Back Button",
+            "default": "Back to other Product Specs"
+          },
+          {
+            "type": "image_picker",
+            "id": "element_image_1",
+            "label": "Element 1 Image"
+          },
+          {
+            "type": "text",
+            "id": "element_illustration_1",
+            "label": "Element 1 Illustration",
+            "info": "Show a svg illustration instead of an image. Possible illustrations: bottle-cap, bottle, diffuser. This will override the image setting."
+          },
+          {
+            "type": "text",
+            "id": "element_text_1",
+            "label": "Element 1 Title"
+          },
+          {
+            "type": "textarea",
+            "id": "element_video_1",
+            "label": "Element 1 Video",
+            "info": "Upload a video to Shopify files and paste the source url here."
+          },
+          {
+            "type": "textarea",
+            "id": "element_embed_1",
+            "label": "Element 1 Embed",
+            "info": "Alternatively, you can copy an embed snippet (e.g. from Youtube) here. This will override the video input."
+          },
+          {
+            "type": "image_picker",
+            "id": "element_image_2",
+            "label": "Element 2 Image"
+          },
+          {
+            "type": "text",
+            "id": "element_illustration_2",
+            "label": "Element 2 Illustration",
+            "info": "Show a svg illustration instead of an image. Possible illustrations: bottle-cap, bottle, diffuser. This will override the image setting."
+          },
+          {
+            "type": "text",
+            "id": "element_text_2",
+            "label": "Element 2 Title"
+          },
+          {
+            "type": "textarea",
+            "id": "element_video_2",
+            "label": "Element 2 Video",
+            "info": "Upload a video to Shopify files and paste the source url here."
+          },
+          {
+            "type": "textarea",
+            "id": "element_embed_2",
+            "label": "Element 2 Embed",
+            "info": "Alternatively, you can copy an embed snippet (e.g. from Youtube) here. This will override the video input."
+          },
+          {
+            "type": "image_picker",
+            "id": "element_image_3",
+            "label": "Element 3 Image"
+          },
+          {
+            "type": "text",
+            "id": "element_illustration_3",
+            "label": "Element 3 Illustration",
+            "info": "Show a svg illustration instead of an image. Possible illustrations: bottle-cap, bottle, diffuser. This will override the image setting."
+          },
+          {
+            "type": "text",
+            "id": "element_text_3",
+            "label": "Element 3 Title"
+          },
+          {
+            "type": "textarea",
+            "id": "element_video_3",
+            "label": "Element 3 Video",
+            "info": "Upload a video to Shopify files and paste the source url here."
+          },
+          {
+            "type": "textarea",
+            "id": "element_embed_3",
+            "label": "Element 3 Embed",
+            "info": "Alternatively, you can copy an embed snippet (e.g. from Youtube) here. This will override the video input."
+          },
+          {
+            "type": "image_picker",
+            "id": "element_image_4",
+            "label": "Element 4 Image"
+          },
+          {
+            "type": "text",
+            "id": "element_illustration_4",
+            "label": "Element 4 Illustration",
+            "info": "Show a svg illustration instead of an image. Possible illustrations: bottle-cap, bottle, diffuser. This will override the image setting."
+          },
+          {
+            "type": "text",
+            "id": "element_text_4",
+            "label": "Element 4 Title"
+          },
+          {
+            "type": "textarea",
+            "id": "element_video_4",
+            "label": "Element 4 Video",
+            "info": "Upload a video to Shopify files and paste the source url here."
+          },
+          {
+            "type": "textarea",
+            "id": "element_embed_4",
+            "label": "Element 4 Embed",
+            "info": "Alternatively, you can copy an embed snippet (e.g. from Youtube) here. This will override the video input."
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

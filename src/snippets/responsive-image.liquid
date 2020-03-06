@@ -22,6 +22,9 @@
 
 {%- comment -%} Added incremental number to avoid conflict styling code when the same images are using this snippet {%- endcomment -%}
 {%- capture responsive_image_counter %}{% increment responsive_image_counter %}{% endcapture -%}
+{% if snippet_index %}
+  {% assign responsive_image_counter = snippet_index %}
+{% endif %}
 
 <style>
   {%- comment -%}

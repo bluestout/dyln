@@ -1,0 +1,85 @@
+{% if section.settings.show %}
+
+<div class="pdp-usps__wave-top"></div>
+
+<div class="pdp-usps__body">
+  <div class="container pdp-usps__container">
+    <h2 class="pdp-usps__title">{{ section.settings.title }}</h2>
+    <div class="pdp-usps__usps">
+      <div class="row">
+        {% for block in section.blocks %}
+          {% if section.blocks.size <= 6 %}
+            <div class="col">
+          {% else %}
+            <div class="col-2">
+          {% endif %}
+            <div class="pdp-usps__usp">
+              <div class="pdp-usps__usp-icon">
+                {% if block.settings.icon == "hydration" %}
+                  {% render 'icon-usp-hydration' %}
+                {% elsif block.settings.icon == "detoxifying" %}
+                  {% render 'icon-detoxifying-spin' %}
+                {% elsif block.settings.icon == "acid-reflux" %}
+                  {% render 'icon-usp-acid-reflux' %}
+                {% elsif block.settings.icon == "spark" %}
+                  {% render 'icon-spark' %}
+                {% elsif block.settings.icon == "flame" %}
+                  {% render 'icon-flame' %}
+                {% endif %}
+              </div>
+              <p class="pdp-usps__usp-text">
+                {{ block.settings.title }}
+              </p>
+            </div>
+          {% if section.blocks.size <= 6 %}
+            </div>
+          {% else %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pdp-usps__wave-bottom"></div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "USPs",
+    "class": "pdp-usps",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "checkbox",
+        "id": "show",
+        "label": "Show Section",
+        "default": true
+      }
+    ],
+    "blocks": [
+      {
+        "type": "usp",
+        "name": "USP",
+        "settings": [
+          {
+            "type": "text",
+            "id": "icon",
+            "label": "Icon",
+            "info": "Input an icon name, available icons: hydration, detoxifying, acid-reflux, spark, flame"
+          },
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Description"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

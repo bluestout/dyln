@@ -1,0 +1,149 @@
+{% for block in section.blocks %}
+  {%- assign section_p = all_products[block.settings.product] -%}
+  {% if section_p.handle == product.handle %}
+
+    <div class="pdp-tab-2__included">
+      <div class="container pdp-tab-2__container">
+        <div class="row pdp-tab-2__row-o">
+          {% if block.settings.image_l %}
+            <div class="col-4 pdp-tab-2__col-o">
+              <div class="pdp-tab-2__item">
+                {% render 'responsive-image' with
+                  image: block.settings.image_l,
+                  max_width: 768,
+                  max_height: 768,
+                  wrapper_class: "pdp-tab-2__img-wrap",
+                  image_class: "pdp-tab-2__img",
+                %}
+                <div class="pdp-tab-2__item-title">{{ block.settings.text_l }}</div>
+              </div>
+            </div>
+          {% endif %}
+
+          {% if block.settings.image_l %}
+            <div class="col-8 pdp-tab-2__col-o">
+          {% else %}
+            <div class="col-12 pdp-tab-2__col-o">
+          {% endif %}
+
+          {% if block.settings.image_r_1 or block.settings.image_r_2 %}
+            <div class="row pdp-tab-2__row-i">
+              {% if block.settings.image_r_1 %}
+                <div class="col-4 pdp-tab-2__col-i d-flex">
+                  <div class="pdp-tab-2__item">
+                    {% render 'responsive-image' with
+                      image: block.settings.image_r_1,
+                      max_width: 768,
+                      max_height: 768,
+                      wrapper_class: "pdp-tab-2__img-wrap",
+                      image_class: "pdp-tab-2__img",
+                    %}
+                    <div class="pdp-tab-2__item-title">{{ block.settings.text_r_1 }}</div>
+                  </div>
+                </div>
+              {% endif %}
+
+              {% if block.settings.image_r_2 %}
+                <div class="col-8 pdp-tab-2__col-i d-flex">
+                  <div class="pdp-tab-2__item">
+                    {% render 'responsive-image' with
+                      image: block.settings.image_r_2,
+                      max_width: 768,
+                      max_height: 768,
+                      wrapper_class: "pdp-tab-2__img-wrap",
+                      image_class: "pdp-tab-2__img",
+                    %}
+                    <div class="pdp-tab-2__item-title">{{ block.settings.text_r_2 }}</div>
+                  </div>
+                </div>
+              {% endif %}
+
+              {% if block.settings.image_r_w %}
+                <div class="col-12 pdp-tab-2__col-i d-flex">
+                  <div class="pdp-tab-2__item">
+                    {% render 'responsive-image' with
+                      image: block.settings.image_r_w,
+                      max_width: 768,
+                      max_height: 768,
+                      wrapper_class: "pdp-tab-2__img-wrap",
+                      image_class: "pdp-tab-2__img",
+                    %}
+                    <div class="pdp-tab-2__item-title">{{ block.settings.text_r_w }}</div>
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+
+
+          {% if block.settings.image_l %}
+            </div>
+          {% else %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endfor %}
+
+{% schema %}
+  {
+    "name": "Included Tab",
+    "class": "pdp-tab-2",
+    "blocks": [
+      {
+        "type": "block",
+        "name": "Product",
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product",
+            "info": "Select a specific product for which to set the included items."
+          },
+          {
+            "type": "image_picker",
+            "id": "image_l",
+            "label": "Image Left"
+          },
+          {
+            "type": "textarea",
+            "id": "text_l",
+            "label": "Text Left"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_r_1",
+            "label": "Image Right 1"
+          },
+          {
+            "type": "textarea",
+            "id": "text_r_1",
+            "label": "Text Right 1"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_r_2",
+            "label": "Image Right 2"
+          },
+          {
+            "type": "textarea",
+            "id": "text_r_2",
+            "label": "Text Right 2"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_r_w",
+            "label": "Image Right Wide"
+          },
+          {
+            "type": "textarea",
+            "id": "text_r_w",
+            "label": "Text Right Wide"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

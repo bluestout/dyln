@@ -1,0 +1,201 @@
+{% for block in section.blocks %}
+  {%- assign section_p = all_products[block.settings.product] -%}
+  {% if section_p.handle == product.handle %}
+    <div class="pdp-tab-1__features" data-pdp-tab-features>
+      {% assign b_size = 0 %}
+      {% for n in (1..6) %}
+        {% assign b_image_name = "image_" | append: n %}
+        {% assign b_title_name = "title_" | append: n %}
+        {% assign b_subtitle_name = "block_title_" | append: n %}
+        {% assign b_content_name = "block_content_" | append: n %}
+
+        {% assign b_image = block.settings[b_image_name] %}
+        {% assign b_title = block.settings[b_title_name] %}
+        {% assign b_subtitle = block.settings[b_subtitle_name] %}
+        {% assign b_content = block.settings[b_content_name] %}
+
+        {% if b_title != empty %}
+          {% assign b_size = b_size | plus: 1 %}
+          <div class="pdp-tab-1__feature">
+            <h3 class="pdp-tab-1__title">{{ b_title }}</h3>
+            <div class="pdp-tab-1__content-wrap">
+              <div class="row no-gutters">
+                <div class="col-md-6">
+                  {% if b_image != empty %}
+                    {% render 'responsive-image' with
+                      image: b_image,
+                      max_width: 500,
+                      max_height: 500,
+                      wrapper_class: "pdp-tab-1__img-wrap",
+                      image_class: "pdp-tab-1__img",
+                    %}
+                  {% endif %}
+                </div>
+                <div class="col-md-6 d-flex">
+                  <div class="pdp-tab-1__content-inner">
+                    <h5 class="pdp-tab-1__subtitle">{{ b_subtitle }}</h5>
+                    <div class="pdp-tab-1__content">{{ b_content }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+
+      {% endfor %}
+    </div>
+
+    <div class="pdp-tab-1__slider-wrap">
+      {% assign blocks_0 = b_size | minus: 1 | times: 10 %}
+      {% comment %} 10 steps for each slide, so it's smoother {% endcomment %}
+      <input class="pdp-tab-1__slider" type="range" max="{{ blocks_0 }}" min="0" step="1" value="0" data-pdp-tab-features-input>
+      {% assign ptf_width = 100 | divided_by: b_size | append: '%'%}
+      <style>
+        :root {
+          --pdp-tab-input-w: {{ ptf_width }};
+        }
+      </style>
+    </div>
+  {% endif %}
+{% endfor %}
+
+{% schema %}
+  {
+    "name": "Features Tab",
+    "class": "pdp-tab-1",
+    "blocks": [
+      {
+        "type": "block",
+        "name": "Product",
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product",
+            "info": "Select a specific product for which to set the features."
+          },
+          {
+            "type": "image_picker",
+            "id": "image_1",
+            "label": "Image 1"
+          },
+          {
+            "type": "textarea",
+            "id": "title_1",
+            "label": "Title 1"
+          },
+          {
+            "type": "textarea",
+            "id": "block_title_1",
+            "label": "Block Title 1"
+          },
+          {
+            "type": "textarea",
+            "id": "block_content_1",
+            "label": "Block Content 1"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_2",
+            "label": "Image 2"
+          },
+          {
+            "type": "textarea",
+            "id": "title_2",
+            "label": "Title 2"
+          },
+          {
+            "type": "textarea",
+            "id": "block_title_2",
+            "label": "Block Title 2"
+          },
+          {
+            "type": "textarea",
+            "id": "block_content_2",
+            "label": "Block Content 2"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_3",
+            "label": "Image 3"
+          },
+          {
+            "type": "textarea",
+            "id": "title_3",
+            "label": "Title 3"
+          },
+          {
+            "type": "textarea",
+            "id": "block_title_3",
+            "label": "Block Title 3"
+          },
+          {
+            "type": "textarea",
+            "id": "block_content_3",
+            "label": "Block Content 3"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_4",
+            "label": "Image 4"
+          },
+          {
+            "type": "textarea",
+            "id": "title_4",
+            "label": "Title 4"
+          },
+          {
+            "type": "textarea",
+            "id": "block_title_4",
+            "label": "Block Title 4"
+          },
+          {
+            "type": "textarea",
+            "id": "block_content_4",
+            "label": "Block Content 4"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_5",
+            "label": "Image 5"
+          },
+          {
+            "type": "textarea",
+            "id": "title_5",
+            "label": "Title 5"
+          },
+          {
+            "type": "textarea",
+            "id": "block_title_5",
+            "label": "Block Title 5"
+          },
+          {
+            "type": "textarea",
+            "id": "block_content_5",
+            "label": "Block Content 5"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_6",
+            "label": "Image 6"
+          },
+          {
+            "type": "textarea",
+            "id": "title_6",
+            "label": "Title 6"
+          },
+          {
+            "type": "textarea",
+            "id": "block_title_6",
+            "label": "Block Title 6"
+          },
+          {
+            "type": "textarea",
+            "id": "block_content_6",
+            "label": "Block Content 6"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

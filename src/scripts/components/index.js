@@ -40,7 +40,6 @@ function handleInputChange(event) {
   const value = Math.round(event.currentTarget.value / 10);
   const $slider = $(elements.slider);
   if ($slider.length > 0 && $slider.hasClass("slick-initialized")) {
-    console.log("value: ", value);
     $slider.slick("slickGoTo", value, false);
   }
 }

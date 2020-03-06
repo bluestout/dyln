@@ -13,7 +13,10 @@
     "node/shebang": 0,
     "quotes": ["error", "double"],
     "quotemark": [true, "double", "avoid-escape"],
-    "object-curly-spacing": ["error", "always"]
+    "object-curly-spacing": ["error", "always"],
+    "arrow-parens": "off",
+    "shopify/prefer-early-return": 0,
+    "comma-dangle": ["warn", "only-multiline"]
   },
   "globals": {
     "document": true,

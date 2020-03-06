@@ -1,0 +1,69 @@
+.pdp-tab-3 {
+  &__title {
+    @include poppins(500);
+    @include text(24px, 33px, $color-title, 1.42px);
+    text-align: center;
+    margin: 30px auto 20px;
+  }
+
+  &__el-text {
+    @include poppins(500);
+    @include text(23px, 32px, $color-body-text, 1.36px);
+    margin: 20px auto 0;
+    text-align: center;
+    display: block;
+  }
+
+  &__content-wrap {
+  }
+
+  &__elements-wrap {
+  }
+
+  &__elements {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+
+  &__element {
+    @include no-browser-styling;
+    text-align: center;
+    align-self: flex-end;
+    padding: 0;
+  }
+
+  &__illustration {
+    @include no-font-size;
+    display: inline-block;
+  }
+
+  &__return {
+    @include no-browser-styling;
+    padding: 0;
+
+    .icon {
+      @include no-font-size;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .text {
+      @include poppins(500);
+      @include text(20px, 28px, $color-body-text, 1.18px);
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
+  &__videos {
+  }
+  &__video-wrap {
+    margin: 0 auto 50px;
+    text-align: center;
+  }
+
+  &__video {
+    display: inline-block;
+  }
+}

@@ -1,0 +1,139 @@
+.pdp-form {
+  margin: 0 0 10px;
+
+  &__form {
+  }
+
+  &__price {
+    @include poppins(700);
+    @include text(20px, 28px, $color-body-text, 1.18px);
+    margin: 0 0 15px;
+  }
+
+  &__option-wrap {
+    margin: 0 0 20px;
+  }
+
+  &__option-label {
+    @include poppins(700);
+    @include text(17px, 24px, $color-body-text, 1px);
+  }
+
+  &__current-color {
+    @include poppins(500);
+    @include text(17px, 24px, $color-theme-8, 1px);
+  }
+
+  &__color-wrap {
+    @include no-font-size;
+    position: relative;
+    display: inline-block;
+  }
+
+  &__color-input {
+    @include transition(box-shadow);
+    @include no-browser-styling;
+    width: 44px;
+    height: 44px;
+    padding: 4px;
+    background-color: $color-white;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:checked {
+      box-shadow: 0 0 7px 0 rgba($color-black, 0.5);
+    }
+
+    &:not(:checked) {
+      box-shadow: none;
+    }
+  }
+
+  &__color-label {
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-position: center;
+    background-size: contain;
+    pointer-events: none;
+  }
+
+  &__value-wrap {
+    display: inline-block;
+
+    &:not(:last-of-type) {
+      margin: 0 20px 0 0;
+    }
+  }
+
+  &__value-label {
+    @include poppins(500);
+    @include text(17px, 24px, $color-body-text, 1px);
+    @include underline($color-main-1, false);
+  }
+
+  &__value-input {
+    display: none;
+
+    &:checked {
+      + .pdp-form__value-label {
+        color: $color-main-1;
+
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &__qty-wrap {
+    margin: 0 0 32px;
+  }
+
+  &__qty-box {
+    @include no-font-size;
+    display: inline-block;
+    border: 2px solid $color-theme-8;
+    border-radius: 20px;
+    padding: 0 10px;
+  }
+
+  &__qty-button {
+    @include poppins(700);
+    @include text(18px, 30px, $color-body-text, 1.06px);
+    @include no-browser-styling;
+    width: 20px;
+    height: 30px;
+    text-align: center;
+    padding: 0;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__qty-input {
+    @include poppins(500);
+    @include text(21px, 30px, $color-body-text, 1.24px);
+    @include no-browser-styling;
+    @include no-input-spinner;
+    width: 40px;
+    height: 30px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__submit {
+    @include button(solid, square, 2);
+    padding: 5px 0;
+    width: 100%;
+
+    span {
+      @include poppins(700);
+      @include text(24px, 30px, $color-white, 1.2px);
+      text-transform: uppercase;
+    }
+  }
+}

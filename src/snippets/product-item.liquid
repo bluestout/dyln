@@ -58,13 +58,13 @@
     </h3>
 
     {% if block_p.metafields.info.collection_description != blank %}
-      <div class="product-item__content">
+      <span class="product-item__content">
         {{ block_p.metafields.info.collection_description | strip_html | truncatewords: 30, '...'  }}
-      </div>
+      </span>
     {% else %}
-      <div class="product-item__content">
+      <span class="product-item__content">
         {{ block_p.description | strip_html | truncatewords: 30, '...'  }}
-      </div>
+      </span>
     {% endif %}
 
     <span class="product-item__link-wrap">
