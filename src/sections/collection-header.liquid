@@ -1,0 +1,97 @@
+{%- if section.settings.bg -%}
+  {%- assign wrapper_class = "c-header__bg-wrap" -%}
+
+  {%- if section.settings.bg_rsp -%}
+    {%- assign wrapper_class = "c-header__bg-wrap d-none d-md-block" -%}
+    {%- render 'responsive-image' with
+      image: section.settings.bg_rsp,
+      max_width: 768,
+      max_height: 768,
+      wrapper_class: "c-header__bg-wrap d-md-none",
+      image_class: "c-header__bg",
+    -%}
+  {%- endif -%}
+
+  {%- render 'responsive-image' with
+    image: section.settings.bg,
+    max_width: 1600,
+    max_height: 540,
+    wrapper_class: wrapper_class,
+    image_class: "c-header__bg",
+  -%}
+{%- endif -%}
+
+<div class="c-header__content-wrap{% unless section.settings.bg %} static{% endunless %}">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-1"></div>
+      <div class="col-xl-4 col-lg-5 d-flex">
+        <div class="c-header__content">
+          {% if template == "collection" %}
+            <h1 class="c-header__title">{{ collection.title }}</h1>
+          {% endif %}
+          <h2 class="c-header__subtitle">{{ section.settings.title }}</h2>
+          <div class="c-header__usps">
+            {% for block in section.blocks %}
+              <div class="c-header__usp">
+                <div class="c-header__icon">
+                  {%- if block.settings.icon == "acid-reflux" -%}
+                    {%- render 'icon-acid-reflux' -%}
+                  {%- elsif block.settings.icon == "detoxifying" -%}
+                    {%- render 'icon-detoxifying' -%}
+                  {%- elsif block.settings.icon == "hydration" -%}
+                    {%- render 'icon-hydration' -%}
+                  {%- endif -%}
+                </div>
+                <div class="c-header__usp-title">{{ block.settings.title }}</div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Collection Header",
+    "class": "c-header",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg",
+        "label": "Background"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg_rsp",
+        "label": "Background Mobile"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "usp",
+        "name": "Usp",
+        "settings": [
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "text",
+            "id": "icon",
+            "label": "Icon",
+            "info": "Icon name to be used. Icons available: acid-reflux, detoxifying, hydration. Copy one of these and paste it in the text field."
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

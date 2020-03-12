@@ -1,0 +1,90 @@
+<style>
+{% for block in section.blocks %}
+  {% if block.settings.title != empty %}
+    {% assign swatch_name = block.settings.title | strip | strip_html | strip_newlines | handleize %}
+    {% assign class_name = ".color-swatch-" | append: swatch_name %}
+
+    {% if block.settings.swatch_image %}
+      {{ class_name }} {
+        background-image: url("{{ block.settings.swatch_image | img_url: '50x50' }}");
+      }
+    {% elsif block.settings.swatch_color != empty %}
+      {{ class_name }} {
+        background-color: {{ block.settings.swatch_color }};
+      }
+    {% endif %}
+  {% endif %}
+{% endfor %}
+</style>
+
+<script>
+  if (document.querySelector('[data-cat-sub-list="Color"]')) {
+    var swatches = [
+      {%- for block in section.blocks -%}
+        {
+          {% if block.settings.title != empty %}
+            "swatch_name": {{- block.settings.title | json -}},
+            {% if block.settings.swatch_image %}
+              "image": {{- block.settings.swatch_image | img_url: '50x50' | json -}},
+              "color": null
+              {%- elsif block.settings.swatch_color -%}
+                "image": null,
+                "color": {{ block.settings.swatch_color | json }}
+              {%- else -%}
+                "image": null,
+                "color": null
+            {% endif %}
+          {%- endif -%}
+        }{%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+    ];
+
+    for (let i = 0; i < swatches.length; i++) {
+      var newbutton = document.createElement("button");
+      newbutton.setAttribute("type", "button");
+      newbutton.setAttribute("class", "c-filter__cat-color");
+      newbutton.setAttribute("data-cat-option", swatches[i].swatch_name);
+      if (swatches[i].image) {
+        newbutton.style.backgroundImage = "url(" + swatches[i].image + ")";
+      } else if (swatches[i].color) {
+        newbutton.style.backgroundColor = swatches[i].color;
+      }
+      newbutton.setAttribute("title", swatches[i].swatch_name);
+      document.querySelector('[data-cat-sub-list="Color"]').appendChild(newbutton);
+    }
+  }
+</script>
+
+{% schema %}
+  {
+    "name": "Theme colors",
+    "class": "theme-colors",
+    "blocks": [
+      {
+        "type": "color",
+        "name": "Color",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Color name",
+            "info": "Exact name of the color."
+          },
+          {
+            "type": "image_picker",
+            "id": "swatch_image",
+            "label": "Swatch Image",
+            "info": "Image that will be used as the color swatch for this specific color name."
+          },
+          {
+            "type": "color",
+            "id": "swatch_color",
+            "label": "Swatch Color",
+            "info": "Alternatively, this can be set as the color that will be used for this specific color name."
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+

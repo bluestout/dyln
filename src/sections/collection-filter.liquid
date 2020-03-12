@@ -1,0 +1,121 @@
+{% assign size_title = "Size" %}
+{% assign mouth_title = "Mouth" %}
+{% assign color_title = "Color" %}
+
+<div class="container">
+  {% if template == "list-collections" %}
+    <div class="c-filter__header">
+      <button type="button" class="c-filter__header-button" data-cat-button>
+        <span class="c-filter__header-text">{{ 'collections.general.categories' | t }}</span>
+        <span class="c-filter__header-icon">{% render 'icon-chevron-down' %}</span>
+      </button>
+    </div>
+    <div class="c-filter__body" style="display: none;" data-cat-list>
+      {% for link in linklists["list-collections"].links %}
+        {% assign list_c_filter_o = link.object %}
+        <a class="c-filter__cat-btn" href="{{ list_c_filter_o.url }}">
+          <span class="c-filter__cat-btn-text">{{ list_c_filter_o.title }}</span>
+        </a>
+      {% endfor %}
+    </div>
+  {% elsif template == "collection" %}
+    <div class="c-filter__header">
+      <button type="button" class="c-filter__header-button" data-cat-button>
+        <span class="c-filter__cat-btn-text">{{ collection.title }}</span>
+        <span class="c-filter__cat-btn-icon">{% render 'icon-chevron-down' %}</span>
+      </button>
+    </div>
+    <div class="c-filter__body" style="display: none;" data-cat-list>
+
+      {%- assign c_sizes_string = "" -%}
+      {%- assign c_mouth_string = "" -%}
+
+      {%- assign c_tags = collection.all_tags -%}
+      {% for c_tag in c_tags %}
+        {%- if c_tag contains "size-" -%}
+          {%- assign c_sizes_string = c_sizes_string | append: c_tag | append: '::' -%}
+        {%- elsif c_tag contains "mouth-" -%}
+          {%- assign c_mouth_string = c_mouth_string | append: c_tag | append: '::' -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- assign c_mouths = c_mouth_string | split: '::' -%}
+      {%- assign c_sizes = c_sizes_string | split: '::' -%}
+
+      <div class="c-filter__cat-options-header">
+        <button type="button" data-cat-sub-button="{{ color_title }}" class="c-filter__cat-btn">{{ 'collections.filters.color' | t }}</button>
+
+        {% if c_sizes.size > 0 %}
+          <button type="button" data-cat-sub-button="{{ size_title }}" class="c-filter__cat-btn">{{ 'collections.filters.size' | t }}</button>
+        {% endif %}
+
+        {% if c_mouths.size > 0 %}
+          <button type="button" data-cat-sub-button="{{ mouth_title }}" class="c-filter__cat-btn">{{ 'collections.filters.mouth' | t }}</button>
+        {% endif %}
+
+        <button type="button" data-cat-filter-reset style="display:none;">{{ 'collections.filters.clear_all' | t }}</button>
+      </div>
+
+      <div class="c-filter__cat-options">
+        <div class="c-filter__cat-list" data-cat-sub-list="{{ color_title }}" style="display: none;"></div>
+
+        {% if c_sizes.size > 0 %}
+          <div class="c-filter__cat-list" data-cat-sub-list="{{ size_title }}" style="display: none;">
+            {% for c_size in c_sizes %}
+              <button type="button" class="c-filter__cat-option" data-cat-option="{{ c_size }}">
+                <span class="c-filter__cat-icon">
+                  {% comment %}
+                  If more bottles are added at some point,
+                  add the new size as an icon snippet,
+                  extend this if statement with the new icon,
+                  and be sure to add the new size as a tag to the products
+                  {% endcomment %}
+                  {%- if c_size contains "16" -%}
+                    {% render 'icon-bottle-16' %}
+                  {%- elsif c_size contains "21" -%}
+                    {% render 'icon-bottle-21' %}
+                  {%- elsif c_size contains "32" -%}
+                    {% render 'icon-bottle-32' %}
+                  {%- elsif c_size contains "40" -%}
+                    {% render 'icon-bottle-40' %}
+                  {%- endif -%}
+                </span>
+                <span class="c-filter__cat-option-text">{{ c_size | remove: 'size-' }}</span>
+              </button>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        {% if c_mouths.size > 0 %}
+          <div class="c-filter__cat-list" data-cat-sub-list="{{ mouth_title }}" style="display: none;">
+            {% for c_mouth in c_mouths %}
+              <button type="button" class="c-filter__cat-option" data-cat-option="{{ c_mouth }}">
+                <span class="c-filter__cat-icon">
+                  {% assign c_mouth_clean = c_mouth | handleize %}
+                  {%- if c_mouth_clean contains "standard" -%}
+                    {% render 'icon-mouth-standard' %}
+                  {%- elsif c_mouth_clean contains "wide" -%}
+                    {% render 'icon-mouth-wide' %}
+                  {%- endif -%}
+                </span>
+                <span class="c-filter__cat-option-text">{{ c_mouth | remove: 'mouth-' }}</span>
+              </button>
+            {% endfor %}
+          </div>
+        {%- endif -%}
+      </div>
+
+    </div>
+
+    <div class="c-filter__current-filters" data-cat-current></div>
+
+  {%- endif -%}
+
+</div>
+
+{% schema %}
+  {
+    "name": "Collection Filter",
+    "class": "c-filter"
+  }
+{% endschema %}

@@ -1,27 +1,23 @@
-{% comment %}
-  This page represents the /collections and /products pages.
-{% endcomment %}
+{% section 'collection-header' %}
 
-<h1>{{ page_title }}</h1>
+{% section 'collection-filter' %}
 
-{% for collection in collections %}
-  {% unless collection.handle == 'frontpage' %}
-    <a href="{{ collection.url }}" title="{{ 'collections.general.link_title' | t: title: title }}">
-      {% if collection.image != blank or collection.products.first != blank %}
-        {%- assign image_object = collection.image | default: collection.products.first.featured_image -%}
-        {% include 'responsive-image' with
-          image: image_object,
-          max_width: 480,
-          max_height: 480
-        %}
-      {% else %}
-        {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-        {{ 'collection-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
-      {% endif %}
-    </a>
+<div class="list-c">
+  <div class="container">
+    {% for link in linklists["list-collections"].links %}
+      {% assign list_c = link.object %}
+      <div class="list-c__collection">
+        <h2 class="list-c__c-title">{{ list_c.title }}</h2>
+        <div class="row">
+          {% for c_product in list_c.products %}
+            <div class="col-lg-3" data-pi-item-col>
+              {% render 'product-item' with c_product %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
 
-    <p>
-      <a href="{{ collection.url }}" title="{{ 'collections.general.link_title' | t: title: title }}">{{ collection.title }}</a>
-    </p>
-  {% endunless %}
-{% endfor %}
+    {% section 'subscribe-save' %}
+  </div>
+</div>

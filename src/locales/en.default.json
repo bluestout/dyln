@@ -112,7 +112,14 @@
   "collections": {
     "general": {
       "no_matches": "Sorry, there are no products in this collection",
-      "link_title": "Browse our {{ title }} collection"
+      "link_title": "Browse our {{ title }} collection",
+      "categories": "Categories"
+    },
+    "filters": {
+      "size": "Size",
+      "color": "Color",
+      "mouth": "Mouth",
+      "clear_all": "Clear All"
     }
   },
   "contact": {
@@ -289,7 +296,9 @@
       "add_to_cart": "Add to Cart",
       "see_features": "See Features",
       "choose": "Choose",
-      "watch_video": "Watch Video"
+      "watch_video": "Watch Video",
+      "select_html": "Select {{ option }}",
+      "view_details": "View Details"
     }
   },
   "gift_cards": {

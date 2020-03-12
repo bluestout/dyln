@@ -35,9 +35,8 @@
           </span>
           <div class="pdp-form__option-separator"></div>
           {% for value in option.values %}
-            {% assign color_handle = value | handleize %}
+            {% assign color_handle = value | strip | strip_html | strip_newlines | handleize %}
             {% assign swatch = "color-swatch-" | append: color_handle %}
-            {% comment %} TODO remove placeholder swatch class {% endcomment %}
             <span class="pdp-form__color-wrap">
               <input
                 class="pdp-form__color-input"
@@ -45,7 +44,7 @@
                 id="Option{{ option.position }}-{{ value }}"
                 name="options[{{ option.name }}]"
                 value="{{ value }}"{% if option.selected_value == value %} checked{% endif %} />
-              <label class="pdp-form__color-label {{ swatch }} color-swatch-pearl-gray" for="Option{{ option.position }}-{{ value }}">
+              <label class="pdp-form__color-label {{ swatch }}" for="Option{{ option.position }}-{{ value }}">
                 <span class="hide">{{ value }}</span>
               </label>
             </span>

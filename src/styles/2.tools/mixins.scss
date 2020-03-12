@@ -217,7 +217,7 @@
 
   @if $type == solid {
     @include poppins(700);
-    @include text(0.83, 18px, $btn-text-c);
+    @include text(14px, 18px, $btn-text-c, 0.83px);
     @include transition(background, bottom, box-shadow);
     position: relative;
     bottom: 0;
@@ -272,7 +272,7 @@
     }
   } @else if $type == wire {
     @include poppins(700);
-    @include text(0.83, 18px, $btn-text-c);
+    @include text(14px, 18px, $btn-text-c, 0.83px);
     @include transition(bottom, box-shadow, border, color);
     position: relative;
     bottom: 0;
