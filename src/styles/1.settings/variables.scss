@@ -1,5 +1,5 @@
 // Transitions
-$animation-duration: 200ms;
+$animation-duration: 250ms;
 $animation-timing: ease-in-out;
 
 // added for specific breakpoints
@@ -73,4 +73,5 @@ $color-accent-3: var(--color-accent-3);
 $z-base: 1;
 $z-header-blocks: 2;
 $z-contact-modal: 2;
+$z-cart: 3;
 $z-top: 10;

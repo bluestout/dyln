@@ -197,7 +197,7 @@
 
   {% endform %}
 
-  {% if block_p != empty && block_p.has_only_default_variant == false %}
+  {% if block_p != empty and block_p.has_only_default_variant == false %}
     <script type="application/json" data-product-json>
       {
         "variants": [

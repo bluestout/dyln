@@ -1,19 +1,24 @@
+import $ from "jquery";
+
 const elements = {
   header: "[data-section-type='header']",
-  drawerToggle: "[data-cart-drawer-toggle]",
   drawer: "[data-cart-drawer]",
   navToggle: "[data-navigation-toggle]",
   nav: "[data-header-navigation]",
   notification: "[data-header-notification]",
   notificationClose: "[data-header-notification-close]",
   offset: "[data-header-offset]",
-  banner: "[data-header-banner]"
+  banner: "[data-header-banner]",
+  link: "[data-header-link]"
 };
 
 const classes = {
   scrolled: "scrolled",
   active: "active",
-  fixed: "fixed"
+  fixed: "fixed",
+  note: "notification",
+  hide: "hide",
+  noBanner: "no-banner"
 };
 
 const events = {
@@ -43,12 +48,6 @@ function setIsHeaderScrolled() {
 function handleNavToggle(event) {
   event.preventDefault();
   document.querySelector(elements.nav).classList.toggle(classes.active);
-}
-
-function handleDrawerToggle(event) {
-  event.preventDefault();
-  document.querySelector(elements.drawer).classList.toggle(classes.active);
-  document.querySelector("html").classList.toggle("no-scroll");
 }
 
 function init() {
@@ -81,26 +80,18 @@ function togglesInit() {
   for (let i = 0; i < navToggles.length; i++) {
     navToggles[i].addEventListener(events.click, handleNavToggle);
   }
-
-  /*
-  const drawerToggles = document.querySelectorAll(elements.drawerToggle);
-
-  for (let i = 0; i < drawerToggles.length; i++) {
-    drawerToggles[i].addEventListener(events.click, handleDrawerToggle);
-  }
-  */
 }
 
 function notificationInit() {
   const isClosed = localStorage.getItem("notificationClosed");
 
   if (isClosed) {
-    $(elements.header).removeClass("notification");
-    $(elements.offset).removeClass("notification");
+    $(elements.header).removeClass(classes.note);
+    $(elements.offset).removeClass(classes.note);
   } else {
-    $(elements.header).addClass("notification");
-    $(elements.offset).addClass("notification");
-    $(elements.notification).removeClass("hide");
+    $(elements.header).addClass(classes.note);
+    $(elements.offset).addClass(classes.note);
+    $(elements.notification).removeClass(classes.hide);
   }
 
   if (
@@ -108,19 +99,27 @@ function notificationInit() {
     ($(elements.notification).length > 0 &&
       $(elements.notification).css("display") !== "none")
   ) {
-    $(elements.header).addClass("notification");
-    $(elements.offset).addClass("notification");
+    $(elements.header).addClass(classes.note);
+    $(elements.offset).addClass(classes.note);
   } else {
-    $(elements.header).addClass("no-banner");
+    $(elements.header).addClass(classes.noBanner);
   }
 }
 
 function closeNotification() {
-  $(elements.notification).addClass("hide");
+  $(elements.notification).addClass(classes.hide);
   localStorage.setItem("notificationClosed", true);
-  $(elements.header).removeClass("notification");
-  $(elements.offset).removeClass("notification");
-  $(elements.header).addClass("no-banner");
+  $(elements.header).removeClass(classes.note);
+  $(elements.offset).removeClass(classes.note);
+  $(elements.header).addClass(classes.noBanner);
+}
+
+function handleHeaderLinkClick(event) {
+  event.preventDefault();
+  const $source = $(event.currentTarget);
+  if ($source.length > 0) {
+    $source.toggleClass(classes.active);
+  }
 }
 
 $(document).ready(() => {
@@ -129,5 +128,7 @@ $(document).ready(() => {
 });
 
 $(document).on("click", elements.notificationClose, closeNotification);
+
+$(document).on("click", elements.link, handleHeaderLinkClick);
 
 document.addEventListener("ajaxReloaded", togglesInit);

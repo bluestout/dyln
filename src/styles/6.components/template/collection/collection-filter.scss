@@ -1,32 +1,219 @@
 .c-filter {
+  position: relative;
+  top: -20px;
+
   &__header {
+    border-bottom: 1px solid $color-theme-6;
   }
+
   &__header-button {
+    @include no-browser-styling;
+    padding: 5px 0;
   }
+
   &__header-text {
+    @include poppins(700);
+    @include text(18px, 20px, $color-title, 1.06px);
+    display: inline-block;
+    vertical-align: middle;
   }
+
   &__header-icon {
+    @include no-browser-styling;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0 0 5px;
   }
+
   &__body {
+    padding: 3px 0 0;
   }
+
   &__cat-btn {
+    @include no-browser-styling;
+    padding: 5px 0;
+    &:not(:first-of-type) {
+      margin: 0 0 0 50px;
+    }
+
+    &.active {
+      .c-filter__cat-btn-icon {
+        transform: rotate3d(1, 0, 0, 180deg);
+      }
+
+      .c-filter__cat-btn-text {
+        color: $color-main-1;
+      }
+
+      path,
+      g {
+        stroke: $color-main-1;
+      }
+    }
   }
+
   &__cat-btn-text {
+    @include poppins(700);
+    @include text(18px, 20px, $color-title, 1.06px);
+    @include transition(color);
+    display: inline-block;
+    vertical-align: middle;
   }
+
   &__cat-btn-icon {
+    @include no-font-size;
+    @include transition(transform);
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0 0 5px;
+
+    path,
+    g {
+      @include transition(stroke);
+    }
   }
+
   &__cat-options-header {
+    @include clearfix;
   }
+
   &__cat-options {
   }
+
+  &__cat-color {
+    @include transition(box-shadow);
+    @include no-browser-styling;
+    @include no-font-size;
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    background-color: $color-white;
+    background-position: center;
+    background-size: contain;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+
+    &::before {
+      @include transition(box-shadow);
+      content: "";
+      position: absolute;
+      left: -1px;
+      top: -1px;
+      bottom: -1px;
+      right: -1px;
+      display: block;
+      box-shadow: none;
+      border: 4px solid $color-white;
+      border-radius: 50%;
+    }
+
+    &.active,
+    &:hover {
+      &::before {
+        box-shadow: 0 0 7px 0 rgba($color-black, 0.5);
+      }
+    }
+
+    &:not(:first-of-type) {
+      margin: 0 0 0 14px;
+    }
+  }
+
   &__cat-list {
+    padding: 20px 0;
   }
+
   &__cat-option {
+    @include no-browser-styling;
+    @include underline($color-body-text, false);
+    padding: 10px 8px;
+
+    &:not(:first-of-type) {
+      margin: 0 0 0 60px;
+    }
+
+    &.active {
+      &::after {
+        width: 100%;
+      }
+    }
   }
-  &__cat-icon {
+
+  &__cat-option-icon {
+    display: inline-block;
+    vertical-align: middle;
   }
+
   &__cat-option-text {
+    @include poppins(500);
+    @include text(14px, 20px, $color-body-text, 0.83px);
+    margin: 0 0 0 10px;
+    display: inline-block;
+    vertical-align: middle;
   }
+
+  &__reset-filters {
+    @include no-browser-styling;
+    @include poppins(500);
+    @include text(14px, 20px, $color-body-text, 0.83px);
+    padding: 5px 0;
+    float: right;
+  }
+
   &__current-filters {
+    @include transition(border-color);
+    padding: 5px 0;
+    border-top: 1px solid transparent;
+
+    &.active {
+      border-top: 1px solid $color-theme-6;
+    }
+  }
+
+  &__current-filter {
+    @include no-browser-styling;
+    display: inline-block;
+    padding: 2px 0;
+
+    &:not(:first-of-type) {
+      margin: 0 0 0 15px;
+    }
+
+    &:hover {
+      .c-filter__current-title {
+        color: $color-main-1;
+      }
+
+      .c-filter__current-icon path {
+        stroke: $color-main-1;
+      }
+    }
+  }
+
+  &__current-title {
+    @include no-browser-styling;
+    @include transition(color);
+    @include poppins;
+    @include text(12px, 17px, $color-body-text, 0.51px);
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__current-icon {
+    @include no-font-size;
+    display: inline-block;
+    vertical-align: middle;
+
+    svg {
+      width: 10px;
+      height: 10px;
+    }
+
+    path {
+      @include transition(stroke);
+      stroke: $color-body-text;
+    }
   }
 }

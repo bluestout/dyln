@@ -7,15 +7,27 @@
   }
 
   &__utils {
+    text-align: right;
   }
+
   &__utils-block {
     position: relative;
     display: inline-block;
     vertical-align: middle;
+
+    &:not(:last-of-type) {
+      margin: 0 30px 0 0;
+    }
+
+    &:last-of-type {
+      margin: 0 0 0 50px;
+    }
   }
 
   &__utils-cart {
+    @include no-browser-styling;
     position: relative;
+    padding: 0;
     display: block;
 
     &:hover {
@@ -53,3 +65,4 @@
 @import "./header-shop";
 @import "./header-about";
 @import "./header-bottle";
+@import "./cart-drawer";

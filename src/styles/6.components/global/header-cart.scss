@@ -1,0 +1,117 @@
+.header-cart {
+  @include transition(right);
+  position: fixed;
+  top: 0;
+  right: -510px;
+  z-index: $z-cart;
+  background-color: $color-white;
+  height: 100%;
+  width: 500px;
+
+  &.open {
+    right: 0;
+  }
+
+  &__header {
+    padding: 13px 25px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+
+  &__close {
+    @include no-browser-styling;
+    @include no-font-size;
+    display: block;
+    transform: rotate(180deg);
+    padding: 0 5px;
+  }
+
+  &__title {
+    @include poppins(700);
+    @include text(20px, 28px, $color-title, 1.18px);
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  &__cart {
+    @include no-browser-styling;
+    position: relative;
+    padding: 0;
+    display: block;
+
+    &:hover {
+      .site-header__cart-icon {
+        g {
+          stroke: $color-main-1;
+        }
+      }
+    }
+  }
+
+  &__cart-num {
+    @include poppins(bold);
+    @include text(12px, 12px, $color-main-1, 0.71px);
+    position: absolute;
+    top: 0;
+    left: 8%;
+    width: 70%;
+    text-align: center;
+  }
+
+  &__cart-icon {
+    display: block;
+    g {
+      @include transition(stroke);
+    }
+  }
+
+  &__body {
+  }
+
+  &__shipping-bar {
+    @include poppins;
+    @include text(14px, 20px, $color-white, 0.83px);
+    padding: 3px 15px;
+    width: 100%;
+    background-color: $color-main-1;
+    text-align: center;
+    margin: 0 0 20px;
+  }
+
+  &__empty-cart {
+  }
+  &__empty-block {
+  }
+  &__empty-title {
+  }
+  &__empty-image {
+  }
+
+  &__payments {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 5px 30px 20px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__payments-text {
+    align-self: flex-start;
+  }
+
+  &__payments-icon {
+    align-self: center;
+  }
+
+  &__payments-separator {
+    width: 1px;
+    height: 100%;
+    min-height: 20px;
+    background-color: $color-theme-6;
+    align-self: center;
+  }
+}

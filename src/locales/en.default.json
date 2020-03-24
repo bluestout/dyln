@@ -88,17 +88,24 @@
   "cart": {
     "general": {
       "title": "Shopping Cart",
+      "your_cart": "Your Cart",
       "remove": "Remove",
       "note": "Special instructions for seller",
       "subtotal": "Subtotal",
       "shipping_at_checkout": "Shipping & taxes calculated at checkout",
       "update": "Update Cart",
       "checkout": "Check Out",
-      "empty": "Your cart is currently empty.",
+      "empty": "Your cart is empty.",
       "cookies_required": "Enable cookies to use the shopping cart",
       "continue_browsing_html": "Continue browsing <a href=\"/collections/all\">here</a>.",
       "item_quantity": "Item quantity",
-      "savings": "You're saving"
+      "savings": "You're saving",
+      "shop_bottle": "Shop the Bottle",
+      "shop_accessories": "Shop accessories",
+      "become_member": "Become a member",
+      "learn_more": "Learn more",
+      "add_ons": "Add ons",
+      "pay_using": "Pay using:"
     },
     "label": {
       "product": "Product",
@@ -107,6 +114,11 @@
       "total": "Total",
       "discounted_price": "Discounted price",
       "original_price": "Original price"
+    },
+    "shipping": {
+      "free_shipping_reached_html": "Yay! your oder gets <strong>Free Shipping!</strong>",
+      "free_shipping_unreached_html": "Hey, you are {{ price }} away from <strong>Free Shipping!</strong>",
+      "free_shipping_empty_html": "<strong>Get Free Shipping</strong> when you spend ${{ price }} or more"
     }
   },
   "collections": {

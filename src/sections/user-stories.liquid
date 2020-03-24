@@ -1,0 +1,110 @@
+{% assign b_size = section.blocks.size %}
+{% if b_size > 0 %}
+  {% if section.settings.title != blank %}
+    <div class="container">
+      <h2 class="user-stories__title">{{ section.settings.title }}</h2>
+    </div>
+  {% endif %}
+
+  <div class="user-stories__stories" data-user-stories>
+    {% for block in section.blocks %}
+      {% assign modulo = forloop.index | modulo: 2 %}
+      {% assign content_order = " order-md-2" %}
+      {% if modulo == 0 %}
+        {% assign content_order = " order-md-0" %}
+      {% endif %}
+      <div class="user-stories__story">
+        <div class="user-stories__s-media order-md-1">
+          <div class="user-stories__s-media-inner">
+            {% if block.settings.image %}
+              {% render 'responsive-image' with
+                image: block.settings.image,
+                max_width: 425,
+                max_height: 425,
+                wrapper_class: "user-stories__img-wrap",
+                image_class: "user-stories__img",
+              %}
+            {% endif %}
+          </div>
+        </div>
+        <div class="user-stories__s-c-wrap">
+          <h4 class="user-stories__s-title">{{ block.settings.title }}</h4>
+          <div class="user-stories__s-rating">
+            {% assign star_count = block.settings.rating %}
+            {% for i in (1..star_count) %}
+              <span class="user-stories__s-star">
+                {% render 'icon-star' %}
+              </span>
+            {% endfor %}
+          </div>
+          <div class="user-stories__s-content">{{ block.settings.content }}</div>
+          <div class="user-stories__s-author">{{ block.settings.author }}</div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="user-stories__slider-wrap">
+
+    {% assign blocks_0 = b_size | minus: 1 | times: 10 %}
+    <input class="user-stories__slider" type="range" max="{{ blocks_0 }}" min="0" step="1" value="0" data-user-stories-input>
+    {% assign isi_width = 100 | divided_by: b_size | append: '%'%}
+    <style>
+      :root {
+        --index-stories-input-w: {{ isi_width }};
+      }
+    </style>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Stories",
+    "class": "user-stories",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "story",
+        "name": "Story",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image",
+            "info": "425x425"
+          },
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Story Title"
+          },
+          {
+            "type": "textarea",
+            "id": "content",
+            "label": "Story Content"
+          },
+          {
+            "type": "range",
+            "id": "rating",
+            "min": 1,
+            "max": 5,
+            "step": 1,
+            "label": "Rating",
+            "default": 3
+          },
+          {
+            "type": "textarea",
+            "id": "author",
+            "label": "Author"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

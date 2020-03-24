@@ -13,7 +13,6 @@ const dataSets = {
 };
 
 const selectors = {
-  collection: "[data-collection]",
   product: "[data-pi-item]",
   productCol: "[data-pi-item-col]",
   main: "[data-cat-button]",
@@ -43,11 +42,12 @@ const strings = {
 };
 
 const timers = {
-  currentF: 200,
+  currentF: 250,
   product: 600,
-  filterL: 200,
-  filterDefault: 250,
-  resetDefault: 250
+  filterL: 250,
+  filterDefault: 300,
+  resetDefault: 300,
+  buffer: 20
 };
 
 function handleCatButtonClick(event) {
@@ -113,6 +113,8 @@ function handleFilterChange($source) {
   if (type === strings.color) {
     handleProductColorSelect(value);
   }
+
+  handleFilterCatButtonStatus($source);
 
   return handleCurrentFilterBtn(value, type);
 }
@@ -233,7 +235,8 @@ function resetCurrentFilters() {
   const $currentParent = $(selectors.currentParent);
   $currentParent.children().fadeOut(timers.currentF, () => {
     $currentParent.children().remove();
-    filterLogic(20);
+    filterLogic(timers.buffer);
+    resetFilterCatButtonStatus();
   });
 }
 
@@ -241,8 +244,21 @@ function removeCurrentFilterOnClick(event) {
   const $source = $(event.currentTarget);
   $source.fadeOut(timers.currentF, () => {
     $source.remove();
-    filterLogic(20);
+    filterLogic(timers.buffer);
   });
+}
+
+function handleFilterCatButtonStatus($source) {
+  const $parent = $source.closest(selectors.subList);
+  $parent
+    .children()
+    .not($source)
+    .removeClass(classNames.active);
+  $source.addClass(classNames.active);
+}
+
+function resetFilterCatButtonStatus() {
+  $(selectors.catOptionBtn).removeClass(classNames.active);
 }
 
 function handleCurrentFilterBtn(value, type) {
@@ -274,10 +290,14 @@ function checkIfActiveFilters(time) {
     () => {
       const $filters = $(selectors.currentFilter);
       const $reset = $(selectors.filterReset);
+      const $filtersParent = $(selectors.currentParent);
       if ($filters.length > 0) {
         $reset.slideDown(timers.currentF);
+        $filtersParent.addClass(classNames.active);
       } else {
         $reset.slideUp(timers.currentF);
+        $filters.removeClass(classNames.active);
+        $filtersParent.removeClass(classNames.active);
       }
     },
     time ? time : timers.resetDefault
@@ -293,7 +313,7 @@ function getCurrentButtonPattern(value, type) {
   const icon = $closeIconElement.length > 0 ? $closeIconElement.html() : "";
   const valueClean = value.replace("size-", "").replace("mouth-", "");
 
-  const pattern = `<button type="button" class="c-filter__current-filters" data-cat-current-item="${value}" data-cat-current-type="${type}">
+  const pattern = `<button type="button" class="c-filter__current-filter" data-cat-current-item="${value}" data-cat-current-type="${type}">
     <span class="c-filter__current-title">${valueClean}</span>
     <span class="c-filter__current-icon">${icon}</span>
   </button>`;

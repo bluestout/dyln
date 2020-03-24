@@ -6,14 +6,18 @@
   {% endif %}
 
   <div class="index-shop__products">
-    {% for block in section.blocks %}
-      {% if block.type == "product" %}
-        <div class="col-md-4">
-          {% render 'product-item' with block.settings.product %}
-        </div>
-      {% endif %}
-    {% endfor %}
+    <div class="row justify-content-center">
+      {% for block in section.blocks %}
+        {% if block.type == "product" and block.settings.product != empty %}
+          <div class="col-md-3">
+            {% assign p_item = all_products[block.settings.product] %}
+            {% render 'product-item' with p_item %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
+
   <div class="index-shop__collections">
     <div class="row justify-content-center">
       {% for block in section.blocks %}

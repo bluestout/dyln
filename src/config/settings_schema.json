@@ -187,6 +187,16 @@
         "id": "cart_notes_enable",
         "label": "Enable cart notes",
         "default": true
+      },
+      {
+        "type": "range",
+        "id": "shipping_threshold",
+        "min": 0,
+        "max": 500,
+        "step": 5,
+        "unit": "$",
+        "label": "Shipping Threshold",
+        "default": 100
       }
     ]
   },

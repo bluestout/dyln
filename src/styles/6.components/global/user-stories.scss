@@ -1,7 +1,17 @@
-.index-stories {
+.user-stories {
   margin: 0 0 50px;
 
   .slick-initialized .slick-slide {
+  }
+
+  .slick-arrow {
+    display: none;
+  }
+
+  .slick-prev {
+  }
+
+  .slick-next {
   }
 
   &__title {
@@ -16,7 +26,7 @@
       flex-flow: row nowrap;
       overflow-x: scroll;
 
-      .index-stories__story {
+      .user-stories__story {
         flex: 0 0 25%;
         max-width: 25%;
       }

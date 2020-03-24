@@ -10,6 +10,8 @@ import "../../styles/theme.scss.liquid";
 
 import "../components/accordion";
 import "../components/tabs";
+import "../components/header";
+import "../components/ajaxcart";
 
 import { focusHash, bindInPageLinks } from "@shopify/theme-a11y";
 

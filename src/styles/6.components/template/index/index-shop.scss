@@ -1,3 +1,30 @@
 .index-shop {
   margin: 0 0 60px;
+
+  &__title {
+    @include text-title;
+    text-align: center;
+  }
+
+  &__products {
+    margin: 0 0 25px;
+  }
+
+  &__collections {
+  }
+
+  &__collection {
+    text-align: center;
+  }
+
+  &__c-img-wrap {
+    margin: 0 auto 20px;
+  }
+
+  &__c-img {
+  }
+
+  &__c-title {
+    @include button(solid, round, 1);
+  }
 }

@@ -1,6 +1,11 @@
 .site-footer {
   position: relative;
 
+  &__separator {
+    min-height: 50px;
+    background-color: $color-theme-4;
+  }
+
   &__wave-top {
     @include animated-wave;
     top: 0;

@@ -10,6 +10,7 @@
         <span class="c-filter__header-icon">{% render 'icon-chevron-down' %}</span>
       </button>
     </div>
+
     <div class="c-filter__body" style="display: none;" data-cat-list>
       {% for link in linklists["list-collections"].links %}
         {% assign list_c_filter_o = link.object %}
@@ -21,10 +22,11 @@
   {% elsif template == "collection" %}
     <div class="c-filter__header">
       <button type="button" class="c-filter__header-button" data-cat-button>
-        <span class="c-filter__cat-btn-text">{{ collection.title }}</span>
-        <span class="c-filter__cat-btn-icon">{% render 'icon-chevron-down' %}</span>
+        <span class="c-filter__header-text">{{ collection.title }}</span>
+        <span class="c-filter__header-icon">{% render 'icon-chevron-down' %}</span>
       </button>
     </div>
+
     <div class="c-filter__body" style="display: none;" data-cat-list>
 
       {%- assign c_sizes_string = "" -%}
@@ -43,17 +45,37 @@
       {%- assign c_sizes = c_sizes_string | split: '::' -%}
 
       <div class="c-filter__cat-options-header">
-        <button type="button" data-cat-sub-button="{{ color_title }}" class="c-filter__cat-btn">{{ 'collections.filters.color' | t }}</button>
+        <button
+          type="button"
+          data-cat-sub-button="{{ color_title }}"
+          class="c-filter__cat-btn">
+          <span class="c-filter__cat-btn-text">{{ 'collections.filters.color' | t }}</span>
+          <span class="c-filter__cat-btn-icon">{% render 'icon-chevron-down' %}</span>
+        </button>
 
         {% if c_sizes.size > 0 %}
-          <button type="button" data-cat-sub-button="{{ size_title }}" class="c-filter__cat-btn">{{ 'collections.filters.size' | t }}</button>
+          <button
+            type="button"
+            data-cat-sub-button="{{ size_title }}"
+            class="c-filter__cat-btn">
+            <span class="c-filter__cat-btn-text">{{ 'collections.filters.size' | t }}</span>
+            <span class="c-filter__cat-btn-icon">{% render 'icon-chevron-down' %}</span>
+          </button>
         {% endif %}
 
         {% if c_mouths.size > 0 %}
-          <button type="button" data-cat-sub-button="{{ mouth_title }}" class="c-filter__cat-btn">{{ 'collections.filters.mouth' | t }}</button>
+          <button
+            type="button"
+            data-cat-sub-button="{{ mouth_title }}"
+            class="c-filter__cat-btn">
+            <span class="c-filter__cat-btn-text">{{ 'collections.filters.mouth' | t }}</span>
+            <span class="c-filter__cat-btn-icon">{% render 'icon-chevron-down' %}</span>
+          </button>
         {% endif %}
 
-        <button type="button" data-cat-filter-reset style="display:none;">{{ 'collections.filters.clear_all' | t }}</button>
+        <button class="c-filter__reset-filters" type="button" data-cat-filter-reset style="display:none;">
+          {{ 'collections.filters.clear_all' | t }}
+        </button>
       </div>
 
       <div class="c-filter__cat-options">
@@ -63,7 +85,7 @@
           <div class="c-filter__cat-list" data-cat-sub-list="{{ size_title }}" style="display: none;">
             {% for c_size in c_sizes %}
               <button type="button" class="c-filter__cat-option" data-cat-option="{{ c_size }}">
-                <span class="c-filter__cat-icon">
+                <span class="c-filter__cat-option-icon">
                   {% comment %}
                   If more bottles are added at some point,
                   add the new size as an icon snippet,
@@ -90,7 +112,7 @@
           <div class="c-filter__cat-list" data-cat-sub-list="{{ mouth_title }}" style="display: none;">
             {% for c_mouth in c_mouths %}
               <button type="button" class="c-filter__cat-option" data-cat-option="{{ c_mouth }}">
-                <span class="c-filter__cat-icon">
+                <span class="c-filter__cat-option-icon">
                   {% assign c_mouth_clean = c_mouth | handleize %}
                   {%- if c_mouth_clean contains "standard" -%}
                     {% render 'icon-mouth-standard' %}
