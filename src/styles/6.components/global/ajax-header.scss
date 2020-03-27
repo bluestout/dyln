@@ -1,0 +1,25 @@
+.ajax-message {
+  @include transition(top 500ms, opacity 500ms);
+  position: fixed;
+  z-index: $z-top;
+  top: -200px;
+  opacity: 0;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  padding: 10px;
+  background-color: $color-theme-1;
+
+  &__message {
+    @include font-header;
+    font-weight: 700;
+    @include text(16px, 24px, $color-white, 1.1px);
+    text-transform: uppercase;
+    padding: 10px;
+  }
+
+  &.active {
+    top: 0;
+    opacity: 1;
+  }
+}

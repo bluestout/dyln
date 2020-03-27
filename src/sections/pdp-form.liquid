@@ -68,18 +68,16 @@
     {% endfor %}
   {% endunless %}
 
-  <noscript>
-    <select name="id">
-      {% for variant in product.variants %}
-        <option
-          {% if variant == current_variant %}selected="selected"{% endif %}
-          {% unless variant.available %}disabled="disabled"{% endunless %}
-          value="{{ variant.id }}">
-            {{ variant.title }}
-        </option>
-      {% endfor %}
-    </select>
-  </noscript>
+  <select name="id" style="display:none !important;" data-pdp-select>
+    {% for variant in product.variants %}
+      <option
+        {% if variant == current_variant %}selected="selected"{% endif %}
+        {% unless variant.available %}disabled="disabled"{% endunless %}
+        value="{{ variant.id }}">
+          {{ variant.title }}
+      </option>
+    {% endfor %}
+  </select>
 
   <div class="pdp-form__qty-wrap">
     <label class="hide" for="Quantity">{{ 'products.product.quantity' | t }}</label>
@@ -95,6 +93,7 @@
     type="submit"
     name="add"
     data-submit-button
+    data-add-to-cart
     {% unless current_variant.available %}disabled="disabled"{% endunless %}>
       <span data-submit-button-text>
         {% if current_variant.available %}

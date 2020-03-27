@@ -56,7 +56,8 @@ const selectors = {
   tVideoById: id => `[data-pdp-specs-video-wrap='${id}']`,
   tReturn: "[data-pdp-specs-return]",
   tFeatures: "[data-pdp-tab-features]",
-  tInput: "[data-pdp-tab-features-input]"
+  tInput: "[data-pdp-tab-features-input]",
+  select: "[data-pdp-select]"
 };
 
 register("product", {
@@ -97,6 +98,7 @@ register("product", {
     this.renderComparePrice(variant);
     this.renderSubmitButton(variant);
     this.renderCurrentColor(variant);
+    this.changeHiddenSelect(variant);
   },
 
   onClickEvent(event) {
@@ -177,6 +179,17 @@ register("product", {
         currentColorElement.innerText = variant[json.color];
       }
     }
+  },
+
+  changeHiddenSelect(variant) {
+    const select = this.container.querySelector(selectors.select);
+    if (!variant || !select) {
+      return;
+    }
+
+    const id = variant.id;
+    const newOption = select.querySelector(`option[value="${id}"]`);
+    newOption.selected = true;
   },
 
   renderPrice(variant) {

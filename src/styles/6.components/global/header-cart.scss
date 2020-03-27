@@ -10,6 +10,32 @@
 
   &.open {
     right: 0;
+
+    .header-cart__overlay {
+      opacity: 1;
+      pointer-events: auto;
+      width: calc(100vw - 500px);
+    }
+  }
+
+
+  &__overlay {
+    @include transition(opacity, width);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($color-black, 0.5);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &__wrap {
+    position: relative;
+    z-index: 1;
+    background-color: $color-white;
+    height: 100%;
   }
 
   &__header {
@@ -80,12 +106,53 @@
   }
 
   &__empty-cart {
+    padding: 60px 45px 0;
   }
+
+  &__empty-note {
+    @include poppins(700);
+    @include text(23px, 32px, $color-title, 1.36px);
+    margin: 0 0 10px;
+    text-align: center;
+  }
+
   &__empty-block {
+    position: relative;
+    display: block;
+    margin: 50px 0 0;
+    padding: 15px 35px;
+    border: 4px solid $color-theme-13;
+    border-radius: 30px;
   }
+
   &__empty-title {
+    @include poppins(700);
+    @include text(20px,28px,$color-body-text,1.18px);
+    max-width: calc(100% - 71px);
   }
+
   &__empty-image {
+    z-index: $z-base;
+    position: absolute;
+    right: 50px;
+    bottom: 8px;
+    display: flex;
+    height: 90px;
+    pointer-events: none;
+
+    img {
+      object-fit: contain;
+      max-height: 90px;
+      max-width: 70px;
+      align-self: flex-end;
+      pointer-events: auto;
+    }
+
+    svg {
+      pointer-events: auto;
+      max-height: 90px;
+      align-self: flex-end;
+    }
   }
 
   &__payments {

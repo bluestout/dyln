@@ -1,5 +1,10 @@
 import $ from "jquery";
 
+const datasets = {
+  link: "header-link",
+  close: "header-block-close"
+};
+
 const elements = {
   header: "[data-section-type='header']",
   drawer: "[data-cart-drawer]",
@@ -9,7 +14,9 @@ const elements = {
   notificationClose: "[data-header-notification-close]",
   offset: "[data-header-offset]",
   banner: "[data-header-banner]",
-  link: "[data-header-link]"
+  link: `[data-${datasets.link}]`,
+  linkById: id => `[data-${datasets.link}="${id}"]`,
+  close: `[data-${datasets.close}]`
 };
 
 const classes = {
@@ -117,8 +124,22 @@ function closeNotification() {
 function handleHeaderLinkClick(event) {
   event.preventDefault();
   const $source = $(event.currentTarget);
+  const $links = $(elements.link);
+  if ($links.length > 0) {
+    $links.not($source).removeClass(classes.active);
+  }
   if ($source.length > 0) {
     $source.toggleClass(classes.active);
+  }
+}
+
+function handleHeaderLinkClose(event) {
+  event.preventDefault();
+  const $source = $(event.currentTarget);
+  const id = $source.data(datasets.close);
+  const $link = $(elements.linkById(id));
+  if ($link.length > 0) {
+    $link.removeClass(classes.active);
   }
 }
 
@@ -128,7 +149,7 @@ $(document).ready(() => {
 });
 
 $(document).on("click", elements.notificationClose, closeNotification);
-
 $(document).on("click", elements.link, handleHeaderLinkClick);
+$(document).on("click", elements.close, handleHeaderLinkClose);
 
 document.addEventListener("ajaxReloaded", togglesInit);

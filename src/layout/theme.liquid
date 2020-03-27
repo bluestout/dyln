@@ -62,15 +62,15 @@
     {{ content_for_layout }}
   </main>
 
+  {% render 'header-cart' %}
+
   {% section 'footer' %}
 
   {%- section 'color-swatches' -%}
 
   {%- section 'cart-upsell' -%}
 
-  <div style="display:none !important;" data-icon-close-rendered>
-    {% render 'icon-close' %}
-  </div>
+  {% render 'ajax-message' %}
 
 </body>
 </html>

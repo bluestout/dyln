@@ -12,11 +12,6 @@
   pointer-events: none;
   width: 385px;
 
-  &:hover {
-    pointer-events: auto;
-    opacity: 1;
-  }
-
   &::before {
     content: "";
     position: absolute;
@@ -48,7 +43,6 @@
       }
     }
 
-    &:active,
     &.active {
       .header-login__main-text::after {
         width: 100%;

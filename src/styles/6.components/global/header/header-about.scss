@@ -8,11 +8,6 @@
   pointer-events: none;
   width: 100vw;
 
-  &:hover {
-    pointer-events: auto;
-    opacity: 1;
-  }
-
   &__main-link {
     display: inline-block;
     vertical-align: middle;
@@ -29,7 +24,6 @@
       }
     }
 
-    &:active,
     &.active {
       .header-about__main-text::after {
         width: 100%;

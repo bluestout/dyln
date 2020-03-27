@@ -1,89 +1,91 @@
 <div class="header-cart" data-cart-drawer>
+  <div class="header-cart__overlay" data-cart-drawer-toggle></div>
 
-  <div class="header-cart__header">
-    <button type="button" class="header-cart__close" data-cart-drawer-toggle>{%- render 'icon-chevron-l' -%}</button>
-    <h4 class="header-cart__title">{{ 'cart.general.your_cart' | t }}</h4>
-    <a href="/cart" class="header-cart__cart">
-      <span class="icon-fallback-text hide">{{ 'layout.cart.title' | t }}</span>
-      <span class="header-cart__cart-num" data-cart-drawer-count>
-        {{ cart.item_count }}
-      </span>
-      <span class="header-cart__cart-icon">
-        {% render 'icon-cart' %}
-      </span>
-    </a>
-  </div>
-
-  <div class="header-cart__body">
-    {% assign price_100 = cart.total_price | divided_by: 100 %}
-    {% assign ship_remaining = settings.shipping_threshold | minus: price_100 %}
-
-    <div class="header-cart__shipping-bar" data-cart-shipping-note>
-    {% if cart.item_count == 0 %}
-      {{ 'cart.shipping.free_shipping_empty_html' | t: price: settings.shipping_threshold }}
-    {% elsif price_100 >= settings.shipping_threshold %}
-      {{ 'cart.shipping.free_shipping_reached_html' | t }}
-    {% else %}
-      {{ 'cart.shipping.free_shipping_unreached_html' | t: price: ship_remaining }}
-    {% endif %}
+  <div class="header-cart__wrap">
+    <div class="header-cart__header">
+      <button type="button" class="header-cart__close" data-cart-drawer-toggle>{%- render 'icon-chevron-l' -%}</button>
+      <h4 class="header-cart__title">{{ 'cart.general.your_cart' | t }}</h4>
+      <a href="/cart" class="header-cart__cart">
+        <span class="icon-fallback-text hide">{{ 'layout.cart.title' | t }}</span>
+        <span class="header-cart__cart-num" data-cart-drawer-count>
+          {{ cart.item_count }}
+        </span>
+        <span class="header-cart__cart-icon">
+          {% render 'icon-cart' %}
+        </span>
+      </a>
     </div>
 
-    <div {% unless cart.item_count == 0 %}style="display:none;"{% endunless %} data-cart-drawer-empty>
-      <p class="header-cart__empty-cart">{{ 'cart.general.empty' | t }}</p>
+    <div class="header-cart__body">
+      {% assign price_100 = cart.total_price | divided_by: 100 %}
+      {% assign ship_remaining = settings.shipping_threshold | minus: price_100 %}
 
-      <a class="header-cart__empty-block">
-        <span class="header-cart__empty-title">{{ 'cart.general.shop_bottle' | t }}</span>
-        <span class="header-cart__empty-image">
-          <img
-            class="header-login__bottle-img"
-            src="{{ 'dyln-cart-sport-cap.png' | asset_url }}"
-            alt="{{ 'cart.general.shop_bottle' | t }}" />
-        </span>
-      </a>
+      <div class="header-cart__shipping-bar" data-cart-shipping-note>
+      {% if cart.item_count == 0 %}
+        {{ 'cart.shipping.free_shipping_empty_html' | t: price: settings.shipping_threshold }}
+      {% elsif price_100 >= settings.shipping_threshold %}
+        {{ 'cart.shipping.free_shipping_reached_html' | t }}
+      {% else %}
+        {{ 'cart.shipping.free_shipping_unreached_html' | t: price: ship_remaining }}
+      {% endif %}
+      </div>
 
-      <a class="header-cart__empty-block">
-        <span class="header-cart__empty-title">{{ 'cart.general.shop_accessories' | t }}</span>
-        <span class="header-cart__empty-image">
-          <img
-            class="header-login__bottle-img"
-            src="{{ 'dyln-cart-water-bottle.png' | asset_url }}"
-            alt="{{ 'cart.general.shop_accessories' | t }}" />
-        </span>
-      </a>
+      <div class="header-cart__empty-cart" {% unless cart.item_count == 0 %}style="display:none;"{% endunless %} data-cart-drawer-empty>
+        <p class="header-cart__empty-note">{{ 'cart.general.empty' | t }}</p>
 
-      <a class="header-cart__empty-block">
-        <span class="header-cart__empty-title">{{ 'cart.general.become_member' | t }}</span>
-        <span class="header-cart__empty-image">
-          {% render 'logo-icon' %}
-        </span>
-      </a>
+        <a href="" class="header-cart__empty-block">
+          <span class="header-cart__empty-title">{{ 'cart.general.shop_bottle' | t }}</span>
+          <span class="header-cart__empty-image">
+            <img
+              class="header-login__bottle-img"
+              src="{{ 'dyln-cart-sport-cap.png' | asset_url }}"
+              alt="{{ 'cart.general.shop_bottle' | t }}" />
+          </span>
+        </a>
 
-      <a class="header-cart__empty-block">
-        <span class="header-cart__empty-title">{{ 'cart.general.learn_more' | t }}</span>
-        <span class="header-cart__empty-image">
-          {% render 'icon-ph' %}
-        </span>
-      </a>
+        <a href="" class="header-cart__empty-block">
+          <span class="header-cart__empty-title">{{ 'cart.general.shop_accessories' | t }}</span>
+          <span class="header-cart__empty-image">
+            <img
+              class="header-login__bottle-img"
+              src="{{ 'dyln-cart-water-bottle.png' | asset_url }}"
+              alt="{{ 'cart.general.shop_accessories' | t }}" />
+          </span>
+        </a>
+
+        <a href="" class="header-cart__empty-block">
+          <span class="header-cart__empty-title">{{ 'cart.general.become_member' | t }}</span>
+          <span class="header-cart__empty-image">
+            {% render 'logo-icon' %}
+          </span>
+        </a>
+
+        <a href="" class="header-cart__empty-block">
+          <span class="header-cart__empty-title">{{ 'cart.general.learn_more' | t }}</span>
+          <span class="header-cart__empty-image">
+            {% render 'icon-ph' %}
+          </span>
+        </a>
+      </div>
+
+      <div
+        class="cart-drawer"
+        data-cart-drawer-content
+        data-loader
+        {% if cart.item_count == 0 %}style="display:none;"{% endif %}>
+      </div>
     </div>
 
     <div
-      class="cart-drawer"
-      data-cart-drawer-content
-      data-loader
-      {% if cart.item_count == 0 %}style="display:none;"{% endif %}>
+      class="header-cart__payments"
+      {% if cart.item_count == 0 %}style="display:none;"{% endif %}
+      data-cart-drawer-payments>
+      <span class="header-cart__payments-text">{{ 'cart.general.pay_using' | t }}</span>
+      <img class="header-cart__payments-icon" src="{{ 'logo-amazon-pay.png' | asset_url }}" alt="Amazon pay" />
+      <span class="header-cart__payments-separator"></span>
+      <img class="header-cart__payments-icon" src="{{ 'logo-paypal.png' | asset_url }}" alt="PayPal" />
+      <span class="header-cart__payments-separator"></span>
+      <img class="header-cart__payments-icon" src="{{ 'logo-google-pay.png' | asset_url }}" alt="Google Pay" />
     </div>
   </div>
-
-  <div
-    class="header-cart__payments"
-    {% if cart.item_count == 0 %}style="display:none;"{% endif %}
-    data-cart-drawer-payments>
-    <span class="header-cart__payments-text">{{ 'cart.general.pay_using' | t }}</span>
-    <img class="header-cart__payments-icon" src="{{ 'logo-amazon-pay.png' | asset_url }}" alt="Amazon pay" />
-    <span class="header-cart__payments-separator"></span>
-    <img class="header-cart__payments-icon" src="{{ 'logo-paypal.png' | asset_url }}" alt="PayPal" />
-    <span class="header-cart__payments-separator"></span>
-    <img class="header-cart__payments-icon" src="{{ 'logo-google-pay.png' | asset_url }}" alt="Google Pay" />
-  </div>
-
 </div>

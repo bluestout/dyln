@@ -1,5 +1,16 @@
 import { formatMoney } from "@shopify/theme-currency";
 
+const elements = {
+  message: {
+    container: "[data-ajax-message-container]",
+    text: "[data-ajax-message-text]"
+  }
+};
+
+const classes = {
+  active: "active"
+};
+
 function resizeImage(src, size) {
   // remove any current image size then add the new image size
   return src
@@ -22,4 +33,19 @@ function formatAndTrimPrice(price) {
   return formattedPrice;
 }
 
-export { resizeImage, formatAndTrimPrice };
+
+let eventHolder = null;
+function ajaxHeaderMessage(message) {
+  if (!message || typeof message !== "string") {
+    return null;
+  }
+  clearTimeout(eventHolder);
+  $(elements.message.text).html(message);
+  $(elements.message.container).addClass(classes.active);
+  eventHolder = setTimeout(() => {
+    $(elements.message.container).removeClass(classes.active);
+  }, 4000);
+  return eventHolder;
+}
+
+export { resizeImage, formatAndTrimPrice, ajaxHeaderMessage };

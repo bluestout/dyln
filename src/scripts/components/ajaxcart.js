@@ -1,4 +1,3 @@
-import * as shopifyCart from "@shopify/theme-cart";
 import $ from "jquery";
 import { formatMoney } from "@shopify/theme-currency";
 import { formatAndTrimPrice } from "./ajax-helpers";
@@ -32,6 +31,7 @@ const elements = {
   upsellSelect: "[data-upsell-select]",
   upsellText: "[data-add-upsell-text]",
   upsellProgress: "[data-add-upsell-loading]",
+  addToCart: "[data-add-to-cart]",
   quick: {
     toggle: "[data-cart-drawer-toggle]",
     content: "[data-cart-drawer-content]",
@@ -380,6 +380,8 @@ function addToCartComplete(jqXHR, textStatus) {
     jqXHR.responseJSON.description.length > 0
   ) {
     showMessage(jqXHR.responseJSON.description);
+  } else {
+    console.log("error: ", jqXHR.responseJSON.description);
   }
 }
 
@@ -442,25 +444,27 @@ function returnCartIfNotEmpty(json) {
 function quickCartToggle(event) {
   event.preventDefault();
 
+  const $quickCart = $(elements.quickcart);
+  const $page = $(elements.quickcart);
   $(elements.nav).removeClass(classes.active);
-  $(elements.page).removeClass(classes.active);
+  $page.removeClass(classes.active);
   $(elements.pageWrap).removeClass(classes.active);
 
-  if ($(elements.quickcart).hasClass(classes.open)) {
-    $(elements.quickcart).removeClass(classes.open);
+  if ($quickCart.hasClass(classes.open)) {
+    $quickCart.removeClass(classes.open);
     $(elements.quick.overlay).removeClass(classes.active);
     $("html").removeClass("no-scroll");
 
     if ($(window).width() < 992) {
-      $(elements.page).removeClass(classes.activeCart);
+      $page.removeClass(classes.activeCart);
     }
   } else {
-    $(elements.quickcart).addClass(classes.open);
+    $quickCart.addClass(classes.open);
     $(elements.quick.overlay).addClass(classes.active);
     $("html").addClass("no-scroll");
 
     if ($(window).width() < 992) {
-      $(elements.page).addClass(classes.activeCart);
+      $page.addClass(classes.activeCart);
     }
   }
 }
@@ -547,25 +551,46 @@ function handleUpsell(cart) {
   return pattern;
 }
 
+function handleAddToCartClick(event) {
+  event.preventDefault();
+  const $source = $(event.currentTarget);
+  const $form = $source.closest("form");
+
+  if ($source.attr("disabled") === "disabled" || $form.length === 0) {
+    return;
+  }
+
+  $.ajax({
+    type: "POST",
+    url: "/cart/add.js",
+    async: true,
+    data: $form.serialize(),
+    dataType: "json",
+    cache: false,
+    complete: (jqXHR, textStatus) => {
+      addToCartComplete(jqXHR, textStatus);
+    }
+  });
+}
+
 // on click, remove the item form cart
 $(document).on("click", elements.remove, ajaxRemoveFromCartButton);
 
 // change quantity when these buttons are clicked - these need product data to work
 $(document).on(
-  "mouseup touchend",
+  "click",
   elements.changeAjax,
   handlechangeAjaxButtonClick
 );
 
 $(document).on("change", elements.input, handleQtyInputChange);
-
 // toggle quick cart from the right
-$(document).on("mouseup touchend", elements.quick.toggle, quickCartToggle);
-
+$(document).on("click", elements.quick.toggle, quickCartToggle);
 // ajaxify add to cart buttons
-$(document).on("mouseup touchend", elements.add, handleAjaxAddButtonClick);
+$(document).on("click", elements.add, handleAjaxAddButtonClick);
+$(document).on("click", elements.addUpsell, handleAjaxAddUpsell);
+$(document).on("click", elements.addToCart, handleAddToCartClick);
 
-$(document).on("mouseup touchend", elements.addUpsell, handleAjaxAddUpsell);
 
 // run ajax on page load to get cart contents
 $(document).ready(() => {
@@ -587,3 +612,5 @@ $(document).keyup(event => {
     quickCartOpen(false);
   }
 });
+
+export { addToCartComplete };

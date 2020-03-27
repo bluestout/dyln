@@ -24,10 +24,11 @@ const selectors = {
   currentParent: "[data-cat-current]",
   currentFilter: `[data-${dataSets.currentFilter}]`,
   currentType: `[data-${dataSets.currentType}]`,
-  i: {
-    close: "[data-icon-close-rendered]"
-  },
   filterReset: "[data-cat-filter-reset]"
+};
+
+const icons = {
+  close: "<svg width='12' height='12' viewBox='0 0 12 12' xmlns='http://www.w3.org/2000/svg'><g stroke='#00AEDB' stroke-width='2' fill='none' fill-rule='evenodd'><path d='M1.333 1.333L11 11M10.667 1.333L1 11'/></g></svg>"
 };
 
 const classNames = {
@@ -309,8 +310,7 @@ function getCurrentButtonPattern(value, type) {
     return "";
   }
 
-  const $closeIconElement = $(selectors.i.close);
-  const icon = $closeIconElement.length > 0 ? $closeIconElement.html() : "";
+  const icon = icons.close;
   const valueClean = value.replace("size-", "").replace("mouth-", "");
 
   const pattern = `<button type="button" class="c-filter__current-filter" data-cat-current-item="${value}" data-cat-current-type="${type}">

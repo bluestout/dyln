@@ -3,7 +3,14 @@
 
   &__separator {
     min-height: 50px;
-    background-color: $color-theme-4;
+
+    &.gray {
+      background-color: $color-theme-4;
+    }
+
+    &:not(.gray) {
+      background-color: $color-white;
+    }
   }
 
   &__wave-top {

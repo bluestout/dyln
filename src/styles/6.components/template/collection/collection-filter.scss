@@ -52,6 +52,13 @@
     }
   }
 
+  &__cat-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 20px 0 0;
+    padding: 10px 0;
+  }
+
   &__cat-btn-text {
     @include poppins(700);
     @include text(18px, 20px, $color-title, 1.06px);

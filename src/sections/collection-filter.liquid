@@ -15,6 +15,19 @@
       {% for link in linklists["list-collections"].links %}
         {% assign list_c_filter_o = link.object %}
         <a class="c-filter__cat-btn" href="{{ list_c_filter_o.url }}">
+          {%- if list_c_filter_o.handle contains "bottle" -%}
+            <span class="c-filter__cat-icon">
+              {% render 'icon-bottle' %}
+            </span>
+          {%- elsif list_c_filter_o.handle contains "diffuse" -%}
+            <span class="c-filter__cat-icon">
+              {% render 'icon-diffusers' %}
+            </span>
+          {%- elsif list_c_filter_o.handle contains "access" -%}
+            <span class="c-filter__cat-icon">
+              {% render 'icon-accessories' %}
+            </span>
+          {%- endif -%}
           <span class="c-filter__cat-btn-text">{{ list_c_filter_o.title }}</span>
         </a>
       {% endfor %}

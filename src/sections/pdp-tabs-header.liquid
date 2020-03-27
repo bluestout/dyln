@@ -1,6 +1,8 @@
+{% assign has_blocks = false %}
 {% for block in section.blocks %}
   {%- assign section_p = all_products[block.settings.product] -%}
   {% if section_p.handle == product.handle %}
+
     {% if block.settings.tab_1 %}
       <a href="#" class="pdp-tabs-header__link active" data-tab-link=0>
         <span class="active-text">{{ block.settings.title_1 }}</span>
@@ -22,9 +24,21 @@
       </a>
     {% endif %}
 
+    {% if block.settings.tab_1 or block.settings.tab_1 or block.settings.tab_3 %}
+      {% assign has_blocks = true %}
+    {% endif %}
     {% break %}
   {% endif %}
 {% endfor %}
+
+{% comment %} because we can't check section content outside sections {% endcomment %}
+{% unless has_blocks %}
+<style>
+  body .pdp-tabs-header {
+    display: none;
+  }
+</style>
+{% endunless %}
 
 {% schema %}
   {

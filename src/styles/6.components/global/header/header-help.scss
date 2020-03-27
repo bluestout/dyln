@@ -8,11 +8,6 @@
   pointer-events: none;
   width: 100vw;
 
-  &:hover {
-    pointer-events: auto;
-    opacity: 1;
-  }
-
   &__overlay {
     position: absolute;
     top: 0;
@@ -38,7 +33,6 @@
       }
     }
 
-    &:active,
     &.active {
       .header-help__main-text::after {
         width: 100%;
