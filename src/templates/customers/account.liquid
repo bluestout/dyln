@@ -1,43 +1,649 @@
-<h1>{{ 'customer.account.title' | t }}</h1>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://sdks.shopifycdn.com/js-buy-sdk/v0/latest/shopify-buy.umd.polyfilled.min.js"></script>
 
-<h2>{{ 'customer.orders.title' | t }}</h2>
+<input type="hidden" name="customer_id" value="{{ customer.id }}" />
+<div id="account_details" class="row page content-wrap">
+  <div class="col-md-2 col-sm-12 content-menu dashboard-sidebar">
+    <div class="content-menu-wrap">
+      <a class="dashboard-menu active" href="/account"><div class="icon-side dashboard"></div>Dashboard</a>
+        <a class="profile-menu show-upgrade" href="/a/dyl/{{ customer.id }}/profile/edit"><div class="icon-side profile"></div>Profile</a>
+        <a class="my-orders-menu" href="/a/dyl/customers/orders"><div class="icon-side orders"></div>My Orders</a>
+        <a class="my-bottles-menu" href="/a/dyl/register-bottle"><div class="icon-side bottles"></div>Register Bottle</a>
+        <!--<a class="rewards-menu" href="/a/dyln/rewards/"><div class="icon-side rewards"></div>Rewards</a>-->
+        <a href="/account/logout" ><div class="icon-side logout"></div>Logout</a>
+    </div>
+  </div>
+  <div class="modals">
+    <!-- Purchase Diffuser -->
+    <div class="modal fade in" id="purchase-diffuser-modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog custom-modal" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          </div>
+          <div class="modal-body">
+            <div class="product" id="ext-product">
+              <div class="img-responsive">
+                <img class="variant-image">
+              </div>
+              <div class="ext-product-title">
+                <h1 class="product-title"></h1>
+                <h2 class="variant-title"></h2>
+              </div>
+              <div class="ext-procuct-price">
+                <span class="variant-compareAtPrice"></span>
+                <span class="variant-price"></span>
+              </div>
+              <div class="extvariant-selectors"></div>
+              <div class="btn-wrap centered">
+                <p class="text-danger"><small class="purchase-error"></small></p>
+                <button class="btn action_button ck-url">Add to cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Interests Modal -->
+    <div class="modal fade in" id="interestsModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog custom-modal" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">My Interests</h4>
+                    <p>Tell us a little about yourself. What inspires you?</p>
+                </div>
+                <div class="modal-body">
+                  <form method="POST" id="interest-form">
+                      <div class="checkbox-group checkbox-interests">
+                          <h5>Select any topics that you enjoy.</h5>
+                        <div id="all-interest"></div>
+                      </div>
+                  </form>
+                </div>
+                <p class="error text-danger hidden"></p>
+                <p class="interest-processing"></p>
+                <div class="modal-footer">
+                    <button type="button" class="btn interest-button-submit">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Replace Diffuser -->
+    <div class="modal fade in" id="replace-diffuser-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog custom-modal" role="document">
+            <div class="modal-content">
+                <div class="bottle-form" style="display: none">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">When did you replace your diffuser?</h4>
+                    </div>
+                    <div class="modal-body">
+                      <form id="replace-diffuser-form" autocomplete="off" method="POST" class="replace-diffuser-form bottle-steps custom-modal">
+                        <input type="hidden" id="btl_id" name="btl_id">
+                        <input type="hidden" name="btl_customer" value="{{ customer.id }}">
+                        <input type="hidden" name="today" id="btl_today" >
+                          <div class="wizard-content profile-edit">
+                            <img class="header-arrow bottle-mark"src="{{ 'bot-2.png' | asset_img_url: 'large' }}">
+                            <div class="wizard-form">
+                              <div class="form-group medium-width form-block no-margin-bottom dif-rep-date">
+                                  <input class="styled-checkbox" id="styled-checkbox-4" name="replaced-today" type="checkbox" value="value4">
+                                  <label for="styled-checkbox-4"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;TODAY</label>
+                              </div>
+                              <div class="form-group medium-width form-block dif-rep-date">
+                                  <label class="control-label">or</label>
+                                  <div class="input-group date">
+                                      <input id="diffuser-start-date-new" name="refill_start_date" type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                  </div>
+                                  <div class="refill_start_date_error error"></div>
+                              </div>
+                              <h4 class="modal-title" id="exampleModalLabel">How often do you plan on filling your bottle?</h4>
+                              <div class="form-group medium-width form-block">
+                                  <div id="birthday_error" class="error" style="color: red"></div>
+                                  <select id="days_used" name="days_used" class="form-control">
+                                      <option value="">Select the amount of days per week</option>
+                                      {% for i in (1..7) %}
+                                          <option value="{{ i }}">{{ i }} {{ i | pluralize: 'time', 'times' }} per week</option>
+                                      {% endfor %}
+                                  </select>
+                              </div>
+                              <div class="form-group medium-width form-block">
+                                  <div id="birthday_error" class="error" style="color: red"></div>
+                                  <select id="refill_frequency" name="refill_frequency" class="form-control">
+                                      <option value="">Select your daily refill frequency</option>
+                                      {% for i in (1..8) %}
+                                          <option value="{{ i }}">{{ i }} {{ i | pluralize: 'time', 'times' }} per day</option>
+                                      {% endfor %}
+                                  </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="btn-wrap centered btn-modal-footer">
+                            <button class="btn btn-grey prev" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-common update-diffuser">Update</button>
 
-{% paginate customer.orders by 20 %}
-  {% if customer.orders.size != 0 %}
-    <table class="responsive-table">
-      <thead>
-        <tr>
-          <th>{{ 'customer.orders.order_number' | t }}</th>
-          <th>{{ 'customer.orders.date' | t }}</th>
-          <th>{{ 'customer.orders.payment_status' | t }}</th>
-          <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
-          <th>{{ 'customer.orders.total' | t }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for order in customer.orders %}
-          <tr class="responsive-table-row">
-            <td data-label="{{ 'customer.orders.order_number' | t }}">{{ order.name | link_to: order.customer_url }}</td>
-            <td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | date: format: 'month_day_year' }}</td>
-            <td data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</td>
-            <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
-            <td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  {% else %}
-    <p>{{ 'customer.orders.none' | t }}</p>
-  {% endif %}
+                          </div>
+                        <div id="btl-msg"></div>
+                      </form>
+                    </div>
+                </div>
+                <div class="bottle-done" style="display: none;">
+                    <div class="modal-body completed-form">
+                        <div class="wizard-content profile-edit">
+                          <img class="header-arrow bottle-mark"src="{{ 'bot-1.png' | asset_img_url: 'large' }}">
+                          <div class="wizard-form">
+                              <h4 class="modal-title">
+                                Thank you for replacing your diffuser.<br>
+                                You now have 400 refills left!
+                              </h4>
+                          </div>
+                        </div>
+                        <div class="btn-wrap centered btn-modal-footer">
+                          <button class="btn btn-grey replace-diffuser-close prev">Close</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottle-diffusers" style = "display: none;">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Extra VitaBead Diffusers</h4>
+                    </div>
+                    <div class="modal-body completed-form">
+                              <meta itemprop="priceCurrency" content="PHP">
+                              <link itemprop="availability" href="http://schema.org/InStock">
+                              <p class="product-single__price product-single__price-product-template" aria-hidden="true">
+                                  <span class="visually-hidden">Price</span>
+                                  <s id="ComparePrice-product-template" class="hide"></s>
+                                  <span class="product-price__price product-price__price-product-template">
+                                      <span id="ProductPrice-product-template" itemprop="price" content="10.0" class="product-single-price">₱10.00</span>
+                                  <span class="product-price__sale-label product-price__sale-label-product-template hide">On Sale</span>
+                                  </span>
+                              </p>
+                        <div class="wizard-content profile-edit">
+                          <img class="header-arrow"src="{{ 'bead.png' | asset_img_url: 'large' }}">
+                        </div>
+                        <div class="product-info-wrap  diffusers-form ">
+                          <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+                              <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form product-form-product-template" data-section="product-template">
+                                  <div class="pro-option-select">
+                                      <p class="pinfo-title" for="SingleOptionSelector-0">
+                                          Amount
+                                      </p>
+                                      <ul class="pro-option" option-id="SingleOptionSelector-0">
+                                          <li title="1 Diffuser" class="pro-option-active">1 Diffuser</li>
+                                          <li title="3 Diffusers" class="">3 Diffusers</li>
+                                          <li title="9 Diffusers" class="">9 Diffusers</li>
+                                      </ul>
+                                  </div>
+                                  <div class="product-button-wrap">
+                                      <div class="qty-wrap">
+                                          <span class="qty-m"><img src="//cdn.shopify.com/s/files/1/1098/3960/t/11/assets/minus_small_34x.png?2870462688843479326"></span>
+                                          <input type="text" id="Quantity" name="quantity" value="1" min="1" class="product-form__input" pattern="[0-9]*"><span class="qty-p"><img src="//cdn.shopify.com/s/files/1/1098/3960/t/11/assets/plus_small_34x.png?2870462688843479326"></span>
+                                      </div>
+                                      <button data-label="Add to Cart" type="submit" name="add" id="AddToCart-product-template" class="add_to_cart btn product-form__cart-submit">
+                                          <span id="AddToCartText-product-template">Add to Cart</span>
+                                      </button>
+                                  </div>
+                              </form>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  {% if paginate.pages > 1 %}
-    {% include 'pagination' %}
-  {% endif %}
+<!-- bottle update popup -->
+    <div class="modal fade in" id="bottle-update-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog custom-modal" role="document">
+            <div class="modal-content">
+                <div class="bottle-form">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Update Bottle Information</h4>
+                    </div>
+                    <div class="modal-body">
+                      <form id="bottle-update-form" autocomplete="off" method="POST" class="replace-diffuser-form bottle-steps custom-modal">
+                        <input type="hidden" name="update_btl" value="1">
+                        <input type="hidden" id="btl_id" name="btl_id">
+                        <input type="hidden" name="btl_customer" value="{{ customer.id }}">
+                        <input type="hidden" name="today" id="btl_today" >
+                          <div class="wizard-content profile-edit">
+                            <img class="header-arrow bottle-mark"src="{{ 'bot-2.png' | asset_img_url: 'large' }}">
+                            <div class="wizard-form" style="position:relative">
+                              <div class="delete-conform" style="display:none">
+                                <p>Are you sure to delete?</p>
+                              <div class="btn-wrap centered btn-modal-footer">
+                                <button class="btn btn-grey prev cancle" type="button">No</button>
+                                <button type="button" class="btn btn-common delete-bottle">Yes</button>
+                              </div>
+                              </div>
+                              <div class="form-group medium-width form-block no-margin-bottom dif-rep-date">
+                                  <label for="styled-checkbox-4" class="update-btl-name"></label>
+                              </div>
+                              <h4 class="modal-title" id="exampleModalLabel">How often do you filling your bottle?</h4>
+                              <div class="form-group medium-width form-block">
+                                  <div id="birthday_error" class="error" style="color: red"></div>
+                                  <select id="days_used" name="days_used" class="form-control">
+                                      <option value="">Select the amount of days per week</option>
+                                      {% for i in (1..7) %}
+                                          <option value="{{ i }}">{{ i }} {{ i | pluralize: 'time', 'times' }} per week</option>
+                                      {% endfor %}
+                                  </select>
+                              </div>
+                              <div class="form-group medium-width form-block">
+                                  <div id="birthday_error" class="error" style="color: red"></div>
+                                  <select id="refill_frequency" name="refill_frequency" class="form-control">
+                                      <option value="">Select your daily refill frequency</option>
+                                      {% for i in (1..8) %}
+                                          <option value="{{ i }}">{{ i }} {{ i | pluralize: 'time', 'times' }} per day</option>
+                                      {% endfor %}
+                                  </select>
+                              </div>
+                            </div>
+                          </div>
 
-{% endpaginate %}
+                          <div class="btn-wrap centered btn-modal-footer">
+                            <button class="btn btn-grey prev del-btl" type="button">Delete</button>
+                            <button type="button" class="btn btn-common update-bottle">Update</button>
 
-<h2>{{ 'customer.account.details' | t }}</h2>
+                          </div>
+                        <div id="btl-msg"></div>
+                      </form>
+                    </div>
+                </div>
+          </div>
+      </div>
+    </div>
+    <!-- Order Details -->
+    {% for order in customer.orders limit:2 %}
+      <div class="modal fade" id="orderModal-{{ order.id }}" role="dialog" >
+        <div class="modal-dialog modal-wide">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-heading">Order Details</h3>
+              <button type="button" class="close modal-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+              <div class="table-responsive">
+                <table id="order_details" class="default-table" width="100%">
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th></th>
+                      <th class="text-right">Quantity</th>
+                      <th class="text-right">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for line_item in order.line_items %}
+                      <tr>
+                        <td>
+                          {{ line_item.image  |  img_url: 'small' | img_tag }}
+                          <div class="product-name">
+                            <strong>
+                              {{ line_item.product.title | link_to: line_item.product.url }}
+                            </strong>
+                            <small>{% if line_item.variant.option1 %}
+                              {{ line_item.variant.option1 }}
+                            {% endif %}
+                            {% if line_item.variant.option2 %}- {{ line_item.variant.option2 }}
+                            {% endif %}
+                            {% if line_item.variant.option3 %}- {{ line_item.variant.option3 }}
+                            {% endif %}</small>
+                            <small>{{ 'customer.order.sku' | t }}: {{ line_item.sku }}</small>
+                          </div>
+                        </td>
+                        <td></td>
+                        <td class="text-right">{{ line_item.quantity }}</td>
+                        <td class="text-right">{{ line_item.quantity | times: line_item.price | money }}</td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="3" class="align_right">{{ 'customer.order.subtotal' | t }}</td>
+                      <td class="text-right">{{ order.subtotal_price | money }}</td>
+                    </tr>
+                    {% for shipping_method in order.shipping_methods %}
+                      <tr class="order_summary discount">
+                        <td colspan="3" class="align_right">{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})</td>
+                        <td class="text-right">{{ shipping_method.price | money }}</td>
+                      </tr>
+                    {% endfor %}
+                    <tr>
+                      <td colspan="3" class="align_right"><strong>{{ 'customer.order.total' | t }}</strong></td>
+                      <td class="text-right"><strong>{{ order.total_price | money }}</strong></td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    <!-- Bottle Info -->
+    <div class="modal fade in" id="bottle-info" tabindex="-1" role="dialog">
+      <div class="modal-dialog custom-modal" role="document">
+        <div class="modal-content">
+          <div class="modal-header bottle-preview">
+            <img class="bottle-img thumbnail" alt="bottle-img" />
+            <img class="bottle-img bg" alt="bottle-img" />
+            <div class="bottle-title">
+              <h3>My Bottle</h3>
+              <h1 class="bottle-name"></h1>
+              <p class="replace-diffuser-notif hidden">Replace diffuser soon</p>
+            </div>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          </div>
+          <div class="modal-body">
+            <div class="title-separator row">
+              <span>DYLN Living Water Bottle</span>
+            </div>
+            <div class="purchase-info info-box row">
+              <div class="row col-xs-12">
+                <p class="purchase-location"></p>
+              </div>
+              <div class="row col-xs-12">
+                <div class="col-xs-4 col-bottle-code">
+                  <div class="bottle-code-preview">
+                    <div class="outer-shell-preview preview">
+                      <div class="inner-shell-preview">
+                        <p>Living Water</p>
+                        <span class="bottle-code"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <p>Bottle Code</p>
+                  <span class="bottle-code value"></span>
+                </div>
+                <div class="col-xs-4 col-bottle-finish btl-finish-wrap">
+                  <div class="bottle-finish-preview">
+                    <img class="matte preview hidden" src="{{ 'matte.png' | asset_img_url: 'large' }}">
+                    <img class="chrome preview hidden" src="{{ 'chrome.png' | asset_img_url: 'large' }}">
+                  </div>
+                  <p>Finish</p>
+                  <span class="bottle-finish value"></span>
+                </div>
+                <div class="col-xs-4 col-bottle-finish">
+                  <div class="bottle-sleeve-preview">
+                    <img class="preview" src="" alt="">
+                  </div>
+                  <p>Sleeve Color</p>
+                  <span class="bottle-sleeve value"></span>
+                </div>
+              </div>
+            </div>
+            <div class="title-separator row">
+              <span>Diffuser</span>
+            </div>
+            <div class="diffuser-info info-box row">
+              <div class="row col-xs-12">
+                <div class="col-xs-4 col-start-date">
+                  <h3 class="diffuser-start-date"></h3>
+                  <p>Diffuser Start Date</p>
+                </div>
+                <div class="col-xs-4">
+                  <h3 class="diffuser-refills-remaining"></h3>
+                  <p>Refills Remaining</p>
+                </div>
+                <div class="col-md-4">
+                  <h3 class="diffuser-days-remaining"></h3>
+                  <p>Days Remaining</p>
+                </div>
+              </div>
+            </div>
+            <div class="title-separator row">
+              <span>Usage</span>
+            </div>
+            <div class="usage-info info-box row">
+              <div class="progress-content">
+                <div class="progress-title">
+                  <div class="content-txt">
+                    <strong>Days per week</strong>
+                    <span class="days-per-week pull-right"></span>
+                  </div>
+                </div>
+                <div class="progress">
+                  <div class="days-per-week-progress progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+              <div class="progress-content">
+                <div class="progress-title">
+                  <div class="content-txt">
+                    <strong>Refills per Day</strong>
+                    <span class="refills-per-day pull-right"></span>
+                  </div>
+                </div>
+                <div class="progress">
+                  <div class="refills-per-day-progress progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-blue" data-dismiss="modal" aria-label="Close">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-10 col-sm-12 animated fadeInUp inner-content" id="account_details">
+    <div class="page-name">
+        <h3 class="title pull-left">Dashboard</h3>
+        <h2 class="faq pull-right"><a class="text-underline" href="https://support.dyln.co/hc/en-us">Need Help? Visit our FAQ</a></h2>
+    </div>
+    <div class="row boxes-wrap">
+      <div class="col-md-12 notif-replace">
+        <div class="box-wrapper notif-main">
+          <!-- <div class="row"> -->
+            <div class="col-md-6 content-buttoned">
+              <p class="no-margin">Your Diffuser needs replacing in the next 12 days</p>
+              <a href="#" class="btn common-btn purchase-btn" data-toggle="modal" data-target="#purchase-diffuser-modal">Purchase Now</a>
+            </div>
+            <div class="col-md-6">
+              <h4><a href="#bottles-list"><i class="fa fa-check" aria-hidden="true"></i> Already replaced your diffuser?</a></h4>
+              <p>Let us know by clicking the replaced diffuser button below.</p>
+            </div>
+          <!-- </div> -->
+        </div>
+      </div>
+      <div class="col-md-12 notif-progress">
+        <div id="profile-completeness" class="box-wrapper no-padding-bottom notif-prog-inner hidden">
+          <div class="progress-content">
+            <div class="content-txt"><strong>Profile Completeness</strong></div>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="0"
+              aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                0%
+              </div>
+            </div>
+            <div class="percent-txt">0%</div>
 
-{{ customer.default_address | format_address }}
+          </div>
+        </div>
+      </div>
+    </div>
+  <div id="fb-root"></div>
+    <div class="row boxes-wrap">
+      <div class="col-md-6">
+        <div id="my-profile-box" class="dashboard-box-wrapper box-wrapper">
+          <a href="/a/dyl/{{ customer.id }}/profile/edit" class="box-edit" id="target-edit-bottle"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+          <div class="heading-box">
+              <h3>My Profile</h3>
+          </div>
+          <div class="profile-display">
+            <div class="profile-img-wrap">
+              <div class="profile-img no-image">
+                <img class="prof-pic">
+              </div>
+            </div>
+            <div class="user-info">
+              <h4>{{ customer.name }}</h4>
 
-<a href="/account/addresses">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a>
+            </div>
+          </div>
+        </div>
+        <div id="my-inspirations-box" class="dashboard-box-wrapper box-wrapper">
+          <button type="button" class="box-edit" data-toggle="modal" data-target="#interestsModal">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </button>
+          <div class="heading-box">
+              <h3>My Inspirations</h3>
+              <div class="no-interest hidden">
+                <br>
+                <h4>Tell us a little about yourself. What inspires you?</h4>
+                <button type="button" class="btn btn-success action_button" data-toggle="modal" data-target="#interestsModal">
+                  SELECT
+                </button>
+              </div>
+          </div>
+          <div class="interests-box"></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <!--
+        <div class="box-wrapper box-points no-padding-bottom">
+          <div class="heading-box">
+              <h3>Rewards</h3>
+          </div>
+          <br>
+          <div class="box-content points">
+            <h2>Coming Soon!</h2>
+          </div>
+        </div> -->
+        <div id="recent-orders" class="dashboard-box-wrapper box-wrapper">
+          <div class="heading-box">
+              <h3>Recent Orders</h3>
+          </div>
+          <div class="orders-table recent-orders">
+              <table class="table-responsive">
+                <tbody>
+                {% for order in customer.orders limit:2 %}
+                    <tr>
+                        <td class="order-left">
+                            <div class="ord-nbr">{{ order.name | remove_first: '#' }}</div>
+                            <div class="ord-dat">{{ order.created_at | date: format: "month_day_year" }}</div>
+                            <div class="ord-tags"><a href="#" data-toggle="modal" data-target="#orderModal-{{ order.id }}">View Order</a> <span>{{ order.financial_status_label }}</span><span>{{ order.fulfillment_status_label }}</span></div>
+                        </td>
+                        <td class="order-right" data-id="{{ order.id }}">
+                            <div class="amt">{{ order.total_price | money }}</div>
+                            <div class="tracking-template hidden">
+                              <div class="tracking">
+                                <a target="_blank">
+                                    Track Order
+                                </a>
+                                <span></span>
+                              </div>
+                              <div class="cour"></div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="btn-wrap centered">
+            <a href="/a/dyl/customers/orders" class="btn action_button btn-grey"  onclick="">View All</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="dashboard-bottles" class="row boxes-wrap">
+      <div class="col-md-12">
+        <div class="box-wrapper">
+          <div class="heading-box">
+              <h3>My Bottles</h3>
+          </div>
+          <div id="bottles-list">
+            <div id="app-load"></div>
+            <div id="bottle-box-template" class="bottle-box hidden">
+                <p class="bottle-name"></p>
+                <div class="radial-wrap">
+                  <div class="progress-radial">
+                    <div class="overlay"><img class="bottle-preview" src="#"></div>
+                  </div>
+                  <div class="bottle-refills">
+                    <div class="refills-remaining"></div><span>Refills<br>Remaining</span>
+                    <div class="divider"> / </div>
+                    <div class="days-remaining"></div><span>Days<br>Remaining</span>
+                  </div>
+                  <div class="buttons-wrapper button-bottles">
+                    <button class="purchase-diffuser btn action_button"
+                            type="button"
+                            data-toggle="modal"
+                            data-target="#purchase-diffuser-modal">
+                            Purchase Diffuser
+                    </button>
+                    <button class="replaced-diffuser btn action_button btn-blue"
+                            type="button"
+                            data-toggle="modal"
+                            data-target="#replace-diffuser-modal">
+                            <i class="fa fa-check" aria-hidden="true"></i> I REPLACED DIFFUSER
+                    </button>
+                    <button class="bottle-info btn btn-common btn-grey"
+                            type="button"
+                            data-toggle="modal"
+                            data-target="#bottle-info">
+                            More Info
+                    </button>
+                  </div>
+                </div>
+              </div>
+            <a href="{{ shop.secure_url }}/a/dyl/register-bottle" id="reg" class="bottle-box register-bottle">
+                <div class="radial-wrap">
+                    <div class="progress-radial progress-0">
+                        <div class="overlay large-plus">+</div>
+                    </div>
+                    <div class="buttons-wrapper button-bottles">
+                        <div class="register-text">Register New Bottle</div>
+                    </div>
+                </div>
+            </a>
+          </div>
+        </di>
+      </div>
+    </div>
+  </div>
+
+<div id="recover-password" class="col-md-9 col-sm-12 inner-content"style='display:none'>
+    <div class=" animated fadeInUp">
+
+      <h4>{{ 'customer.recover_password.title' | t }}</h4>
+
+      {% form 'recover_customer_password' %}
+        {{ form.errors | default_errors }}
+
+        {% if form.posted_successfully? %}
+          {% assign reset_success=true %}
+        {% endif %}
+
+        <div id="recover_email" class="clearfix large_form form-block">
+          <label for="email" class="large">{{ 'customer.recover_password.email' | t }}</label>
+          <input type="email" value="" size="30" name="email" id="recover-email" class="large" autocorrect="off" autocapitalize="off" />
+        </div>
+
+        <p>
+          <em class="note">{{ 'customer.recover_password.subtext' | t }}</em>
+        </p>
+
+        <div class="action_bottom btn-wrap">
+          <a href="#" class="btn action_button"  onclick="hideRecoverPasswordForm()">{{ 'customer.recover_password.cancel' | t }}</a>
+          <input class="btn action_button" type="submit" value="{{ 'customer.recover_password.submit' | t }}" />
+        </div>
+      {% endform %}
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+
+</script>
+
+{{ 'font-awesome.min.css' | asset_url | stylesheet_tag }}
+{{ 'shopify-cart.scss.css' | asset_url | stylesheet_tag }}
+
+{{ 'customer.account.js'  | asset_url | script_tag }}
+{{ 'shopify-cart.js'  | asset_url | script_tag }}
