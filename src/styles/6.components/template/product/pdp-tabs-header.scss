@@ -12,14 +12,14 @@
     border-radius: 2px;
 
     .active-text {
-      @include poppins(700);
+      @include font-header(700);
       @include text(24px, 30px, $color-theme-7, 1.42px);
       padding: 7px 40px;
       display: block;
     }
 
     .inactive-text {
-      @include poppins(500);
+      @include font-header(500);
       @include text(24px, 30px, $color-theme-8, 1.42px);
       position: absolute;
       left: 50%;

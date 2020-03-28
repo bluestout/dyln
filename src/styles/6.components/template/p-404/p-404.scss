@@ -27,18 +27,18 @@
   }
 
   &__title {
-    @include poppins(700);
+    @include font-header(700);
     @include text(40px, 56px, $color-title-light, 2.36px);
   }
 
   &__subtitle {
-    @include poppins(500);
+    @include font-header(500);
     @include text(20px, 24px, $color-title-light, 1.18px);
     text-transform: uppercase;
   }
 
   &__message {
-    @include poppins(500);
+    @include font-header(500);
     @include text(20px, 24px, $color-title-light, 1.18px);
     text-align: center;
   }
@@ -57,7 +57,7 @@
   }
 
   &__btm-link {
-    @include poppins(500);
+    @include font-header(500);
     @include text(20px, 28px, $color-white, 1.18px);
     position: relative;
     display: inline-block;

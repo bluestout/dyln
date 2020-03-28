@@ -1,13 +1,13 @@
 .pdp-tab-3 {
   &__title {
-    @include poppins(500);
+    @include font-header(500);
     @include text(24px, 33px, $color-title, 1.42px);
     text-align: center;
     margin: 30px auto 20px;
   }
 
   &__el-text {
-    @include poppins(500);
+    @include font-header(500);
     @include text(23px, 32px, $color-body-text, 1.36px);
     margin: 20px auto 0;
     text-align: center;
@@ -49,7 +49,7 @@
     }
 
     .text {
-      @include poppins(500);
+      @include font-header(500);
       @include text(20px, 28px, $color-body-text, 1.18px);
       display: inline-block;
       vertical-align: middle;

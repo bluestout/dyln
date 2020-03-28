@@ -31,7 +31,7 @@
   }
 
   &__title {
-    @include poppins(700);
+    @include font-header(700);
     @include text(24px, 35px, $color-title-light);
   }
 
@@ -73,7 +73,7 @@
   }
 
   &__f-text {
-    @include poppins(700);
+    @include font-header(700);
     @include text(12px, 16px, $color-white, 0.71px);
     // max-width: 90px;;
   }
@@ -84,7 +84,7 @@
   }
 
   &__btm-link {
-    @include open-sans;
+    @include font-body;
     @include text(14px, 16px, $color-white);
   }
 

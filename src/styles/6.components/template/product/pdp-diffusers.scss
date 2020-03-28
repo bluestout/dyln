@@ -5,7 +5,7 @@
   }
 
   &__title {
-    @include poppins(700);
+    @include font-header(700);
     @include text(24px, 33px, $color-title, 1.42px);
     display: inline-block;
     vertical-align: middle;
@@ -83,7 +83,7 @@
   }
 
   &__note {
-    @include open-sans;
+    @include font-body;
     @include text(12px, 17px, $color-body-text, 0.71px);
   }
 
@@ -104,7 +104,7 @@
   }
 
   &__label {
-    @include poppins(500);
+    @include font-header(500);
     @include text(17px, 24px, $color-body-text, 1px);
     @include underline($color-main-1, false);
   }
@@ -136,12 +136,12 @@
   }
 
   &__regular-price {
-    @include poppins(500);
+    @include font-header(500);
     @include text(16px, 20px, $color-white, 0.95px);
   }
 
   &__regular-text {
-    @include poppins(700);
+    @include font-header(700);
     @include text(16px, 20px, $color-white, 0.95px);
     text-transform: uppercase;
   }
@@ -155,18 +155,18 @@
   }
 
   &__sub-price {
-    @include poppins(500);
+    @include font-header(500);
     @include text(16px, 20px, $color-theme-8, 0.95px);
   }
 
   &__sub-btn-text {
-    @include poppins(700);
+    @include font-header(700);
     @include text(16px, 20px, $color-theme-8, 0.95px);
     text-transform: uppercase;
   }
 
   &__sub-btn-freq {
-    @include poppins(700);
+    @include font-header(700);
     @include text(10px, 15px, $color-theme-8, 0.59px);
     position: absolute;
     left: 50%;

@@ -1,5 +1,5 @@
 .footer-copyright {
-  @include poppins(500);
+  @include font-header(500);
   @include text(12px, 14px, $color-white, 0.71px);
 
   a {

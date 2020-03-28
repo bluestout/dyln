@@ -40,7 +40,7 @@
   }
 
   &__utils-cart-num {
-    @include poppins(bold);
+    @include font-header(bold);
     @include text(12px, 12px, $color-main-1, 0.71px);
     position: absolute;
     top: 0;

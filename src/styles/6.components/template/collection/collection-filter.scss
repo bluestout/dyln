@@ -12,7 +12,7 @@
   }
 
   &__header-text {
-    @include poppins(700);
+    @include font-header(700);
     @include text(18px, 20px, $color-title, 1.06px);
     display: inline-block;
     vertical-align: middle;
@@ -60,7 +60,7 @@
   }
 
   &__cat-btn-text {
-    @include poppins(700);
+    @include font-header(700);
     @include text(18px, 20px, $color-title, 1.06px);
     @include transition(color);
     display: inline-block;
@@ -154,7 +154,7 @@
   }
 
   &__cat-option-text {
-    @include poppins(500);
+    @include font-header(500);
     @include text(14px, 20px, $color-body-text, 0.83px);
     margin: 0 0 0 10px;
     display: inline-block;
@@ -163,7 +163,7 @@
 
   &__reset-filters {
     @include no-browser-styling;
-    @include poppins(500);
+    @include font-header(500);
     @include text(14px, 20px, $color-body-text, 0.83px);
     padding: 5px 0;
     float: right;
@@ -202,7 +202,7 @@
   &__current-title {
     @include no-browser-styling;
     @include transition(color);
-    @include poppins;
+    @include font-header;
     @include text(12px, 17px, $color-body-text, 0.51px);
     display: inline-block;
     vertical-align: middle;

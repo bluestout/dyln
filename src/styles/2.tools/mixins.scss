@@ -127,22 +127,24 @@
   letter-spacing: $spacing;
 }
 
-@mixin font-body($isBold: false) {
-  font-family: $font-body;
-  font-style: $font-body-style;
-  $weight: $font-body-weight;
-  @if $isBold == true {
-    $weight: $font-body-bold-weight;
-  }
+@mixin font-header($weight: 400, $style: normal) {
+  font-family: $font-heading;
   font-weight: $weight;
+  font-style: $style;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@mixin font-header {
-  $font-heading: var(--font-heading);
+@mixin font-body($weight: $font-body-weight, $style: $font-body-style) {
+  font-family: $font-body;
+  font-style: $style;
+  font-weight: $weight;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @mixin text-title($color: $color-title) {
-  @include poppins(700);
+  @include font-header(700);
   @include text(40px, 56px, $color, 2.36px);
 }
 
@@ -216,7 +218,7 @@
   }
 
   @if $type == solid {
-    @include poppins(700);
+    @include font-header(700);
     @include text(14px, 18px, $btn-text-c, 0.83px);
     @include transition(background, bottom, box-shadow);
     position: relative;
@@ -271,7 +273,7 @@
       cursor: not-allowed;
     }
   } @else if $type == wire {
-    @include poppins(700);
+    @include font-header(700);
     @include text(14px, 18px, $btn-text-c, 0.83px);
     @include transition(bottom, box-shadow, border, color);
     position: relative;

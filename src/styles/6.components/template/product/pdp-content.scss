@@ -9,14 +9,14 @@
   }
 
   &__content {
-    @include open-sans;
+    @include font-body;
     @include text(16px, 20px, $color-body-text, 0.65px);
     margin: 0 0 5px;
 
     a,
     p,
     span {
-      @include open-sans;
+      @include font-body;
       @include text(16px, 20px, $color-body-text, 0.65px);
     }
 

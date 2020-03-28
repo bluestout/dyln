@@ -45,7 +45,7 @@
     border: none;
     background: none;
     span {
-      @include poppins(500);
+      @include font-header(500);
       @include text(18px, 45px, $color-body-text, 1.06px);
       display: inline-block;
       vertical-align: middle;

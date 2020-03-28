@@ -47,7 +47,7 @@
   }
 
   &__item-title {
-    @include poppins(700);
+    @include font-header(700);
     @include text(16px, 23px, $color-title, 0.95px);
     margin: 0;
   }
@@ -79,7 +79,7 @@
   }
 
   &__item-button {
-    @include poppins(700);
+    @include font-header(700);
     @include text(18px, 30px, $color-body-text, 1.06px);
     @include no-browser-styling;
     width: 20px;
@@ -91,7 +91,7 @@
   }
 
   &__item-input {
-    @include poppins(500);
+    @include font-header(500);
     @include text(21px, 30px, $color-body-text, 1.24px);
     @include no-browser-styling;
     @include no-input-spinner;
@@ -103,7 +103,7 @@
   }
 
   &__item-price {
-    @include poppins(500);
+    @include font-header(500);
     @include text(16px, 23px, $color-title, 0.95px);
     float: right;
   }
@@ -128,7 +128,7 @@
   }
 
   &__upsell-title {
-    @include poppins(700);
+    @include font-header(700);
     @include text(20px, 28px, $color-title, 1.18px);
     text-align: center;
     text-transform: uppercase;
@@ -162,12 +162,12 @@
   }
 
   &__upsell-item-title {
-    @include poppins(700);
+    @include font-header(700);
     @include text(14px, 20px, $color-title, 1.5px);
   }
 
   &__upsell-text {
-    @include poppins(500);
+    @include font-header(500);
     @include text(14px, 20px, $color-title, 1.5px);
   }
 

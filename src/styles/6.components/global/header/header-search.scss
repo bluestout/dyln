@@ -47,7 +47,7 @@
   }
 
   &__input {
-    @include poppins(500);
+    @include font-header(500);
     @include text(20px, 50px, $color-title, 1.2px);
     padding: 15px 0;
     border: none;
@@ -97,7 +97,7 @@
   }
 
   &__pop-title {
-    @include poppins(700);
+    @include font-header(700);
     @include text(30px, 43px, $color-main-1, 1.77px);
     text-align: center;
     margin: 0 0 20px;
@@ -108,7 +108,7 @@
   }
 
   &__pop_term {
-    @include poppins(700);
+    @include font-header(700);
     @include text(18px, 25px, $color-body-text, 1.06px);
     display: inline-block;
     border: none;

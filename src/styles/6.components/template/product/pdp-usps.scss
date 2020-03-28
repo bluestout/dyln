@@ -65,7 +65,7 @@
   }
 
   &__usp-text {
-    @include poppins(500);
+    @include font-header(500);
     @include text(14px, 18px, $color-body-text, 0.83px);
   }
 }

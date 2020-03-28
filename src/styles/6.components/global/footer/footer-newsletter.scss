@@ -1,17 +1,17 @@
 .footer-newsletter {
   &__title {
-    @include poppins(700);
+    @include font-header(700);
     @include text(20px, 20px, $color-white, 1.18px);
     margin: 0 0 20px;
   }
 
   &__success {
-    @include poppins(500);
+    @include font-header(500);
     @include text(18px, 20px, $color-white, 1.18px);
   }
 
   &__input {
-    @include open-sans;
+    @include font-body;
     @include text(20px, 27px, $color-body-text);
     margin: 0 0 10px;
     display: block;

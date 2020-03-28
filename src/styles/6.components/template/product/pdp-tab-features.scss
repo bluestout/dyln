@@ -49,7 +49,7 @@
   }
 
   &__subtitle {
-    @include poppins(700);
+    @include font-header(700);
     @include text(30px, 45px, $color-main-1, 1.77px);
   }
 
@@ -61,7 +61,7 @@
   }
 
   &__content {
-    @include open-sans;
+    @include font-body;
     @include text(20px, 27px, $color-body-text, 1.18px);
   }
 

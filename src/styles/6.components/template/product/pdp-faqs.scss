@@ -44,7 +44,7 @@
   }
 
   &__faq-closed {
-    @include poppins(700);
+    @include font-header(700);
     @include text(20px, 28px, $color-main-1, 1.77px);
     text-align: center;
     width: 10px;
@@ -53,7 +53,7 @@
   }
 
   &__faq-open {
-    @include poppins(700);
+    @include font-header(700);
     @include text(20px, 28px, $color-main-1, 1.77px);
     text-align: center;
     width: 10px;
@@ -62,7 +62,7 @@
   }
 
   &__faq-q {
-    @include poppins(700);
+    @include font-header(700);
     @include text(1.18, 28px, $color-title);
     display: inline-block;
     vertical-align: middle;
@@ -70,7 +70,7 @@
   }
 
   &__faq-a {
-    @include open-sans;
+    @include font-body;
     @include text(18px, 24px, $color-body-text, 1.08px);
     padding: 10px 0 0;
   }

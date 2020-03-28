@@ -5,7 +5,7 @@
   }
 
   &__price {
-    @include poppins(700);
+    @include font-header(700);
     @include text(20px, 28px, $color-body-text, 1.18px);
     margin: 0 0 15px;
   }
@@ -15,12 +15,12 @@
   }
 
   &__option-label {
-    @include poppins(700);
+    @include font-header(700);
     @include text(17px, 24px, $color-body-text, 1px);
   }
 
   &__current-color {
-    @include poppins(500);
+    @include font-header(500);
     @include text(17px, 24px, $color-theme-8, 1px);
   }
 
@@ -70,7 +70,7 @@
   }
 
   &__value-label {
-    @include poppins(500);
+    @include font-header(500);
     @include text(17px, 24px, $color-body-text, 1px);
     @include underline($color-main-1, false);
   }
@@ -102,7 +102,7 @@
   }
 
   &__qty-button {
-    @include poppins(700);
+    @include font-header(700);
     @include text(18px, 30px, $color-body-text, 1.06px);
     @include no-browser-styling;
     width: 20px;
@@ -114,7 +114,7 @@
   }
 
   &__qty-input {
-    @include poppins(500);
+    @include font-header(500);
     @include text(21px, 30px, $color-body-text, 1.24px);
     @include no-browser-styling;
     @include no-input-spinner;
@@ -131,7 +131,7 @@
     width: 100%;
 
     span {
-      @include poppins(700);
+      @include font-header(700);
       @include text(24px, 30px, $color-white, 1.2px);
       text-transform: uppercase;
     }

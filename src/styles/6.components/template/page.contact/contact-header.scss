@@ -23,7 +23,7 @@
   }
 
   &__content {
-    @include poppins(500);
+    @include font-header(500);
     @include text(20px, 28px, $color-body-text, 1.18px);
     text-align: center;
     margin: 10px 0 0;
@@ -31,7 +31,7 @@
     a,
     p,
     span {
-      @include poppins(500);
+      @include font-header(500);
       @include text(20px, 28px, $color-body-text, 1.18px);
     }
   }

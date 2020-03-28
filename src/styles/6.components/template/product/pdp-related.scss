@@ -41,7 +41,7 @@
   }
 
   &__title {
-    @include poppins(500);
+    @include font-header(500);
     @include text(14px, 20px, $color-body-text, 0.83px);
     @include underline($color-main-1, false);
     @include transition(color);
@@ -50,14 +50,14 @@
   }
 
   &__content {
-    @include poppins(700);
+    @include font-header(700);
     @include text(12px, 20px, $color-body-text, 0.71px);
     text-align: center;
     display: block;
   }
 
   &__price {
-    @include poppins(700);
+    @include font-header(700);
     @include text(18px, 20px, $color-body-text, 1.06px);
     margin: 10px 0 0;
     display: block;

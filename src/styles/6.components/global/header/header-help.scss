@@ -61,7 +61,7 @@
   }
 
   &__main-text {
-    @include poppins(500);
+    @include font-header(500);
     @include text(18px, 25px, $color-body-text, 1.5px);
     @include transition(color);
     @include underline($color-body-text, false);
@@ -118,7 +118,7 @@
   }
 
   &__nav-link {
-    @include poppins(500);
+    @include font-header(500);
     @include text(18px, 35px, $color-body-text, 1.06px);
     @include underline($color-main-1);
     @include transition(color);
@@ -151,7 +151,7 @@
   }
 
   &__big-link-t {
-    @include poppins(700);
+    @include font-header(700);
     @include text(18px, 40px, $color-body-text, 1.06px);
     display: inline-block;
     vertical-align: middle;
@@ -165,13 +165,13 @@
   }
 
   &__faq-title {
-    @include poppins(700);
+    @include font-header(700);
     @include text(20px, 28px, $color-main-1, 1.18px);
     float: left;
   }
 
   &__faq-link {
-    @include poppins(700);
+    @include font-header(700);
     @include text(14px, 28px, $color-theme-8, 0.63px);
     @include underline($color-theme-8);
     float: right;
@@ -217,7 +217,7 @@
   }
 
   &__faq-closed {
-    @include poppins(700);
+    @include font-header(700);
     @include text(20px, 28px, $color-main-1, 1.77px);
     text-align: center;
     width: 10px;
@@ -226,7 +226,7 @@
   }
 
   &__faq-open {
-    @include poppins(700);
+    @include font-header(700);
     @include text(20px, 28px, $color-main-1, 1.77px);
     text-align: center;
     width: 10px;
@@ -248,7 +248,7 @@
   }
 
   &__faq-q {
-    @include poppins(700);
+    @include font-header(700);
     @include text(1.18, 28px, $color-title);
     display: inline-block;
     vertical-align: middle;
@@ -256,7 +256,7 @@
   }
 
   &__faq-a {
-    @include open-sans;
+    @include font-body;
     @include text(18px, 24px, $color-body-text, 1.08px);
     padding: 10px 0 0;
   }

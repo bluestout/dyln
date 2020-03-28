@@ -49,7 +49,7 @@
   }
 
   &__text {
-    @include poppins(500);
+    @include font-header(500);
     @include text(20px, 28px, $color-body-text, 1.18px);
     margin: 0 0 20px;
   }
@@ -66,7 +66,7 @@
   }
 
   &__button-text {
-    @include poppins(500);
+    @include font-header(500);
     @include text(18px, 25px, $color-title, 1.06px);
     @include transition(color, border);
     border-bottom: 2px solid $color-title;
@@ -89,7 +89,7 @@
   }
 
   &__format {
-    @include poppins(700);
+    @include font-header(700);
     @include text(26px, 36px, $color-white);
     margin: auto;
   }

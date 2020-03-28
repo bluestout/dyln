@@ -58,13 +58,13 @@
   }
 
   &__s-title {
-    @include poppins(700);
+    @include font-header(700);
     @include text(24px, 33px, $color-main-1, 1.42px);
     margin: 0 0 15px;
   }
 
   &__s-content {
-    @include open-sans;
+    @include font-body;
     @include text(20px, 27px, $color-body-text, 1.18px);
     margin: 0 0 10px;
   }
@@ -80,7 +80,7 @@
   }
 
   &__s-author {
-    @include open-sans(700);
+    @include font-body(700);
     @include text(20px, 27px, $color-body-text, 1.18px);
     margin: 0;
   }

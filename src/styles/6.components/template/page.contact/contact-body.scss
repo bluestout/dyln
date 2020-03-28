@@ -35,7 +35,7 @@
   }
 
   &__big-link-t {
-    @include poppins(700);
+    @include font-header(700);
     @include text(18px, 40px, $color-body-text, 1.06px);
     display: inline-block;
     vertical-align: middle;
@@ -72,7 +72,7 @@
   }
 
   &__modal-title {
-    @include poppins(700);
+    @include font-header(700);
     @include text(16px, 20px, $color-body-text, 0.95px);
     margin: 0 0 20px;
     text-align: center;
@@ -120,21 +120,21 @@
   }
 
   &__modal-b-t {
-    @include poppins;
+    @include font-header;
     @include text(12px, 45px, $color-body-text, 0.71px);
     display: inline-block;
     vertical-align: middle;
   }
 
   &__modal-note {
-    @include poppins(700);
+    @include font-header(700);
     @include text(10px, 12px, $color-body-text, 0.59px);
     margin: 20px 0 0;
     text-align: center;
   }
 
   &__form-title {
-    @include poppins(700);
+    @include font-header(700);
     @include text(18px, 25px, $color-body-text, 1.06px);
     text-align: right;
   }
@@ -144,7 +144,7 @@
 
     input[type="email"],
     input[type="text"] {
-      @include poppins;
+      @include font-header;
       @include text(14px, 20px, $color-body-text, 0.83px);
       border: none;
       border-radius: 0;
@@ -157,7 +157,7 @@
     }
 
     select {
-      @include poppins;
+      @include font-header;
       @include text(14px, 20px, $color-body-text, 0.83px);
       padding: 5px 0;
       border: none;
@@ -165,7 +165,7 @@
     }
 
     textarea {
-      @include poppins;
+      @include font-header;
       @include text(14px, 20px, $color-body-text, 0.83px);
       border: 1px solid $color-main;
       border-radius: 0;
@@ -183,7 +183,7 @@
   }
 
   &__form-note {
-    @include poppins;
+    @include font-header;
     @include text(9px, 12px, $color-body-text, 0.53px);
     float: left;
   }
@@ -194,13 +194,13 @@
   }
 
   &__success {
-    @include poppins(500);
+    @include font-header(500);
     @include text(18px, 28px, $color-body-text, 1.06px);
     margin: 0 0 20px;
   }
 
   &__address {
-    @include poppins(500);
+    @include font-header(500);
     @include text(16px, 23px, $color-body-text, 0.95px);
   }
 }

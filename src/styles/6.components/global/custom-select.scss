@@ -25,7 +25,7 @@ $select-height: 30px;
 
 .custom-select-styled {
   @include transition(all 0.2s ease-in);
-  @include poppins;
+  @include font-header;
   @include text(14px, 20px, $color-body-text, 0.83px);
   position: absolute;
   top: 0;

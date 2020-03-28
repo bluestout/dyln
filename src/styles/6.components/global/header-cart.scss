@@ -54,7 +54,7 @@
   }
 
   &__title {
-    @include poppins(700);
+    @include font-header(700);
     @include text(20px, 28px, $color-title, 1.18px);
     text-transform: uppercase;
     text-align: center;
@@ -76,7 +76,7 @@
   }
 
   &__cart-num {
-    @include poppins(bold);
+    @include font-header(bold);
     @include text(12px, 12px, $color-main-1, 0.71px);
     position: absolute;
     top: 0;
@@ -96,7 +96,7 @@
   }
 
   &__shipping-bar {
-    @include poppins;
+    @include font-header;
     @include text(14px, 20px, $color-white, 0.83px);
     padding: 3px 15px;
     width: 100%;
@@ -110,7 +110,7 @@
   }
 
   &__empty-note {
-    @include poppins(700);
+    @include font-header(700);
     @include text(23px, 32px, $color-title, 1.36px);
     margin: 0 0 10px;
     text-align: center;
@@ -126,7 +126,7 @@
   }
 
   &__empty-title {
-    @include poppins(700);
+    @include font-header(700);
     @include text(20px,28px,$color-body-text,1.18px);
     max-width: calc(100% - 71px);
   }

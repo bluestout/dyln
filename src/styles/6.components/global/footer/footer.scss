@@ -36,13 +36,13 @@
   }
 
   &__lf-content {
-    @include open-sans;
+    @include font-body;
     @include text(20px, 20px, $color-body-text, 1.18px);
     margin: 0 0 20px;
   }
 
   &__lf-links-header {
-    @include poppins(700);
+    @include font-header(700);
     @include text(18px, 26px, $color-main-1, 1.06px);
     margin: 0 0 10px;
     text-transform: uppercase;
@@ -53,7 +53,7 @@
   }
 
   &__lf-link {
-    @include poppins(700);
+    @include font-header(700);
     @include text(18px, 26px, $color-theme-8, 1.06px);
     @include transition(color);
     margin: 0 0 5px;
@@ -117,13 +117,13 @@
   }
 
   &__lf-a-blog {
-    @include poppins(500);
+    @include font-header(500);
     @include text(14, 20px, $color-white, 1.5px);
     text-transform: uppercase;
   }
 
   &__lf-a-title {
-    @include poppins(700);
+    @include font-header(700);
     @include text(20px, 20px, $color-white, 1.18px);
   }
 
@@ -146,7 +146,7 @@
   }
 
   &__parent-link {
-    @include poppins(700);
+    @include font-header(700);
     @include text(24px, 33px, $color-white, 0.22px);
     margin: 0 0 40px;
   }
@@ -163,7 +163,7 @@
   }
 
   &__menu-link {
-    @include open-sans;
+    @include font-body;
     @include text(18px, 24px, $color-white, 0.16px);
     margin: 0;
     text-decoration: none;

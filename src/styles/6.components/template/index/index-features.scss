@@ -23,7 +23,7 @@
     align-self: center;
   }
   &__f-title {
-    @include poppins(700);
+    @include font-header(700);
     font-size: 30px;
     line-height: 45px;
     letter-spacing: 1.77px;
@@ -36,25 +36,25 @@
   }
 
   &__f-content {
-    @include open-sans;
+    @include font-body;
     color: $color-body-text;
     margin: 0 0 20px;
 
     p,
     a {
-      @include open-sans;
+      @include font-body;
       color: $color-body-text;
     }
   }
 
   &__f-bottom {
     p {
-      @include poppins(500);
+      @include font-header(500);
       color: $color-body-text;
     }
 
     a {
-      @include poppins(500);
+      @include font-header(500);
       color: $color-main-1;
       text-decoration: underline;
     }

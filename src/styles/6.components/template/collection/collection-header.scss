@@ -26,7 +26,7 @@
   }
 
   &__subtitle {
-    @include poppins(500);
+    @include font-header(500);
     @include text(24px, 35px, $color-title, 1px);
     margin: 0 0 15px;
   }
@@ -61,7 +61,7 @@
   }
 
   &__usp-title {
-    @include poppins(700);
+    @include font-header(700);
     @include text(12px, 16px, $color-body-text, 0.71px);
   }
 }
