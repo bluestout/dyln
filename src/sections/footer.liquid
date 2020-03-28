@@ -1,63 +1,113 @@
-{% if template == "index" %}
-  <div class="site-footer__lifestyle">
-    <div class="site-footer__wave-top"></div>
-    <div class="site-footer__lifestyle-bg">
-      <div class="container" data-tabs-container>
-        <div class="row">
-          <div class="col-5">
-            <h3 class="site-footer__lf-title">The DYLN Lifestyle</h3>
-            <p class="site-footer__lf-content">We are passionate about all health and environment issues, read more on our DYLN Blog</p>
-            <p class="site-footer__lf-links-header">SELECT TOPIC</p>
-            {% comment %} for each blog, create a a separate link {% endcomment %}
-            <div class="site-footer__lf-links">
-              <a class="site-footer__lf-link active" href="#" data-tab-link="1">Recent</a>
-              <a class="site-footer__lf-link" href="#" data-tab-link="2">Talking Health</a>
-              <a class="site-footer__lf-link" href="#" data-tab-link="3">Community</a>
-              <a class="site-footer__lf-link" href="#" data-tab-link="4">Alkaline Living</a>
-              <a class="site-footer__lf-link" href="#" data-tab-link="5">Customer Stories</a>
-            </div>
-          </div>
-          <div class="col-7">
-            <div class="site-footer__lf-list-wrap">
-              {% comment %} for each blog, create a new section {% endcomment %}
-              <div class="site-footer__lf-list active" data-tab="1">
-                {% assign lf_blog = blogs["chapters"] %}
-                {% for lf_article in lf_blog.articles limit: 10 %}
-                  <div class="site-footer__lf-article">
-                    {% if lf_article.image %}
-                      {% render 'responsive-image' with
-                        image: lf_article.image,
-                        max_width: 312,
-                        max_height: 312,
-                        wrapper_class: "site-footer__lf-a-img-wrap",
-                        image_class: "site-footer__lf-a-img",
-                      %}
+{%- if section.settings.lf_blog != empty -%}
+  {%- if section.setting.show_lifestyle_on_hp_only == false or template.name == 'index' -%}
+    <div class="site-footer__lifestyle">
+      <div class="site-footer__wave-top"></div>
+      <div class="site-footer__lifestyle-bg">
+        <div class="container" data-tabs-container>
+          {%- assign lf_blog = blogs[section.settings.lf_blog] -%}
+          {%- assign lf_tags = lf_blog.all_tags -%}
+          <div class="row">
+            <div class="col-5">
+              <h3 class="site-footer__lf-title">{{ section.settings.lf_title }}</h3>
+              <p class="site-footer__lf-content">{{ section.settings.lf_content }}</p>
+              <p class="site-footer__lf-links-header">{{ section.settings.lf_topics_h }}</p>
+              {% comment %} for each blog, create a a separate link {% endcomment %}
+              <div class="site-footer__lf-links">
+                {% if section.settings.lf_recent != empty %}
+                  <a class="site-footer__lf-link active" href="#" data-tab-link="1">{{ section.settings.lf_recent }}</a>
+                {% endif %}
+                {% for lf_tag in lf_tags %}
+                  {% assign index = forloop.index | plus: 1 %}
+                  <a
+                    {% if section.settings.lf_recent == empty and forloop.first %}
+                    class="site-footer__lf-link active"
+                    {% else %}
+                    class="site-footer__lf-link"
                     {% endif %}
-                    <div class="site-footer__lf-a-overlay"></div>
-                    <div class="site-footer__lf-a-content">
-                      <span class="site-footer__lf-a-blog">{{ lf_blog.title }}</span>
-                      <h6 class="site-footer__lf-a-title">{{ lf_article.title }}</h6>
-                    </div>
+                    href="#"
+                    data-tab-link="{{ index }}">{{ lf_tag }}</a>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="col-7">
+              <div class="site-footer__lf-list-wrap">
+                {% comment %} for each blog, create a new section {% endcomment %}
+
+                {% if section.settings.lf_recent != empty %}
+                  <div class="site-footer__lf-list active" data-tab="1">
+                    {% for lf_article in lf_blog.articles limit: 10 %}
+                      <div class="site-footer__lf-article">
+                        {% if lf_article.image %}
+                          {% render 'responsive-image' with
+                            image: lf_article.image,
+                            max_width: 312,
+                            max_height: 312,
+                            wrapper_class: "site-footer__lf-a-img-wrap",
+                            image_class: "site-footer__lf-a-img",
+                          %}
+                        {% endif %}
+                        <div class="site-footer__lf-a-overlay"></div>
+                        <div class="site-footer__lf-a-content">
+                          <span class="site-footer__lf-a-blog">{{ lf_article.tags[0] }}</span>
+                          <h6 class="site-footer__lf-a-title">{{ lf_article.title }}</h6>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+
+                {% for lf_tag in lf_tags %}
+                  {% assign count = 0 %}
+                  {% assign index = forloop.index | plus: 1 %}
+                  <div
+                    {% if section.settings.lf_recent == empty and forloop.first %}
+                    class="site-footer__lf-list active"
+                    {% else %}
+                    class="site-footer__lf-list" style="display:none;"
+                    {% endif %}
+                    data-tab="{{ index }}">
+                    {% for lf_article in lf_blog.articles %}
+                      {% if count >= 10 %}
+                        {% break %}
+                      {% endif %}
+                      {% if lf_article.tags contains lf_tag %}
+                        {% assign count = count | plus: 1 %}
+                        <div class="site-footer__lf-article">
+                          {% if lf_article.image %}
+                            {% render 'responsive-image' with
+                              image: lf_article.image,
+                              max_width: 312,
+                              max_height: 312,
+                              wrapper_class: "site-footer__lf-a-img-wrap",
+                              image_class: "site-footer__lf-a-img",
+                            %}
+                          {% endif %}
+                          <div class="site-footer__lf-a-overlay"></div>
+                          <div class="site-footer__lf-a-content">
+                            <span class="site-footer__lf-a-blog">{{ lf_tag }}</span>
+                            <h6 class="site-footer__lf-a-title">{{ lf_article.title }}</h6>
+                          </div>
+                        </div>
+                      {% endif %}
+                    {% endfor %}
                   </div>
                 {% endfor %}
               </div>
-              <div class="site-footer__lf-list" style="display:none;" data-tab="2"></div>
-              <div class="site-footer__lf-list" style="display:none;" data-tab="3"></div>
-              <div class="site-footer__lf-list" style="display:none;" data-tab="4"></div>
-              <div class="site-footer__lf-list" style="display:none;" data-tab="5"></div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-{% endif %}
+  {%- endif -%}
+{%- endif -%}
 
-{% if template == "index" %}
-<div class="site-footer__separator gray"></div>
-{% else %}
-  <div class="site-footer__separator"></div>
-{% endif %}
+{%- if section.settings.lf_blog != empty -%}
+  {%- if section.setting.show_lifestyle_on_hp_only == false or template.name == 'index' -%}
+  <div class="site-footer__separator gray"></div>
+  {%- else -%}
+    <div class="site-footer__separator"></div>
+  {%- endif -%}
+{%- endif -%}
 
 <footer class="site-footer__footer">
   <div class="site-footer__wave-middle"></div>
@@ -84,16 +134,12 @@
         {% endfor %}
         <div class="col">
           {% render 'footer-newsletter' %}
-
           {% render 'social-links' %}
-
         </div>
       </div>
-
       <div class="footer-copyright">
          © {{ "now" | date: "%Y" }}, DYLN Inspired | <a href="">Privacy Policy</a> | <a href="">Terms</a> | <a href="">IP</a>
       </div>
-
     </div>
   </div>
 </footer>
@@ -107,6 +153,39 @@
         "type": "link_list",
         "id": "menu",
         "label": "Menu"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_lifestyle_on_hp_only",
+        "label": "Home page only",
+        "info": "Show Lifestyle Section only on home page?",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "lf_title",
+        "label": "Lifestyle Title"
+      },
+      {
+        "type": "textarea",
+        "id": "lf_content",
+        "label": "Lifestyle Description"
+      },
+      {
+        "type": "text",
+        "id": "lf_topics_h",
+        "label": "Lifestyle Topics Header"
+      },
+      {
+        "type": "blog",
+        "id": "lf_blog",
+        "label": "Lifestyle Blog",
+        "info": "The blog selection is required for the section to appear."
+      },
+      {
+        "type": "text",
+        "id": "lf_recent",
+        "label": "Recent Blogs Header"
       }
     ]
   }
