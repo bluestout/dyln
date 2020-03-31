@@ -304,18 +304,6 @@ function emptyCartHtml() {
   return empty;
 }
 
-function emptyQuickCartHtml() {
-  const empty = `<p class="cart-drawer__shipping-note">
-    ${theme.strings.cart_empty}
-  </p>
-  <div class="cart-drawer__browsing-wrap">
-    ${theme.strings.shop_mens}
-    <br>
-    ${theme.strings.shop_womens}
-  </div>`;
-  return empty;
-}
-
 function productImageHtml(product, format, className) {
   let image = "";
   let domClass = "";
@@ -347,6 +335,5 @@ export {
   quickCartLineItemHtml,
   cartLineItemHtml,
   cartTotalsHtml,
-  emptyCartHtml,
-  emptyQuickCartHtml
+  emptyCartHtml
 };

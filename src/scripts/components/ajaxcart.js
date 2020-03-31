@@ -6,8 +6,7 @@ import {
   quickCartLineItemHtml,
   cartLineItemHtml,
   cartTotalsHtml,
-  emptyCartHtml,
-  emptyQuickCartHtml
+  emptyCartHtml
 } from "./ajaxcart-html";
 
 const elements = {
@@ -31,7 +30,6 @@ const elements = {
   upsellSelect: "[data-upsell-select]",
   upsellText: "[data-add-upsell-text]",
   upsellProgress: "[data-add-upsell-loading]",
-  addToCart: "[data-add-to-cart]",
   quick: {
     toggle: "[data-cart-drawer-toggle]",
     content: "[data-cart-drawer-content]",
@@ -213,21 +211,30 @@ function updateQuickCart(cart) {
         ${handleUpsell(cart)}
       </div>
       <div class="cart-drawer__totals-wrap sticky" data-cart-drawer-totals-wrap >
-
-        <span class="cart-drawer__total" data-cart-drawer-totals>
-          ${theme.strings.total}:
+        <div class="cart-drawer__total" data-cart-drawer-totals>
+          <span class="cart-drawer__total-text">${theme.strings.subtotal}</span>
           <span
+            class="cart-drawer__total-price"
             data-total="${formatAndTrimPrice(cart.total_price)}">
             ${formatAndTrimPrice(cart.total_price)}
           </span>
-        </span>
-
-        <input
-          type="submit"
-          name="checkout"
-          class="cart-drawer__checkout"
-          value="${theme.strings.checkout}"
-          data-cart-drawer-checkout/>
+        </div>
+        <button class="cart-drawer__checkout" name="checkout" type="submit" data-cart-drawer-checkout>
+          <span class="cart-drawer__checkout-text">${theme.strings.checkout}</span>
+          <svg class="cart-drawer__checkout-icon" width='20' height='22' viewBox='0 0 20 22' xmlns='http://www.w3.org/2000/svg'><g transform='translate(.573 1.784)' fill='none' fill-rule='evenodd'><rect stroke='#FFF' stroke-width='2' x='1' y='7.703' width='16.958' height='11.405' rx='2'/><path d='M3.991 7.122V4.608C3.991 2.063 6.071 0 8.635 0h1.688c2.565 0 4.644 2.063 4.644 4.608v2.514' stroke='#FFF' stroke-width='2' stroke-linejoin='round'/><ellipse fill='#FFF' cx='9.479' cy='12.149' rx='2.494' ry='2.095'/><path stroke='#FFF' stroke-width='2' stroke-linecap='round' d='M9.479 13.405v2.466'/></g></svg>
+        </button>
+        <div class="cart-drawer__payments">
+          <span class="cart-drawer__payments-title">${theme.strings.pay_using}</span>
+          <span class="cart-drawer__payment">
+            <img src="${theme.imageUrls.logoAmazon}" alt="Amazon Pay" />
+          </span>
+          <span class="cart-drawer__payment">
+            <img src="${theme.imageUrls.logoGooglePay}" alt="Google Pay" />
+          </span>
+          <span class="cart-drawer__payment">
+            <img src="${theme.imageUrls.logoPayPal}" alt="PayPal" />
+          </span>
+        </div>
       </div>
     </form>
   `;
@@ -236,13 +243,13 @@ function updateQuickCart(cart) {
   return $quickCart.html(form);
 }
 
-function toggleAddingToCartAnimation(state) {
-  if (state && document.querySelector(elements.add)) {
-    document.querySelector(elements.addText).classList.add("hide");
-    document.querySelector(elements.addLoading).classList.remove("hide");
-  } else if (document.querySelector(elements.add)) {
-    document.querySelector(elements.addText).classList.remove("hide");
-    document.querySelector(elements.addLoading).classList.add("hide");
+function toggleAddingToCartAnimation($source, state) {
+  if (state && $source.length > 0) {
+    $source.find(elements.addText).addClass("hide");
+    $source.find(elements.addLoading).removeClass("hide");
+  } else {
+    $(elements.addText).removeClass("hide");
+    $(elements.addLoading).addClass("hide");
   }
 }
 
@@ -271,35 +278,18 @@ function toggleQuickCartEmptyStatus(empty) {
 function handleAjaxAddButtonClick(event) {
   event.preventDefault();
   const $source = $(event.currentTarget);
+  const $form = $source.closest("form");
 
   if ($source.attr("disabled") === "disabled") {
     return;
   }
 
-  toggleAddingToCartAnimation(true);
+  toggleAddingToCartAnimation($source, true);
 
   setTimeout(() => {
-    toggleAddingToCartAnimation(false);
+    toggleAddingToCartAnimation($source, false);
   }, 10000);
 
-  const $form = $source.closest("form");
-
-  const price = $(elements.productPrice)
-    .text()
-    .replace(/\D/g, "");
-
-  const formarray = $form.serializeArray();
-  const id = formarray && formarray[4] ? formarray[4].value : 0;
-  const qty = formarray && formarray[5] ? formarray[5].value : 0;
-
-  const params = {
-    item_number: id,
-    price: {
-      amount: price,
-      currency: "USD"
-    },
-    quantity: qty ? qty : 1
-  };
 
   (async () => {
     await new Promise(resolve => {
@@ -326,12 +316,12 @@ function handleAjaxAddUpsell(event) {
   const $text = $source.find(elements.upsellText);
   const $loading = $source.find(elements.upsellProgress);
 
-  toggleAddingToCartAnimation(true);
+  toggleAddingToCartAnimation($source, true);
   $loading.removeClass("hide");
   $text.addClass("hide");
 
   setTimeout(() => {
-    toggleAddingToCartAnimation(false);
+    toggleAddingToCartAnimation($source, false);
     $loading.addClass("hide");
     $text.removeClass("hide");
   }, 10000);
@@ -414,11 +404,6 @@ function cartIsEmpty() {
   return $(elements.cart.container).html(empty);
 }
 
-// what to show on quickcart if the cart is empty
-function QuickcartIsEmpty() {
-  return $(elements.quick.content).html(emptyQuickCartHtml());
-}
-
 // function to run whenever the cart contents are updated with ajax
 function returnCartIfNotEmpty(json) {
   // if json has items, update cart. If not, return empty
@@ -430,12 +415,11 @@ function returnCartIfNotEmpty(json) {
     toggleQuickCartEmptyStatus(false);
   } else {
     cartIsEmpty();
-    QuickcartIsEmpty();
     updateQuickCartCount(json);
     toggleQuickCartEmptyStatus(true);
   }
   containerLoading();
-  toggleAddingToCartAnimation();
+  toggleAddingToCartAnimation($(elements.add));
   handleCartDrawerCheckoutHeight();
   document.dispatchEvent(ajaxReloaded);
 }
@@ -487,12 +471,15 @@ function quickCartOpen(open) {
 }
 
 function handleCartDrawerCheckoutHeight() {
-  const productWrapHeight = $(elements.quick.wrap).height();
-  const quickcartHeight = $(elements.quickcart).height();
+  const quickcartHeight = $(elements.quick.content).outerHeight();
+  const productWrapHeight = $(elements.quick.wrap).outerHeight();
+  const totalsHeight = $(elements.quick.totalsWrap).outerHeight();
+  console.log("quickcartHeight: ", quickcartHeight);
+  console.log("totalsHeight: ", totalsHeight);
+  console.log("productWrapHeight: ", productWrapHeight);
+  console.log("height diff: ", quickcartHeight - totalsHeight);
 
-  if (productWrapHeight + 210 > quickcartHeight) {
-    $(elements.quick.totalsWrap).addClass("sticky");
-  }
+  $(elements.quick.wrap).css("height", quickcartHeight - totalsHeight);
 }
 
 function handleUpsell(cart) {
@@ -551,28 +538,6 @@ function handleUpsell(cart) {
   return pattern;
 }
 
-function handleAddToCartClick(event) {
-  event.preventDefault();
-  const $source = $(event.currentTarget);
-  const $form = $source.closest("form");
-
-  if ($source.attr("disabled") === "disabled" || $form.length === 0) {
-    return;
-  }
-
-  $.ajax({
-    type: "POST",
-    url: "/cart/add.js",
-    async: true,
-    data: $form.serialize(),
-    dataType: "json",
-    cache: false,
-    complete: (jqXHR, textStatus) => {
-      addToCartComplete(jqXHR, textStatus);
-    }
-  });
-}
-
 // on click, remove the item form cart
 $(document).on("click", elements.remove, ajaxRemoveFromCartButton);
 
@@ -589,8 +554,6 @@ $(document).on("click", elements.quick.toggle, quickCartToggle);
 // ajaxify add to cart buttons
 $(document).on("click", elements.add, handleAjaxAddButtonClick);
 $(document).on("click", elements.addUpsell, handleAjaxAddUpsell);
-$(document).on("click", elements.addToCart, handleAddToCartClick);
-
 
 // run ajax on page load to get cart contents
 $(document).ready(() => {

@@ -51,6 +51,8 @@
     display: inline-block;
     text-align: center;
     vertical-align: top;
+    max-width: 88px;
+
     &:not(:last-of-type) {
       margin: 0 20px 0 0;
     }

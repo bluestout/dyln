@@ -2,7 +2,7 @@
   <div class="header-cart__overlay" data-cart-drawer-toggle></div>
 
   <div class="header-cart__wrap">
-    <div class="header-cart__header">
+    <div class="header-cart__header" data-c-d-header>
       <button type="button" class="header-cart__close" data-cart-drawer-toggle>{%- render 'icon-chevron-l' -%}</button>
       <h4 class="header-cart__title">{{ 'cart.general.your_cart' | t }}</h4>
       <a href="/cart" class="header-cart__cart">
@@ -16,9 +16,9 @@
       </a>
     </div>
 
-    <div class="header-cart__body">
+    <div class="header-cart__body" data-c-d-body>
       {% assign price_100 = cart.total_price | divided_by: 100 %}
-      {% assign ship_remaining = settings.shipping_threshold | minus: price_100 %}
+      {% assign ship_remaining = settings.shipping_threshold | minus: price_100 | times: 100 | money_without_trailing_zeros %}
 
       <div class="header-cart__shipping-bar" data-cart-shipping-note>
       {% if cart.item_count == 0 %}
@@ -74,18 +74,6 @@
         data-loader
         {% if cart.item_count == 0 %}style="display:none;"{% endif %}>
       </div>
-    </div>
-
-    <div
-      class="header-cart__payments"
-      {% if cart.item_count == 0 %}style="display:none;"{% endif %}
-      data-cart-drawer-payments>
-      <span class="header-cart__payments-text">{{ 'cart.general.pay_using' | t }}</span>
-      <img class="header-cart__payments-icon" src="{{ 'logo-amazon-pay.png' | asset_url }}" alt="Amazon pay" />
-      <span class="header-cart__payments-separator"></span>
-      <img class="header-cart__payments-icon" src="{{ 'logo-paypal.png' | asset_url }}" alt="PayPal" />
-      <span class="header-cart__payments-separator"></span>
-      <img class="header-cart__payments-icon" src="{{ 'logo-google-pay.png' | asset_url }}" alt="Google Pay" />
     </div>
   </div>
 </div>

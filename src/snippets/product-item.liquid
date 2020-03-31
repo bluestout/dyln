@@ -6,7 +6,7 @@
 {% assign color_classes = "" %}
 
 {% for option in block_p.options_with_values %}
-  {% if option.name == "Color" %}
+  {% if option.name == "Color" or option.name == "Sleeve Color" or option.name == "Sleeve" %}
     {% for value in option.values %}
       {% assign block_p_colors =  block_p_colors  | append: value | append: ',' %}
     {% endfor %}
@@ -48,6 +48,8 @@
       title="{{ 'products.product.view_details' | t }}">
       <span class="product-item__gallery" data-pi-image-gallery>
         {% assign first = true %}
+        {% assign any_image = false %}
+
         {% for color in b_p_colors_array %}
           {% assign color_satisfied = false %}
           {% for block_p_img in block_p.images %}
@@ -74,10 +76,22 @@
 
                 {% assign first = false %}
                 {% assign color_satisfied = true %}
+                {% assign any_image = true %}
               {% endif %}
             {% endunless %}
           {% endfor %}
         {% endfor %}
+
+        {% unless any_image %}
+          {% render 'responsive-image' with
+            image: block_p.featured_image,
+            max_width: 300,
+            max_height: 450,
+            wrapper_class: "product-item__g-img-wrap",
+            image_class: "product-item__gallery-img"
+            span: true
+          %}
+        {% endunless %}
       </span>
 
       <h3 class="product-item__title">
@@ -120,8 +134,8 @@
         {% for option in block_p.options_with_values %}
           <span class="product-item__options-label">{{ 'products.product.select_html' | t: option: option.name }}</span>
           {% assign name_clean = option.name | downcase %}
-          {% if name_clean == "color" %}
-            <div class="product-item__colors" data-pi-color-options data-pi-option-color="{{ forloop.index }}">
+          {% if name_clean == "color" or name_clean == "sleeve color" or name_clean == "sleeve" %}
+            <div class="product-item__colors" data-pi-option="{{ forloop.index }}">
               {% for value in option.values %}
               {% assign p_i_swatch_name = value | strip | strip_html | strip_newlines | handleize %}
               {% assign p_i_class_name = "color-swatch-" | append: p_i_swatch_name %}
@@ -129,17 +143,17 @@
                   <input
                     class="product-item__color-input"
                     type="radio"
-                    id="{{ block_p.id }}-option{{ option.position }}-{{ value }}"
+                    id="{{ block_p.id }}-option{{ option.position }}-{{ value | handleize }}"
                     name="options[{{ option.name }}]"
                     value="{{ value }}"
                     data-pi-option-value="{{ value }}"
-                    data-pi-option-handle="{{ p_i_swatch_name }}"
                     data-pi-option-name={{ name_clean }}
                     data-pi-option-index="{{ option.position }}"
-                    {% if forloop.first %}checked{% endif %} />
+                    {% if forloop.first %}checked{% endif %}
+                    title="{{ value | remove: '_' }}" />
                   <label
                     class="product-item__color-label {{ p_i_class_name }}"
-                    for="{{ block_p.id }}-option{{ option.position }}-{{ value }}"
+                    for="{{ block_p.id }}-option{{ option.position }}-{{ value | handleize }}"
                     title="{{ value | remove: '_' }}">
                     <span {% comment %} class="hide" {% endcomment %}>{{ value }}</span>
                   </label>
@@ -153,7 +167,7 @@
                   <input
                     class="product-item__value-input"
                     type="radio"
-                    id="{{ block_p.id }}-option{{ option.position }}-{{ value }}"
+                    id="{{ block_p.id }}-option{{ option.position }}-{{ value | handleize }}"
                     name="options[{{ option.name }}]"
                     value="{{ value }}"
                     data-pi-option-value="{{ value }}"
@@ -162,7 +176,7 @@
                     {% if forloop.first %}checked{% endif %} />
                   <label
                     class="product-item__value-label"
-                    for="{{ block_p.id }}-option{{ option.position }}-{{ value }}">
+                    for="{{ block_p.id }}-option{{ option.position }}-{{ value | handleize }}">
                     {{ value }}
                   </label>
                 </span>

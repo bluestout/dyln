@@ -36,6 +36,7 @@
     z-index: 1;
     background-color: $color-white;
     height: 100%;
+    box-shadow: 0 0 20px 10px rgba($color-black, 0.3);
   }
 
   &__header {
@@ -93,6 +94,7 @@
   }
 
   &__body {
+    height: calc(100% - 57px);
   }
 
   &__shipping-bar {
@@ -153,32 +155,5 @@
       max-height: 90px;
       align-self: flex-end;
     }
-  }
-
-  &__payments {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    padding: 5px 30px 20px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    width: 100%;
-  }
-
-  &__payments-text {
-    align-self: flex-start;
-  }
-
-  &__payments-icon {
-    align-self: center;
-  }
-
-  &__payments-separator {
-    width: 1px;
-    height: 100%;
-    min-height: 20px;
-    background-color: $color-theme-6;
-    align-self: center;
   }
 }

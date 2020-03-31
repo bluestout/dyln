@@ -17,10 +17,8 @@ const datasets = {
 
 const selectors = {
   value: `[data-${datasets.value}]`,
-  image: `[data-${datasets.image}]`,
   gallery: `[data-${datasets.gallery}]`,
   current: `.${classes.active}[data-${datasets.image}]`,
-  colors: `[data-${datasets.colors}]`,
   item: "[data-pi-item]",
   opName: `[data-${datasets.opName}]`,
   json: "[data-product-json]",
@@ -31,12 +29,7 @@ const selectors = {
   submitText: "[data-pi-submit-text]",
   price: "[data-pi-price]",
   compare: "[data-pi-compare]",
-  index: `[data-${datasets.index}]`
 };
-
-function init() {
-  offsetColorSwatches();
-}
 
 function handleOptionClick(event) {
   const $source = $(event.currentTarget);
@@ -46,7 +39,7 @@ function handleOptionClick(event) {
     return false;
   }
 
-  if (opName === "color") {
+  if (opName === "color" || opName === "sleeve") {
     handleColorChange($source);
   }
 
@@ -60,11 +53,16 @@ function handleColorChange($source) {
   const $currentImage = $parent.find(selectors.current);
 
   if (!$newImage.hasClass(classes.active)) {
-    $currentImage.fadeOut("fast", () => {
+    if ($currentImage.length === 0) {
       $newImage.fadeIn("fast");
       $newImage.addClass(classes.active);
-      $currentImage.removeClass(classes.active);
-    });
+    } else {
+      $currentImage.fadeOut("fast", () => {
+        $newImage.fadeIn("fast");
+        $newImage.addClass(classes.active);
+        $currentImage.removeClass(classes.active);
+      });
+    }
   }
 }
 
@@ -116,10 +114,11 @@ function getSelectedVariant(variants, $options, $new) {
       variant.Option1 === options.Option1 &&
       variant.Option2 === options.Option2 &&
       variant.Option3 === options.Option3
-    ) {
+      ) {
       return variant;
     }
   }
+
 
   return null;
 }
@@ -189,24 +188,4 @@ function renderProductOptions(variant, $parent) {
   return $select.change();
 }
 
-function offsetColorSwatches() {
-  const $allColors = $(selectors.colors);
-  $allColors.each((index, value) => {
-    const $colors = $(value);
-    const $product = $colors.closest(selectors.item);
-    const $gallery = $product.find(selectors.gallery);
-    const height = $gallery.height();
-    // 22 = margin:10px, height: 12px
-    $colors.css("top", height - 22);
-  });
-}
-
-function handleWidthTransition() {
-  offsetColorSwatches();
-}
-
 $(document).on("click", selectors.value, handleOptionClick);
-
-$(document).on("windowWidthChanged", handleWidthTransition);
-
-$(document).ready(init);

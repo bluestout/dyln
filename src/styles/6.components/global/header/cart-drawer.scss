@@ -1,9 +1,14 @@
 .cart-drawer {
+  height: calc(100% - 46px);
+
   &__form {
+    height: 100%;
     text-align: left;
   }
 
   &__items-wrap {
+    max-height: calc(100% - 180px);
+    overflow-y: auto;
   }
 
   &__item {
@@ -13,14 +18,16 @@
     display: flex;
     flex-flow: row wrap;
 
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 15px;
-      width: calc(100% - 30px);
-      height: 1px;
-      background-color: $color-theme-6;
+    &:not(:last-of-type) {
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 15px;
+        width: calc(100% - 30px);
+        height: 1px;
+        background-color: $color-theme-6;
+      }
     }
   }
 
@@ -189,14 +196,90 @@
 
   .upsell-loading-dots {
   }
-  .hide {
-  }
+
   &__totals-wrap {
+    background-color: $color-body;
+    box-shadow: 0 0 20px 10px rgba($color-black, 0.3);
+    padding: 20px 25px;
+    width: 100%;
+
+    &.sticky {
+      position: absolute;
+      bottom: 0;
+    }
   }
-  .sticky {
-  }
+
+
   &__total {
+    @include clearfix;
+    margin: 0 0 40px;
   }
+
+  &__total-text {
+    @include poppins(500);
+    @include text(16px,22px,$color-body-text,0.95px);
+    float: left;
+  }
+
+  &__total-price {
+    @include poppins(500);
+    @include text(16px,22px,$color-body-text,0.95px);
+    float: right;
+  }
+
   &__checkout {
+    @include button(solid, square, 2);
+    width: 100%;
+  }
+
+  &__checkout-text {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 24px;
+    letter-spacing: 1.42px;
+    text-transform: uppercase;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__checkout-icon {
+    margin: 0 0 0 10px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__payments {
+    margin: 5px 0 0;
+    min-height: 30px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+
+  &__payment {
+    align-self: center;
+
+    img {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &:not(:last-of-type) {
+      &::after {
+        content: "";
+        margin: 0 0 0 35px;
+        width: 1px;
+        height: 30px;
+        background-color: $color-theme-6;
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  &__payments-title {
+    @include poppins(500);
+    @include text(11px,16px,$color-body-text,0.65px);
+    align-self: center;
   }
 }
