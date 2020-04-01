@@ -1,0 +1,76 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{% for option in product.options_with_values %}
+  {% assign name_clean = option.name | downcase %}
+  {% if name_clean == "color" %}
+    <div class="atc-bar">
+      <div class="atc-bar__inner">
+        <div class="atc-bar__options" data-atc-options style="display:none;">
+          {% for value in option.values %}
+            {% assign color_handle = value | strip | strip_html | strip_newlines | handleize %}
+            {% assign swatch = "color-swatch-" | append: color_handle %}
+            <span class="atc-bar__color-wrap">
+              <input
+                class="atc-bar__color-input"
+                type="radio"
+                name="atc-bar-color"
+                id="Atc-Option{{ option.position }}-{{ value }}"
+                data-atc-option="Option{{ option.position }}-{{ value | handleize }}"
+                value="{{ value }}"{% if option.selected_value == value %} checked{% endif %} />
+              <label class="atc-bar__color-label {{ swatch }}" for="Atc-Option{{ option.position }}-{{ value }}">
+                <span class="hide">{{ value }}</span>
+              </label>
+
+            </span>
+          {% endfor %}
+        </div>
+        <div class="atc-bar__current">
+          <span class="atc-bar__current-content">
+            <span class="atc-bar__current-swatch">
+              {% for value in option.values %}
+                {% assign color_handle = value | strip | strip_html | strip_newlines | handleize %}
+                {% assign swatch = "color-swatch-" | append: color_handle %}
+                <span
+                  class="{{ swatch }}"
+                  data-atc-swatch="Option{{ option.position }}-{{ value | handleize }}"
+                  {% unless option.selected_value == value %}style="display:none;"{% endunless %}>
+                </span>
+              {% endfor %}
+            </span>
+            <span class="atc-bar__current-bar">
+              {% for value in option.values %}
+                <span
+                  class="atc-bar__current-text"
+                  data-atc-text="Option{{ option.position }}-{{ value | handleize }}"
+                  {% unless option.selected_value == value %}style="display:none;"{% endunless %}>
+                  {{ value }}
+                </span>
+              {% endfor %}
+              <button class="atc-bar__show-more" type="button" data-atc-more>{{ 'products.product.more_colors' | t }}</button>
+            </span>
+          </span>
+          <span class="atc-bar__header">
+            <span class="atc-bar__title">{{ product.title }}</span>
+
+            <span class="atc-bar__price" data-price-price>
+              <span data-product-price>
+                {{ current_variant.price | money }}
+              </span>
+
+              {% if product.compare_at_price_max > product.price %}
+                <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
+                <s data-compare-price>
+                  {% if current_variant.compare_at_price > current_variant.price %}
+                    {{ current_variant.compare_at_price | money }}
+                  {% endif %}
+                </s>
+              {% endif %}
+            </span>
+          </span>
+          <span class="atc-bar__add-wrap">
+            <button class="atc-bar__add" type="button" data-atc-add>{{ 'products.product.add' | t }}</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endfor %}

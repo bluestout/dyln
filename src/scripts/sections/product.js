@@ -16,11 +16,18 @@ import { ProductForm } from "@shopify/theme-product-form";
 import { scrollTo } from "../components/scroll-to";
 
 const classes = {
-  hide: "hide"
+  hide: "hide",
+  active: "active"
 };
 
 const keyboardKeys = {
   ENTER: 13
+};
+
+const datasets = {
+  atc: {
+    option: "atc-option"
+  }
 };
 
 const selectors = {
@@ -57,7 +64,22 @@ const selectors = {
   tReturn: "[data-pdp-specs-return]",
   tFeatures: "[data-pdp-tab-features]",
   tInput: "[data-pdp-tab-features-input]",
-  select: "[data-pdp-select]"
+  select: "[data-pdp-select]",
+  atc: {
+    option: `[data-${datasets.atc.option}]`,
+    options: "[data-atc-options]",
+    more: "[data-atc-more]",
+    price: "[data-price-price]",
+    add: "[data-atc-add]",
+    swatch: "[data-atc-swatch]",
+    swatchById: id => `[data-atc-swatch="${id}"]`,
+    text: "[data-atc-text]",
+    textById: id => `[data-atc-text="${id}"]`
+  }
+};
+
+const timing = {
+  default: "200"
 };
 
 register("product", {
@@ -194,6 +216,7 @@ register("product", {
 
   renderPrice(variant) {
     const priceElement = this.container.querySelector(selectors.productPrice);
+    const atcPriceElement = this.container.querySelector(selectors.atc.price);
     const priceWrapperElement = this.container.querySelector(
       selectors.priceWrapper
     );
@@ -202,6 +225,12 @@ register("product", {
 
     if (variant) {
       priceElement.innerHTML = formatMoney(variant.price, theme.moneyFormat);
+      if (atcPriceElement) {
+        atcPriceElement.innerHTML = formatMoney(
+          variant.price,
+          theme.moneyFormat
+        );
+      }
     }
   },
 
@@ -352,11 +381,11 @@ function handleVideoPlayClick(event) {
     $vContent.length > 0
   ) {
     if ($vBg.length > 0) {
-      $vBg.fadeOut("fast");
+      $vBg.fadeOut(timing.default);
     }
 
-    $vContent.fadeOut("fast", () => {
-      $vWrap.fadeIn("fast");
+    $vContent.fadeOut(timing.default, () => {
+      $vWrap.fadeIn(timing.default);
     });
   }
 }
@@ -371,8 +400,8 @@ function handleSpecsPlayClick(event) {
   const $tVideo = $(selectors.tVideoById(id));
 
   if ($tVideo.length > 0 && $tVideos.length > 0 && $tElements.length > 0) {
-    $tElements.fadeOut("fast", () => {
-      $tVideos.fadeIn("fast");
+    $tElements.fadeOut(timing.default, () => {
+      $tVideos.fadeIn(timing.default);
       $tVideo.show();
     });
   }
@@ -384,8 +413,8 @@ function handleSpecsReturnClick() {
   const $tVideo = $(selectors.tVideo);
 
   if ($tElements.length > 0 && $tVideos.length > 0 && $tVideo) {
-    $tVideos.fadeOut("fast", () => {
-      $tElements.fadeIn("fast");
+    $tVideos.fadeOut(timing.default, () => {
+      $tElements.fadeIn(timing.default);
       $tVideo.each((index, item) => {
         $(item).hide();
       });
@@ -408,6 +437,54 @@ function handleInputChange(event) {
   }
 }
 
+function toggleAtcOptions() {
+  const $options = $(selectors.atc.options);
+  const $more = $(selectors.atc.more);
+
+  if ($options.length > 0) {
+    $options.slideToggle(timing.default);
+  }
+
+  if ($more.length > 0) {
+    $more.slideToggle(timing.default);
+  }
+
+  return null;
+}
+
+function handleAtcOptionClick(event) {
+  const $source = $(event.currentTarget);
+  const targetData = $source.data(datasets.atc.option);
+  const $target = $(`#${targetData}`);
+  const $newSwatch = $(selectors.atc.swatchById(targetData));
+  const $newText = $(selectors.atc.textById(targetData));
+
+  if ($newSwatch.length > 0) {
+    $(selectors.atc.swatch)
+      .not($newSwatch)
+      .hide();
+    $newSwatch.show();
+  }
+
+  if ($newText.length > 0) {
+    $(selectors.atc.text)
+      .not($newText)
+      .hide();
+    $newText.show();
+  }
+
+  if ($target.length > 0) {
+    $target.click();
+    toggleAtcOptions();
+  }
+
+  return null;
+}
+
+function handleAtcSubmit() {
+  $(selectors.submitButton).click();
+}
+
 $(selectors.tInput).on("input propertychange", handleInputChange);
 
 $(document).on("click", selectors.play, handleGalleryPlayClick);
@@ -415,5 +492,9 @@ $(document).on("click", selectors.vButton, handleVideoPlayClick);
 $(document).on("click", selectors.tElement, handleSpecsPlayClick);
 $(document).on("click", selectors.tElement, handleSpecsPlayClick);
 $(document).on("click", selectors.tReturn, handleSpecsReturnClick);
+
+$(document).on("click", selectors.atc.more, toggleAtcOptions);
+$(document).on("click", selectors.atc.option, handleAtcOptionClick);
+$(document).on("click", selectors.atc.add, handleAtcSubmit);
 
 $(document).ready(init);

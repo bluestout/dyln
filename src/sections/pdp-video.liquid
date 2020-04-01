@@ -43,10 +43,16 @@
 
     <div class="pdp-video__video-outer" data-pdp-video-wrap>
       <div class="container">
-        <video class="pdp-video__video" controls playsinline width="900">
-          <source src="{{- section.settings.video -}}" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
+        {%- if section.settings.video != blank -%}
+          <video class="pdp-video__video" controls playsinline width="900">
+            <source src="{{- section.settings.video -}}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        {%- elsif section.settings.video_embed != blank -%}
+          <div class="pdp-video__video">
+            {{- section.settings.video_embed -}}
+          </div>
+        {%- endif -%}
       </div>
     </div>
   </div>
@@ -87,6 +93,12 @@
         "id": "video",
         "label": "Video",
         "info": "Upload a video to Shopify files and paste the source url here."
+      },
+      {
+        "type": "textarea",
+        "id": "video_embed",
+        "label": "Video Embed",
+        "info": "Or use an embed from youtube, vimeo or similar. Copy/paste the embed code here."
       },
       {
         "type": "text",

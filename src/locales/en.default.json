@@ -311,7 +311,9 @@
       "choose": "Choose",
       "watch_video": "Watch Video",
       "select_html": "Select {{ option }}",
-      "view_details": "View Details"
+      "view_details": "View Details",
+      "add": "Add",
+      "more_colors": "More colors"
     }
   },
   "gift_cards": {

@@ -41,10 +41,10 @@
               <input
                 class="pdp-form__color-input"
                 type="radio"
-                id="Option{{ option.position }}-{{ value }}"
+                id="Option{{ option.position }}-{{ value | handleize }}"
                 name="options[{{ option.name }}]"
                 value="{{ value }}"{% if option.selected_value == value %} checked{% endif %} />
-              <label class="pdp-form__color-label {{ swatch }}" for="Option{{ option.position }}-{{ value }}">
+              <label class="pdp-form__color-label {{ swatch }}" for="Option{{ option.position }}-{{ value | handleize }}">
                 <span class="hide">{{ value }}</span>
               </label>
             </span>

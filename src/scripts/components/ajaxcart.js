@@ -220,11 +220,15 @@ function updateQuickCart(cart) {
           </span>
         </div>
         <button class="cart-drawer__checkout" name="checkout" type="submit" data-cart-drawer-checkout>
-          <span class="cart-drawer__checkout-text">${theme.strings.checkout}</span>
+          <span class="cart-drawer__checkout-text">${
+            theme.strings.checkout
+          }</span>
           <svg class="cart-drawer__checkout-icon" width='20' height='22' viewBox='0 0 20 22' xmlns='http://www.w3.org/2000/svg'><g transform='translate(.573 1.784)' fill='none' fill-rule='evenodd'><rect stroke='#FFF' stroke-width='2' x='1' y='7.703' width='16.958' height='11.405' rx='2'/><path d='M3.991 7.122V4.608C3.991 2.063 6.071 0 8.635 0h1.688c2.565 0 4.644 2.063 4.644 4.608v2.514' stroke='#FFF' stroke-width='2' stroke-linejoin='round'/><ellipse fill='#FFF' cx='9.479' cy='12.149' rx='2.494' ry='2.095'/><path stroke='#FFF' stroke-width='2' stroke-linecap='round' d='M9.479 13.405v2.466'/></g></svg>
         </button>
         <div class="cart-drawer__payments">
-          <span class="cart-drawer__payments-title">${theme.strings.pay_using}</span>
+          <span class="cart-drawer__payments-title">${
+            theme.strings.pay_using
+          }</span>
           <span class="cart-drawer__payment">
             <img src="${theme.imageUrls.logoAmazon}" alt="Amazon Pay" />
           </span>
@@ -289,7 +293,6 @@ function handleAjaxAddButtonClick(event) {
   setTimeout(() => {
     toggleAddingToCartAnimation($source, false);
   }, 10000);
-
 
   (async () => {
     await new Promise(resolve => {
@@ -474,10 +477,6 @@ function handleCartDrawerCheckoutHeight() {
   const quickcartHeight = $(elements.quick.content).outerHeight();
   const productWrapHeight = $(elements.quick.wrap).outerHeight();
   const totalsHeight = $(elements.quick.totalsWrap).outerHeight();
-  console.log("quickcartHeight: ", quickcartHeight);
-  console.log("totalsHeight: ", totalsHeight);
-  console.log("productWrapHeight: ", productWrapHeight);
-  console.log("height diff: ", quickcartHeight - totalsHeight);
 
   $(elements.quick.wrap).css("height", quickcartHeight - totalsHeight);
 }
@@ -542,11 +541,7 @@ function handleUpsell(cart) {
 $(document).on("click", elements.remove, ajaxRemoveFromCartButton);
 
 // change quantity when these buttons are clicked - these need product data to work
-$(document).on(
-  "click",
-  elements.changeAjax,
-  handlechangeAjaxButtonClick
-);
+$(document).on("click", elements.changeAjax, handlechangeAjaxButtonClick);
 
 $(document).on("change", elements.input, handleQtyInputChange);
 // toggle quick cart from the right
