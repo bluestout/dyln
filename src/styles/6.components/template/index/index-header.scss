@@ -5,12 +5,6 @@
     position: relative;
   }
 
-  &__bg-wrap {
-  }
-
-  &__bg {
-  }
-
   &__content-wrap {
     position: absolute;
     left: 0;
@@ -22,6 +16,7 @@
   &__container {
     height: 100%;
   }
+
   &__row {
     height: 90%;
   }
@@ -100,5 +95,85 @@
     left: 0;
     width: 100%;
     max-width: 100%;
+  }
+
+  @include media-query($medium-down) {
+    padding: 0 0 100px;
+
+    &__container {
+      position: relative;
+    }
+
+    &__row {
+      height: 90%;
+    }
+
+    &__title {
+      font-size: 14px;
+      line-height: 16px;
+      max-width: 155px;
+      margin: 0 0 0 15px;
+    }
+
+    &__link-wrap {
+      margin: 10px 0 0 15px;
+    }
+
+    &__features {
+      z-index: $z-base;
+      position: absolute;
+      top: 90%;
+      left: 0;
+      margin: 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    &__f {
+      display: inline-block;
+      text-align: center;
+      vertical-align: top;
+      max-width: 88px;
+
+      &:not(:last-of-type) {
+        margin: 0 10px;
+      }
+
+      &:last-of-type {
+        margin: 0 10px;
+      }
+    }
+
+    &__f-text {
+      color: $color-body-text;
+    }
+
+    &__btm {
+      position: absolute;
+      top: calc(100% + 45px);
+      height: auto;
+      text-align: center;
+      width: calc(100% - 30px);
+    }
+
+    &__btm-link {
+      color: $color-body-text;
+    }
+
+    &__wave {
+      bottom: 70px;
+    }
+
+    &__bg-wrap {
+      max-width: 100%;
+      &::before {
+        padding-top: 450px;
+      }
+    }
+
+    &__bg {
+      max-width: 100%;
+      object-fit: cover;
+    }
   }
 }

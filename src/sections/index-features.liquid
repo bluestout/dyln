@@ -6,15 +6,15 @@
   {% endif %}
   {% for block in section.blocks %}
     {% assign modulo = forloop.index | modulo: 2 %}
-    {% assign image_order = " order-lg-2" %}
+    {% assign image_order = " order-md-2 order-0" %}
     {% assign title_class = "" %}
     {% if modulo == 0  %}
-      {% assign image_order = " order-lg-0" %}
+      {% assign image_order = " order-md-0 order-0" %}
       {% assign title_class = " alt" %}
     {% endif %}
     <div class="index-features__feature">
       <div class="row">
-        <div class="col-lg-7 d-lg-flex order-lg-1">
+        <div class="col-md-7 d-md-flex order-md-1 order-1">
           <div class="index-features__content">
             {% if block.settings.title != blank %}
               <h3 class="index-features__f-title{{ title_class }}">{{ block.settings.title }}</h3>
@@ -29,7 +29,7 @@
             {% endif %}
           </div>
         </div>
-        <div class="col-lg-5{{ image_order }}">
+        <div class="col-md-5{{ image_order }}">
           {% if block.settings.image %}
             {% render 'responsive-image' with
               image: block.settings.image,

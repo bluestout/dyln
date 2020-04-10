@@ -6,4 +6,11 @@
     color: $color-white;
     text-decoration: none;
   }
+
+  @include media-query($medium-down) {
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: 0.59px;
+    text-align: center;
+  }
 }

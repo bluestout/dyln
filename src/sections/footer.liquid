@@ -7,7 +7,7 @@
           {%- assign lf_blog = blogs[section.settings.lf_blog] -%}
           {%- assign lf_tags = lf_blog.all_tags -%}
           <div class="row">
-            <div class="col-5">
+            <div class="col-lg-5">
               <h3 class="site-footer__lf-title">{{ section.settings.lf_title }}</h3>
               <p class="site-footer__lf-content">{{ section.settings.lf_content }}</p>
               <p class="site-footer__lf-links-header">{{ section.settings.lf_topics_h }}</p>
@@ -29,14 +29,14 @@
                 {% endfor %}
               </div>
             </div>
-            <div class="col-7">
+            <div class="col-lg-7">
               <div class="site-footer__lf-list-wrap">
                 {% comment %} for each blog, create a new section {% endcomment %}
 
                 {% if section.settings.lf_recent != empty %}
                   <div class="site-footer__lf-list active" data-tab="1">
                     {% for lf_article in lf_blog.articles limit: 10 %}
-                      <div class="site-footer__lf-article">
+                      <a href="{{ lf_article.url }}" class="site-footer__lf-article">
                         {% if lf_article.image %}
                           {% render 'responsive-image' with
                             image: lf_article.image,
@@ -44,14 +44,15 @@
                             max_height: 312,
                             wrapper_class: "site-footer__lf-a-img-wrap",
                             image_class: "site-footer__lf-a-img",
+                            span: true
                           %}
                         {% endif %}
-                        <div class="site-footer__lf-a-overlay"></div>
-                        <div class="site-footer__lf-a-content">
+                        <span class="site-footer__lf-a-overlay"></span>
+                        <span class="site-footer__lf-a-content">
                           <span class="site-footer__lf-a-blog">{{ lf_article.tags[0] }}</span>
                           <h6 class="site-footer__lf-a-title">{{ lf_article.title }}</h6>
-                        </div>
-                      </div>
+                        </span>
+                      </a>
                     {% endfor %}
                   </div>
                 {% endif %}
@@ -114,25 +115,31 @@
   <div class="site-footer__footer-bg">
     <div class="container">
       <div class="row">
-        {% for link in linklists[section.settings.menu].links %}
-          <div class="col">
-            <a class="site-footer__parent-link" href="{{ link.url }}">
-              {{ link.title }}
-            </a>
-            {% if link.links != blank %}
-              <ul class="site-footer__menu-list">
-                {% for childlink in link.links %}
-                  <li class="site-footer__menu-item">
-                    <a class="site-footer__menu-link" href="{{ childlink.url }}">
-                      {{ childlink.title }}
-                    </a>
-                  </li>
-                {% endfor %}
-              </ul>
-            {% endif %}
+        <div class="col-lg-9 order-lg-1 order-2">
+          <div class="row">
+            {% for link in linklists[section.settings.menu].links %}
+              <div class="col-lg-3 col-6">
+                <div class="site-footer__p-link-wrap">
+                  <a class="site-footer__parent-link" href="{{ link.url }}">
+                    {{ link.title }}
+                  </a>
+                </div>
+                {% if link.links != blank %}
+                  <ul class="site-footer__menu-list">
+                    {% for childlink in link.links %}
+                      <li class="site-footer__menu-item">
+                        <a class="site-footer__menu-link" href="{{ childlink.url }}">
+                          {{ childlink.title }}
+                        </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </div>
+            {% endfor %}
           </div>
-        {% endfor %}
-        <div class="col">
+        </div>
+        <div class="col-lg-3 order-lg-2 order-1">
           {% render 'footer-newsletter' %}
           {% render 'social-links' %}
         </div>

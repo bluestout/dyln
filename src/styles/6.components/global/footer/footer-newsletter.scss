@@ -1,7 +1,7 @@
 .footer-newsletter {
   &__title {
     @include font-header(700);
-    @include text(20px, 20px, $color-white, 1.18px);
+    @include text(20px, 26px, $color-white, 1.18px);
     margin: 0 0 20px;
   }
 
@@ -16,6 +16,7 @@
     margin: 0 0 10px;
     display: block;
     width: 100%;
+    max-width: 300px;
     padding: 4px 10px;
     border-radius: 0;
     border: none;
@@ -28,5 +29,38 @@
 
   &__button {
     @include button(wire, r, white);
+  }
+
+  @include media-query($large-down) {
+    text-align: center;
+
+    &__title {
+      font-size: 16px;
+      line-height: 23px;
+      letter-spacing: 0.15px;
+      margin: 0 0 10px;
+    }
+
+    &__success {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.12px;
+    }
+
+    &__input {
+      font-size: 16px;
+      line-height: 22px;
+      letter-spacing: 0.15px;
+      margin: 0 auto 5px;
+      padding: 9px 10px;
+    }
+
+    &__button {
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: 1.2px;
+      margin: 10px 0 0;
+      padding: 3px 20px;
+    }
   }
 }

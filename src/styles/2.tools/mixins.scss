@@ -146,6 +146,12 @@
 @mixin text-title($color: $color-title) {
   @include font-header(700);
   @include text(40px, 56px, $color, 2.36px);
+
+  @include media-query($medium-down) {
+    font-size: 30px;
+    line-height: 43px;
+    letter-spacing: 1.77px;
+  }
 }
 
 @mixin no-font-size {

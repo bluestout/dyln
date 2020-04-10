@@ -2,12 +2,11 @@ import $ from "jquery";
 
 const datasets = {
   link: "header-link",
-  close: "header-block-close"
+  close: "header-block-close",
 };
 
 const elements = {
   header: "[data-section-type='header']",
-  drawer: "[data-cart-drawer]",
   navToggle: "[data-navigation-toggle]",
   nav: "[data-header-navigation]",
   notification: "[data-header-notification]",
@@ -15,8 +14,8 @@ const elements = {
   offset: "[data-header-offset]",
   banner: "[data-header-banner]",
   link: `[data-${datasets.link}]`,
-  linkById: id => `[data-${datasets.link}="${id}"]`,
-  close: `[data-${datasets.close}]`
+  linkById: (id) => `[data-${datasets.link}="${id}"]`,
+  close: `[data-${datasets.close}]`,
 };
 
 const classes = {
@@ -25,13 +24,13 @@ const classes = {
   fixed: "fixed",
   note: "notification",
   hide: "hide",
-  noBanner: "no-banner"
+  noBanner: "no-banner",
 };
 
 const events = {
   resize: "resize",
   click: "click",
-  scroll: "scroll"
+  scroll: "scroll",
 };
 
 const windowScrolledRedux = new Event("windowScrolledRedux");

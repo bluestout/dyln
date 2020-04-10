@@ -18,17 +18,33 @@ function init() {
       centerMode: true,
       initialSlide: 1,
       centerPadding: "100px",
+      adaptiveHeight: true,
       responsive: [
         {
-          breakpoint: 992,
+          breakpoint: 1200,
           settings: {
             slidesToShow: 2
           }
         },
         {
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 2,
+            centerPadding: "50px"
+          }
+        },
+        {
           breakpoint: 768,
           settings: {
-            slidesToShow: 1
+            slidesToShow: 1,
+            centerPadding: "50px"
+          }
+        },
+        {
+          breakpoint: 425,
+          settings: {
+            slidesToShow: 1,
+            centerPadding: "20px"
           }
         }
       ]

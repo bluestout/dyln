@@ -4,25 +4,27 @@
       {{ section.settings.title }}
     </h2>
   {% endif %}
+</div>
 
-  <div class="index-shop__products">
-    <div class="row justify-content-center">
-      {% for block in section.blocks %}
-        {% if block.type == "product" and block.settings.product != empty %}
-          <div class="col-md-3">
-            {% assign p_item = all_products[block.settings.product] %}
-            {% render 'product-item' with p_item %}
-          </div>
-        {% endif %}
-      {% endfor %}
-    </div>
+<div class="container index-shop__prod-container" data-slick-pi-mobile>
+  <div class="row justify-content-center index-shop__prod-row">
+    {% for block in section.blocks %}
+      {% if block.type == "product" and block.settings.product != empty %}
+        <div class="col-lg-3 index-shop__prod-col">
+          {% assign p_item = all_products[block.settings.product] %}
+          {% render 'product-item' with p_item %}
+        </div>
+      {% endif %}
+    {% endfor %}
   </div>
+</div>
 
+<div class="container">
   <div class="index-shop__collections">
     <div class="row justify-content-center">
       {% for block in section.blocks %}
         {% if block.type == "collection" %}
-          <div class="col-4">
+          <div class="col-lg-4 col-6">
             <div class="index-shop__collection">
               {%- assign block_coll = collections[block.settings.collection] -%}
               {% if block.settings.image %}
@@ -43,7 +45,14 @@
               {% if block.settings.title != empty %}
                 {% assign block_title = block.settings.title %}
               {% endif %}
-              <a class="index-shop__c-title" href="{{ block_coll.url }}">{{ block_title }}</a>
+              <a class="index-shop__c-title" href="{{ block_coll.url }}">
+                {% if block.settings.title_mobile != blank %}
+                  <span class="d-none d-md-block">{{ block_title }}</span>
+                  <span class="d-md-none">{{ block.settings.title_mobile }}</span>
+                {% else %}
+                  {{ block_title }}
+                {% endif %}
+              </a>
             </div>
           </div>
         {% endif %}
@@ -90,6 +99,12 @@
             "id": "title",
             "label": "Title",
             "info": "Optional, will default to Shop #CollectionName."
+          },
+          {
+            "type": "textarea",
+            "id": "title_mobile",
+            "label": "Mobile Title",
+            "info": "Different title for mobile."
           },
           {
             "type": "image_picker",

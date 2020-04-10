@@ -16,8 +16,11 @@
       pointer-events: auto;
       width: calc(100vw - 500px);
     }
-  }
 
+    .header-cart__wrap {
+      box-shadow: 0 0 20px 10px rgba($color-black, 0.3);
+    }
+  }
 
   &__overlay {
     @include transition(opacity, width);
@@ -36,7 +39,6 @@
     z-index: 1;
     background-color: $color-white;
     height: 100%;
-    box-shadow: 0 0 20px 10px rgba($color-black, 0.3);
   }
 
   &__header {
@@ -129,7 +131,7 @@
 
   &__empty-title {
     @include font-header(700);
-    @include text(20px,28px,$color-body-text,1.18px);
+    @include text(20px, 28px, $color-body-text, 1.18px);
     max-width: calc(100% - 71px);
   }
 

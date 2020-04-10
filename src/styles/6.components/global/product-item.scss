@@ -43,35 +43,6 @@
     pointer-events: none;
   }
 
-  &:hover {
-    &:not(.single) {
-      &::after,
-      &::before {
-        opacity: 1;
-        height: calc(100% + 60px);
-      }
-    }
-
-    &.single {
-      &::after,
-      &::before {
-        opacity: 1;
-      }
-    }
-
-    .product-item__hover {
-      opacity: 1;
-      pointer-events: auto;
-    }
-  }
-
-  &__form {
-    position: relative;
-    background-color: $color-white;
-    height: 100%;
-    display: flex;
-  }
-
   &__image-link {
     display: block;
     padding: 0 15px;
@@ -113,19 +84,6 @@
     @include font-header(700);
     @include text(16px, 23px, $color-body-text, 0.95px);
     display: block;
-  }
-
-  &__hover {
-    @include transition(opacity);
-    z-index: $z-base;
-    position: absolute;
-    top: calc(100% - 25px);
-    left: 0;
-    width: 100%;
-    opacity: 0;
-    pointer-events: none;
-    background-color: $color-white;
-    padding: 0 15px 25px;
   }
 
   &__options {
@@ -244,5 +202,167 @@
     letter-spacing: 1.2px;
     text-transform: uppercase;
     padding: 0 5px 0 0;
+  }
+
+  @include media-query($large-up) {
+    &:hover {
+      &:not(.single) {
+        &::after,
+        &::before {
+          opacity: 1;
+          height: calc(100% + 60px);
+        }
+      }
+
+      &.single {
+        &::after,
+        &::before {
+          opacity: 1;
+        }
+      }
+
+      .product-item__hover {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+
+    &__hover {
+      @include transition(opacity);
+      z-index: $z-base;
+      position: absolute;
+      top: calc(100% - 25px);
+      left: 0;
+      width: 100%;
+      opacity: 0;
+      pointer-events: none;
+      background-color: $color-white;
+      padding: 0 15px 25px;
+    }
+
+    &__form {
+      position: relative;
+      background-color: $color-white;
+      height: 100%;
+      display: flex;
+    }
+  }
+
+  @include media-query($large-down) {
+    transition: none;
+    position: relative;
+    box-shadow: none;
+    padding: 30px 0 10px;
+
+    &::before {
+      content: none;
+    }
+
+    &::after {
+      content: none;
+    }
+
+    &__image-link {
+      display: block;
+      padding: 0 15px;
+      width: 100%;
+      margin: auto 0 0;
+    }
+
+    &__gallery {
+      display: block;
+      margin: 0 0 10px;
+    }
+
+    &__title {
+      display: none;
+    }
+
+    &__subtitle {
+      display: none;
+    }
+
+    &__price {
+      display: none;
+    }
+
+    &__hover {
+      width: 100%;
+    }
+
+    &__options {
+      margin: 0 0 10px;
+    }
+
+    &__options-label {
+      font-weight: 500;
+      font-size: 10px;
+      line-height: 14px;
+      letter-spacing: 0.59px;
+      margin: 0 0 2px;
+    }
+
+    &__option {
+      margin: 0 0 15px;
+    }
+
+    &__colors {
+      margin: 0 0 10px;
+    }
+
+    &__current-color {
+      @include font-header(500);
+      @include text(17px, 24px, $color-theme-8, 1px);
+    }
+
+    &__color-wrap {
+      @include no-font-size;
+      position: relative;
+      display: inline-block;
+    }
+
+    &__color-input {
+      width: 30px;
+      height: 30px;
+      padding: 4px;
+    }
+
+    &__color-label {
+      left: 4px;
+      top: 4px;
+      width: 22px;
+      height: 22px;
+    }
+
+    &__value-wrap {
+      &:not(:last-of-type) {
+        margin: 0 10px 0 0;
+      }
+    }
+
+    &__value-label {
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.83px;
+    }
+
+    &__submit-btn {
+      padding: 5px 20px;
+      width: auto;
+    }
+
+    &__submit-price {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 1.94px;
+    }
+
+    &__submit-text {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 1.94px;
+    }
   }
 }

@@ -1,4 +1,5 @@
 import $ from "jquery";
+import "slick-carousel";
 import { formatMoney } from "@shopify/theme-currency";
 
 const classes = {
@@ -12,13 +13,15 @@ const datasets = {
   colors: "pi-color-options",
   opName: "pi-option-name",
   option: "pi-option",
-  index: "pi-option-index"
+  index: "pi-option-index",
+  slick: "slick-index"
 };
 
 const selectors = {
   value: `[data-${datasets.value}]`,
   gallery: `[data-${datasets.gallery}]`,
   current: `.${classes.active}[data-${datasets.image}]`,
+  image: `[data-${datasets.image}]`,
   item: "[data-pi-item]",
   opName: `[data-${datasets.opName}]`,
   json: "[data-product-json]",
@@ -29,10 +32,14 @@ const selectors = {
   submitText: "[data-pi-submit-text]",
   price: "[data-pi-price]",
   compare: "[data-pi-compare]",
+  shopMobileSlick: "[data-slick-pi-mobile]",
+  slick: `[data-${datasets.slick}]`,
+  slideById: id => `[data-slick-index=${id}]`
 };
 
 function handleOptionClick(event) {
   const $source = $(event.currentTarget);
+  const $slick = $source.closest(selectors.shopMobileSlick);
   const opName = $source.data(datasets.opName);
 
   if ($source.length === 0 || !opName) {
@@ -40,7 +47,11 @@ function handleOptionClick(event) {
   }
 
   if (opName === "color" || opName === "sleeve") {
-    handleColorChange($source);
+    if ($slick.length > 0) {
+      handleSlickChange($source);
+    } else {
+      handleColorChange($source);
+    }
   }
 
   return handleVariantChange($source);
@@ -63,6 +74,26 @@ function handleColorChange($source) {
         $currentImage.removeClass(classes.active);
       });
     }
+  }
+}
+
+function handleSlickChange($source) {
+  const color = $source.data(datasets.value);
+  const $parent = $source.closest(selectors.item);
+  const $newImages = $parent.find(`[data-${datasets.image}="${color}"]`);
+  let index = -1;
+  for (let i = 0; i < $newImages.length; i++) {
+    const $image = $($newImages[i]);
+    const $slide = $image.closest(selectors.slick);
+    const newIndex = $slide.data(datasets.slick);
+    if (newIndex > -1) {
+      index = newIndex;
+      break;
+    }
+  }
+
+  if (index > -1) {
+    $parent.find(".slick-slider").slick("slickGoTo", index);
   }
 }
 
@@ -114,11 +145,10 @@ function getSelectedVariant(variants, $options, $new) {
       variant.Option1 === options.Option1 &&
       variant.Option2 === options.Option2 &&
       variant.Option3 === options.Option3
-      ) {
+    ) {
       return variant;
     }
   }
-
 
   return null;
 }
@@ -188,4 +218,38 @@ function renderProductOptions(variant, $parent) {
   return $select.change();
 }
 
+function init() {
+  if ($(window).width() <= 768) {
+    const $gallery = $(`${selectors.shopMobileSlick} ${selectors.gallery}`);
+    const $images = $gallery.find(selectors.image);
+    $images.each((index, option) => {
+      $(option).css("display", "block");
+    });
+
+    $gallery.slick({
+      swipeToSlide: true,
+      arrows: false,
+      dots: false,
+      slidesToShow: 1,
+      centerMode: true,
+      centerPadding: "25%",
+      infinite: true,
+      speed: 300,
+      initialSlide: 0
+    });
+
+    $($gallery).on("afterChange", (event, slick, nextSlide) => {
+      const $slider = $(event.currentTarget);
+      const $slide = $slider.find(`[data-slick-index="${nextSlide}"]`);
+      const color = $slide.find(selectors.image).data(datasets.image);
+      const $parent = $slide.closest(selectors.item);
+      const $input = $parent.find(`[data-${datasets.value}="${color}"]`);
+      if ($input.length > 0) {
+        $input.click();
+      }
+    });
+  }
+}
+
+$(document).ready(init);
 $(document).on("click", selectors.value, handleOptionClick);

@@ -6,7 +6,7 @@ import {
   quickCartLineItemHtml,
   cartLineItemHtml,
   cartTotalsHtml,
-  emptyCartHtml
+  emptyCartHtml,
 } from "./ajaxcart-html";
 
 const elements = {
@@ -42,25 +42,24 @@ const elements = {
     shipping: "[data-cart-drawer-shipping-note]",
     checkout: "[data-cart-drawer-checkout]",
     empty: "[data-cart-drawer-empty]",
-    payments: "[data-cart-drawer-payments]"
+    payments: "[data-cart-drawer-payments]",
   },
   cart: {
     container: "[data-cart-container]",
     content: "[data-cart-content]",
     totals: "[data-cart-totals]",
     upsell: "[data-cart-upsell-settings]",
-    checkout: "[data-cart-checkout]"
+    checkout: "[data-cart-checkout]",
   },
   message: {
     container: "[data-ajax-message-container]",
-    text: "[data-ajax-message-text]"
-  }
+    text: "[data-ajax-message-text]",
+  },
 };
 
 const classes = {
   active: "active",
-  activeCart: "active-cart",
-  open: "open"
+  open: "open",
 };
 
 const ajaxReloaded = new Event("ajaxReloaded");
@@ -96,11 +95,11 @@ function ajaxChangeCartQty(id, qty, line) {
     data,
     dataType: "json",
     success: () => {
-      $.getJSON("/cart.js", json => {
+      $.getJSON("/cart.js", (json) => {
         returnCartIfNotEmpty(json);
       });
     },
-    cache: false
+    cache: false,
   });
 }
 
@@ -113,7 +112,7 @@ function ajaxRemoveFromCartButton(event) {
   const line = parseInt($this.data("remove-item"), 10);
 
   return (async () => {
-    await new Promise(resolve => {
+    await new Promise((resolve) => {
       resolve(
         (inputStatus = setTimeout(() => {
           ajaxChangeCartQty(line, 0, true);
@@ -129,7 +128,7 @@ function handlechangeAjaxButtonClick(event) {
   event.preventDefault();
 
   return (async () => {
-    await new Promise(resolve => {
+    await new Promise((resolve) => {
       resolve(
         (inputStatus = setTimeout(() => {
           const $source = $(event.currentTarget);
@@ -157,7 +156,7 @@ function handleQtyInputChange(event) {
   containerLoading(true);
 
   return (async () => {
-    await new Promise(resolve => {
+    await new Promise((resolve) => {
       resolve(
         (inputStatus = setTimeout(() => {
           const $input = $(event.currentTarget);
@@ -295,7 +294,7 @@ function handleAjaxAddButtonClick(event) {
   }, 10000);
 
   (async () => {
-    await new Promise(resolve => {
+    await new Promise((resolve) => {
       resolve(
         $.ajax({
           type: "POST",
@@ -306,7 +305,7 @@ function handleAjaxAddButtonClick(event) {
           cache: false,
           complete: (jqXHR, textStatus) => {
             addToCartComplete(jqXHR, textStatus);
-          }
+          },
         })
       );
     });
@@ -338,7 +337,7 @@ function handleAjaxAddUpsell(event) {
   }
 
   (async () => {
-    await new Promise(resolve => {
+    await new Promise((resolve) => {
       resolve(
         $.ajax({
           type: "POST",
@@ -346,7 +345,7 @@ function handleAjaxAddUpsell(event) {
           async: true,
           data: {
             quantity: 1,
-            id
+            id,
           },
           dataType: "json",
           cache: false,
@@ -354,7 +353,7 @@ function handleAjaxAddUpsell(event) {
             $loading.addClass("hide");
             $text.removeClass("hide");
             addToCartComplete(jqXHR, textStatus);
-          }
+          },
         })
       );
     });
@@ -363,7 +362,7 @@ function handleAjaxAddUpsell(event) {
 
 function addToCartComplete(jqXHR, textStatus) {
   if (textStatus === "success") {
-    $.getJSON("/cart.js", json => {
+    $.getJSON("/cart.js", (json) => {
       returnCartIfNotEmpty(json);
       quickCartOpen(true);
     });
@@ -432,27 +431,17 @@ function quickCartToggle(event) {
   event.preventDefault();
 
   const $quickCart = $(elements.quickcart);
-  const $page = $(elements.quickcart);
   $(elements.nav).removeClass(classes.active);
-  $page.removeClass(classes.active);
   $(elements.pageWrap).removeClass(classes.active);
 
   if ($quickCart.hasClass(classes.open)) {
     $quickCart.removeClass(classes.open);
     $(elements.quick.overlay).removeClass(classes.active);
     $("html").removeClass("no-scroll");
-
-    if ($(window).width() < 992) {
-      $page.removeClass(classes.activeCart);
-    }
   } else {
     $quickCart.addClass(classes.open);
     $(elements.quick.overlay).addClass(classes.active);
     $("html").addClass("no-scroll");
-
-    if ($(window).width() < 992) {
-      $page.addClass(classes.activeCart);
-    }
   }
 }
 
@@ -475,7 +464,6 @@ function quickCartOpen(open) {
 
 function handleCartDrawerCheckoutHeight() {
   const quickcartHeight = $(elements.quick.content).outerHeight();
-  const productWrapHeight = $(elements.quick.wrap).outerHeight();
   const totalsHeight = $(elements.quick.totalsWrap).outerHeight();
 
   $(elements.quick.wrap).css("height", quickcartHeight - totalsHeight);
@@ -555,9 +543,9 @@ $(document).ready(() => {
   containerLoading(true);
 
   return (async () => {
-    await new Promise(resolve => {
+    await new Promise((resolve) => {
       resolve(
-        $.getJSON("/cart.js", json => {
+        $.getJSON("/cart.js", (json) => {
           returnCartIfNotEmpty(json);
         })
       );
@@ -565,7 +553,7 @@ $(document).ready(() => {
   })();
 });
 
-$(document).keyup(event => {
+$(document).keyup((event) => {
   if (event.key === "Escape") {
     quickCartOpen(false);
   }

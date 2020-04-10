@@ -2,9 +2,9 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-lg-6">
-      <div class="index-usps__content">
 
+    <div class="col-lg-6 order-2 order-lg-1">
+      <div class="index-usps__content">
         {% if section.settings.title != blank %}
           <h2 class="index-usps__title">{{ section.settings.title }}</h2>
         {% endif %}
@@ -38,8 +38,8 @@
         {% endif %}
       </div>
     </div>
-    <div class="col-lg-6">
 
+    <div class="col-lg-6 order-1 order-lg-2">
       {% if section.settings.background %}
         {% assign wrapper_class = "index-usps__bg-wrap" %}
 
@@ -61,9 +61,11 @@
           wrapper_class: wrapper_class,
           image_class: "index-usps__bg",
         %}
-      {% endif %}
 
+        <div class="index-usps__wave-middle d-md-none"></div>
+      {% endif %}
     </div>
+
   </div>
 </div>
 
