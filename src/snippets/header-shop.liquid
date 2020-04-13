@@ -1,3 +1,7 @@
+{% if all_link_text != empty %}
+  <a href="{{ all_link }}" class="header-shop__main-all-link">{{ all_link_text }}</a>
+{% endif %}
+
 <a class="header-shop__main-link" href="#" data-header-link="2">
   <span class="header-shop__main-text">{{ shop_title }}</span>
   <span class="header-shop__main-icon">
@@ -12,17 +16,17 @@
     <div class="container">
       <div class="row">
         {% if show_featured %}
-          <div class="col-8">
+          <div class="col-xl-8 col-lg-7">
         {% else %}
           <div class="col-12">
         {% endif %}
 
           {% assign prominent_links_a = prominent_links | split: ',' %}
-          <div class="header-shop__menu">
+          <div class="header-shop__menu" data-accordion-parent-rsp=true>
             {% for link in linklists[header-shop].links %}
               {% assign is_prominent = false %}
-              {% assign p_link_clean = "1" %}
-              {% assign title_clean = "2" %}
+              {% assign p_link_clean = "" %}
+              {% assign title_clean = "" %}
 
               {% for p_link in prominent_links_a %}
                 {% assign p_link_clean = p_link | strip | handleize %}
@@ -33,16 +37,39 @@
                 {% endif %}
               {% endfor %}
 
-              <div class="header-shop__link-parent{% if is_prominent == true %} prominent{% endif %}">
+              <div class="header-shop__link-parent{% if is_prominent == true %} prominent{% endif %}" data-accordion-wrap-rsp="{{ forloop.index }}">
                 <div class="header-shop__link-header">
-                  <a class="header-shop__link-top" href="{{ link.url }}">{{ link.title }}</a>
+                  {% if link.handle contains "bottle" %}
+                    <span class="header-shop__link-menu-img-wrap">
+                      <img
+                        class="header-shop__link-menu-img"
+                        src="{{ 'dyln-bottle-rsp-menu.png' | asset_url }}"
+                        alt="{{ link.title }} Image" />
+                    </span>
+                  {% elsif link.handle contains "accessorie" %}
+                    <span class="header-shop__link-menu-img-wrap">
+                      <img
+                        class="header-shop__link-menu-img"
+                        src="{{ 'dyln-bottle-cap-rsp-menu.png' | asset_url }}"
+                        alt="{{ link.title }} Image" />
+                    </span>
+                  {% elsif link.handle contains "diffuser" %}
+                    <span class="header-shop__link-menu-img-wrap">
+                      <img
+                        class="header-shop__link-menu-img"
+                        src="{{ 'dyln-diffuser-rsp-menu.png' | asset_url }}"
+                        alt="{{ link.title }} Image" />
+                    </span>
+                  {% endif %}
+
+                  <a class="header-shop__link-top" href="{{ link.url }}" data-accordion-button-rsp="{{ forloop.index }}">{{ link.title }}</a>
                   {% if is_prominent == true %}
                     <a class="header-shop__shop-all" href="{{ link.url }}">{{ 'header.shop.shop_all' | t }}</a>
                   {% endif %}
                 </div>
                 {% if link.links != blank %}
                   {% if is_prominent == true %}
-                    <div class="header-shop__link-list prominent">
+                    <div class="header-shop__link-list prominent" data-accordion-content-rsp="{{ forloop.index }}">
                       {% for childlink in link.links limit: 6 %}
                         <a class="header-shop__link-sub prominent" href="{{ childlink.url }}">
                           {% assign link_image = childlink.object.featured_image %}
@@ -68,7 +95,7 @@
                       {% endfor %}
                     </div>
                   {% else %}
-                    <div class="header-shop__link-list">
+                    <div class="header-shop__link-list" data-accordion-content-rsp="{{ forloop.index }}">
                       {% for childlink in link.links %}
                         {% assign child_class = "" %}
                         {% if childlink.title == "Learn More" %}
@@ -89,7 +116,7 @@
 
         {% if show_featured %}
           </div>
-          <div class="col-4">
+          <div class="col-xl-4 col-lg-5">
             <div class="header-shop__featured">
               <div class="header-shop__f-content-wrap">
                 <div class="header-shop__f-content">{{ featured_content }}</div>

@@ -216,6 +216,7 @@
     $btn-def-c: $color-white;
     $btn-acc-c: $color-white;
     $btn-sup-c: transparent;
+    $btn-text-c: $color-body-text;
 
     @if $type == wire {
       $btn-text-c: $color-white;

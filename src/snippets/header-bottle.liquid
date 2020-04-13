@@ -11,7 +11,11 @@
     <div class="container">
       <div class="row">
         {% if b_video != empty %}
-          <div class="col-6">
+          <div class="col-lg-6">
+            <div class="header-bottle__content-wrap">
+              <h2 class="header-bottle__c-title rsp">{{ b_title }}</h2>
+              <h4 class="header-bottle__c-subtitle rsp">{{ b_subtitle }}{% render 'icon-chevron-down' %}</h4>
+            </div>
             <div class="header-bottle__video">
               {{ b_video }}
             </div>
@@ -19,13 +23,13 @@
         {% endif %}
 
         {% if b_video != empty %}
-          <div class="col-6">
+          <div class="col-lg-6">
         {% else %}
           <div class="col-12">
         {% endif %}
           <div class="header-bottle__content-wrap">
-            <h2 class="header-bottle__c-title">{{ b_title }}</h2>
-            <h4 class="header-bottle__c-subtitle">{{ b_subtitle }}</h4>
+            <h2 class="header-bottle__c-title desktop">{{ b_title }}</h2>
+            <h4 class="header-bottle__c-subtitle desktop">{{ b_subtitle }}</h4>
             <div class="header-bottle__c-content">{{ b_content }}</div>
             {% if b_link_text != empty %}
               <a class="header-bottle__c-link" href="{{ b_link }}">{{ b_link_text }}</a>
@@ -41,72 +45,80 @@
 
     <div class="header-bottle__usps">
       <div class="header-bottle__usps-wave"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-3">
-            <h5 class="header-bottle__usps-title">{{ b_usp }}</h5>
+      <div class="header-bottle__usps-c-wrap">
+        <div class="container" data-accordion-parent-rsp=true>
+          <div class="row">
+            <div class="col-lg-3">
+              <h5 class="header-bottle__usps-title">{{ b_usp }}</h5>
+            </div>
+
+            {% if b_usp_title_1 or b_usp_content_1 %}
+              <div class="col-lg-3">
+                <div class="header-bottle__usp">
+                  <div class="header-bottle__usp-header" data-accordion-button-rsp="1">
+                    <div class="header-bottle__usp-icon">
+                      {% if b_usp_icon_1 == "alkaline" %}
+                        {% render 'icon-alkaline' %}
+                      {% elsif b_usp_icon_1 == "antioxidant" %}
+                        {% render 'icon-antioxidant' %}
+                      {% elsif b_usp_icon_1 == "infused" %}
+                        {% render 'icon-infused' %}
+                      {% endif %}
+                    </div>
+                    <h5 class="header-bottle__usp-title">{{ b_usp_title_1 }}</h5>
+                    <span class="header-bottle__usp-closed">+</span>
+                    <span class="header-bottle__usp-open">-</span>
+                  </div>
+                  <div class="header-bottle__usp-body" data-accordion-content-rsp="1">{{ b_usp_content_1 }}</div>
+                </div>
+              </div>
+            {% endif %}
+
+            {% if b_usp_title_2 or b_usp_content_2 %}
+              <div class="col-lg-3">
+                <div class="header-bottle__usp">
+                  <div class="header-bottle__usp-header" data-accordion-button-rsp="2">
+                    <div class="header-bottle__usp-icon">
+                      {% if b_usp_icon_2 == "alkaline" %}
+                        {% render 'icon-alkaline' %}
+                      {% elsif b_usp_icon_2 == "antioxidant" %}
+                        {% render 'icon-antioxidant' %}
+                      {% elsif b_usp_icon_2 == "infused" %}
+                        {% render 'icon-infused' %}
+                      {% endif %}
+                    </div>
+                    <h5 class="header-bottle__usp-title">{{ b_usp_title_2 }}</h5>
+                    <span class="header-bottle__usp-closed">+</span>
+                    <span class="header-bottle__usp-open">-</span>
+                  </div>
+                  <div class="header-bottle__usp-body" data-accordion-content-rsp="2">{{ b_usp_content_2 }}</div>
+                </div>
+              </div>
+            {% endif %}
+
+            {% if b_usp_title_3 or b_usp_content_3 %}
+              <div class="col-lg-3">
+                <div class="header-bottle__usp">
+                  <div class="header-bottle__usp-header" data-accordion-button-rsp="3">
+                    <div class="header-bottle__usp-icon">
+                      {% if b_usp_icon_3 == "alkaline" %}
+                        {% render 'icon-alkaline' %}
+                      {% elsif b_usp_icon_3 == "antioxidant" %}
+                        {% render 'icon-antioxidant' %}
+                      {% elsif b_usp_icon_3 == "infused" %}
+                        {% render 'icon-infused' %}
+                      {% endif %}
+                    </div>
+                    <h5 class="header-bottle__usp-title">{{ b_usp_title_3 }}</h5>
+                    <span class="header-bottle__usp-closed">+</span>
+                    <span class="header-bottle__usp-open">-</span>
+                  </div>
+                  <div class="header-bottle__usp-body" data-accordion-content-rsp="3">{{ b_usp_content_3 }}</div>
+                </div>
+              </div>
+            {% endif %}
+
           </div>
-
-          {% if b_usp_title_1 or b_usp_content_1 %}
-            <div class="col-3">
-              <div class="header-bottle__usp">
-                <div class="header-bottle__usp-header">
-                  <div class="header-bottle__usp-icon">
-                    {% if b_usp_icon_1 == "alkaline" %}
-                      {% render 'icon-alkaline' %}
-                    {% elsif b_usp_icon_1 == "antioxidant" %}
-                      {% render 'icon-antioxidant' %}
-                    {% elsif b_usp_icon_1 == "infused" %}
-                      {% render 'icon-infused' %}
-                    {% endif %}
-                  </div>
-                  <h5 class="header-bottle__usp-title">{{ b_usp_title_1 }}</h5>
-                </div>
-                <div class="header-bottle__usp-body">{{ b_usp_content_1 }}</div>
-              </div>
-            </div>
-          {% endif %}
-
-          {% if b_usp_title_2 or b_usp_content_2 %}
-            <div class="col-3">
-              <div class="header-bottle__usp">
-                <div class="header-bottle__usp-header">
-                  <div class="header-bottle__usp-icon">
-                    {% if b_usp_icon_2 == "alkaline" %}
-                      {% render 'icon-alkaline' %}
-                    {% elsif b_usp_icon_2 == "antioxidant" %}
-                      {% render 'icon-antioxidant' %}
-                    {% elsif b_usp_icon_2 == "infused" %}
-                      {% render 'icon-infused' %}
-                    {% endif %}
-                  </div>
-                  <h5 class="header-bottle__usp-title">{{ b_usp_title_2 }}</h5>
-                </div>
-                <div class="header-bottle__usp-body">{{ b_usp_content_2 }}</div>
-              </div>
-            </div>
-          {% endif %}
-
-          {% if b_usp_title_3 or b_usp_content_3 %}
-            <div class="col-3">
-              <div class="header-bottle__usp">
-                <div class="header-bottle__usp-header">
-                  <div class="header-bottle__usp-icon">
-                    {% if b_usp_icon_3 == "alkaline" %}
-                      {% render 'icon-alkaline' %}
-                    {% elsif b_usp_icon_3 == "antioxidant" %}
-                      {% render 'icon-antioxidant' %}
-                    {% elsif b_usp_icon_3 == "infused" %}
-                      {% render 'icon-infused' %}
-                    {% endif %}
-                  </div>
-                  <h5 class="header-bottle__usp-title">{{ b_usp_title_3 }}</h5>
-                </div>
-                <div class="header-bottle__usp-body">{{ b_usp_content_3 }}</div>
-              </div>
-            </div>
-          {% endif %}
-
         </div>
       </div>
     </div>

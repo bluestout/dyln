@@ -219,7 +219,7 @@ function renderProductOptions(variant, $parent) {
 }
 
 function init() {
-  if ($(window).width() <= 768) {
+  if ($(window).width() < 768) {
     const $gallery = $(`${selectors.shopMobileSlick} ${selectors.gallery}`);
     const $images = $gallery.find(selectors.image);
     $images.each((index, option) => {

@@ -1,0 +1,52 @@
+.header-button {
+  @include no-browser-styling;
+  @include no-font-size;
+  position: relative;
+  height: 18px;
+  width: 18px;
+
+  &.open {
+    .header-button__top {
+      transform: rotate(-45deg);
+      top: 8px;
+    }
+
+    .header-button__middle {
+      opacity: 0;
+    }
+
+    .header-button__bottom {
+      transform: rotate(45deg);
+      top: 8px;
+    }
+  }
+
+  &__top {
+    @include transition(transform, top);
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &__middle {
+    @include transition(opacity 100ms ease-in-out);
+    position: absolute;
+    top: 8px;
+    left: 0;
+  }
+
+  &__bottom {
+    @include transition(transform, top);
+    position: absolute;
+    top: 16px;
+    left: 0;
+  }
+
+  @include media-query($large-up) {
+    display: none;
+  }
+
+  @include media-query($large-down) {
+    display: inline-block;
+  }
+}

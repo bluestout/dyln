@@ -54,9 +54,44 @@
       @include transition(stroke);
     }
   }
+
+  @include media-query($large-down) {
+    &__mobile-wrap {
+      z-index: 10;
+      position: fixed;
+      top: 50px;
+      left: 0;
+      width: 100vw;
+      height: 100%;
+      background-color: $color-white;
+      padding: 10px 0 0;
+    }
+
+    &__mobile-shadow {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100px;
+      width: 100%;
+      pointer-events: none;
+      background: radial-gradient(
+        ellipse at top,
+        rgba($color-theme-19, 0.7) 0%,
+        transparent 60%,
+        transparent 100%
+      );
+    }
+  }
+
+  @include media-query($small) {
+    &__mobile-shadow {
+      height: 50px;
+    }
+  }
 }
 
 @import "./announcement-bar";
+@import "./header-button";
 @import "./header-logo";
 @import "./header-nav";
 @import "./header-login";

@@ -8,14 +8,14 @@
       {% for block in section.blocks %}
         <div class="col-md-6">
           <div class="pdp-faqs__faq">
-            <button class="pdp-faqs__faq-btn" data-accordion-button>
+            <button class="pdp-faqs__faq-btn" data-accordion-button="{{ forloop.index }}">
               <span class="pdp-faqs__faq-q">
                 {{ block.settings.title }}
               </span>
               <span class="pdp-faqs__faq-closed">+</span>
               <span class="pdp-faqs__faq-open">-</span>
             </button>
-            <div class="pdp-faqs__faq-a" data-accordion-content>{{ block.settings.answer }}</div>
+            <div class="pdp-faqs__faq-a" data-accordion-content="{{ forloop.index }}">{{ block.settings.answer }}</div>
           </div>
         </div>
       {% endfor %}

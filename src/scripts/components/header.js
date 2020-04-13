@@ -2,20 +2,21 @@ import $ from "jquery";
 
 const datasets = {
   link: "header-link",
-  close: "header-block-close",
+  block: "header-block",
+  close: "header-block-close"
 };
 
 const elements = {
   header: "[data-section-type='header']",
   navToggle: "[data-navigation-toggle]",
   nav: "[data-header-navigation]",
-  notification: "[data-header-notification]",
-  notificationClose: "[data-header-notification-close]",
   offset: "[data-header-offset]",
   banner: "[data-header-banner]",
   link: `[data-${datasets.link}]`,
-  linkById: (id) => `[data-${datasets.link}="${id}"]`,
-  close: `[data-${datasets.close}]`,
+  block: `[data-${datasets.block}]`,
+  linkById: id => `[data-${datasets.link}="${id}"]`,
+  blockById: id => `[data-${datasets.block}="${id}"]`,
+  close: `[data-${datasets.close}]`
 };
 
 const classes = {
@@ -24,13 +25,13 @@ const classes = {
   fixed: "fixed",
   note: "notification",
   hide: "hide",
-  noBanner: "no-banner",
+  noBanner: "no-banner"
 };
 
 const events = {
   resize: "resize",
   click: "click",
-  scroll: "scroll",
+  scroll: "scroll"
 };
 
 const windowScrolledRedux = new Event("windowScrolledRedux");
@@ -88,47 +89,35 @@ function togglesInit() {
   }
 }
 
-function notificationInit() {
-  const isClosed = localStorage.getItem("notificationClosed");
-
-  if (isClosed) {
-    $(elements.header).removeClass(classes.note);
-    $(elements.offset).removeClass(classes.note);
-  } else {
-    $(elements.header).addClass(classes.note);
-    $(elements.offset).addClass(classes.note);
-    $(elements.notification).removeClass(classes.hide);
-  }
-
-  if (
-    $(elements.banner).length > 0 ||
-    ($(elements.notification).length > 0 &&
-      $(elements.notification).css("display") !== "none")
-  ) {
-    $(elements.header).addClass(classes.note);
-    $(elements.offset).addClass(classes.note);
-  } else {
-    $(elements.header).addClass(classes.noBanner);
-  }
-}
-
-function closeNotification() {
-  $(elements.notification).addClass(classes.hide);
-  localStorage.setItem("notificationClosed", true);
-  $(elements.header).removeClass(classes.note);
-  $(elements.offset).removeClass(classes.note);
-  $(elements.header).addClass(classes.noBanner);
-}
-
 function handleHeaderLinkClick(event) {
   event.preventDefault();
   const $source = $(event.currentTarget);
   const $links = $(elements.link);
-  if ($links.length > 0) {
-    $links.not($source).removeClass(classes.active);
+  const $blocks = $(elements.block);
+
+  if ($source.length <= 0) {
+    return;
   }
-  if ($source.length > 0) {
-    $source.toggleClass(classes.active);
+
+  const id = $source.data(datasets.link);
+  const $block = $(elements.blockById(id));
+
+  if ($(window).width() < 992) {
+    if ($block.length > 0) {
+      $blocks.not($block).slideUp();
+      $block.slideToggle();
+    }
+    if ($source.length > 0) {
+      $links.not($source).removeClass(classes.active);
+      $source.toggleClass(classes.active);
+    }
+  } else {
+    if ($links.length > 0) {
+      $links.not($source).removeClass(classes.active);
+    }
+    if ($source.length > 0) {
+      $source.toggleClass(classes.active);
+    }
   }
 }
 
@@ -143,11 +132,9 @@ function handleHeaderLinkClose(event) {
 }
 
 $(document).ready(() => {
-  notificationInit();
   init();
 });
 
-$(document).on("click", elements.notificationClose, closeNotification);
 $(document).on("click", elements.link, handleHeaderLinkClick);
 $(document).on("click", elements.close, handleHeaderLinkClose);
 

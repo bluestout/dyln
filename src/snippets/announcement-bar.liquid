@@ -2,16 +2,34 @@
   {%- if home_only == false or template.name == 'index' -%}
     <div class="announcement-bar">
       <div class="container">
-        <div class="row justify-content-between">
-          <div class="col-auto align-self-center">
-            <a class="announcement-bar__member" href="">Become a Member</a>
-          </div>
-          <div class="col-auto align-self-center">
+        <div class="row justify-content-between no-gutters">
+          {% if desktop_link_text_1 != blank %}
+            <div class="col-lg-auto align-self-center d-none d-lg-block">
+              <div class="announcement-bar__link-wrap">
+                <a class="announcement-bar__link" href="{{ desktop_link_1 }}">{{ desktop_link_text_1 }}</a>
+              </div>
+            </div>
+          {% endif %}
+
+          <div class="col-lg-auto {% if mobile_link_text != blank %}col-sm-9 col-8{% else %}col-12{% endif %} align-self-center">
             <div class="announcement-bar__content">{{ content }}</div>
           </div>
-          <div class="col-auto align-self-center">
-            <a class="announcement-bar__member" href="">Become a Member</a>
-          </div>
+
+          {% if desktop_link_text_2 != blank %}
+            <div class="col-lg-auto align-self-center d-none d-lg-block">
+              <div class="announcement-bar__link-wrap">
+                <a class="announcement-bar__link" href="{{ desktop_link_2 }}">{{ desktop_link_text_2 }}</a>
+              </div>
+            </div>
+          {% endif %}
+
+          {% if mobile_link_text != blank %}
+            <div class="col-sm-3 col-4 align-self-center d-lg-none">
+              <div class="announcement-bar__link-wrap">
+                <a class="announcement-bar__link" href="{{ mobile_link }}">{{ mobile_link_text }}</a>
+              </div>
+            </div>
+          {% endif %}
         </div>
       </div>
     </div>

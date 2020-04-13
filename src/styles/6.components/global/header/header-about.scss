@@ -1,130 +1,216 @@
 .header-about {
-  @include transition(opacity);
-  z-index: $z-header-blocks;
-  position: absolute;
-  left: 0;
-  top: 100%;
-  opacity: 0;
-  pointer-events: none;
-  width: 100vw;
+  @include media-query($large-up) {
+    @include transition(opacity);
+    z-index: $z-header-blocks;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    opacity: 0;
+    pointer-events: none;
+    width: 100vw;
 
-  &__main-link {
-    display: inline-block;
-    vertical-align: middle;
+    &__main-link {
+      display: inline-block;
+      vertical-align: middle;
 
-    &:hover {
-      .header-about__main-text {
-        color: $color-main-1;
+      &:hover {
+        .header-about__main-text {
+          color: $color-main-1;
+        }
+        .icon-plus-vert path {
+          stroke: $color-main-1;
+        }
+        .icon-plus-hor path {
+          stroke: $color-main-1;
+        }
       }
-      .icon-plus-vert path {
-        stroke: $color-main-1;
-      }
-      .icon-plus-hor path {
-        stroke: $color-main-1;
+
+      &.active {
+        .header-about__main-text::after {
+          width: 100%;
+        }
+        .header-about__main-text {
+          color: $color-body-text;
+        }
+
+        .icon-plus-vert {
+          top: 3px;
+          height: 2px;
+        }
+
+        .icon-plus-vert path {
+          stroke: $color-body-text;
+        }
+        .icon-plus-hor path {
+          stroke: $color-body-text;
+        }
+
+        + .header-about {
+          pointer-events: auto;
+          opacity: 1;
+        }
       }
     }
 
-    &.active {
-      .header-about__main-text::after {
-        width: 100%;
-      }
-      .header-about__main-text {
-        color: $color-body-text;
+    &__main-text {
+      @include font-header(700);
+      @include text(19px, 27px, $color-body-text, 1.5px);
+      @include transition(color);
+      @include underline($color-body-text, false);
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &__main-icon {
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      width: 8px;
+      height: 8px;
+
+      .icon-plus-vert path,
+      .icon-plus-hor path {
+        @include transition(stroke);
       }
 
       .icon-plus-vert {
+        @include transition(top, height);
+        position: absolute;
+        top: 0;
+        left: 3px;
+      }
+
+      .icon-plus-hor {
+        position: absolute;
+        left: 0;
         top: 3px;
-        height: 2px;
-      }
-
-      .icon-plus-vert path {
-        stroke: $color-body-text;
-      }
-      .icon-plus-hor path {
-        stroke: $color-body-text;
-      }
-
-      + .header-about {
-        pointer-events: auto;
-        opacity: 1;
       }
     }
-  }
 
-  &__main-text {
-    @include font-header(700);
-    @include text(19px, 27px, $color-body-text, 1.5px);
-    @include transition(color);
-    @include underline($color-body-text, false);
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  &__main-icon {
-    position: relative;
-    display: inline-block;
-    vertical-align: middle;
-    width: 8px;
-    height: 8px;
-
-    .icon-plus-vert path,
-    .icon-plus-hor path {
-      @include transition(stroke);
+    &__body {
+      position: relative;
+      z-index: $z-base;
+      background-color: $color-theme-14;
+      padding: 10px 0 20px;
     }
 
-    .icon-plus-vert {
-      @include transition(top, height);
+    &__menu {
+      text-align: center;
+    }
+    &__menu-link {
+      @include font-header(500);
+      @include text(20px, 30px, $color-body-text, 0.18px);
+      margin: 0 40px 10px;
+      display: inline-block;
+    }
+
+    &__close {
+      @include no-font-size;
+      text-align: center;
+      margin: 10px auto 0;
+    }
+
+    &__close-btn {
+      border: none;
+      box-shadow: none;
+      background: transparent;
+      border-radius: 0;
+      margin: 0;
+      padding: 1px 3px;
+      display: inline-block;
+    }
+
+    &__overlay {
       position: absolute;
       top: 0;
-      left: 3px;
-    }
-
-    .icon-plus-hor {
-      position: absolute;
       left: 0;
-      top: 3px;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba($color-black, 0.5);
     }
   }
 
-  &__body {
-    position: relative;
-    z-index: $z-base;
-    background-color: $color-theme-14;
-    padding: 10px 0 20px;
-  }
+  @include media-query($large-down) {
+    @include transition(background-color);
+    display: none;
+    padding: 0 0 5px;
 
-  &__menu {
-    text-align: center;
-  }
-  &__menu-link {
-    @include font-header(500);
-    @include text(20px, 30px, $color-body-text, 0.18px);
-    margin: 0 40px 10px;
-    display: inline-block;
-  }
+    &__main-all-link {
+      display: none;
+    }
 
-  &__close {
-    @include no-font-size;
-    text-align: center;
-    margin: 10px auto 0;
-  }
+    &__main-link {
+      @include transition(background-color);
+      display: block;
+      padding: 10px 15px 20px;
 
-  &__close-btn {
-    border: none;
-    box-shadow: none;
-    background: transparent;
-    border-radius: 0;
-    margin: 0;
-    padding: 1px 3px;
-    display: inline-block;
-  }
+      &.active {
+        background-color: $color-theme-4;
 
-  &__overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba($color-black, 0.5);
+        .icon-plus-vert {
+          top: 3px;
+          height: 2px;
+        }
+
+        + .header-about {
+          background-color: $color-theme-4;
+        }
+      }
+    }
+
+    &__main-text {
+      @include font-header(700);
+      @include text(20px, 28px, $color-body-text, 1.5px);
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &__main-icon {
+      position: relative;
+      float: right;
+      width: 8px;
+      height: 8px;
+      margin: 10px 0 0;
+
+      .icon-plus-vert {
+        position: absolute;
+        top: 0;
+        left: 3px;
+      }
+
+      .icon-plus-hor {
+        position: absolute;
+        left: 0;
+        top: 3px;
+      }
+    }
+
+    &__body {
+      position: relative;
+      padding: 0;
+    }
+
+    &__menu {
+      width: 100%;
+    }
+
+    &__menu-link {
+      @include font-header(500);
+      @include text(16px, 30px, $color-body-text, 0.15px);
+      padding: 0 0 5px;
+      margin: 0 15px 10px;
+      display: block;
+      &:not(:last-of-type) {
+        border-bottom: 1px solid $color-theme-6;
+      }
+    }
+
+    &__close {
+      display: none;
+    }
+
+    &__overlay {
+      display: none;
+    }
   }
 }

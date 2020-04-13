@@ -1,198 +1,473 @@
 .header-bottle {
-  @include transition(opacity);
-  z-index: $z-header-blocks;
-  position: absolute;
-  left: 0;
-  top: 100%;
-  opacity: 0;
-  pointer-events: none;
-  width: 100vw;
+  @include media-query($large-up) {
+    @include transition(opacity);
+    z-index: $z-header-blocks;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    opacity: 0;
+    pointer-events: none;
+    width: 100vw;
 
-  &__main-link {
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0 30px 0 0;
+    &__main-link {
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 30px 0 0;
 
-    &:hover {
-      .header-bottle__main-text {
-        color: $color-main-1;
+      &:hover {
+        .header-bottle__main-text {
+          color: $color-main-1;
+        }
+        .icon-plus-vert path {
+          stroke: $color-main-1;
+        }
+        .icon-plus-hor path {
+          stroke: $color-main-1;
+        }
       }
-      .icon-plus-vert path {
-        stroke: $color-main-1;
-      }
-      .icon-plus-hor path {
-        stroke: $color-main-1;
+
+      &.active {
+        .header-bottle__main-text::after {
+          width: 100%;
+        }
+        .header-bottle__main-text {
+          color: $color-body-text;
+        }
+
+        .icon-plus-vert {
+          top: 3px;
+          height: 2px;
+        }
+
+        .icon-plus-vert path {
+          stroke: $color-body-text;
+        }
+        .icon-plus-hor path {
+          stroke: $color-body-text;
+        }
+
+        + .header-bottle {
+          pointer-events: auto;
+          opacity: 1;
+        }
       }
     }
 
-    &.active {
-      .header-bottle__main-text::after {
-        width: 100%;
-      }
-      .header-bottle__main-text {
-        color: $color-body-text;
+    &__main-text {
+      @include font-header(700);
+      @include text(19px, 27px, $color-body-text, 1.5px);
+      @include transition(color);
+      @include underline($color-body-text, false);
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &__main-icon {
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      width: 8px;
+      height: 8px;
+
+      .icon-plus-vert path,
+      .icon-plus-hor path {
+        @include transition(stroke);
       }
 
       .icon-plus-vert {
+        @include transition(top, height);
+        position: absolute;
+        top: 0;
+        left: 3px;
+      }
+
+      .icon-plus-hor {
+        position: absolute;
+        left: 0;
         top: 3px;
-        height: 2px;
-      }
-
-      .icon-plus-vert path {
-        stroke: $color-body-text;
-      }
-      .icon-plus-hor path {
-        stroke: $color-body-text;
-      }
-
-      + .header-bottle {
-        pointer-events: auto;
-        opacity: 1;
       }
     }
-  }
 
-  &__main-text {
-    @include font-header(700);
-    @include text(19px, 27px, $color-body-text, 1.5px);
-    @include transition(color);
-    @include underline($color-body-text, false);
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  &__main-icon {
-    position: relative;
-    display: inline-block;
-    vertical-align: middle;
-    width: 8px;
-    height: 8px;
-
-    .icon-plus-vert path,
-    .icon-plus-hor path {
-      @include transition(stroke);
+    &__body {
+      position: relative;
+      z-index: $z-base;
+      background-color: $color-background;
+      padding: 60px 0 0;
     }
 
-    .icon-plus-vert {
-      @include transition(top, height);
+    &__c-title {
+      @include text-title($color-main-1);
+      margin: 0 0 10px;
+
+      &.rsp {
+        display: none;
+      }
+    }
+
+    &__c-subtitle {
+      @include font-header(500);
+      @include text(30px, 56px, $color-main-1, 1.77px);
+      margin: 0 0 20px;
+
+      &.rsp {
+        display: none;
+      }
+    }
+
+    &__c-content {
+      @include font-header(500);
+      @include text(16px, 23px, $color-body-text, 0.15px);
+      margin: 0 0 30px;
+
+      a {
+        color: $color-main-1;
+      }
+    }
+
+    &__c-link {
+      @include button(solid, r, 1);
+    }
+
+    &__usps {
+      position: relative;
+      margin: 20px 0 0;
+      padding: 60px 0 0;
+    }
+
+    &__usps-wave {
       position: absolute;
       top: 0;
-      left: 3px;
-    }
-
-    .icon-plus-hor {
-      position: absolute;
       left: 0;
-      top: 3px;
+      height: 100%;
+      width: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg width='1600' height='274' viewBox='0 0 1600 274' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M.5 18.447c610 84.033 1039.676-69.017 1600 0v255H.5c-.667-115.333-.667-200.333 0-255z' fill='%23E7F0F2' fill-rule='evenodd'/%3E%3C/svg%3E");
+    }
+
+    &__usps-title {
+      @include font-header(700);
+      @include text(20px, 28px, $color-title, 0.48px);
+      position: relative;
+      margin: 5px 0 0;
+    }
+    &__usp {
+      position: relative;
+    }
+
+    &__usp-header {
+      display: flex;
+      flex-flow: row wrap;
+    }
+
+    &__usp-icon {
+      margin: 0 20px 0 0;
+      flex: 0 0 40px;
+      align-self: center;
+    }
+
+    &__usp-title {
+      @include font-header(700);
+      @include text(20px, 28px, $color-title, 0.23px);
+      flex: 0 0 1;
+      align-self: flex-end;
+      padding: 0 0 3px;
+    }
+
+    &__usp-body {
+      @include font-header(500);
+      @include text(14px, 20px, $color-body-text, 0.16px);
+    }
+
+    &__close {
+      @include no-font-size;
+      text-align: center;
+      padding: 10px 0 20px;
+      background-color: $color-theme-13;
+    }
+
+    &__close-btn {
+      border: none;
+      box-shadow: none;
+      background: transparent;
+      border-radius: 0;
+      margin: 0;
+      padding: 1px 3px;
+      display: inline-block;
+    }
+
+    &__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba($color-black, 0.5);
+    }
+
+    &__usp-closed {
+      display: none;
+    }
+
+    &__usp-open {
+      display: none;
     }
   }
 
-  &__body {
-    position: relative;
-    z-index: $z-base;
-    background-color: $color-background;
-    padding: 60px 0 0;
+  @include media-query($xl) {
+    &__c-title {
+      font-size: 35px;
+      line-height: 45px;
+    }
+
+    &__c-subtitle {
+      font-size: 26px;
+      line-height: 34px;
+      margin: 0 0 20px;
+    }
+
+    &__c-content {
+      font-size: 15px;
+      line-height: 22px;
+      margin: 0 0 20px;
+    }
+
+    &__usps-title {
+      font-size: 18px;
+      line-height: 26px;
+    }
+
+    &__usp-icon {
+      margin: 0 5px 0 0;
+      flex: 0 0 35px;
+    }
+
+    &__usp-title {
+      font-size: 16px;
+      line-height: 26px;
+    }
   }
 
-  &__video {
-  }
-
-  &__content-wrap {
-  }
-
-  &__c-title {
-    @include text-title($color-main-1);
+  @include media-query($large-down) {
+    @include transition(background-color);
+    display: none;
     margin: 0 0 10px;
-  }
 
-  &__c-subtitle {
-    @include font-header(500);
-    @include text(30px, 56px, $color-main-1, 1.77px);
-    margin: 0 0 20px;
-  }
+    &__main-link {
+      @include transition(background-color);
+      display: block;
+      padding: 0 15px 20px;
 
-  &__c-content {
-    @include font-header(500);
-    @include text(16px, 23px, $color-body-text, 0.15px);
-    margin: 0 0 30px;
-  }
+      &.active {
+        background-color: $color-theme-4;
 
-  &__c-link {
-    @include button(solid, r, 1);
-  }
+        .icon-plus-vert {
+          top: 3px;
+          height: 2px;
+        }
 
-  &__usps {
-    position: relative;
-    margin: 20px 0 0;
-    padding: 60px 0 0;
-  }
+        + .header-bottle {
+          background-color: $color-theme-4;
+        }
+      }
+    }
 
-  &__usps-wave {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg width='1600' height='274' viewBox='0 0 1600 274' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M.5 18.447c610 84.033 1039.676-69.017 1600 0v255H.5c-.667-115.333-.667-200.333 0-255z' fill='%23E7F0F2' fill-rule='evenodd'/%3E%3C/svg%3E");
-  }
+    &__main-text {
+      @include font-header(700);
+      @include text(20px, 28px, $color-body-text, 1.5px);
+      display: inline-block;
+      vertical-align: middle;
+    }
 
-  &__usps-title {
-    @include font-header(700);
-    @include text(20px, 28px, $color-title, 0.48px);
-    position: relative;
-    margin: 5px 0 0;
-  }
-  &__usp {
-    position: relative;
-  }
+    &__main-icon {
+      position: relative;
+      float: right;
+      width: 8px;
+      height: 8px;
+      margin: 10px 0 0;
 
-  &__usp-header {
-    display: flex;
-    flex-flow: row wrap;
-  }
+      .icon-plus-vert {
+        position: absolute;
+        top: 0;
+        left: 3px;
+      }
 
-  &__usp-icon {
-    margin: 0 20px 0 0;
-    flex: 0 0 40px;
-    align-self: center;
-  }
+      .icon-plus-hor {
+        position: absolute;
+        left: 0;
+        top: 3px;
+      }
+    }
 
-  &__usp-title {
-    @include font-header(700);
-    @include text(20px, 28px, $color-title, 0.23px);
-    flex: 0 0 1;
-    align-self: flex-end;
-    padding: 0 0 3px;
-  }
+    &__body {
+      position: relative;
+      padding: 0;
+    }
 
-  &__usp-body {
-    @include font-header(500);
-    @include text(14px, 20px, $color-body-text, 0.16px);
-  }
+    &__video {
+      text-align: center;
+      margin: 0 auto 20px;
+    }
 
-  &__close {
-    @include no-font-size;
-    text-align: center;
-    padding: 10px 0 20px;
-    background-color: $color-theme-13;
-  }
+    &__content-wrap {
+      text-align: center;
+      margin: 0 0 10px;
+    }
 
-  &__close-btn {
-    border: none;
-    box-shadow: none;
-    background: transparent;
-    border-radius: 0;
-    margin: 0;
-    padding: 1px 3px;
-    display: inline-block;
-  }
+    &__c-title {
+      @include font-header(500);
+      @include text(14px, 20px, $color-main-1, 0.83px);
 
-  &__overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba($color-black, 0.5);
+      &.desktop {
+        display: none;
+      }
+
+      &.rsp {
+        display: inline;
+      }
+    }
+
+    &__c-subtitle {
+      @include font-header(500);
+      @include text(12px, 20px, $color-main-1, 0.71px);
+
+      svg {
+        margin: 0 0 0 3px;
+        line-height: 20px;
+        width: 8px;
+      }
+
+      path {
+        color: $color-black;
+      }
+
+      &.desktop {
+        display: none;
+      }
+
+      &.rsp {
+        display: inline;
+      }
+    }
+
+    &__c-content {
+      @include font-header(500);
+      @include text(12px, 17px, $color-body-text, 0);
+      margin: 0 0 20px;
+
+      a {
+        color: $color-main-1;
+      }
+    }
+
+    &__c-link {
+      @include button(solid, r, 1);
+      padding: 8px 15px;
+      min-width: 170px;
+    }
+
+    &__usps {
+      position: relative;
+      padding: 60px 0 0;
+    }
+
+    &__usps-c-wrap {
+      background-color: $color-theme-13;
+    }
+
+    &__usps-wave {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg width='1600' height='274' viewBox='0 0 1600 274' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M.5 18.447c610 84.033 1039.676-69.017 1600 0v255H.5c-.667-115.333-.667-200.333 0-255z' fill='%23E7F0F2' fill-rule='evenodd'/%3E%3C/svg%3E");
+      background-repeat: repeat-x;
+    }
+
+    &__usps-title {
+      @include font-header(700);
+      @include text(12px, 17px, $color-body-text, 0.11px);
+      position: relative;
+      margin: 5px auto 15px;
+      text-align: center;
+    }
+
+    &__usp {
+      position: relative;
+      padding: 0 5px 10px;
+      margin: 0 0 10px;
+      border-bottom: 1px solid $color-main-1;
+    }
+
+    &__usp-header {
+      cursor: pointer;
+      display: flex;
+      flex-flow: row wrap;
+
+      &.open {
+        .header-bottle__usp-closed {
+          display: none;
+        }
+      }
+
+      &:not(.open) {
+        .header-bottle__usp-open {
+          display: none;
+        }
+      }
+    }
+
+    &__usp-closed {
+      @include font-header(500);
+      @include text(25px, 30px, $color-main-1, 1.77px);
+      text-align: center;
+      display: inline-block;
+      vertical-align: middle;
+      width: 20px;
+    }
+
+    &__usp-open {
+      @include font-header(500);
+      @include text(25px, 30px, $color-main-1, 1.77px);
+      text-align: center;
+      display: inline-block;
+      vertical-align: middle;
+      width: 20px;
+    }
+
+    &__usp-icon {
+      margin: 0 20px 0 0;
+      flex: 0 0 40px;
+      align-self: center;
+    }
+
+    &__usp-title {
+      @include font-header(700);
+      @include text(14px, 20px, $color-title, 0.83px);
+      flex: 1;
+      align-self: center;
+      padding: 0;
+    }
+
+    &__usp-body {
+      @include font-header(500);
+      @include text(12px, 17px, $color-body-text, 0.14px);
+      display: none;
+      padding: 10px 0 0;
+    }
+
+    &__close {
+      @include no-font-size;
+      text-align: center;
+      padding: 10px 0 20px;
+      background-color: $color-theme-13;
+    }
+
+    &__close-btn {
+      display: none;
+    }
+
+    &__overlay {
+      display: none;
+    }
   }
 }
