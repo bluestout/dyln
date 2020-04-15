@@ -1,0 +1,18 @@
+<div class="header-bottom">
+  <input type="text" class="header-bottom__input"/>
+  <button type="button" class="header-bottom__button">{% render 'icon-search' %}</button>
+
+  <div class="header-bottom__links">
+    <a href="#" class="header-bottom__link" data-header-bottom-login>
+      <span class="header-bottom__link-i">{% render 'icon-semicircle-login' %}</span>
+      <span class="header-bottom__link-t">{{ 'customer.login.title' | t }}</span>
+    </a>
+    {% if phone_text != blank %}
+      <span class="header-bottom__link-separator"></span>
+      <a href="{{ phone }}" class="header-bottom__link">
+        <span class="header-bottom__link-i">{% render 'icon-phone' %}</span>
+        <span class="header-bottom__link-t">{{ phone_text }}</span>
+      </a>
+    {% endif %}
+  </div>
+</div>

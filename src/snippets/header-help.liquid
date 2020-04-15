@@ -11,7 +11,7 @@
     <div class="container">
       <div class="row">
 
-        <div class="col-3">
+        <div class="col-lg-3 col-6 order-lg-1 order-2">
           {% render 'responsive-image' with
             image: s_image,
             max_width: 312,
@@ -21,7 +21,7 @@
           %}
         </div>
 
-        <div class="col-2">
+        <div class="col-lg-2 col-6 order-lg-2 order-1">
           <nav class="header-help__nav">
             <ul class="header-help__nav-list">
               {% for link in linklists[header-help].links %}
@@ -35,7 +35,7 @@
           </nav>
         </div>
 
-        <div class="col-7">
+        <div class="col-lg-7 order-lg-3 order-3">
           <div class="header-help__big-links">
             {% if s_link_text_1 != empty %}
               <a class="header-help__big-link" href="{{ s_link_1 }}">

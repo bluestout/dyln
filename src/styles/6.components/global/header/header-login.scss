@@ -120,15 +120,11 @@
     }
 
     &__socials {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: space-between;
       margin: 0 0 13px;
-    }
 
-    &__social {
-      flex: 0 0 49%;
-      max-width: 49%;
+      .oxi-social-login {
+        width: 100%;
+      }
     }
 
     &__input {
@@ -196,263 +192,15 @@
       vertical-align: middle;
       display: inline-block;
     }
-
-    @include media-query($large-up) {
-      @include transition(opacity);
-      z-index: $z-header-blocks;
-      position: absolute;
-      left: 0;
-      top: 48px;
-      transform: translate(-50%);
-      background-color: $color-background;
-      box-shadow: 0 2px 16px rgba($color-black, 0.11);
-      padding: 20px;
-      opacity: 0;
-      pointer-events: none;
-      width: 385px;
-
-      &::before {
-        content: "";
-        position: absolute;
-        top: -21px;
-        left: 60%;
-        border: 10px solid transparent;
-        border-bottom: 10px solid rgba($color-black, 0.11);
-      }
-
-      &::after {
-        content: "";
-        position: absolute;
-        top: -20px;
-        left: 60%;
-        border: 10px solid transparent;
-        border-bottom: 10px solid $color-white;
-      }
-
-      &__main-link {
-        &:hover {
-          .header-login__main-text {
-            color: $color-main-1;
-          }
-          .icon-plus-vert path {
-            stroke: $color-main-1;
-          }
-          .icon-plus-hor path {
-            stroke: $color-main-1;
-          }
-        }
-
-        &.active {
-          .header-login__main-text::after {
-            width: 100%;
-          }
-          .header-login__main-text {
-            color: $color-body-text;
-          }
-
-          .icon-plus-vert {
-            top: 3px;
-            height: 2px;
-          }
-
-          .icon-plus-vert path {
-            stroke: $color-body-text;
-          }
-          .icon-plus-hor path {
-            stroke: $color-body-text;
-          }
-
-          + .header-login {
-            pointer-events: auto;
-            opacity: 1;
-          }
-        }
-      }
-
-      &__main-text {
-        @include font-header(500);
-        @include text(18px, 25px, $color-body-text, 1.5px);
-        @include transition(color);
-        @include underline($color-body-text, false);
-        display: inline-block;
-        vertical-align: middle;
-      }
-
-      &__main-icon {
-        position: relative;
-        display: inline-block;
-        vertical-align: middle;
-        width: 8px;
-        height: 8px;
-
-        .icon-plus-vert path,
-        .icon-plus-hor path {
-          @include transition(stroke);
-        }
-
-        .icon-plus-vert {
-          @include transition(top, height);
-          position: absolute;
-          top: 0;
-          left: 3px;
-        }
-
-        .icon-plus-hor {
-          position: absolute;
-          left: 0;
-          top: 3px;
-        }
-      }
-
-      &__title {
-        @include font-header(700);
-        @include text(24px, 33px, $color-main-1, 1.42px);
-        text-transform: uppercase;
-        text-align: center;
-        margin: 0 0 15px;
-      }
-      &__close {
-        position: absolute;
-        top: 12px;
-        right: 12px;
-      }
-
-      &__socials {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
-        margin: 0 0 13px;
-      }
-
-      &__social {
-        flex: 0 0 49%;
-        max-width: 49%;
-      }
-
-      &__input {
-        @include font-body;
-        @include text(16px, 32px, $color-body-text, 0.95px);
-        width: 100%;
-        height: 34px;
-        background-color: transparent;
-        border-radius: 0;
-        border: 1px solid $color-theme-10;
-        padding: 0 16px;
-        margin: 0 0 10px;
-
-        &::placeholder {
-          color: $color-theme-12;
-        }
-
-        &.error {
-          border: 1px solid $color-theme-11;
-        }
-      }
-
-      &__account-links {
-        text-align: center;
-        margin: 0 auto 10px;
-      }
-
-      &__account-link {
-        @include font-header(500);
-        @include text(12px, 17px, $color-black, 0.71px);
-        @include underline($color-main-1);
-        margin: 0 10px;
-      }
-
-      &__submit {
-        @include button(solid, r, 2);
-      }
-
-      &__separator {
-        width: 100%;
-        height: 1px;
-        background-color: $color-theme-6;
-        margin: 20px 0 0;
-      }
-
-      &__bottle-link {
-        margin: 20px auto;
-        text-align: center;
-        display: block;
-      }
-
-      &__bottle-wrap {
-        @include no-font-size;
-        vertical-align: middle;
-        display: inline-block;
-      }
-
-      &__bottle-img {
-        object-fit: contain;
-      }
-
-      &__bottle-text {
-        @include font-header(700);
-        @include text(16px, 23px, $color-main-1, 0.95px);
-        vertical-align: middle;
-        display: inline-block;
-      }
-    }
   }
 
   @include media-query($large-down) {
     @include transition(background-color);
     position: static;
-    left: 0;
-    top: 48px;
     padding: 15px;
-    width: 385px;
-    max-width: 100%;
-
-    &__main-link {
-      &:hover {
-        .header-login__main-text {
-          color: $color-main-1;
-        }
-        .icon-plus-vert path {
-          stroke: $color-main-1;
-        }
-        .icon-plus-hor path {
-          stroke: $color-main-1;
-        }
-      }
-
-      &.active {
-        .header-login__main-text::after {
-          width: 100%;
-        }
-        .header-login__main-text {
-          color: $color-body-text;
-        }
-
-        .icon-plus-vert {
-          top: 3px;
-          height: 2px;
-        }
-
-        .icon-plus-vert path {
-          stroke: $color-body-text;
-        }
-        .icon-plus-hor path {
-          stroke: $color-body-text;
-        }
-
-        + .header-login {
-          pointer-events: auto;
-          opacity: 1;
-        }
-      }
-    }
-
-    @include transition(background-color);
+    width: 100%;
+    margin: 0 auto;
     display: none;
-    padding: 0 0 5px;
-
-    &__main-all-link {
-      display: none;
-    }
 
     &__main-link {
       @include transition(background-color);
@@ -467,10 +215,14 @@
           height: 2px;
         }
 
-        + .header-about {
+        + .header-login {
           background-color: $color-theme-4;
         }
       }
+    }
+
+    &__main-all-link {
+      display: none;
     }
 
     &__main-text {
@@ -510,47 +262,51 @@
     }
 
     &__title {
-      @include font-header(700);
-      @include text(24px, 33px, $color-main-1, 1.42px);
-      text-transform: uppercase;
-      text-align: center;
-      margin: 0 0 15px;
+      @include font-header(500);
+      @include text(16px, 24px, $color-body-text, 0.95px);
+      margin: 0 0 10px;
     }
+
     &__close {
-      position: absolute;
-      top: 12px;
-      right: 12px;
+      display: none;
     }
 
     &__socials {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: space-between;
       margin: 0 0 13px;
-    }
 
-    &__social {
-      flex: 0 0 49%;
-      max-width: 49%;
+      .oxi-social-login {
+        width: 100%;
+      }
     }
 
     &__input {
       @include font-body;
-      @include text(16px, 32px, $color-body-text, 0.95px);
+      @include text(16px, 24px, $color-body-text, 0.95px);
       width: 100%;
-      height: 34px;
+      height: 24px;
       background-color: transparent;
       border-radius: 0;
-      border: 1px solid $color-theme-10;
-      padding: 0 16px;
-      margin: 0 0 10px;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-bottom: 1px solid $color-theme-17;
+      padding: 0;
 
       &::placeholder {
+        font-size: 12px;
         color: $color-theme-12;
       }
 
       &.error {
-        border: 1px solid $color-theme-11;
+        border-bottom: 1px solid $color-theme-11;
+      }
+
+      &:not(:last-of-type) {
+        margin: 0 0 20px;
+      }
+
+      &:last-of-type {
+        margin: 0 0 10px;
       }
     }
 
@@ -561,25 +317,26 @@
 
     &__account-link {
       @include font-header(500);
-      @include text(12px, 17px, $color-black, 0.71px);
-      @include underline($color-main-1);
-      margin: 0 10px;
+      @include text(10px, 15px, $color-black, 0.59px);
+      margin: 0 5px;
     }
 
     &__submit {
       @include button(solid, r, 2);
+      padding: 9px 23px;
     }
 
     &__separator {
-      width: 100%;
+      position: relative;
+      left: -15px;
+      width: calc(100% + 30px);
       height: 1px;
       background-color: $color-theme-6;
-      margin: 20px 0 0;
+      margin: 15px 0 0;
     }
 
     &__bottle-link {
-      margin: 20px auto;
-      text-align: center;
+      margin: 15px auto;
       display: block;
     }
 
@@ -587,216 +344,20 @@
       @include no-font-size;
       vertical-align: middle;
       display: inline-block;
+      margin: 0 5px 0 0;
     }
 
     &__bottle-img {
       object-fit: contain;
+      max-height: 65px;
+      max-width: 35px;
     }
 
     &__bottle-text {
-      @include font-header(700);
-      @include text(16px, 23px, $color-main-1, 0.95px);
+      @include font-header(500);
+      @include text(16px, 23px, $color-body-text, 0.95px);
       vertical-align: middle;
       display: inline-block;
-    }
-
-    @include media-query($large-up) {
-      @include transition(opacity);
-      z-index: $z-header-blocks;
-      position: absolute;
-      left: 0;
-      top: 48px;
-      transform: translate(-50%);
-      background-color: $color-background;
-      box-shadow: 0 2px 16px rgba($color-black, 0.11);
-      padding: 20px;
-      opacity: 0;
-      pointer-events: none;
-      width: 385px;
-
-      &::before {
-        content: "";
-        position: absolute;
-        top: -21px;
-        left: 60%;
-        border: 10px solid transparent;
-        border-bottom: 10px solid rgba($color-black, 0.11);
-      }
-
-      &::after {
-        content: "";
-        position: absolute;
-        top: -20px;
-        left: 60%;
-        border: 10px solid transparent;
-        border-bottom: 10px solid $color-white;
-      }
-
-      &__main-link {
-        &:hover {
-          .header-login__main-text {
-            color: $color-main-1;
-          }
-          .icon-plus-vert path {
-            stroke: $color-main-1;
-          }
-          .icon-plus-hor path {
-            stroke: $color-main-1;
-          }
-        }
-
-        &.active {
-          .header-login__main-text::after {
-            width: 100%;
-          }
-          .header-login__main-text {
-            color: $color-body-text;
-          }
-
-          .icon-plus-vert {
-            top: 3px;
-            height: 2px;
-          }
-
-          .icon-plus-vert path {
-            stroke: $color-body-text;
-          }
-          .icon-plus-hor path {
-            stroke: $color-body-text;
-          }
-
-          + .header-login {
-            pointer-events: auto;
-            opacity: 1;
-          }
-        }
-      }
-
-      &__main-text {
-        @include font-header(500);
-        @include text(18px, 25px, $color-body-text, 1.5px);
-        @include transition(color);
-        @include underline($color-body-text, false);
-        display: inline-block;
-        vertical-align: middle;
-      }
-
-      &__main-icon {
-        position: relative;
-        display: inline-block;
-        vertical-align: middle;
-        width: 8px;
-        height: 8px;
-
-        .icon-plus-vert path,
-        .icon-plus-hor path {
-          @include transition(stroke);
-        }
-
-        .icon-plus-vert {
-          @include transition(top, height);
-          position: absolute;
-          top: 0;
-          left: 3px;
-        }
-
-        .icon-plus-hor {
-          position: absolute;
-          left: 0;
-          top: 3px;
-        }
-      }
-
-      &__title {
-        @include font-header(700);
-        @include text(24px, 33px, $color-main-1, 1.42px);
-        text-transform: uppercase;
-        text-align: center;
-        margin: 0 0 15px;
-      }
-      &__close {
-        position: absolute;
-        top: 12px;
-        right: 12px;
-      }
-
-      &__socials {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
-        margin: 0 0 13px;
-      }
-
-      &__social {
-        flex: 0 0 49%;
-        max-width: 49%;
-      }
-
-      &__input {
-        @include font-body;
-        @include text(16px, 32px, $color-body-text, 0.95px);
-        width: 100%;
-        height: 34px;
-        background-color: transparent;
-        border-radius: 0;
-        border: 1px solid $color-theme-10;
-        padding: 0 16px;
-        margin: 0 0 10px;
-
-        &::placeholder {
-          color: $color-theme-12;
-        }
-
-        &.error {
-          border: 1px solid $color-theme-11;
-        }
-      }
-
-      &__account-links {
-        text-align: center;
-        margin: 0 auto 10px;
-      }
-
-      &__account-link {
-        @include font-header(500);
-        @include text(12px, 17px, $color-black, 0.71px);
-        @include underline($color-main-1);
-        margin: 0 10px;
-      }
-
-      &__submit {
-        @include button(solid, r, 2);
-      }
-
-      &__separator {
-        width: 100%;
-        height: 1px;
-        background-color: $color-theme-6;
-        margin: 20px 0 0;
-      }
-
-      &__bottle-link {
-        margin: 20px auto;
-        text-align: center;
-        display: block;
-      }
-
-      &__bottle-wrap {
-        @include no-font-size;
-        vertical-align: middle;
-        display: inline-block;
-      }
-
-      &__bottle-img {
-        object-fit: contain;
-      }
-
-      &__bottle-text {
-        @include font-header(700);
-        @include text(16px, 23px, $color-main-1, 0.95px);
-        vertical-align: middle;
-        display: inline-block;
-      }
     }
   }
 }

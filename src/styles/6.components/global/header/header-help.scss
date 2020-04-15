@@ -178,9 +178,6 @@
       float: right;
     }
 
-    &__faqs {
-    }
-
     &__faq {
       padding: 0 0 15px;
       border-bottom: 1px solid $color-main-1;
@@ -235,22 +232,9 @@
       float: right;
     }
 
-    &__usp-icon {
-      width: 60px;
-      display: inline-block;
-      vertical-align: middle;
-
-      svg {
-        max-width: 59px;
-        max-height: 47px;
-        height: auto;
-        width: auto;
-      }
-    }
-
     &__faq-q {
       @include font-header(700);
-      @include text(1.18, 28px, $color-title);
+      @include text(18px, 28px, $color-title, 1.06px);
       display: inline-block;
       vertical-align: middle;
       width: calc(100% - 111px);
@@ -280,5 +264,210 @@
   }
 
   @include media-query($large-down) {
+    @include transition(background-color);
+    position: relative;
+    display: none;
+    padding: 15px 0;
+
+    &__main-link {
+      @include transition(background-color);
+      display: block;
+      padding: 10px 15px 20px;
+
+      &.active {
+        background-color: $color-theme-4;
+
+        .icon-plus-vert {
+          top: 3px;
+          height: 2px;
+        }
+
+        + .header-help {
+          background-color: $color-theme-4;
+        }
+      }
+    }
+
+    &__main-text {
+      @include font-header(700);
+      @include text(20px, 28px, $color-body-text, 1.5px);
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &__main-icon {
+      position: relative;
+      float: right;
+      width: 8px;
+      height: 8px;
+      margin: 10px 0 0;
+
+      .icon-plus-vert {
+        position: absolute;
+        top: 0;
+        left: 3px;
+      }
+
+      .icon-plus-hor {
+        position: absolute;
+        left: 0;
+        top: 3px;
+      }
+    }
+
+    &__img-wrap {
+      margin: 0 auto 15px;
+    }
+
+    &__menu {
+      width: 100%;
+    }
+
+    &__nav {
+      margin: 0 auto 15px;
+    }
+
+    &__nav-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    &__nav-item {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    &__nav-link {
+      @include font-header(500);
+      @include text(15px, 40px, $color-body-text, 0.15px);
+      @include transition(color);
+
+      &:hover {
+        color: $color-main-1;
+      }
+    }
+
+    &__big-links {
+      margin: 0 -15px 10px;
+      width: calc(100% + 30px);
+    }
+
+    &__big-link {
+      padding: 10px 25px;
+      margin: 0 0 3px;
+      border-radius: 0;
+      background-color: $color-theme-13;
+      display: block;
+    }
+
+    &__big-link-i {
+      @include no-font-size;
+      margin: 0 5px 0 0;
+      display: inline-block;
+      vertical-align: middle;
+
+      svg {
+        max-width: 20px;
+        max-height: 20px;
+      }
+    }
+
+    &__big-link-t {
+      @include font-header(700);
+      @include text(12px, 20px, $color-body-text, 0.71px);
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &__faq-header {
+      @include clearfix;
+      padding: 0 0 10px;
+      border-bottom: 1px solid $color-main-1;
+      margin: 0 0 10px;
+    }
+
+    &__faq-title {
+      @include font-header(700);
+      @include text(16px, 24px, $color-main-1, 0.95px);
+      float: left;
+    }
+
+    &__faq-link {
+      @include font-header(700);
+      @include text(11px, 24px, $color-theme-8, 0.49px);
+      float: right;
+    }
+
+    &__faq {
+      padding: 0 0 10px;
+      border-bottom: 1px solid $color-main-1;
+      margin: 0 0 10px;
+    }
+
+    &__faq-btn {
+      @include clearfix;
+      width: 100%;
+      background-color: transparent;
+      border: none;
+      border-radius: 0;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+
+      &.open {
+        .header-help__faq-closed {
+          display: none;
+        }
+        .header-help__faq-open {
+          display: block;
+        }
+      }
+
+      &:not(.open) {
+        .header-help__faq-closed {
+          display: block;
+        }
+        .header-help__faq-open {
+          display: none;
+        }
+      }
+    }
+
+    &__faq-closed {
+      @include font-header(700);
+      @include text(20px, 28px, $color-main-1, 1.77px);
+      text-align: center;
+      width: 20px;
+      margin: 0 5px;
+    }
+
+    &__faq-open {
+      @include font-header(700);
+      @include text(20px, 28px, $color-main-1, 1.77px);
+      text-align: center;
+      width: 20px;
+      margin: 0 5px;
+    }
+
+    &__faq-q {
+      @include font-header(700);
+      @include text(14px, 20px, $color-title, 0.83px);
+      width: calc(100% - 40px);
+      text-align: left;
+    }
+
+    &__faq-a {
+      @include font-body;
+      @include text(13px, 18px, $color-body-text, 0.7px);
+      padding: 10px 0 0;
+    }
+
+    &__close {
+      display: none;
+    }
   }
 }

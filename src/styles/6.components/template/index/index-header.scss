@@ -91,6 +91,7 @@
 
   &__wave {
     position: absolute;
+    pointer-events: none;
     bottom: -30px;
     left: 0;
     width: 100%;

@@ -254,7 +254,7 @@
     &__main-link {
       @include transition(background-color);
       display: block;
-      padding: 0 15px 20px;
+      padding: 10px 15px 20px;
 
       &.active {
         background-color: $color-theme-4;

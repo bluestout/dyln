@@ -38,7 +38,7 @@
           <div class="header-search__pop-terms">
             {%- assign pop_terms = popular_terms | split: ',' -%}
             {% for pop_term in pop_terms %}
-              <button type="button" class="header-search__pop_term" data-popular-term{% if enable_ajax %} data-popular-term-ajax{% endif %} >{{ pop_term }}</button>
+              <button type="button" class="header-search__pop-term" data-popular-term{% if enable_ajax %} data-popular-term-ajax{% endif %} >{{ pop_term }}</button>
             {% endfor %}
           </div>
         </div>
