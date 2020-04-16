@@ -3,15 +3,30 @@
 <div class="pdp-usps__wave-top"></div>
 
 <div class="pdp-usps__body">
+  {% if section.settings.image %}
+    {%- render 'responsive-image' with
+      image: section.settings.image,
+      max_width: 576,
+      max_height: 576,
+      wrapper_class: "pdp-usps__img-wrap",
+      image_class: "pdp-usps__img",
+    -%}
+  {% endif %}
+
+  <div class="pdp-usps__wave-middle-wrap">
+    <div class="pdp-usps__wave-middle"></div>
+  </div>
+
+
   <div class="container pdp-usps__container">
     <h2 class="pdp-usps__title">{{ section.settings.title }}</h2>
     <div class="pdp-usps__usps">
       <div class="row">
         {% for block in section.blocks %}
           {% if section.blocks.size <= 6 %}
-            <div class="col">
+            <div class="col-md">
           {% else %}
-            <div class="col-2">
+            <div class="col-md-2">
           {% endif %}
             <div class="pdp-usps__usp">
               <div class="pdp-usps__usp-icon">
@@ -60,6 +75,12 @@
         "id": "show",
         "label": "Show Section",
         "default": true
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image",
+        "info": "(mobile only)"
       }
     ],
     "blocks": [

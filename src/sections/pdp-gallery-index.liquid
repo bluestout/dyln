@@ -2,7 +2,7 @@
 {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
 
 {% if product.images.size > 1 %}
-  <div class="pdp-g-index__dots-wrap">
+  <div class="pdp-g-index__dots-wrap d-none d-md-block">
     <div class="pdp-g-index__dots" data-pdp-gallery-index>
       {% for image in product.images %}
         {% unless image.alt contains "featured-collection-image" %}
@@ -23,11 +23,9 @@
       {% if product.metafields.info.video != blank %}
         <div class="pdp-g-index__dot-link">
           <div class="pdp-g-index__dot-wrap video">
-            <video width="90" height="90" class="pdp-g-index__dot-video">
-              <source src="{{ product.metafields.info.video }}" type="video/mp4">
-              <source src="{{ product.metafields.info.video }}" type="video/ogg">
-              Your browser does not support the video tag.
-            </video>
+            {% if product.metafields.info.video_thumbnail != blank %}
+              <img src="{{ product.metafields.info.video_thumbnail }}" alt="Video Thumbnail" />
+            {% endif %}
           </div>
         </div>
       {% endif %}

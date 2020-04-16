@@ -3,7 +3,7 @@
 
 {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true', class: "pdp-form__form" %}
 
-  <div class="pdp-form__price" data-price-wrapper>
+  <div class="pdp-form__price d-none d-md-block" data-price-wrapper>
     <span data-product-price>
       {{ current_variant.price | money }}
     </span>
@@ -68,6 +68,25 @@
     {% endfor %}
   {% endunless %}
 
+  {% for block in section.blocks %}
+    {%- if product.handle == block.settings.product -%}
+      <div class="pdp-form__sizes">
+        <h5 class="pdp-form__sizes-title">{{ section.settings.title }}</h5>
+        {% for n in (1..4) %}
+          {% assign size_product_name = "product_" | append: n %}
+          {% assign size_title_name = "product_title_" | append: n %}
+
+          {% assign size_product = all_products[block.settings[size_product_name]] %}
+          {% assign size_title = block.settings[size_title_name] %}
+          {% if size_title != blank %}
+            <a href="{{ size_product.url }}" class="pdp-form__sizes-link">{{ size_title }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+      {% break %}
+    {% endif %}
+  {% endfor %}
+
   <select name="id" style="display:none !important;" data-pdp-select>
     {% for variant in product.variants %}
       <option
@@ -79,12 +98,29 @@
     {% endfor %}
   </select>
 
-  <div class="pdp-form__qty-wrap">
-    <label class="hide" for="Quantity">{{ 'products.product.quantity' | t }}</label>
-    <div class="pdp-form__qty-box">
-      <button type="button" class="pdp-form__qty-button" data-qty-change="#PdpQuantity" data-direction="down">-</button>
-      <input class="pdp-form__qty-input" type="number" id="PdpQuantity" name="quantity" value="1" min="1" data-qty-input>
-      <button type="button" class="pdp-form__qty-button" data-qty-change="#PdpQuantity" data-direction="up">+</button>
+  <div class="pdp-form__info-wrap">
+    <div class="pdp-form__price d-md-none" data-price-wrapper>
+      <span data-product-price>
+        {{ current_variant.price | money }}
+      </span>
+
+      {% if product.compare_at_price_max > product.price %}
+        <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
+        <s data-compare-price>
+          {% if current_variant.compare_at_price > current_variant.price %}
+            {{ current_variant.compare_at_price | money }}
+          {% endif %}
+        </s>
+      {% endif %}
+    </div>
+
+    <div class="pdp-form__qty-wrap">
+      <label class="hide" for="Quantity">{{ 'products.product.quantity' | t }}</label>
+      <div class="pdp-form__qty-box">
+        <button type="button" class="pdp-form__qty-button" data-qty-change="#PdpQuantity" data-direction="down">-</button>
+        <input class="pdp-form__qty-input" type="number" id="PdpQuantity" name="quantity" value="1" min="1" data-qty-input>
+        <button type="button" class="pdp-form__qty-button" data-qty-change="#PdpQuantity" data-direction="up">+</button>
+      </div>
     </div>
   </div>
 
@@ -105,11 +141,74 @@
   </button>
 {% endform %}
 
+<div data-atc-anchor></div>
+
 <script data-pdp-options type="application/json">{% for option in product.options_with_values %}{% assign name_clean = option.name | downcase %}{% if name_clean == "color" %}{% assign name = "option" | append: forloop.index %}{"color": {{ name | json }}}{% break %}{% endif %}{% endfor %}</script>
 
 {% schema %}
   {
     "name": "Product Form",
-    "class": "pdp-form"
+    "class": "pdp-form",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Size Section Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "Product",
+        "name": "Product",
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product",
+            "info": "On which product to show the extra sizes?"
+          },
+          {
+            "type": "product",
+            "id": "product_1",
+            "label": "Product 1"
+          },
+          {
+            "type": "textarea",
+            "id": "product_title_1",
+            "label": "Product 1 title"
+          },
+          {
+            "type": "product",
+            "id": "product_2",
+            "label": "Product 2"
+          },
+          {
+            "type": "textarea",
+            "id": "product_title_2",
+            "label": "Product 2 title"
+          },
+          {
+            "type": "product",
+            "id": "product_3",
+            "label": "Product 3"
+          },
+          {
+            "type": "textarea",
+            "id": "product_title_3",
+            "label": "Product 3 title"
+          },
+          {
+            "type": "product",
+            "id": "product_4",
+            "label": "Product 4"
+          },
+          {
+            "type": "textarea",
+            "id": "product_title_4",
+            "label": "Product 4 title"
+          }
+        ]
+      }
+    ]
   }
 {% endschema %}

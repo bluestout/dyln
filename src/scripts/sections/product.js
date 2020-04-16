@@ -17,17 +17,17 @@ import { scrollTo } from "../components/scroll-to";
 
 const classes = {
   hide: "hide",
-  active: "active"
+  active: "active",
 };
 
 const keyboardKeys = {
-  ENTER: 13
+  ENTER: 13,
 };
 
 const datasets = {
   atc: {
-    option: "atc-option"
-  }
+    option: "atc-option",
+  },
 };
 
 const selectors = {
@@ -38,11 +38,11 @@ const selectors = {
   priceWrapper: "[data-price-wrapper]",
   imageWrapper: "[data-product-image-wrapper]",
   visibleImageWrapper: `[data-product-image-wrapper]:not(.${classes.hide})`,
-  imageWrapperById: id => `${selectors.imageWrapper}[data-image-id='${id}']`,
+  imageWrapperById: (id) => `${selectors.imageWrapper}[data-image-id='${id}']`,
   productForm: "[data-product-form]",
   productPrice: "[data-product-price]",
   thumbnail: "[data-product-single-thumbnail]",
-  thumbnailById: id => `[data-thumbnail-id='${id}']`,
+  thumbnailById: (id) => `[data-thumbnail-id='${id}']`,
   thumbnailActive: "[data-product-single-thumbnail][aria-current]",
   gallery: "[data-pdp-gallery]",
   galleryIndex: "[data-pdp-gallery-index]",
@@ -57,29 +57,31 @@ const selectors = {
   vBg: "[data-pdp-video-bg]",
   tElements: "[data-pdp-specs-elements]",
   tElement: "[data-pdp-specs-element]",
-  tElementById: id => `[data-pdp-specs-element='${id}']`,
+  tElementById: (id) => `[data-pdp-specs-element='${id}']`,
   tVideos: "[data-pdp-specs-videos]",
   tVideo: "[data-pdp-specs-video-wrap]",
-  tVideoById: id => `[data-pdp-specs-video-wrap='${id}']`,
+  tVideoById: (id) => `[data-pdp-specs-video-wrap='${id}']`,
   tReturn: "[data-pdp-specs-return]",
   tFeatures: "[data-pdp-tab-features]",
   tInput: "[data-pdp-tab-features-input]",
   select: "[data-pdp-select]",
   atc: {
+    bar: "[data-atc-bar]",
+    anchor: "[data-atc-anchor]",
     option: `[data-${datasets.atc.option}]`,
     options: "[data-atc-options]",
     more: "[data-atc-more]",
     price: "[data-price-price]",
     add: "[data-atc-add]",
     swatch: "[data-atc-swatch]",
-    swatchById: id => `[data-atc-swatch="${id}"]`,
+    swatchById: (id) => `[data-atc-swatch="${id}"]`,
     text: "[data-atc-text]",
-    textById: id => `[data-atc-text="${id}"]`
-  }
+    textById: (id) => `[data-atc-text="${id}"]`,
+  },
 };
 
 const timing = {
-  default: "200"
+  default: "200",
 };
 
 register("product", {
@@ -90,7 +92,7 @@ register("product", {
       productFormElement.dataset.productHandle
     );
     this.productForm = new ProductForm(productFormElement, this.product, {
-      onOptionChange: this.onFormOptionChange.bind(this)
+      onOptionChange: this.onFormOptionChange.bind(this),
     });
 
     this.onClickEvent = this.onClickEvent.bind(this);
@@ -107,7 +109,7 @@ register("product", {
   },
 
   getProductJson(handle) {
-    return fetch(`/products/${handle}.js`).then(response => {
+    return fetch(`/products/${handle}.js`).then((response) => {
       return response.json();
     });
   },
@@ -296,7 +298,7 @@ register("product", {
     const body = document.querySelector("html");
     const target = document.getElementById(hash.replace("#", ""));
     scrollTo(body, target.offsetTop, 500);
-  }
+  },
 });
 
 function init() {
@@ -305,28 +307,33 @@ function init() {
   const $tFeatures = $(selectors.tFeatures);
   const $tInput = $(selectors.tInput);
 
-  if ($gallery.length > 0) {
-    $gallery.slick({
-      swipeToSlide: true,
-      arrows: false,
-      dots: false,
-      slidesToShow: 1
-    });
-  }
+  handleAtcBar();
 
-  if ($galleryIndex.length > 0) {
-    $galleryIndex.slick({
-      swipeToSlide: true,
-      arrows: true,
-      dots: false,
-      slidesToShow: 4,
-      slidesToScroll: 1,
-      asNavFor: selectors.gallery,
-      prevArrow:
-        "<button type='button' class='slick-prev slick-arrow'><svg width='16' height='38' viewBox='0 0 16 38' xmlns='http://www.w3.org/2000/svg'><path d='M15 0L1 19l14 19' stroke='#848A8D' fill='none' fill-rule='evenodd' stroke-linecap='round'/></svg></button>",
-      nextArrow:
-        "<button type='button' class='slick-next slick-arrow'><svg width='16' height='38' viewBox='0 0 16 38' xmlns='http://www.w3.org/2000/svg'><path d='M1 38l14-19L1 0' stroke='#848A8D' fill='none' fill-rule='evenodd' stroke-linecap='round'/></svg></button>"
-    });
+  if ($(window).width() > 767) {
+    if ($gallery.length > 0) {
+      $gallery.slick({
+        swipeToSlide: false,
+        arrows: false,
+        dots: false,
+        slidesToShow: 1,
+        asNavFor: selectors.galleryIndex,
+      });
+    }
+
+    if ($galleryIndex.length > 0) {
+      $galleryIndex.slick({
+        swipeToSlide: true,
+        arrows: true,
+        dots: false,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        asNavFor: selectors.gallery,
+        prevArrow:
+          "<button type='button' class='slick-prev slick-arrow'><svg width='16' height='38' viewBox='0 0 16 38' xmlns='http://www.w3.org/2000/svg'><path d='M15 0L1 19l14 19' stroke='#848A8D' fill='none' fill-rule='evenodd' stroke-linecap='round'/></svg></button>",
+        nextArrow:
+          "<button type='button' class='slick-next slick-arrow'><svg width='16' height='38' viewBox='0 0 16 38' xmlns='http://www.w3.org/2000/svg'><path d='M1 38l14-19L1 0' stroke='#848A8D' fill='none' fill-rule='evenodd' stroke-linecap='round'/></svg></button>",
+      });
+    }
   }
 
   if ($tFeatures.length > 0) {
@@ -343,7 +350,23 @@ function init() {
       centerMode: true,
       centerPadding: "100px",
       autoplay: true,
-      autoplaySpeed: 8500
+      autoplaySpeed: 8500,
+      responsive: [
+        {
+          breakpoint: 576,
+          settings: {
+            slidesToShow: 1,
+            centerPadding: "50px",
+          },
+        },
+        {
+          breakpoint: 425,
+          settings: {
+            slidesToShow: 1,
+            centerPadding: "20px",
+          },
+        },
+      ],
     });
 
     $tFeatures.on("afterChange", (slick, currentSlide) => {
@@ -485,16 +508,36 @@ function handleAtcSubmit() {
   $(selectors.submitButton).click();
 }
 
+function handleAtcBar() {
+  const form = document.querySelector(selectors.atc.anchor);
+  const atc = document.querySelector(selectors.atc.bar);
+
+  if (!form || !atc) {
+    return;
+  }
+
+  const rectangle = form.getBoundingClientRect();
+
+  if (rectangle.top < 0) {
+    if (!atc.classList.contains(classes.active)) {
+      atc.classList.add(classes.active);
+    }
+  } else if (atc.classList.contains(classes.active)) {
+    atc.classList.remove(classes.active);
+  }
+}
+
 $(selectors.tInput).on("input propertychange", handleInputChange);
 
-$(document).on("click", selectors.play, handleGalleryPlayClick);
+// $(document).on("click", selectors.play, handleGalleryPlayClick);
 $(document).on("click", selectors.vButton, handleVideoPlayClick);
 $(document).on("click", selectors.tElement, handleSpecsPlayClick);
 $(document).on("click", selectors.tElement, handleSpecsPlayClick);
 $(document).on("click", selectors.tReturn, handleSpecsReturnClick);
-
 $(document).on("click", selectors.atc.more, toggleAtcOptions);
 $(document).on("click", selectors.atc.option, handleAtcOptionClick);
 $(document).on("click", selectors.atc.add, handleAtcSubmit);
+
+$(document).on("windowScrolledRedux", handleAtcBar);
 
 $(document).ready(init);

@@ -56,8 +56,6 @@
     }
   }
 
-  &__videos {
-  }
   &__video-wrap {
     margin: 0 auto 50px;
     text-align: center;
@@ -65,5 +63,39 @@
 
   &__video {
     display: inline-block;
+  }
+
+  @include media-query($large-down) {
+    &__title {
+      font-size: 18px;
+      line-height: 26px;
+      letter-spacing: 1px;
+      margin: 20px auto 15px;
+    }
+
+    &__el-text {
+      font-size: 18px;
+      line-height: 26px;
+      letter-spacing: 1px;
+      margin: 20px auto 0;
+    }
+
+    &__illustration {
+      svg {
+        max-width: 180px;
+      }
+    }
+
+    &__return {
+      .text {
+        font-size: 18px;
+        line-height: 26px;
+        letter-spacing: 1px;
+      }
+    }
+
+    &__video-wrap {
+      margin: 0 auto 40px;
+    }
   }
 }

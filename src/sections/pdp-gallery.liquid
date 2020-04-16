@@ -28,16 +28,8 @@
 
   {% if product.metafields.info.video != blank %}
     <div class="pdp-gallery__image-item video" data-pdp-video-wrap>
-      <button class="pdp-gallery__play" type="button" data-pdp-gallery-play>
-        <span class="pdp-gallery__play-icon"></span>
-        <span>{{ 'products.product.watch_video' | t }}</span>
-      </button>
       <div class="pdp-gallery__video-wrap">
-        <video width="700" class="pdp-gallery__video-item">
-          <source src="{{ product.metafields.info.video }}" type="video/mp4">
-          <source src="{{ product.metafields.info.video }}" type="video/ogg">
-          Your browser does not support the video tag.
-        </video>
+        {{ product.metafields.info.video }}
       </div>
     </div>
   {% endif %}

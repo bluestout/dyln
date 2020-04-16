@@ -1,7 +1,7 @@
 import $ from "jquery";
 
-const elements = {
-  button: "[data-qty-change]"
+const el = {
+  button: "[data-qty-change]",
 };
 
 function QuantityChange(event) {
@@ -26,4 +26,4 @@ function QuantityChange(event) {
   $input.change();
 }
 
-$(document).on("click", elements.button, QuantityChange);
+$(document).on("click", el.button, QuantityChange);

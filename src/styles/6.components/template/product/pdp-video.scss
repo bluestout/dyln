@@ -1,10 +1,10 @@
 .pdp-video {
   position: relative;
-  margin: 0 0 100px;
+  margin: -30px 0 100px;
   overflow: hidden;
 
   &__outer {
-    margin: -30px 0 0;
+    margin: 0;
     overflow: hidden;
     padding: 0 0 40px;
     height: 500px;
@@ -48,6 +48,12 @@
     height: 100%;
   }
 
+  &__title {
+    @include font-header(700);
+    @include text(30px, 45px, $color-title, 1.77px);
+    margin: 0 0 15px;
+  }
+
   &__text {
     @include font-header(500);
     @include text(20px, 28px, $color-body-text, 1.18px);
@@ -80,20 +86,6 @@
     margin: 0 0 0 5px;
   }
 
-  &__format-wrap {
-    width: 200px;
-    height: 200px;
-    border-radius: 100px;
-    background-color: rgba($color-theme-2, 0.5);
-    display: flex;
-  }
-
-  &__format {
-    @include font-header(700);
-    @include text(26px, 36px, $color-white);
-    margin: auto;
-  }
-
   &__video-outer {
     display: none;
     text-align: center;
@@ -103,5 +95,88 @@
     object-fit: cover;
     margin: 0 auto;
     display: inline-block;
+  }
+
+  @include media-query($medium-down) {
+    margin: -30px 0 40px;
+
+    &__outer {
+      padding: 0;
+      height: auto;
+    }
+
+    &__bg-outer {
+      position: static;
+      pointer-events: auto;
+      margin: 0 0 30px;
+    }
+
+    &__bg-wrap {
+      position: relative;
+      left: -30px;
+      margin: 0 0 15px;
+    }
+
+    &__content-outer {
+      position: relative;
+      padding: 40px 0 0;
+      height: 100%;
+    }
+
+    &__content {
+      align-self: center;
+      text-align: center;
+
+      a {
+        position: relative;
+      }
+    }
+
+    &__container {
+      height: 100%;
+    }
+
+    &__row {
+      height: 100%;
+    }
+
+    &__title {
+      font-size: 20px;
+      line-height: 28px;
+      letter-spacing: 1.18px;
+      margin: 0 0 15px;
+    }
+
+    &__text {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.95px;
+      margin: 0;
+    }
+
+    &__button-text {
+      font-size: 12px;
+      line-height: 17px;
+      letter-spacing: 0.71px;
+    }
+
+    &__button-icon {
+      display: inline-flex;
+      svg {
+        max-width: 16px;
+        max-height: 16px;
+      }
+    }
+
+    &__video-outer {
+      display: none;
+      text-align: center;
+    }
+
+    &__video {
+      object-fit: cover;
+      margin: 0 auto;
+      display: inline-block;
+    }
   }
 }

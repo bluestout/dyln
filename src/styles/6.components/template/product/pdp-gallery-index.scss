@@ -17,6 +17,7 @@
   &__dot-link {
     @include no-font-size;
     text-align: center;
+    margin: auto;
   }
 
   &__dot-wrap {
@@ -34,16 +35,15 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(calc(-50% + 8px), -50%);
         display: block;
-        background-image: url("data:image/svg+xml,%3Csvg width='28' height='35' viewBox='0 0 28 35' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M27.5 17.5l-27 17V.5z' fill='%23333C41' fill-rule='evenodd'/%3E%3C/svg%3E");
-        width: 28px;
-        height: 35px;
+
+        border-left: 17px solid $color-theme-2;
+        border-right: 17px solid transparent;
+        border-bottom: 13px solid transparent;
+        border-top: 13px solid transparent;
       }
     }
-  }
-
-  &__dot-img {
   }
 
   &__dot-video {
@@ -51,6 +51,20 @@
   }
 
   .slick-slide {
+    height: 100%;
+
+    > div {
+      height: 100%;
+      display: flex;
+    }
+  }
+
+  .slick-list {
+    height: 100px;
+  }
+
+  .slick-track {
+    height: 100px;
   }
 
   .slick-current {
@@ -86,5 +100,9 @@
         stroke: $color-main-1;
       }
     }
+  }
+
+  @include media-query($medium-down) {
+    margin: 0;
   }
 }

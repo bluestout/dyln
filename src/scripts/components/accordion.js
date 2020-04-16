@@ -22,10 +22,10 @@ const datasets = {
   parent: "accordion-parent",
   buttonRsp: "accordion-button-rsp",
   contentRsp: "accordion-content-rsp",
-  parentRsp: "accordion-parent-rsp"
+  parentRsp: "accordion-parent-rsp",
 };
 
-const el = {
+const selectors = {
   button: "[data-accordion-button]",
   content: "[data-accordion-content]",
   parent: "[data-accordion-parent]",
@@ -34,12 +34,12 @@ const el = {
   contentRsp: "[data-accordion-content-rsp]",
   parentRsp: "[data-accordion-parent-rsp]",
   wrapRsp: "[data-accordion-wrap-rsp]",
-  getContentById: id => `[data-${datasets.content}="${id}"]`,
-  getContentByIdRsp: id => `[data-${datasets.contentRsp}="${id}"]`
+  getContentById: (id) => `[data-${datasets.content}="${id}"]`,
+  getContentByIdRsp: (id) => `[data-${datasets.contentRsp}="${id}"]`,
 };
 
 const classes = {
-  open: "open"
+  open: "open",
 };
 
 function init() {
@@ -48,13 +48,13 @@ function init() {
 }
 
 function checkAccordionState() {
-  $(el.button).each(function() {
+  $(selectors.button).each(function() {
     const $source = $(this);
     const index = $source.data(datasets.button);
-    const $parent = $source.closest(el.parent);
-    const $wrap = $source.closest(el.wrap);
+    const $parent = $source.closest(selectors.parent);
+    const $wrap = $source.closest(selectors.wrap);
     if ($parent.length > 0) {
-      const $content = $parent.find(el.getContentById(index));
+      const $content = $parent.find(selectors.getContentById(index));
       $source.removeClass(classes.open);
       $content.hide();
     }
@@ -65,13 +65,13 @@ function checkAccordionState() {
 }
 
 function checkAccordionStateRsp() {
-  $(el.buttonRsp).each(function() {
+  $(selectors.buttonRsp).each(function() {
     const $source = $(this);
     const index = $source.data(datasets.buttonRsp);
-    const $parent = $source.closest(el.parentRsp);
-    const $wrap = $source.closest(el.wrapRsp);
+    const $parent = $source.closest(selectors.parentRsp);
+    const $wrap = $source.closest(selectors.wrapRsp);
     if ($parent.length > 0) {
-      const $content = $parent.find(el.getContentByIdRsp(index));
+      const $content = $parent.find(selectors.getContentByIdRsp(index));
       $source.removeClass(classes.open);
       $content.hide();
     }
@@ -84,10 +84,10 @@ function checkAccordionStateRsp() {
 function handleAccordionClick(event) {
   event.preventDefault ? event.preventDefault() : (event.returnValue = false);
   const $source = $(event.currentTarget);
-  const $parent = $source.closest(el.parent);
+  const $parent = $source.closest(selectors.parent);
   const index = $source.data(datasets.button);
-  const $content = $parent.find(el.getContentById(index));
-  const $wrap = $source.closest(el.wrap);
+  const $content = $parent.find(selectors.getContentById(index));
+  const $wrap = $source.closest(selectors.wrap);
 
   if ($parent.length <= 0 || $content.length <= 0) {
     return;
@@ -97,18 +97,18 @@ function handleAccordionClick(event) {
 
   // if a parent is set, close neighbor accordions when opening a new one
   if (closeOthers === true) {
-    $(el.parent)
-      .find(el.button)
+    $(selectors.parent)
+      .find(selectors.button)
       .not($source)
       .removeClass(classes.open);
-    $(el.parent)
-      .find(el.content)
+    $(selectors.parent)
+      .find(selectors.content)
       .not($content)
       .slideUp();
 
     if ($wrap.length > 0) {
-      $(el.parent)
-        .find(el.wrap)
+      $(selectors.parent)
+        .find(selectors.wrap)
         .not($wrap)
         .removeClass(classes.open);
     }
@@ -125,10 +125,10 @@ function handleAccordionClickRsp(event) {
     event.preventDefault ? event.preventDefault() : (event.returnValue = false);
     const $source = $(event.currentTarget);
 
-    const $parent = $source.closest(el.parentRsp);
+    const $parent = $source.closest(selectors.parentRsp);
     const index = $source.data(datasets.buttonRsp);
-    const $content = $parent.find(el.getContentByIdRsp(index));
-    const $wrap = $source.closest(el.wrapRsp);
+    const $content = $parent.find(selectors.getContentByIdRsp(index));
+    const $wrap = $source.closest(selectors.wrapRsp);
 
     if ($parent.length <= 0 || $content.length <= 0) {
       return;
@@ -138,18 +138,18 @@ function handleAccordionClickRsp(event) {
 
     // if a parent is set, close neighbor accordions when opening a new one
     if (closeOthers === true) {
-      $(el.parentRsp)
-        .find(el.buttonRsp)
+      $(selectors.parentRsp)
+        .find(selectors.buttonRsp)
         .not($source)
         .removeClass(classes.open);
-      $(el.parentRsp)
-        .find(el.contentRsp)
+      $(selectors.parentRsp)
+        .find(selectors.contentRsp)
         .not($content)
         .slideUp();
 
       if ($wrap.length > 0) {
-        $(el.parentRsp)
-          .find(el.wrapRsp)
+        $(selectors.parentRsp)
+          .find(selectors.wrapRsp)
           .not($wrap)
           .removeClass(classes.open);
       }
@@ -162,7 +162,7 @@ function handleAccordionClickRsp(event) {
   }
 }
 
-$(document).on("click", el.button, handleAccordionClick);
-$(document).on("click", el.buttonRsp, handleAccordionClickRsp);
+$(document).on("click", selectors.button, handleAccordionClick);
+$(document).on("click", selectors.buttonRsp, handleAccordionClickRsp);
 
 $(document).ready(init);

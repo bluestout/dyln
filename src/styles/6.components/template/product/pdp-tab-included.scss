@@ -1,43 +1,52 @@
 .pdp-tab-2 {
-  &__container {
-    padding-right: 60px;
-    padding-left: 60px;
-  }
-
-  &__row-o {
-    margin-left: -60px;
-    margin-right: -60px;
-  }
-
-  &__col-o {
-    padding-right: 60px;
-    padding-left: 60px;
-  }
-
-  &__row-i {
-    margin-left: -30px;
-    margin-right: -30px;
-  }
-
-  &__col-i {
-    padding-right: 30px;
-    padding-left: 30px;
-    margin-bottom: 60px;
-  }
-
   &__img-wrap {
     margin: 0 auto 30px;
   }
 
-  &__included {
-  }
   &__item {
     align-self: center;
     width: 100%;
   }
+
   &__item-title {
     @include font-header(500);
     @include text(18px, 25px, $color-body-text, 1.06px);
     text-align: center;
+  }
+
+  @include media-query($large-up) {
+    &__container {
+      padding-right: 60px;
+      padding-left: 60px;
+    }
+
+    &__row-o {
+      margin-left: -60px;
+      margin-right: -60px;
+    }
+
+    &__col-o {
+      padding-right: 60px;
+      padding-left: 60px;
+    }
+
+    &__row-i {
+      margin-left: -30px;
+      margin-right: -30px;
+    }
+
+    &__col-i {
+      padding-right: 30px;
+      padding-left: 30px;
+      margin-bottom: 60px;
+    }
+  }
+
+  @include media-query($large-down) {
+    &__item-title {
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 0.8px;
+    }
   }
 }

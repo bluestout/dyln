@@ -1,6 +1,6 @@
 <div class="index-video__outer" id="index-video">
   {%- if section.settings.background -%}
-    <div class="index-video__bg-outer">
+    <div class="index-video__bg-outer active" data-index-video-bg>
       {%- render 'responsive-image' with
         image: section.settings.background,
         max_width: 700,
@@ -11,23 +11,17 @@
     </div>
   {%- endif -%}
 
-  <div class="index-video__content-outer">
+  <div class="index-video__content-outer" data-index-video-content>
     <div class="index-video__container container">
       <div class="index-video__row row">
         <div class="col-xl-2 col-lg-1 d-none d-lg-block"></div>
         <div class="col-xl-4 col-lg-5 col-md-6 d-flex">
           <div class="index-video__content">
-
-              <a class="index-video__link d-md-none" href="#">
-                <span class="index-video__link-text">test</span>
-                <span class="index-video__link-icon">{%- render 'icon-play' -%}</span>
-              </a>
-
-            {%- if section.settings.video != blank -%}
-              <a class="index-video__link d-md-none" href="#">
+            {%- if section.settings.video != blank or section.settings.video_embed != blank -%}
+              <button type="button" class="index-video__link d-md-none" data-index-video-open>
                 <span class="index-video__link-text">{{- section.settings.link_text -}}</span>
                 <span class="index-video__link-icon">{%- render 'icon-play' -%}</span>
-              </a>
+              </button>
             {%- endif -%}
 
             {%- if section.settings.title != blank -%}
@@ -38,12 +32,11 @@
               <p class="index-video__text">{{- section.settings.text -}}</p>
             {%- endif -%}
 
-
-            {%- if section.settings.video != blank -%}
-              <a class="index-video__link d-none d-md-inline-block" href="#">
+            {%- if section.settings.video != blank or section.settings.video_embed != blank  -%}
+              <button type="button" class="index-video__link d-none d-md-inline-block" data-index-video-open>
                 <span class="index-video__link-text">{{- section.settings.link_text -}}</span>
                 <span class="index-video__link-icon">{%- render 'icon-play' -%}</span>
-              </a>
+              </button>
             {%- endif -%}
           </div>
         </div>
@@ -52,11 +45,19 @@
     </div>
   </div>
 
-  <div class="index-video__video-outer">
-    <video class="index-video__video" playsinline width="500" height="300">
-      <source src="{{- section.settings.video -}}" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+  <div class="index-video__video-outer" data-index-video>
+    <div class="container">
+      {%- if section.settings.video != blank -%}
+        <video class="index-video__video" playsinline width="500" height="300">
+          <source src="{{- section.settings.video -}}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      {%- elsif section.settings.video_embed != blank -%}
+        <div class="index-video__video">
+          {{- section.settings.video_embed -}}
+        </div>
+      {%- endif -%}
+    </div>
   </div>
 </div>
 
@@ -92,6 +93,12 @@
         "id": "video",
         "label": "Video",
         "info": "Upload a video to Shopify files and paste the source url here."
+      },
+      {
+        "type": "textarea",
+        "id": "video_embed",
+        "label": "Video Embed",
+        "info": "Or use an embed from youtube, vimeo or similar. Copy/paste the embed code here."
       },
       {
         "type": "text",

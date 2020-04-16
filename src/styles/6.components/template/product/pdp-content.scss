@@ -8,6 +8,25 @@
     margin: 0 0 10px;
   }
 
+  .stamped-starrating {
+    @include no-font-size;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .stamped-badge-caption {
+    @include font-header(500);
+    @include text(10px, 15px, $color-body-text, 0.59px);
+    margin: 0 0 0 10px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .stamped-fa {
+    font-size: 15px;
+    margin: 0 3px 0 0;
+  }
+
   &__content {
     @include font-body;
     @include text(16px, 20px, $color-body-text, 0.65px);
@@ -26,6 +45,45 @@
     }
   }
 
-  &__link {
+  @include media-query($medium-down) {
+    &__title {
+      font-size: 12px;
+      line-height: 20px;
+      letter-spacing: 0.68px;
+      margin: 0 0 20px;
+    }
+
+    &__reviews {
+      margin: 0 0 20px;
+    }
+
+    .stamped-badge-caption {
+      margin: 0 0 0 3px;
+    }
+
+    .stamped-badge-caption[data-reviews][data-label][data-version="2"] > span {
+      display: none !important;
+    }
+
+    .stamped-fa {
+      font-size: 10px;
+      margin: 0 1px 0 0;
+    }
+
+    &__content {
+      font-size: 11px;
+      line-height: 15px;
+      letter-spacing: 0.65px;
+      margin: 0 0 15px;
+      text-align: center;
+
+      a,
+      p,
+      span {
+        font-size: 11px;
+        line-height: 15px;
+        letter-spacing: 0.65px;
+      }
+    }
   }
 }

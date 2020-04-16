@@ -1,15 +1,23 @@
 {% if section.settings.show %}
 <div class="pdp-video__outer" data-pdp-video-parent>
   {%- if section.settings.background -%}
-    <div class="pdp-video__bg-outer">
+    <div class="pdp-video__bg-outer" data-pdp-video-bg>
       {%- render 'responsive-image' with
         image: section.settings.background,
         max_width: 700,
         max_height: 500,
         wrapper_class: "pdp-video__bg-wrap",
-        image_class: "pdp-video__bg",
-        wrapper_attributes: "data-pdp-video-bg"
+        image_class: "pdp-video__bg"
       -%}
+
+      {%- if section.settings.video != blank or section.settings.video_embed != blank -%}
+        <div class="text-center">
+          <button type="button" class="pdp-video__button d-md-none" data-pdp-video-button>
+            <span class="pdp-video__button-text">{{- section.settings.link_text -}}</span>
+            <span class="pdp-video__button-icon">{%- render 'icon-play' -%}</span>
+          </button>
+        </div>
+      {%- endif -%}
     </div>
   {%- endif -%}
 
@@ -19,24 +27,20 @@
         <div class="col-md-1"></div>
         <div class="col-md-5 d-flex">
           <div class="pdp-video__content">
+            {%- if section.settings.title != blank -%}
+              <h3 class="pdp-video__title">{{- section.settings.title -}}</h3>
+            {%- endif -%}
             {%- if section.settings.text != blank -%}
               <p class="pdp-video__text">{{- section.settings.text -}}</p>
             {%- endif -%}
 
-            {%- if section.settings.video != blank -%}
-              <button type="button" class="pdp-video__button" data-pdp-video-button>
+            {%- if section.settings.video != blank or section.settings.video_embed != blank -%}
+              <button type="button" class="pdp-video__button d-none d-md-inline-block" data-pdp-video-button>
                 <span class="pdp-video__button-text">{{- section.settings.link_text -}}</span>
                 <span class="pdp-video__button-icon">{%- render 'icon-play' -%}</span>
               </button>
             {%- endif -%}
           </div>
-        </div>
-        <div class="col-md-6 d-flex">
-          {%- if section.settings.format != blank -%}
-            <div class="pdp-video__format-wrap" style="position:relative; top: 160px; left:30px;">
-              <span class="pdp-video__format">{{- section.settings.format -}}</span>
-            </div>
-          {%- endif -%}
         </div>
       </div>
     </div>
@@ -79,6 +83,11 @@
       },
       {
         "type": "textarea",
+        "id": "title",
+        "label": "title"
+      },
+      {
+        "type": "textarea",
         "id": "text",
         "label": "Text"
       },
@@ -99,11 +108,6 @@
         "id": "video_embed",
         "label": "Video Embed",
         "info": "Or use an embed from youtube, vimeo or similar. Copy/paste the embed code here."
-      },
-      {
-        "type": "text",
-        "id": "format",
-        "label": "Video Format"
       }
     ]
   }

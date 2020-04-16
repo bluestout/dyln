@@ -1,4 +1,5 @@
 .atc-bar {
+  @include transition(opacity);
   position: fixed;
   z-index: $z-top;
   left: 0;
@@ -12,9 +13,24 @@
     rgba(0, 0, 0, 0.3) 100%
   );
 
+  &:not(.active) {
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  &.active {
+    pointer-events: auto;
+    opacity: 1;
+
+    .atc-bar__inner {
+      bottom: 40px;
+    }
+  }
+
   &__inner {
+    @include transition(bottom);
     position: absolute;
-    bottom: 130px;
+    bottom: 20px;
     left: calc(50vw - 420px);
     width: 840px;
     background-color: $color-white;

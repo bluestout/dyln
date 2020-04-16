@@ -9,7 +9,7 @@ import {
   emptyCartHtml,
 } from "./ajaxcart-html";
 
-const elements = {
+const selectors = {
   header: "[data-section-type='header']",
   add: "[data-add-to-cart]",
   addText: "[data-add-to-cart-content]",
@@ -60,6 +60,8 @@ const elements = {
 const classes = {
   active: "active",
   open: "open",
+  loading: "loading",
+  hide: "hide",
 };
 
 const ajaxReloaded = new Event("ajaxReloaded");
@@ -70,14 +72,14 @@ const ajaxReloaded = new Event("ajaxReloaded");
 let containerState;
 function containerLoading(state) {
   if (state) {
-    $(elements.loader).addClass("loading");
+    $(selectors.loader).addClass(classes.loading);
     clearTimeout(containerState);
     containerState = setTimeout(() => {
-      $(elements.loader).removeClass("loading");
+      $(selectors.loader).removeClass(classes.loading);
     }, 10000);
   } else {
     clearTimeout(containerState);
-    $(elements.loader).removeClass("loading");
+    $(selectors.loader).removeClass(classes.loading);
   }
 }
 
@@ -176,7 +178,7 @@ function handleQtyInputChange(event) {
 // update the totals table on the cart page
 function updateCartTotals(cart) {
   const totalsHtml = cartTotalsHtml(cart);
-  return $(elements.cart.totals).html(totalsHtml);
+  return $(selectors.cart.totals).html(totalsHtml);
 }
 
 // update the cart table on the cart page
@@ -188,13 +190,13 @@ function updateCartContent(cart) {
     cartItems += cartLineItemHtml(product, i);
   }
   // replace the cart content
-  return $(elements.cart.content).html(cartItems);
+  return $(selectors.cart.content).html(cartItems);
 }
 
 // update the quick cart
 // cart and quickcart do similar things, but the markup is very different
 function updateQuickCart(cart) {
-  const $quickCart = $(elements.quick.content);
+  const $quickCart = $(selectors.quick.content);
   let cartItems = "";
   for (let i = 0; i < cart.items.length; i++) {
     // prepare all the parts to show for each product in cart
@@ -248,18 +250,18 @@ function updateQuickCart(cart) {
 
 function toggleAddingToCartAnimation($source, state) {
   if (state && $source.length > 0) {
-    $source.find(elements.addText).addClass("hide");
-    $source.find(elements.addLoading).removeClass("hide");
+    $source.find(selectors.addText).addClass(classes.hide);
+    $source.find(selectors.addLoading).removeClass(classes.hide);
   } else {
-    $(elements.addText).removeClass("hide");
-    $(elements.addLoading).addClass("hide");
+    $(selectors.addText).removeClass(classes.hide);
+    $(selectors.addLoading).addClass(classes.hide);
   }
 }
 
 function toggleQuickCartEmptyStatus(empty) {
-  const $empty = $(elements.quick.empty);
-  const $quickContent = $(elements.quick.content);
-  const $payments = $(elements.quick.payments);
+  const $empty = $(selectors.quick.empty);
+  const $quickContent = $(selectors.quick.content);
+  const $payments = $(selectors.quick.payments);
 
   if (empty) {
     if ($empty.css("display") === "none") {
@@ -315,22 +317,22 @@ function handleAjaxAddButtonClick(event) {
 function handleAjaxAddUpsell(event) {
   event.preventDefault();
   const $source = $(event.currentTarget);
-  const $text = $source.find(elements.upsellText);
-  const $loading = $source.find(elements.upsellProgress);
+  const $text = $source.find(selectors.upsellText);
+  const $loading = $source.find(selectors.upsellProgress);
 
   toggleAddingToCartAnimation($source, true);
-  $loading.removeClass("hide");
-  $text.addClass("hide");
+  $loading.removeClass(classes.hide);
+  $text.addClass(classes.hide);
 
   setTimeout(() => {
     toggleAddingToCartAnimation($source, false);
-    $loading.addClass("hide");
-    $text.removeClass("hide");
+    $loading.addClass(classes.hide);
+    $text.removeClass(classes.hide);
   }, 10000);
 
-  const $wrap = $source.closest(elements.upsellWrap);
+  const $wrap = $source.closest(selectors.upsellWrap);
   const id =
-    $wrap.find(`${elements.upsellSelect} option:selected`).val() || false;
+    $wrap.find(`${selectors.upsellSelect} option:selected`).val() || false;
 
   if (!id && !(typeof id === "number")) {
     return;
@@ -350,8 +352,8 @@ function handleAjaxAddUpsell(event) {
           dataType: "json",
           cache: false,
           complete: (jqXHR, textStatus) => {
-            $loading.addClass("hide");
-            $text.removeClass("hide");
+            $loading.addClass(classes.hide);
+            $text.removeClass(classes.hide);
             addToCartComplete(jqXHR, textStatus);
           },
         })
@@ -383,18 +385,18 @@ function showMessage(message) {
     return null;
   }
   clearTimeout(eventHolder);
-  $(elements.message.text).html(message);
-  $(elements.message.container).addClass(classes.active);
+  $(selectors.message.text).html(message);
+  $(selectors.message.container).addClass(classes.active);
   eventHolder = setTimeout(() => {
-    $(elements.message.container).removeClass(classes.active);
+    $(selectors.message.container).removeClass(classes.active);
   }, 4000);
   return eventHolder;
 }
 
 // update only the at a glance count next to the cart icon in the header
 function updateQuickCartCount(cart) {
-  const $count = $(elements.count);
-  const $countDrawer = $(elements.countDrawer);
+  const $count = $(selectors.count);
+  const $countDrawer = $(selectors.countDrawer);
 
   $count.html(cart.item_count);
   $countDrawer.html(cart.item_count);
@@ -403,7 +405,7 @@ function updateQuickCartCount(cart) {
 // what to show on cart page if the cart is empty
 function cartIsEmpty() {
   const empty = emptyCartHtml();
-  return $(elements.cart.container).html(empty);
+  return $(selectors.cart.container).html(empty);
 }
 
 // function to run whenever the cart contents are updated with ajax
@@ -421,7 +423,7 @@ function returnCartIfNotEmpty(json) {
     toggleQuickCartEmptyStatus(true);
   }
   containerLoading();
-  toggleAddingToCartAnimation($(elements.add));
+  toggleAddingToCartAnimation($(selectors.add));
   handleCartDrawerCheckoutHeight();
   document.dispatchEvent(ajaxReloaded);
 }
@@ -430,47 +432,47 @@ function returnCartIfNotEmpty(json) {
 function quickCartToggle(event) {
   event.preventDefault();
 
-  const $quickCart = $(elements.quickcart);
-  $(elements.nav).removeClass(classes.active);
-  $(elements.pageWrap).removeClass(classes.active);
+  const $quickCart = $(selectors.quickcart);
+  $(selectors.nav).removeClass(classes.active);
+  $(selectors.pageWrap).removeClass(classes.active);
 
   if ($quickCart.hasClass(classes.open)) {
     $quickCart.removeClass(classes.open);
-    $(elements.quick.overlay).removeClass(classes.active);
+    $(selectors.quick.overlay).removeClass(classes.active);
     $("html").removeClass("no-scroll");
   } else {
     $quickCart.addClass(classes.open);
-    $(elements.quick.overlay).addClass(classes.active);
+    $(selectors.quick.overlay).addClass(classes.active);
     $("html").addClass("no-scroll");
   }
 }
 
 // open the quickcart after an item has been added to cart
 function quickCartOpen(open) {
-  $(elements.page).removeClass(classes.active);
-  $(elements.nav).removeClass(classes.active);
-  $(elements.pageWrap).removeClass(classes.active);
+  $(selectors.page).removeClass(classes.active);
+  $(selectors.nav).removeClass(classes.active);
+  $(selectors.pageWrap).removeClass(classes.active);
 
   if (open) {
-    $(elements.quickcart).addClass(classes.open);
-    $(elements.quick.overlay).addClass(classes.active);
+    $(selectors.quickcart).addClass(classes.open);
+    $(selectors.quick.overlay).addClass(classes.active);
     document.querySelector("html").classList.add("no-scroll");
   } else {
-    $(elements.quickcart).removeClass(classes.open);
-    $(elements.quick.overlay).removeClass(classes.active);
+    $(selectors.quickcart).removeClass(classes.open);
+    $(selectors.quick.overlay).removeClass(classes.active);
     document.querySelector("html").classList.remove("no-scroll");
   }
 }
 
 function handleCartDrawerCheckoutHeight() {
-  const quickcartHeight = $(elements.quick.content).outerHeight();
-  const totalsHeight = $(elements.quick.totalsWrap).outerHeight();
+  const quickcartHeight = $(selectors.quick.content).outerHeight();
+  const totalsHeight = $(selectors.quick.totalsWrap).outerHeight();
 
-  $(elements.quick.wrap).css("height", quickcartHeight - totalsHeight);
+  $(selectors.quick.wrap).css("height", quickcartHeight - totalsHeight);
 }
 
 function handleUpsell(cart) {
-  const settings = $(elements.cart.upsell).html();
+  const settings = $(selectors.cart.upsell).html();
   const json = JSON.parse(settings);
   let loop = true;
 
@@ -526,17 +528,17 @@ function handleUpsell(cart) {
 }
 
 // on click, remove the item form cart
-$(document).on("click", elements.remove, ajaxRemoveFromCartButton);
+$(document).on("click", selectors.remove, ajaxRemoveFromCartButton);
 
 // change quantity when these buttons are clicked - these need product data to work
-$(document).on("click", elements.changeAjax, handlechangeAjaxButtonClick);
+$(document).on("click", selectors.changeAjax, handlechangeAjaxButtonClick);
 
-$(document).on("change", elements.input, handleQtyInputChange);
+$(document).on("change", selectors.input, handleQtyInputChange);
 // toggle quick cart from the right
-$(document).on("click", elements.quick.toggle, quickCartToggle);
+$(document).on("click", selectors.quick.toggle, quickCartToggle);
 // ajaxify add to cart buttons
-$(document).on("click", elements.add, handleAjaxAddButtonClick);
-$(document).on("click", elements.addUpsell, handleAjaxAddUpsell);
+$(document).on("click", selectors.add, handleAjaxAddButtonClick);
+$(document).on("click", selectors.addUpsell, handleAjaxAddUpsell);
 
 // run ajax on page load to get cart contents
 $(document).ready(() => {

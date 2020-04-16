@@ -173,4 +173,97 @@
     bottom: 5px;
     transform: translate(-50%);
   }
+
+  @include media-query($medium-down) {
+    &__title-header {
+      margin: 0 auto 5px;
+      text-align: center;
+    }
+
+    &__title {
+      font-size: 20px;
+      line-height: 28px;
+      letter-spacing: 1.18px;
+    }
+
+    &__note-wrap {
+      width: 150px;
+      padding: 15px 10px;
+    }
+
+    &__note {
+      font-size: 10px;
+      line-height: 15px;
+      letter-spacing: 0.5px;
+    }
+
+    &__variants {
+      margin: 0 0 10px;
+    }
+
+    &__variant {
+      &:last-of-type {
+        margin: 0 5px 5px;
+      }
+
+      &:not(:last-of-type) {
+        margin: 0 5px 5px 0;
+      }
+    }
+
+    &__label {
+      font-size: 12px;
+      line-height: 17px;
+      letter-spacing: 0.71px;
+    }
+
+    &__regular-btn {
+      height: 44px;
+      display: flex;
+      flex-flow: column wrap;
+      align-content: center;
+      justify-content: center;
+    }
+
+    &__regular-price {
+      font-size: 14px;
+      line-height: 14px;
+      letter-spacing: 1.2px;
+      order: 2;
+    }
+
+    &__regular-text {
+      font-size: 14px;
+      line-height: 14px;
+      letter-spacing: 1.2px;
+      order: 1;
+    }
+
+    &__sub-button {
+      height: 44px;
+      height: 44px;
+      display: flex;
+      flex-flow: column wrap;
+      align-content: center;
+      justify-content: center;
+    }
+
+    &__sub-price {
+      font-size: 14px;
+      line-height: 14px;
+      letter-spacing: 1.2px;
+      order: 2;
+    }
+
+    &__sub-btn-text {
+      font-size: 14px;
+      line-height: 14px;
+      letter-spacing: 1.2px;
+      order: 1;
+    }
+
+    &__sub-btn-freq {
+      display: none;
+    }
+  }
 }

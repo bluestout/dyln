@@ -1,9 +1,6 @@
 .pdp-form {
   margin: 0 0 10px;
 
-  &__form {
-  }
-
   &__price {
     @include font-header(700);
     @include text(20px, 28px, $color-body-text, 1.18px);
@@ -89,6 +86,31 @@
     }
   }
 
+  &__sizes {
+    margin: 0 0 20px;
+  }
+
+  &__sizes-title {
+    @include font-header(700);
+    @include text(17px, 24px, $color-body-text, 1px);
+    margin: 0 0 5px;
+  }
+
+  &__sizes-link {
+    @include font-header(500);
+    @include text(17px, 24px, $color-body-text, 1px);
+    @include underline($color-main-1);
+    @include transition(color);
+
+    &:hover {
+      color: $color-main-1;
+    }
+
+    &:not(:first-of-type) {
+      margin: 0 0 5px 30px;
+    }
+  }
+
   &__qty-wrap {
     margin: 0 0 32px;
   }
@@ -134,6 +156,130 @@
       @include font-header(700);
       @include text(24px, 30px, $color-white, 1.2px);
       text-transform: uppercase;
+    }
+  }
+
+  @include media-query($medium-down) {
+    &__price {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.83px;
+      margin: 0 10px 0 0;
+      align-self: center;
+    }
+
+    &__option-wrap {
+      margin: 0 auto 20px;
+      text-align: center;
+    }
+
+    &__option-label {
+      font-size: 12px;
+      line-height: 17px;
+      letter-spacing: 0.71px;
+    }
+
+    &__current-color {
+      font-size: 10px;
+      line-height: 17px;
+      letter-spacing: 0.59px;
+      color: $color-body-text;
+    }
+
+    &__color-input {
+      width: 30px;
+      height: 30px;
+      padding: 4px;
+    }
+
+    &__color-label {
+      left: 4px;
+      top: 4px;
+      width: 22px;
+      height: 22px;
+    }
+
+    &__value-wrap {
+      display: inline-block;
+
+      &:not(:last-of-type) {
+        margin: 0 20px 0 0;
+      }
+    }
+
+    &__value-label {
+      font-size: 12px;
+      line-height: 17px;
+      letter-spacing: 0.71px;
+    }
+
+    &__sizes {
+      margin: 0 auto 20px;
+      text-align: center;
+    }
+
+    &__sizes-title {
+      font-size: 12px;
+      line-height: 17px;
+      letter-spacing: 0.71px;
+      margin: 0 0 5px;
+    }
+
+    &__sizes-link {
+      font-size: 12px;
+      line-height: 17px;
+      letter-spacing: 0.71px;
+
+      &:not(:first-of-type) {
+        margin: 0 0 5px 15px;
+      }
+    }
+
+    &__qty-wrap {
+      margin: 0;
+    }
+
+    &__info-wrap {
+      margin: 0 auto 25px;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+    }
+
+    &__qty-box {
+      @include no-font-size;
+      display: inline-block;
+      border: 2px solid $color-theme-8;
+      border-radius: 20px;
+      padding: 0 5px;
+    }
+
+    &__qty-button {
+      font-size: 14px;
+      line-height: 20px;
+      width: 15px;
+      height: 20px;
+    }
+
+    &__qty-input {
+      font-size: 16px;
+      width: 20px;
+      height: 20px;
+    }
+
+    &__submit {
+      @include button(solid, square, 2);
+      padding: 5px;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+      display: block !important;
+
+      span {
+        font-size: 18px;
+        line-height: 26px;
+        letter-spacing: 1.2px;
+      }
     }
   }
 }

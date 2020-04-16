@@ -9,7 +9,7 @@ const dataSets = {
   subList: "cat-sub-list",
   subBtn: "cat-sub-button",
   currentFilter: "cat-current-item",
-  currentType: "cat-current-type"
+  currentType: "cat-current-type",
 };
 
 const selectors = {
@@ -24,22 +24,23 @@ const selectors = {
   currentParent: "[data-cat-current]",
   currentFilter: `[data-${dataSets.currentFilter}]`,
   currentType: `[data-${dataSets.currentType}]`,
-  filterReset: "[data-cat-filter-reset]"
+  filterReset: "[data-cat-filter-reset]",
 };
 
 const icons = {
-  close: "<svg width='12' height='12' viewBox='0 0 12 12' xmlns='http://www.w3.org/2000/svg'><g stroke='#00AEDB' stroke-width='2' fill='none' fill-rule='evenodd'><path d='M1.333 1.333L11 11M10.667 1.333L1 11'/></g></svg>"
+  close:
+    "<svg width='12' height='12' viewBox='0 0 12 12' xmlns='http://www.w3.org/2000/svg'><g stroke='#00AEDB' stroke-width='2' fill='none' fill-rule='evenodd'><path d='M1.333 1.333L11 11M10.667 1.333L1 11'/></g></svg>",
 };
 
 const classNames = {
-  active: "active"
+  active: "active",
 };
 
 const strings = {
   size: "Size",
   mouth: "Mouth",
   color: "Color",
-  noFilter: "No filter"
+  noFilter: "No filter",
 };
 
 const timers = {
@@ -48,7 +49,7 @@ const timers = {
   filterL: 250,
   filterDefault: 300,
   resetDefault: 300,
-  buffer: 20
+  buffer: 20,
 };
 
 function handleCatButtonClick(event) {

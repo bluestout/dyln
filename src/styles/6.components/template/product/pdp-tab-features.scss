@@ -40,12 +40,19 @@
   &__content-wrap {
     padding: 40px 15px 60px;
     height: calc(100% - 143px);
-
     background: linear-gradient(
       to bottom,
       transparent 0%,
       $color-theme-14 100%
     );
+
+    > .row {
+      height: 100%;
+    }
+  }
+
+  &__col {
+    height: 50%;
   }
 
   &__subtitle {
@@ -132,6 +139,70 @@
 
     > div {
       height: 100%;
+    }
+  }
+
+  @include media-query($medium-down) {
+    &__img-wrap {
+      max-height: 300px;
+    }
+
+    &__title {
+      font-size: 20px;
+      line-height: 28px;
+      letter-spacing: 1.18px;
+      height: 64px;
+    }
+
+    &__content-wrap {
+      padding: 20px 15px 40px;
+      height: calc(100% - 64px);
+
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        $color-theme-20 100%
+      );
+    }
+
+    &__subtitle {
+      font-size: 18px;
+      line-height: 25px;
+      letter-spacing: 1.06px;
+    }
+
+    &__content-inner {
+      align-self: center;
+      max-width: 425px;
+      margin: auto;
+      text-align: center;
+    }
+
+    &__content {
+      font-size: 14px;
+      line-height: 19px;
+      letter-spacing: 0.83px;
+    }
+
+    &__slider-wrap {
+      padding: 0 100px;
+    }
+
+    .slick-slide {
+      margin: 0 15px;
+      height: 600px;
+    }
+  }
+
+  @include media-query($small) {
+    &__slider-wrap {
+      padding: 0 50px;
+    }
+  }
+
+  @media screen and (max-width: $grid-xs) {
+    &__slider-wrap {
+      padding: 0 20px;
     }
   }
 }

@@ -3,7 +3,7 @@ import "slick-carousel";
 import { formatMoney } from "@shopify/theme-currency";
 
 const classes = {
-  active: "active"
+  active: "active",
 };
 
 const datasets = {
@@ -14,7 +14,7 @@ const datasets = {
   opName: "pi-option-name",
   option: "pi-option",
   index: "pi-option-index",
-  slick: "slick-index"
+  slick: "slick-index",
 };
 
 const selectors = {
@@ -34,7 +34,7 @@ const selectors = {
   compare: "[data-pi-compare]",
   shopMobileSlick: "[data-slick-pi-mobile]",
   slick: `[data-${datasets.slick}]`,
-  slideById: id => `[data-slick-index=${id}]`
+  slideById: (id) => `[data-slick-index=${id}]`,
 };
 
 function handleOptionClick(event) {
@@ -129,7 +129,7 @@ function getSelectedVariant(variants, $options, $new) {
   const options = {
     Option1: optionValues[0] || null,
     Option2: optionValues[1] || null,
-    Option3: optionValues[2] || null
+    Option3: optionValues[2] || null,
   };
 
   if ($new && $new.length > 0) {
@@ -235,7 +235,7 @@ function init() {
       centerPadding: "25%",
       infinite: true,
       speed: 300,
-      initialSlide: 0
+      initialSlide: 0,
     });
 
     $($gallery).on("afterChange", (event, slick, nextSlide) => {

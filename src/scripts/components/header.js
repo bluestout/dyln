@@ -6,7 +6,7 @@ const datasets = {
   close: "header-block-close",
 };
 
-const el = {
+const selectors = {
   header: "[data-section-type='header']",
   navToggle: "[data-navigation-toggle]",
   nav: "[data-header-navigation]",
@@ -46,22 +46,22 @@ const windowWidthChanged = new Event("windowWidthChanged");
 function setIsHeaderScrolled() {
   const scroll = window.scrollY;
   if (scroll > 5) {
-    document.querySelector(el.header).classList.add(classes.scrolled);
+    document.querySelector(selectors.header).classList.add(classes.scrolled);
   } else {
-    document.querySelector(el.header).classList.remove(classes.scrolled);
+    document.querySelector(selectors.header).classList.remove(classes.scrolled);
   }
 
   if (scroll >= 75) {
-    document.querySelector(el.header).classList.add(classes.fixed);
+    document.querySelector(selectors.header).classList.add(classes.fixed);
   } else {
-    document.querySelector(el.header).classList.remove(classes.fixed);
+    document.querySelector(selectors.header).classList.remove(classes.fixed);
   }
 }
 
 function setHeaderBodyOffset(mode) {
   const scroll = window.scrollY;
-  const $headerBody = $(el.headerBody);
-  const height = $(el.announcement).outerHeight();
+  const $headerBody = $(selectors.headerBody);
+  const height = $(selectors.announcement).outerHeight();
 
   const offset = height - scroll;
 
@@ -76,18 +76,7 @@ function setHeaderBodyOffset(mode) {
 
 function handleNavToggle(event) {
   event.preventDefault();
-  document.querySelector(el.nav).classList.toggle(classes.active);
-}
-
-function offsetHeaderBody() {
-  const $headerBody = $(el.headerBody);
-  const height = $(el.announcement).height();
-
-  if (height > 0) {
-    $headerBody.css("top", height);
-  } else {
-    $headerBody.css("top", 0);
-  }
+  document.querySelector(selectors.nav).classList.toggle(classes.active);
 }
 
 function init() {
@@ -106,8 +95,8 @@ function init() {
   window.addEventListener(events.scroll, () => {
     if (!ticking) {
       window.requestAnimationFrame(() => {
-        setHeaderBodyOffset(1);
         setIsHeaderScrolled();
+        setHeaderBodyOffset(1);
         document.dispatchEvent(windowScrolledRedux);
         ticking = false;
       });
@@ -115,11 +104,11 @@ function init() {
     }
   });
 
-  offsetHeaderBody();
+  setHeaderBodyOffset();
 }
 
 function togglesInit() {
-  const navToggles = document.querySelectorAll(el.navToggle);
+  const navToggles = document.querySelectorAll(selectors.navToggle);
   for (let i = 0; i < navToggles.length; i++) {
     navToggles[i].addEventListener(events.click, handleNavToggle);
   }
@@ -128,15 +117,15 @@ function togglesInit() {
 function handleHeaderLinkClick(event) {
   event.preventDefault();
   const $source = $(event.currentTarget);
-  const $links = $(el.link);
-  const $blocks = $(el.block);
+  const $links = $(selectors.link);
+  const $blocks = $(selectors.block);
 
   if ($source.length <= 0) {
     return;
   }
 
   const id = $source.data(datasets.link);
-  const $block = $(el.blockById(id));
+  const $block = $(selectors.blockById(id));
 
   if ($(window).width() < 992) {
     if ($block.length > 0) {
@@ -161,18 +150,18 @@ function handleHeaderLinkClose(event) {
   event.preventDefault();
   const $source = $(event.currentTarget);
   const id = $source.data(datasets.close);
-  const $link = $(el.linkById(id));
+  const $link = $(selectors.linkById(id));
   if ($link.length > 0) {
     $link.removeClass(classes.active);
   }
 }
 
 function handleHeaderButtonClick(event) {
-  const $menu = $(el.menu);
+  const $menu = $(selectors.menu);
   const $button = $(event.currentTarget);
-  const $ann = $(el.announcement);
-  const headerHeight = $(el.headerBody).outerHeight();
-  const $overlay = $(el.overlay);
+  const $ann = $(selectors.announcement);
+  const headerHeight = $(selectors.headerBody).outerHeight();
+  const $overlay = $(selectors.overlay);
 
   $ann.toggleClass(classes.closed);
   $menu.toggleClass(classes.open);
@@ -194,8 +183,8 @@ $(document).ready(() => {
   init();
 });
 
-$(document).on("click", el.link, handleHeaderLinkClick);
-$(document).on("click", el.close, handleHeaderLinkClose);
-$(document).on("click", el.button, handleHeaderButtonClick);
+$(document).on("click", selectors.link, handleHeaderLinkClick);
+$(document).on("click", selectors.close, handleHeaderLinkClose);
+$(document).on("click", selectors.button, handleHeaderButtonClick);
 
 document.addEventListener("ajaxReloaded", togglesInit);

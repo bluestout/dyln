@@ -2,7 +2,7 @@
 {% for option in product.options_with_values %}
   {% assign name_clean = option.name | downcase %}
   {% if name_clean == "color" %}
-    <div class="atc-bar">
+    <div class="atc-bar" data-atc-bar>
       <div class="atc-bar__inner">
         <div class="atc-bar__options" data-atc-options style="display:none;">
           {% for value in option.values %}

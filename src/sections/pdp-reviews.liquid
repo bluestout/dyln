@@ -1,15 +1,21 @@
-{% comment %} TODO check yotpo id {% endcomment %}
 {% if section.settings.show %}
+<div id="pdp-reviews-anchor"></div>
 <div class="container">
-  <div id="pdp-reviews-anchor"></div>
   <h2 class="pdp-reviews__title">{{ section.settings.title }}</h2>
-  <div
-    class="yotpo yotpo-main-widget"
-    data-product-id="{{ product.id }}"
-    data-name="{{ product.title | escape }}"
-    data-url="{{ shop.url }}{{ product.url }}"
-    data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}"
-    data-description="{{ product.description | escape }}">
+</div>
+
+<div id="product-review-wrap" class="text-center">
+  <div style="margin: 0 auto;max-width: 1200px;">
+    <div style="text-align: left;"></div>
+      <div id="stamped-main-widget" class="stamped-main-widget"
+        data-product-id="{{ product.id }}"
+        data-name="{{ product.title | escape }}"
+        data-url="{{ shop.url }}{{ product.url }}"
+        data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}"
+        data-description="{{ product.description | escape }}"
+        data-product-sku="{{product.handle}}" data-take-reviews="10" data-take-questions="6">
+        {{ product.metafields.stamped.reviews }}
+    </div>
   </div>
 </div>
 {% endif %}

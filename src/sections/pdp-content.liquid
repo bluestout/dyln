@@ -1,16 +1,9 @@
-<h1 class="pdp-content__title">{{ product.title }}</h1>
+<div class="d-none d-lg-block">
+  <h1 class="pdp-content__title">{{ product.title }}</h1>
 
-{% comment %} TODO change app key {% endcomment %}
-<div class="pdp-content__reviews yotpo"
-  data-appkey="K4L1jUuZkGa0rJEPWObvjwQhMV8MBztvKaatFuqp"
-  data-domain="{{shop.permanent_domain | escape }}"
-  data-product-id="{{ product.id }}"
-  data-product-models="{{ product.id }}"
-  data-name="{{ product.title | escape }}"
-  data-url="{{ shop.url }}{{ product.url }}"
-  data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
-  data-description="{{ product.description | escape }}"
-  data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+  <div class="pdp-content__reviews">
+    <span class="stamped-product-reviews-badge" data-id="{{ product.id }}">{{ product.metafields.stamped.badge }}</span>
+  </div>
 </div>
 
 <div class="pdp-content__content rte">
