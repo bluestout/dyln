@@ -1,0 +1,148 @@
+.pdp-user-img {
+  margin: 0 0 60px;
+
+  &__header {
+    margin: 0 0 20px;
+  }
+
+  &__title {
+    @include font-header(700);
+    @include text(16px, 23px, $color-title, 0.95px);
+  }
+
+  &__count {
+    @include font-header(700);
+    @include text(16px, 23px, $color-theme-8, 0.95px);
+    margin: 0 0 0 5px;
+  }
+
+  &__images {
+    &:not(.slick-slider) {
+      display: flex;
+      flex-flow: row nowrap;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      padding: 0 0 20px;
+
+      .pdp-user-img__item {
+        flex: 0 0 200px;
+      }
+
+      .pdp-user-img__item:not(:last-of-type) {
+        margin: 0 25px 0 0;
+      }
+    }
+
+    &.slick-slider {
+      margin: 0 -12px;
+      .pdp-user-img__item {
+        padding: 0 12px;
+      }
+    }
+  }
+
+  &__img-wrap {
+    position: relative;
+  }
+
+  &__img {
+    object-fit: cover;
+  }
+
+  .slick-prev {
+    left: -20px;
+  }
+
+  .slick-next {
+    right: -20px;
+  }
+
+  .slick-arrow {
+    @include no-font-size;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+
+    path {
+      @include transition(stroke);
+    }
+
+    &:hover {
+      path {
+        stroke: $color-main-1;
+      }
+    }
+  }
+
+  @include media-query($xl) {
+    &__images {
+      position: relative;
+      padding: 0 30px;
+    }
+
+    &__header {
+      padding: 0 30px;
+    }
+
+    .slick-prev {
+      left: 0;
+    }
+
+    .slick-next {
+      right: 0;
+    }
+  }
+
+  @include media-query($medium-down) {
+    margin: 0 0 20px;
+
+    &__header {
+      text-align: center;
+      margin: 0 0 8px;
+    }
+
+    &__title {
+      font-size: 12px;
+      line-height: 17px;
+      letter-spacing: 0.71px;
+    }
+
+    &__count {
+      font-size: 12px;
+      line-height: 17px;
+      letter-spacing: 0.71px;
+      margin: 0 0 0 3px;
+    }
+
+    .slick-arrow {
+      display: none !important;
+    }
+  }
+
+  @media screen and (max-width: $grid-xs) {
+    &__img-wrap {
+      max-width: 240px;
+      max-height: 240px;
+
+      &::before {
+        padding-top: 100%;
+      }
+    }
+
+    &__img {
+      max-width: 240px;
+      max-height: 240px;
+    }
+
+    &__images.slick-slider {
+      margin: 0 -15px;
+      .pdp-user-img__item {
+        padding: 0 9px;
+      }
+    }
+  }
+}

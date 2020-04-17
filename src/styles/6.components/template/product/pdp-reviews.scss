@@ -1,9 +1,7 @@
 .pdp-reviews {
   margin: 0 0 40px;
 
-  &__title {
-    @include text-title;
-    text-align: center;
-    margin: 0 0 40px;
+  @include media-query($medium-down) {
+    margin: 0;
   }
 }

@@ -30,6 +30,11 @@ const datasets = {
   },
 };
 
+const htmlArrowNext =
+  "<button type='button' class='slick-next slick-arrow'><svg width='16' height='38' viewBox='0 0 16 38' xmlns='http://www.w3.org/2000/svg'><path d='M1 38l14-19L1 0' stroke='#848A8D' fill='none' fill-rule='evenodd' stroke-linecap='round'/></svg></button>";
+const htmlArrowPrev =
+  "<button type='button' class='slick-prev slick-arrow'><svg width='16' height='38' viewBox='0 0 16 38' xmlns='http://www.w3.org/2000/svg'><path d='M15 0L1 19l14 19' stroke='#848A8D' fill='none' fill-rule='evenodd' stroke-linecap='round'/></svg></button>";
+
 const selectors = {
   submitButton: "[data-submit-button]",
   submitButtonText: "[data-submit-button-text]",
@@ -47,24 +52,28 @@ const selectors = {
   gallery: "[data-pdp-gallery]",
   galleryIndex: "[data-pdp-gallery-index]",
   play: "[data-pdp-gallery-play]",
-  videoWrap: "[data-pdp-video-wrap]",
+  select: "[data-pdp-select]",
   currentColor: "[data-pdp-current-color]",
   pdpOptions: "[data-pdp-options]",
-  vParent: "[data-pdp-video-parent]",
-  vContent: "[data-pdp-video-non-video]",
-  vWrap: "[data-pdp-video-wrap]",
-  vButton: "[data-pdp-video-button]",
-  vBg: "[data-pdp-video-bg]",
-  tElements: "[data-pdp-specs-elements]",
-  tElement: "[data-pdp-specs-element]",
-  tElementById: (id) => `[data-pdp-specs-element='${id}']`,
-  tVideos: "[data-pdp-specs-videos]",
-  tVideo: "[data-pdp-specs-video-wrap]",
-  tVideoById: (id) => `[data-pdp-specs-video-wrap='${id}']`,
-  tReturn: "[data-pdp-specs-return]",
-  tFeatures: "[data-pdp-tab-features]",
-  tInput: "[data-pdp-tab-features-input]",
-  select: "[data-pdp-select]",
+  userImages: "[pdp-user-images]",
+  video: {
+    parent: "[data-pdp-video-parent]",
+    content: "[data-pdp-video-non-video]",
+    wrap: "[data-pdp-video-wrap]",
+    button: "[data-pdp-video-button]",
+    bg: "[data-pdp-video-bg]",
+  },
+  tabs: {
+    elements: "[data-pdp-specs-elements]",
+    element: "[data-pdp-specs-element]",
+    elementById: (id) => `[data-pdp-specs-element='${id}']`,
+    videos: "[data-pdp-specs-videos]",
+    video: "[data-pdp-specs-video-wrap]",
+    videoById: (id) => `[data-pdp-specs-video-wrap='${id}']`,
+    return: "[data-pdp-specs-return]",
+    features: "[data-pdp-tab-features]",
+    input: "[data-pdp-tab-features-input]",
+  },
   atc: {
     bar: "[data-atc-bar]",
     anchor: "[data-atc-anchor]",
@@ -304,8 +313,9 @@ register("product", {
 function init() {
   const $gallery = $(selectors.gallery);
   const $galleryIndex = $(selectors.galleryIndex);
-  const $tFeatures = $(selectors.tFeatures);
-  const $tInput = $(selectors.tInput);
+  const $tFeatures = $(selectors.tabs.features);
+  const $tInput = $(selectors.tabs.input);
+  const $userImages = $(selectors.userImages);
 
   handleAtcBar();
 
@@ -328,10 +338,8 @@ function init() {
         slidesToShow: 4,
         slidesToScroll: 1,
         asNavFor: selectors.gallery,
-        prevArrow:
-          "<button type='button' class='slick-prev slick-arrow'><svg width='16' height='38' viewBox='0 0 16 38' xmlns='http://www.w3.org/2000/svg'><path d='M15 0L1 19l14 19' stroke='#848A8D' fill='none' fill-rule='evenodd' stroke-linecap='round'/></svg></button>",
-        nextArrow:
-          "<button type='button' class='slick-next slick-arrow'><svg width='16' height='38' viewBox='0 0 16 38' xmlns='http://www.w3.org/2000/svg'><path d='M1 38l14-19L1 0' stroke='#848A8D' fill='none' fill-rule='evenodd' stroke-linecap='round'/></svg></button>",
+        prevArrow: htmlArrowPrev,
+        nextArrow: htmlArrowNext,
       });
     }
   }
@@ -350,7 +358,7 @@ function init() {
       centerMode: true,
       centerPadding: "100px",
       autoplay: true,
-      autoplaySpeed: 8500,
+      autoplaySpeed: 15000,
       responsive: [
         {
           breakpoint: 576,
@@ -360,7 +368,7 @@ function init() {
           },
         },
         {
-          breakpoint: 425,
+          breakpoint: 424,
           settings: {
             slidesToShow: 1,
             centerPadding: "20px",
@@ -374,28 +382,63 @@ function init() {
       $tInput.val(inputVal).change();
     });
   }
-}
 
-function handleGalleryPlayClick(event) {
-  event.preventDefault();
-  const $parent = $(event.currentTarget).closest(selectors.videoWrap);
-  const $video = $parent.find("video");
-  if ($video.length === 1 && $video[0]) {
-    if ($video[0].paused) {
-      $video[0].play();
-    } else {
-      $video[0].pause();
-    }
+  if ($userImages.length > 0) {
+    $userImages.slick({
+      swipeToSlide: true,
+      arrows: true,
+      dots: false,
+      slidesToShow: 6,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 9000,
+      prevArrow: htmlArrowPrev,
+      nextArrow: htmlArrowNext,
+      responsive: [
+        {
+          breakpoint: 1200,
+          settings: {
+            slidesToShow: 5,
+          },
+        },
+        {
+          breakpoint: 991,
+          settings: {
+            slidesToShow: 4,
+          },
+        },
+        {
+          breakpoint: 767,
+          settings: {
+            slidesToShow: 3,
+          },
+        },
+        {
+          breakpoint: 575,
+          settings: {
+            slidesToShow: 2,
+          },
+        },
+        {
+          breakpoint: 425,
+          settings: {
+            slidesToShow: 1,
+            centerMode: true,
+            centerPadding: "30px",
+          },
+        },
+      ],
+    });
   }
 }
 
 function handleVideoPlayClick(event) {
   event.preventDefault();
   const $source = $(event.currentTarget);
-  const $vParent = $source.closest(selectors.vParent);
-  const $vWrap = $(selectors.vWrap);
-  const $vContent = $vParent.find(selectors.vContent);
-  const $vBg = $vParent.find(selectors.vBg);
+  const $vParent = $source.closest(selectors.video.parent);
+  const $vWrap = $(selectors.video.wrap);
+  const $vContent = $vParent.find(selectors.video.content);
+  const $vBg = $vParent.find(selectors.video.bg);
 
   if (
     $source.length > 0 &&
@@ -418,9 +461,9 @@ function handleSpecsPlayClick(event) {
   const $source = $(event.currentTarget);
   const id = $source.data("pdp-specs-element");
 
-  const $tElements = $(selectors.tElements);
-  const $tVideos = $(selectors.tVideos);
-  const $tVideo = $(selectors.tVideoById(id));
+  const $tElements = $(selectors.tabs.elements);
+  const $tVideos = $(selectors.tabs.videos);
+  const $tVideo = $(selectors.tabs.videoById(id));
 
   if ($tVideo.length > 0 && $tVideos.length > 0 && $tElements.length > 0) {
     $tElements.fadeOut(timing.default, () => {
@@ -431,9 +474,9 @@ function handleSpecsPlayClick(event) {
 }
 
 function handleSpecsReturnClick() {
-  const $tElements = $(selectors.tElements);
-  const $tVideos = $(selectors.tVideos);
-  const $tVideo = $(selectors.tVideo);
+  const $tElements = $(selectors.tabs.elements);
+  const $tVideos = $(selectors.tabs.videos);
+  const $tVideo = $(selectors.tabs.video);
 
   if ($tElements.length > 0 && $tVideos.length > 0 && $tVideo) {
     $tVideos.fadeOut(timing.default, () => {
@@ -447,7 +490,7 @@ function handleSpecsReturnClick() {
 
 function handleInputChange(event) {
   const value = Math.round(event.currentTarget.value / 10);
-  const $tFeatures = $(selectors.tFeatures);
+  const $tFeatures = $(selectors.tabs.features);
   const $slick = $tFeatures.slick("getSlick");
 
   if (
@@ -527,13 +570,12 @@ function handleAtcBar() {
   }
 }
 
-$(selectors.tInput).on("input propertychange", handleInputChange);
+$(selectors.tabs.input).on("input propertychange", handleInputChange);
 
 // $(document).on("click", selectors.play, handleGalleryPlayClick);
-$(document).on("click", selectors.vButton, handleVideoPlayClick);
-$(document).on("click", selectors.tElement, handleSpecsPlayClick);
-$(document).on("click", selectors.tElement, handleSpecsPlayClick);
-$(document).on("click", selectors.tReturn, handleSpecsReturnClick);
+$(document).on("click", selectors.video.button, handleVideoPlayClick);
+$(document).on("click", selectors.tabs.element, handleSpecsPlayClick);
+$(document).on("click", selectors.tabs.return, handleSpecsReturnClick);
 $(document).on("click", selectors.atc.more, toggleAtcOptions);
 $(document).on("click", selectors.atc.option, handleAtcOptionClick);
 $(document).on("click", selectors.atc.add, handleAtcSubmit);

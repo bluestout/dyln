@@ -187,8 +187,25 @@
     }
 
     &__note-wrap {
-      width: 150px;
-      padding: 15px 10px;
+      left: initial;
+      right: calc(50% - 31px);
+
+      &::before {
+        left: initial;
+        right: 20px;
+      }
+
+      &::after {
+        left: initial;
+        right: 20px;
+      }
+
+      &:hover,
+      &:active {
+        opacity: 1;
+        pointer-events: auto;
+        bottom: calc(100% + 5px);
+      }
     }
 
     &__note {

@@ -14,12 +14,6 @@
     display: block;
   }
 
-  &__content-wrap {
-  }
-
-  &__elements-wrap {
-  }
-
   &__elements {
     display: flex;
     flex-flow: row wrap;
@@ -96,6 +90,58 @@
 
     &__video-wrap {
       margin: 0 auto 40px;
+    }
+  }
+
+  @include media-query($medium-down) {
+    &__title {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.83px;
+      margin: 15px auto;
+    }
+
+    &__el-text {
+      font-size: 12px;
+      line-height: 15px;
+      letter-spacing: 0.71px;
+    }
+
+    &__elements {
+      flex-flow: row nowrap;
+    }
+
+    [data-pdp-specs-element="1"] {
+      svg {
+        max-width: 55px;
+        max-height: 178px;
+      }
+    }
+
+    [data-pdp-specs-element="2"] {
+      svg {
+        max-width: 46px;
+        max-height: 73px;
+      }
+    }
+
+    [data-pdp-specs-element="3"] {
+      svg {
+        max-width: 72px;
+        max-height: 81px;
+      }
+    }
+
+    &__return {
+      svg {
+        max-height: 8px;
+      }
+
+      .text {
+        font-size: 10px;
+        line-height: 15px;
+        letter-spacing: 0.59px;
+      }
     }
   }
 }

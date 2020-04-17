@@ -4,7 +4,7 @@
   z-index: $z-top;
   left: 0;
   bottom: 0;
-  margin: 0 0 20px;
+  margin: 0;
   width: 100vw;
   height: 230px;
   background: linear-gradient(
@@ -23,7 +23,7 @@
     opacity: 1;
 
     .atc-bar__inner {
-      bottom: 40px;
+      bottom: 20px;
     }
   }
 
@@ -31,8 +31,6 @@
     @include transition(bottom);
     position: absolute;
     bottom: 20px;
-    left: calc(50vw - 420px);
-    width: 840px;
     background-color: $color-white;
     border-radius: 30px;
     padding: 6px;
@@ -163,5 +161,102 @@
     text-transform: uppercase;
     padding: 10px 33px;
     margin: 0 10px 0 0;
+  }
+
+  @include media-query($large-up) {
+    &__inner {
+      left: calc(50vw - 420px);
+      width: 840px;
+    }
+  }
+
+  @include media-query($large) {
+    &__inner {
+      left: 5%;
+      width: 90%;
+    }
+
+    &__title {
+      font-size: 18px;
+      line-height: 26px;
+      letter-spacing: 1.12px;
+    }
+
+    &__price {
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 1px;
+    }
+  }
+
+  @include media-query($medium-down) {
+    &__inner {
+      left: 5%;
+      width: 90%;
+      padding: 4px;
+    }
+
+    &__option-label {
+      font-size: 13px;
+      line-height: 13px;
+      letter-spacing: 1.5px;
+    }
+
+    &__current-color {
+      font-size: 13px;
+      line-height: 13px;
+      letter-spacing: 1.5px;
+    }
+
+    &__color-input {
+      width: 28px;
+      height: 28px;
+      padding: 4px;
+
+      &:checked {
+        box-shadow: 0 0 5px 0 rgba($color-black, 0.5);
+      }
+    }
+
+    &__color-label {
+      left: 4px;
+      top: 4px;
+      width: 20px;
+      height: 20px;
+    }
+
+    &__current-swatch {
+      span {
+        width: 28px;
+        height: 28px;
+      }
+    }
+
+    &__current-content {
+      margin: 0 0 0 4px;
+    }
+
+    &__current-text {
+      font-size: 13px;
+      line-height: 13px;
+      letter-spacing: 1.5px;
+    }
+
+    &__show-more {
+      font-size: 10px;
+      line-height: 13px;
+      letter-spacing: 1.5px;
+    }
+
+    &__header {
+      display: none;
+    }
+
+    &__add {
+      font-size: 14px;
+      line-height: 16px;
+      padding: 8px 19px;
+      margin: 0 4px 0 0;
+    }
   }
 }

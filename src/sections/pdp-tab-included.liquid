@@ -5,14 +5,34 @@
     <div class="pdp-tab-2__included">
       <div class="container pdp-tab-2__container">
         <div class="row pdp-tab-2__row-o">
+          {% if block.settings.switch_layout and block.settings.image_r_1 %}
+            <div class="col-6 pdp-tab-2__col-o d-flex d-md-none">
+              <div class="pdp-tab-2__item">
+                {% render 'responsive-image' with
+                  image: block.settings.image_r_1,
+                  max_width: 768,
+                  max_height: 768,
+                  wrapper_class: "pdp-tab-2__img-wrap",
+                  image_class: "pdp-tab-2__img",
+                %}
+                <div class="pdp-tab-2__item-title">{{ block.settings.text_r_1 }}</div>
+              </div>
+            </div>
+          {% endif %}
+
+          {% assign left_col_class = "col-md-4" %}
+          {% if block.settings.switch_layout and block.settings.image_r_1 %}
+            {% assign left_col_class = "col-md-4 col-6" %}
+          {% endif %}
+
           {% if block.settings.image_l %}
-            <div class="col-4 pdp-tab-2__col-o">
+            <div class="{{ left_col_class }} pdp-tab-2__col-o d-flex">
               <div class="pdp-tab-2__item">
                 {% render 'responsive-image' with
                   image: block.settings.image_l,
                   max_width: 768,
                   max_height: 768,
-                  wrapper_class: "pdp-tab-2__img-wrap",
+                  wrapper_class: "pdp-tab-2__img-wrap tall",
                   image_class: "pdp-tab-2__img",
                 %}
                 <div class="pdp-tab-2__item-title">{{ block.settings.text_l }}</div>
@@ -21,7 +41,7 @@
           {% endif %}
 
           {% if block.settings.image_l %}
-            <div class="col-8 pdp-tab-2__col-o">
+            <div class="col-md-8 pdp-tab-2__col-o">
           {% else %}
             <div class="col-12 pdp-tab-2__col-o">
           {% endif %}
@@ -29,7 +49,11 @@
           {% if block.settings.image_r_1 or block.settings.image_r_2 %}
             <div class="row pdp-tab-2__row-i">
               {% if block.settings.image_r_1 %}
-                <div class="col-4 pdp-tab-2__col-i d-flex">
+                {% assign col_r_1_d_class = "d-flex" %}
+                {% if block.settings.switch_layout %}
+                  {% assign col_r_1_d_class = "d-none d-md-flex" %}
+                {% endif %}
+                <div class="col-md-4 pdp-tab-2__col-i order-1 {{ col_r_1_d_class }}">
                   <div class="pdp-tab-2__item">
                     {% render 'responsive-image' with
                       image: block.settings.image_r_1,
@@ -44,7 +68,7 @@
               {% endif %}
 
               {% if block.settings.image_r_2 %}
-                <div class="col-8 pdp-tab-2__col-i d-flex">
+                <div class="col-md-8 pdp-tab-2__col-i d-flex order-md-2 order-3">
                   <div class="pdp-tab-2__item">
                     {% render 'responsive-image' with
                       image: block.settings.image_r_2,
@@ -59,7 +83,7 @@
               {% endif %}
 
               {% if block.settings.image_r_w %}
-                <div class="col-12 pdp-tab-2__col-i d-flex">
+                <div class="col-12 pdp-tab-2__col-i d-flex order-md-3 order-2">
                   <div class="pdp-tab-2__item">
                     {% render 'responsive-image' with
                       image: block.settings.image_r_w,
@@ -141,6 +165,13 @@
             "type": "textarea",
             "id": "text_r_w",
             "label": "Text Right Wide"
+          },
+          {
+            "type": "checkbox",
+            "id": "switch_layout",
+            "label": "Layout switch",
+            "default": true,
+            "info": "Switch layout on mobile? Will move the desktop left 1 to first row left on mobile."
           }
         ]
       }

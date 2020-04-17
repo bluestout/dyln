@@ -63,7 +63,7 @@
 
   &__faq-q {
     @include font-header(700);
-    @include text(1.18, 28px, $color-title);
+    @include text(20px, 28px, $color-title);
     display: inline-block;
     vertical-align: middle;
     width: calc(100% - 111px);
@@ -73,5 +73,50 @@
     @include font-body;
     @include text(18px, 24px, $color-body-text, 1.08px);
     padding: 10px 0 0;
+  }
+
+  @include media-query($medium-down) {
+    margin: 0 0 30px;
+
+    &__title {
+      font-size: 24px;
+      line-height: 33px;
+      letter-spacing: 1.42px;
+      text-align: center;
+      margin: 0 0 20px;
+    }
+
+    &__faq {
+      padding: 0 0 10px;
+      margin: 0 0 10px;
+    }
+
+    &__faq-closed {
+      font-size: 30px;
+      line-height: 30px;
+      width: 20px;
+      margin: 0 5px;
+    }
+
+    &__faq-open {
+      font-size: 30px;
+      line-height: 30px;
+      width: 20px;
+      margin: 0 5px;
+    }
+
+    &__faq-q {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.83px;
+      width: calc(100% - 40px);
+    }
+
+    &__faq-a {
+      font-size: 13px;
+      line-height: 17px;
+      letter-spacing: 0.7px;
+      padding: 10px 0 0;
+    }
   }
 }

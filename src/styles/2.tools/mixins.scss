@@ -360,6 +360,29 @@
   }
 }
 
+@mixin underline-b($color: $color-main-1, $thickness: 2px, $is_active: true) {
+  position: relative;
+
+  &::before {
+    @include transition(width);
+    content: "";
+    position: absolute;
+    bottom: -#{$thickness};
+    left: 0;
+    width: 0;
+    height: $thickness;
+    background-color: $color;
+  }
+
+  @if $is_active {
+    &:hover {
+      &::before {
+        width: 100%;
+      }
+    }
+  }
+}
+
 @mixin animated-wave($time: 1000ms, $z-index: $z-base) {
   @include transition(background-position $time);
   position: absolute;

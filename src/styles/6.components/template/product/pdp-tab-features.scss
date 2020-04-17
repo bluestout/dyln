@@ -51,10 +51,6 @@
     }
   }
 
-  &__col {
-    height: 50%;
-  }
-
   &__subtitle {
     @include font-header(700);
     @include text(30px, 45px, $color-main-1, 1.77px);

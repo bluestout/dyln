@@ -49,4 +49,26 @@
       letter-spacing: 0.8px;
     }
   }
+
+  @include media-query($medium-down) {
+    &__item {
+      align-self: flex-end;
+      margin: 0 auto 30px;
+      max-width: 90%;
+    }
+
+    &__img {
+      max-height: 300px;
+      object-fit: contain;
+    }
+
+    &__img-wrap {
+      max-height: 300px;
+      margin: 0 auto 10px;
+
+      &.tall::before {
+        padding-top: 300px;
+      }
+    }
+  }
 }
