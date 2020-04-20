@@ -7,10 +7,33 @@
     text-align: center;
   }
 
+  &__list {
+    @include clearfix;
+  }
+
   &__faq {
-    padding: 0 0 15px;
+    padding: 11px 0;
     border-bottom: 1px solid $color-main-1;
-    margin: 0 0 15px;
+    margin: 0;
+    float: left;
+    width: calc(50% - 11px);
+
+    &:nth-of-type(1),
+    &:nth-of-type(2) {
+      border-top: 1px solid $color-main-1;
+    }
+
+    &:nth-of-type(2n) {
+      margin: 0 0 0 10px;
+    }
+
+    &:nth-of-type(2n + 1) {
+      margin: 0 10px 0 0;
+    }
+  }
+
+  [data-faq-hidden-init] {
+    display: none;
   }
 
   &__faq-btn {
@@ -63,16 +86,20 @@
 
   &__faq-q {
     @include font-header(700);
-    @include text(1.18, 28px, $color-title);
+    @include text(20px, 28px, $color-title, 1.18px);
     display: inline-block;
     vertical-align: middle;
-    width: calc(100% - 111px);
+    width: calc(100% - 50px);
   }
 
   &__faq-a {
     @include font-body;
     @include text(18px, 24px, $color-body-text, 1.08px);
     padding: 10px 0 0;
+
+    a {
+      color: $color-main-1;
+    }
   }
 
   &__bottom-box {

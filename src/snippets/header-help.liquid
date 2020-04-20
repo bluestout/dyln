@@ -70,42 +70,46 @@
           </div>
 
           <div class="header-help__faqs" data-accordion-parent=true>
-            {% if s_faq_q_1 != empty %}
+            {% comment %} s_faq_1 {% endcomment %}
+            {% if s_faq_1 != empty %}
+              {% assign s_faq_article_1 = articles[s_faq_1] %}
               <div class="header-help__faq">
                 <button class="header-help__faq-btn" data-accordion-button="1">
                   <span class="header-help__faq-q">
-                    {{ s_faq_q_1 }}
+                    {{ s_faq_article_1.title }}
                   </span>
                   <span class="header-help__faq-closed">+</span>
                   <span class="header-help__faq-open">-</span>
                 </button>
-                <div class="header-help__faq-a" data-accordion-content="1">{{ s_faq_a_1 }}</div>
+                <div class="header-help__faq-a" data-accordion-content="1">{{ s_faq_article_1.content | strip_html }}</div>
               </div>
             {% endif %}
 
-            {% if s_faq_q_2 != empty %}
+            {% if s_faq_2 != empty %}
+              {% assign s_faq_article_2 = articles[s_faq_2] %}
               <div class="header-help__faq">
                 <button class="header-help__faq-btn" data-accordion-button="2">
                   <span class="header-help__faq-q">
-                    {{ s_faq_q_2 }}
+                    {{ s_faq_article_2.title }}
                   </span>
                   <span class="header-help__faq-closed">+</span>
                   <span class="header-help__faq-open">-</span>
                 </button>
-                <div class="header-help__faq-a" data-accordion-content="2">{{ s_faq_a_2 }}</div>
+                <div class="header-help__faq-a" data-accordion-content="2">{{ s_faq_article_2.content | strip_html }}</div>
               </div>
             {% endif %}
 
-            {% if s_faq_q_3 != empty %}
+            {% if s_faq_3 != empty %}
+              {% assign s_faq_article_3 = articles[s_faq_3] %}
               <div class="header-help__faq">
                 <button class="header-help__faq-btn" data-accordion-button="3">
                   <span class="header-help__faq-q">
-                    {{ s_faq_q_3 }}
+                    {{ s_faq_article_3.title }}
                   </span>
                   <span class="header-help__faq-closed">+</span>
                   <span class="header-help__faq-open">-</span>
                 </button>
-                <div class="header-help__faq-a" data-accordion-content="3">{{ s_faq_a_3 }}</div>
+                <div class="header-help__faq-a" data-accordion-content="3">{{ s_faq_article_3.content | strip_html }}</div>
               </div>
             {% endif %}
 

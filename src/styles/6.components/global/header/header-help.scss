@@ -244,6 +244,7 @@
       @include font-body;
       @include text(18px, 24px, $color-body-text, 1.08px);
       padding: 10px 0 0;
+      text-align: left;
     }
 
     &__close {
@@ -464,6 +465,7 @@
       @include font-body;
       @include text(13px, 18px, $color-body-text, 0.7px);
       padding: 10px 0 0;
+      text-align: left;
     }
 
     &__close {

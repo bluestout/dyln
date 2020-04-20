@@ -6,18 +6,21 @@
 
     <div class="row">
       {% for block in section.blocks %}
-        <div class="col-lg-6">
-          <div class="pdp-faqs__faq">
-            <button class="pdp-faqs__faq-btn" data-accordion-button="{{ forloop.index }}">
-              <span class="pdp-faqs__faq-q">
-                {{ block.settings.title }}
-              </span>
-              <span class="pdp-faqs__faq-closed">+</span>
-              <span class="pdp-faqs__faq-open">-</span>
-            </button>
-            <div class="pdp-faqs__faq-a" data-accordion-content="{{ forloop.index }}">{{ block.settings.answer }}</div>
+        {% if block.settings.faq_article != blank %}
+          {% assign pdp_faq_article = articles[block.settings.faq_article] %}
+          <div class="col-lg-6">
+            <div class="pdp-faqs__faq">
+              <button class="pdp-faqs__faq-btn" data-accordion-button="{{ forloop.index }}">
+                <span class="pdp-faqs__faq-q">
+                  {{ pdp_faq_article.title }}
+                </span>
+                <span class="pdp-faqs__faq-closed">+</span>
+                <span class="pdp-faqs__faq-open">-</span>
+              </button>
+              <div class="pdp-faqs__faq-a" data-accordion-content="{{ forloop.index }}">{{ pdp_faq_article.content | strip_html }}</div>
+            </div>
           </div>
-        </div>
+        {% endif %}
       {% endfor %}
     </div>
 
@@ -47,14 +50,9 @@
         "name": "FAQ",
         "settings": [
           {
-            "type": "textarea",
-            "id": "title",
-            "label": "Question"
-          },
-          {
-            "type": "textarea",
-            "id": "answer",
-            "label": "Answer"
+            "type": "article",
+            "id": "faq_article",
+            "label": "FAQ article"
           }
         ]
       }
