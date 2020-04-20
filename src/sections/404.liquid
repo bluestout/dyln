@@ -23,11 +23,16 @@
     -%}
   {%- endif -%}
 
-  <div class="p-404__content-wrap">
+
+  <div class="p-404__content-wrap{% unless section.settings.background %} static dark{% endunless %}">
     <div class="container p-404__container">
       <div class="row p-404__row">
         <div class="col-md-1"></div>
-        <div class="col-md-5 d-flex">
+        {% assign content_col_class = "col-md-10 d-flex" %}
+        {% if section.settings.background %}
+          {% assign content_col_class = "col-md-5 d-flex" %}
+        {% endif %}
+        <div class="{{ content_col_class }}">
           <div class="p-404__content">
 
             {%- if section.settings.title != blank -%}
@@ -63,7 +68,6 @@
 
           </div>
         </div>
-        <div class="col-md-6"></div>
       </div>
     </div>
   </div>
