@@ -17,6 +17,7 @@
   &__container {
     height: 100%;
   }
+
   &__row {
     height: 90%;
   }
@@ -24,6 +25,7 @@
   &__content {
     text-align: center;
     align-self: center;
+    width: 100%;
   }
 
   &__title {
@@ -71,6 +73,25 @@
       width: 100%;
       height: 1px;
       background-color: $color-white;
+    }
+  }
+
+  &__content-wrap.dark {
+    margin: 40px 0 0;
+    .p-404__title {
+      color: $color-title;
+    }
+
+    .p-404__subtitle {
+      color: $color-title;
+    }
+
+    .p-404__message {
+      color: $color-body-text;
+    }
+
+    .p-404__btm-link {
+      color: $color-body-text;
     }
   }
 
