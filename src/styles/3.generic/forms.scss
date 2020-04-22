@@ -5,7 +5,7 @@ form {
 a,
 area,
 button,
-[role='button'],
+[role="button"],
 input,
 label,
 select,
@@ -19,18 +19,16 @@ textarea,
 select {
   font-size: 16px;
   max-width: 100%;
-  border: 1px solid $color-border;
   border-radius: 0;
 
   &[disabled] {
-    border-color: $color-disabled-border;
     background-color: $color-disabled;
     cursor: default;
   }
 }
 
 button,
-input[type='submit'],
+input[type="submit"],
 label[for] {
   cursor: pointer;
 }

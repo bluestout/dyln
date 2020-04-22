@@ -67,103 +67,29 @@ input[type="search"] {
   font-size: 16px;
   line-height: 1;
   background-color: transparent;
-  padding: 20px 15px;
+  padding: 5px 0;
   border-radius: 0;
-  border: 1px solid $color-black;
   width: 100%;
-  &::placeholder {
-    font-weight: 400;
-  }
 }
 
 textarea {
   font-size: 16px;
   line-height: 1;
   background-color: transparent;
-  padding: 20px 15px;
+  padding: 5px;
   border-radius: 0;
-  border: 1px solid $color-black;
   width: 100%;
+
   &::placeholder {
     color: $color-black;
-  }
-}
-
-input[type="submit"],
-button[type="submit"] {
-  @include text(13px, 14px, $color-white, 0.1px);
-  @include transition(background-color);
-  text-align: center;
-  text-decoration: none;
-  padding: 12px 24px;
-  background: none;
-  background-color: $color-black;
-  border-radius: 0;
-  height: auto;
-  display: inline-block;
-  vertical-align: middle;
-  width: auto;
-  border: 0;
-  white-space: normal;
-  user-select: none;
-  appearance: none;
-  margin: 0 auto;
-
-  &:hover,
-  &:active {
-    background-color: $color-main-1;
   }
 }
 
 select {
   font-size: 16px;
   line-height: 1;
-  background-color: $color-white;
-  padding: 20px 15px;
-  border: 1px solid $color-black;
   border-radius: 0;
   appearance: none;
-  font-weight: 700;
-  &::placeholder {
-    font-weight: 400;
-    color: $color-black;
-  }
-}
-
-input[type="checkbox"] {
-  position: relative;
-  appearance: none;
-  border-radius: 50%;
-  border: none;
-  width: 22px;
-  height: 22px;
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0 10px 0 0;
-
-  &:checked {
-    &::before {
-      content: "";
-      position: absolute;
-      top: 4px;
-      left: 4px;
-      display: block;
-      width: 12px;
-      height: 12px;
-      background-color: transparent;
-    }
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    border: 1px solid $color-black;
-    width: 22px;
-    height: 22px;
-  }
 }
 
 table {
