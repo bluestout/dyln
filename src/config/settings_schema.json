@@ -70,7 +70,13 @@
       {
         "type": "color",
         "id": "color_main_bg",
-        "label": "Background",
+        "label": "Background Desktop",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "color_main_bg_mobile",
+        "label": "Background Mobile",
         "default": "#fff"
       }
     ]
