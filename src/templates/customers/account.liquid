@@ -19,6 +19,14 @@ icon-chevron-down:
 <svg width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
 icon-close:
 <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><g stroke="#00AEDB" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M1.333 1.333L11 11M10.667 1.333L1 11"/></g></svg>
+icon-trash:
+<svg width="19" height="21" viewBox="0 0 19 21" xmlns="http://www.w3.org/2000/svg"><g stroke="#00AEDB" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linejoin="round" d="M2.335 4.772h13.636l-.909 15.455H3.244z"/><path stroke-linecap="round" stroke-linejoin="round" d="M.971 4.772h16.364"/><path stroke-linejoin="round" d="M5.971 1.136h6.364v3.636H5.971z"/><path stroke-linecap="round" d="M6.198 7.954v9.091M8.926 7.954v9.091M11.653 7.954v9.091"/></g></svg>
+icon-good-hydration:
+<svg width="49" height="61" viewBox="0 0 49 61" xmlns="http://www.w3.org/2000/svg"><g stroke="#20D480" fill="none" fill-rule="evenodd"><path d="M24.033 2.975C9.191 17.212 1.531 28.485 1.531 36.9a22.43 22.43 0 006.59 15.91 22.43 22.43 0 0015.91 6.59 22.43 22.43 0 0015.91-6.59 22.43 22.43 0 006.59-15.91c0-8.415-7.66-19.687-22.498-33.925z" stroke-width="3"/><path stroke-width="1.5" d="M14.031 36.808l7.184 9.092 13.816-20"/></g></svg>
+icon-low-hydration:
+<svg width="49" height="61" viewBox="0 0 49 61" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M23.914 2.078C9.13 16.313 1.5 27.585 1.5 36c0 6.214 2.509 11.84 6.566 15.912 4.055 4.07 9.657 6.588 15.845 6.588 6.189 0 11.79-2.518 15.846-6.588A22.474 22.474 0 0046.323 36c0-8.414-7.63-19.685-22.41-33.922z" stroke="#E7F0F2" stroke-width="3"/><path d="M22.453 59c13.367 0 24.203-10.491 24.203-23.433 0-6.887-5.14-15.743-15.423-26.567" stroke="#FFB300" stroke-width="3"/><path stroke="#FFB300" stroke-width="1.5" d="M13.705 36.363L20.995 45l14.02-19"/></g></svg>
+icon-poor-hydration:
+<svg width="49" height="61" viewBox="0 0 49 61" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M23.914 2.078C9.13 16.313 1.5 27.585 1.5 36c0 6.214 2.509 11.84 6.566 15.912 4.055 4.07 9.657 6.588 15.845 6.588 6.189 0 11.79-2.518 15.846-6.588A22.474 22.474 0 0046.323 36c0-8.414-7.63-19.685-22.41-33.922z" stroke="#E7F0F2" stroke-width="3"/><path stroke="#D83E0E" stroke-width="1.5" d="M13.705 36.363L20.995 45l14.02-19"/><path d="M22.453 59c13.367 0 24.203-10.297 24.203-23" stroke="#D83E0E" stroke-width="3"/></g></svg>
 {% endcomment %}
 
 <section class="account-header">
@@ -567,7 +575,7 @@ icon-close:
   </div>
 </div>
 
-<div class="account-edit">
+<div class="account-edit" style="display:none;">
   <div class="account-edit__overlay"></div>
   <div class="account-edit__inner">
     <button type="button" class="account-edit__close">
@@ -847,6 +855,234 @@ icon-close:
       <button type="button" class="account-edit-option__btn">Done</button>
       <div></div>
       <button type="button" class="account-edit-option__cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+{% comment %} Bottle modal {% endcomment %}
+<div class="account-bottle">
+  <div class="account-bottle__overlay"></div>
+  <div class="account-bottle__inner">
+    <button type="button" class="account-bottle__close">
+      <span class="visually-hidden">Close modal</span>
+      <span aria-ignore="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><g stroke="#00AEDB" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M1.333 1.333L11 11M10.667 1.333L1 11"/></g></svg>
+      </span>
+    </button>
+
+    <div class="account-bottle__body">
+      <div class="account-bottle__image-wrap">
+        <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water Bottle" class="account-bottle__image" />
+      </div>
+      <div class="account-bottle__content-wrap">
+        <h3 class="account-bottle__title">Bottle #1</h3>
+        <p class="account-bottle__code">Bottle code<strong>8a1c</strong></p>
+        <div class="account-bottle__info-color">
+          <p class="account-bottle__info-label">Color</p>
+          <p class="account-bottle__info-value">Pearl Grey</p>
+        </div>
+        <div class="account-bottle__info-capacity">
+          <p class="account-bottle__info-label">Capacity</p>
+          <p class="account-bottle__info-value">32 oz</p>
+        </div>
+        <div class="clearfix"></div>
+        <p class="account-bottle__info-label">Diffuser replacement date</p>
+        <p class="account-bottle__time-diffuser">00/00/00</p>
+        <button type="button" class="account-bottle__info-update">Update Now</button>
+      </div>
+      <div class="clearfix"></div>
+
+      <div class="account-bottle__diffuser">
+        <div class="account-bottle__diff-progress-wrap" aria-ignore="true">
+          {% comment %} progress must be in percent, so between 0 and 100. It needs to be in steps of 5, so 5, 10, 15, 20,... that is to reduce the size of the css file - each percent has its own class {% endcomment %}
+          <div class="account-bottle__diff-progress progress-circle" data-progress="50">
+            <img src="{{ 'dyln-account-diffuser.png' | asset_url }}" alt="Image of DYLN diffuser" class="account-bottle__diff-image" />
+          </div>
+        </div>
+        <div class="account-bottle__diff-content">
+          <p class="account-bottle__diff-info">
+            <span class="account-bottle__diff-label">Days left</span>
+            <span class="account-bottle__diff-value">00</span>
+          </p>
+          <p class="account-bottle__diff-info">
+            <span class="account-bottle__diff-label">Refills left</span>
+            <span class="account-bottle__diff-value">00</span>
+          </p>
+          <p class="account-bottle__diff-info">
+            <span class="account-bottle__diff-label">Start Date</span>
+            <span class="account-bottle__diff-value">00/00/0000</span>
+          </p>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+
+      <div class="account-bottle__hydration good" style="display:none;">
+        <div class="account-bottle__hydro-icon-wrap">
+          <div class="account-bottle__hydro-icon good">
+            <svg width="49" height="61" viewBox="0 0 49 61" xmlns="http://www.w3.org/2000/svg"><g stroke="#20D480" fill="none" fill-rule="evenodd"><path d="M24.033 2.975C9.191 17.212 1.531 28.485 1.531 36.9a22.43 22.43 0 006.59 15.91 22.43 22.43 0 0015.91 6.59 22.43 22.43 0 0015.91-6.59 22.43 22.43 0 006.59-15.91c0-8.415-7.66-19.687-22.498-33.925z" stroke-width="3"/><path stroke-width="1.5" d="M14.031 36.808l7.184 9.092 13.816-20"/></g></svg>
+          </div>
+        </div>
+
+        <div class="account-bottle__hydro-content">
+          <p class="account-bottle__hydro-info">
+            <span class="color">3</span>
+            <span>Refills per day</span>
+          </p>
+          <p class="account-bottle__hydro-info">
+            <span class="color">7</span>
+            <span>Days per week</span>
+          </p>
+          <div class="account-bottle__hydro-status bg-color">Super Hydration!</div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+
+      <div class="account-bottle__hydration low" style="display:none;">
+        <div class="account-bottle__hydro-icon-wrap">
+          <div class="account-bottle__hydro-icon">
+            <svg width="49" height="61" viewBox="0 0 49 61" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M23.914 2.078C9.13 16.313 1.5 27.585 1.5 36c0 6.214 2.509 11.84 6.566 15.912 4.055 4.07 9.657 6.588 15.845 6.588 6.189 0 11.79-2.518 15.846-6.588A22.474 22.474 0 0046.323 36c0-8.414-7.63-19.685-22.41-33.922z" stroke="#E7F0F2" stroke-width="3"/><path d="M22.453 59c13.367 0 24.203-10.491 24.203-23.433 0-6.887-5.14-15.743-15.423-26.567" stroke="#FFB300" stroke-width="3"/><path stroke="#FFB300" stroke-width="1.5" d="M13.705 36.363L20.995 45l14.02-19"/></g></svg>
+          </div>
+        </div>
+
+        <div class="account-bottle__hydro-content">
+          <p class="account-bottle__hydro-info">
+            <span class="color">3</span>
+            <span>Refills per day</span>
+          </p>
+          <p class="account-bottle__hydro-info">
+            <span class="color">7</span>
+            <span>Days per week</span>
+          </p>
+          <div class="account-bottle__hydro-status bg-color">Low Hydration</div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+
+      <div class="account-bottle__hydration poor" style="display:none;">
+        <div class="account-bottle__hydro-icon-wrap">
+          <div class="account-bottle__hydro-icon">
+            <svg width="49" height="61" viewBox="0 0 49 61" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M23.914 2.078C9.13 16.313 1.5 27.585 1.5 36c0 6.214 2.509 11.84 6.566 15.912 4.055 4.07 9.657 6.588 15.845 6.588 6.189 0 11.79-2.518 15.846-6.588A22.474 22.474 0 0046.323 36c0-8.414-7.63-19.685-22.41-33.922z" stroke="#E7F0F2" stroke-width="3"/><path stroke="#D83E0E" stroke-width="1.5" d="M13.705 36.363L20.995 45l14.02-19"/><path d="M22.453 59c13.367 0 24.203-10.297 24.203-23" stroke="#D83E0E" stroke-width="3"/></g></svg>
+          </div>
+        </div>
+
+        <div class="account-bottle__hydro-content">
+          <p class="account-bottle__hydro-info">
+            <span class="color">1</span>
+            <span>Refills per day</span>
+          </p>
+          <p class="account-bottle__hydro-info">
+            <span class="color">3</span>
+            <span>Days per week</span>
+          </p>
+          <div class="account-bottle__hydro-status bg-color">Poor Hydration!</div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+
+      <div class="account-bottle__footer">
+        <button type="button" class="account-bottle__button-edit">edit</button>
+        <button type="button" class="account-bottle__button-delete">
+          <span class="visually-hidden">Remove Bottle</span>
+          <svg width="19" height="21" viewBox="0 0 19 21" xmlns="http://www.w3.org/2000/svg"><g stroke="#00AEDB" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linejoin="round" d="M2.335 4.772h13.636l-.909 15.455H3.244z"/><path stroke-linecap="round" stroke-linejoin="round" d="M.971 4.772h16.364"/><path stroke-linejoin="round" d="M5.971 1.136h6.364v3.636H5.971z"/><path stroke-linecap="round" d="M6.198 7.954v9.091M8.926 7.954v9.091M11.653 7.954v9.091"/></g></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="account-bottle__edit" style="display:none;">
+      <div class="account-bottle__edit-image-wrap">
+        <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water Bottle" class="account-bottle__edit-image" />
+      </div>
+      <div class="account-bottle__edit-content-wrap">
+        <h3 class="account-bottle__edit-title">Bottle #1</h3>
+        <p class="account-bottle__edit-info">
+          Bottle code &nbsp;<span>8a1c</span>
+        </p>
+        <p class="account-bottle__edit-info">
+          Color
+          <span>Pearl Grey</span>
+        </p>
+        <p class="account-bottle__edit-info">
+          Capacity
+          <span>32oz</span>
+        </p>
+
+        <div class="account-bottle__edit-date">
+          <span class="registration-modal__select-wrap">
+            <label for="registration-diffuser-date-day-1" class="visually-hidden">Day</label>
+            <select name="day" id="registration-diffuser-date-day-1" class="registration-modal__select">
+              <option value="" disabled selected hidden>00</option>
+              {% for n in (1..31) %}
+              <option value="{{ n }}">{% if n < 10 %}0{% endif %}{{ n }}</option>
+              {% endfor %}
+            </select>
+            <svg class="registration-modal__select-icon" width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
+          </span>
+          <span class="registration-modal__select-wrap">
+            <label for="registration-diffuser-date-month-1" class="visually-hidden">Month</label>
+            <select name="month" id="bottleregistration-diffuser-date-month-1" class="registration-modal__select">
+              <option value="" disabled selected hidden>Month</option>
+              <option value="1">January</option>
+              <option value="2">February</option>
+              <option value="3">March</option>
+              <option value="4">April</option>
+              <option value="5">May</option>
+              <option value="6">June</option>
+              <option value="7">July</option>
+              <option value="8">August</option>
+              <option value="9">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select>
+            <svg class="registration-modal__select-icon" width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
+          </span>
+          <span class="registration-modal__select-wrap">
+            <label for="registration-diffuser-date-year-1" class="visually-hidden">Year</label>
+            <select name="year" id="registration-diffuser-date-year-1" class="registration-modal__select">
+              <option value="" disabled selected hidden>0000</option>
+              {% for n in (2000..2020) %}
+                <option value="n">{{ n }}</option>
+              {% endfor %}
+            </select>
+            <svg class="registration-modal__select-icon" width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
+          </span>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <h4 class="account-bottle__edit-subtitle">Bottle's Usage</h4>
+      <div class="account-bottle__edit-refills">
+        <label class="registration-modal__page-txt" for="bottle-registration-refills">Refills per day</label>
+        <div class="registration-modal__range-scale">
+          <span>1</span>
+          <span>2</span>
+          <span>3</span>
+          <span>4</span>
+          <span>5</span>
+        </div>
+        <input name="refills" id="bottle-registration-refills" class="registration-modal__refills-range" type="range" min="1" max="5" step="1" />
+      </div>
+      <div class="account-bottle__edit-days">
+        <label class="registration-modal__page-txt" for="bottle-registration-days-per-week">Days per week</label>
+        <div class="registration-modal__range-scale">
+          <span>1</span>
+          <span>2</span>
+          <span>3</span>
+          <span>4</span>
+          <span>5</span>
+          <span>6</span>
+          <span>7</span>
+        </div>
+        <input name="days-a-week" id="bottle-registration-days-per-week" class="registration-modal__refills-range warning" type="range" min="1" max="7" step="1" />
+        <span class="registration-modal__input-warning">
+          <span>This is a low Hydration level</span>
+          <span aria-ignore="true">
+            <svg width="11" height="12" viewBox="0 0 11 12" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0 1)" fill="none" fill-rule="evenodd"><circle stroke="#FFB300" cx="5.5" cy="5" r="5"/><path d="M5 2.503c0-.145.046-.266.137-.36A.48.48 0 015.5 2a.48.48 0 01.363.142.498.498 0 01.137.36c0 .142-.046.26-.137.356A.48.48 0 015.5 3a.48.48 0 01-.363-.142A.491.491 0 015 2.503zM6 4v4H5V4h1z" fill="#FFB300" fill-rule="nonzero"/></g></svg>
+          </span>
+        </span>
+      </div>
+      <button type="button" class="account-bottle__edit-update">Update</button>
+      <div></div>
+      <button type="button" class="account-bottle__edit-cancel">Cancel</button>
     </div>
   </div>
 </div>
