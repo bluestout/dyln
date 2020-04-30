@@ -1369,3 +1369,107 @@ icon-location-pin
     </div>
   </div>
 </div>
+
+{% comment %} Choose profile image modal {% endcomment %}
+<div class="account-edit">
+  <div class="account-edit__overlay"></div>
+  <div class="account-edit__inner">
+    <button type="button" class="account-edit__close">
+      <span class="visually-hidden">Close modal</span>
+      <span aria-ignore="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><g stroke="#00AEDB" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M1.333 1.333L11 11M10.667 1.333L1 11"/></g></svg>
+      </span>
+    </button>
+
+    <div class="account-edit__page">
+      <h4 class="registration-modal__title">Choose a New Profile Image</h4>
+      <div>
+        <div class="account-edit__image-checkbox-wrap">
+          <label class="account-edit__image-label" for="profile-background-1">Hi Jane!</label>
+          <input type="radio"
+            id="profile-background-1"
+            name="profile-image"
+            value="profile-background-1"
+            class="account-edit__image-radio"
+            style="background-image:url({{ 'edit-account-workout-routines.png' | asset_url }})"/>
+        </div>
+
+        <div class="account-edit__image-checkbox-wrap">
+          <label class="account-edit__image-label" for="profile-background-2">Hi Jane!</label>
+          <input type="radio"
+            id="profile-background-2"
+            name="profile-image"
+            value="profile-background-2"
+            class="account-edit__image-radio"
+            style="background-image:url({{ 'edit-account-sustainability.png' | asset_url }})"/>
+        </div>
+
+        <div class="account-edit__image-checkbox-wrap">
+          <label class="account-edit__image-label" for="profile-background-3">Hi Jane!</label>
+          <input type="radio"
+            id="profile-background-3"
+            name="profile-image"
+            value="profile-background-3"
+            class="account-edit__image-radio"
+            style="background-image:url({{ 'edit-account-alkaline-recipes.png' | asset_url }})"/>
+        </div>
+
+        <div class="account-edit__image-checkbox-wrap">
+          <label class="account-edit__image-label" for="profile-background-4">Hi Jane!</label>
+          <input type="radio"
+            id="profile-background-4"
+            name="profile-image"
+            value="profile-background-4"
+            class="account-edit__image-radio"
+            style="background-image:url({{ 'edit-account-nature.png' | asset_url }})"/>
+        </div>
+
+        <div class="account-edit__image-checkbox-wrap">
+          <label class="account-edit__image-label" for="profile-background-5">Hi Jane!</label>
+          <input type="radio"
+            id="profile-background-5"
+            name="profile-image"
+            value="profile-background-5"
+            class="account-edit__image-radio"
+            style="background-image:url({{ 'edit-account-workout-routines-2.png' | asset_url }})"/>
+        </div>
+
+        <div class="account-edit__image-checkbox-wrap">
+          <label class="account-edit__image-label" for="profile-background-6">Hi Jane!</label>
+          <input type="radio"
+            id="profile-background-6"
+            name="profile-image"
+            value="profile-background-6"
+            class="account-edit__image-radio"
+            style="background-image:url({{ 'edit-account-sustainability-2.png' | asset_url }})"/>
+        </div>
+
+        <div class="account-edit__image-checkbox-wrap">
+          <label class="account-edit__image-label" for="profile-background-7">Hi Jane!</label>
+          <input type="radio"
+            id="profile-background-7"
+            name="profile-image"
+            value="profile-background-7"
+            class="account-edit__image-radio"
+            style="background-image:url({{ 'edit-account-alkaline-recipes-2.png' | asset_url }})"/>
+        </div>
+
+        <div class="account-edit__image-checkbox-wrap">
+          <label class="account-edit__image-label" for="profile-background-8">Hi Jane!</label>
+          <input type="radio"
+            id="profile-background-8"
+            name="profile-image"
+            value="profile-background-8"
+            class="account-edit__image-radio"
+            style="background-image:url({{ 'edit-account-nature-2.png' | asset_url }})"/>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+
+      <div class="registration-modal__navigation">
+        <button type="button" class="registration-modal__btn-wire-alt">Update</button>
+      </div>
+    </div>
+
+  </div>
+</div>
