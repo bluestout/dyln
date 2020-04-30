@@ -27,6 +27,12 @@ icon-low-hydration:
 <svg width="49" height="61" viewBox="0 0 49 61" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M23.914 2.078C9.13 16.313 1.5 27.585 1.5 36c0 6.214 2.509 11.84 6.566 15.912 4.055 4.07 9.657 6.588 15.845 6.588 6.189 0 11.79-2.518 15.846-6.588A22.474 22.474 0 0046.323 36c0-8.414-7.63-19.685-22.41-33.922z" stroke="#E7F0F2" stroke-width="3"/><path d="M22.453 59c13.367 0 24.203-10.491 24.203-23.433 0-6.887-5.14-15.743-15.423-26.567" stroke="#FFB300" stroke-width="3"/><path stroke="#FFB300" stroke-width="1.5" d="M13.705 36.363L20.995 45l14.02-19"/></g></svg>
 icon-poor-hydration:
 <svg width="49" height="61" viewBox="0 0 49 61" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M23.914 2.078C9.13 16.313 1.5 27.585 1.5 36c0 6.214 2.509 11.84 6.566 15.912 4.055 4.07 9.657 6.588 15.845 6.588 6.189 0 11.79-2.518 15.846-6.588A22.474 22.474 0 0046.323 36c0-8.414-7.63-19.685-22.41-33.922z" stroke="#E7F0F2" stroke-width="3"/><path stroke="#D83E0E" stroke-width="1.5" d="M13.705 36.363L20.995 45l14.02-19"/><path d="M22.453 59c13.367 0 24.203-10.297 24.203-23" stroke="#D83E0E" stroke-width="3"/></g></svg>
+icon-phone:
+<svg width="19" height="32" viewBox="0 0 19 32" xmlns="http://www.w3.org/2000/svg"><path d="M17.457 28.965l-1.766-6.59a1 1 0 00-1.224-.707l-2.753.738a1 1 0 01-.903-.201c-1.087-.915-1.997-2.744-2.733-5.487-.727-2.714-.824-4.613-.292-5.697a1 1 0 01.64-.525l2.843-.762a1 1 0 00.707-1.225l-1.766-6.59a1 1 0 00-1.225-.707l-1.414.38c-1.168.312-9.248 2.477-5.433 16.717 3.816 14.24 11.894 12.61 13.197 12.26l1.415-.38a1 1 0 00.707-1.224z" stroke="#333C41" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>
+icon-mail:
+<svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="translate(1 1)" stroke="#333C41" stroke-width="2" fill="none" fill-rule="evenodd"><rect width="30" height="18" rx="1"/><path stroke-linecap="round" d="M.896.808L15 11.388 29.112.808"/></g></svg>
+icon-location-pin
+<svg width="16" height="21" viewBox="0 0 16 21" xmlns="http://www.w3.org/2000/svg"><g transform="translate(.937)" stroke="#00AEDB" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M7.063.75a6.293 6.293 0 00-4.464 1.849A6.293 6.293 0 00.75 7.063c0 2.412 2.152 6.614 6.313 12.626 4.16-6.012 6.313-10.214 6.313-12.626a6.293 6.293 0 00-1.85-4.464A6.293 6.293 0 007.064.75z"/><circle cx="7.063" cy="7.4" r="2.25"/></g></svg>
 {% endcomment %}
 
 <section class="account-header">
@@ -193,162 +199,441 @@ icon-poor-hydration:
         </div>
 
         <div class="account-body__tabs">
-
-          <div class="account-body__tab active">
-            <div class="account-dash">
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="account-dash__bottles">
-                    <h3 class="account-dash__title">
-                      <span class="account-dash__title-txt">My Bottles</span>
-                      <button type="button" class="account-dash__title-button">See All</button>
-                    </h3>
-
-                    <div class="account-dash__bottle">
-                      <div class="account-dash__bottle-wrap" aria-ignore="true">
-                        {% comment %} progress must be in percent, so between 0 and 100. It needs to be in steps of 5, so 5, 10, 15, 20,... that is to reduce the size of the css file - each percent has its own class {% endcomment %}
-                        <div class="account-dash__bottle-progress progress-circle" data-progress="40">
-                          <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water Bottle" class="account-dash__bottle-img" />
-                        </div>
-                      </div>
-                      <div class="account-dash__bottle-content">
-                        <h4 class="account-dash__bottle-title">Bottle #1</h4>
-                        <p class="account-dash__bottle-timer"><span>60</span> days left on Diffuser</p>
-                      </div>
-                      <button type="button" class="account-dash__bottle-more">
-                        <span class="visually-hidden">More options</span>
-                      </button>
-                    </div>
-
-                    <div class="account-dash__bottle">
-                      <div class="account-dash__bottle-wrap" aria-ignore="true">
-                        <div class="account-dash__bottle-progress progress-circle" data-progress="60">
-                          <img src="{{ 'dyln-account-bottle-royal-purple.png' | asset_url }}" alt="Image of DYLN water Bottle" class="account-dash__bottle-img" />
-                        </div>
-
-                      </div>
-                      <div class="account-dash__bottle-content">
-                        <h4 class="account-dash__bottle-title">Bottle #1</h4>
-                        <p class="account-dash__bottle-timer"><span>80</span> days left on Diffuser</p>
-                      </div>
-                      <button type="button" class="account-dash__bottle-more">
-                        <span class="visually-hidden">More options</span>
-                      </button>
-                    </div>
-
-                    <div class="account-dash__bottle-btn-wrap">
-                      <button type="button" class="account-dash__bottle-btn">
-                        <span class="account-dash__bottle-btn-icon" aria-ignore="true">
-                          <svg width="18" height="17" viewBox="0 0 18 17" xmlns="http://www.w3.org/2000/svg"><g transform="translate(1 1)" stroke="#FFF" stroke-width="2" fill="none" fill-rule="evenodd"><circle cx="8.25" cy="7.5" r="7.5"/><path stroke-linecap="round" d="M8.25 4.5v6M11.25 7.5h-6"/></g></svg>
-                        </span>
-                        <span class="account-dash__bottle-btn-text">Register New Bottle</span>
-                      </button>
-                    </div>
-                  </div>
-
-                  <div class="account-dash__subs">
-                    <h3 class="account-dash__title">
-                      <span class="account-dash__title-txt">My Subscriptions</span>
-                      <button type="button" class="account-dash__title-button">See All</button>
-                    </h3>
-
-                    <div class="account-dash__sub">
-                      <div class="account-dash__sub-wrap" aria-ignore="true">
-                        <div class="account-dash__sub-progress">
-                          <img src="{{ 'dyln-account-diffuser.png' | asset_url }}" alt="Image of DYLN diffuser" class="account-dash__sub-img" />
-                        </div>
-                      </div>
-                      <div class="account-dash__sub-content">
-                        <h4 class="account-dash__sub-title">
-                          <strong>4-pack</strong>
-                          <span>every</span>
-                          <strong>6 months</strong>
-                        </h4>
-                        <p class="account-dash__sub-timer">
-                          <span>66</span> days until next shipment
-                        </p>
-                      </div>
-                      <button type="button" class="account-dash__sub-more">
-                        <span class="visually-hidden">More options</span>
-                        <span class="account-dash__sub-icon">
-                          <svg width="23" height="21" viewBox="0 0 23 21" xmlns="http://www.w3.org/2000/svg"><g transform="translate(1 1)" stroke="#00AEDB" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linecap="square" d="M2.5.076v12.737M2.5 17.728v1.292M10.625 6.478v12.669M10.625.152v1.326M18.75 13.353v5.794M18.75.076v8.369"/><circle cx="18.75" cy="10.853" r="2.5"/><circle cx="10.625" cy="3.978" r="2.5"/><circle cx="2.5" cy="15.228" r="2.5"/></g></svg>
-                        </span>
-                      </button>
-                    </div>
-
-                    <div class="account-dash__sub" style="display:none">
-                      <div class="account-dash__sub-wrap" aria-ignore="true">
-                        <div class="account-dash__sub-progress">
-                          <img src="#" alt="Image of DYLN diffuser" class="account-dash__sub-img" />
-                        </div>
-                      </div>
-                      <div class="account-dash__sub-content">
-                        <h4 class="account-dash__sub-title">
-                          <strong>4-pack</strong>
-                          <span>every</span>
-                          <strong>6 months</strong>
-                        </h4>
-                        <p class="account-dash__sub-timer">
-                          <span>66</span> days until next shipment
-                        </p>
-                      </div>
-                      <button type="button" class="account-dash__sub-more">
-                        <span class="visually-hidden">More options</span>
-                        <span class="account-dash__sub-icon">
-                        </span>
-                      </button>
-                    </div>
-
-                    <div class="account-dash__sub-btn-wrap">
-                      <button type="button" class="account-dash__sub-btn">
-                        <span class="account-dash__sub-btn-text">Add Products to next Shipment</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-lg-6">
-                  <div class="account-dash__refer-wrap">
-                    <button type="button" class="account-dash__refer-btn">
-                      <span class="account-dash__refer-btn-text">Refer a Friend</span>
-                      <span class="account-dash__refer-btn-icon" aria-ignore="true">
-                        <svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg>
-                      </span>
-                      <span class="account-dash__refer-btn-num">150</span>
-                    </button>
-                    <div></div>
-                    <a href="#" class="account-dash__refer-link">Earn or Redeem points</a>
-                  </div>
-
+          <div class="account-dash" style="display:none;">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="account-dash__bottles">
                   <h3 class="account-dash__title">
-                    <span class="account-dash__title-txt">My Orders</span>
-                    <a href="#" class="account-dash__title-button">Order History</a>
+                    <span class="account-dash__title-txt">My Bottles</span>
+                    <button type="button" class="account-dash__title-button">See All</button>
                   </h3>
 
-                  <div class="account-dash__order">
-                    <a href="#" class="account-dash__order-number">Order No. 00ABC0000</a>
-                    <p class="account-dash__order-date">Placed on Jan 6th, 2020</p>
+                  <div class="account-dash__bottle">
+                    <div class="account-dash__bottle-wrap" aria-ignore="true">
+                      {% comment %} progress must be in percent, so between 0 and 100. It needs to be in steps of 5, so 5, 10, 15, 20,... that is to reduce the size of the css file - each percent has its own class {% endcomment %}
+                      <div class="account-dash__bottle-progress progress-circle" data-progress="40">
+                        <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water Bottle" class="account-dash__bottle-img" />
+                      </div>
+                    </div>
+                    <div class="account-dash__bottle-content">
+                      <h4 class="account-dash__bottle-title">Bottle #1</h4>
+                      <p class="account-dash__bottle-timer"><span>60</span> days left on Diffuser</p>
+                    </div>
+                    <button type="button" class="account-dash__bottle-more">
+                      <span class="visually-hidden">More options</span>
+                    </button>
                   </div>
 
-                  <div class="account-dash__order">
-                    <a href="#" class="account-dash__order-number">Order No. 00ABC0001</a>
-                    <p class="account-dash__order-date">Placed on Jan 7th, 2020</p>
+                  <div class="account-dash__bottle">
+                    <div class="account-dash__bottle-wrap" aria-ignore="true">
+                      <div class="account-dash__bottle-progress progress-circle" data-progress="60">
+                        <img src="{{ 'dyln-account-bottle-royal-purple.png' | asset_url }}" alt="Image of DYLN water Bottle" class="account-dash__bottle-img" />
+                      </div>
+
+                    </div>
+                    <div class="account-dash__bottle-content">
+                      <h4 class="account-dash__bottle-title">Bottle #1</h4>
+                      <p class="account-dash__bottle-timer"><span>80</span> days left on Diffuser</p>
+                    </div>
+                    <button type="button" class="account-dash__bottle-more">
+                      <span class="visually-hidden">More options</span>
+                    </button>
+                  </div>
+
+                  <div class="account-dash__bottle-btn-wrap">
+                    <button type="button" class="account-dash__bottle-btn">
+                      <span class="account-dash__bottle-btn-icon" aria-ignore="true">
+                        <svg width="18" height="17" viewBox="0 0 18 17" xmlns="http://www.w3.org/2000/svg"><g transform="translate(1 1)" stroke="#FFF" stroke-width="2" fill="none" fill-rule="evenodd"><circle cx="8.25" cy="7.5" r="7.5"/><path stroke-linecap="round" d="M8.25 4.5v6M11.25 7.5h-6"/></g></svg>
+                      </span>
+                      <span class="account-dash__bottle-btn-text">Register New Bottle</span>
+                    </button>
                   </div>
                 </div>
 
+                <div class="account-dash__subs">
+                  <h3 class="account-dash__title">
+                    <span class="account-dash__title-txt">My Subscriptions</span>
+                    <button type="button" class="account-dash__title-button">See All</button>
+                  </h3>
+
+                  <div class="account-dash__sub">
+                    <div class="account-dash__sub-wrap" aria-ignore="true">
+                      <div class="account-dash__sub-progress">
+                        <img src="{{ 'dyln-account-diffuser.png' | asset_url }}" alt="Image of DYLN diffuser" class="account-dash__sub-img" />
+                      </div>
+                    </div>
+                    <div class="account-dash__sub-content">
+                      <h4 class="account-dash__sub-title">
+                        <strong>4-pack</strong>
+                        <span>every</span>
+                        <strong>6 months</strong>
+                      </h4>
+                      <p class="account-dash__sub-timer">
+                        <span>66</span> days until next shipment
+                      </p>
+                    </div>
+                    <button type="button" class="account-dash__sub-more">
+                      <span class="visually-hidden">More options</span>
+                      <span class="account-dash__sub-icon">
+                        <svg width="23" height="21" viewBox="0 0 23 21" xmlns="http://www.w3.org/2000/svg"><g transform="translate(1 1)" stroke="#00AEDB" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linecap="square" d="M2.5.076v12.737M2.5 17.728v1.292M10.625 6.478v12.669M10.625.152v1.326M18.75 13.353v5.794M18.75.076v8.369"/><circle cx="18.75" cy="10.853" r="2.5"/><circle cx="10.625" cy="3.978" r="2.5"/><circle cx="2.5" cy="15.228" r="2.5"/></g></svg>
+                      </span>
+                    </button>
+                  </div>
+
+                  <div class="account-dash__sub" style="display:none">
+                    <div class="account-dash__sub-wrap" aria-ignore="true">
+                      <div class="account-dash__sub-progress">
+                        <img src="#" alt="Image of DYLN diffuser" class="account-dash__sub-img" />
+                      </div>
+                    </div>
+                    <div class="account-dash__sub-content">
+                      <h4 class="account-dash__sub-title">
+                        <strong>4-pack</strong>
+                        <span>every</span>
+                        <strong>6 months</strong>
+                      </h4>
+                      <p class="account-dash__sub-timer">
+                        <span>66</span> days until next shipment
+                      </p>
+                    </div>
+                    <button type="button" class="account-dash__sub-more">
+                      <span class="visually-hidden">More options</span>
+                      <span class="account-dash__sub-icon">
+                      </span>
+                    </button>
+                  </div>
+
+                  <div class="account-dash__sub-btn-wrap">
+                    <button type="button" class="account-dash__sub-btn">
+                      <span class="account-dash__sub-btn-text">Add Products to next Shipment</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <div class="account-dash__refer-wrap">
+                  <button type="button" class="account-dash__refer-btn">
+                    <span class="account-dash__refer-btn-text">Refer a Friend</span>
+                    <span class="account-dash__refer-btn-icon" aria-ignore="true">
+                      <svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg>
+                    </span>
+                    <span class="account-dash__refer-btn-num">150</span>
+                  </button>
+                  <div></div>
+                  <a href="#" class="account-dash__refer-link">Earn or Redeem points</a>
+                </div>
+
+                <h3 class="account-dash__title">
+                  <span class="account-dash__title-txt">My Orders</span>
+                  <a href="#" class="account-dash__title-button">Order History</a>
+                </h3>
+
+                <div class="account-dash__order">
+                  <a href="#" class="account-dash__order-number">Order No. 00ABC0000</a>
+                  <p class="account-dash__order-date">Placed on Jan 6th, 2020</p>
+                </div>
+
+                <div class="account-dash__order">
+                  <a href="#" class="account-dash__order-number">Order No. 00ABC0001</a>
+                  <p class="account-dash__order-date">Placed on Jan 7th, 2020</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          {% comment %} dashboard end {% endcomment %}
+
+          <div class="account-points" style="display:none;"></div>
+          {% comment %} points end {% endcomment %}
+
+          <div class="account-orders">
+            <div class="account-orders__new-wrap">
+              <button type="button" class="account-orders__btn-new">Place new Order</button>
+            </div>
+            <div class="account-orders__order">
+              <div class="row">
+                <div class="col-6">
+                  <h4 class="account-orders__title">Order No. 00ABC0000</h4>
+                  <div class="account-orders__info"><strong>Placed on:</strong>&nbsp;<span>00/00/0000</span></div>
+                  <div class="account-orders__info"><strong>Status:</strong>&nbsp;<span>In Progress</span></div>
+                  <div class="account-orders__info"><strong>Delivery Date:</strong>&nbsp;<span>00/00/0000</span></div>
+                  <div class="account-orders__info last"><strong>Total:</strong>&nbsp;<span>$00.00</span></div>
+                  <div>
+                    <h4 class="account-orders__subtitle">Billing Information</h4>
+                    <div class="account-orders__info">Jane Doe</div>
+                    <div class="account-orders__info">VISA ••••1234, Jane Doe</div>
+                    <div class="account-orders__info">Street Name,</div>
+                    <div class="account-orders__info">CA, USA 22000</div>
+                    <div class="account-orders__info">(000) 000-0000</div>
+                    <div class="account-orders__info">janedoe@gmail.com</div>
+                    <h4 class="account-orders__subtitle">Shipping Information</h4>
+                    <div class="account-orders__info">Jane Doe<br>000 Street Name,<br>CA, USA 22000<br>(000) 000-0000</div>
+                    <h4 class="account-orders__subtitle">Shipment Method</h4>
+                    <div class="account-orders__info">Standard Shipping, arrives in 3-5 Business days</div>
+                    <h4 class="account-orders__subtitle">Tracking</h4>
+                    <div class="account-orders__info brand-blue last">FEDEX 8797698698</div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <h4 class="account-orders__item-title last">Order Content</h4>
+                  <div class="account-orders__item">
+                    <div class="account-orders__item-left">
+                      <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water bottle" class="account-orders__item-image" />
+                    </div>
+                    <div class="account-orders__item-right">
+                      <h4 class="account-orders__item-title">32 oz DYLN Bottle</h4>
+                      <div class="account-orders__item-info">Pearl</div>
+                      <div class="account-orders__item-info">SKU DB-32-CHR</div>
+                      <div class="account-orders__item-info last">Qty: 2</div>
+                      <div class="account-orders__item-price">Each: $00.00</div>
+                      <div class="account-orders__item-price">Discount: $00.00</div>
+                      <div class="account-orders__item-price"><strong>Total: $00.00</strong></div>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="account-orders__item">
+                    <div class="account-orders__item-left">
+                      <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water bottle" class="account-orders__item-image" />
+                    </div>
+                    <div class="account-orders__item-right">
+                      <h4 class="account-orders__item-title">Extra Diffuser</h4>
+                      <div class="account-orders__item-info">2-Pack</div>
+                      <div class="account-orders__item-info">SKU 00-00-000</div>
+                      <div class="account-orders__item-info last">Qty: 1</div>
+                      <div class="account-orders__item-price">Each: $00.00</div>
+                      <div class="account-orders__item-price">Discount: $00.00</div>
+                      <div class="account-orders__item-price"><strong>Total: $00.00</strong></div>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="account-orders__totals">
+                    <div class="account-orders__totals-left text-right">
+                      <div class="account-orders__totals-label"><strong>Subtotal</strong></div>
+                      <div class="account-orders__totals-label">Tax</div>
+                      <div class="account-orders__totals-label">Shipping</div>
+                      <div class="account-orders__totals-label"><strong>Total</strong></div>
+                      <div class="account-orders__totals-label brand-blue">Savings</div>
+                    </div>
+                    <div class="account-orders__totals-right">
+                      <div class="account-orders__totals-label"><strong>$00.00</strong></div>
+                      <div class="account-orders__totals-label">$00.00</div>
+                      <div class="account-orders__totals-label">$00.00</div>
+                      <div class="account-orders__totals-label"><strong>$00.00</strong></div>
+                      <div class="account-orders__totals-label brand-blue">$00.00</div>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="account-orders__btn-more">See Less</button>
+              <button type="button" class="account-orders__btn-more" style="display:none;">Order Details</button>
+              <a href="#" class="account-orders__btn-more" style="display:none;">Track</a>
+            </div>
+
+            <div class="account-orders__order">
+              <div class="row">
+                <div class="col-6">
+                  <h4 class="account-orders__title">Order No. 80ABCXX00</h4>
+                  <div class="account-orders__info"><strong>Placed on:</strong>&nbsp;<span>00/00/0000</span></div>
+                  <div class="account-orders__info"><strong>Status:</strong>&nbsp;<span>In Progress</span></div>
+                  <div class="account-orders__info"><strong>Delivery Date:</strong>&nbsp;<span>00/00/0000</span></div>
+                  <div class="account-orders__info last"><strong>Total:</strong>&nbsp;<span>$00.00</span></div>
+                  <div style="display:none;">
+                    <h4 class="account-orders__subtitle">Billing Information</h4>
+                    <div class="account-orders__info">Jane Doe</div>
+                    <div class="account-orders__info">VISA ••••1234, Jane Doe</div>
+                    <div class="account-orders__info">Street Name,</div>
+                    <div class="account-orders__info">CA, USA 22000</div>
+                    <div class="account-orders__info">(000) 000-0000</div>
+                    <div class="account-orders__info">janedoe@gmail.com</div>
+                    <h4 class="account-orders__subtitle">Shipping Information</h4>
+                    <div class="account-orders__info">Jane Doe<br>000 Street Name,<br>CA, USA 22000<br>(000) 000-0000</div>
+                    <h4 class="account-orders__subtitle">Shipment Method</h4>
+                    <div class="account-orders__info">Standard Shipping, arrives in 3-5 Business days</div>
+                    <h4 class="account-orders__subtitle">Tracking</h4>
+                    <div class="account-orders__info brand-blue last">FEDEX 8797698698</div>
+                  </div>
+                </div>
+                <div class="col-6" style="display:none;">
+                  <h4 class="account-orders__item-title last">Order Content</h4>
+                  <div class="account-orders__item">
+                    <div class="account-orders__item-left">
+                      <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water bottle" class="account-orders__item-image" />
+                    </div>
+                    <div class="account-orders__item-right">
+                      <h4 class="account-orders__item-title">32 oz DYLN Bottle</h4>
+                      <div class="account-orders__item-info">Pearl</div>
+                      <div class="account-orders__item-info">SKU DB-32-CHR</div>
+                      <div class="account-orders__item-info last">Qty: 2</div>
+                      <div class="account-orders__item-price">Each: $00.00</div>
+                      <div class="account-orders__item-price">Discount: $00.00</div>
+                      <div class="account-orders__item-price"><strong>Total: $00.00</strong></div>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="account-orders__item">
+                    <div class="account-orders__item-left">
+                      <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water bottle" class="account-orders__item-image" />
+                    </div>
+                    <div class="account-orders__item-right">
+                      <h4 class="account-orders__item-title">Extra Diffuser</h4>
+                      <div class="account-orders__item-info">2-Pack</div>
+                      <div class="account-orders__item-info">SKU 00-00-000</div>
+                      <div class="account-orders__item-info last">Qty: 1</div>
+                      <div class="account-orders__item-price">Each: $00.00</div>
+                      <div class="account-orders__item-price">Discount: $00.00</div>
+                      <div class="account-orders__item-price"><strong>Total: $00.00</strong></div>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="account-orders__totals">
+                    <div class="account-orders__totals-left text-right">
+                      <div class="account-orders__totals-label"><strong>Subtotal</strong></div>
+                      <div class="account-orders__totals-label">Tax</div>
+                      <div class="account-orders__totals-label">Shipping</div>
+                      <div class="account-orders__totals-label"><strong>Total</strong></div>
+                      <div class="account-orders__totals-label brand-blue">Savings</div>
+                    </div>
+                    <div class="account-orders__totals-right">
+                      <div class="account-orders__totals-label"><strong>$00.00</strong></div>
+                      <div class="account-orders__totals-label">$00.00</div>
+                      <div class="account-orders__totals-label">$00.00</div>
+                      <div class="account-orders__totals-label"><strong>$00.00</strong></div>
+                      <div class="account-orders__totals-label brand-blue">$00.00</div>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="account-orders__btn-more" style="display:none;">See Less</button>
+              <button type="button" class="account-orders__btn-more">Order Details</button>
+              <a href="#" class="account-orders__btn-more">Track</a>
+            </div>
+          </div>
+          {% comment %} orders end {% endcomment %}
+
+          <div class="account-bottles" style="display:none;"></div>
+          {% comment %} bottles end {% endcomment %}
+
+          <div class="account-subscriptions" style="display:none;"></div>
+          {% comment %} subscription end {% endcomment %}
+
+          <div class="account-profile" style="display:none;">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="account-profile__header">
+                  <h3 class="account-profile__title">Personal Information</h3>
+                  <button class="account-profile__edit">
+                    <svg width="16" height="24" viewBox="0 0 16 24" xmlns="http://www.w3.org/2000/svg"><g stroke="#FFF" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linejoin="round" d="M11.387.838l3.608 2.083-10 17.32-3.713 2.355.105-4.438z"/><path stroke-linecap="square" d="M9.247 5.376l2.887 1.667"/></g></svg>
+                  </button>
+                </div>
+                <h4 class="account-profile__subtitle">Jane Doe</h4>
+                <p class="account-profile__info">Female</p>
+                <p class="account-profile__info">Location: <span>San Diego, CA</span></p>
+                <p class="account-profile__info">Birthday: <span>00/00/0000</span></p>
+                <p class="account-profile__info">Height: <span>0'0"</span></p>
+                <p class="account-profile__info">Weight: <span>000lb</span></p>
+
+                <div class="account-profile__separator"></div>
+
+                <div class="account-profile__header">
+                  <h3 class="account-profile__title">Contact Information</h3>
+                  <button class="account-profile__edit">
+                    <svg width="16" height="24" viewBox="0 0 16 24" xmlns="http://www.w3.org/2000/svg"><g stroke="#FFF" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linejoin="round" d="M11.387.838l3.608 2.083-10 17.32-3.713 2.355.105-4.438z"/><path stroke-linecap="square" d="M9.247 5.376l2.887 1.667"/></g></svg>
+                  </button>
+                </div>
+                <p class="account-profile__info">
+                  <span class="account-profile__info-icon"><svg width="19" height="32" viewBox="0 0 19 32" xmlns="http://www.w3.org/2000/svg"><path d="M17.457 28.965l-1.766-6.59a1 1 0 00-1.224-.707l-2.753.738a1 1 0 01-.903-.201c-1.087-.915-1.997-2.744-2.733-5.487-.727-2.714-.824-4.613-.292-5.697a1 1 0 01.64-.525l2.843-.762a1 1 0 00.707-1.225l-1.766-6.59a1 1 0 00-1.225-.707l-1.414.38c-1.168.312-9.248 2.477-5.433 16.717 3.816 14.24 11.894 12.61 13.197 12.26l1.415-.38a1 1 0 00.707-1.224z" stroke="#333C41" stroke-width="2" fill="none" fill-rule="evenodd"/></svg></span>
+                  <span class="account-profile__info-flag"><img src="{{ 'flag-circle-usa.png' | asset_url }}" alt="Country Flag image" /></span>
+                  <span>(000) 000-0000</span>
+                </p>
+                <p class="account-profile__info">
+                  <span class="account-profile__info-icon"><svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="translate(1 1)" stroke="#333C41" stroke-width="2" fill="none" fill-rule="evenodd"><rect width="30" height="18" rx="1"/><path stroke-linecap="round" d="M.896.808L15 11.388 29.112.808"/></g></svg></span>
+                  <span>(000) 000-0000</span>
+                </p>
+                <div class="account-profile__update-btn-wrap">
+                  <button type="button" class="account-profile__update-btn">Update Password</button>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="account-profile__header">
+                  <h3 class="account-profile__title">Address Book</h3>
+                  <button class="account-profile__edit">
+                    <svg width="16" height="24" viewBox="0 0 16 24" xmlns="http://www.w3.org/2000/svg"><g stroke="#FFF" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linejoin="round" d="M11.387.838l3.608 2.083-10 17.32-3.713 2.355.105-4.438z"/><path stroke-linecap="square" d="M9.247 5.376l2.887 1.667"/></g></svg>
+                  </button>
+                </div>
+
+                <div class="account-profile__info-left">
+                  <span class="account-profile__info-icon">
+                    <svg width="16" height="21" viewBox="0 0 16 21" xmlns="http://www.w3.org/2000/svg"><g transform="translate(.937)" stroke="#00AEDB" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M7.063.75a6.293 6.293 0 00-4.464 1.849A6.293 6.293 0 00.75 7.063c0 2.412 2.152 6.614 6.313 12.626 4.16-6.012 6.313-10.214 6.313-12.626a6.293 6.293 0 00-1.85-4.464A6.293 6.293 0 007.064.75z"/><circle cx="7.063" cy="7.4" r="2.25"/></g></svg>
+                  </span>
+                </div>
+                <div class="account-profile__info-right">
+                  <span class="account-profile__address">
+                    <strong>Jane Doe</strong><br>
+                    000 Street Name,<br>
+                    City, USA 22000<br>
+                    United States<br>
+                    <span class="account-profile__info-flag"><img src="{{ 'flag-circle-usa.png' | asset_url }}" alt="Country Flag image" /></span> (000) 000-0000
+                  </span>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="account-profile__info-left">
+                  <span class="account-profile__info-icon">
+                    <svg width="16" height="21" viewBox="0 0 16 21" xmlns="http://www.w3.org/2000/svg"><g transform="translate(.937)" stroke="#00AEDB" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M7.063.75a6.293 6.293 0 00-4.464 1.849A6.293 6.293 0 00.75 7.063c0 2.412 2.152 6.614 6.313 12.626 4.16-6.012 6.313-10.214 6.313-12.626a6.293 6.293 0 00-1.85-4.464A6.293 6.293 0 007.064.75z"/><circle cx="7.063" cy="7.4" r="2.25"/></g></svg>
+                  </span>
+                </div>
+                <div class="account-profile__info-right">
+                  <span class="account-profile__address">
+                    <strong>Jane Doe</strong><br>
+                    000 Street Name,<br>
+                    City, USA 22000<br>
+                    United States<br>
+                    <span class="account-profile__info-flag"><img src="{{ 'flag-circle-usa.png' | asset_url }}" alt="Country Flag image" /></span> (000) 000-0000
+                  </span>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="text-center">
+                  <button type="button" class="account-profile__button-add">Add New Address</button>
+                </div>
+
+                <div class="account-profile__separator"></div>
+
+                <div class="account-profile__header">
+                  <h3 class="account-profile__title">Email preferences</h3>
+                </div>
+                <form action="#">
+                  <div class="account-profile__checkbox-wrap">
+                    <input type="checkbox"
+                      id="diffuser-replacement"
+                      name="diffuser-replacement"
+                      value="diffuser-replacement" />
+                      <label for="diffuser-replacement">Diffuser replacement notification</label>
+                  </div>
+
+                  <div class="account-profile__checkbox-wrap">
+                    <input type="checkbox"
+                      id="update-notification"
+                      name="update-notification"
+                      value="update-notification" />
+                      <label for="update-notification">Bottle update notification</label>
+                  </div>
+
+                  <div class="account-profile__checkbox-wrap">
+                    <input type="checkbox"
+                      id="newsletter"
+                      name="newsletter"
+                      value="newsletter" />
+                      <label for="newsletter">newsletter</label>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
-
-          <div class="account-body__tab" style="display:none;"></div>
-          <div class="account-body__tab" style="display:none;"></div>
-          <div class="account-body__tab" style="display:none;"></div>
-          <div class="account-body__tab" style="display:none;"></div>
-
-          {% comment %} profile {% endcomment %}
-          <div class="account-body__tab" style="display:none;">
-
-          </div>
+          {% comment %} profile end {% endcomment %}
         </div>
       </div>
     </div>
@@ -733,83 +1018,83 @@ icon-poor-hydration:
     <div class="account-edit__page">
       <h4 class="account-edit__group-label margin">Interests</h4>
       <div>
-        <div class="account-edit__image-radio-wrap">
+        <div class="account-edit__image-checkbox-wrap">
           <label class="account-edit__image-label" for="interests-workout-routines">Workout Routines</label>
-          <input type="radio"
+          <input type="checkbox"
             id="interests-workout-routines"
             name="interests"
             value="workout-routines"
-            class="account-edit__image-radio"
+            class="account-edit__image-checkbox"
             style="background-image:url({{ 'edit-account-workout-routines.png' | asset_url }})"/>
         </div>
 
-        <div class="account-edit__image-radio-wrap">
+        <div class="account-edit__image-checkbox-wrap">
           <label class="account-edit__image-label" for="interests-sustainability">Sustainability</label>
-          <input type="radio"
+          <input type="checkbox"
             id="interests-sustainability"
             name="interests"
             value="sustainability"
-            class="account-edit__image-radio"
+            class="account-edit__image-checkbox"
             style="background-image:url({{ 'edit-account-sustainability.png' | asset_url }})"/>
         </div>
 
-        <div class="account-edit__image-radio-wrap">
+        <div class="account-edit__image-checkbox-wrap">
           <label class="account-edit__image-label" for="interests-alkaline-recipes">Alkaline Recipes</label>
-          <input type="radio"
+          <input type="checkbox"
             id="interests-alkaline-recipes"
             name="interests"
             value="alkaline-recipes"
-            class="account-edit__image-radio"
+            class="account-edit__image-checkbox"
             style="background-image:url({{ 'edit-account-alkaline-recipes.png' | asset_url }})"/>
         </div>
 
-        <div class="account-edit__image-radio-wrap">
+        <div class="account-edit__image-checkbox-wrap">
           <label class="account-edit__image-label" for="interests-nature">Nature</label>
-          <input type="radio"
+          <input type="checkbox"
             id="interests-nature"
             name="interests"
             value="nature"
-            class="account-edit__image-radio"
+            class="account-edit__image-checkbox"
             style="background-image:url({{ 'edit-account-nature.png' | asset_url }})"/>
         </div>
 
-        <div class="account-edit__image-radio-wrap">
+        <div class="account-edit__image-checkbox-wrap">
           <label class="account-edit__image-label" for="interests-workout-routines-2">Workout Routines 2</label>
-          <input type="radio"
+          <input type="checkbox"
             id="interests-workout-routines-2"
             name="interests"
             value="workout-routines-2"
-            class="account-edit__image-radio"
+            class="account-edit__image-checkbox"
             style="background-image:url({{ 'edit-account-workout-routines-2.png' | asset_url }})"/>
         </div>
 
-        <div class="account-edit__image-radio-wrap">
+        <div class="account-edit__image-checkbox-wrap">
           <label class="account-edit__image-label" for="interests-sustainability-2">Sustainability 2</label>
-          <input type="radio"
+          <input type="checkbox"
             id="interests-sustainability-2"
             name="interests"
             value="sustainability-2"
-            class="account-edit__image-radio"
+            class="account-edit__image-checkbox"
             style="background-image:url({{ 'edit-account-sustainability-2.png' | asset_url }})"/>
         </div>
 
-        <div class="account-edit__image-radio-wrap">
+        <div class="account-edit__image-checkbox-wrap">
           <label class="account-edit__image-label" for="interests-alkaline-recipes-2">Alkaline Recipes 2</label>
-          <input type="radio"
+          <input type="checkbox"
             id="interests-alkaline-recipes-2"
             name="interests"
             value="alkaline-recipes-2"
-            class="account-edit__image-radio"
+            class="account-edit__image-checkbox"
             style="background-image:url({{ 'edit-account-alkaline-recipes-2.png' | asset_url }})"/>
         </div>
 
-        <div class="account-edit__image-radio-wrap">
+        <div class="account-edit__image-checkbox-wrap">
           <label class="account-edit__image-label" for="interests-nature-2">Nature2 </label>
-          <input type="radio"
+          <input type="checkbox"
             id="interests-nature-2"
             name="interests"
             value="nature-2"
-            class="account-edit__image-radio"
+            class="account-edit__image-checkbox"
             style="background-image:url({{ 'edit-account-nature-2.png' | asset_url }})"/>
         </div>
         <div class="clearfix"></div>
@@ -860,7 +1145,7 @@ icon-poor-hydration:
 </div>
 
 {% comment %} Bottle modal {% endcomment %}
-<div class="account-bottle">
+<div class="account-bottle" style="display:none;">
   <div class="account-bottle__overlay"></div>
   <div class="account-bottle__inner">
     <button type="button" class="account-bottle__close">
@@ -1050,39 +1335,37 @@ icon-poor-hydration:
       </div>
       <div class="clearfix"></div>
       <h4 class="account-bottle__edit-subtitle">Bottle's Usage</h4>
-      <div class="account-bottle__edit-refills">
-        <label class="registration-modal__page-txt" for="bottle-registration-refills">Refills per day</label>
-        <div class="registration-modal__range-scale">
-          <span>1</span>
-          <span>2</span>
-          <span>3</span>
-          <span>4</span>
-          <span>5</span>
-        </div>
-        <input name="refills" id="bottle-registration-refills" class="registration-modal__refills-range" type="range" min="1" max="5" step="1" />
+      <label class="registration-modal__page-txt" for="bottle-registration-refills">Refills per day</label>
+      <div class="registration-modal__range-scale">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
       </div>
-      <div class="account-bottle__edit-days">
-        <label class="registration-modal__page-txt" for="bottle-registration-days-per-week">Days per week</label>
-        <div class="registration-modal__range-scale">
-          <span>1</span>
-          <span>2</span>
-          <span>3</span>
-          <span>4</span>
-          <span>5</span>
-          <span>6</span>
-          <span>7</span>
-        </div>
-        <input name="days-a-week" id="bottle-registration-days-per-week" class="registration-modal__refills-range warning" type="range" min="1" max="7" step="1" />
-        <span class="registration-modal__input-warning">
-          <span>This is a low Hydration level</span>
-          <span aria-ignore="true">
-            <svg width="11" height="12" viewBox="0 0 11 12" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0 1)" fill="none" fill-rule="evenodd"><circle stroke="#FFB300" cx="5.5" cy="5" r="5"/><path d="M5 2.503c0-.145.046-.266.137-.36A.48.48 0 015.5 2a.48.48 0 01.363.142.498.498 0 01.137.36c0 .142-.046.26-.137.356A.48.48 0 015.5 3a.48.48 0 01-.363-.142A.491.491 0 015 2.503zM6 4v4H5V4h1z" fill="#FFB300" fill-rule="nonzero"/></g></svg>
-          </span>
+      <input name="refills" id="bottle-registration-refills" class="registration-modal__refills-range" type="range" min="1" max="5" step="1" />
+      <label class="registration-modal__page-txt" for="bottle-registration-days-per-week">Days per week</label>
+      <div class="registration-modal__range-scale">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <span>6</span>
+        <span>7</span>
+      </div>
+      <input name="days-a-week" id="bottle-registration-days-per-week" class="registration-modal__refills-range warning" type="range" min="1" max="7" step="1" />
+      <span class="registration-modal__input-warning">
+        <span>This is a low Hydration level</span>
+        <span aria-ignore="true">
+          <svg width="11" height="12" viewBox="0 0 11 12" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0 1)" fill="none" fill-rule="evenodd"><circle stroke="#FFB300" cx="5.5" cy="5" r="5"/><path d="M5 2.503c0-.145.046-.266.137-.36A.48.48 0 015.5 2a.48.48 0 01.363.142.498.498 0 01.137.36c0 .142-.046.26-.137.356A.48.48 0 015.5 3a.48.48 0 01-.363-.142A.491.491 0 015 2.503zM6 4v4H5V4h1z" fill="#FFB300" fill-rule="nonzero"/></g></svg>
         </span>
+      </span>
+      <div class="text-center">
+        <button type="button" class="account-bottle__edit-update">Update</button>
+        <div></div>
+        <button type="button" class="account-bottle__edit-cancel">Cancel</button>
       </div>
-      <button type="button" class="account-bottle__edit-update">Update</button>
-      <div></div>
-      <button type="button" class="account-bottle__edit-cancel">Cancel</button>
     </div>
   </div>
 </div>

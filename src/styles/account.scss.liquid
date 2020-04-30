@@ -34,6 +34,7 @@ $color-theme-20: #f6f6f6;
 $color-theme-21: #ffd200;
 $color-theme-22: #d8d8d8;
 $color-theme-23: #ffb300;
+$color-theme-24: #979797;
 
 $color-sup-1: #73c8e2;
 $color-sup-2: #73c8e2;
@@ -867,6 +868,7 @@ $z-top: 10;
 
 .account-dash {
 }
+
 .account-dash__bottles {
   margin: 0 0 25px;
 }
@@ -1573,6 +1575,7 @@ $half: round($loops / 2);
   position: absolute;
   right: 2px;
   top: 15px;
+  height: 7px;
 
   path {
     stroke: $color-black;
@@ -1748,6 +1751,8 @@ $half: round($loops / 2);
 .registration-modal__input-warning {
   @include font-header(700);
   @include text(10px, 16px, $color-theme-23, 0.83px);
+  display: block;
+  text-align: center;
 }
 
 .registration-modal__input-warning span {
@@ -2046,7 +2051,7 @@ $half: round($loops / 2);
   margin: 10px 0 0;
 }
 
-.account-edit__image-radio-wrap {
+.account-edit__image-checkbox-wrap {
   position: relative;
 
   &:nth-of-type(2n + 1) {
@@ -2062,7 +2067,7 @@ $half: round($loops / 2);
   }
 }
 
-.account-edit__image-radio {
+.account-edit__image-checkbox {
   @include no-browser-styling;
   @include bg-image-only;
   @include transition(border-color);
@@ -2112,7 +2117,7 @@ $half: round($loops / 2);
 .account-bottle__inner {
   position: relative;
   background-color: $color-body;
-  padding: 20px;
+  padding: 15px;
   max-width: 300px;
   min-height: 350px;
   left: 50%;
@@ -2373,24 +2378,356 @@ $half: round($loops / 2);
 }
 
 .account-bottle__edit-image-wrap {
+  width: 50px;
+  float: left;
+  margin: 0 5px 0 0;
 }
+
 .account-bottle__edit-image {
+  object-fit: scale-down;
 }
+
 .account-bottle__edit-content-wrap {
+  width: calc(100% - 65px);
+  float: right;
+  margin: 20px 0 0 5px;
 }
+
 .account-bottle__edit-title {
+  @include font-header(700);
+  @include text(18px, 24px, $color-theme-8, 0.16px);
+  border-bottom: 1px solid $color-main-1;
+  margin: 0 0 10px;
 }
+
 .account-bottle__edit-info {
+  @include font-header(500);
+  @include text(12px, 18px, $color-theme-8, 0.6px);
+
+  span {
+    color: $color-body-text;
+    font-weight: 700;
+  }
+
+  &:not(:last-of-type) {
+    margin: 0 0 1px;
+  }
 }
+
 .account-bottle__edit-date {
+  select {
+    font-size: 14px;
+    padding: 5px 10px 5px 1px;
+  }
+
+  .registration-modal__select-wrap {
+    margin: 0 1px;
+  }
+
+  .registration-modal__select-icon {
+    right: 0;
+  }
 }
+
 .account-bottle__edit-subtitle {
+  @include font-header(700);
+  @include text(14px, 20px, $color-main-1, 0.7px);
+  margin: 30px 0 5px;
+  border-top: 1px solid $color-theme-8;
+  padding: 10px 0 0;
 }
-.account-bottle__edit-refills {
-}
-.account-bottle__edit-days {
-}
+
 .account-bottle__edit-update {
+  @include button(wire, round, 2);
+  margin: 25px 0 0;
 }
+
 .account-bottle__edit-cancel {
+  @include no-browser-styling;
+  @include font-header(500);
+  @include text(14px, 16px, $color-theme-8, 1px);
+  margin: 10px 0 0;
+}
+
+.account-profile {
+  margin: 0 0 60px;
+}
+
+.account-profile__header {
+  @include clearfix;
+  margin: 0 0 10px;
+}
+
+.account-profile__title {
+  @include font-header(700);
+  @include text(16px, 24px, $color-body-text, 1px);
+  float: left;
+}
+
+.account-profile__edit {
+  @include no-browser-styling;
+  padding: 0;
+  float: right;
+
+  svg,
+  g {
+    @include transition(stroke);
+    stroke: $color-theme-8;
+  }
+
+  &:hover {
+    stroke: $color-main-1;
+  }
+}
+
+.account-profile__subtitle {
+  @include font-header(700);
+  @include text(16px, 20px, $color-main-1, 1px);
+  margin: 0 0 10px;
+}
+
+.account-profile__info {
+  @include font-header(500);
+  @include text(14px, 20px, $color-body-text, 0.83px);
+
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &:not(:last-of-type) {
+    margin: 0 0 10px;
+  }
+
+  &:last-of-type {
+    margin: 0 0 10px;
+  }
+}
+
+.account-profile__separator {
+  border-bottom: 1px solid $color-theme-6;
+  min-height: 1px;
+  margin: 20px 0;
+}
+
+.account-profile__info-icon {
+  margin: 0 5px 0 0;
+
+  svg {
+    max-width: 20px;
+    max-height: 20px;
+  }
+
+  g {
+    stroke: $color-main-1;
+  }
+}
+
+.account-profile__info-flag {
+  margin: 0 5px 0 0;
+}
+
+.account-profile__update-btn-wrap {
+  text-align: right;
+  margin: 10px 0 0;
+}
+
+.account-profile__update-btn {
+  @include no-browser-styling;
+  @include font-header(500);
+  @include text(12px, 16px, $color-main-1, 0.71px);
+}
+
+.account-profile__info-left {
+  float: left;
+  width: 20px;
+  margin: 0 5px 20px 0;
+}
+
+.account-profile__info-right {
+  float: right;
+  width: calc(100% - 30px);
+  margin: 0 0 20px 0;
+}
+
+.account-profile__address {
+  @include font-header(500);
+  @include text(14px, 18px, $color-body-text, 0.83px);
+}
+
+.account-profile__button-add {
+  @include button(solid, round, 2);
+}
+
+.account-profile__checkbox-wrap {
+  label {
+    @include font-header(500);
+    @include text(14px, 18px, $color-body-text, 0.83px);
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  input {
+    @include no-browser-styling;
+    @include transition(background-color, border-color);
+    position: relative;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border: 1px solid $color-theme-24;
+    border-radius: 1px;
+    background-color: $color-white;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 10px 0 0;
+    padding: 2px;
+    cursor: pointer;
+
+    &::after {
+      @include transition(color);
+      content: "\2713";
+      color: transparent;
+      position: absolute;
+      font-size: 10px;
+      line-height: 10px;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    &:checked {
+      border-color: $color-main-1;
+      background-color: $color-main-1;
+
+      &::after {
+        content: "\2713";
+        color: $color-white;
+      }
+    }
+  }
+}
+
+.account-orders {
+}
+
+.account-orders__new-wrap {
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+.account-orders__btn-new {
+  @include button(solid, round, 1);
+}
+
+.account-orders__order {
+  margin: 0 0 20px;
+
+  &:not(:last-of-type) {
+    padding: 0 0 10px;
+    border-bottom: 1px solid $color-theme-22;
+  }
+}
+
+.account-orders__title {
+  @include font-header(700);
+  @include text(16px, 20px, $color-main-1, 0.95px);
+  margin: 0 0 10px;
+}
+
+.account-orders__info {
+  @include font-header(500);
+  @include text(14px, 20px, $color-body-text, 0.83px);
+  margin: 0;
+
+  &.last {
+    margin: 0 0 20px;
+  }
+}
+
+.account-orders__subtitle {
+  @include font-header(700);
+  @include text(14px, 20px, $color-body-text, 0.83px);
+  margin: 20px 0 0;
+}
+
+.account-orders__item {
+  margin: 0 0 20px;
+}
+
+.account-orders__item-left {
+  width: 35%;
+  float: left;
+  text-align: center;
+  padding: 0 15px;
+  margin: 0 0 10px;
+}
+
+.account-orders__item-image {
+  max-height: 200px;
+  max-width: 50px;
+  object-fit: scale-down;
+}
+
+.account-orders__item-right {
+  width: 65%;
+  float: right;
+  padding: 0 5px 20px;
+  border-bottom: 1px solid $color-main-1;
+  margin: 0 0 10px;
+}
+
+.account-orders__item-title {
+  @include font-header(700);
+  @include text(14px, 20px, $color-body-text, 0.83px);
+
+  &.last {
+    margin: 0 0 20px;
+  }
+}
+
+.account-orders__item-info {
+  @include font-header(500);
+  @include text(14px, 20px, $color-body-text, 0.83px);
+
+  &.last {
+    margin: 0 0 20px;
+  }
+}
+
+.account-orders__item-price {
+  @include font-header(500);
+  @include text(12px, 16px, $color-body-text, 0.71px);
+}
+
+.account-orders__totals {
+  margin: 0 0 20px;
+}
+
+.account-orders__totals-left {
+  width: 35%;
+  float: left;
+  text-align: center;
+  padding: 0 15px;
+  margin: 0 0 10px;
+}
+
+.account-orders__totals-label {
+  @include font-header(500);
+  @include text(14px, 20px, $color-body-text, 0.83px);
+}
+
+.account-orders__totals-right {
+  width: 65%;
+  float: right;
+  margin: 0 0 10px;
+}
+
+.account-orders__btn-more {
+  @include no-browser-styling;
+  @include font-header(500);
+  @include text(12px, 16px, $color-main-1, 0.71px);
+  padding: 0;
+  display: inline-block;
+  margin: 0 20px 0 0;
 }
