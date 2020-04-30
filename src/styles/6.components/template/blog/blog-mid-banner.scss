@@ -1,0 +1,47 @@
+.blog-mid-banner {
+  .mid-banner {
+    @include bg-image-only();
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-clip: content-box;
+    height: 113px;
+
+    &__text {
+      @include poppins(bold);
+      padding-left: 20px;
+      color: white;
+    }
+
+    &__link-wrap {
+      padding-right: 15px;
+    }
+
+    &__link {
+      @include button(solid, r, 1);
+      padding: 10px;
+    }
+
+    @include media-query($medium-down) {
+      flex-wrap: wrap;
+      height: auto;
+
+      &__text {
+        width: 70%;
+
+        h2 {
+          font-size: 20px;
+        }
+      }
+
+      &__link-wrap {
+        margin-bottom: 15px;
+      }
+
+      &__link {
+        font-size: 20px;
+        padding: 10px 20px;
+      }
+    }
+  }
+}

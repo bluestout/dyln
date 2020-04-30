@@ -1,0 +1,64 @@
+{% if section.settings.show %}
+  <div class="container">
+    <h2>Popular Articles</h2>
+
+    <div class="row justify-content-md-center">
+      {% for block in section.blocks %}
+        <div class="col-md-6 col-lg-4">
+          <div class="article-card article-card--horisontal article-card--md">
+            {% assign article = articles[block.settings.popular_article] %}
+
+            <div class="article-card__wrapper">
+              <a href="{{ article.url }}"></a>
+
+              {%- render 'responsive-image' with
+                image: article.image.src,
+                max_width: 768,
+                max_height: 768,
+                wrapper_class: "article-card__thumbnail-wrapper",
+                image_class: "article-card__thumbnail"
+              -%}
+
+              <div class="article-card__content-text">
+                {% for tag in article.tags %}
+                  <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="article-card__category">{{ tag }}</a>
+                {% endfor %}
+                <h3>{{- article.title -}}</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name":"Blog Popular",
+  "class":"blog-popular",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show",
+      "label": "Show this section?",
+      "default": true
+    }
+  ],
+  "blocks":[
+   {
+    "type":"article",
+    "name":"Popular Article",
+    "limit":2,
+    "settings":[
+     {
+        "type":"article",
+        "id":"popular_article",
+        "label":"Select a Popular Article"
+     }
+    ]
+   }
+  ]
+ }
+{% endschema %}
+

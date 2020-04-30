@@ -1,0 +1,32 @@
+.blog-recent,
+.blog-popular,
+.blog-topics,
+.blog-search,
+.blog-featured,
+.blog-mid-banner-upper,
+.blog-mid-banner-lower,
+.blog-vlog {
+  margin: 60px auto;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 35px;
+    @include font-header(700);
+    @include text(40px, 23px, $color-title, 0.95px);
+
+    @include media-query($medium-down) {
+      @include text(30px, 23px $color-title, 0.95px);
+      margin-bottom: 15px;
+    }
+  }
+}
+
+@import "./blog-header";
+@import "./blog-featured";
+@import "./blog-popular";
+@import "./blog-search";
+@import "./blog-side-menu";
+@import "./blog-banner";
+@import "./blog-mid-banner";
+@import "./blog-vlog";
+@import "./blog-topics";

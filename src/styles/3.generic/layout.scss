@@ -18,10 +18,20 @@ html {
     overflow: hidden;
     height: 100%;
   }
+
+  @include media-query($medium-down) {
+    background-color: $color-background-mobile;
+  }
 }
 
 body {
   min-width: 320px;
+
+  & > main {
+    @include media-query($medium-down) {
+      background-color: $color-background-mobile;
+    }
+  }
 }
 
 h1,
