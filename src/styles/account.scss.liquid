@@ -35,6 +35,7 @@ $color-theme-21: #ffd200;
 $color-theme-22: #d8d8d8;
 $color-theme-23: #ffb300;
 $color-theme-24: #979797;
+$color-theme-25: #bbd3da;
 
 $color-sup-1: #73c8e2;
 $color-sup-2: #73c8e2;
@@ -2752,4 +2753,219 @@ $half: round($loops / 2);
   padding: 0;
   display: inline-block;
   margin: 0 20px 0 0;
+}
+
+
+// Whole section will come from an external source
+.account-points {
+}
+
+.account-points__earned-amount {
+  @include font-header(700);
+  @include text(20px, 24px, $color-main-1, 1.18px);
+  text-align: center;
+  margin: 0 auto 10px;
+}
+
+.account-points__earned-header {
+  @include font-header(700);
+  @include text(12px, 16px, $color-title, 0.71px);
+  text-align: center;
+  margin: 0 auto 10px;
+}
+
+.account-points__description {
+  @include font-header(700);
+  @include text(12px, 18px, $color-body-text, 0.71px);
+  margin: 0 auto 25px;
+  text-align: center;
+}
+
+.account-points__shadow {
+  box-shadow: 0 0 8px 0 rgba($color-black, 0.1);
+}
+
+.account-points__banner-wrap {
+  background-color: $color-theme-25;
+  padding: 20px 15px 10px;
+  margin: 0 0 20px;
+}
+
+.account-points__banner-title {
+  @include font-header(700);
+  @include text(16px, 24px, $color-white, 0.95px);
+  text-align: center;
+}
+
+.account-points__banner-line {
+  padding: 10px 0 0;
+}
+
+.account-points__banner-icon {
+  width: 65px;
+  float: left;
+
+  g,
+  path,
+  ellipse {
+    stroke: $color-white;
+  }
+}
+
+.account-points__banner-text {
+  @include font-header(500);
+  @include text(12px, 20px, $color-white, 0.71px);
+  width: calc(100% - 66px);
+  float: right;
+  padding: 0 0 10px;
+  border-bottom: 1px solid $color-white;
+}
+
+.account-points__memberships-wrap {
+  padding: 20px 15px;
+}
+
+.account-points__gold-member-gap {
+  @include font-header(500);
+  @include text(12px, 20px, $color-main-2, 0.71px);
+  margin: 0 0 10px;
+}
+
+.account-points__btn-refer-wrap {
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+.account-points__btn-refer {
+  @include button(solid, round, 2);
+}
+
+.account-points__member-type {
+  &:not(:last-of-type) {
+    margin: 0 0 30px;
+  }
+  &:last-of-type {
+    .account-points__member-text:last-of-type {
+      border-bottom: none;
+    }
+  }
+}
+
+.account-points__member-title {
+  @include font-header(500);
+  @include text(16px, 24px, $color-title, 0.95px);
+  margin: 0 0 10px;
+}
+
+.account-points__member-line {
+  padding: 10px 0 0;
+}
+
+.account-points__member-icon {
+  width: 65px;
+  float: left;
+
+  g,
+  path,
+  ellipse {
+    stroke: $color-main-1;
+  }
+}
+
+.account-points__member-text {
+  @include font-header(500);
+  @include text(12px, 20px, $color-body-text, 0.71px);
+  width: calc(100% - 66px);
+  float: right;
+  padding: 0 0 10px;
+  border-bottom: 1px solid $color-theme-6;
+}
+
+.account-points__earn-title {
+  @include font-header(700);
+  @include text(16px, 24px, $color-title, 0.95px);
+  margin: 30px 0;
+}
+
+.account-points__earn-block {
+  margin: 30px 0;
+}
+
+.account-points__earn-left {
+  @include font-header(500);
+  @include text(18px, 24px, $color-main-1, 1.06px);
+  width: 65px;
+  float: left;
+  padding: 10px 0;
+
+  g,
+  path,
+  ellipse {
+    stroke: $color-main-1;
+  }
+}
+
+.account-points__earn-right {
+  width: calc(100% - 66px);
+  float: right;
+}
+
+.account-points__earn-line {
+  @include font-header(500);
+  @include text(14px, 20px, $color-body-text, 0.83px);
+  padding: 10px 0;
+  border-bottom: 1px solid $color-theme-6;
+}
+
+.account-points__rewards-note {
+  @include font-header(500);
+  @include text(16px, 24px, $color-body-text, 0.95px);
+  margin: 0 0 10px;
+}
+
+.account-points__status {
+  display: flex;
+  padding: 15px;
+}
+
+.account-points__status-left {
+  width: 40%;
+  flex: 0 0 40%;
+  text-align: center;
+  align-self: center;
+}
+
+.account-points__status-number {
+  @include font-header(500);
+  @include text(20px, 24px, $color-main-1, 1.18px);
+
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  g,
+  path,
+  ellipse {
+    stroke: $color-main-1;
+  }
+}
+
+.account-points__status-text {
+  @include font-header(500);
+  @include text(12px, 15px, $color-body-text, 0.71px);
+}
+
+.account-points__status-right {
+  width: 60%;
+  flex: 0 0 60%;
+  text-align: center;
+  align-self: center;
+}
+
+.account-points__status-btn {
+  @include font-header(500);
+  @include text(16px, 20px, $color-body-text, 0.95px);
+  @include no-browser-styling;
+  padding: 0;
 }
