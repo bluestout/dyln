@@ -2472,6 +2472,74 @@ $half: round($loops / 2);
   margin: 10px 0 0;
 }
 
+.account-bottle__replace-title {
+  @include font-header(700);
+  @include text(20px, 28px, $color-title, 0.2px);
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+.account-bottle__replace-subtitle {
+  @include font-header(500);
+  @include text(12px, 16px, $color-theme-8, 0.6px);
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0 0 20px;
+}
+
+.account-bottle__replace-date {
+  @include font-header;
+  @include text(20px, 24px, $color-main-1, 1px);
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+.account-bottle__replace-question {
+  @include font-header(700);
+  @include text(14px, 20px, $color-body-text, 0.13px);
+  text-align: center;
+  margin: 15px 0;
+}
+
+.account-bottle__replace-buttons {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  padding: 0 0 10px;
+  border-bottom: 1px solid $color-theme-6;
+  margin: 0 0 20px;
+
+  button {
+    @include no-browser-styling;
+    @include font-header(500);
+    @include text(14px, 20px, $color-theme-8, 0.13px);
+    @include transition(color);
+    padding: 0;
+
+    &:hover {
+      color: $color-main-1;
+    }
+  }
+}
+
+.account-bottle__replace-footer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.account-bottle__replace-shop-txt {
+  @include font-header(700);
+  @include text(14px, 20px, $color-body-text, 0.13px);
+  align-self: center;
+}
+
+.account-bottle__replace-shop-btn {
+  @include button(solid, round, 1);
+  align-self: center;
+  padding: 8px 20px;
+}
+
 .account-profile {
   margin: 0 0 60px;
 }
@@ -2755,7 +2823,6 @@ $half: round($loops / 2);
   margin: 0 20px 0 0;
 }
 
-
 // Whole section will come from an external source
 .account-points {
 }
@@ -2968,4 +3035,319 @@ $half: round($loops / 2);
   @include text(16px, 20px, $color-body-text, 0.95px);
   @include no-browser-styling;
   padding: 0;
+}
+
+.account-bottles {
+}
+
+.account-bottles__bottle {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 0 0 20px;
+  padding: 0 15px;
+}
+
+.account-bottles__bottle-progress-wrap {
+  flex: 0 0 60px;
+  margin: 0 20px 0 0;
+}
+
+.account-bottles__bottle-progress {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  position: relative;
+  background-color: $back-color;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.account-bottles__bottle-progress:hover::before,
+.account-bottles__bottle-progress:focus::before {
+  transform: scale(0.9);
+}
+
+.account-bottles__bottle-progress::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  right: 3px;
+  top: 3px;
+  bottom: 3px;
+  background-color: $color-background;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.account-bottles__bottle-progress::after {
+  background-color: $theme-color;
+  border-radius: 50%;
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+
+.account-bottles__bottle-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 40px;
+  max-height: 40px;
+}
+
+.account-bottles__bottle-body {
+  flex: 0 0 calc(100% - 121px);
+  align-self: center;
+}
+
+.account-bottles__bottle-title {
+  @include font-header(700);
+  @include text(16px, 23px, $color-title, 1px);
+  margin: 0 0 2px;
+}
+
+.account-bottles__bottle-timer {
+  @include font-header(500);
+  @include text(12px, 24px, $color-main-1, 1px);
+  margin: 0;
+}
+
+.account-bottles__bottle-option {
+  margin: auto 0 auto 20px;
+  align-self: center;
+  flex: 0 0 20px;
+}
+
+.account-bottles__bottle-btn {
+  @include font-body;
+  @include no-browser-styling;
+  position: relative;
+  top: -5px;
+  padding: 0;
+  font-size: 26px;
+  line-height: 20px;
+  letter-spacing: -1px;
+  color: $color-main-1;
+}
+
+.account-bottles__bottle-btn::after {
+  content: "...";
+}
+
+.account-bottles__bottle-new-wrap {
+  text-align: center;
+  margin: 0 0 40px;
+  padding: 0 15px;
+}
+
+.account-bottles__bottle-new-btw {
+  @include button(solid, round, 1);
+  padding: 8px 20px;
+}
+
+.account-bottles__bottle-new-icon {
+  @include no-font-size;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 3px 0 0;
+}
+
+.account-bottles__bottle-new-text {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  letter-spacing: 0.83px;
+}
+
+.account-bottles__sub {
+  padding: 20px 15px;
+
+  background-image: linear-gradient(
+    to bottom,
+    rgba($color-theme-13, 0.5) 0%,
+    $color-white 100%
+  );
+}
+
+.account-bottles__sub-header {
+  display: flex;
+  padding: 0 30px;
+  margin: 0 0 30px;
+}
+
+.account-bottles__sub-img {
+  width: 80px;
+  max-height: 80px;
+  object-fit: scale-down;
+  flex: 0 0 80px;
+  align-self: center;
+}
+
+.account-bottles__sub-title {
+  @include font-header(700);
+  @include text(20px, 28px, $color-title, 1.2px);
+  padding: 0 0 0 20px;
+  flex: 0 0 calc(100% - 80px);
+  align-self: center;
+}
+
+.account-bottles__sub-usp {
+  margin: 0 0 15px;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.account-bottles__sub-usp-left {
+  flex: 0 0 30px;
+  align-self: center;
+}
+
+.account-bottles__sub-usp-icon {
+  @include no-font-size;
+
+  svg {
+    max-width: 30px;
+    max-height: 30px;
+  }
+}
+
+.account-bottles__sub-usp-right {
+  flex: 0 0 calc(100% - 46px);
+  margin: 0 0 0 15px;
+  padding: 0 0 10px;
+  border-bottom: 1px solid $color-theme-6;
+}
+
+.account-bottles__sub-usp-text {
+  @include font-header(500);
+  @include text(12px, 18px, $color-body-text, 0.5px);
+  margin: 0;
+}
+
+.account-bottles__sub-note {
+  @include font-header(500);
+  @include text(12px, 18px, $color-body-text, 0.5px);
+  position: relative;
+  text-align: center;
+  margin: 0 auto 30px;
+  max-width: 290px;
+}
+
+.account-bottles__sub-note-arrow {
+  @include no-font-size;
+  position: absolute;
+  right: 0;
+  bottom: -30px;
+  max-height: 32px;
+}
+
+.account-bottles__sub-option-title {
+  @include font-header(700);
+  @include text(12px, 18px, $color-body-text, 0.5px);
+  text-align: center;
+  margin: 0;
+}
+
+.account-bottles__sub-options {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 20px;
+
+  button {
+    @include no-browser-styling;
+    @include font-header(700);
+    @include text(12px, 18px, $color-body-text, 0.5px);
+    @include underline($color-main-1, false);
+    @include transition(color);
+    padding: 0;
+
+    &:hover,
+    &:focus {
+      color: $color-main-1;
+    }
+
+    &.active {
+      color: $color-main-1;
+    }
+
+    &.active::after {
+      width: 100%;
+    }
+  }
+}
+.account-bottles__sub-btn-wrap {
+  @include clearfix;
+  margin: 0 0 20px;
+  width: 100%;
+}
+
+.account-bottles__regular-btn {
+  @include font-header(500);
+  @include text(14px, 14px, $color-white, 0.83px);
+  float: left;
+  width: 50%;
+  height: 44px;
+  background-color: $color-main-1;
+  padding: 5px;
+  text-align: center;
+  text-transform: uppercase;
+  border: none;
+}
+
+.account-bottles__alt-button {
+  float: right;
+  width: 50%;
+  height: 44px;
+  border: 2px solid $color-main-1;
+  text-align: center;
+}
+
+.account-bottles__alt-btn-freq {
+  @include font-header(500);
+  @include text(10px, 14px, $color-body-text, 0.59px);
+}
+
+.account-bottles__alt-btn-change {
+  @include no-browser-styling;
+  @include font-header(500);
+  @include text(9px, 14px, $color-main-1, 1px);
+  padding: 0;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
+.account-bottles__sub-purchase-title {
+  @include font-header(500);
+  @include text(16px, 24px, $color-title, 1px);
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+.account-bottles__sub-diff {
+  text-align: center;
+  margin: 0 0 15px;
+
+  p {
+    @include font-header(500);
+    @include text(12px, 18px, $color-title, 0.71px);
+  }
+
+  h6 {
+    @include font-header(700);
+    @include text(10px, 18px, $color-title, 0.59px);
+  }
+
+  button {
+    @include button(solid, square, 1);
+    font-weight: 500;
+    display: block;
+    padding: 9px 20px;
+  }
 }
