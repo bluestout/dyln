@@ -8,4 +8,6 @@
 
 body {
   @import "./6.components/template/article/article";
+  @import "./6.components/global/blog/blog-newsletter";
+  @import "./6.components/template/blog/blog-side-menu";
 }

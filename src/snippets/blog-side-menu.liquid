@@ -1,22 +1,23 @@
-<div class="blog-side-menu col-md-2" data-accordion-parent=false>
-    <div data-accordion-wrap=index>
-        <div class="blog-side-menu__btn" data-accordion-button=index>
-            <h3>Choose a topic</h3><i class="fa fa-plus"></i>
-        </div>
-        <div class="blog-side-menu__list" data-accordion-content=index>
-            {% if blog.all_tags.size > 0 %}
-                <ul>
-                    {% for tag in blog.all_tags %}
-                        {% if current_tags contains tag %}
-                            <li>{{ tag }}</li>
-                        {% else %}
-                            <li>{{ tag | link_to_tag: tag }}</li>
-                        {% endif %}
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        </div>
+<div class="blog-side-menu" data-accordion-parent=false>
+  <div data-accordion-wrap=index>
+    <div class="blog-side-menu__btn" data-accordion-button=index>
+      <h3>Choose a topic</h3><i class="fa fa-plus"></i>
     </div>
+    <div class="blog-side-menu__list" data-accordion-content=index>
+      {% if blog.all_tags.size > 0 %}
+        <ul>
+          {% for tag in blog.all_tags %}
+            {% if current_tags contains tag %}
+                <li>{{ tag }}</li>
+            {% else %}
+              <li><a href="{{ blog.url }}/tagged/{{ tag | handle }}?view=tagged">{{ tag }}</a></li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  </div>
 </div>
 
 {{ 'font-awesome.min.css' | asset_url | stylesheet_tag }}
+

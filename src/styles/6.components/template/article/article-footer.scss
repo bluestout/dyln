@@ -1,0 +1,59 @@
+.article {
+  &__footer {
+    display: flex;
+    margin-top: 40px;
+
+    @include media-query($large-down) {
+      flex-direction: column;
+    }
+
+    .article__social,
+    .article__rating {
+      text-align: left;
+      justify-content: flex-start;
+
+      span {
+        @include font-header(bold);
+        @include text(30px, 1.2, $color-theme-7, 1.8px);
+
+        @include media-query($large-down) {
+          font-size: 12px;
+        }
+      }
+    }
+
+    .article__rating {
+      display: flex;
+      align-items: center;
+      margin-left: 20px;
+
+      @include media-query($large-down) {
+        margin-left: 0;
+      }
+
+      span {
+        margin-right: 10px;
+      }
+
+      &-ratings {
+        display: inline-block;
+
+        svg {
+          margin: 0 7px;
+
+          &:hover {
+            cursor: pointer;
+
+            g {
+              fill: rgba(0, 174, 219, 0.3);
+            }
+          }
+
+          &:last-of-type {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+}

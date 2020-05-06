@@ -1,0 +1,46 @@
+<div class="blog-side-menu template-{{ template.name | handle }}" data-accordion-parent=false>
+  <div data-accordion-wrap=index>
+    <div class="blog-side-menu__btn" data-accordion-button=index>
+      <h3>Choose a topic</h3>
+      {% render 'icon-plus' %}
+    </div>
+    <div class="blog-side-menu__list" data-accordion-content=index>
+      <ul>
+        {% for block in section.blocks %}
+        {% assign article = articles[block.settings.side_menu_article] %}
+
+          <li>
+            {% for tag in article.tags %}
+              <a href="{{ blog.url }}/tagged/{{ tag | handle }}?view=tagged" class="category-link">{{ tag }}</a>
+            {% endfor %}
+            <a href="{{ article.url }}">
+              <h3>{{ article.title }}</h3>
+            </a>
+          </li>
+        {% endfor %}
+        </ul>
+    </div>
+  </div>
+</div>
+
+{{ 'font-awesome.min.css' | asset_url | stylesheet_tag }}
+
+{% schema %}
+{
+  "name":"Blog Side Menu",
+  "class":"blog-side-menu article-side-menu",
+  "blocks":[
+  {
+    "type":"article",
+    "name":"Blog Side Menu Article",
+    "settings":[
+    {
+      "type":"article",
+      "id":"side_menu_article",
+      "label":"Select a Blog Side Menu Article"
+    }
+    ]
+  }
+  ]
+}
+{% endschema %}
