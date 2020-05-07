@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="article__other-topics">
+      {% for tag in article.tags %}
+        {% assign currentTag = tag %}
+      {% endfor %}
+
+      <h2>More on {{ currentTag }}</h2>
+      <div class="article__other-wrapper">
+        {% for article in blogs.blog.articles limit: 5 %}
+          {% if article.tags contains currentTag %}
+            <div class="article-card article-card--horisontal article-card--md">
+
+              <div class="article-card__wrapper">
+                <a href="{{ article.url }}"></a>
+
+                {%- render 'responsive-image' with
+                  image: article.image.src,
+                  max_width: 768,
+                  max_height: 768,
+                  wrapper_class: "article-card__thumbnail-wrapper",
+                  image_class: "article-card__thumbnail"
+                -%}
+
+                <div class="article-card__content-text">
+                  <a href="{{ blog.url }}/tagged/{{ currentTag | handle }}?view=tagged" class="article-card__category">{{ currentTag }}</a>
+                  <h3>{{- article.title -}}</h3>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>

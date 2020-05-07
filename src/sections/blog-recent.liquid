@@ -7,26 +7,19 @@
     {% endif %}
 
     <div class="row justify-content-center">
-      {% for article in blogs.chapters.articles limit: 2 %}
-        <div class="col-md-6 col-lg-4">
-          <div class="recent-articles__card article-card article-card--sm">
-            <a href="{{ article.url }}"></a>
-            {%- render 'responsive-image' with
-              image: article.image.src,
-              max_width: 768,
-              max_height: 768,
-              wrapper_class: "article-card__thumbnail-wrapper",
-              image_class: "article-card__thumbnail"
-            -%}
-            <div class="article-card__content">
-              {% for tag in article.tags %}
-                <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="article-card__category">{{ tag }}</a>
-              {% endfor %}
-              <h3>{{- article.title -}}</h3>
-            </div>
-          </div>
-        </div>
-      {% endfor %}
+      {% if section.content.blog_custom %}
+
+        {% for blog_article in section.settings.blog_custom.articles limit: 2 %}
+          {% render 'blog-recent' with blog_article %}
+        {% endfor %}
+
+      {% else %}
+
+        {% for blog_article in blog.articles limit: 2 %}
+          {% render 'blog-recent' with blog_article %}
+        {% endfor %}
+
+      {% endif %}
     </div>
   </div>
 {% endif %}
@@ -46,6 +39,11 @@
       "id": "show",
       "label": "Show this section?",
       "default": true
+    },
+    {
+      "type": "blog",
+      "id": "blog_custom",
+      "label": "Specify from which Blog to display the articles"
     }
   ]
 }

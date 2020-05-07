@@ -169,6 +169,8 @@
 
 .recent-articles__card {
   .article-card__thumbnail-wrapper {
+    height: 175px;
+
     @include media-query($medium-down) {
       height: 290px;
     }

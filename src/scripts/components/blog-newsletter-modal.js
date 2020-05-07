@@ -4,7 +4,8 @@ const elements = {
   newsletterBtn: "[data-newsletter-open-btn]",
   newsletterModal: "[data-newsletter-modal]",
   newsletterModalOverlay: "[data-newsletter-modal-overlay]",
-  openModalSelector: "modal-opened"
+  openModalSelector: "modal-opened",
+  articleTreshold: 768
 };
 
 const $newsletterModal = $(elements.newsletterModal);
@@ -12,7 +13,12 @@ const $newsletterModalOverlay = $(elements.newsletterModalOverlay);
 
 function init() {
   const $newsletterOpenBtn = $(elements.newsletterBtn);
-  if ($newsletterModal.hasClass("only--mobile") && $(window).width() > 768) {
+
+  if ($("body").hasClass("template-article")) {
+    elements.articleTreshold = 1280;
+  }
+
+  if ($newsletterModal.hasClass("only--mobile") && $(window).width() > elements.articleTreshold) {
     destroy();
     return false;
   }

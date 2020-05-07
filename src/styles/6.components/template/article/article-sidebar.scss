@@ -1,0 +1,9 @@
+.article {
+  &__sidebar {
+    .blog-side-menu {
+      @include media-query($large-down) {
+        display: none;
+      }
+    }
+  }
+}

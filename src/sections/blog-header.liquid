@@ -11,20 +11,10 @@
           <p>{{- section.settings.content -}}</p>
         </div>
       </div>
-      <div id="newsletterModal" class="blog-header__newsletter-flyout" data-newsletter-modal>
-        <h2>The best Health Tips directly in your inbox</h2>
-        <form id="newsletter-subscription">
-          <label for="newsletterEmail">Your Email</label>
-          <input type="email" id="newsletterEmail" />
-          <button type="submit">I want to subscribe!</button>
-        </form>
-      </div>
-      <div class="blog-header__newsletter-flyout-opener" data-newsletter-open-btn>
-        <p>Subscribe!</p>
-      </div>
+      {% render 'newsletter-flyout' %}
     </div>
   </div>
-  <div class="blog-header__newsletter-overlay" data-newsletter-modal-overlay></div>
+  <div class="newsletter-overlay" data-newsletter-modal-overlay></div>
 </div>
 
 {% schema %}
