@@ -605,6 +605,7 @@ $z-top: 10;
   color: $color-main-2 !important;
 }
 
+// header
 .account-header {
   position: relative;
   height: 490px;
@@ -636,6 +637,7 @@ $z-top: 10;
   background-image: url("data:image/svg+xml,%3Csvg width='1600' height='51' viewBox='0 0 1600 51' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1600 43c-175.575 6.828-535.39 9.943-837.653 6.269-302.262-3.675-546.595-5.487-762.347 0V0h1600v43z' fill='%2320D480' fill-rule='evenodd'/%3E%3C/svg%3E");
   background-position: bottom;
   background-repeat: no-repeat;
+  background-size: cover;
   width: 100%;
   height: 51px;
   position: absolute;
@@ -645,7 +647,7 @@ $z-top: 10;
 
 .account-header__bar {
   position: relative;
-  max-width: 950px;
+  max-width: 1200px;
   height: 100%;
   margin: 0 auto;
   display: flex;
@@ -695,6 +697,7 @@ $z-top: 10;
   @include no-browser-styling;
   @include no-font-size;
   position: absolute;
+  z-index: 1;
   top: 15px;
   right: 15px;
   padding: 5px;
@@ -708,10 +711,14 @@ $z-top: 10;
   align-self: center;
 }
 
+.account-header__col-offset {
+  top: -30px;
+}
+
 .account-header__title {
   @include font-header(700);
   @include text(40px, 56px, $color-title-light, 2.36px);
-  margin: 0 0 10px;
+  margin: 0 0 5px;
 }
 
 .account-header__badge {
@@ -720,7 +727,7 @@ $z-top: 10;
   padding: 2px 15px;
   border-radius: 20px;
   display: inline-block;
-  margin: 0 0 20px;
+  margin: 0 0 10px;
 }
 
 .account-header__badge--silver {
@@ -796,6 +803,17 @@ $z-top: 10;
   display: block;
 }
 
+.account-header__wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 58px;
+  background-image: url("data:image/svg+xml,%3Csvg width='1439' height='58' viewBox='0 0 1439 58' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 58V0c151.486 0 327.46 3.71 505 12 88.898 4.151 176.922 11.075 265 16 71.854 4.018 142.584 10.122 211 14 68.357 3.875 134 7 196 10 72.136 3.49 159.803 5.49 263 6H0z' fill='%23FFF' fill-rule='evenodd'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+}
+
+//sidebar
 .account-sidebar {
   margin: 40px 0 0;
 }
@@ -830,7 +848,13 @@ $z-top: 10;
   vertical-align: middle;
 }
 
+.account-container {
+  min-height: 1000px;
+}
+
+// account body
 .account-body {
+  margin: 0 0 100px;
 }
 
 .account-body__header-tabs {
@@ -867,11 +891,13 @@ $z-top: 10;
 .account-body__tab {
 }
 
+// account dashboard
 .account-dash {
+  margin: 0 0 100px;
 }
 
 .account-dash__bottles {
-  margin: 0 0 25px;
+  margin: 0 0 30px;
 }
 
 .account-dash__title {
@@ -879,7 +905,7 @@ $z-top: 10;
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin: 0 0 15px;
+  margin: 0 0 20px;
 }
 
 .account-dash__title-txt {
@@ -897,7 +923,7 @@ $z-top: 10;
 }
 
 .account-dash__bottle {
-  margin: 0 0 20px;
+  margin: 0 0 15px;
   width: 100%;
   display: flex;
 }
@@ -1041,14 +1067,14 @@ $half: round($loops / 2);
 
 .account-dash__bottle-timer {
   @include font-header(500);
-  @include text(14px, 23px, $color-title, 1.17px);
+  @include text(14px, 23px, $color-main-1, 1.17px);
 }
 
 .account-dash__bottle-more {
   @include font-body;
   @include no-browser-styling;
   position: relative;
-  top: -5px;
+  top: -10px;
   padding: 0;
   font-size: 26px;
   line-height: 20px;
@@ -1196,7 +1222,7 @@ $half: round($loops / 2);
 }
 .account-dash__refer-wrap {
   text-align: center;
-  margin: 0 0 35px;
+  margin: 10px 0 40px;
 }
 
 .account-dash__refer-btn {
@@ -1204,6 +1230,7 @@ $half: round($loops / 2);
   font-size: 18px;
   line-height: 24px;
   letter-spacing: 1.06px;
+  margin: 0 0 5px;
 }
 
 .account-dash__refer-btn-text {
@@ -1212,6 +1239,8 @@ $half: round($loops / 2);
 
 .account-dash__refer-btn-icon {
   @include no-font-size;
+  margin: 0 0 0 5px;
+  display: inline-block;
 }
 
 .account-dash__refer-btn-num {
@@ -1224,12 +1253,13 @@ $half: round($loops / 2);
 }
 
 .account-dash__order {
-  margin: 0 0 20px;
+  margin: 0 0 30px;
 }
 
 .account-dash__order-number {
   @include font-header(700);
   @include text(16px, 22px, $color-main-1, 0.95px);
+  display: inline-block;
   margin: 0 0 5px;
 }
 
@@ -1238,6 +1268,7 @@ $half: round($loops / 2);
   @include text(16px, 22px, $color-body-text, 0.95px);
 }
 
+// registration modal
 .registration-modal {
   z-index: $z-top;
   position: fixed;
@@ -1414,6 +1445,7 @@ $half: round($loops / 2);
 
 .registration-modal__btn {
   @include button(solid, round, 2);
+  font-size: 18px;
   margin: 0 10px 8px;
 }
 
@@ -1425,6 +1457,7 @@ $half: round($loops / 2);
 }
 
 .registration-modal__page-content {
+  @include clearfix;
   max-width: 300px;
   margin: 0 auto 10px;
 }
@@ -1780,10 +1813,11 @@ $half: round($loops / 2);
 
 .container {
   @media screen and (min-width: 1360px) {
-    max-width: 1330px;
+    max-width: 1350px;
   }
 }
 
+// account done modal
 .account-done {
   z-index: $z-top;
   position: fixed;
@@ -1854,6 +1888,7 @@ $half: round($loops / 2);
 
 .account-done__confirm {
   @include button(solid, r, 2);
+  padding: 8px 20px;
 }
 
 .account-done__cancel {
@@ -1864,6 +1899,50 @@ $half: round($loops / 2);
   margin: 10px 0 0;
 }
 
+.image-edit {
+  z-index: $z-top;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.image-edit__overlay {
+  background-color: rgba($color-black, 0.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.image-edit__inner {
+  position: relative;
+  background-color: $color-body;
+  padding: 25px;
+  max-width: 360px;
+  min-height: 350px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.image-edit__close {
+  @include no-font-size;
+  @include no-browser-styling;
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  padding: 3px;
+
+  svg,
+  g {
+    stroke: $color-body-text;
+  }
+}
+
+// account edit modal
 .account-edit {
   z-index: $z-top;
   position: fixed;
@@ -1871,6 +1950,24 @@ $half: round($loops / 2);
   height: 100%;
   top: 0;
   left: 0;
+}
+
+.account-edit__header {
+  position: relative;
+}
+
+.account-edit__edit {
+  @include no-browser-styling;
+  @include no-font-size;
+  position: absolute;
+  z-index: 1;
+  top: 5px;
+  right: 5px;
+  padding: 5px;
+}
+
+.account-edit__edit-icon {
+  display: block;
 }
 
 .account-edit__overlay {
@@ -1935,10 +2032,7 @@ $half: round($loops / 2);
   @include text(14px, 20px, $color-body-text, 0.83px);
   display: inline-block;
   vertical-align: middle;
-  margin: 0 0 0 10px;
-}
-
-.account-edit__page {
+  margin: 0 20px 0 10px;
 }
 
 .account-edit__modal-option-btn {
@@ -2240,6 +2334,7 @@ $half: round($loops / 2);
 }
 
 .account-bottle__diffuser {
+  @include clearfix;
   padding: 20px 0 0;
   border-top: 1px solid $color-theme-6;
   margin: 20px 0 0;
@@ -2320,6 +2415,7 @@ $half: round($loops / 2);
 }
 
 .account-bottle__hydration {
+  @include clearfix;
   padding: 20px 0 0;
   border-top: 1px solid $color-theme-6;
   margin: 10px 0 0;
@@ -2541,7 +2637,7 @@ $half: round($loops / 2);
 }
 
 .account-profile {
-  margin: 0 0 60px;
+  margin: 0 0 100px;
 }
 
 .account-profile__header {
@@ -2700,6 +2796,7 @@ $half: round($loops / 2);
 }
 
 .account-orders {
+  margin: 0 0 100px;
 }
 
 .account-orders__new-wrap {
@@ -2743,6 +2840,7 @@ $half: round($loops / 2);
 }
 
 .account-orders__item {
+  @include clearfix;
   margin: 0 0 20px;
 }
 
@@ -2792,6 +2890,7 @@ $half: round($loops / 2);
 }
 
 .account-orders__totals {
+  @include clearfix;
   margin: 0 0 20px;
 }
 
@@ -2825,6 +2924,7 @@ $half: round($loops / 2);
 
 // Whole section will come from an external source
 .account-points {
+  margin: 0 0 100px;
 }
 
 .account-points__earned-amount {
@@ -2865,6 +2965,7 @@ $half: round($loops / 2);
 }
 
 .account-points__banner-line {
+  @include clearfix;
   padding: 10px 0 0;
 }
 
@@ -2925,6 +3026,7 @@ $half: round($loops / 2);
 }
 
 .account-points__member-line {
+  @include clearfix;
   padding: 10px 0 0;
 }
 
@@ -2955,6 +3057,7 @@ $half: round($loops / 2);
 }
 
 .account-points__earn-block {
+  @include clearfix;
   margin: 30px 0;
 }
 
@@ -3038,6 +3141,7 @@ $half: round($loops / 2);
 }
 
 .account-bottles {
+  margin: 0 0 100px;
 }
 
 .account-bottles__bottle {
@@ -3312,6 +3416,8 @@ $half: round($loops / 2);
 .account-bottles__alt-btn-freq {
   @include font-header(500);
   @include text(10px, 14px, $color-body-text, 0.59px);
+  min-width: 51%;
+  display: inline-block;
 }
 
 .account-bottles__alt-btn-change {
@@ -3321,6 +3427,8 @@ $half: round($loops / 2);
   padding: 0;
   text-transform: uppercase;
   text-decoration: underline;
+  min-width: 51%;
+  display: inline-block;
 }
 
 .account-bottles__sub-purchase-title {
@@ -3349,5 +3457,505 @@ $half: round($loops / 2);
     font-weight: 500;
     display: block;
     padding: 9px 20px;
+    width: 100%;
+  }
+
+  button > span,
+  button > strong {
+    display: inline-block;
+  }
+}
+
+@include media-query($large-down) {
+  .account-body__header-tabs {
+    display: block;
+    border-bottom: 2px solid $color-theme-7;
+    border-top: 2px solid $color-theme-7;
+    margin: 0 0 25px;
+    min-height: 40px;
+
+    &:not(.open) {
+      > :not(.active) {
+        display: none;
+      }
+
+      .active .account-body__header-dash::after {
+        content: "+";
+      }
+    }
+
+    &.open {
+      > :not(.active) {
+        display: block;
+      }
+    }
+  }
+
+  .account-body__header-tab {
+    position: relative;
+    padding: 6px 40px 6px 0;
+    width: 100%;
+    border-top: 1px solid $color-theme-15;
+    text-align: left;
+  }
+
+  .account-body__header-tab:not(.active) {
+    font-weight: 500;
+  }
+
+  .account-body__header-tab.active {
+    .account-body__header-dash::after {
+      content: "-";
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-size: 20px;
+      line-height: 20px;
+      font-weight: 400;
+      color: $color-body-text;
+    }
+  }
+
+  .account-body__header-tab.active::after {
+    content: none;
+  }
+}
+
+@include media-query($medium-up) {
+  .registration-modal__title {
+    background: none !important;
+  }
+
+  .account-edit__edit {
+    display: none;
+  }
+}
+
+@include media-query($medium-down) {
+  // header
+  .account-header {
+    height: 310px;
+  }
+
+  .account-header__bar-wrap {
+    height: 30px;
+  }
+
+  .account-header__bar-bg {
+    background-image: url("data:image/svg+xml,%3Csvg width='320' height='31' viewBox='0 0 320 31' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M320 26.5c-35.093 3.829-107.211 5.136-167.626 3.077C91.96 27.517 43.124 26.5 0 29.577V0h319.953c.031 11.319.047 20.152.047 26.5z' fill='%2320D480' fill-rule='evenodd'/%3E%3C/svg%3E");
+    height: 31px;
+    top: 8px;
+  }
+
+  .account-header__background-wrap {
+    height: 80%;
+  }
+
+  .account-header__points-text {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.71px;
+  }
+  .account-header__points-number {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.71px;
+  }
+
+  .account-header__container {
+    padding-bottom: 0;
+  }
+
+  .account-header__body {
+    height: 100%;
+
+    > .row {
+      height: 100%;
+    }
+  }
+
+  .account-header__edit {
+    top: 0;
+  }
+
+  .account-header__col-offset {
+    top: 0;
+    align-self: center;
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+
+  .account-header__title {
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 1.2px;
+  }
+
+  .account-header__badge {
+    font-size: 10px;
+    line-height: 16px;
+    letter-spacing: 0.75px;
+  }
+
+  .account-header__description {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 1px;
+    max-width: 185px;
+  }
+
+  .account-header__status {
+    position: relative;
+    z-index: 1;
+    margin: 0 -5px;
+  }
+
+  .account-header__status-item {
+    flex: 0 0 calc(33.33% - 10px);
+    margin: 0 5px;
+  }
+
+  .account-header__status-badge {
+    width: 100%;
+    padding: 6px;
+    border-radius: 30px;
+    text-align: center;
+    margin: 0 0 5px;
+    display: block;
+  }
+
+  .account-header__status-number {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.71px;
+  }
+
+  .account-header__status-num-alt {
+    font-size: 10px;
+    line-height: 16px;
+    letter-spacing: 0.6px;
+  }
+
+  .account-header__status-txt {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.71px;
+    color: $color-body-text;
+  }
+
+  // dashboard
+  .account-dash {
+    margin: 0 0 40px;
+  }
+
+  .account-dash__bottles {
+    margin: 0 0 20px;
+    padding: 10px 0 0;
+    border-top: 1px solid $color-theme-6;
+  }
+
+  .account-dash__title {
+    margin: 0 0 15px;
+  }
+
+  .account-dash__title-txt {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.95px;
+  }
+
+  .account-dash__title-button {
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.7px;
+  }
+
+  .account-dash__bottle {
+    margin: 0 0 15px;
+  }
+
+  .account-dash__bottle-timer {
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 1px;
+  }
+
+  .account-dash__bottle-btn {
+    padding: 8px 20px;
+  }
+
+  .account-dash__bottle-btn-icon {
+    svg {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  .account-dash__bottle-btn-text {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.83px;
+  }
+
+  .account-dash__subs {
+    padding: 10px 0 0;
+    border-top: 1px solid $color-theme-6;
+  }
+
+  .account-dash__sub {
+    margin: 0 0 15px;
+  }
+
+  .account-dash__sub-timer {
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 1px;
+  }
+
+  .account-dash__sub-btn {
+    padding: 8px 20px;
+  }
+
+  .account-dash__sub-btn-text {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.83px;
+  }
+
+  .account-dash__refer-wrap {
+    margin: 20px 0;
+  }
+
+  .account-dash__refer-btn {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.83px;
+  }
+
+  .account-dash__order {
+    margin: 0 0 20px;
+  }
+
+  .account-dash__order-number {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.83px;
+  }
+
+  .account-dash__order-date {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.83px;
+  }
+
+  // registration modal
+  .registration-modal {
+    z-index: 1;
+    position: static;
+  }
+
+  .registration-modal__overlay {
+    display: none;
+  }
+
+  .registration-modal__inner {
+    padding: 0;
+    max-width: 100%;
+    min-height: 1px;
+    left: 0;
+    top: 0;
+    transform: none;
+  }
+
+  .registration-modal__close {
+    display: none;
+  }
+
+  .registration-modal__header {
+    margin: 0 0 20px;
+    text-align: center;
+  }
+
+  .registration-modal__title {
+    color: $color-white;
+    padding: 20px 0;
+    margin: 0 0 10px;
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+  }
+
+  .registration-modal__progress {
+    max-width: calc(100% - 30px);
+    margin: 0 15px;
+  }
+
+  .registration-modal__page {
+    padding: 15px;
+  }
+
+  .registration-modal__code-video-wrap {
+    margin: 0 auto 40px;
+  }
+
+  .registration-modal__input-wrap {
+    &.code {
+      margin: 0 auto 40px;
+    }
+  }
+
+  .registration-modal__input {
+    padding: 5px 0;
+  }
+
+  .registration-modal__navigation {
+    margin: 0 0 15px;
+  }
+
+  .registration-modal__btn {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 6px 20px;
+  }
+
+  .registration-modal__page-content-flex {
+    padding: 0;
+  }
+
+  .registration-modal__btn-alt {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 6px 20px;
+  }
+
+  .registration-modal__refills {
+    float: none;
+    width: 100%;
+    padding: 0 15px;
+    margin: 0 0 15px 0;
+  }
+
+  .registration-modal__refills-range {
+    margin: 5px 0;
+  }
+
+  .registration-modal__range-scale {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    margin: 10px 0 0;
+    padding: 0 8px;
+  }
+
+  .registration-modal__days {
+    float: none;
+    width: 100%;
+    padding: 0 15px;
+    margin: 0 0 15px 0;
+  }
+
+  .registration-modal__phone-wrap {
+    margin: 0 auto 10px;
+  }
+
+  .registration-modal__btn-final {
+    padding: 6px 20px;
+    margin: 0 0 5px;
+  }
+
+  // account edit modal
+  .account-edit {
+    z-index: 1;
+    position: static;
+  }
+
+  .account-edit__overlay {
+    display: none;
+  }
+
+  .account-edit__inner {
+    padding: 0;
+    max-width: 100%;
+    min-height: 1px;
+    left: 0;
+    top: 0;
+    transform: none;
+  }
+
+  .account-edit__close {
+    display: none;
+  }
+
+  .account-edit__group-label {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.71px;
+    margin: 0 0 3px;
+
+    &.margin {
+      margin: 0 0 10px;
+    }
+  }
+
+  .account-edit__input-wrap {
+    margin: 0 0 10px;
+  }
+
+  .account-edit__page {
+    padding: 15px;
+  }
+
+  .account-points__btn-refer {
+    padding: 8px 20px;
+  }
+
+  .account-bottles__sub-header {
+    padding: 0;
+  }
+
+  .account-sidebar {
+    margin: 0;
+  }
+
+  .account-sidebar__link {
+    display: block;
+    padding: 10px 5px;
+    width: 100%;
+    background-color: $color-theme-4;
+    margin: 0 0 3px;
+    text-align: center;
+  }
+
+  .account-sidebar__link-icon {
+    svg {
+      max-height: 20px;
+      max-width: 25px;
+    }
+  }
+
+  .account-sidebar__link-txt {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.71px;
+  }
+
+  .account-body {
+    margin: 0 0 40px;
+  }
+
+  .account-profile {
+    margin: 0 0 40px;
+  }
+
+  .account-orders {
+    margin: 0 0 40px;
+  }
+
+  .account-points {
+    margin: 0 0 40px;
+  }
+
+  .account-bottles {
+    margin: 0 0 40px;
   }
 }
