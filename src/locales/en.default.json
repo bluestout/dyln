@@ -191,13 +191,16 @@
     },
     "login": {
       "title": "Login",
+      "log_in": "Log In",
       "email": "Email",
       "password": "Password",
       "forgot_password": "Forgot your password?",
       "sign_in": "Sign In",
       "cancel": "Return to Store",
       "guest_title": "Continue as a guest",
-      "guest_continue": "Continue"
+      "guest_continue": "Continue",
+      "welcome_title": "Welcome Back!/ Log In",
+      "create_account": "Create your DYLN Account"
     },
     "orders": {
       "title": "Order History",
@@ -248,13 +251,15 @@
       "submit": "Reset Password"
     },
     "register": {
-      "title": "Create Account",
+      "title": "Create Your Account",
       "first_name": "First Name",
       "last_name": "Last Name",
       "email": "Email",
       "password": "Password",
-      "submit": "Create",
-      "cancel": "Return to Store"
+      "submit": "Create Account",
+      "cancel": "Return to Store",
+      "already_have_account_html": "Already have an account? <a href='/account/login/'>Log In</a>",
+      "benefits_await": "Your Benefits Await!"
     }
   },
   "header": {

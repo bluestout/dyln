@@ -1,0 +1,291 @@
+.login-page {
+  position: relative;
+
+  &--login {
+    max-width: 810px;
+    margin: 150px auto 120px;
+  }
+
+  &--register {
+    max-width: 810px;
+    margin: 150px auto 120px;
+  }
+
+  &--activate {
+    max-width: 600px;
+    margin: 150px auto 100px;
+  }
+
+  [data-login-form] {
+    @include transition(opacity, transform);
+    opacity: 1;
+    transform: none;
+
+    &.blur-out {
+      opacity: 0;
+      transform: scale(1.05);
+    }
+  }
+
+  [data-address-form] {
+    @include transition(opacity, transform);
+    opacity: 1;
+    transform: none;
+
+    &.blur-out {
+      opacity: 0;
+      transform: scale(1.05);
+    }
+  }
+
+  [data-recover-form] {
+    @include transition(opacity, transform);
+    opacity: 1;
+    transform: none;
+
+    &.blur-out {
+      opacity: 0;
+      transform: scale(1.05);
+    }
+  }
+
+  &__login-col {
+    position: relative;
+
+    &.left {
+      padding: 20px 50px 30px 0;
+    }
+
+    &.left-bar {
+      padding: 20px 50px 30px 0;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 1px;
+        background-color: $color-theme-6;
+      }
+    }
+
+    &.right {
+      padding: 20px 0 30px 50px;
+    }
+  }
+
+  &__title {
+    @include font-header(700);
+    @include text(20px, 28px, $color-title, 1.11px);
+    text-align: center;
+    margin: 0 0 20px;
+  }
+
+  .oxi-social-login {
+    width: 100%;
+    margin: 0 0 5px;
+  }
+
+  &__form-success {
+    @include text(16px, 20px, $color-theme-2, 0.95px);
+    margin: 0 0 20px;
+    text-align: center;
+  }
+
+  .errors {
+    margin: 0 0 20px;
+    text-align: center;
+
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      @include text(16px, 20px, $color-theme-18, 0.95px);
+    }
+  }
+
+  &__input {
+    @include font-body;
+    @include text(16px, 20px, $color-body-text, 0.95px);
+    padding: 5px 0;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid $color-main-1;
+    border-radius: 0;
+    margin: 0 0 20px;
+
+    &::placeholder {
+      font-weight: 700;
+      color: $color-theme-6;
+      opacity: 1;
+    }
+
+    &.half-left {
+      width: calc(50% - 7px);
+      margin: 0 5px 20px 0;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &.half-right {
+      width: calc(50% - 7px);
+      margin: 0 0 20px 5px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &.input-error {
+      box-shadow: 0 0 2px 2px rgba($color-theme-18, 0.5);
+    }
+
+    &:last-of-type {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__link-static {
+    @include font-header(500);
+    @include text(12px, 17px, $color-body-text, 0.71px);
+    display: inline-block;
+    margin: 0 0 20px;
+
+    a {
+      @include font-header(500);
+      @include text(12px, 17px, $color-main-1, 0.71px);
+      @include underline;
+    }
+  }
+
+  &__link {
+    @include font-header(500);
+    @include text(12px, 17px, $color-main-1, 0.71px);
+    @include underline;
+  }
+
+  &__subtext {
+    @include font-header(500);
+    @include text(14px, 20px, $color-body-text, 1.27px);
+    text-align: center;
+    margin: 0 0 15px;
+  }
+
+  &__submit {
+    @include button(solid, round, 2);
+    font-size: 18px;
+    letter-spacing: 1.06px;
+    margin: 0 5px 10px;
+  }
+
+  &__submit-alt {
+    @include button(wire, round, 2);
+    font-size: 18px;
+    letter-spacing: 1.06px;
+    margin: 0 5px 10px;
+  }
+
+  @include media-query($large) {
+    &__login-col {
+
+      &.left {
+        padding: 10px 30px 20px 0;
+      }
+
+      &.left-bar {
+        padding: 10px 30px 20px 0;
+      }
+
+      &.right {
+        padding: 10px 0 20px 30px;
+      }
+    }
+  }
+
+  @include media-query($medium-down) {
+    &--login {
+      margin: 60px auto 30px;
+    }
+
+    &--register {
+      margin: 60px auto 30px;
+    }
+
+    &--activate {
+      margin: 60px auto 30px;
+    }
+
+    &__login-col {
+      position: relative;
+      margin: 0 0 30px;
+
+      &.left {
+        padding: 0;
+      }
+
+      &.left-bar {
+        padding: 0;
+
+        &::after {
+          content: none;
+        }
+      }
+
+      &.right {
+        padding: 0;
+      }
+    }
+
+    &__title {
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 0.95px;
+    }
+
+    &__form-success {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.83px;
+    }
+
+    .errors {
+      li {
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.83px;
+      }
+    }
+
+    &__input {
+      margin: 0 0 15px;
+
+      &.half-left {
+        width: 100%;
+        margin: 0 0 20px;
+      }
+
+      &.half-right {
+        width: 100%;
+        margin: 0 0 20px;
+      }
+    }
+
+    &__submit {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.83px;
+      padding: 8px 20px;
+    }
+
+    &__submit-alt {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.83px;
+      padding: 8px 20px;
+    }
+  }
+}
+
+@import "./account-benefits";
