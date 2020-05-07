@@ -1,8 +1,52 @@
-blog-header
+<div class="container-fluid d-flex" style="background-image:url('{{ section.settings.background.src | image_url }}')"​​​​​​>
+  <div class="container d-flex">
+    <div class="row">
+      <div class="col-md-4 col-lg-5 d-flex align-items-center">
+        <div class="blog-header__content">
+          {%- if section.settings.title != blank -%}
+            <h2>{{- section.settings.title -}}</h2>
+          {% else %}
+            <h2>DYLN BLOG</h2>
+          {% endif %}
+          <p>{{- section.settings.content -}}</p>
+        </div>
+      </div>
+      <div id="newsletterModal" class="blog-header__newsletter-flyout" data-newsletter-modal>
+        <h2>The best Health Tips directly in your inbox</h2>
+        <form id="newsletter-subscription">
+          <label for="newsletterEmail">Your Email</label>
+          <input type="email" id="newsletterEmail" />
+          <button type="submit">I want to subscribe!</button>
+        </form>
+      </div>
+      <div class="blog-header__newsletter-flyout-opener" data-newsletter-open-btn>
+        <p>Subscribe!</p>
+      </div>
+    </div>
+  </div>
+  <div class="blog-header__newsletter-overlay" data-newsletter-modal-overlay></div>
+</div>
 
 {% schema %}
-  {
-    "name": "Blog Header",
-    "class": "blog-header"
-  }
+{
+  "name": "Blog Header",
+  "class": "blog-header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "content",
+      "label": "Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "background",
+      "label": "Background"
+    }
+  ]
+}
 {% endschema %}

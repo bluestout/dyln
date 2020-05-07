@@ -1,0 +1,68 @@
+{% if section.settings.show %}
+  <div class="container">
+    <div class="row justify-content-center">
+      {% if section.settings.title != blank %}
+        <h2>{{ section.settings.title }}</h2>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="blog-video-wrapper slider" data-blog-vlog>
+      {% for block in section.blocks %}
+        <div class="slider__item">
+          <div class="slider__item-wrapper">
+            {% assign article = articles[block.settings.vlog_articles] %}
+            <a href="{{ article.url }}"></a>
+            {%- render 'responsive-image' with
+              image: article.image.src,
+              max_width: 768,
+              max_height: 768,
+              wrapper_class: "article-card__thumbnail-wrapper",
+              image_class: "article-card__thumbnail"
+            -%}
+
+            <div class="slider__item-play-icon">
+              {% include 'icon-play' %}
+            </div>
+
+            <div class="slider__item-content">
+              <h3>{{ article.title }}</h3>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name":"Blog Vlog",
+  "class":"blog-vlog",
+  "settings": [
+  {
+    "type": "checkbox",
+    "id": "show",
+    "label": "Show this section?",
+    "default": true
+  },
+  {
+    "type": "text",
+    "id": "title",
+    "label": "Title"
+  }],
+  "blocks":[
+    {
+    "type": "article",
+    "name": "Vlog Articles",
+    "settings":[
+      {
+        "type":"article",
+        "id":"vlog_articles",
+        "label":"Select a Vlog Article"
+      }]
+  }]
+ }
+{% endschema %}
+

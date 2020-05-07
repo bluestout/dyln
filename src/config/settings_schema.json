@@ -78,6 +78,24 @@
         "id": "color_main_bg_mobile",
         "label": "Background Mobile",
         "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "blog_article_card_background",
+        "label": "Blog Article Card Background",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "blog_article_card_title",
+        "label": "Blog Article Card Title",
+        "default": "#161d25"
+      },
+      {
+        "type": "color",
+        "id": "blog_article_card_category_links",
+        "label": "Blog Article Category Links",
+        "default": "#00aedb"
       }
     ]
   },

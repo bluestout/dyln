@@ -1,0 +1,45 @@
+.blog-side-menu {
+  position: absolute;
+  margin-top: 10px;
+  right: 10px;
+  font-size: 20px;
+
+  @include media-query($medium-down) {
+    position: relative;
+    text-align: center;
+  }
+
+  &__btn {
+    display: flex;
+    align-items: baseline;
+
+    @include media-query($medium-down) {
+      justify-content: center;
+    }
+
+    i {
+      padding-left: 5px;
+      font-size: 12px;
+      color: #CCC;
+    }
+  }
+
+  &__list {
+    margin-top: 15px;
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      margin: 0 0 10px;
+      color: black;
+      text-align: left;
+      padding: 15px 10px;
+      border-bottom: 1px solid #CCC;
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+  }
+}

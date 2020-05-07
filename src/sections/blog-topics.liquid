@@ -1,0 +1,73 @@
+{% if section.settings.show %}
+  <div class="container">
+  {% for block in section.blocks %}
+    {% assign tag = block.settings.tag %}
+    <h2>{{ tag }}</h2>
+
+    <div class="row justify-content-center">
+      {% assign count = 0 %}
+      {% for article in blogs.chapters.articles %}
+        {% if index > 4 %}
+          {% break %}
+        {% endif %}
+
+        {% if article.tags contains tag %}
+          <div class="col-sm-12 col-md-6 col-lg-2 ">
+            <div class="recent-articles__card article-card article-card--xs">
+              <a href="{{ article.url }}"></a>
+              {%- render 'responsive-image' with
+                image: article.image.src,
+                max_width: 768,
+                max_height: 768,
+                wrapper_class: "article-card__thumbnail-wrapper",
+                image_class: "article-card__thumbnail"
+              -%}
+
+              <div class="article-card__content">
+                {% for tag in article.tags %}
+                  <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="article-card__category">{{ tag }}</a>
+                {% endfor %}
+                <h3>{{- article.title | truncate: 80 -}}</h3>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="row justify-content-center">
+        <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="blog-topics__more-link">More from {{ tag }}</a>
+    </div>
+  {% endfor %}
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name":"Blog Topics",
+  "class":"blog-topics",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show",
+      "label": "Show this section?",
+      "default": true
+    }
+  ],
+  "blocks":[
+     {
+      "type":"text",
+      "name":"Posts by Tags",
+      "limit":2,
+      "settings":[
+         {
+            "type":"text",
+            "id":"tag",
+            "label":"Category Name"
+         }
+      ]
+   }
+  ]
+}
+{% endschema %}
+

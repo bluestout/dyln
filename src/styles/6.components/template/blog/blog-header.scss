@@ -1,0 +1,131 @@
+.blog-header {
+  overflow: hidden;
+  height: 468px;
+
+  .container-fluid {
+    @include bg-image-only();
+    position: relative;
+    height: 100%;
+  }
+
+  @include media-query($medium-down) {
+    height: 232px;
+  }
+
+  &__content {
+    color: white;
+
+    h2 {
+      @include font-header(700);
+      @include text(40px, 1.25, white);
+
+      @include media-query($medium-down) {
+        @include text(16px);
+        margin-bottom: 5px;
+        width: 40%;
+        color: white;
+      }
+    }
+
+    p {
+      @include poppins(normal);
+      font-size: 24px;
+      line-height: 1.3;
+
+      @include media-query($medium-down) {
+        font-size: 12px;
+        width: 40%;
+      }
+    }
+  }
+
+  &__newsletter-flyout {
+    position: absolute;
+    right: 0;
+    bottom: 45px;
+    background-color: $color-theme-2;
+    padding: 20px 25px;
+    color: $color-white;
+    width: 367px;
+
+    @include media-query($medium-down) {
+      display: none;
+
+      &.modal-opened {
+        position: fixed;
+        display: inline-block;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 230px;
+        width: 80%;
+        z-index: $z-overlay-content;
+      }
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      padding-right: 100px;
+      min-height: 70px;
+      font-size: 18px;
+    }
+
+    input[type="email"] {
+      border: none;
+      border-bottom: 1px solid $color-white;
+      padding: 5px;
+      padding-left: 0;
+      outline: none;
+      color: $color-white;
+    }
+
+    button {
+      @include poppins(bold);
+      background-color: white;
+      color: $color-theme-2;
+      font-weight: 800;
+      border-radius: 50px;
+      margin-top: 20px;
+      font-size: 14px;
+      padding: 10px 20px;
+      border: none;
+    }
+
+    &-opener {
+      position: absolute;
+      right: 0;
+      top: 40%;
+      width: 60px;
+
+      @include media-query($medium-up) {
+        display: none;
+      }
+
+      p {
+        @include poppins(bold);
+        width: 100px;
+        text-align: left;
+        margin-top: 10px;
+        color: white;
+        background-color: $color-theme-2;
+        transform: rotate(-90deg);
+        padding: 5px 0 5px 10px;
+      }
+    }
+  }
+
+  &__newsletter-overlay {
+    &.modal-opened {
+      @include transition(opacity);
+      transition-delay: 30ms;
+      width: 100%;
+      height: 100%;
+      background-color: $color-black;
+      opacity: 0.5;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: $z-top;
+    }
+  }
+}

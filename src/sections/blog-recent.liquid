@@ -1,0 +1,52 @@
+{% if section.settings.show %}
+  <div class="container">
+    {% if section.settings.title != blank %}
+      <h2>{{- section.settings.title -}}</h2>
+    {% else %}
+      <h2>Recent Articles</h2>
+    {% endif %}
+
+    <div class="row justify-content-center">
+      {% for article in blogs.chapters.articles limit: 2 %}
+        <div class="col-md-6 col-lg-4">
+          <div class="recent-articles__card article-card article-card--sm">
+            <a href="{{ article.url }}"></a>
+            {%- render 'responsive-image' with
+              image: article.image.src,
+              max_width: 768,
+              max_height: 768,
+              wrapper_class: "article-card__thumbnail-wrapper",
+              image_class: "article-card__thumbnail"
+            -%}
+            <div class="article-card__content">
+              {% for tag in article.tags %}
+                <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="article-card__category">{{ tag }}</a>
+              {% endfor %}
+              <h3>{{- article.title -}}</h3>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Blog Recent",
+  "class": "blog-recent",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Recent Articles Title"
+    },
+    {
+      "type": "checkbox",
+      "id": "show",
+      "label": "Show this section?",
+      "default": true
+    }
+  ]
+}
+{% endschema %}
