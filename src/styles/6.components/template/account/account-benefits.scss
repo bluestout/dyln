@@ -20,11 +20,11 @@
 
   &__title {
     @include font-header(700);
-    @include text(14px, 20px, $color-theme-22, 0.71px);
+    @include text(14px, 20px, $color-theme-24, 0.71px);
   }
 
   &__description {
     @include font-header(500);
-    @include text(14px, 20px, $color-theme-22, 0.71px);
+    @include text(14px, 20px, $color-theme-24, 0.71px);
   }
 }
