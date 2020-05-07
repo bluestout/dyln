@@ -5,7 +5,6 @@ $color-red: #d21e1e;
 $color-blue: #0000ff;
 
 // theme main
-
 $color-theme-1: #00aedb;
 $color-theme-2: #20d480;
 $color-theme-4: #f4f4f4;
@@ -55,3 +54,17 @@ $color-body: $color-white;
 
 // Other colors
 $color-border: $color-black;
+
+// Theme colors
+$color-body-text: var(--color-body-text);
+$color-title: var(--color-title);
+$color-title-light: var(--color-title-light);
+$color-background: var(--color-main-background);
+$color-background-mobile: var(--color-main-background-mobile);
+$color-main: var(--color-main);
+$color-main-1: var(--color-main);
+$color-main-2: var(--color-main-2);
+$color-main-3: var(--color-main-3);
+$color-accent-1: var(--color-accent);
+$color-accent-2: var(--color-accent-2);
+$color-accent-3: var(--color-accent-3);
