@@ -6,7 +6,7 @@
  * @namespace password
  */
 
-import "../../../styles/account.scss";
+import "../../../styles/login.scss";
 
 const selectors = {
   recoverPasswordFormTriggers: "[data-recover-toggle]",
@@ -85,7 +85,7 @@ if (document.querySelector(selectors.recoverPasswordForm)) {
   resetPasswordSuccess();
 
   const triggers = document.querySelectorAll(
-    selectors.recoverPasswordFormTriggers,
+    selectors.recoverPasswordFormTriggers
   );
 
   for (let i = 0; i < triggers.length; i++) {

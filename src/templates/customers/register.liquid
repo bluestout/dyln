@@ -1,51 +1,81 @@
-<h1>{{ 'customer.register.title' | t }}</h1>
+<div class="login-page login-page--login">
+  <div class="container">
+    <div class="row no-gutters">
+      <div class="col-md-6">
+        <div class="login-page__login-col left">
 
-{% form 'create_customer' %}
-  {{ form.errors | default_errors }}
+          <h1 class="login-page__title">{{ 'customer.register.title' | t }}</h1>
 
-  <label for="FirstName" class="label-hidden">
-    {{ 'customer.register.first_name' | t }}
-  </label>
-  <input type="text"
-    name="customer[first_name]"
-    id="FirstName"
-    placeholder="{{ 'customer.register.first_name' | t }}"
-    autofocus
-    {% if form.first_name %}value="{{ form.first_name }}"{% endif %}>
+          <div class="oxi-social-login"></div>
 
-  <label for="LastName" class="label-hidden">
-    {{ 'customer.register.last_name' | t }}
-  </label>
-  <input type="text"
-    name="customer[last_name]"
-    id="LastName"
-    placeholder="{{ 'customer.register.last_name' | t }}"
-    {% if form.last_name %}value="{{ form.last_name }}"{% endif %}>
+          {% form 'create_customer' %}
+            {{ form.errors | default_errors }}
 
-  <label for="Email" class="label-hidden">
-    {{ 'customer.register.email' | t }}
-  </label>
-  <input type="email"
-    name="customer[email]"
-    id="Email"
-    class="{% if form.errors contains 'email' %}input-error{% endif %}"
-    placeholder="{{ 'customer.register.email' | t }}"
-    value="{% if form.email %}{{ form.email }}{% endif %}"
-    spellcheck="false"
-    autocomplete="off"
-    autocapitalize="off">
+            <label for="FirstName" class="label-hidden">
+              {{ 'customer.register.first_name' | t }}
+            </label>
+            <input type="text"
+              name="customer[first_name]"
+              id="FirstName"
+              placeholder="{{ 'customer.register.first_name' | t }}"
+              class="login-page__input half-left"
+              autofocus
+              {% if form.first_name %}value="{{ form.first_name }}"{% endif %} />
 
-  <label for="CreatePassword" class="label-hidden">
-    {{ 'customer.register.password' | t }}
-  </label>
-  <input type="password"
-    name="customer[password]"
-    id="CreatePassword"
-    class="{% if form.errors contains 'password' %}input-error{% endif %}"
-    placeholder="{{ 'customer.register.password' | t }}">
+            <label for="LastName" class="label-hidden">
+              {{ 'customer.register.last_name' | t }}
+            </label>
+            <input type="text"
+              name="customer[last_name]"
+              id="LastName"
+              class="login-page__input half-right"
+              placeholder="{{ 'customer.register.last_name' | t }}"
+              {% if form.last_name %}value="{{ form.last_name }}"{% endif %} />
 
-  <p>
-    <input type="submit" value="{{ 'customer.register.submit' | t }}" class="button">
-  </p>
-  <a href="{{ shop.url }}">{{ 'customer.register.cancel' | t }}</a>
-{% endform %}
+            <label for="Email" class="label-hidden">
+              {{ 'customer.register.email' | t }}
+            </label>
+            <input type="email"
+              name="customer[email]"
+              id="Email"
+              class="login-page__input{% if form.errors contains 'email' %} input-error{% endif %}"
+              placeholder="{{ 'customer.register.email' | t }}"
+              value="{% if form.email %}{{ form.email }}{% endif %}"
+              spellcheck="false"
+              autocomplete="off"
+              autocapitalize="off" />
+
+            <label for="CreatePassword" class="label-hidden">
+              {{ 'customer.register.password' | t }}
+            </label>
+            <input type="password"
+              name="customer[password]"
+              id="CreatePassword"
+              class="login-page__input{% if form.errors contains 'password' %} input-error{% endif %}"
+              placeholder="{{ 'customer.register.password' | t }}" />
+
+            <p class="login-page__link-static">
+              {{ 'customer.register.already_have_account_html' | t }}
+            </p>
+
+            <div class="text-center">
+              <input type="submit" value="{{ 'customer.register.submit' | t }}" class="login-page__submit" />
+            </div>
+
+          {% endform %}
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="login-page__login-col right">
+          <h2 class="login-page__title">{{ 'customer.register.benefits_await' | t }}</h2>
+          {% section 'account-benefits' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

@@ -1,29 +1,35 @@
-<h1>{{ 'customer.activate_account.title' | t }}</h1>
-<p>{{ 'customer.activate_account.subtext' | t }}</p>
+<div class="login-page login-page--activate">
+  <div class="container">
+    <div class="login-page__login-col">
+      <h1 class="login-page__title">{{ 'customer.activate_account.title' | t }}</h1>
+      <p class="login-page__subtext">{{ 'customer.activate_account.subtext' | t }}</p>
 
-{% form 'activate_customer_password' %}
-  {{ form.errors | default_errors }}
+      {% form 'activate_customer_password' %}
+        {{ form.errors | default_errors }}
 
-  <p>
-    <label for="CustomerPassword" class="label-hidden">
-      {{ 'customer.activate_account.password' | t }}
-    </label>
-    <input type="password"
-      name="customer[password]"
-      id="CustomerPassword"
-      placeholder="{{ 'customer.activate_account.password' | t }}">
-  </p>
+        <label for="CustomerPassword" class="label-hidden">
+          {{ 'customer.activate_account.password' | t }}
+        </label>
+        <input type="password"
+          name="customer[password]"
+          id="CustomerPassword"
+          class="login-page__input"
+          placeholder="{{ 'customer.activate_account.password' | t }}" />
 
-  <p>
-    <label for="CustomerPasswordConfirmation" class="label-hidden">
-      {{ 'customer.activate_account.password_confirm' | t }}
-    </label>
-    <input type="password"
-      name="customer[password_confirmation]"
-      id="CustomerPasswordConfirmation"
-      placeholder="{{ 'customer.activate_account.password_confirm' | t }}">
-  </p>
+        <label for="CustomerPasswordConfirmation" class="label-hidden">
+          {{ 'customer.activate_account.password_confirm' | t }}
+        </label>
+        <input type="password"
+          name="customer[password_confirmation]"
+          id="CustomerPasswordConfirmation"
+          class="login-page__input"
+          placeholder="{{ 'customer.activate_account.password_confirm' | t }}" />
 
-  <input type="submit" class="button" value="{{ 'customer.activate_account.submit' | t }}">
-  <input type="submit" class="button button--secondary" name="decline" value="{{ 'customer.activate_account.cancel' | t }}">
-{% endform %}
+        <div class="text-center">
+          <input type="submit" class="login-page__submit" value="{{ 'customer.activate_account.submit' | t }}">
+          <input type="submit" class="login-page__submit-alt" name="decline" value="{{ 'customer.activate_account.cancel' | t }}">
+        </div>
+      {% endform %}
+    </div>
+  </div>
+</div>

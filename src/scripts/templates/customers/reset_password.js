@@ -1,1 +1,1 @@
-import "../../../styles/account.scss";
+import "../../../styles/login.scss";

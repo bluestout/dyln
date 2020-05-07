@@ -1,0 +1,30 @@
+.account-benefits {
+  margin: 0 0 5px;
+
+  &__usp {
+    margin: 0 0 25px;
+    display: flex;
+  }
+
+  &__icon {
+    width: 35px;
+    margin: auto 15px auto 0;
+    align-self: center;
+    flex: 0 0 35px;
+  }
+
+  &__content {
+    align-self: center;
+    flex: auto;
+  }
+
+  &__title {
+    @include font-header(700);
+    @include text(14px, 20px, $color-theme-22, 0.71px);
+  }
+
+  &__description {
+    @include font-header(500);
+    @include text(14px, 20px, $color-theme-22, 0.71px);
+  }
+}
