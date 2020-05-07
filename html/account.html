@@ -115,7 +115,7 @@
             </span>
             <span class="account-header__points-number">100</span>
           </div>
-          <div class="account-header__squiggle">
+          <div class="account-header__squiggle d-none d-lg-block">
             <svg
               width="37"
               height="4"
@@ -131,7 +131,7 @@
               />
             </svg>
           </div>
-          <div class="account-header__points">
+          <div class="account-header__points d-none d-lg-block">
             <span class="account-header__points-text">Refer a Friend</span>
             <span class="account-header__points-icon" aria-ignore="true">
               <svg
@@ -155,7 +155,7 @@
             </span>
             <span class="account-header__points-number">150</span>
           </div>
-          <div class="account-header__squiggle">
+          <div class="account-header__squiggle d-none d-lg-block">
             <svg
               width="37"
               height="4"
@@ -171,7 +171,7 @@
               />
             </svg>
           </div>
-          <div class="account-header__points">
+          <div class="account-header__points d-none d-lg-block">
             <span class="account-header__points-text">Like us on Facebook</span>
             <span class="account-header__points-icon" aria-ignore="true">
               <svg
@@ -200,8 +200,8 @@
 
       <div class="container account-header__container">
         <div class="row no-gutters">
-          <div class="col-lg-2"></div>
-          <div class="col-lg-8 d-flex">
+          <div class="col-xl-2 col-lg-1 d-none d-md-block"></div>
+          <div class="col-xl-8 col-lg-10 d-flex">
             <button type="button" class="account-header__edit">
               <span class="account-header__edit-icon" aria-ignore="true">
                 <svg
@@ -231,7 +231,7 @@
             </button>
             <div class="account-header__body">
               <div class="row no-gutters">
-                <div class="col-lg-6">
+                <div class="col-lg-6 account-header__col-offset">
                   <h1 class="account-header__title">Welcome Jane</h1>
                   <!-- Not sure what the account rank colors will be, I assume
                   account-header__badge--gold, account-header__badge--bronze
@@ -383,14 +383,15 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-2"></div>
+          <div class="col-xl-2 col-lg-1 d-none d-md-block"></div>
         </div>
       </div>
+      <div class="account-header__wave"></div>
     </section>
 
-    <div class="container">
+    <div class="container account-container">
       <div class="row">
-        <div class="col-lg-2">
+        <div class="col-xl-2 col-lg-3 order-2 order-lg-1">
           <div class="account-sidebar">
             <h4 class="account-sidebar__title">Need to talk to a human?</h4>
             <a href="#" class="account-sidebar__link">
@@ -458,33 +459,74 @@
             </a>
           </div>
         </div>
-        <div class="col-lg-8">
+        <div class="col-xl-8 col-lg-9 order-1 order-lg-2">
           <div class="account-body">
-            <div class="account-body__header-tabs">
+            <div class="account-body__header-tabs open">
               <button type="button" class="account-body__header-tab active">
                 Dashboard
+                <span class="account-body__header-dash"></span>
               </button>
               <button type="button" class="account-body__header-tab">
                 DYLN Points
+                <span class="account-body__header-dash"></span>
               </button>
               <button type="button" class="account-body__header-tab">
                 Orders
+                <span class="account-body__header-dash"></span>
               </button>
               <button type="button" class="account-body__header-tab">
                 My Bottles
+                <span class="account-body__header-dash"></span>
               </button>
               <button type="button" class="account-body__header-tab">
                 My Subscriptions
+                <span class="account-body__header-dash"></span>
               </button>
               <button type="button" class="account-body__header-tab">
                 Profile
+                <span class="account-body__header-dash"></span>
               </button>
             </div>
 
             <div class="account-body__tabs">
               <div class="account-dash" style="display:none;">
                 <div class="row">
-                  <div class="col-lg-6">
+                  <div class="col-md-6">
+                    <div class="account-dash__refer-wrap d-md-none">
+                      <button type="button" class="account-dash__refer-btn">
+                        <span class="account-dash__refer-btn-text"
+                          >Refer a Friend</span
+                        >
+                        <span
+                          class="account-dash__refer-btn-icon"
+                          aria-ignore="true"
+                        >
+                          <svg
+                            width="12"
+                            height="15"
+                            viewBox="0 0 12 15"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g fill="none" fill-rule="evenodd">
+                              <path
+                                d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z"
+                                stroke="#FFF"
+                                stroke-width="1.5"
+                              />
+                              <path
+                                fill="#FFF"
+                                d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                        <span class="account-dash__refer-btn-num">150</span>
+                      </button>
+                      <div></div>
+                      <a href="#" class="account-dash__refer-link"
+                        >Earn or Redeem points</a
+                      >
+                    </div>
                     <div class="account-dash__bottles">
                       <h3 class="account-dash__title">
                         <span class="account-dash__title-txt">My Bottles</span>
@@ -683,8 +725,8 @@
                     </div>
                   </div>
 
-                  <div class="col-lg-6">
-                    <div class="account-dash__refer-wrap">
+                  <div class="col-md-6">
+                    <div class="account-dash__refer-wrap d-none d-md-block">
                       <button type="button" class="account-dash__refer-btn">
                         <span class="account-dash__refer-btn-text"
                           >Refer a Friend</span
@@ -752,7 +794,7 @@
               <div class="account-points" style="display:none;">
                 <!-- Whole section will come from an external source -->
                 <div class="row">
-                  <div class="col-lg-6">
+                  <div class="col-md-6">
                     <div class="account-points__earned-amount">
                       <span
                         ><svg
@@ -1190,7 +1232,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-6">
+                  <div class="col-md-6">
                     <h3 class="account-points__earn-title">
                       Earn more DYLN Points
                     </h3>
@@ -1223,7 +1265,6 @@
                           Refer a Friend
                         </div>
                       </div>
-                      <div class="clearfix"></div>
                     </div>
                     <div class="account-points__earn-block">
                       <div class="account-points__earn-left">
@@ -1260,7 +1301,6 @@
                           Share on Social Media
                         </div>
                       </div>
-                      <div class="clearfix"></div>
                     </div>
                     <div class="account-points__earn-block">
                       <div class="account-points__earn-left">
@@ -1300,7 +1340,6 @@
                           Follow us on Twitter
                         </div>
                       </div>
-                      <div class="clearfix"></div>
                     </div>
                     <h4 class="account-points__rewards-note">
                       Look out for the
@@ -1359,7 +1398,7 @@
                 </div>
                 <div class="account-orders__order">
                   <div class="row">
-                    <div class="col-6">
+                    <div class="col-md-6">
                       <h4 class="account-orders__title">Order No. 00ABC0000</h4>
                       <div class="account-orders__info">
                         <strong>Placed on:</strong>&nbsp;<span>00/00/0000</span>
@@ -1408,7 +1447,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6">
                       <h4 class="account-orders__item-title last">
                         Order Content
                       </h4>
@@ -1441,7 +1480,6 @@
                             <strong>Total: $00.00</strong>
                           </div>
                         </div>
-                        <div class="clearfix"></div>
                       </div>
                       <div class="account-orders__item">
                         <div class="account-orders__item-left">
@@ -1472,7 +1510,6 @@
                             <strong>Total: $00.00</strong>
                           </div>
                         </div>
-                        <div class="clearfix"></div>
                       </div>
                       <div class="account-orders__totals">
                         <div class="account-orders__totals-left text-right">
@@ -1503,7 +1540,6 @@
                             $00.00
                           </div>
                         </div>
-                        <div class="clearfix"></div>
                       </div>
                     </div>
                   </div>
@@ -1527,7 +1563,7 @@
 
                 <div class="account-orders__order">
                   <div class="row">
-                    <div class="col-6">
+                    <div class="col-md-6">
                       <h4 class="account-orders__title">Order No. 80ABCXX00</h4>
                       <div class="account-orders__info">
                         <strong>Placed on:</strong>&nbsp;<span>00/00/0000</span>
@@ -1576,7 +1612,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-6" style="display:none;">
+                    <div class="col-md-6" style="display:none;">
                       <h4 class="account-orders__item-title last">
                         Order Content
                       </h4>
@@ -1609,7 +1645,6 @@
                             <strong>Total: $00.00</strong>
                           </div>
                         </div>
-                        <div class="clearfix"></div>
                       </div>
                       <div class="account-orders__item">
                         <div class="account-orders__item-left">
@@ -1640,7 +1675,6 @@
                             <strong>Total: $00.00</strong>
                           </div>
                         </div>
-                        <div class="clearfix"></div>
                       </div>
                       <div class="account-orders__totals">
                         <div class="account-orders__totals-left text-right">
@@ -1671,7 +1705,6 @@
                             $00.00
                           </div>
                         </div>
-                        <div class="clearfix"></div>
                       </div>
                     </div>
                   </div>
@@ -1692,7 +1725,7 @@
 
               <div class="account-bottles">
                 <div class="row no-gutters">
-                  <div class="col-lg-6">
+                  <div class="col-md-6">
                     <div class="account-bottles__bottle">
                       <div class="account-bottles__bottle-progress-wrap">
                         <!-- progress must be in percent, so between 0 and 100. It needs to be in steps of 5, so 5, 10, 15, 20,... that is to reduce the size of the css file - each percent has its own class -->
@@ -1777,7 +1810,7 @@
                       </button>
                     </div>
                   </div>
-                  <div class="col-lg-6">
+                  <div class="col-md-6">
                     <div class="account-bottles__sub">
                       <div class="account-bottles__sub-header">
                         <img
@@ -1840,7 +1873,6 @@
                             to your upcoming shippment.
                           </div>
                         </div>
-                        <div class="clearfix"></div>
                       </div>
 
                       <div class="account-bottles__sub-usp">
@@ -1883,7 +1915,6 @@
                             Savings start at 10% when you add a Subscription
                           </div>
                         </div>
-                        <div class="clearfix"></div>
                       </div>
 
                       <div class="account-bottles__sub-usp">
@@ -1918,7 +1949,6 @@
                             Customize your settings anytime
                           </div>
                         </div>
-                        <div class="clearfix"></div>
                       </div>
 
                       <div class="account-bottles__sub-usp">
@@ -1955,7 +1985,6 @@
                             Cancel Anytime
                           </div>
                         </div>
-                        <div class="clearfix"></div>
                       </div>
 
                       <div class="account-bottles__sub-note">
@@ -2022,7 +2051,7 @@
                       </div>
 
                       <div class="row no-gutters justify-content-center">
-                        <div class="col-4">
+                        <div class="col-lg-4 col-5">
                           <div class="account-bottles__sub-diff">
                             <p>Extra Diffuser</p>
                             <h6>Single-Pack</h6>
@@ -2031,8 +2060,8 @@
                             </button>
                           </div>
                         </div>
-                        <div class="col-2"></div>
-                        <div class="col-4">
+                        <div class="col-lg-2 col-1"></div>
+                        <div class="col-lg-4 col-5">
                           <div class="account-bottles__sub-diff">
                             <p>Extra Diffuser</p>
                             <h6>2-Pack</h6>
@@ -2041,7 +2070,7 @@
                             </button>
                           </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-lg-4 col-5">
                           <div class="account-bottles__sub-diff">
                             <p>Extra Diffuser</p>
                             <h6>4-Pack</h6>
@@ -2050,8 +2079,8 @@
                             </button>
                           </div>
                         </div>
-                        <div class="col-2"></div>
-                        <div class="col-4">
+                        <div class="col-lg-2 col-1"></div>
+                        <div class="col-lg-4 col-5">
                           <div class="account-bottles__sub-diff">
                             <p>Extra Diffuser</p>
                             <h6>8-Pack</h6>
@@ -2072,7 +2101,7 @@
 
               <div class="account-profile" style="display:none;">
                 <div class="row">
-                  <div class="col-lg-6">
+                  <div class="col-md-6">
                     <div class="account-profile__header">
                       <h3 class="account-profile__title">
                         Personal Information
@@ -2201,7 +2230,7 @@
                       </button>
                     </div>
                   </div>
-                  <div class="col-lg-6">
+                  <div class="col-md-6">
                     <div class="account-profile__header">
                       <h3 class="account-profile__title">Address Book</h3>
                       <button class="account-profile__edit">
@@ -2361,7 +2390,6 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-2"></div>
       </div>
     </div>
 
@@ -2392,7 +2420,12 @@
 
           <!-- modal header is the same, just the data points change -->
           <div class="registration-modal__header">
-            <h3 class="registration-modal__title">Bottle Registration</h3>
+            <h3
+              class="registration-modal__title"
+              style="background-image:url('./assets/dyln-account-mobile-modal-bg-leaf-closeup.min.png');"
+            >
+              Bottle Registration
+            </h3>
             <div class="registration-modal__progress">
               <span class="registration-modal__progress-point active"></span>
               <span class="registration-modal__progress-point"></span>
@@ -2497,7 +2530,6 @@
                   >Keep it short & sweet</span
                 >
               </div>
-              <div class="clearfix"></div>
             </div>
             <div class="registration-modal__navigation">
               <button type="button" class="registration-modal__btn-alt">
@@ -2731,7 +2763,6 @@
                   replaced on Jan, 6th 2020!
                 </p>
               </div>
-              <div class="clearfix"></div>
             </div>
             <div class="registration-modal__navigation">
               <div class="registration-modal__phone-wrap">
@@ -2852,6 +2883,39 @@
             </svg>
           </span>
         </button>
+
+        <div class="account-edit__header">
+          <h3
+            class="registration-modal__title"
+            style="background-image:url('./assets/dyln-account-mobile-modal-bg-leaf-closeup.min.png');"
+          >
+            Enhanced Profile
+          </h3>
+          <button type="button" class="account-edit__edit">
+            <span class="account-edit__edit-icon" aria-ignore="true">
+              <svg
+                width="16"
+                height="24"
+                viewBox="0 0 16 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g
+                  stroke="#FFF"
+                  stroke-width="1.5"
+                  fill="none"
+                  fill-rule="evenodd"
+                >
+                  <path
+                    stroke-linejoin="round"
+                    d="M11.387.838l3.608 2.083-10 17.32-3.713 2.355.105-4.438z"
+                  />
+                  <path stroke-linecap="square" d="M9.247 5.376l2.887 1.667" />
+                </g>
+              </svg>
+            </span>
+            <span class="visually-hidden">Edit background</span>
+          </button>
+        </div>
 
         <div class="registration-modal__progress edit">
           <span class="registration-modal__progress-point active"></span>
@@ -3146,7 +3210,7 @@
 
         <div class="account-edit__page">
           <h4 class="account-edit__group-label margin">Interests</h4>
-          <div>
+          <div class="clearfix">
             <div class="account-edit__image-checkbox-wrap">
               <label
                 class="account-edit__image-label"
@@ -3270,7 +3334,6 @@
                 style="background-image:url('/assets/edit-account-nature-2.png')"
               />
             </div>
-            <div class="clearfix"></div>
           </div>
 
           <div class="registration-modal__navigation edit">
@@ -3403,7 +3466,6 @@
                 <span class="account-bottle__diff-value">00/00/0000</span>
               </p>
             </div>
-            <div class="clearfix"></div>
           </div>
 
           <div class="account-bottle__hydration good" style="display:none;">
@@ -3442,7 +3504,6 @@
                 Super Hydration!
               </div>
             </div>
-            <div class="clearfix"></div>
           </div>
 
           <div class="account-bottle__hydration low" style="display:none;">
@@ -3488,7 +3549,6 @@
                 Low Hydration
               </div>
             </div>
-            <div class="clearfix"></div>
           </div>
 
           <div class="account-bottle__hydration poor" style="display:none;">
@@ -3534,7 +3594,6 @@
                 Poor Hydration!
               </div>
             </div>
-            <div class="clearfix"></div>
           </div>
 
           <div class="account-bottle__footer">
@@ -3828,7 +3887,6 @@
                 <span class="account-bottle__diff-value">00/00/0000</span>
               </p>
             </div>
-            <div class="clearfix"></div>
           </div>
 
           <div class="account-bottle__hydration good">
@@ -3867,7 +3925,6 @@
                 Super Hydration!
               </div>
             </div>
-            <div class="clearfix"></div>
           </div>
 
           <div class="account-bottle__replace-question">
@@ -3889,10 +3946,10 @@
     </div>
 
     <!-- Choose profile image modal -->
-    <div class="account-edit" style="display:none;">
-      <div class="account-edit__overlay"></div>
-      <div class="account-edit__inner">
-        <button type="button" class="account-edit__close">
+    <div class="image-edit" style="display:none;">
+      <div class="image-edit__overlay"></div>
+      <div class="image-edit__inner">
+        <button type="button" class="image-edit__close">
           <span class="visually-hidden">Close modal</span>
           <span aria-ignore="true">
             <svg
@@ -3913,144 +3970,125 @@
           </span>
         </button>
 
-        <div class="account-edit__page">
-          <h4 class="registration-modal__title">Choose a New Profile Image</h4>
-          <div>
-            <div class="account-edit__image-checkbox-wrap">
-              <label
-                class="account-edit__image-label"
-                for="profile-background-1"
-                >Hi Jane!</label
-              >
-              <input
-                type="radio"
-                id="profile-background-1"
-                name="profile-image"
-                value="profile-background-1"
-                class="account-edit__image-radio"
-                style="background-image:url('/assets/edit-account-workout-routines.png')"
-              />
-            </div>
-
-            <div class="account-edit__image-checkbox-wrap">
-              <label
-                class="account-edit__image-label"
-                for="profile-background-2"
-                >Hi Jane!</label
-              >
-              <input
-                type="radio"
-                id="profile-background-2"
-                name="profile-image"
-                value="profile-background-2"
-                class="account-edit__image-radio"
-                style="background-image:url('/assets/edit-account-sustainability.png')"
-              />
-            </div>
-
-            <div class="account-edit__image-checkbox-wrap">
-              <label
-                class="account-edit__image-label"
-                for="profile-background-3"
-                >Hi Jane!</label
-              >
-              <input
-                type="radio"
-                id="profile-background-3"
-                name="profile-image"
-                value="profile-background-3"
-                class="account-edit__image-radio"
-                style="background-image:url('/assets/edit-account-alkaline-recipes.png')"
-              />
-            </div>
-
-            <div class="account-edit__image-checkbox-wrap">
-              <label
-                class="account-edit__image-label"
-                for="profile-background-4"
-                >Hi Jane!</label
-              >
-              <input
-                type="radio"
-                id="profile-background-4"
-                name="profile-image"
-                value="profile-background-4"
-                class="account-edit__image-radio"
-                style="background-image:url('/assets/edit-account-nature.png')"
-              />
-            </div>
-
-            <div class="account-edit__image-checkbox-wrap">
-              <label
-                class="account-edit__image-label"
-                for="profile-background-5"
-                >Hi Jane!</label
-              >
-              <input
-                type="radio"
-                id="profile-background-5"
-                name="profile-image"
-                value="profile-background-5"
-                class="account-edit__image-radio"
-                style="background-image:url('/assets/edit-account-workout-routines-2.png')"
-              />
-            </div>
-
-            <div class="account-edit__image-checkbox-wrap">
-              <label
-                class="account-edit__image-label"
-                for="profile-background-6"
-                >Hi Jane!</label
-              >
-              <input
-                type="radio"
-                id="profile-background-6"
-                name="profile-image"
-                value="profile-background-6"
-                class="account-edit__image-radio"
-                style="background-image:url('/assets/edit-account-sustainability-2.png')"
-              />
-            </div>
-
-            <div class="account-edit__image-checkbox-wrap">
-              <label
-                class="account-edit__image-label"
-                for="profile-background-7"
-                >Hi Jane!</label
-              >
-              <input
-                type="radio"
-                id="profile-background-7"
-                name="profile-image"
-                value="profile-background-7"
-                class="account-edit__image-radio"
-                style="background-image:url('/assets/edit-account-alkaline-recipes-2.png')"
-              />
-            </div>
-
-            <div class="account-edit__image-checkbox-wrap">
-              <label
-                class="account-edit__image-label"
-                for="profile-background-8"
-                >Hi Jane!</label
-              >
-              <input
-                type="radio"
-                id="profile-background-8"
-                name="profile-image"
-                value="profile-background-8"
-                class="account-edit__image-radio"
-                style="background-image:url('/assets/edit-account-nature-2.png')"
-              />
-            </div>
-            <div class="clearfix"></div>
+        <h4 class="registration-modal__title">Choose a New Profile Image</h4>
+        <div class="clearfix">
+          <div class="account-edit__image-checkbox-wrap">
+            <label class="account-edit__image-label" for="profile-background-1"
+              >Hi Jane!</label
+            >
+            <input
+              type="radio"
+              id="profile-background-1"
+              name="profile-image"
+              value="profile-background-1"
+              class="account-edit__image-radio"
+              style="background-image:url('/assets/edit-account-workout-routines.png')"
+            />
           </div>
 
-          <div class="registration-modal__navigation">
-            <button type="button" class="registration-modal__btn-wire-alt">
-              Update
-            </button>
+          <div class="account-edit__image-checkbox-wrap">
+            <label class="account-edit__image-label" for="profile-background-2"
+              >Hi Jane!</label
+            >
+            <input
+              type="radio"
+              id="profile-background-2"
+              name="profile-image"
+              value="profile-background-2"
+              class="account-edit__image-radio"
+              style="background-image:url('/assets/edit-account-sustainability.png')"
+            />
           </div>
+
+          <div class="account-edit__image-checkbox-wrap">
+            <label class="account-edit__image-label" for="profile-background-3"
+              >Hi Jane!</label
+            >
+            <input
+              type="radio"
+              id="profile-background-3"
+              name="profile-image"
+              value="profile-background-3"
+              class="account-edit__image-radio"
+              style="background-image:url('/assets/edit-account-alkaline-recipes.png')"
+            />
+          </div>
+
+          <div class="account-edit__image-checkbox-wrap">
+            <label class="account-edit__image-label" for="profile-background-4"
+              >Hi Jane!</label
+            >
+            <input
+              type="radio"
+              id="profile-background-4"
+              name="profile-image"
+              value="profile-background-4"
+              class="account-edit__image-radio"
+              style="background-image:url('/assets/edit-account-nature.png')"
+            />
+          </div>
+
+          <div class="account-edit__image-checkbox-wrap">
+            <label class="account-edit__image-label" for="profile-background-5"
+              >Hi Jane!</label
+            >
+            <input
+              type="radio"
+              id="profile-background-5"
+              name="profile-image"
+              value="profile-background-5"
+              class="account-edit__image-radio"
+              style="background-image:url('/assets/edit-account-workout-routines-2.png')"
+            />
+          </div>
+
+          <div class="account-edit__image-checkbox-wrap">
+            <label class="account-edit__image-label" for="profile-background-6"
+              >Hi Jane!</label
+            >
+            <input
+              type="radio"
+              id="profile-background-6"
+              name="profile-image"
+              value="profile-background-6"
+              class="account-edit__image-radio"
+              style="background-image:url('/assets/edit-account-sustainability-2.png')"
+            />
+          </div>
+
+          <div class="account-edit__image-checkbox-wrap">
+            <label class="account-edit__image-label" for="profile-background-7"
+              >Hi Jane!</label
+            >
+            <input
+              type="radio"
+              id="profile-background-7"
+              name="profile-image"
+              value="profile-background-7"
+              class="account-edit__image-radio"
+              style="background-image:url('/assets/edit-account-alkaline-recipes-2.png')"
+            />
+          </div>
+
+          <div class="account-edit__image-checkbox-wrap">
+            <label class="account-edit__image-label" for="profile-background-8"
+              >Hi Jane!</label
+            >
+            <input
+              type="radio"
+              id="profile-background-8"
+              name="profile-image"
+              value="profile-background-8"
+              class="account-edit__image-radio"
+              style="background-image:url('/assets/edit-account-nature-2.png')"
+            />
+          </div>
+        </div>
+
+        <div class="registration-modal__navigation">
+          <button type="button" class="registration-modal__btn-wire-alt">
+            Update
+          </button>
         </div>
       </div>
     </div>
