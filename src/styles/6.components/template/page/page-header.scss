@@ -1,0 +1,42 @@
+.page-header {
+  h1,h2 {
+    @include font-header(500);
+    @include text(40px,60px,$color-white, 1.2px);
+    align-self: center;
+  }
+
+  p {
+    @include font-header;
+    @include text(22px,30px,$color-white, 1px);
+    @include font-header;
+    align-self: center;
+    margin: 10px 0 0;
+  }
+
+  &__box {
+    text-align: center;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    min-height: 250px;
+    background-color: $color-main-1;
+    margin: 0 0 30px;
+    padding: 15px;
+  }
+
+  @include media-query($medium-down) {
+    h1,h2 {
+      font-size: 24px;
+      line-height: 34px;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    &__box {
+      min-height: 200px;
+    }
+  }
+}

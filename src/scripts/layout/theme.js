@@ -13,6 +13,7 @@ import "../components/tabs";
 import "../components/header";
 import "../components/ajaxcart";
 import "../components/scroll-to-data";
+import "../components/rte";
 
 import { focusHash, bindInPageLinks } from "@shopify/theme-a11y";
 
