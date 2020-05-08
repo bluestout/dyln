@@ -1,0 +1,7 @@
+#stockist-widget {
+  margin-bottom: 100px;
+
+  @include media-query($medium-down) {
+    margin-bottom: 40px;
+  }
+}
