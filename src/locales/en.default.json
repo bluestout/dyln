@@ -39,9 +39,9 @@
       }
     },
     "search": {
-      "title": "Search for products on our site",
-      "placeholder": "Search anything!",
-      "submit": "Search",
+      "title": "Search our site",
+      "placeholder": "Search",
+      "submit": "Submit",
       "heading": {
         "one": "Search result",
         "other": "Search results"
