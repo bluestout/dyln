@@ -1,80 +1,152 @@
 {% paginate search.results by 10 %}
 
-  <h1>
+<div class="search-page">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-3"></div>
+      <div class="col-lg-6">
+        <h1 class="search-page__title">
+          {% if search.performed %}
+            <span class="visually-hidden">{{ 'general.search.heading' | t: count: search.results_count }}:</span>
+              {{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+          {% else %}
+            {{ 'general.search.title' | t }}
+          {% endif %}
+        </h1>
+      </div>
+      <div class="col-lg-3"></div>
+      <div class="col-lg-6">
+        <form action="/search" method="get" role="search" class="search-page__form">
+          <label for="Search" class="visually-hidden">
+            {{ 'general.search.placeholder' | t }}
+          </label>
+          <input type="search"
+            name="q"
+            id="Search"
+            value="{{ search.terms | escape }}"
+            placeholder="{{ 'general.search.placeholder' | t }}" />
+          <button type="submit">
+            <span>{{ 'general.search.submit' | t }}</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
     {% if search.performed %}
-      <span class="visually-hidden">{{ 'general.search.heading' | t: count: search.results_count }}:</span>
-        {{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
-    {% else %}
-      {{ 'general.search.title' | t }}
-    {% endif %}
-  </h1>
-
-  <form action="/search" method="get" role="search">
-    <label for="Search" class="label-hidden">
-      {{ 'general.search.placeholder' | t }}
-    </label>
-    <input type="search"
-           name="q"
-           id="Search"
-           value="{{ search.terms | escape }}"
-           placeholder="{{ 'general.search.placeholder' | t }}">
-    <button type="submit" class="button">
-      {% include 'icon-search' %}
-      <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
-    </button>
-  </form>
-
-  {% if search.performed %}
-    {% if search.results_count == 0 %}
-      <p>{{ 'general.search.no_results_html' | t: terms: search.terms }}</p>
-    {% else %}
-      <h2 class="visually-hidden">{{ 'general.search.heading' | t: count: search.results_count }}</h2>
-      <ul>
-        {% for item in search.results %}
-          <li>
-            <a href="{{ item.url | within: collection }}">
-              {% assign featured_image = item.image | default: item.featured_image %}
-              {% if featured_image != blank %}
-                {{ featured_image | img_url: '240x240' | img_tag }}
+      {% if search.results_count == 0 %}
+        <p class="search-page__no-results">{{ 'general.search.no_results_html' | t: terms: search.terms }}</p>
+      {% else %}
+        <h2 class="visually-hidden">{{ 'general.search.heading' | t: count: search.results_count }}</h2>
+        <hr>
+        <ul class="search-page__list">
+          {% for item in search.results %}
+            <li class="search-page__item">
+              {% if item.object_type == 'product' %}
+                <a class="search-page__result-link" href="{{ item.url }}" title="{{ item.title }}">
+                  <span class="row">
+                    {% if item.featured_image %}
+                      <span class="col-lg-2 col-sm-3 col-4 align-self-center">
+                        {%- render 'responsive-image' with
+                          image: item.featured_image,
+                          max_width: 200,
+                          max_height: 200,
+                          span: true
+                        -%}
+                      </span>
+                    {% endif %}
+                    {% if item.featured_image %}
+                    <span class="col-lg-7 col-sm-5 col-5 align-self-center">
+                    {% else %}
+                    <span class="col-lg-9 col-col-sm-8 col-9 align-self-center">
+                    {% endif %}
+                      <h4 class="search-page__result-title">{{ item.title }}</h4>
+                      {% if item.compare_at_price > item.price %}
+                        <span class="search-page__result-note">{{ 'products.product.on_sale' | t }}</span>
+                      {% endif %}
+                      {% unless item.available %}
+                        <span class="search-page__result-note">{{ 'products.product.sold_out' | t }}</span>
+                      {% endunless %}
+                    {% if item.featured_image %}
+                    </span>
+                    {% else %}
+                    </span>
+                    {% endif %}
+                    <span class="col-lg-3 col-sm-4 col-3 align-self-center">
+                      <span class="search-page__result-price">
+                        {% if item.compare_at_price > item.price %}
+                          {% if item.price_varies %}
+                            {% assign sale_price = item.price | money %}
+                            {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+                          {% else %}
+                            <span class="visually-hidden">{{ 'products.product.on_sale' | t }}</span>
+                            <span>{{ item.price | money }}</span>
+                          {% endif %}
+                          <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+                          <s>{{ item.compare_at_price | money }}</s>
+                        {% else %}
+                          {% if item.price_varies %}
+                            {% assign price = item.price | money %}
+                            <span>{{ 'products.product.from_text_html' | t: price: price }}</span>
+                          {% else %}
+                            <span>{{ item.price | money }}</span>
+                          {% endif %}
+                        {% endif %}
+                      </span>
+                    </span>
+                  </span>
+                </a>
+              {% else %}
+                <a class="search-page__result-link" href="{{ item.url }}" title="{{ item.title }}">
+                  <span class="row">
+                    {% if item.image %}
+                      <span class="col-lg-2 col-sm-3 col-6 align-self-center search-page__image-col">
+                        {%- render 'responsive-image' with
+                          image: item.image,
+                          max_width: 300,
+                          max_height: 300,
+                          span: true
+                        -%}
+                      </span>
+                    {% endif %}
+                    {% if item.image %}
+                    <span class="col-lg-10 col-sm-9 align-self-center">
+                    {% else %}
+                    <span class="col-12 align-self-center">
+                    {% endif %}
+                      <h4 class="search-page__result-title">{{ item.title }}</h4>
+                      {% if item.object_type == "article" %}
+                        {% if item.tags contains "faq" %}
+                          <span class="search-page__result-tag">
+                            {{ item.tags[0] | upcase }}
+                          </span>
+                        {% else if item.tags != empty  %}
+                          <span class="search-page__result-tag">
+                            {{ item.tags[0] }}
+                            {% if item.published_at %} &#8212; {{ item.published_at | date: "%b %d, %Y" }}{% endif %}
+                          </span>
+                        {% endif %}
+                      {% endif %}
+                      <span class="search-page__result-content">
+                        {{ item.content | strip_html | truncate: 200 }}
+                      </span>
+                    {% if item.image %}
+                    </span>
+                    {% else %}
+                    </span>
+                    {% endif %}
+                  </span>
+                </a>
               {% endif %}
-              <h3>{{ item.title }}</h3>
-            </a>
-            {% if item.object_type == 'product' %}
-              <p>
-                {% if item.compare_at_price > item.price %}
-                  {% if item.price_varies %}
-                    {% assign sale_price = item.price | money %}
-                    {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
-                  {% else %}
-                    {{ 'products.product.on_sale' | t }}
-                    <span>{{ item.price | money }}</span>
-                  {% endif %}
-                  <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
-                  <s>{{ item.compare_at_price | money }}</s>
-                {% else %}
-                  {% if item.price_varies %}
-                    {% assign price = item.price | money %}
-                    <span>{{ 'products.product.from_text_html' | t: price: price }}</span>
-                  {% else %}
-                    <span>{{ item.price | money }}</span>
-                  {% endif %}
-                {% endif %}
-                {% unless item.available %}
-                {{ 'products.product.sold_out' | t }}
-                {% endunless %}
-              </p>
-            {% else %}
-              <p>{{ item.content | strip_html | truncatewords: 50 }}</p>
-            {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
 
-          </li>
-        {% endfor %}
-      </ul>
-
-      {% if paginate.pages > 1 %}
-        {% include 'pagination' %}
+        {% if paginate.pages > 1 %}
+          {% render 'pagination' %}
+        {% endif %}
       {% endif %}
     {% endif %}
-  {% endif %}
+  </div>
+</div>
 
 {% endpaginate %}
