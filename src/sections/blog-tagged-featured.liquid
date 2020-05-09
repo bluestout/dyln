@@ -1,0 +1,48 @@
+{% assign count = 0 %}
+
+{% for featured_article in blog.articles %}
+  {% if count < 1 %}
+
+    {% for tag in featured_article.tags %}
+      {% assign currentTag = tag %}
+    {% endfor %}
+
+    {% assign count = count | plus: 1 %}
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-12 col-lg-8">
+          <h2>{{ currentTag }}</h2>
+          <div class="blog-featured__article article-card article-card--lg">
+            <a href="{{ featured_article.url }}">
+
+              {%- render 'responsive-image' with
+                span: true,
+                image: featured_article.image.src,
+                max_width: 1024,
+                max_height: 1024,
+                wrapper_class: "article-card__thumbnail-wrapper",
+                image_class: "article-card__thumbnail"
+              -%}
+
+              <span class="article-card__content">
+                {% for tag in featured_article.tags %}
+                  <span class="article-card__category">{{ tag }}</span>
+                {% endfor %}
+                <h3>{{- featured_article.title -}}</h3>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% schema %}
+  {
+  "name": "Blog Featured",
+  "class": "blog-tagged-featured"
+  }
+{% endschema %}

@@ -87,6 +87,12 @@
       },
       {
         "type": "color",
+        "id": "color_blog_tagged_background",
+        "label": "Blog Category Page Background",
+        "default": "#f4f4f4"
+      },
+      {
+        "type": "color",
         "id": "blog_article_card_title",
         "label": "Blog Article Card Title",
         "default": "#161d25"
@@ -206,12 +212,6 @@
   {
     "name": "Cart",
     "settings": [
-      {
-        "type": "checkbox",
-        "id": "cart_notes_enable",
-        "label": "Enable cart notes",
-        "default": true
-      },
       {
         "type": "range",
         "id": "shipping_threshold",

@@ -14,3 +14,10 @@
     }
   }
 }
+
+&.blog-tagged {
+  .blog-popular {
+    padding-bottom: 80px;
+    margin-bottom: 0;
+  }
+}

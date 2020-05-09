@@ -83,7 +83,12 @@
       }
     },
     "general": {
-      "categories": "Categories"
+      "categories": "Categories",
+      "recent_articles_title": "Recent Articles",
+      "other_topics_title": "Other Topics"
+    },
+    "search": {
+      "placeholder": "Search Anything!"
     }
   },
   "cart": {

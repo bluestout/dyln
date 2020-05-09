@@ -25,7 +25,7 @@
 
               <div class="article-card__content">
                 {% for tag in article.tags %}
-                  <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="article-card__category">{{ tag }}</a>
+                  <a href="{{ blog.url }}/tagged/{{ tag | handle }}?view=tagged" class="article-card__category">{{ tag }}</a>
                 {% endfor %}
                 <h3>{{- article.title | truncate: 80 -}}</h3>
               </div>
@@ -36,7 +36,7 @@
     </div>
 
     <div class="row justify-content-center">
-        <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="blog-topics__more-link">More from {{ tag }}</a>
+        <a href="{{ blog.url }}/tagged/{{ tag | handle }}?view=tagged" class="blog-topics__more-link">More from {{ tag }}</a>
     </div>
   {% endfor %}
   </div>

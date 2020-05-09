@@ -1,0 +1,30 @@
+.article-card {
+  &:hover {
+    .article-card__social-sharing {
+      display: inline-block;
+    }
+  }
+
+  &__social-sharing {
+    display: none;
+    width: auto;
+    position: absolute;
+    top: 0;
+    right: 15px;
+    background-color: $color-white;
+    z-index: 10;
+    padding: 15px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+
+
+    .social-sharing svg path,
+    .social-sharing svg g {
+      fill: $color-theme-1;
+    }
+
+    .social-sharing a {
+      padding-right: 10px;
+    }
+  }
+}

@@ -21,7 +21,7 @@
 
               <div class="article-card__content-text">
                 {% for tag in article.tags %}
-                  <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="article-card__category">{{ tag }}</a>
+                  <a href="{{ blog.url }}/tagged/{{ tag | handle }}?view=tagged" class="article-card__category">{{ tag }}</a>
                 {% endfor %}
                 <h3>{{- article.title -}}</h3>
               </div>

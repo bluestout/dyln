@@ -16,7 +16,7 @@
 
         <div class="article-card__content">
           {% for tag in article.tags %}
-            <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="article-card__category">{{ tag }}</a>
+            <a href="{{ blog.url }}/tagged/{{ tag | handle }}?view=tagged" class="article-card__category">{{ tag }}</a>
           {% endfor %}
           <h3>{{- article.title -}}</h3>
         </div>
@@ -31,11 +31,11 @@
   "name": "Blog Featured",
   "class": "blog-featured",
   "settings": [
-      {
-      "type": "article",
-      "id": "featured_article",
-      "label": "Article to feature on Blog page"
-      }
+    {
+    "type": "article",
+    "id": "featured_article",
+    "label": "Article to feature on Blog page"
+    }
   ]
 }
 {% endschema %}

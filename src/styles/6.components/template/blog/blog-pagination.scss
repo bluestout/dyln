@@ -1,0 +1,17 @@
+&.blog-tagged {
+  .pagination {
+    display: flex;
+    justify-content: center;
+
+    .current {
+      @include font-header(bold);
+      @include text(20px, 1.2, $color-theme-1, 1px);
+    }
+
+    a {
+      @include font-header(medium);
+      @include text(20px, 1.2, $color-theme-1, 1px);
+      padding: 0 8px;
+    }
+  }
+}

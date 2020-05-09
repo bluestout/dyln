@@ -1,11 +1,13 @@
 .blog-recent,
 .blog-popular,
 .blog-topics,
+.blog-recent-tagged,
 .blog-search,
 .blog-featured,
 .blog-mid-banner-upper,
 .blog-mid-banner-lower,
-.blog-vlog {
+.blog-vlog,
+.blog-tagged-featured {
   margin: 60px auto;
 
   h2 {
@@ -21,13 +23,23 @@
   }
 }
 
+.blog-tagged-featured {
+  h2 {
+    text-align: left;
+  }
+}
+
 @import "./blog-header";
 @import "../../global/blog/blog-newsletter";
 @import "./blog-featured";
 @import "./blog-popular";
+@import "./blog-recent";
 @import "./blog-search";
+@import "../../global/ajax-search";
 @import "./blog-side-menu";
 @import "./blog-banner";
 @import "./blog-mid-banner";
 @import "./blog-vlog";
 @import "./blog-topics";
+@import "./blog-pagination";
+@import "./blog-social-sharing";
