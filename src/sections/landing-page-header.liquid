@@ -1,0 +1,51 @@
+<div class="container-fluid d-flex" style="background-image:url('{{ section.settings.background.src | image_url }}')"​​​​​​>
+  <div class="container">
+    <div class="landing-page-header-wrapper d-flex">
+      <div class="col-md-2"></div>
+
+      <div class="col-md-4">
+        {%- render 'responsive-image' with
+          image: section.settings.foreground_image.src,
+          max_width: 1024,
+          max_height: 1024,
+          wrapper_class: "landing-page-header__image-wrapper",
+          image_class: "landing-page-header__image"
+        -%}
+
+      </div>
+
+      <div class="col-md-6">
+        <div class="landing-page-header__content">
+          {%- if section.settings.title != blank -%}
+            <h1>{{- section.settings.title -}}</h1>
+          {% endif %}
+          <p>{{- section.settings.content -}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Landing Page Header",
+    "class": "landing-page-header",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "image_picker",
+        "id": "background",
+        "label": "Background"
+      },
+      {
+      "type": "image_picker",
+      "id": "foreground_image",
+      "label": "Foreground Image"
+      }
+    ]
+  }
+{% endschema %}
