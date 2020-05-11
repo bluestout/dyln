@@ -1,0 +1,50 @@
+<div class="container" data-accordion-parent=true>
+  <div class="row">
+    <h2>{{ section.settings.title }}</h2>
+    <div class="lp-faq__container">
+      {% for block in section.blocks %}
+        <div class="lp-faq__item">
+          <button class="lp-faq__item-title" data-accordion-button="{{ forloop.index }}">
+            <h4>{{ block.settings.faq_title }}</h4>
+            <span class="lp-faq__item-closed">+</span>
+            <span class="lp-faq__item-open">-</span>
+          </button>
+          <div class="lp-faq__item-content" data-accordion-content="{{ forloop.index }}">
+            <p>{{ block.settings.faq_content }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+  "name":"Landing Page FAQs",
+  "class": "lp-faq",
+  "settings":[
+    {
+    "type": "text",
+    "id": "title",
+    "label": "Title"
+    }
+  ],
+  "blocks":[
+    {
+    "type":"text",
+    "name":"FAQs",
+    "settings":[
+      {
+      "type":"text",
+      "id":"faq_title",
+      "label":"Add FAQ Title"
+      },
+      {
+      "type":"text",
+      "id":"faq_content",
+      "label":"Add FAQ Content"
+      }
+  ]
+  }
+  ]
+  }
+{% endschema %}

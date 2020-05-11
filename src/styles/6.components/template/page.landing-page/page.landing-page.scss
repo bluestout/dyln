@@ -3,3 +3,10 @@
 @import "./landing-page-recommendations";
 @import "./landing-page-banner";
 @import "./landing-page-subscription";
+@import "./landing-page-faq";
+
+.lp-faq,
+.lp-recommendations,
+.lp-banner {
+  margin: 40px 0;
+}
