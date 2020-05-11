@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+  </div>
+</div>
+{% schema %}
+  {
+  "name":"Landing Pages Steps",
+  "settings":[
+  {
+  "id":"text-box",
+  "type":"text",
+  "label":"Heading",
+  "default":"Title"
+  }
+  ],
+  "blocks":[
+  {
+  "type":"text",
+  "name":"Posts by Tags",
+  "limit":2,
+  "settings":[
+  {
+  "type":"text",
+  "id":"step_title",
+  "label":"Step Title"
+  },
+  {
+  "type":"checkbox",
+  "id":"video_tab",
+  "label":"Step with video tab?"
+  },
+  {
+  "type":"checkbox",
+  "id":"illustrations_tab",
+  "label":"Step with illustrations tab?"
+  },
+  {
+  "type":"video_url",
+  "id":"video",
+  "accept":[
+  "youtube",
+  "vimeo"
+  ],
+  "label":"Step Video"
+  },
+  {
+  "type":"richtext",
+  "id":"column_richtext",
+  "label":"Illustrations content"
+  },
+  {
+  "type":"richtext",
+  "id":"step_content",
+  "label":"Step content"
+  }
+  ]
+  }
+  ]
+  }
+{% endschema %}
