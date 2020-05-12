@@ -5,7 +5,7 @@
     display: flex;
     align-items: flex-end;
 
-    @include media-query($medium-down) {
+    @include media-query($large-down) {
       display: none;
     }
   }

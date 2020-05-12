@@ -14,26 +14,27 @@
       {% paginate blog.articles by 6 %}
         {% for article in blog.articles %}
           <div class="col-md-5 col-lg-5">
-            <div class="col-lg-12">
-              <div class="recent-articles__card article-card article-card--sm">
-                <div class="article-card__social-sharing">
-                  {% render 'social-sharing' share_icons: true %}
-                </div>
-                <a href="{{ article.url }}"></a>
+            <div class="recent-articles__card article-card article-card--sm">
+              <div class="article-card__social-sharing">
+                {% render 'social-sharing' share_icons: true %}
+              </div>
+              <a href="{{ article.url }}">
                 {%- render 'responsive-image' with
+                  span: true,
                   image: article.image.src,
                   max_width: 768,
                   max_height: 768,
                   wrapper_class: "article-card__thumbnail-wrapper",
                   image_class: "article-card__thumbnail"
                 -%}
-                <div class="article-card__content">
+
+                <span class="article-card__content">
                   {% for tag in article.tags %}
-                    <a href="{{ blog.url }}/tagged/{{ tag | handle }}?view=tagged" class="article-card__category">{{ tag }}</a>
+                    <span class="article-card__category">{{ tag }}</span>
                   {% endfor %}
                   <h3>{{- article.title -}}</h3>
-                </div>
-              </div>
+                </span>
+              </a>
             </div>
           </div>
         {% endfor %}

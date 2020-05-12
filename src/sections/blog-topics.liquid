@@ -7,36 +7,24 @@
     <div class="row justify-content-center">
       {% assign count = 0 %}
       {% for article in blogs.blog.articles %}
-        {% if index > 4 %}
+        {% if count > 3 %}
           {% break %}
         {% endif %}
 
         {% if article.tags contains tag %}
+          {% assign count = count | plus: 1 %}
           <div class="col-sm-12 col-md-6 col-lg-2 ">
-            <div class="recent-articles__card article-card article-card--xs">
-              <a href="{{ article.url }}"></a>
-              {%- render 'responsive-image' with
-                image: article.image.src,
-                max_width: 768,
-                max_height: 768,
-                wrapper_class: "article-card__thumbnail-wrapper",
-                image_class: "article-card__thumbnail"
-              -%}
-
-              <div class="article-card__content">
-                {% for tag in article.tags %}
-                  <a href="{{ blog.url }}/tagged/{{ tag | handle }}?view=tagged" class="article-card__category">{{ tag }}</a>
-                {% endfor %}
-                <h3>{{- article.title | truncate: 80 -}}</h3>
-              </div>
-            </div>
+            {% render 'blog-recent' with
+              blog_article: article,
+              size: "article-card--xs"
+            %}
           </div>
         {% endif %}
       {% endfor %}
     </div>
 
     <div class="row justify-content-center">
-        <a href="{{ blog.url }}/tagged/{{ tag | handle }}?view=tagged" class="blog-topics__more-link">More from {{ tag }}</a>
+      <a href="{{ blog.url }}/tagged/{{ tag | handle }}?view=tagged" class="blog-topics__more-link">More from {{ tag }}</a>
     </div>
   {% endfor %}
   </div>

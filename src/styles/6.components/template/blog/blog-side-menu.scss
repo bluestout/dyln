@@ -113,9 +113,35 @@
     right: 0;
     width: 200px;
 
+    @include media-query($xl-down) {
+      width: 160px;
+    }
+
+    @include media-query($large-down) {
+      position: relative;
+      width: 100%;
+
+      &__btn {
+        justify-content: center;
+      }
+    }
+
+    h3 {
+      text-align: left;
+
+      @include media-query($small) {
+        text-align: center;
+      }
+    }
+
     li {
       padding: 5px;
       margin-bottom: 0;
+      @include text(20px, 1.2, $color-theme-7, 1.2px);
+
+      @include media-query($large-down) {
+        text-align: center;
+      }
 
       &::after {
         display: none;

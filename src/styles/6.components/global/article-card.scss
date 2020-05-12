@@ -27,6 +27,7 @@
   &__category {
     @include font-body(500);
     @include text(12px, 20px, $color-blog-card-category, 1px);
+    display: block;
     text-transform: uppercase;
     position: relative;
     z-index: $z-base;
@@ -161,6 +162,14 @@
 }
 
 .recent-articles__card {
+  > a {
+    @include media-query($medium-down) {
+      display: flex;
+      width: 100%;
+      align-items: center;
+    }
+  }
+
   .article-card__thumbnail-wrapper {
     height: 175px;
 
@@ -172,6 +181,17 @@
       max-width: 100%;
       max-height: 100%;
       object-fit: cover;
+    }
+  }
+}
+
+.blog-recent,
+.blog-recent-tagged {
+  .recent-articles__card {
+    > a {
+      @include media-query($medium-down) {
+        flex-direction: column;
+      }
     }
   }
 }

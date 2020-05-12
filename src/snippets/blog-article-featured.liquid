@@ -1,19 +1,20 @@
-<div class="recent-articles__card article-card {{ size }}">
-  <a href="{{ blog_article.url }}">
+<div class="blog-featured__article article-card {{ size }}">
+  <a href="{{ article.url }}">
     {%- render 'responsive-image' with
-      span: true,
-      image: blog_article.image.src,
-      max_width: 768,
-      max_height: 768,
+      image: article.image.src,
+      max_width: 1024,
+      max_height: 1024,
       wrapper_class: "article-card__thumbnail-wrapper",
       image_class: "article-card__thumbnail"
     -%}
 
     <span class="article-card__content">
-      {% for tag in blog_article.tags %}
+
+      {% for tag in article.tags %}
         <span class="article-card__category">{{ tag }}</span>
       {% endfor %}
-      <h3>{{- blog_article.title -}}</h3>
+
+      <h3>{{- article.title -}}</h3>
     </span>
   </a>
 </div>
