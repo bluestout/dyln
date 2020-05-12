@@ -1,59 +1,96 @@
 <div class="container">
   <div class="row">
+    <h2>Follow these Easy steps to start...</h2>
+    {% for block in section.blocks %}
+      <div class="lp-steps__step">
+        <span class="lp-steps__step-num">{{ forloop.index }}</span>
+        <h3>{{ block.settings.step_title }}</h3>
+        <div class="lp-steps__step-tab-container" data-tabs-container>
+          <div class="lp-steps__step-tab-nav">
+            {% if block.settings.video_tab %}
+              <a class="lp-steps__step-tab" data-tab-link="0">
+                <h4>Video</h4>
+              </a>
+            {% endif %}
+
+            {% if block.settings.illustrations_tab %}
+              <a class="lp-steps__step-tab" data-tab-link="1">
+                <h4>Illustrations</h4>
+              </a>
+            {% endif %}
+          </div>
+          <div class="lp-steps__step-tab-content-wrapper">
+            {% if block.settings.video_tab %}
+              <div class="lp-steps__step-tab-content active" data-tab="0">
+                {{ block.settings.video }}
+                <iframe
+                    id="ytplayer"
+                    type="text/html"
+                    src="https://www.youtube.com/embed/{{ block.settings.video_id }}?autoplay=0&origin=http://example.com"
+                    frameborder="0"></iframe>
+              </div>
+            {% endif %}
+
+            {% if block.settings.illustrations_tab %}
+              <div class="lp-steps__step-tab-content" data-tab="1">
+                {{ block.settings.illustrations_content }}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+
   </div>
 </div>
 {% schema %}
   {
   "name":"Landing Pages Steps",
+  "class":"lp-steps",
   "settings":[
-  {
-  "id":"text-box",
-  "type":"text",
-  "label":"Heading",
-  "default":"Title"
-  }
+    {
+      "type":"text",
+      "id":"title",
+      "label":"Heading",
+      "default":"Title"
+    }
   ],
   "blocks":[
-  {
-  "type":"text",
-  "name":"Posts by Tags",
-  "limit":2,
-  "settings":[
-  {
-  "type":"text",
-  "id":"step_title",
-  "label":"Step Title"
-  },
-  {
-  "type":"checkbox",
-  "id":"video_tab",
-  "label":"Step with video tab?"
-  },
-  {
-  "type":"checkbox",
-  "id":"illustrations_tab",
-  "label":"Step with illustrations tab?"
-  },
-  {
-  "type":"video_url",
-  "id":"video",
-  "accept":[
-  "youtube",
-  "vimeo"
-  ],
-  "label":"Step Video"
-  },
-  {
-  "type":"richtext",
-  "id":"column_richtext",
-  "label":"Illustrations content"
-  },
-  {
-  "type":"richtext",
-  "id":"step_content",
-  "label":"Step content"
-  }
-  ]
+    {
+      "type":"text",
+      "name":"Steps",
+      "settings":[
+      {
+        "type":"text",
+        "id":"step_title",
+        "label":"Step Title"
+      },
+      {
+        "type":"checkbox",
+        "id":"video_tab",
+        "label":"Show First tab?"
+      },
+      {
+        "type":"checkbox",
+        "id":"illustrations_tab",
+        "label":"Step with illustrations tab?"
+      },
+      {
+        "type":"text",
+        "id":"video_id",
+        "label":"Step Video (Add YouTube Video ID"
+      },
+      {
+        "type":"html",
+        "id":"illustrations_content",
+        "label":"Illustrations content"
+      },
+      {
+        "type":"html",
+        "id":"step_content",
+        "label":"Step content"
+      }
+    ]
   }
   ]
   }
