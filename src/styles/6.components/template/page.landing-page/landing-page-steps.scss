@@ -1,29 +1,28 @@
 .lp-steps {
-  background: linear-gradient(180deg, rgba(231,240,242,1) 0%, rgba(255,255,255,1) 14%, rgba(255,255,255,1) 100%);
-
-  &::before {
-    content: "";
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    height: 50px;
-    top: 0px;
-    background-image: url("data:image/svg+xml,%3Csvg width='1600' height='67' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M.515 0h1601.29v46.132c-379.458 4.64-598.223 4.64-656.293 0-87.105-6.962-395.064 0-674.932 0S10.317 61 .515 66c-6.535 3.333-6.535-18.667 0-66z' fill='%23FFF' fill-rule='evenodd'/%3E%3C/svg%3E");
-  }
-
   h2 {
     @include font-header(bold);
     @include text(40px, 1.2, $color-theme-1, 2.3px);
     width: 100%;
     display: inline-block;
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 40px;
   }
 
   &__step {
     width: 100%;
     display: flex;
     flex-direction: column;
+    background: linear-gradient(180deg, rgba(231,240,242,1) 0%, rgba(255,255,255,1) 14%, rgba(255,255,255,1) 100%);
+
+    &::before {
+      content: "";
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      height: 50px;
+      top: 0px;
+      background-image: url("data:image/svg+xml,%3Csvg width='1600' height='67' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M.515 0h1601.29v46.132c-379.458 4.64-598.223 4.64-656.293 0-87.105-6.962-395.064 0-674.932 0S10.317 61 .515 66c-6.535 3.333-6.535-18.667 0-66z' fill='%23FFF' fill-rule='evenodd'/%3E%3C/svg%3E");
+    }
 
     &-container {
       width: 100%;
@@ -33,16 +32,17 @@
     &-num {
       text-align: center;
       background-color: $color-theme-1;
-      width: 30px;
-      height: 30px;
+      width: 50px;
+      height: 50px;
       display: inline-block;
       margin: 0 auto;
-      line-height: 2;
+      line-height: 1.7;
       border-radius: 50%;
       color: $color-white;
       position: relative;
-      top: -10px;
+      top: -30px;
       @include font-body(bold);
+      font-size: 30px;
     }
 
     h3 {
@@ -61,9 +61,26 @@
 
     &-tab {
       display: inline-block;
-      padding: 15px;
+      padding: 10px;
       border: 1px solid #888;
-      border-bottom: none;
+      border-bottom: 1px solid $color-white;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+      opacity: 0.5;
+      position: relative;
+      top: 1px;
+
+      h4 {
+        font-size: 24px;
+
+        @include media-query($large-down) {
+          font-size: 14px;
+        }
+      }
+
+      &.active {
+        opacity: 1;
+      }
 
       &-content {
         width: 100%;
@@ -72,6 +89,16 @@
         padding-top: 40px;
         max-width: 60%;
         flex-display: 0 0 60%;
+        display: none;
+
+        &.active {
+          display: flex;
+        }
+
+        @include media-query($large-down) {
+          max-width: 90%;
+          flex-display: 0 0 90%;
+        }
 
         > span {
           @include font-body(bold);

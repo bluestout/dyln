@@ -1,6 +1,7 @@
-<div class="container">
+<h2>{{ section.settings.title }}</h2>
+
+<div class="container-fluid">
   <div class="row">
-    <h2>Follow these Easy steps to start...</h2>
     {% for block in section.blocks %}
       <div class="lp-steps__step">
         <span class="lp-steps__step-num">{{ forloop.index }}</span>
@@ -8,14 +9,14 @@
         <div class="lp-steps__step-tab-container" data-tabs-container>
           <div class="lp-steps__step-tab-nav">
             {% if block.settings.video_tab %}
-              <a class="lp-steps__step-tab" data-tab-link="0">
-                <h4>Video</h4>
+              <a class="lp-steps__step-tab active" data-tab-link="0">
+                <h4>Video Instructions</h4>
               </a>
             {% endif %}
 
             {% if block.settings.illustrations_tab %}
               <a class="lp-steps__step-tab" data-tab-link="1">
-                <h4>Illustrations</h4>
+                <h4>Illustrated Instructions</h4>
               </a>
             {% endif %}
           </div>
@@ -24,10 +25,10 @@
               <div class="lp-steps__step-tab-content active" data-tab="0">
                 {{ block.settings.video }}
                 <iframe
-                    id="ytplayer"
-                    type="text/html"
-                    src="https://www.youtube.com/embed/{{ block.settings.video_id }}?autoplay=0&origin=http://example.com"
-                    frameborder="0"></iframe>
+                        id="ytplayer"
+                        type="text/html"
+                        src="https://www.youtube.com/embed/{{ block.settings.video_id }}?autoplay=0&origin=http://example.com"
+                        frameborder="0"></iframe>
               </div>
             {% endif %}
 
@@ -40,9 +41,9 @@
         </div>
       </div>
     {% endfor %}
-
   </div>
 </div>
+
 {% schema %}
   {
   "name":"Landing Pages Steps",
@@ -68,12 +69,22 @@
       {
         "type":"checkbox",
         "id":"video_tab",
-        "label":"Show First tab?"
+        "label":"Show first tab?"
+      },
+      {
+        "type":"text",
+        "id":"video_tab_title",
+        "label":"Insert title of first tab"
       },
       {
         "type":"checkbox",
         "id":"illustrations_tab",
-        "label":"Step with illustrations tab?"
+        "label":"Show second tab?"
+      },
+      {
+        "type":"text",
+        "id":"illustrations_tab_title",
+        "label":"Insert title of second tab"
       },
       {
         "type":"text",

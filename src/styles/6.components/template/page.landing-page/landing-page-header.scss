@@ -39,16 +39,19 @@
     position: absolute;
     top: 150px;
 
+    @include media-query($medium-down) {
+      top: 50px;
+    }
+
       h1 {
         @include font-header(bold);
-      @include text(40px, 1.25, $color-theme-7, 2.3px);
+        @include text(40px, 1.25, $color-theme-7, 2.3px);
 
-      @include media-query($medium-down) {
-        @include text(16px);
-        margin-bottom: 5px;
-        width: 40%;
-        color: white;
-      }
+        @include media-query($medium-down) {
+          @include text(16px);
+          margin-bottom: 5px;
+          width: 100%;
+        }
     }
 
     p {
