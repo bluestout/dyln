@@ -20,8 +20,8 @@
               </div>
             {% endfor %}
           </div>
-          <a href="#" class="lp-account__create-account-btn">
-            {{ section.settings.account_btn_text }} {{ section.settings.account_btn_text_bonus }}
+          <a href="#" class="lp-account__create-account-btn d-flex">
+            {{ section.settings.account_btn_text }} <span>{{ section.settings.account_btn_text_bonus }}</span> {% render 'icon-points-white' %}
           </a>
         </div>
       </div>

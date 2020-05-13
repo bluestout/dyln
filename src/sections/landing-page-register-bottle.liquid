@@ -6,8 +6,8 @@
           <span class="lp-register__step-num">{{ section.settings.step_number }}</span>
           <h3>{{ section.settings.step_title }}</h3>
           <p>{{ section.settings.step_content }}</p>
-          <a href="#" class="lp-account__register-bottle-btn">
-            {{ section.settings.account_btn_text }} {{ section.settings.account_btn_text_bonus }}
+          <a href="{{ section.settings.register_btn_link }}" class="lp-register__register-bottle-btn">
+            {% render 'icon-plus-circle' %} {{ section.settings.register_btn_text }}
           </a>
         </div>
       </div>
@@ -32,12 +32,20 @@
         "label":"Step Title"
       },
       {
+      "type":"textarea",
+      "id":"step_content",
+      "label":"Step Content"
+      },
+      {
         "type":"text",
-        "id":"account_btn_text",
+        "id":"register_btn_text",
         "label":"Register Bottle Text"
+      },
+      {
+        "type":"text",
+        "id":"register_btn_link",
+        "label":"Register Bottle Link"
       }
     ]
-  }
-  ]
   }
 {% endschema %}

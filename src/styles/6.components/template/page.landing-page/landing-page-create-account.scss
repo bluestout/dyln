@@ -1,50 +1,6 @@
 .lp-account {
   background-color: green;
 
-  h3 {
-    @include font-header(bold);
-    @include text(30px, 1.2, $color-theme-7, 1.7px);
-    width: 100%;
-    display: inline-block;
-    text-align: center;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    padding: 0px 150px;
-  }
-
-  &__container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    background: linear-gradient(180deg, rgba(231, 240, 242, 1) 0%, rgba(255, 255, 255, 1) 14%, rgba(255, 255, 255, 1) 100%);
-
-    &::before {
-      content: "";
-      position: relative;
-      display: inline-block;
-      width: 100%;
-      height: 50px;
-      top: 0px;
-      background-image: url("data:image/svg+xml,%3Csvg width='1600' height='67' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M.515 0h1601.29v46.132c-379.458 4.64-598.223 4.64-656.293 0-87.105-6.962-395.064 0-674.932 0S10.317 61 .515 66c-6.535 3.333-6.535-18.667 0-66z' fill='%23FFF' fill-rule='evenodd'/%3E%3C/svg%3E");
-    }
-  }
-
-  &__step-num {
-    @include font-body(bold);
-    text-align: center;
-    background-color: $color-theme-1;
-    width: 50px;
-    height: 50px;
-    display: inline-block;
-    margin: 0 auto;
-    line-height: 1.7;
-    border-radius: 50%;
-    color: $color-white;
-    position: relative;
-    top: -30px;
-    font-size: 30px;
-  }
-
   &__create-account-btn {
     @include button(solid, r, 2);
     text-align: center;

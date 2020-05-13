@@ -1,0 +1,15 @@
+.lp-referal {
+  &__refer-btn {
+    @include button(solid, r, 1);
+    text-align: center;
+    width: 250px;
+    margin-top: 30px;
+    display: flex;
+
+    span {
+      @include font-header(normal);
+      padding: 0 5px;
+      padding-left: 15px;
+    }
+  }
+}
