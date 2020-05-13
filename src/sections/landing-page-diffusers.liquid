@@ -1,0 +1,100 @@
+{% comment %} TODO add to cart logic for diffusers {% endcomment %}
+{% if section.settings.extra_product %}
+
+  {% if section.settings.title != empty %}
+    <div class="pdp-diffusers__title-header">
+      <h3 class="pdp-diffusers__title">{{ section.settings.title }}</h3>
+      {% if section.settings.note != empty %}
+        <span class="pdp-diffusers__note-button">
+          {% render 'icon-info' %}
+          <div class="pdp-diffusers__note-wrap">
+            <button class="pdp-diffusers__note-close" type="button">{% render 'icon-close' %}</button>
+            <div class="pdp-diffusers__note">{{ section.settings.note }}</div>
+          </div>
+        </span>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% assign e_product = all_products[section.settings.extra_product] %}
+  {%- assign e_current_variant = e_product.selected_or_first_available_variant -%}
+  {% form 'product', e_product, data-product-form: '', data-product-handle: e_product.handle, data-enable-history-state: 'true', class: "pdp-diffusers__form" %}
+
+    {% unless e_product.has_only_default_variant %}
+      <div class="pdp-diffusers__variants">
+        {% for e_var in e_product.variants %}
+          <div class="pdp-diffusers__variant">
+            <input class="pdp-diffusers__input" id="option-extra-{{ forloop.index }}" type="radio" name="id" value="{{ e_var.title }}" />
+            <label class="pdp-diffusers__label" for="option-extra-{{ forloop.index }}">{{ e_var.title }}</label>
+          </div>
+        {% endfor %}
+      </div>
+    {% endunless %}
+
+    <input type="hidden" id="Quantity" name="quantity" value="1" min="1" />
+
+    <div class="pdp-diffusers__btn-wrap">
+      <button
+              class="pdp-diffusers__regular-btn"
+              type="submit"
+              name="add"
+              data-pdp-extra-submit
+              {% unless e_current_variant.available %}disabled="disabled"{% endunless %}>
+        <span class="pdp-diffusers__regular-price">
+          <span>
+            {{ e_current_variant.price | money }}
+          </span>
+
+          {% if e_product.compare_at_price_max > e_product.price %}
+            <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+            <s>
+              {% if e_current_variant.compare_at_price > e_current_variant.price %}
+                {{ e_current_variant.compare_at_price | money }}
+              {% endif %}
+            </s>
+          {% endif %}
+        </span>
+        <span class="pdp-diffusers__regular-text">
+          {% if e_current_variant.available %}
+            {{ 'products.product.add_to_cart' | t }}
+          {% else %}
+            {{ 'products.product.sold_out' | t }}
+          {% endif %}
+        </span>
+      </button>
+
+      {% comment %} This is just a placeholder button {% endcomment %}
+      <button type="button" class="pdp-diffusers__sub-button">
+        <span class="pdp-diffusers__sub-price">$ 7.99</span>
+        <span class="pdp-diffusers__sub-btn-text">Subscribe</span>
+        <span class="pdp-diffusers__sub-btn-freq">Every Month</span>
+      </button>
+    </div>
+
+  {% endform %}
+
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Product Diffusers",
+    "class": "landing-page-diffusers",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title"
+      },
+      {
+        "type": "product",
+        "id": "extra_product",
+        "label": "Addable Product"
+      },
+      {
+        "type": "textarea",
+        "id": "note",
+        "label": "Note"
+      }
+    ]
+  }
+{% endschema %}

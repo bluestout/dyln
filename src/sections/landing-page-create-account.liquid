@@ -1,0 +1,83 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="lp-account__container">
+      <div class="container">
+        <div class="row flex-column align-items-center">
+          <span class="lp-account__step-num">{{ section.settings.step_number }}</span>
+          <h3>{{ section.settings.step_title }}</h3>
+          <div class="lp-account__recommendations">
+            {% for block in section.blocks %}
+              <div class="lp-account__recommendations-item">
+                <div class="lp-account__recommendations-item-icon">
+                  {%- if block.settings.feature_icon == "icon-bottle" -%}
+                    {% render 'icon-bottle' %}
+                  {%- endif -%}
+                </div>
+                <div class="lp-account__recommendations-item-content">
+                  <h4>{{ block.settings.feature_title }}</h4>
+                  <p>{{ block.settings.feature_content }}</p>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          <a href="#" class="lp-account__create-account-btn">
+            {{ section.settings.account_btn_text }} {{ section.settings.account_btn_text_bonus }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+  "name":"Landing Page Account",
+  "class":"lp-account",
+  "settings":[
+    {
+      "type":"text",
+      "id":"step_number",
+      "label":"Step Number",
+      "default":"3"
+    },
+    {
+      "type":"text",
+      "id":"step_title",
+      "label":"Step Title"
+    },
+    {
+      "type":"text",
+      "id":"account_btn_text",
+      "label":"Create Account Button Text"
+    },
+    {
+      "type":"text",
+      "id":"account_btn_text_bonus",
+      "label":"Create Account Disc. Text"
+    }
+  ],
+  "blocks":[
+  {
+  "type":"text",
+  "name":"Features",
+  "settings":[
+    {
+      "type":"text",
+      "id":"feature_icon",
+      "label":"Feature Icon (possible use cases: icon-bottle)"
+    },
+    {
+      "type":"text",
+      "id":"feature_title",
+      "label":"Feature Title"
+    },
+    {
+      "type":"text",
+      "id":"feature_content",
+      "label":"Feature Content"
+    }
+  ]
+  }
+  ]
+  }
+{% endschema %}

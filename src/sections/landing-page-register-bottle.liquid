@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="lp-register__container">
+      <div class="container">
+        <div class="row flex-column align-items-center">
+          <span class="lp-register__step-num">{{ section.settings.step_number }}</span>
+          <h3>{{ section.settings.step_title }}</h3>
+          <p>{{ section.settings.step_content }}</p>
+          <a href="#" class="lp-account__register-bottle-btn">
+            {{ section.settings.account_btn_text }} {{ section.settings.account_btn_text_bonus }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name":"Landing Page Register",
+    "class":"lp-register",
+    "settings":[
+      {
+        "type":"text",
+        "id":"step_number",
+        "label":"Step Number",
+        "default":"4"
+      },
+      {
+        "type":"text",
+        "id":"step_title",
+        "label":"Step Title"
+      },
+      {
+        "type":"text",
+        "id":"account_btn_text",
+        "label":"Register Bottle Text"
+      }
+    ]
+  }
+  ]
+  }
+{% endschema %}

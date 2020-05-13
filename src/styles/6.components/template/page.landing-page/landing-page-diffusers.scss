@@ -1,0 +1,286 @@
+.pdp-diffusers {
+  &__title-header {
+    position: relative;
+    margin: 0 0 5px;
+  }
+
+  &__title {
+    @include font-header(700);
+    @include text(24px, 33px, $color-title, 1.42px);
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__note-button {
+    @include no-browser-styling;
+    @include no-font-size;
+    position: relative;
+    padding: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+      .pdp-diffusers__note-wrap {
+        opacity: 1;
+        pointer-events: auto;
+        bottom: calc(100% + 5px);
+      }
+    }
+  }
+
+  &__note-wrap {
+    @include transition(bottom, opacity);
+    position: absolute;
+    left: calc(50% - 30px);
+    bottom: 100%;
+    width: 230px;
+    height: auto;
+    padding: 22px 15px 15px;
+    border: 2px solid $color-theme-15;
+    background-color: $color-background;
+    opacity: 0;
+    pointer-events: none;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 20px;
+      bottom: -20px;
+      border: 10px solid transparent;
+      border-top: 10px solid $color-theme-15;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 20px;
+      bottom: -18px;
+      border: 10px solid transparent;
+      border-top: 10px solid $color-white;
+    }
+
+    &:hover,
+    &:active {
+      opacity: 1;
+      pointer-events: auto;
+      bottom: calc(100% + 5px);
+    }
+  }
+
+  &__note-close {
+    @include no-browser-styling;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 2px;
+    margin: 0;
+
+    g {
+      stroke: $color-theme-8;
+    }
+  }
+
+  &__note {
+    @include font-body;
+    @include text(12px, 17px, $color-body-text, 0.71px);
+  }
+
+  &__variants {
+    margin: 0 0 20px;
+  }
+
+  &__variant {
+    display: inline-block;
+
+    &:last-of-type {
+      margin: 0 0 5px;
+    }
+
+    &:not(:last-of-type) {
+      margin: 0 20px 5px 0;
+    }
+  }
+
+  &__label {
+    @include font-header(500);
+    @include text(17px, 24px, $color-body-text, 1px);
+    @include underline($color-main-1, false);
+  }
+
+  &__input {
+    display: none;
+
+    &:checked {
+      + .pdp-diffusers__label {
+        color: $color-main-1;
+
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &__btn-wrap {
+    @include clearfix;
+  }
+
+  &__regular-btn {
+    @include button(solid, square, 1);
+    float: left;
+    width: 50%;
+    padding: 0;
+    height: 65px;
+  }
+
+  &__regular-price {
+    @include font-header(500);
+    @include text(16px, 20px, $color-white, 0.95px);
+  }
+
+  &__regular-text {
+    @include font-header(700);
+    @include text(16px, 20px, $color-white, 0.95px);
+    text-transform: uppercase;
+  }
+
+  &__sub-button {
+    @include button(wire, square, 1);
+    float: right;
+    width: 50%;
+    padding: 0;
+    height: 65px;
+  }
+
+  &__sub-price {
+    @include font-header(500);
+    @include text(16px, 20px, $color-theme-8, 0.95px);
+  }
+
+  &__sub-btn-text {
+    @include font-header(700);
+    @include text(16px, 20px, $color-theme-8, 0.95px);
+    text-transform: uppercase;
+  }
+
+  &__sub-btn-freq {
+    @include font-header(700);
+    @include text(10px, 15px, $color-theme-8, 0.59px);
+    position: absolute;
+    left: 50%;
+    bottom: 5px;
+    transform: translate(-50%);
+  }
+
+  @include media-query($medium-down) {
+    &__title-header {
+      margin: 0 auto 5px;
+      text-align: center;
+    }
+
+    &__title {
+      font-size: 20px;
+      line-height: 28px;
+      letter-spacing: 1.18px;
+    }
+
+    &__note-wrap {
+      left: initial;
+      right: calc(50% - 31px);
+
+      &::before {
+        left: initial;
+        right: 20px;
+      }
+
+      &::after {
+        left: initial;
+        right: 20px;
+      }
+
+      &:hover,
+      &:active {
+        opacity: 1;
+        pointer-events: auto;
+        bottom: calc(100% + 5px);
+      }
+    }
+
+    &__note {
+      font-size: 10px;
+      line-height: 15px;
+      letter-spacing: 0.5px;
+    }
+
+    &__variants {
+      margin: 0 0 10px;
+    }
+
+    &__variant {
+      &:last-of-type {
+        margin: 0 5px 5px;
+      }
+
+      &:not(:last-of-type) {
+        margin: 0 5px 5px 0;
+      }
+    }
+
+    &__label {
+      font-size: 12px;
+      line-height: 17px;
+      letter-spacing: 0.71px;
+    }
+
+    &__regular-btn {
+      height: 44px;
+      display: flex;
+      flex-flow: column wrap;
+      align-content: center;
+      justify-content: center;
+    }
+
+    &__regular-price {
+      font-size: 14px;
+      line-height: 14px;
+      letter-spacing: 1.2px;
+      order: 2;
+    }
+
+    &__regular-text {
+      font-size: 14px;
+      line-height: 14px;
+      letter-spacing: 1.2px;
+      order: 1;
+    }
+
+    &__sub-button {
+      height: 44px;
+      height: 44px;
+      display: flex;
+      flex-flow: column wrap;
+      align-content: center;
+      justify-content: center;
+    }
+
+    &__sub-price {
+      font-size: 14px;
+      line-height: 14px;
+      letter-spacing: 1.2px;
+      order: 2;
+    }
+
+    &__sub-btn-text {
+      font-size: 14px;
+      line-height: 14px;
+      letter-spacing: 1.2px;
+      order: 1;
+    }
+
+    &__sub-btn-freq {
+      display: none;
+    }
+  }
+}
