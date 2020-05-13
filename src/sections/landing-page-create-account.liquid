@@ -10,7 +10,11 @@
               <div class="lp-account__recommendations-item">
                 <div class="lp-account__recommendations-item-icon">
                   {%- if block.settings.feature_icon == "icon-bottle" -%}
-                    {% render 'icon-bottle' %}
+                      {% render 'icon-register-bottle' %}
+                    {% elsif block.settings.feature_icon == "icon-reminder" %}
+                      {% render 'icon-reminder' %}
+                    {% elsif block.settings.feature_icon == "icon-star" %}
+                      {% render 'icon-account-star' %}
                   {%- endif -%}
                 </div>
                 <div class="lp-account__recommendations-item-content">
