@@ -3,23 +3,30 @@ import $ from "jquery";
 const elements = {
   modal: "[data-modal]",
   modalOverlay: "[data-modal-overlay]",
-  timeTreshold: "[data-time-treshold]"
+  closeModalBtn: "[data-close-modal]"
+};
+
+const classes = {
+  openModal: "modal-opened",
+  closeModal: "modal-closed"
 };
 
 const $modal = $(elements.modal);
 const $modalOverlay = $(elements.modalOverlay);
+const $closeModalBtn = $(elements.closeModalBtn);
+const modalTimeout = $modal.data("time-interval");
+
+console.log($modalOverlay);
 
 function init() {
-  if ($newsletterModal.hasClass("only--mobile") && $(window).width() > elements.articleTreshold) {
-    destroy();
-    return false;
-  }
 
-  $newsletterOpenBtn.on("click", openModal);
+  $closeModalBtn.on("click", closeModal);
 
-  $(document).on("click", closeModal);
+  setTimeout(function () {
+    openModal();
+  }, modalTimeout);
 
-  $newsletterModal.on("click", (event) => {
+  $modal.on("click", (event) => {
     event.stopPropagation();
     return false;
   });
@@ -28,21 +35,15 @@ function init() {
 }
 
 function openModal() {
-  $newsletterModal.addClass(elements.openModalSelector);
-  $newsletterModalOverlay.addClass(elements.openModalSelector);
+  $modal.removeClass(classes.closeModal).addClass(classes.openModal);
+  $modalOverlay.removeClass(classes.closeModal).addClass(classes.openModal);
 
   return false;
 }
 
 function closeModal() {
-  $newsletterModal.removeClass(elements.openModalSelector);
-  $newsletterModalOverlay.removeClass(elements.openModalSelector);
-}
-
-function destroy() {
-  $newsletterModal.removeClass(elements.openModalSelector);
-  $newsletterModalOverlay.removeClass(elements.openModalSelector);
-  $newsletterModal.off("click");
+  $modal.removeClass(classes.openModal).addClass(classes.closeModal);
+  $modalOverlay.removeClass(classes.openModal).addClass(classes.closeModal);
 }
 
 $(document).ready(init);

@@ -1,23 +1,43 @@
-<div class="landing-page-modal__container" style="background-image: url('{{ section.settings.background }}');">
-  <div class="landing-page-modal__title">
-    <h2>{{ section.settings.title }}</h2>
+{% if section.settings.show %}
+  <div class="landing-page-modal__container modal-closed" data-time-interval="{{ section.settings.time_interval }}" data-modal>
+    <div class="landing-page-modal__content">
+      {%- render 'responsive-image' with
+        image: section.settings.background,
+        max_width: 700,
+        max_height: 700,
+        wrapper_class: "landing-page-modal__image"
+      -%}
+
+      <div class="landing-page-modal__title">
+        <h2>{{ section.settings.title }}</h2>
+      </div>
+    </div>
+
+    <div class="landing-page-modal__cta">
+      <a href="{{ section.settings.cta_btn_url }}" class="landing-page-modal__cta-btn">
+        {{ section.settings.cta_btn_text }}
+      </a>
+      <a href="{{ section.settings.secondary_btn_url }}" class="landing-page-modal__secondary-btn">
+        {{ section.settings.secondary_btn_text }}
+      </a>
+    </div>
+
+    <div class="landing-page-modal__close-modal" data-close-modal>
+      {% render 'icon-close-black' %}
+    </div>
   </div>
-  <div class="landing-page-modal__cta">
-    <a href="{{ section.settings.cta_btn_url }}" class="landing-page-modal__cta-btn">
-      {{ section.settings.cta_btn_text }}
-    </a>
-    <a href="{{ section.settings.secondary_btn_url }}" class="landing-page-modal__secondary-btn">
-      {{ section.settings.secondary_btn_text }}
-    </a>
-  </div>
-</div>
-<div class="landing-page-modal__overlay"></div>
+{% endif %}
 
 {% schema %}
   {
     "name": "Landing Page Modal",
     "class": "landing-page-modal",
     "settings": [
+    {
+      "type": "checkbox",
+      "id": "show",
+      "label": "Show modal?"
+    },
     {
       "type": "text",
       "id": "title",
@@ -47,6 +67,11 @@
       "type": "text",
       "id": "secondary_btn_text",
       "label": "Secondary Link Text"
+    },
+    {
+      "type": "text",
+      "id": "time_interval",
+      "label": "In how many miliseconds do you want the modal to popup?"
     }
   ]
   }
