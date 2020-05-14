@@ -16,8 +16,6 @@ const $modalOverlay = $(elements.modalOverlay);
 const $closeModalBtn = $(elements.closeModalBtn);
 const modalTimeout = $modal.data("time-interval");
 
-console.log($modalOverlay);
-
 function init() {
 
   $closeModalBtn.on("click", closeModal);
