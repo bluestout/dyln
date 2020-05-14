@@ -133,5 +133,15 @@
         }
       }
     }
+
+    &.active-step {
+      display: flex;
+    }
+
+    &.inactive-step {
+      @include media-query($medium-down) {
+        display: none;
+      }
+    }
   }
 }

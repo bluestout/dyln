@@ -1,0 +1,13 @@
+.step-nav {
+  display: flex;
+  justify-content: center;
+
+  button {
+    @include font-body(bold);
+    @include text(20px, 1.2, $color-theme-1, 1px);
+  }
+
+  @include media-query($medium-up) {
+    display: none;
+  }
+}

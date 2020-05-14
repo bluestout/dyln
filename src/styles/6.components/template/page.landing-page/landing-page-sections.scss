@@ -42,6 +42,16 @@
       top: 0px;
       background-image: url("data:image/svg+xml,%3Csvg width='1600' height='67' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M.515 0h1601.29v46.132c-379.458 4.64-598.223 4.64-656.293 0-87.105-6.962-395.064 0-674.932 0S10.317 61 .515 66c-6.535 3.333-6.535-18.667 0-66z' fill='%23FFF' fill-rule='evenodd'/%3E%3C/svg%3E");
     }
+
+    &.active-step {
+      display: flex;
+    }
+
+    &.inactive-step {
+      @include media-query($medium-down) {
+        display: none;
+      }
+    }
   }
 
   &__step-num {

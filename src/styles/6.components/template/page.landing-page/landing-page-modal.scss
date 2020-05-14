@@ -10,7 +10,7 @@
   min-width: 500px;
 
   + .landing-page-modal__overlay {
-    display: inline-block;
+    display: none;
   }
 
   @include media-query($medium-down) {

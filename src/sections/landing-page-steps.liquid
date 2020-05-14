@@ -5,7 +5,7 @@
       {% assign step_num = section.settings.num_of_steps | plus: 0 %}
       {% assign illustration_step = 0 %}
       {% for i in (1..step_num) %}
-        <div class="lp-steps__step">
+        <div class="lp-steps__step{% if forloop.first == true %} active-step{% else %} inactive-step{% endif %}" data-step>
           <span class="lp-steps__step-num">{{ i }}</span>
           <div class="lp-steps__step-tab-container" data-tabs-container>
             <div class="lp-steps__step-tab-nav">
