@@ -69,6 +69,10 @@
       position: relative;
       top: 1px;
 
+      &:hover {
+        cursor: pointer;
+      }
+
       h4 {
         font-size: 24px;
 
@@ -86,12 +90,20 @@
         margin: 0 auto;
         text-align: center;
         padding-top: 40px;
-        max-width: 60%;
-        flex-display: 0 0 60%;
         display: none;
+
+        &-wrapper {
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+        }
 
         &.active {
           display: flex;
+
+          &:empty {
+            display: none !important;
+          }
         }
 
         @include media-query($large-down) {
@@ -99,9 +111,15 @@
           flex-display: 0 0 90%;
         }
 
-        > span {
-          @include font-body(bold);
-          color: $color-theme-1;
+        > p {
+          @include font-body(normal);
+          font-size: 20px;
+          margin-top: 20px;
+
+          span {
+            @include font-body(bold);
+            color: $color-theme-1;
+          }
         }
 
         > div {

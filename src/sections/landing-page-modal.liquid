@@ -1,0 +1,53 @@
+<div class="landing-page-modal__container" style="background-image: url('{{ section.settings.background }}');">
+  <div class="landing-page-modal__title">
+    <h2>{{ section.settings.title }}</h2>
+  </div>
+  <div class="landing-page-modal__cta">
+    <a href="{{ section.settings.cta_btn_url }}" class="landing-page-modal__cta-btn">
+      {{ section.settings.cta_btn_text }}
+    </a>
+    <a href="{{ section.settings.secondary_btn_url }}" class="landing-page-modal__secondary-btn">
+      {{ section.settings.secondary_btn_text }}
+    </a>
+  </div>
+</div>
+<div class="landing-page-modal__overlay"></div>
+
+{% schema %}
+  {
+    "name": "Landing Page Modal",
+    "class": "landing-page-modal",
+    "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "image_picker",
+      "id": "background",
+      "label": "Background"
+    },
+    {
+      "type": "url",
+      "id": "cta_btn_url",
+      "label": "CTA Button URL"
+    },
+    {
+      "type": "text",
+      "id": "cta_btn_text",
+      "label": "CTA Button Text"
+    },
+    {
+      "type": "url",
+      "id": "secondary_btn_url",
+      "label": "Secondary Link URL"
+    },
+    {
+      "type": "text",
+      "id": "secondary_btn_text",
+      "label": "Secondary Link Text"
+    }
+  ]
+  }
+{% endschema %}
