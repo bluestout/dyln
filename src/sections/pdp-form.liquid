@@ -1,8 +1,8 @@
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
 
-{% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true', class: "pdp-form__form" %}
-
+{% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true', class: "pdp-form__form", data-productid: product.id %}
+  {% if product.available %}{% include 'subscription-product' %}{% endif %}
   <div class="pdp-form__price d-none d-md-block" data-price-wrapper>
     <span data-product-price>
       {{ current_variant.price | money }}
@@ -87,7 +87,7 @@
     {% endif %}
   {% endfor %}
 
-  <select name="id" style="display:none !important;" data-pdp-select>
+  <select name="id" style="display:none !important;" data-pdp-select data-productid="{{ product.id }}">
     {% for variant in product.variants %}
       <option
         {% if variant == current_variant %}selected="selected"{% endif %}

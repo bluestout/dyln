@@ -3,7 +3,7 @@ import { resizeImage, formatAndTrimPrice } from "./ajax-helpers";
 
 const icons = {
   cart:
-    "<svg width='35' height='28' viewBox='0 0 35 28' xmlns='http://www.w3.org/2000/svg'><g transform='translate(2 1)' stroke='#333C41' stroke-width='2' fill='none' fill-rule='evenodd' stroke-linecap='square'><path d='M25 4l-2.607 13H2.543L0 4M25 4l.682-4H32'/><circle cx='6.5' cy='23.5' r='2.5'/><circle cx='18.5' cy='23.5' r='2.5'/></g></svg>"
+    "<svg width='35' height='28' viewBox='0 0 35 28' xmlns='http://www.w3.org/2000/svg'><g transform='translate(2 1)' stroke='#333C41' stroke-width='2' fill='none' fill-rule='evenodd' stroke-linecap='square'><path d='M25 4l-2.607 13H2.543L0 4M25 4l.682-4H32'/><circle cx='6.5' cy='23.5' r='2.5'/><circle cx='18.5' cy='23.5' r='2.5'/></g></svg>",
 };
 
 function quickCartUpsellHtml(product, url, index) {
@@ -25,9 +25,8 @@ function quickCartUpsellHtml(product, url, index) {
 
   const select =
     options.length > 0
-      ? `<div class="cart-drawer__upsell-selectbox"><select name="id" class="cart-drawer__upsell-select" data-upsell-select>${options}</select></div>`
+      ? `<div class="cart-drawer__upsell-selectbox"><select name="id" class="cart-drawer__upsell-select" data-upsell-select data-productid="${product.id}">${options}</select></div>`
       : "";
-
   const linkHref = url ? `href="${url}"` : `href="/products/${product.handle}"`;
 
   pattern = `
@@ -335,5 +334,5 @@ export {
   quickCartLineItemHtml,
   cartLineItemHtml,
   cartTotalsHtml,
-  emptyCartHtml
+  emptyCartHtml,
 };

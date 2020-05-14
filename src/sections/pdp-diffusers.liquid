@@ -18,13 +18,14 @@
 
   {% assign e_product = all_products[section.settings.extra_product] %}
   {%- assign e_current_variant = e_product.selected_or_first_available_variant -%}
-  {% form 'product', e_product, data-product-form: '', data-product-handle: e_product.handle, data-enable-history-state: 'true', class: "pdp-diffusers__form" %}
+  {% form 'product', e_product, data-product-form: '', data-product-handle: e_product.handle, data-enable-history-state: 'true', class: "pdp-diffusers__form", data-productid: product.id %}
+    {% if product.available %}{% include 'subscription-product' %}{% endif %}
 
     {% unless e_product.has_only_default_variant %}
       <div class="pdp-diffusers__variants">
         {% for e_var in e_product.variants %}
           <div class="pdp-diffusers__variant">
-            <input class="pdp-diffusers__input" id="option-extra-{{ forloop.index }}" type="radio" name="id" value="{{ e_var.title }}" />
+            <input class="pdp-diffusers__input" id="option-extra-{{ forloop.index }}" type="radio" name="id" value="{{ e_var.title }}" data-productid="{{ product.id }}"/>
             <label class="pdp-diffusers__label" for="option-extra-{{ forloop.index }}">{{ e_var.title }}</label>
           </div>
         {% endfor %}

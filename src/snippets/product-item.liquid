@@ -24,14 +24,15 @@
   class="product-item{% if block_p.has_only_default_variant %} single{% endif %}"
   data-pi-item
   data-pi-static-class="product-item{% if block_p.has_only_default_variant %} single{% endif %}">
-  {% form 'product', block_p, data-product-form: '', data-product-handle: block_p.handle, class: "product-item__form" %}
+  {% form 'product', block_p, data-product-form: '', data-product-handle: block_p.handle, class: "product-item__form", data-productid: product.id %}
+    {% if product.available %}{% include 'subscription-product' %}{% endif %}
 
     <input type="hidden" id="{{ block_p.id }}-quantity" name="quantity" value="1" min="1" />
 
     {% if block_p.has_only_default_variant %}
-      <input type="hidden" name="id" value="{{ block_p_def_v.id }}" />
+      <input type="hidden" name="id" value="{{ block_p_def_v.id }}" data-productid="{{ product.id }}" data-productid="{{ product.id }}"/>
     {% else %}
-      <select name="id" style="display:none !important;" data-pi-variant-select>
+      <select name="id" style="display:none !important;" data-pi-variant-select data-productid="{{ product.id }}">
         {% for p_i_variant in block_p.variants %}
           <option value="{{ p_i_variant.id }}"
             {% unless p_i_variant.available %}disabled="disabled"{% endunless %}
