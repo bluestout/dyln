@@ -262,16 +262,21 @@
 					duplicate_to_price: {% if duplicate_to_price %}{{ duplicate_to_price }}{% else %}{ {% for variant in product.variants %}{{ variant.metafields.subscriptions.discount_variant_id }}: '{{ variant.metafields.subscriptions.discount_variant_price | replace: ".", "" }}', {% endfor %} }{% endif %},
 				};
 			if (document.readyState === "complete" || document.readyState === "loaded") {
+				console.log("document.readyState");
 				if (!window.ReCharge) { window.ReCharge = new rcWidget(options); }
+				console.log("ReCharge.addProduct: ", myProduct);
 				ReCharge.addProduct(myProduct);
 			} else {
+				console.log("document.readyState ELSE");
 				document.addEventListener("DOMContentLoaded", function() {
 					if (!window.ReCharge) { window.ReCharge = new rcWidget(options); }
+					console.log("ReCharge.addProduct: ", myProduct);
 					ReCharge.addProduct(myProduct);
 				});
 			}
 
             window.addEventListener('pageshow', function(event) {
+							console.log("pageshow");
                 if (event.persisted || window.performance && window.performance.navigation.type === 2) {
                     window.location.reload();
                 }
