@@ -6,7 +6,8 @@
 
 .lp-referal,
 .lp-register,
-.lp-account {
+.lp-account,
+.lp-steps {
   h3 {
     @include font-header(bold);
     @include text(30px, 1.2, $color-theme-7, 1.7px);
@@ -15,6 +16,10 @@
     text-align: center;
     margin-top: 40px;
     margin-bottom: 40px;
+
+    @include media-query($medium-down) {
+      @include text(20px, 1.2, $color-theme-7, 1px);
+    }
   }
 
   p {
@@ -53,5 +58,11 @@
     position: relative;
     top: -30px;
     font-size: 30px;
+  }
+}
+
+.lp-referal {
+  &__container {
+    background: linear-gradient(180deg, rgba(231, 240, 242, 1) 0%, rgba(255, 255, 255, 1) 30%, rgba(255, 255, 255, 1) 100%);
   }
 }

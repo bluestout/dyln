@@ -4,7 +4,9 @@
       <div class="container">
         <div class="row flex-column align-items-center">
           <span class="lp-account__step-num">{{ section.settings.step_number }}</span>
-          <h3>{{ section.settings.step_title }}</h3>
+          <div class="col-md-12 col-lg-6">
+            <h3>{{ section.settings.step_title }}</h3>
+          </div>
           <div class="lp-account__recommendations">
             {% for block in section.blocks %}
               <div class="lp-account__recommendations-item">

@@ -1,31 +1,85 @@
-.pdp-diffusers {
+.lp-diffusers {
   &__title-header {
     position: relative;
     margin: 0 0 5px;
+
+    @include media-query($medium-down) {
+      margin-top: 20px !important;
+    }
   }
 
   &__title {
     @include font-header(700);
-    @include text(24px, 33px, $color-title, 1.42px);
+    @include text(40px, 33px, $color-theme-7, 2.3px);
     display: inline-block;
     vertical-align: middle;
   }
 
-  &__note-button {
-    @include no-browser-styling;
-    @include no-font-size;
+  &__description {
     position: relative;
-    padding: 5px;
-    display: inline-block;
-    vertical-align: middle;
-    cursor: pointer;
 
-    &:hover,
-    &:active {
-      .pdp-diffusers__note-wrap {
-        opacity: 1;
-        pointer-events: auto;
-        bottom: calc(100% + 5px);
+    &::after {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      right: -130px;
+      top: 0px;
+      width: 100px;
+      height: 200px;
+      transform: rotate(-25deg);
+      background-repeat: no-repeat;
+      background-image: url("data:image/svg+xml,%3Csvg width='64' height='105' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%2300AEDB' stroke-width='2' fill='none' fill-rule='evenodd'%3E%3Cpath d='M57.5.452C72.5 63.376 54.333 95.892 3 98'/%3E%3Cpath stroke-linecap='round' d='M12.5 92l-10 6 10 6'/%3E%3C/g%3E%3C/svg%3E%0A");
+
+      @include media-query($medium-down) {
+        right: 30px;
+        top: -15px;
+        width: 50px;
+        height: 120px;
+        transform: rotate(-40deg);
+      }
+    }
+  }
+
+  &__recomm {
+    display: flex;
+
+    @include media-query($medium-down) {
+      flex-direction: column;
+    }
+  }
+
+  &__recomm-item {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    margin-right: 20px;
+
+    @include media-query($small) {
+      flex: 0 0 90%;
+      max-width: 90%;
+      margin: 0 20px;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      margin-top: 0;
+      border-bottom: 1px solid $color-theme-22;
+      @include text(12px, 1.2, $color-theme-7, 0.5px);
+    }
+
+    &-icon {
+      margin-right: 10px;
+    }
+
+    &-content {
+      h4 {
+        margin-bottom: 5px;
+        text-align: left;
+        @include font-header(bold);
+        @include text(16px, 1.2, $color-theme-24, 1.45px);
+      }
+
+      p {
+        text-align: left;
+        padding-right: 15px;
       }
     }
   }

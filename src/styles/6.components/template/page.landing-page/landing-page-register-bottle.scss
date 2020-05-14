@@ -1,8 +1,16 @@
 .lp-register {
+  margin-top: 20px;
+
   &__register-bottle-btn {
     @include button(wire, r, 1);
     text-align: center;
     width: 250px;
     margin-top: 30px;
+  }
+
+  p {
+    @include media-query($small) {
+      padding: 0 25px;
+    }
   }
 }

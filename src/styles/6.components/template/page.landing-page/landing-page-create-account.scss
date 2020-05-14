@@ -1,6 +1,4 @@
 .lp-account {
-  background-color: green;
-
   &__create-account-btn {
     @include button(solid, r, 2);
     text-align: center;
@@ -22,9 +20,11 @@
     flex-direction: column;
     align-items: center;
     width: 600px;
+    margin-bottom: 20px;
 
     @include media-query($medium-down) {
       width: 100%;
+      margin-bottom: 0;
     }
   }
 
@@ -33,7 +33,7 @@
     max-width: 50%;
     width: 100%;
     display: flex;
-    margin: 20px 0;
+    margin: 10px 0;
     align-items: center;
 
     @include media-query($small) {
@@ -61,5 +61,14 @@
         padding-right: 15px;
       }
     }
+  }
+}
+
+.lp-register {
+  margin-bottom: 20px;
+
+  h3 {
+    margin-top: 0 !important;
+    margin-bottom: 5px !important;
   }
 }

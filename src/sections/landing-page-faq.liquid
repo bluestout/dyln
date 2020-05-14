@@ -1,16 +1,18 @@
 <div class="container" data-accordion-parent=true>
   <div class="row">
     <h2>{{ section.settings.title }}</h2>
+    {% assign faq_blog = blogs[section.settings.blog] %}
     <div class="lp-faq__container">
-      {% for block in section.blocks %}
-        <div class="lp-faq__item">
+      {% assign limit = section.settings.faq_limit %}
+      {% for faq_article in faq_blog.articles %}
+        <div class="lp-faq__item {% if forloop.index > limit %}data-faq-hidden-init{% endif %}">
           <button class="lp-faq__item-title" data-accordion-button="{{ forloop.index }}">
-            <h4>{{ block.settings.faq_title }}</h4>
+            <h4>{{ faq_article.title }}</h4>
             <span class="lp-faq__item-closed">+</span>
             <span class="lp-faq__item-open">-</span>
           </button>
           <div class="lp-faq__item-content" data-accordion-content="{{ forloop.index }}">
-            <p>{{ block.settings.faq_content }}</p>
+            <p>{{ faq_article.content }}</p>
           </div>
         </div>
       {% endfor %}
@@ -19,32 +21,29 @@
 </div>
 {% schema %}
   {
-  "name":"Landing Page FAQs",
-  "class": "lp-faq",
-  "settings":[
-    {
-    "type": "text",
-    "id": "title",
-    "label": "Title"
-    }
-  ],
-  "blocks":[
-    {
-    "type":"text",
-    "name":"FAQs",
-    "settings":[
+    "name": "Landing Page FAQs",
+    "class": "lp-faq",
+    "settings": [
       {
-      "type":"text",
-      "id":"faq_title",
-      "label":"Add FAQ Title"
+        "type": "text",
+        "id": "title",
+        "label": "Section Title"
       },
       {
-      "type":"text",
-      "id":"faq_content",
-      "label":"Add FAQ Content"
+        "type": "range",
+        "id": "faq_limit",
+        "label": "FAQs shown",
+        "min": 2,
+        "max": 20,
+        "step": 1,
+        "default": 6
+      },
+      {
+        "type": "blog",
+        "id": "blog",
+        "label": "Blog",
+        "info": "Select which blog to show as the FAQs."
       }
-  ]
-  }
-  ]
+    ]
   }
 {% endschema %}
