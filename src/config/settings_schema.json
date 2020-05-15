@@ -51,6 +51,27 @@
       },
       {
         "type": "color",
+        "id": "color_supplementary_1",
+        "label": "Theme supplementary 1",
+        "default": "#73c8e2",
+        "info": "Theme color 1 supplementary - Rarely used to supplement the theme main color in button box shadows and similar."
+      },
+      {
+        "type": "color",
+        "id": "color_supplementary_2",
+        "label": "Theme supplementary 2",
+        "default": "#67e3a9",
+        "info": "Theme color 2 supplementary - Rarely used to supplement the theme 2 color in button box shadows and similar."
+      },
+      {
+        "type": "color",
+        "id": "color_supplementary_3",
+        "label": "Theme supplementary 3",
+        "default": "#bbd3da",
+        "info": "Theme color 3 supplementary - Rarely used to supplement the theme 3 color in button box shadows and similar."
+      },
+      {
+        "type": "color",
         "id": "color_title",
         "label": "Title",
         "default": "#333C41"
@@ -204,6 +225,53 @@
     ]
   },
   {
+    "name": "Facebook Share meta",
+    "settings": [
+      { "type": "header", "content": "Index / Home Page" },
+      {
+        "type": "text",
+        "id": "index_fb_title",
+        "label": "Title",
+        "default": "The Bottle That Creates Alkaline Water On the Go!"
+      },
+      {
+        "type": "textarea",
+        "id": "index_fb_description",
+        "label": "description",
+        "default": "Stay hydrated with the patented ergonomic DYLN Living Water Bottle made from surgical-grade stainless steel and features a carrying handle."
+      },
+      { "type": "image_picker", "id": "index_fb_img", "label": "Image" },
+      { "type": "header", "content": "Landing / Full width page" },
+      {
+        "type": "text",
+        "id": "la_fb_title",
+        "label": "Title",
+        "default": "The Bottle That Creates Alkaline Water On the Go!"
+      },
+      {
+        "type": "textarea",
+        "id": "la_fb_description",
+        "label": "Description",
+        "default": "Stay hydrated with the patented ergonomic DYLN Living Water Bottle made from surgical-grade stainless steel and features a carrying handle."
+      },
+      { "type": "image_picker", "id": "la_fb_img", "label": "Image" },
+      { "type": "header", "content": "Product" },
+      {
+        "type": "text",
+        "id": "pd_fb_title",
+        "label": "Title",
+        "default": "The Bottle That Creates Alkaline Water On the Go!"
+      },
+      {
+        "type": "textarea",
+        "id": "pd_fb_description",
+        "label": "description",
+        "default": "Stay hydrated with the patented ergonomic DYLN Living Water Bottle made from surgical-grade stainless steel and features a carrying handle."
+      },
+      { "type": "image_picker", "id": "pd_fb_img", "label": "Image" }
+    ]
+  },
+  {
     "name": "Cart",
     "settings": [
       {
@@ -221,6 +289,26 @@
         "unit": "$",
         "label": "Shipping Threshold",
         "default": 100
+      },
+      {
+        "type": "range",
+        "id": "shipping_threshold_CA",
+        "min": 0,
+        "max": 500,
+        "step": 5,
+        "unit": "$",
+        "label": "Shipping Threshold",
+        "default": 100
+      },
+      {
+        "type": "range",
+        "id": "shipping_threshold_other",
+        "min": 0,
+        "max": 500,
+        "step": 5,
+        "unit": "$",
+        "label": "Shipping Threshold",
+        "default": 100
       }
     ]
   },
@@ -232,6 +320,167 @@
         "id": "favicon",
         "label": "Favicon image",
         "info": "Will be scaled down to 32 x 32px"
+      }
+    ]
+  },
+  {
+    "name": "Country/Inventory",
+    "settings": [
+      { "type": "header", "content": "Canada-Inventory" },
+      {
+        "type": "checkbox",
+        "id": "canada_inv",
+        "label": "All product Avilable",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "canada_inv_na",
+        "label": "List of not avilable product class",
+        "info": ".dyln-blue,.charcoal,.lime-green,.tango-orange,.neon-pink,.royal-purple"
+      },
+      {
+        "type": "checkbox",
+        "id": "canada_default",
+        "label": "Default product Avilable default",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "canada_default_p",
+        "label": "set default product",
+        "default": "Matte-4653725315-royal-purple"
+      },
+      {
+        "type": "text",
+        "id": "cnada_dif_avil",
+        "label": "Diffusers not avilable",
+        "info": ".1diffuser,.3diffusers,.9diffusers, .4diffusers,.8diffusers",
+        "default": ".4diffusers,.8diffusers"
+      },
+      {
+        "type": "text",
+        "id": "cnada_dif_oavil",
+        "label": "Diffusers not avilable New bottle",
+        "info": ".1diffuser,.3diffusers,.9diffusers, .4diffusers,.8diffusers",
+        "default": ".4diffusers,.8diffusers"
+      },
+      { "type": "header", "content": "UK-Inventory" },
+      {
+        "type": "checkbox",
+        "id": "uk_inv",
+        "label": "All product Avilable",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "uk_inv_na",
+        "label": "List of not avilable product class",
+        "info": ".dyln-blue,.charcoal,.lime-green,.tango-orange,.neon-pink,.royal-purple"
+      },
+      {
+        "type": "checkbox",
+        "id": "uk_default",
+        "label": "Default product Avilable default",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "uk_default_p",
+        "label": "set default product",
+        "default": "matte|4653725315|royal-purple"
+      },
+      {
+        "type": "text",
+        "id": "uk_dif_avil",
+        "label": "Diffusers not avilable",
+        "info": ".1diffuser,.3diffusers,.9diffusers, .4diffusers,.8diffusers",
+        "default": ".4diffusers,.8diffusers"
+      },
+      {
+        "type": "text",
+        "id": "uk_dif_oavil",
+        "label": "Diffusers not avilable New bottle",
+        "info": ".1diffuser,.3diffusers,.9diffusers, .4diffusers,.8diffusers",
+        "default": ".4diffusers,.8diffusers"
+      },
+      { "type": "header", "content": "4PX-Inventory" },
+      {
+        "type": "checkbox",
+        "id": "px_inv",
+        "label": "All product Avilable",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "px_inv_na",
+        "label": "List of not avilable product class",
+        "info": ".dyln-blue,.charcoal,.lime-green,.tango-orange,.neon-pink,.royal-purple"
+      },
+      {
+        "type": "checkbox",
+        "id": "px_default",
+        "label": "Default product Avilable default",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "px_default_p",
+        "label": "set default product",
+        "default": "matte|4653725315|royal-purple"
+      },
+      {
+        "type": "text",
+        "id": "px_dif_uavil",
+        "label": "Diffusers not avilable",
+        "info": ".1diffuser,.3diffusers,.9diffusers, .4diffusers,.8diffusers",
+        "default": ".4diffusers,.8diffusers"
+      },
+      {
+        "type": "text",
+        "id": "px_dif_oavil",
+        "label": "Diffusers not avilable New bottle",
+        "info": ".1diffuser,.3diffusers,.9diffusers, .4diffusers,.8diffusers",
+        "default": ".4diffusers,.8diffusers"
+      },
+      { "type": "header", "content": "USX-Inventory" },
+      {
+        "type": "checkbox",
+        "id": "us_inv",
+        "label": "All product Avilable",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "us_inv_na",
+        "label": "List of not avilable product class",
+        "info": ".dyln-blue,.charcoal,.lime-green,.tango-orange,.neon-pink,.royal-purple"
+      },
+      {
+        "type": "checkbox",
+        "id": "us_default",
+        "label": "Default product Avilable default",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "us_default_p",
+        "label": "set default product",
+        "default": "matte|4653725315|royal-purple"
+      },
+      {
+        "type": "text",
+        "id": "us_dif_avil",
+        "label": "Diffusers not avilable",
+        "info": ".1diffuser,.3diffusers,.9diffusers, .4diffusers,.8diffusers",
+        "default": ".1diffuser,.2diffusers,.9diffusers"
+      },
+      {
+        "type": "text",
+        "id": "us_dif_oavil",
+        "label": "Diffusers not avilable New bottle",
+        "info": ".1diffuser,.3diffusers,.9diffusers, .4diffusers,.8diffusers",
+        "default": ".1diffuser,.2diffusers,.9diffusers"
       }
     ]
   }
