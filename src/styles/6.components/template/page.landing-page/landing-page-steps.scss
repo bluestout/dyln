@@ -16,7 +16,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(180deg, rgba(231,240,242,1) 0%, rgba(255,255,255,1) 150px, rgba(255,255,255,1) 100%);
+    background: linear-gradient(180deg, $color-theme-13 0%, $color-white 150px, $color-white 100%);
 
     &::before {
       content: "";
