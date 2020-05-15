@@ -177,8 +177,84 @@
     @include font-header(500);
     @include text(14px, 20px, $color-title, 1.5px);
   }
+  &__upsell-radio-color {
+    @include transition(box-shadow, border-color);
+    @include no-browser-styling;
+    width: 21px;
+    height: 21px;
+    border: 2px solid $color-theme-4;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0 3px 0 0;
+
+    &:not(:disabled) {
+      &:checked {
+        box-shadow: 0 0 7px 0 rgba($color-black, 0.5);
+        border-color: $color-white;
+      }
+
+      &:not(:checked) {
+        box-shadow: none;
+      }
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &__upsell-color-wrap {
+    margin: 0 0 15px;
+  }
+
+  &__upsell-label {
+    @include transition(color);
+    @include underline($color-main-1, false);
+    @include font-header(500);
+    @include text(12px, 20px, $color-body-text, 1px);
+    text-align: center;
+    width: 48%;
+    float: left;
+    margin: 0 1% 3px;
+    padding: 0 2px;
+  }
+
+  &__upsell-radio-input {
+    @include no-browser-styling;
+
+    &:not(:disabled) {
+      cursor: pointer;
+
+      &:hover {
+        + .cart-drawer__upsell-label {
+          color: $color-main-1;
+        }
+      }
+
+      &:checked {
+        + .cart-drawer__upsell-label {
+          color: $color-main-1;
+
+          &::after {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    &:disabled {
+      color: $color-theme-8;
+      cursor: not-allowed;
+    }
+  }
+
+  &__upsell-input-wrap {
+    margin: 0 0 15px;
+  }
 
   &__upsell-selectbox {
+    @include clearfix;
     margin: 0 0 15px;
   }
 
@@ -209,7 +285,6 @@
     }
   }
 
-
   &__total {
     @include clearfix;
     margin: 0 0 40px;
@@ -217,13 +292,13 @@
 
   &__total-text {
     @include poppins(500);
-    @include text(16px,22px,$color-body-text,0.95px);
+    @include text(16px, 22px, $color-body-text, 0.95px);
     float: left;
   }
 
   &__total-price {
     @include poppins(500);
-    @include text(16px,22px,$color-body-text,0.95px);
+    @include text(16px, 22px, $color-body-text, 0.95px);
     float: right;
   }
 
@@ -279,7 +354,7 @@
 
   &__payments-title {
     @include poppins(500);
-    @include text(11px,16px,$color-body-text,0.65px);
+    @include text(11px, 16px, $color-body-text, 0.65px);
     align-self: center;
   }
 }

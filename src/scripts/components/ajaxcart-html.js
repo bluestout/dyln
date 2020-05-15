@@ -1,30 +1,109 @@
 import { formatMoney } from "@shopify/theme-currency";
-import { resizeImage, formatAndTrimPrice } from "./ajax-helpers";
+import {
+  resizeImage,
+  formatAndTrimPrice,
+  stripHtml,
+  handleize,
+} from "./ajax-helpers";
+
+const names = {
+  color: "color,colour",
+  amount: "amount,number",
+};
 
 const icons = {
   cart:
-    "<svg width='35' height='28' viewBox='0 0 35 28' xmlns='http://www.w3.org/2000/svg'><g transform='translate(2 1)' stroke='#333C41' stroke-width='2' fill='none' fill-rule='evenodd' stroke-linecap='square'><path d='M25 4l-2.607 13H2.543L0 4M25 4l.682-4H32'/><circle cx='6.5' cy='23.5' r='2.5'/><circle cx='18.5' cy='23.5' r='2.5'/></g></svg>"
+    "<svg width='35' height='28' viewBox='0 0 35 28' xmlns='http://www.w3.org/2000/svg'><g transform='translate(2 1)' stroke='#333C41' stroke-width='2' fill='none' fill-rule='evenodd' stroke-linecap='square'><path d='M25 4l-2.607 13H2.543L0 4M25 4l.682-4H32'/><circle cx='6.5' cy='23.5' r='2.5'/><circle cx='18.5' cy='23.5' r='2.5'/></g></svg>",
 };
+
+function adjustDiffuserText(text) {
+  if (text === "1 Diffuser") {
+    return "Single Pack";
+  } else if (text && text.indexOf(" Diffusers") > -1) {
+    return text.replace(" Diffusers", "-pack");
+  }
+  return text;
+}
 
 function quickCartUpsellHtml(product, url, index) {
   if (!product || !index) {
-    return "";
+    return;
   }
   let pattern = "";
   let options = "";
-  for (let k = 0; k < product.variants.length; k++) {
-    const variant = product.variants[k];
-    options += `
-    <option
-      ${variant.available ? "" : "disabled='disabled'"}
-      value="${variant.id}">
-        ${variant.title}
-    </option>
-    `;
+  let optionsWrap = "";
+
+  console.log("product: ", product);
+
+  if (product.variants) {
+    for (let k = 0; k < product.variants.length; k++) {
+      const variant = product.variants[k];
+      console.log("variant: ", variant);
+      options += `
+      <option
+        ${variant.available ? "" : "disabled='disabled'"}
+        value="${variant.id}"
+        data-cart-upsell-variant-price="${formatAndTrimPrice(variant.price)}"
+        >
+          ${variant.title}
+      </option>
+      `;
+    }
+
+    for (let k = 0; k < product.options.length; k++) {
+      const option = product.options[k].trim().toLowerCase();
+      const optionlabel = `option${k + 1}`;
+      if (names.color.indexOf(option) > -1) {
+        let colorInputs = "";
+        let isChecked = false;
+        for (let j = 0; j < product.variants.length; j++) {
+          const variant = product.variants[j];
+
+          if (variant[optionlabel]) {
+            const colorHandle = stripHtml(
+              handleize(variant.title.trim().toLowerCase())
+            );
+            const swatch = `color-swatch-${colorHandle}`;
+            colorInputs += `<label class="visually-hidden" for="cu-${k}-${option}-${j}">${variant.title}</label>`;
+            colorInputs += `<input type="radio"
+              id="cu-${k}-${option}-${j}"
+              name="cu-${k}-${option}"
+              value="${variant[optionlabel]}"
+              class="cart-drawer__upsell-radio-color ${swatch}"
+              data-price="${variant.price}"
+              data-id="${variant.id}"
+              ${variant.available && !isChecked ? `checked="checked"` : ""}
+              ${variant.available ? "" : `disabled="disabled"`} />`;
+            variant.available && !isChecked ? (isChecked = true) : "";
+          }
+        }
+        optionsWrap += `<div class="cart-drawer__upsell-selectbox">${colorInputs}</div>`;
+      } else {
+        let amountInputs = "";
+        let isChecked = false;
+        for (let j = 0; j < product.variants.length; j++) {
+          const variant = product.variants[j];
+          if (variant[optionlabel]) {
+            amountInputs += `<input type="radio"
+              id="cu-${k}-${option}-${j}"
+              name="cu-${k}-${option}"
+              value="${adjustDiffuserText(variant[optionlabel])}"
+              class="cart-drawer__upsell-radio-input"
+              data-price="${variant.price}"
+              data-id="${variant.id}"
+              ${variant.available && !isChecked ? `checked="checked"` : ""}
+              ${variant.available ? "" : `disabled="disabled"`} />`;
+            variant.available && !isChecked ? (isChecked = true) : "";
+            amountInputs += `<label class="cart-drawer__upsell-label" for="cu-${k}-${option}-${j}">${variant.title}</label>`;
+          }
+        }
+        optionsWrap += `<div class="cart-drawer__upsell-selectbox">${amountInputs}</div>`;
+      }
+    }
   }
 
   const select =
-    options.length > 0
+    options.length > 1
       ? `<div class="cart-drawer__upsell-selectbox"><select name="id" class="cart-drawer__upsell-select" data-upsell-select>${options}</select></div>`
       : "";
 
@@ -43,12 +122,13 @@ function quickCartUpsellHtml(product, url, index) {
     <a ${linkHref} class="cart-drawer__upsell-content">
       <h4 class="cart-drawer__upsell-item-title">${product.title}</h4>
       <p class="cart-drawer__upsell-text">
-        <span data-cart-upsell-item-price="${product.variants[0].id}">
-          ${formatAndTrimPrice(product.price)}
+      <span data-cart-upsell-item-price>
+      ${formatAndTrimPrice(product.price)}
         </span>
       </p>
     </a>
     <div class="cart-drawer__upsell-form">
+      ${optionsWrap}
       ${select}
       <button type="button" class="cart-drawer__upsell-add" data-add-upsell>
         <span data-add-upsell-loading class="upsell-loading-dots hide"></span>
@@ -335,5 +415,5 @@ export {
   quickCartLineItemHtml,
   cartLineItemHtml,
   cartTotalsHtml,
-  emptyCartHtml
+  emptyCartHtml,
 };

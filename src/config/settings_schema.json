@@ -440,19 +440,19 @@
       {
         "type": "checkbox",
         "id": "canada_inv",
-        "label": "All product Avilable",
+        "label": "All product Available",
         "default": true
       },
       {
         "type": "text",
         "id": "canada_inv_na",
-        "label": "List of not avilable product class",
+        "label": "List of not available product class",
         "info": ".dyln-blue,.charcoal,.lime-green,.tango-orange,.neon-pink,.royal-purple"
       },
       {
         "type": "checkbox",
         "id": "canada_default",
-        "label": "Default product Avilable default",
+        "label": "Default product Available",
         "default": true
       },
       {
@@ -464,14 +464,14 @@
       {
         "type": "text",
         "id": "cnada_dif_avil",
-        "label": "Diffusers not avilable",
+        "label": "Diffusers not available",
         "info": ".1diffuser,.3diffusers,.9diffusers, .4diffusers,.8diffusers",
         "default": ".4diffusers,.8diffusers"
       },
       {
         "type": "text",
         "id": "cnada_dif_oavil",
-        "label": "Diffusers not avilable New bottle",
+        "label": "Diffusers not available New bottle",
         "info": ".1diffuser,.3diffusers,.9diffusers, .4diffusers,.8diffusers",
         "default": ".4diffusers,.8diffusers"
       },
@@ -479,19 +479,19 @@
       {
         "type": "checkbox",
         "id": "uk_inv",
-        "label": "All product Avilable",
+        "label": "All product Available",
         "default": true
       },
       {
         "type": "text",
         "id": "uk_inv_na",
-        "label": "List of not avilable product class",
+        "label": "List of not available product class",
         "info": ".dyln-blue,.charcoal,.lime-green,.tango-orange,.neon-pink,.royal-purple"
       },
       {
         "type": "checkbox",
         "id": "uk_default",
-        "label": "Default product Avilable default",
+        "label": "Default product Available",
         "default": true
       },
       {
@@ -503,14 +503,14 @@
       {
         "type": "text",
         "id": "uk_dif_avil",
-        "label": "Diffusers not avilable",
+        "label": "Diffusers not available",
         "info": ".1diffuser,.3diffusers,.9diffusers, .4diffusers,.8diffusers",
         "default": ".4diffusers,.8diffusers"
       },
       {
         "type": "text",
         "id": "uk_dif_oavil",
-        "label": "Diffusers not avilable New bottle",
+        "label": "Diffusers not available New bottle",
         "info": ".1diffuser,.3diffusers,.9diffusers, .4diffusers,.8diffusers",
         "default": ".4diffusers,.8diffusers"
       },
@@ -518,19 +518,19 @@
       {
         "type": "checkbox",
         "id": "px_inv",
-        "label": "All product Avilable",
+        "label": "All product Available",
         "default": true
       },
       {
         "type": "text",
         "id": "px_inv_na",
-        "label": "List of not avilable product class",
+        "label": "List of not available product class",
         "info": ".dyln-blue,.charcoal,.lime-green,.tango-orange,.neon-pink,.royal-purple"
       },
       {
         "type": "checkbox",
         "id": "px_default",
-        "label": "Default product Avilable default",
+        "label": "Default product Available",
         "default": true
       },
       {
@@ -542,14 +542,14 @@
       {
         "type": "text",
         "id": "px_dif_uavil",
-        "label": "Diffusers not avilable",
+        "label": "Diffusers not available",
         "info": ".1diffuser,.3diffusers,.9diffusers, .4diffusers,.8diffusers",
         "default": ".4diffusers,.8diffusers"
       },
       {
         "type": "text",
         "id": "px_dif_oavil",
-        "label": "Diffusers not avilable New bottle",
+        "label": "Diffusers not available New bottle",
         "info": ".1diffuser,.3diffusers,.9diffusers, .4diffusers,.8diffusers",
         "default": ".4diffusers,.8diffusers"
       },
@@ -557,19 +557,19 @@
       {
         "type": "checkbox",
         "id": "us_inv",
-        "label": "All product Avilable",
+        "label": "All product Available",
         "default": true
       },
       {
         "type": "text",
         "id": "us_inv_na",
-        "label": "List of not avilable product class",
+        "label": "List of not available product class",
         "info": ".dyln-blue,.charcoal,.lime-green,.tango-orange,.neon-pink,.royal-purple"
       },
       {
         "type": "checkbox",
         "id": "us_default",
-        "label": "Default product Avilable default",
+        "label": "Default product Available",
         "default": false
       },
       {
@@ -581,14 +581,14 @@
       {
         "type": "text",
         "id": "us_dif_avil",
-        "label": "Diffusers not avilable",
+        "label": "Diffusers not available",
         "info": ".1diffuser,.3diffusers,.9diffusers, .4diffusers,.8diffusers",
         "default": ".1diffuser,.2diffusers,.9diffusers"
       },
       {
         "type": "text",
         "id": "us_dif_oavil",
-        "label": "Diffusers not avilable New bottle",
+        "label": "Diffusers not available New bottle",
         "info": ".1diffuser,.3diffusers,.9diffusers, .4diffusers,.8diffusers",
         "default": ".1diffuser,.2diffusers,.9diffusers"
       }
