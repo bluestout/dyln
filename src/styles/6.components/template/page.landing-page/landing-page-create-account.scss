@@ -4,7 +4,7 @@
     text-align: center;
     width: 300px;
 
-    @include media-query($small) {
+    @include media-query($medium-down) {
       margin-bottom: 40px;
     }
 

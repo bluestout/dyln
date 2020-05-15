@@ -26,7 +26,7 @@
             {% for block in section.blocks %}
               {% assign block_step_num = block.settings.step_num | plus: 0 %}
               {% if section.settings.video_tab and block.type == "video" and block_step_num == i %}
-                <div class="col-md-6">
+                <div class="col-md-6 col-lg-5">
                   <div class="lp-steps__step-tab-content active" data-tab="0">
                     <iframe
                             id="ytplayer"
@@ -40,16 +40,22 @@
               {% if section.settings.illustrations_tab or section.settings.illustration_header %}
                 {% if block_step_num == i %}
 
-                  <div class="lp-steps__step-tab-content" data-tab="1">
-                    {% if block.type == "illustration_header" %}
-                      <p>{{ block.settings.illustration_header }}</p>
-                    {% endif %}
+                  <div class="col-md-6 col-lg-5">
+                    <div class="lp-steps__step-tab-content" data-tab="1">
+                      {% if block.type == "illustration_header" %}
+                        <div id="illustrationHeader">{{ block.settings.illustration_header }}</div>
+                      {% endif %}
 
-                    {% if block.type == "illustration" and block_step_num == i %}
-                      {% assign illustration_step = illustration_step | plus: 1 %}
-                      {{ block.settings.illustrations_gif }}
-                      <p><span>{{ illustration_step }}.</span> {{ block.settings.illustration_content }}</p>
-                    {% endif %}
+                      {% if block.type == "illustration" and block_step_num == i %}
+                        {% assign illustration_step = illustration_step | plus: 1 %}
+                        {{ block.settings.illustrations_gif }}
+                        <p><span>{{ illustration_step }}.</span> {{ block.settings.illustration_content }}</p>
+                      {% endif %}
+
+                      {% if block.type == "illustration_footer" %}
+                        <div id="illustrationFooter">{{ block.settings.illustration_footer }}</div>
+                      {% endif %}
+                    </div>
                   </div>
 
                 {% endif %}

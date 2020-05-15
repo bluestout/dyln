@@ -10,6 +10,10 @@
     align-items: center;
     justify-content: center;
 
+    @include media-query($medium-down) {
+      margin-bottom: 20px;
+    }
+
     svg {
       margin-right: 5px;
     }
