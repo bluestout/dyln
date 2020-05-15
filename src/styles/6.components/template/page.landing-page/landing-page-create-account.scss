@@ -50,10 +50,10 @@
 
     &-content {
       h4 {
-        margin-bottom: 5px;
-        text-align: left;
         @include font-header(bold);
         @include text(16px, 1.2, $color-theme-24, 1.45px);
+        margin-bottom: 5px;
+        text-align: left;
       }
 
       p {

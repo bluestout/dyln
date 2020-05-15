@@ -24,7 +24,22 @@
 
   p:first-of-type {
     margin-bottom: 30px;
-    padding: 0 15px;
+  }
+
+  &__header {
+    margin: 0 auto;
+
+    p {
+      padding: 0 15px;
+    }
+  }
+
+  &__gif {
+    margin-bottom: 20px;
+
+    iframe {
+      width: 100%;
+    }
   }
 
   &__item-wrapper {

@@ -26,7 +26,7 @@
               </div>
             {% endfor %}
           </div>
-          <a href="#" class="lp-account__create-account-btn d-flex">
+          <a href="{{ section.settings.account_btn_url }}" class="lp-account__create-account-btn d-flex">
             {{ section.settings.account_btn_text }} <span>{{ section.settings.account_btn_text_bonus }}</span> {% render 'icon-points-white' %}
           </a>
         </div>
@@ -60,6 +60,11 @@
       "type":"text",
       "id":"account_btn_text_bonus",
       "label":"Create Account Disc. Text"
+    },
+    {
+      "type":"url",
+      "id":"account_btn_url",
+      "label":"Create Account Button URL"
     }
   ],
   "blocks":[
