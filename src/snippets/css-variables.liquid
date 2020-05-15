@@ -34,5 +34,18 @@
     --font-body-weight: {{ settings.font_body.weight }};
     --font-body-style: {{ settings.font_body.style }};
     --font-body-bold-weight: {{ font_body_bold.weight | default: 'bold' }};
+
+    --font-size-h1-default: {{ settings.default_h1_fs }}px;
+    --font-size-h2-default: {{ settings.default_h2_fs }}px;
+    --font-size-h3-default: {{ settings.default_h3_fs }}px;
+    --font-size-h4-default: {{ settings.default_h4_fs }}px;
+    --font-size-h5-default: {{ settings.default_h5_fs }}px;
+    --font-size-h6-default: {{ settings.default_h6_fs }}px;
+    --font-size-p-default: {{ settings.default_p_fs }}px;
+
+    --font-size-body-default: {{ settings.default_body_fs }}px;
+
+    --grid-gap: {{ settings.default_grid_gap }}px;
+    --max-container-width: {{ settings.default_max_container }}px;
   }
 </style>

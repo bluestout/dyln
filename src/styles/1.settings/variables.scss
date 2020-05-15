@@ -68,3 +68,17 @@ $z-cart: 3;
 $z-header-rsp: 4;
 $z-top: 10;
 $z-overlay-content: 11;
+
+// default font sizes
+$font-size-d-h1: var(--font-size-h1-default);
+$font-size-d-h2: var(--font-size-h2-default);
+$font-size-d-h3: var(--font-size-h3-default);
+$font-size-d-h4: var(--font-size-h4-default);
+$font-size-d-h5: var(--font-size-h5-default);
+$font-size-d-h6: var(--font-size-h6-default);
+$font-size-d-p: var(--font-size-p-default);
+$font-size-d-body: var(--font-size-body-default);
+
+// grid & global variables
+$grid-gap: var(--grid-gap);
+$grid-container-max: var(--max-container-width);

@@ -140,6 +140,116 @@
         "id": "font_body",
         "default": "helvetica_n4",
         "label": "Body text"
+      },
+      {
+        "type": "range",
+        "id": "default_body_fs",
+        "min": 12,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 15,
+        "label": "Body Font Size"
+      }
+    ]
+  },
+  {
+    "name": "Default Page Styling",
+    "settings": [
+      {
+        "type": "range",
+        "id": "default_h1_fs",
+        "min": 12,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 36,
+        "label": "Header 1 font size"
+      },
+      {
+        "type": "range",
+        "id": "default_h2_fs",
+        "min": 12,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 30,
+        "label": "Header 2 font size"
+      },
+      {
+        "type": "range",
+        "id": "default_h3_fs",
+        "min": 12,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 26,
+        "label": "Header 3 font size"
+      },
+      {
+        "type": "range",
+        "id": "default_h4_fs",
+        "min": 12,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 22,
+        "label": "Header 4 font size"
+      },
+      {
+        "type": "range",
+        "id": "default_h5_fs",
+        "min": 12,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 18,
+        "label": "Header 5 font size"
+      },
+      {
+        "type": "range",
+        "id": "default_h6_fs",
+        "min": 12,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 16,
+        "label": "Header 6 font size"
+      },
+      {
+        "type": "range",
+        "id": "default_p_fs",
+        "min": 12,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 16,
+        "label": "Paragraph font size"
+      }
+    ]
+  },
+  {
+    "name": "Global Style Settings",
+    "settings": [
+      {
+        "type": "range",
+        "id": "default_grid_gap",
+        "min": 0,
+        "max": 50,
+        "step": 5,
+        "unit": "px",
+        "default": 15,
+        "label": "Grid gap & column padding"
+      },
+      {
+        "type": "range",
+        "id": "default_max_container",
+        "min": 1140,
+        "max": 1400,
+        "step": 10,
+        "unit": "px",
+        "default": 1330,
+        "label": "Maximum page container width"
       }
     ]
   },
