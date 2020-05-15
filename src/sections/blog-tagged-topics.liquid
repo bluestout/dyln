@@ -1,0 +1,50 @@
+<div class="container">
+  <h2>{{ 'blogs.general.other_topics_title' | t }}</h2>
+
+  <div class="row justify-content-md-center">
+    {% for tag in blog.tags %}
+      {% assign currentTag = tag %}
+    {% endfor %}
+
+    {% assign count = 0 %}
+    {% for other_article in blogs.blog.articles %}
+
+      {% unless other_article.tags contains currentTag %}
+        {% if count < 2 %}
+          {% assign count = count | plus: 1 %}
+          <div class="col-md-6 col-lg-4">
+            <div class="article-card article-card--horisontal article-card--md">
+              <a href="{{ other_article.url }}" class="article-card__wrapper">
+                {%- render 'responsive-image' with
+                  image: other_article.image.src,
+                  max_width: 768,
+                  max_height: 768,
+                  wrapper_class: "article-card__thumbnail-wrapper",
+                  image_class: "article-card__thumbnail"
+                -%}
+
+                <span class="article-card__content-text">
+                  {% for tag in other_article.tags %}
+                    <span class="article-card__category">{{ tag }}</span>
+                  {% endfor %}
+                  <h3>{{- other_article.title -}}</h3>
+                </span>
+              </a>
+            </div>
+          </div>
+        {% else %}
+          {% break %}
+        {% endif %}
+      {% endunless %}
+
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name":"Blog Tagged Other Topics",
+  "class":"blog-popular"
+}
+{% endschema %}
+

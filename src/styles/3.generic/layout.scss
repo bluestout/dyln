@@ -32,6 +32,12 @@ body {
       background-color: $color-background-mobile;
     }
   }
+
+  &.blog-tagged {
+    & > main {
+      background-color: $color-blog-tagged-background;
+    }
+  }
 }
 
 h1,

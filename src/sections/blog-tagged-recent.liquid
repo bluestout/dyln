@@ -1,0 +1,70 @@
+{% if section.settings.show %}
+  <div class="container">
+    {% if section.settings.title != blank %}
+      <h2>{{- section.settings.title -}}</h2>
+    {% else %}
+      <h2>{{ 'blogs.general.recent_articles_title' | t }}</h2>
+    {% endif %}
+
+    <div class="row justify-content-center">
+      {% for tag in blog.tags %}
+        {% assign currentTag = tag %}
+      {% endfor %}
+
+      {% paginate blog.articles by 6 %}
+        {% for article in blog.articles %}
+          <div class="col-md-5 col-lg-5">
+            <div class="recent-articles__card article-card article-card--sm">
+              <div class="article-card__social-sharing">
+                {% render 'social-sharing' share_icons: true %}
+              </div>
+              <a href="{{ article.url }}">
+                {%- render 'responsive-image' with
+                  span: true,
+                  image: article.image.src,
+                  max_width: 768,
+                  max_height: 768,
+                  wrapper_class: "article-card__thumbnail-wrapper",
+                  image_class: "article-card__thumbnail"
+                -%}
+
+                <span class="article-card__content">
+                  {% for tag in article.tags %}
+                    <span class="article-card__category">{{ tag }}</span>
+                  {% endfor %}
+                  <h3>{{- article.title -}}</h3>
+                </span>
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+
+      {% if paginate.pages > 1 %}
+        <div class="col-md-12">
+          {% include 'pagination' %}
+        </div>
+      {% endif %}
+      {% endpaginate %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+  "name": "Blog Recent",
+  "class": "blog-recent-tagged",
+  "settings": [
+  {
+    "type": "text",
+    "id": "title",
+    "label": "Recent Articles Title"
+  },
+  {
+    "type": "checkbox",
+    "id": "show",
+    "label": "Show this section?",
+    "default": true
+  }
+  ]
+  }
+{% endschema %}

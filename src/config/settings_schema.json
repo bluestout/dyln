@@ -1,7 +1,7 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Starter theme",
+    "theme_name": "Dyln",
     "theme_version": "1.0.0",
     "theme_author": "Shopify",
     "theme_documentation_url": "https://github.com/Shopify/starter-theme",
@@ -105,6 +105,12 @@
         "id": "blog_article_card_background",
         "label": "Blog Article Card Background",
         "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "color_blog_tagged_background",
+        "label": "Blog Category Page Background",
+        "default": "#f4f4f4"
       },
       {
         "type": "color",
@@ -274,12 +280,6 @@
   {
     "name": "Cart",
     "settings": [
-      {
-        "type": "checkbox",
-        "id": "cart_notes_enable",
-        "label": "Enable cart notes",
-        "default": true
-      },
       {
         "type": "range",
         "id": "shipping_threshold",

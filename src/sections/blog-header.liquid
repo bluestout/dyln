@@ -6,7 +6,7 @@
           {%- if section.settings.title != blank -%}
             <h2>{{- section.settings.title -}}</h2>
           {% else %}
-            <h2>DYLN BLOG</h2>
+            <h2>{{ 'blogs.general.blog_title' | t }}</h2>
           {% endif %}
           <p>{{- section.settings.content -}}</p>
         </div>

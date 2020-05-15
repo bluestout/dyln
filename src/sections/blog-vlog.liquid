@@ -10,10 +10,9 @@
   <div class="container-fluid">
     <div class="blog-video-wrapper slider" data-blog-vlog>
       {% for block in section.blocks %}
+        {% assign article = articles[block.settings.vlog_articles] %}
         <div class="slider__item">
-          <div class="slider__item-wrapper">
-            {% assign article = articles[block.settings.vlog_articles] %}
-            <a href="{{ article.url }}"></a>
+          <a href="{{ article.url }}" class="slider__item-wrapper">
             {%- render 'responsive-image' with
               image: article.image.src,
               max_width: 768,
@@ -29,7 +28,7 @@
             <div class="slider__item-content">
               <h3>{{ article.title }}</h3>
             </div>
-          </div>
+          </a>
         </div>
       {% endfor %}
     </div>
