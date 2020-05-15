@@ -4,6 +4,10 @@
   margin-bottom: 60px;
   position: relative;
 
+  @include media-query($medium-down) {
+    height: 400px !important;
+  }
+
   &::after {
     background-image: url("data:image/svg+xml,%3Csvg width='1600' height='85' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 84.645L1600 75V2c-155.92-4.667-347.98 0-576.185 14C681.51 37 418.348 53.997 212.44 53.997H0v30.648z' fill='%23FFF' fill-rule='evenodd'/%3E%3C/svg%3E");
     content: "";

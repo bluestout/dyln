@@ -3,7 +3,7 @@
     <div class="landing-page-header-wrapper d-flex">
       <div class="col-md-2 d-none d-md-block"></div>
 
-      <div class="col-md-4">
+      <div class="col-12 col-md-4">
         {%- render 'responsive-image' with
           image: section.settings.foreground_image.src,
           max_width: 1024,
@@ -14,7 +14,7 @@
 
       </div>
 
-      <div class="col-md-6">
+      <div class="col-12 col-md-6">
         <div class="landing-page-header__content">
           {%- if section.settings.title != blank -%}
             <h1>{{- section.settings.title -}}</h1>

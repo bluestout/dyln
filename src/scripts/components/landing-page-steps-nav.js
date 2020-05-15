@@ -7,11 +7,6 @@ const elements = {
   nextStepBtn: "[data-next-step]",
 };
 
-const classes = {
-  activeStep: "active-step",
-  inactiveStep: "inactive-step"
-};
-
 const $prevStepBtn = $(elements.prevStepBtn);
 const $nextStepBtn = $(elements.nextStepBtn);
 const $navStep = $(elements.stepSelector);

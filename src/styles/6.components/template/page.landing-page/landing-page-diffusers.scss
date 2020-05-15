@@ -1,4 +1,6 @@
 .lp-diffusers {
+  background: linear-gradient(0deg, rgba(231,240,242,1) 0%, rgba(255,255,255,1) 35%);
+
   &__title-header {
     position: relative;
     margin: 0 0 5px;
@@ -82,63 +84,6 @@
         padding-right: 15px;
       }
     }
-  }
-
-  &__note-wrap {
-    @include transition(bottom, opacity);
-    position: absolute;
-    left: calc(50% - 30px);
-    bottom: 100%;
-    width: 230px;
-    height: auto;
-    padding: 22px 15px 15px;
-    border: 2px solid $color-theme-15;
-    background-color: $color-background;
-    opacity: 0;
-    pointer-events: none;
-
-    &::before {
-      content: "";
-      position: absolute;
-      left: 20px;
-      bottom: -20px;
-      border: 10px solid transparent;
-      border-top: 10px solid $color-theme-15;
-    }
-
-    &::after {
-      content: "";
-      position: absolute;
-      left: 20px;
-      bottom: -18px;
-      border: 10px solid transparent;
-      border-top: 10px solid $color-white;
-    }
-
-    &:hover,
-    &:active {
-      opacity: 1;
-      pointer-events: auto;
-      bottom: calc(100% + 5px);
-    }
-  }
-
-  &__note-close {
-    @include no-browser-styling;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    padding: 2px;
-    margin: 0;
-
-    g {
-      stroke: $color-theme-8;
-    }
-  }
-
-  &__note {
-    @include font-body;
-    @include text(12px, 17px, $color-body-text, 0.71px);
   }
 
   &__variants {
