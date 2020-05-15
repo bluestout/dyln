@@ -154,6 +154,17 @@
   }
 }
 
+@mixin text-subtitle($color: $color-title) {
+  @include font-header(700);
+  @include text(30px, 45px, $color, 1.77px);
+
+  @include media-query($medium-down) {
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 1.18px;
+  }
+}
+
 @mixin no-font-size {
   font-size: 0;
   line-height: 0;

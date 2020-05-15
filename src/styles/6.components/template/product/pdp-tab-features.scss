@@ -52,8 +52,7 @@
   }
 
   &__subtitle {
-    @include font-header(700);
-    @include text(30px, 45px, $color-main-1, 1.77px);
+    @include text-subtitle;
   }
 
   &__content-inner {

@@ -25,9 +25,6 @@
     margin: 0 0 ($grid-gutter / 2) $grid-gutter;
   }
 
-  strong {
-  }
-
   [data-content-before]::before {
     content: attr(data-content-before);
   }
@@ -46,29 +43,8 @@
     list-style: none;
   }
 
-  .sb,
-  .semi-bold {
-    a,
-    span,
-    li,
-    strong {
-    }
-  }
-
-  .b,
-  .semi-bold {
-    a,
-    span,
-    li,
-    strong {
-    }
-  }
-
   a {
     text-decoration: underline;
-  }
-
-  > span {
   }
 
   @include media-query($large-down) {

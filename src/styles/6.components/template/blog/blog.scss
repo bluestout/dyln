@@ -9,13 +9,11 @@
   margin: 60px auto;
 
   h2 {
+    @include text-title;
     text-align: center;
     margin-bottom: 35px;
-    @include font-header(700);
-    @include text(40px, 23px, $color-title, 0.95px);
 
     @include media-query($medium-down) {
-      @include text(30px, 23px $color-title, 0.95px);
       margin-bottom: 15px;
     }
   }
