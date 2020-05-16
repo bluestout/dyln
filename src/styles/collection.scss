@@ -6,6 +6,4 @@
 // 2. Tools
 @import "./2.tools/tools";
 
-body {
-  @import "./6.components/template/collection/collection";
-}
+@import "./6.components/template/collection/collection";

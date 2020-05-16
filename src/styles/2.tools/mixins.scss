@@ -255,9 +255,10 @@
     background-repeat: repeat-x;
     background-size: 300% 100%;
     background-position: 0 100%;
-    outline: none;
 
     &:not(:disabled) {
+      outline: none;
+
       &:focus {
         background-position: 50% 100%;
       }
@@ -301,9 +302,10 @@
     padding: 10px 36px;
     background-color: transparent;
     border: 3px solid $btn-def-c;
-    outline: none;
 
     &:not(:disabled) {
+      outline: none;
+
       &:focus {
         border-color: $btn-acc-c;
         color: $btn-text-c-alt;
