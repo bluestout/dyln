@@ -1,0 +1,72 @@
+.contact-forms {
+  &__title {
+    @include font-header(700);
+    @include text(18px, 25px, $color-body-text, 1.06px);
+    text-align: right;
+  }
+
+  &__form {
+    margin: 0 0 25px;
+
+    input[type="email"],
+    input[type="text"] {
+      @include font-header;
+      @include text(14px, 20px, $color-body-text, 0.83px);
+      border: none;
+      border-radius: 0;
+      border-bottom: 1px solid $color-main;
+      padding: 5px 0;
+
+      &::placeholder {
+        opacity: 1;
+      }
+    }
+
+    select {
+      @include font-header;
+      @include text(14px, 20px, $color-body-text, 0.83px);
+      padding: 5px 0;
+      border: none;
+      border-radius: 0;
+    }
+
+    textarea {
+      @include font-header;
+      @include text(14px, 20px, $color-body-text, 0.83px);
+      border: 1px solid $color-main;
+      border-radius: 0;
+      padding: 5px;
+
+      &::placeholder {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__footer {
+    @include clearfix;
+    margin: 10px 0 0;
+  }
+
+  &__note {
+    @include font-header;
+    @include text(9px, 12px, $color-body-text, 0.53px);
+    float: left;
+  }
+
+  &__submit {
+    @include button(solid, round, 1);
+    float: right;
+  }
+
+  &__success {
+    @include font-header(500);
+    @include text(18px, 28px, $color-body-text, 1.06px);
+    margin: 0 0 20px;
+  }
+
+  &__address {
+    @include font-header(500);
+    @include text(16px, 23px, $color-body-text, 0.95px);
+  }
+}

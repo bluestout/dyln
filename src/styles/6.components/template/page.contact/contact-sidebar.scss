@@ -1,40 +1,36 @@
-.contact-body {
-  margin: 40px 0;
+.contact-sidebar {
+  margin: 40px 0 55px;
 
-  &__container {
-    max-width: 880px;
+  h3 {
+    @include font-header(700);
+    @include text(20px, 28px, $color-title, 1.11px);
+    text-align: center;
+    margin: 0 0 10px;
   }
 
-  &__big-links {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    margin: 0 0 55px;
-  }
-
-  &__big-link {
+  &__link {
     height: 40px;
     padding: 0 25px;
-    border-radius: 20px;
+    margin: 0 0 3px;
     background-color: $color-theme-13;
-    display: inline-block;
+    display: block;
 
     &:active {
-      + .contact-body__modal-wrap {
+      + .contact-sidebar__modal-wrap {
         opacity: 1;
         pointer-events: auto;
       }
     }
   }
 
-  &__big-link-i {
+  &__link-i {
     @include no-font-size;
     margin: 0 5px 0 0;
     display: inline-block;
     vertical-align: middle;
   }
 
-  &__big-link-t {
+  &__link-t {
     @include font-header(700);
     @include text(18px, 40px, $color-body-text, 1.06px);
     display: inline-block;
@@ -55,8 +51,7 @@
     opacity: 0;
     pointer-events: none;
 
-    &.active,
-    &:hover {
+    &.active {
       opacity: 1;
       pointer-events: auto;
     }

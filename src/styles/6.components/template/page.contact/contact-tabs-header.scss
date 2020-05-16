@@ -1,0 +1,40 @@
+.contact-tabs-header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  border-bottom: 1px solid $color-theme-7;
+  margin: 0 0 40px;
+
+  &__link {
+    @include font-header(700);
+    @include text(18px, 26px, $color-theme-7, 1px);
+    @include no-browser-styling;
+    @include transition(border-color);
+    padding: 5px 20px;
+    display: block;
+    position: relative;
+    bottom: -2px;
+    border-bottom: 3px solid transparent;
+    border-radius: 0;
+
+    &.active {
+      border-bottom: 3px solid $color-theme-1;
+    }
+  }
+
+  @include media-query($xxl) {
+    &__link {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+
+  @include media-query($xl) {
+    &__link {
+      font-size: 14px;
+      line-height: 24px;
+      letter-spacing: 0.5px;
+      padding: 5px 10px;
+    }
+  }
+}
