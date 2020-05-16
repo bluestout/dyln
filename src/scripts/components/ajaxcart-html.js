@@ -33,18 +33,15 @@ function quickCartUpsellHtml(product, url, index) {
   let options = "";
   let optionsWrap = "";
 
-  console.log("product: ", product);
-
   if (product.variants) {
     for (let k = 0; k < product.variants.length; k++) {
       const variant = product.variants[k];
-      console.log("variant: ", variant);
       options += `
       <option
         ${variant.available ? "" : "disabled='disabled'"}
         value="${variant.id}"
-        data-cart-upsell-variant-price="${formatAndTrimPrice(variant.price)}"
-        >
+        data-price="${formatAndTrimPrice(variant.price)}"
+        data-id="${variant.id}">
           ${variant.title}
       </option>
       `;
@@ -64,17 +61,23 @@ function quickCartUpsellHtml(product, url, index) {
               handleize(variant.title.trim().toLowerCase())
             );
             const swatch = `color-swatch-${colorHandle}`;
-            colorInputs += `<label class="visually-hidden" for="cu-${k}-${option}-${j}">${variant.title}</label>`;
+            let checkedStatus = "";
+            if (variant.available && !isChecked) {
+              checkedStatus = `checked="checked"`;
+              isChecked = true;
+            }
+            colorInputs += `<label class="visually-hidden" for="cu-${k}-${option}-${j}" tabindex="-1">${variant.title}</label>`;
             colorInputs += `<input type="radio"
+              tabindex="-1"
               id="cu-${k}-${option}-${j}"
               name="cu-${k}-${option}"
               value="${variant[optionlabel]}"
               class="cart-drawer__upsell-radio-color ${swatch}"
-              data-price="${variant.price}"
+              data-price="${formatAndTrimPrice(variant.price)}"
               data-id="${variant.id}"
-              ${variant.available && !isChecked ? `checked="checked"` : ""}
+              data-upsell-input
+              ${checkedStatus}
               ${variant.available ? "" : `disabled="disabled"`} />`;
-            variant.available && !isChecked ? (isChecked = true) : "";
           }
         }
         optionsWrap += `<div class="cart-drawer__upsell-selectbox">${colorInputs}</div>`;
@@ -84,17 +87,30 @@ function quickCartUpsellHtml(product, url, index) {
         for (let j = 0; j < product.variants.length; j++) {
           const variant = product.variants[j];
           if (variant[optionlabel]) {
+            amountInputs += `<span class="cart-drawer__upsell-input-wrap">`;
+            let checkedStatus = "";
+            if (variant.available && !isChecked) {
+              checkedStatus = `checked="checked"`;
+              isChecked = true;
+            }
             amountInputs += `<input type="radio"
+              tabindex="-1"
               id="cu-${k}-${option}-${j}"
               name="cu-${k}-${option}"
               value="${adjustDiffuserText(variant[optionlabel])}"
               class="cart-drawer__upsell-radio-input"
-              data-price="${variant.price}"
+              data-price="${formatAndTrimPrice(variant.price)}"
               data-id="${variant.id}"
-              ${variant.available && !isChecked ? `checked="checked"` : ""}
+              data-upsell-input
+              ${checkedStatus}
               ${variant.available ? "" : `disabled="disabled"`} />`;
-            variant.available && !isChecked ? (isChecked = true) : "";
-            amountInputs += `<label class="cart-drawer__upsell-label" for="cu-${k}-${option}-${j}">${variant.title}</label>`;
+            amountInputs += `<label
+              class="cart-drawer__upsell-label"
+              for="cu-${k}-${option}-${j}"
+              tabindex="-1">
+              ${adjustDiffuserText(variant[optionlabel])}
+            </label>`;
+            amountInputs += "</span>";
           }
         }
         optionsWrap += `<div class="cart-drawer__upsell-selectbox">${amountInputs}</div>`;
@@ -104,13 +120,13 @@ function quickCartUpsellHtml(product, url, index) {
 
   const select =
     options.length > 1
-      ? `<div class="cart-drawer__upsell-selectbox"><select name="id" class="cart-drawer__upsell-select" data-upsell-select>${options}</select></div>`
+      ? `<select name="id" class="visually-hidden shown-on-focus" data-upsell-select>${options}</select>`
       : "";
 
   const linkHref = url ? `href="${url}"` : `href="/products/${product.handle}"`;
 
   pattern = `
-  <div class="cart-drawer__item-upsell" data-add-upsell-wrap>
+  <div class="cart-drawer__item-upsell" data-upsell-wrap>
     <input
       type="hidden"
       id="upsellQuantity${index}"
@@ -122,7 +138,7 @@ function quickCartUpsellHtml(product, url, index) {
     <a ${linkHref} class="cart-drawer__upsell-content">
       <h4 class="cart-drawer__upsell-item-title">${product.title}</h4>
       <p class="cart-drawer__upsell-text">
-      <span data-cart-upsell-item-price>
+      <span data-upsell-price>
       ${formatAndTrimPrice(product.price)}
         </span>
       </p>
@@ -130,9 +146,9 @@ function quickCartUpsellHtml(product, url, index) {
     <div class="cart-drawer__upsell-form">
       ${optionsWrap}
       ${select}
-      <button type="button" class="cart-drawer__upsell-add" data-add-upsell>
-        <span data-add-upsell-loading class="upsell-loading-dots hide"></span>
-        <span data-add-upsell-text>${theme.strings.addToCart}</span>
+      <button type="button" class="cart-drawer__upsell-add" data-upsell-submit>
+        <span data-upsell-loading class="loading-dots hide"></span>
+        <span data-upsell-text>${theme.strings.addToCart}</span>
       </button>
     </div>
   </div>
@@ -258,6 +274,7 @@ function cartLineItemHtml(product, index) {
 
   const showLink = `href="${product.url}"`;
   const lineTotal = formatMoney(product.line_price, theme.moneyFormat);
+  const linePrice = formatMoney(product.price, theme.moneyFormat);
 
   const selectOptions = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   let selectOptionsString = "";
@@ -313,13 +330,6 @@ function cartLineItemHtml(product, index) {
       </div>
     </td>
 
-    <td
-      class="cart__table-cell d-none d-md-table-cell">
-      <a class="cart__table-product-variant" ${showLink}>
-        ${variantTitle}
-      </a>
-    </td>
-
     <td class="cart__table-cell" data-label="${theme.strings.quantity}">
       <div class="row no-gutters">
         <div class="col-4 d-md-none">
@@ -332,9 +342,6 @@ function cartLineItemHtml(product, index) {
               ${product.product_title}
             </span>
             ${titleBr}
-            <span class="cart__table-product-info">
-              ${variantTitle}
-            </span>
             <br>
           </a>
           <div>
@@ -354,7 +361,12 @@ function cartLineItemHtml(product, index) {
           </div>
         </div>
       </div>
+    </td>
 
+    <td
+      class="cart__table-cell d-none d-md-table-cell"
+      data-label="${theme.strings.cart_price}">
+      ${linePrice}
     </td>
 
     <td

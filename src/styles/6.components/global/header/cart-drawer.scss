@@ -177,6 +177,7 @@
     @include font-header(500);
     @include text(14px, 20px, $color-title, 1.5px);
   }
+
   &__upsell-radio-color {
     @include transition(box-shadow, border-color);
     @include no-browser-styling;
@@ -188,13 +189,18 @@
     margin: 0 3px 0 0;
 
     &:not(:disabled) {
+      &:not(:checked) {
+        box-shadow: none;
+      }
+
+      &:hover {
+        border-color: $color-theme-6;
+        box-shadow: 0 0 7px 0 rgba($color-black, 0.5);
+      }
+
       &:checked {
         box-shadow: 0 0 7px 0 rgba($color-black, 0.5);
         border-color: $color-white;
-      }
-
-      &:not(:checked) {
-        box-shadow: none;
       }
     }
 
@@ -208,23 +214,30 @@
     margin: 0 0 15px;
   }
 
+  &__upsell-input-wrap {
+    text-align: center;
+    width: 48%;
+    float: left;
+    margin: 0 1% 3px;
+  }
+
   &__upsell-label {
     @include transition(color);
     @include underline($color-main-1, false);
     @include font-header(500);
     @include text(12px, 20px, $color-body-text, 1px);
-    text-align: center;
-    width: 48%;
-    float: left;
-    margin: 0 1% 3px;
-    padding: 0 2px;
+    display: inline-block;
   }
 
   &__upsell-radio-input {
     @include no-browser-styling;
+    height: 1px;
+    width: 1px;
 
     &:not(:disabled) {
-      cursor: pointer;
+      + .cart-drawer__upsell-label {
+        cursor: pointer;
+      }
 
       &:hover {
         + .cart-drawer__upsell-label {
@@ -244,13 +257,11 @@
     }
 
     &:disabled {
-      color: $color-theme-8;
-      cursor: not-allowed;
+      + .cart-drawer__upsell-label {
+        color: $color-theme-8;
+        cursor: not-allowed;
+      }
     }
-  }
-
-  &__upsell-input-wrap {
-    margin: 0 0 15px;
   }
 
   &__upsell-selectbox {
@@ -258,19 +269,11 @@
     margin: 0 0 15px;
   }
 
-  &__upsell-select {
-    width: 100%;
-    padding: 5px;
-  }
-
   &__upsell-add {
     @include button(solid, square, 1);
     text-transform: uppercase;
     padding: 6px;
     width: 100%;
-  }
-
-  .upsell-loading-dots {
   }
 
   &__totals-wrap {

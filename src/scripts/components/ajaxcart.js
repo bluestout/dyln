@@ -9,6 +9,13 @@ import {
   emptyCartHtml,
 } from "./ajaxcart-html";
 
+const datasets = {
+  upsell: {
+    id: "id",
+    price: "price",
+  },
+};
+
 const selectors = {
   header: "[data-section-type='header']",
   add: "[data-add-to-cart]",
@@ -25,11 +32,6 @@ const selectors = {
   nav: "[data-main-navigation]",
   pageWrap: "[data-page-overlay]",
   productPrice: "[data-product-price]",
-  addUpsell: "[data-add-upsell]",
-  upsellWrap: "[data-add-upsell-wrap]",
-  upsellSelect: "[data-upsell-select]",
-  upsellText: "[data-add-upsell-text]",
-  upsellProgress: "[data-add-upsell-loading]",
   quick: {
     toggle: "[data-cart-drawer-toggle]",
     content: "[data-cart-drawer-content]",
@@ -50,6 +52,17 @@ const selectors = {
     totals: "[data-cart-totals]",
     upsell: "[data-cart-upsell-settings]",
     checkout: "[data-cart-checkout]",
+  },
+  upsell: {
+    wrap: "[data-upsell-wrap]",
+    submit: "[data-upsell-submit]",
+    select: "[data-upsell-select]",
+    text: "[data-upsell-text]",
+    loading: "[data-upsell-loading]",
+    input: "[data-upsell-input]",
+    price: "[data-upsell-price]",
+    inputById: (id) =>
+      `${selectors.upsell.input}[data-${datasets.upsell.id}="${id}"]`,
   },
   message: {
     container: "[data-ajax-message-container]",
@@ -314,11 +327,11 @@ function handleAjaxAddButtonClick(event) {
   })();
 }
 
-function handleAjaxAddUpsell(event) {
+function handleAjaxUpsellSubmit(event) {
   event.preventDefault();
   const $source = $(event.currentTarget);
-  const $text = $source.find(selectors.upsellText);
-  const $loading = $source.find(selectors.upsellProgress);
+  const $text = $source.find(selectors.upsell.text);
+  const $loading = $source.find(selectors.upsell.loading);
 
   toggleAddingToCartAnimation($source, true);
   $loading.removeClass(classes.hide);
@@ -330,9 +343,9 @@ function handleAjaxAddUpsell(event) {
     $text.removeClass(classes.hide);
   }, 10000);
 
-  const $wrap = $source.closest(selectors.upsellWrap);
+  const $wrap = $source.closest(selectors.upsell.wrap);
   const id =
-    $wrap.find(`${selectors.upsellSelect} option:selected`).val() || false;
+    $wrap.find(`${selectors.upsell.select} option:selected`).val() || false;
 
   if (!id && !(typeof id === "number")) {
     return;
@@ -360,6 +373,32 @@ function handleAjaxAddUpsell(event) {
       );
     });
   })();
+}
+
+function handleAjaxUpsellSelectChange(event) {
+  const $source = $(event.currentTarget);
+  const $parent = $source.closest(selectors.upsell.wrap);
+  const $option = $source.find(`option:selected`);
+  const id = $option.data(datasets.upsell.id);
+  const price = $option.data(datasets.upsell.price);
+  renderUpsellPrice($parent, price);
+  $(selectors.upsell.input).removeAttr("checked");
+  $(selectors.upsell.inputById(id)).attr("checked", "checked");
+}
+
+function handleAjaxUpsellInputClick(event) {
+  const $source = $(event.currentTarget);
+  const $parent = $source.closest(selectors.upsell.wrap);
+  const id = $source.data(datasets.upsell.id);
+  const price = $source.data(datasets.upsell.price);
+  $parent.find(selectors.upsell.select).val(id);
+
+  renderUpsellPrice($parent, price);
+}
+
+function renderUpsellPrice($upsell, price) {
+  const $price = $upsell.find(selectors.upsell.price);
+  $price.text(price);
 }
 
 function addToCartComplete(jqXHR, textStatus) {
@@ -538,7 +577,9 @@ $(document).on("change", selectors.input, handleQtyInputChange);
 $(document).on("click", selectors.quick.toggle, quickCartToggle);
 // ajaxify add to cart buttons
 $(document).on("click", selectors.add, handleAjaxAddButtonClick);
-$(document).on("click", selectors.addUpsell, handleAjaxAddUpsell);
+$(document).on("click", selectors.upsell.submit, handleAjaxUpsellSubmit);
+$(document).on("change", selectors.upsell.select, handleAjaxUpsellSelectChange);
+$(document).on("click", selectors.upsell.input, handleAjaxUpsellInputClick);
 
 // run ajax on page load to get cart contents
 $(document).ready(() => {
