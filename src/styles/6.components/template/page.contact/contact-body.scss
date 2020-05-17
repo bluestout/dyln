@@ -1,0 +1,142 @@
+.contact-body {
+  margin: 0 0 25px;
+
+  > h3 {
+    @include text-title;
+    margin: 0 0 20px;
+  }
+
+  &__content {
+    @include font-header(700);
+    @include text(16px, 24px, $color-body-text, 0.95px);
+  }
+
+  > ul {
+    @include clearfix;
+    list-style: none;
+    margin: 40px 0 60px;
+    padding: 0;
+  }
+
+  > ul li {
+    padding: 11px 0;
+    border-bottom: 1px solid $color-main-1;
+    width: 100%;
+    margin: 0;
+
+    &:first-of-type {
+      border-top: 1px solid $color-main-1;
+    }
+  }
+
+  [data-faq-hidden-init] {
+    display: none;
+  }
+
+  &__faq-button {
+    @include clearfix;
+    @include no-browser-styling;
+    width: 100%;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    display: block;
+
+    &.open {
+      .contact-body__closed {
+        display: none;
+      }
+      .contact-body__open {
+        display: block;
+      }
+    }
+
+    &:not(.open) {
+      .contact-body__closed {
+        display: block;
+      }
+      .contact-body__open {
+        display: none;
+      }
+    }
+  }
+
+  &__subtitle {
+    @include font-header(700);
+    @include text(20px, 28px, $color-title, 1.18px);
+    margin: 0 0 10px;
+    display: block;
+  }
+
+  &__closed,
+  &__open {
+    @include font-header(700);
+    @include text(20px, 28px, $color-main-1, 1.77px);
+    text-align: center;
+    width: 10px;
+    margin: 0 30px 0 0;
+    float: right;
+  }
+
+  &__question {
+    @include font-header(500);
+    @include text(18px, 26px, $color-body-text, 1.06px);
+    display: inline-block;
+    vertical-align: middle;
+    width: calc(100% - 50px);
+  }
+
+  &__answer {
+    @include font-body;
+    @include text(18px, 24px, $color-body-text, 1.08px);
+    padding: 10px 0 0;
+
+    a {
+      color: $color-main-1;
+    }
+  }
+
+  &__select-wrap {
+    position: relative;
+    max-width: 290px;
+    z-index: $z-contact-select;
+    margin: 0 0 15px;
+  }
+
+  &__button-link {
+    @include button(solid, round, 1);
+    font-size: 18px;
+    line-height: 18px;
+    letter-spacing: 2.5px;
+    padding: 11px 25px;
+  }
+
+  .custom-select-styled {
+    @include text(16px, 32px, $color-body-text, 1px);
+    position: relative;
+    font-weight: 700;
+    height: 32px;
+    width: 290px;
+    padding: 0 5px;
+    background-color: $color-theme-4;
+
+    &::after {
+      content: "";
+      position: absolute;
+      right: 5px;
+      top: calc(50% - 2px);
+      border: 5px solid transparent;
+      border-top: 5px solid $color-theme-4;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      right: 5px;
+      top: calc(50% - 1px);
+      border: 5px solid $color-theme-4;
+      border-top: 5px solid $color-theme-7;
+    }
+  }
+}

@@ -3,12 +3,12 @@ import { formatMoney } from "@shopify/theme-currency";
 const elements = {
   message: {
     container: "[data-ajax-message-container]",
-    text: "[data-ajax-message-text]"
-  }
+    text: "[data-ajax-message-text]",
+  },
 };
 
 const classes = {
-  active: "active"
+  active: "active",
 };
 
 function resizeImage(src, size) {
@@ -18,7 +18,7 @@ function resizeImage(src, size) {
       /_(pico|icon|thumb|small|compact|medium|large|grande|original|1024x1024|2048x2048|master)+\./g,
       "."
     )
-    .replace(/\.jpg|\.png|\.gif|\.jpeg/g, match => {
+    .replace(/\.jpg|\.png|\.gif|\.jpeg/g, (match) => {
       return `_${size}${match}`;
     });
 }
@@ -32,7 +32,6 @@ function formatAndTrimPrice(price) {
   formattedPrice = formattedPrice.replace(".00", "");
   return formattedPrice;
 }
-
 
 let eventHolder = null;
 function ajaxHeaderMessage(message) {
@@ -48,4 +47,16 @@ function ajaxHeaderMessage(message) {
   return eventHolder;
 }
 
-export { resizeImage, formatAndTrimPrice, ajaxHeaderMessage };
+function getUrlParams() {
+  const params = {};
+  if (window.location.search.length > 0) {
+    const pairs = document.location.search.substr(1).split("&");
+    for (let i = 0; i < pairs.length; i++) {
+      const paramsSplit = pairs[i].split("=");
+      params[paramsSplit[0]] = paramsSplit[1];
+    }
+  }
+  return params;
+}
+
+export { resizeImage, formatAndTrimPrice, ajaxHeaderMessage, getUrlParams };

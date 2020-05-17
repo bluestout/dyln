@@ -2,6 +2,10 @@
   <h3>{{ section.settings.title }}</h3>
 {% endif %}
 
+{% if section.settings.description != empty %}
+  <div class="contact-body__content rte">{{ section.settings.description }}</div>
+{% endif %}
+
 {% if section.blocks.size > 0 %}
   <ul data-accordion-parent=true>
     {% for block in section.blocks %}
@@ -20,9 +24,23 @@
   </ul>
 {% endif %}
 
+<div class="row">
+  {% if section.settings.table_1 != empty %}
+    <div class="col-lg-6">
+      <h4 class="contact-body__subtitle">{{ section.settings.table_title_1 }}</h4>
+      {{ section.settings.table_1 }}
+    </div>
+  {% endif %}
+  {% if section.settings.table_2 != empty %}
+    <div class="col-lg-6">
+      <h4 class="contact-body__subtitle">{{ section.settings.table_title_2 }}</h4>
+      {{ section.settings.table_2 }}
+    </div>
+  {% endif %}
+</div>
 {% schema %}
   {
-    "name": "FAQs",
+    "name": "Domestic",
     "class": "contact-body",
     "settings": [
       {
@@ -31,10 +49,29 @@
         "label": "Section Title"
       },
       {
+        "type": "textarea",
+        "id": "description",
+        "label": "Description"
+      },
+      {
         "type": "text",
-        "id": "see_all_text",
-        "label": "Show All Text",
-        "default": "See All FAQs"
+        "id": "table_title_1",
+        "label": "Table Title 1"
+      },
+      {
+        "type": "textarea",
+        "id": "table_1",
+        "label": "Table 1"
+      },
+      {
+        "type": "text",
+        "id": "table_title_2",
+        "label": "Table Title 2"
+      },
+      {
+        "type": "textarea",
+        "id": "table_2",
+        "label": "Table 2"
       }
     ],
     "blocks": [

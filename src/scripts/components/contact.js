@@ -1,18 +1,27 @@
 import $ from "jquery";
-import { slice } from "lodash-es";
 
 const selectors = {
-  showAll: "[data-faq-show-all]",
-  initHidden: "[data-faq-hidden-init]",
+  country: "[data-c-contact-country]",
+  select: "[data-c-country-select]",
+  countryByHandle: (handle) => `[data-c-contact-country="${handle}"]`,
 };
 
-const timing = {
-  default: "200",
+const classes = {
+  active: "active",
 };
 
-function handleShowButtonClick() {
-  $(selectors.showAll).fadeOut(timing.default);
-  $(selectors.initHidden).slideDown(timing.default);
+function handleCountryChange(event) {
+  const $this = $(event.currentTarget);
+  const countryValue = $this.val();
+  const $newCountry = $(selectors.countryByHandle(countryValue));
+  const $allCountries = $(selectors.country);
+  $allCountries.not($newCountry).fadeOut(200, () => {
+    $allCountries.not($newCountry).removeClass(classes.active);
+    if (!$newCountry.hasClass(classes.active)) {
+      $newCountry.fadeIn(200);
+      $newCountry.addClass(classes.active);
+    }
+  });
 }
 
-$(document).on("click", selectors.showAll, handleShowButtonClick);
+$(document).on("change", selectors.select, handleCountryChange);

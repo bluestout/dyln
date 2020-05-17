@@ -13,6 +13,7 @@ function getUrlParams() {
   return params;
 }
 
+// any select with data-custom attribute will be "converted" to a custom dropdown
 $(document).ready(() => {
   $("select[data-custom]").each(function() {
     const $this = $(this);
@@ -57,7 +58,7 @@ $(document).ready(() => {
           rel: $this
             .children("option")
             .eq(i)
-            .val()
+            .val(),
         }).appendTo($list);
       }
     }

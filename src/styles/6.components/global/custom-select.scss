@@ -1,9 +1,7 @@
-$background: $color-background;
 $select-color: $color-body-text;
 $select-background: $color-background;
-$select-hover-color: $color-main-1;
-$select-width: 200px;
-$select-height: 30px;
+$select-list-bg: $color-theme-4;
+$select-hover-color: $color-theme-25;
 
 .custom-select-hidden {
   display: none;
@@ -35,6 +33,17 @@ $select-height: 30px;
   background-color: $select-background;
   padding: 0;
   line-height: 30px;
+
+  &::after {
+    content: "+";
+    position: absolute;
+    font-weight: 700;
+    right: 1px;
+    top: calc(50% - 10px);
+    line-height: 20px;
+    font-size: 16px;
+    pointer-events: none;
+  }
 }
 
 .custom-select-options {
@@ -47,23 +56,21 @@ $select-height: 30px;
   margin: 0;
   padding: 0;
   list-style: none;
-  background-color: $color-theme-4;
+  background-color: $select-list-bg;
   border: none;
 
   li {
-    @include transition(all 0.15s ease-in);
+    @include transition(background-color 0.15s ease-in);
     font-size: 14px;
     margin: 0;
     padding: 1px 0;
     text-indent: 15px;
+    background-color: $select-list-bg;
+
     &:hover {
-      color: $select-background;
-      background: $select-hover-color;
-      a,
-      span {
-        color: $select-background;
-      }
+      background-color: $select-hover-color;
     }
+
     &[rel="hide"] {
       display: none;
     }

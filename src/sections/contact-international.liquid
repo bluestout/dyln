@@ -1,0 +1,150 @@
+{% if section.settings.title != empty %}
+  <h3>{{ section.settings.title }}</h3>
+{% endif %}
+
+{% if section.settings.description != empty %}
+  <div class="contact-body__content rte">{{ section.settings.description }}</div>
+{% endif %}
+
+{% assign any_country_set = false %}
+{% assign any_faq_set = false %}
+{% for block in section.blocks %}
+  {% if any_faq_set and any_country_set %}{% break %}{% endif %}
+  {% if block.type == "country" and block.settings.title != empty %}
+    {% assign any_country_set = true %}
+  {% endif %}
+  {% if block.type == "faq" and block.settings.faq_article %}
+    {% assign any_faq_set = true %}
+  {% endif %}
+{% endfor %}
+
+{% if any_faq_set %}
+  <ul data-accordion-parent=true>
+    {% for block in section.blocks %}
+      {% if block.type == "faq" %}
+        {% assign contact_faq_article = articles[block.settings.faq_article] %}
+        <li>
+          <button class="contact-body__faq-button" data-accordion-button="{{ forloop.index }}">
+            <span class="contact-body__question">
+              {{ contact_faq_article.title }}
+            </span>
+            <span class="contact-body__closed">+</span>
+            <span class="contact-body__open">-</span>
+          </button>
+          <div class="contact-body__answer" data-accordion-content="{{ forloop.index }}" style="display: none;">{{ contact_faq_article.content }}</div>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+{% endif %}
+
+{% if any_country_set %}
+  <label for="contact-international-shipping" class="contact-body__subtitle">{{ section.settings.select_title }}</label>
+  <div class="contact-body__select-wrap">
+    <select data-custom data-c-country-select id="contact-international-shipping">
+      <option value="" disabled selected hidden>{{ section.settings.select_placeholder }}</option>
+      {% for block in section.blocks %}
+        {% if block.type == "country" and block.settings.title != empty %}
+          <option value="{{ block.settings.title | handleize }}">{{ block.settings.title }}</option>
+        {% endif %}
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="row">
+    {% for block in section.blocks %}
+      {% if block.type == "country" and block.settings.title != empty %}
+        {% if section.settings.show_country_name %}
+          <div class="col-12" style="display: none;" data-c-contact-country="{{ block.settings.title | handleize }}">
+            <h4 class="contact-body__subtitle">{{ block.settings.title }}</h4>
+          </div>
+        {% endif %}
+        {% if block.settings.content != empty %}
+          <div class="col-lg-6" style="display: none;" data-c-contact-country="{{ block.settings.title | handleize }}">
+            <div class="rte">
+              {{ block.settings.content }}
+            </div>
+          </div>
+        {% endif %}
+        {% if block.settings.content_2 != empty %}
+          <div class="col-lg-6" style="display: none;" data-c-contact-country="{{ block.settings.title | handleize }}">
+            <div class="rte">
+              {{ block.settings.content_2 }}
+            </div>
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "International",
+    "class": "contact-body",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title"
+      },
+      {
+        "type": "textarea",
+        "id": "description",
+        "label": "Description"
+      },
+      {
+        "type": "text",
+        "id": "select_title",
+        "label": "Country Select Label"
+      },
+      {
+        "type": "text",
+        "id": "select_placeholder",
+        "label": "Country Select Placeholder",
+        "default": "Select country to know more"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_country_name",
+        "label": "Show country name?",
+        "default": false
+      }
+    ],
+    "blocks": [
+      {
+        "type": "faq",
+        "name": "FAQ",
+        "settings": [
+          {
+            "type": "article",
+            "id": "faq_article",
+            "label": "FAQ article"
+          }
+        ]
+      },
+      {
+        "type": "country",
+        "name": "Country",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Country Name"
+          },
+          {
+            "type": "textarea",
+            "id": "content",
+            "label": "Country Content 1"
+          },
+          {
+            "type": "textarea",
+            "id": "content_2",
+            "label": "Country Content 2"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+

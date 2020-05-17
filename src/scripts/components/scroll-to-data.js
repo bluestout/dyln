@@ -19,7 +19,6 @@ function clickListener(event) {
       const id = href.substring(hashLoc);
       const target = document.getElementById(id);
       const body = document.querySelector("html");
-      console.log("id", id);
       scrollTo(body, target.offsetTop, 500);
     }
   }

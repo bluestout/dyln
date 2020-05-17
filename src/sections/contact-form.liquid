@@ -23,7 +23,7 @@
 
       {{ form.errors | default_errors }}
 
-      <label for="ContactFormName" class="hide">{{ 'contact.form.name' | t }}</label>
+      <label for="ContactFormName" class="visually-hidden">{{ 'contact.form.name' | t }}</label>
       <input type="text"
         name="contact[name]"
         id="ContactFormName"
@@ -31,7 +31,7 @@
         value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}"
         required />
 
-      <label for="ContactFormEmail" class="hide">{{ 'contact.form.email' | t }}</label>
+      <label for="ContactFormEmail" class="visually-hidden">{{ 'contact.form.email' | t }}</label>
       <input type="email"
         name="contact[email]"
         id="ContactFormEmail"
@@ -42,16 +42,24 @@
         autocapitalize="off"
         required />
 
-      <label for="ContactFormSubject" class="hide">{{ 'contact.form.subject' | t }} *</label>
+      <label for="ContactFormSubject" class="visually-hidden">{{ 'contact.form.subject' | t }} *</label>
       <select id="ContactFormSubject" name="contact[Subject]" required data-custom>
         <option value="" disabled selected hidden>{{ 'contact.form.subject' | t }} *</option>
-        <option>{{ 'contact.form.returns' | t }}</option>
-        <option>{{ 'contact.form.order' | t }}</option>
-        <option>{{ 'contact.form.delivery' | t }}</option>
-        <option>{{ 'contact.form.other' | t }}</option>
+        {% if section.blocks.size > 0 %}
+          {% for block in section.blocks %}
+            {% if block.settings.title != empty %}
+              <option value="{{ block.settings.title }}">{{ block.settings.title }}</option>
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          <option value="{{ 'contact.form.returns' | t }}">{{ 'contact.form.returns' | t }}</option>
+          <option value="{{ 'contact.form.returns' | t }}">{{ 'contact.form.order' | t }}</option>
+          <option value="{{ 'contact.form.returns' | t }}">{{ 'contact.form.delivery' | t }}</option>
+          <option value="{{ 'contact.form.returns' | t }}">{{ 'contact.form.other' | t }}</option>
+        {% endif %}
       </select>
 
-      <label for="ContactFormMessage" class="hide">{{ 'contact.form.message' | t }}</label>
+      <label for="ContactFormMessage" class="visually-hidden">{{ 'contact.form.message' | t }}</label>
       <textarea rows="10"
         name="contact[body]"
         id="ContactFormMessage"
@@ -103,8 +111,8 @@
 
 {% schema %}
   {
-    "name": "Content",
-    "class": "contact-body",
+    "name": "Contact",
+    "class": "contact-form",
     "settings": [
       {
         "type": "textarea",
@@ -120,6 +128,20 @@
         "type": "textarea",
         "id": "address",
         "label": "Address"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "subject",
+        "name": "Subject",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Subject",
+            "info": "Add / change a contact form subject."
+          }
+        ]
       }
     ]
   }
