@@ -13,10 +13,13 @@
     left: 0;
     height: 100%;
     width: 100%;
+    max-width: 100% !important;
   }
 
   &__bg {
     object-fit: cover;
+    max-width: 100% !important;
+    max-height: 100%;
   }
 
   &__body {
@@ -42,6 +45,47 @@
       @include font-header(500);
       @include text(18px, 24px, $color-title-light, 0.75px);
       margin: 0;
+    }
+  }
+
+  @include media-query($large-down) {
+    &__body {
+      height: 300px;
+    }
+  }
+
+  @include media-query($medium-down) {
+    &__title {
+      font-size: 16px;
+      line-height: 24px;
+      margin: 0 0 10px;
+    }
+
+    &__content {
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0;
+
+      a,
+      p,
+      span {
+        font-size: 12px;
+        line-height: 16px;
+        letter-spacing: 0;
+      }
+    }
+  }
+
+  @include media-query($small) {
+    margin: 0;
+
+    &__body {
+      height: 230px;
+      padding: 0 0 25px;
+    }
+
+    &__bg-wrap {
+      background-color: $color-theme-4;
     }
   }
 }

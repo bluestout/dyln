@@ -41,6 +41,7 @@
     "search": {
       "title": "Search our site",
       "placeholder": "Search",
+      "placeholder_long": "Search anything here!",
       "submit": "Submit",
       "heading": {
         "one": "Search result",

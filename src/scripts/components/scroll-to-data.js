@@ -11,6 +11,7 @@ for (let i = 0; i < allScroll.length; i++) {
 }
 
 function clickListener(event) {
+  event.preventDefault();
   const source = event.currentTarget;
   const href = source.dataset.scrollTo;
   if (href) {
@@ -19,7 +20,7 @@ function clickListener(event) {
       const id = href.substring(hashLoc);
       const target = document.getElementById(id);
       const body = document.querySelector("html");
-      scrollTo(body, target.offsetTop, 500);
+      scrollTo(body, target.offsetTop, 1000);
     }
   }
 }

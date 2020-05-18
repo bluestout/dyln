@@ -2,12 +2,12 @@
   {%- assign wrapper_class = "contact-header__bg-wrap" -%}
 
   {%- if section.settings.bg_rsp -%}
-    {%- assign wrapper_class = "contact-header__bg-wrap d-none d-md-block" -%}
+    {%- assign wrapper_class = "contact-header__bg-wrap d-none d-sm-block" -%}
     {%- render 'responsive-image' with
       image: section.settings.bg_rsp,
       max_width: 768,
       max_height: 768,
-      wrapper_class: "contact-header__bg-wrap d-md-none",
+      wrapper_class: "contact-header__bg-wrap d-sm-none",
       image_class: "contact-header__bg",
     -%}
   {%- endif -%}
@@ -24,8 +24,8 @@
 <div class="contact-header__body">
   <div class="container">
     <div class="row">
-      <div class="col-xl-1"></div>
-      <div class="col-xl-4 col-lg-5 align-self-center">
+      <div class="col-lg-1 d-none d-lg-block"></div>
+      <div class="col-lg-5 col-7 align-self-center">
         <h1 class="contact-header__title">
         {% if section.settings.title != blank %}
           {{ section.settings.title }}

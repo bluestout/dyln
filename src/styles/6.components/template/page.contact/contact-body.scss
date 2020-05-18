@@ -6,6 +6,18 @@
     margin: 0 0 20px;
   }
 
+  > h3 {
+    @include font-header(700);
+    @include text(30px, 40px, $color-title, 1.77px);
+    margin: 0 0 10px;
+    display: block;
+
+    &.anchor {
+      padding-top: 80px;
+      margin-top: -40px;
+    }
+  }
+
   &__content {
     @include font-header(700);
     @include text(16px, 24px, $color-body-text, 0.95px);
@@ -16,6 +28,10 @@
     list-style: none;
     margin: 40px 0 60px;
     padding: 0;
+
+    &.no-top-m {
+      margin-top: 0;
+    }
   }
 
   > ul li {
@@ -67,6 +83,11 @@
     @include text(20px, 28px, $color-title, 1.18px);
     margin: 0 0 10px;
     display: block;
+
+    &.anchor {
+      padding-top: 80px;
+      margin-top: -40px;
+    }
   }
 
   &__closed,
@@ -137,6 +158,93 @@
       top: calc(50% - 1px);
       border: 5px solid $color-theme-4;
       border-top: 5px solid $color-theme-7;
+    }
+  }
+
+  &__quick-nav {
+    @include font-header(500);
+    font-size: 18px;
+    line-height: 40px;
+    letter-spacing: 1.06px;
+
+    > span {
+      font-weight: 700;
+      color: $color-body-text;
+      margin: 0 20px 0 0;
+    }
+
+    > a {
+      @include transition(hover);
+      color: $color-theme-8;
+      margin: 0 0 0 8px;
+      padding: 0 8px 0 0;
+      border-right: 1px solid $color-theme-8;
+
+      &:hover {
+        color: $color-main-1;
+      }
+    }
+  }
+
+  /*
+  &__search-form {
+    max-width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin: 0 0 40px;
+  }
+
+  &__search-input {
+    @include font-header(500);
+    @include text(16px, 36px, $color-title, 1px);
+    padding: 10px 0;
+    border: none;
+    border-bottom: 2px solid $color-main-1;
+    max-width: calc(100% - 50px);
+    flex: 0 0 calc(100% - 50px);
+
+    &::placeholder {
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 1.77px;
+      opacity: 1;
+      color: $color-theme-8;
+    }
+  }
+
+  &__search-submit {
+    @include no-font-size;
+    border: none;
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    align-self: flex-end;
+
+    svg {
+      width: 45px;
+      height: 45px;
+    }
+
+    g {
+      @include transition(stroke);
+      stroke: $color-body-text;
+    }
+
+    &:hover {
+      background: transparent;
+      g {
+        stroke: $color-main-1;
+      }
+    }
+  }
+  */
+
+  @include media-query($xl) {
+    &__quick-nav {
+      font-size: 14px;
+      letter-spacing: 0.5px;
     }
   }
 }
