@@ -24,6 +24,12 @@ function init() {
     openModal();
   }, modalTimeout);
 
+  setTimeout(function () {
+    if ($modal.length === 0) {
+      $modalOverlay.removeClass(classes.openModal);
+    }
+  }, 0);
+
   $modal.on("click", (event) => {
     event.stopPropagation();
     return false;
