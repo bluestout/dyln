@@ -1,21 +1,52 @@
 {% if section.settings.title != empty %}
-  <h3>{{ section.settings.title }}</h3>
+  <h2>{{ section.settings.title }}</h2>
 {% endif %}
 
+<div>
+  <form action="/search" method="get" role="search" class="header-search__form">
+    <label for="Search-{{ section_id }}" class="label-hidden">
+      {{ 'general.search.placeholder' | t }}
+    </label>
+
+    <input type="search"
+      class="header-search__input"
+      name="q"
+      id="Search-{{ section_id }}"
+      value="{{ search.terms | escape }}"
+      placeholder="{{ 'general.search.placeholder' | t }}"
+      data-header-search-input
+      {% if enable_ajax %}data-header-search-input-ajax{% endif %}
+    />
+
+    <button type="submit" class="header-search__submit">
+      <span class="icon-fallback-text hide">{{ 'general.search.submit' | t }}</span>
+      {% render 'icon-search' %}
+    </button>
+  </form>
+</div>
+
+<div>
+  <span>Jump to</span>
+  <a href=""></a>
+</div>
+
 {% if section.blocks.size > 0 %}
+  <h4></h4>
   <ul data-accordion-parent=true>
     {% for block in section.blocks %}
-      {% assign contact_faq_article = articles[block.settings.faq_article] %}
-      <li>
-        <button class="contact-body__faq-button" data-accordion-button="{{ forloop.index }}">
-          <span class="contact-body__question">
-            {{ contact_faq_article.title }}
-          </span>
-          <span class="contact-body__closed">+</span>
-          <span class="contact-body__open">-</span>
-        </button>
-        <div class="contact-body__answer" data-accordion-content="{{ forloop.index }}" style="display: none;">{{ contact_faq_article.content }}</div>
-      </li>
+      {% if block.type == "faq" %}
+        {% assign contact_faq_article = articles[block.settings.faq_article] %}
+        <li>
+          <button class="contact-body__faq-button" data-accordion-button="{{ forloop.index }}">
+            <span class="contact-body__question">
+              {{ contact_faq_article.title }}
+            </span>
+            <span class="contact-body__closed">+</span>
+            <span class="contact-body__open">-</span>
+          </button>
+          <div class="contact-body__answer" data-accordion-content="{{ forloop.index }}" style="display: none;">{{ contact_faq_article.content }}</div>
+        </li>
+      {% endif %}
     {% endfor %}
   </ul>
 {% endif %}
@@ -35,12 +66,69 @@
         "id": "see_all_text",
         "label": "Show All Text",
         "default": "See All FAQs"
+      },
+      {
+        "type": "text",
+        "id": "top_title",
+        "label": "Top Questions Title",
+        "default": "Top Questions"
+      },
+      {
+        "type": "text",
+        "id": "bottle_title",
+        "label": "Bottle Registration Title",
+        "default": "Bottle Registration"
+      },
+      {
+        "type": "text",
+        "id": "diffuser_title",
+        "label": "Diffuser Subscription Title",
+        "default": "Diffuser Subscription"
+      },
+      {
+        "type": "text",
+        "id": "use_title",
+        "label": "Use and Care Title",
+        "default": "Use and Care"
       }
     ],
     "blocks": [
       {
         "type": "faq",
-        "name": "FAQ",
+        "name": "Top Questions",
+        "settings": [
+          {
+            "type": "article",
+            "id": "faq_article",
+            "label": "FAQ article"
+          }
+        ]
+      },
+      {
+        "type": "faq_bottle",
+        "name": "Bottle Registration",
+        "settings": [
+          {
+            "type": "article",
+            "id": "faq_article",
+            "label": "FAQ article"
+          }
+        ]
+      },
+      {
+        "type": "faq_diffuser",
+        "name": "Diffuser Subscription",
+        "settings": [
+          {
+            "type": "article",
+            "id": "faq_article",
+            "label": "FAQ article"
+          }
+        ]
+      },
+      {
+        "type": "faq_use",
+        "name": "Use and Care",
         "settings": [
           {
             "type": "article",
