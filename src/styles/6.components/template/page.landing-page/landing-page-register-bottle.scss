@@ -1,0 +1,27 @@
+.lp-register {
+  margin-top: 20px;
+
+  &__register-bottle-btn {
+    @include button(wire, r, 1);
+    text-align: center;
+    width: 260px;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include media-query($medium-down) {
+      margin-bottom: 20px;
+    }
+
+    svg {
+      margin-right: 5px;
+    }
+  }
+
+  p {
+    @include media-query($small) {
+      padding: 0 25px;
+    }
+  }
+}

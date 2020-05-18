@@ -1,0 +1,58 @@
+{% if section.settings.show %}
+  <div class="container" data-accordion-parent=true>
+    <div class="row">
+      <h2>{{ section.settings.title }}</h2>
+
+      <div class="lp-faq__container">
+        {% for block in section.blocks %}
+          {% if block.settings.faq_article != blank %}
+          {% assign lp_faq_article = articles[block.settings.faq_article] %}
+            <div class="lp-faq__item {% if forloop.index > limit %}data-faq-hidden-init{% endif %}">
+              <button class="lp-faq__item-title" data-accordion-button="{{ forloop.index }}">
+                <h4>{{ lp_faq_article.title }}</h4>
+                <span class="lp-faq__item-closed">+</span>
+                <span class="lp-faq__item-open">-</span>
+              </button>
+              <div class="lp-faq__item-content" data-accordion-content="{{ forloop.index }}">
+                <p>{{ lp_faq_article.content }}</p>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name":"Landing Page FAQs",
+    "class":"lp-faq",
+    "settings":[
+    {
+      "type":"checkbox",
+      "id":"show",
+      "label":"Show Section",
+      "default":true
+    },
+    {
+      "type":"text",
+      "id":"title",
+      "label":"Section Title"
+    }
+  ],
+    "blocks":[
+      {
+        "type":"faq",
+        "name":"FAQ",
+        "settings":[
+        {
+          "type":"article",
+          "id":"faq_article",
+          "label":"FAQ article"
+        }
+    ]
+  }
+  ]
+  }
+{% endschema %}

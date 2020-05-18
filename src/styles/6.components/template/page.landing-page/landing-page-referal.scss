@@ -1,0 +1,19 @@
+.lp-referal {
+  &__refer-btn {
+    @include button(solid, r, 1);
+    text-align: center;
+    width: 250px;
+    margin: 30px auto;
+    display: flex;
+
+    @include media-query($small) {
+      margin: 60px auto;
+    }
+
+    span {
+      @include font-header(normal);
+      padding: 0 5px;
+      padding-left: 15px;
+    }
+  }
+}

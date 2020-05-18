@@ -1,0 +1,152 @@
+{% comment %} TODO add to cart logic for diffusers {% endcomment %}
+{% if section.settings.extra_product %}
+
+<div class="container">
+  <div class="row justify-content-center">
+    {% assign e_product = all_products[section.settings.extra_product] %}
+    <div class="col-md-4">
+      {% render 'responsive-image' with
+        image: e_product.featured_image,
+        max_width: 700,
+        max_height: 700,
+        wrapper_class: "lp-diffusers__featured-image",
+        span: true
+      %}
+    </div>
+    <div class="col-md-5">
+      {% if section.settings.title != empty %}
+        <div class="lp-diffusers__title-header">
+          <h3 class="lp-diffusers__title">{{ section.settings.title }}</h3>
+        </div>
+      {% endif %}
+
+      <div class="lp-diffusers__recomm">
+        {% for block in section.blocks %}
+          {%- if block.settings.icon != blank -%}
+            <div class="lp-diffusers__recomm-item">
+              <div class="lp-diffusers__recomm-item-icon">
+                {%- if block.settings.icon == "icon-dolar-circle" -%}
+                  {%- render 'icon-dolar-circle' -%}
+
+                  {%- elsif block.settings.icon == "icon-close-circle-blue" -%}
+                  {%- render 'icon-close-circle-blue' -%}
+
+                  {%- elsif block.settings.icon == "icon-settings" -%}
+                  {%- render 'icon-settings' -%}
+                {%- endif -%}
+              </div>
+              <div class="lp-diffusers__recomm-content">
+                <p>{{ block.settings.recommendation_title }}</p>
+              </div>
+            </div>
+          {%- endif -%}
+        {% endfor %}
+      </div>
+
+      <div class="lp-diffusers__description">
+        <p>{{ section.settings.note }}</p>
+      </div>
+
+      {%- assign e_current_variant = e_product.selected_or_first_available_variant -%}
+      {% form 'product', e_product, data-product-form: '', data-product-handle: e_product.handle, data-enable-history-state: 'true', class: "lp-diffusers__form" %}
+
+        {% unless e_product.has_only_default_variant %}
+          <div class="lp-diffusers__variants">
+            {% for e_var in e_product.variants %}
+              <div class="lp-diffusers__variant">
+                <input class="lp-diffusers__input" id="option-extra-{{ forloop.index }}" type="radio" name="id" value="{{ e_var.title }}" />
+                <label class="lp-diffusers__label" for="option-extra-{{ forloop.index }}">{{ e_var.title }}</label>
+              </div>
+            {% endfor %}
+          </div>
+        {% endunless %}
+
+        <input type="hidden" id="Quantity" name="quantity" value="1" min="1" />
+
+        <div class="lp-diffusers__btn-wrap">
+          <button
+                  class="lp-diffusers__regular-btn"
+                  type="submit"
+                  name="add"
+                  data-pdp-extra-submit
+                  {% unless e_current_variant.available %}disabled="disabled"{% endunless %}>
+        <span class="lp-diffusers__regular-price">
+          <span>
+            {{ e_current_variant.price | money }}
+          </span>
+
+          {% if e_product.compare_at_price_max > e_product.price %}
+            <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+            <s>
+              {% if e_current_variant.compare_at_price > e_current_variant.price %}
+                {{ e_current_variant.compare_at_price | money }}
+              {% endif %}
+            </s>
+          {% endif %}
+        </span>
+            <span class="lp-diffusers__regular-text">
+          {% if e_current_variant.available %}
+            {{ 'products.product.add_to_cart' | t }}
+          {% else %}
+            {{ 'products.product.sold_out' | t }}
+          {% endif %}
+        </span>
+          </button>
+
+          {% comment %} This is just a placeholder button {% endcomment %}
+          <button type="button" class="lp-diffusers__sub-button">
+            <span class="lp-diffusers__sub-price">$ 7.99</span>
+            <span class="lp-diffusers__sub-btn-text">Subscribe</span>
+            <span class="lp-diffusers__sub-btn-freq">Every Month</span>
+          </button>
+        </div>
+
+      {% endform %}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+
+
+{% schema %}
+  {
+    "name": "Product Diffusers",
+    "class": "lp-diffusers",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title"
+      },
+      {
+        "type": "product",
+        "id": "extra_product",
+        "label": "Addable Product"
+      },
+      {
+        "type": "richtext",
+        "id": "note",
+        "label": "Note"
+      }
+    ],
+    "blocks":[
+      {
+        "type":"text",
+        "name":"Recommendations",
+        "settings":[
+          {
+            "type":"text",
+            "id":"icon",
+            "label":"icon-dolar-circle, icon-settings, icon-close-circle-blue"
+          },
+          {
+            "type":"text",
+            "id":"recommendation_title",
+            "label":"Title"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
