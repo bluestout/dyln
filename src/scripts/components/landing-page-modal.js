@@ -30,11 +30,6 @@ function init() {
     }
   }, 0);
 
-  $modal.on("click", (event) => {
-    event.stopPropagation();
-    return false;
-  });
-
   return true;
 }
 
