@@ -60,14 +60,10 @@
       }
     }
 
-    p {
+    &-content {
       @include font-body(normal);
       padding: 15px 0;
       line-height: 1.4;
-    }
-
-    p:first-of-type {
-      display: none;
     }
   }
 
