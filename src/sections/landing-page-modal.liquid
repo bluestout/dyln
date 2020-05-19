@@ -1,4 +1,4 @@
-{% if section.settings.show %}
+{%- if section.settings.show -%}
   <div class="landing-page-modal__container modal-closed" data-time-interval="{{ section.settings.time_interval }}" data-modal>
     <div class="landing-page-modal__content">
       {%- render 'responsive-image' with
@@ -26,7 +26,7 @@
       {% render 'icon-close-black' %}
     </div>
   </div>
-{% endif %}
+{%- endif -%}
 
 {% schema %}
   {

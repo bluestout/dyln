@@ -24,10 +24,11 @@ function init() {
     openModal();
   }, modalTimeout);
 
-  $modal.on("click", (event) => {
-    event.stopPropagation();
-    return false;
-  });
+  setTimeout(function () {
+    if ($modal.length === 0) {
+      $modalOverlay.removeClass(classes.openModal);
+    }
+  }, 0);
 
   return true;
 }

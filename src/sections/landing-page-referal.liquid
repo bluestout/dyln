@@ -2,7 +2,7 @@
   <div class="row">
     <div class="lp-referal__container inactive-step" data-step>
       <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center align-items-center">
           <span class="lp-referal__step-num">{{ section.settings.step_number }}</span>
           <h3>{{ section.settings.step_title }}</h3>
           <div class="col-md-2">
@@ -15,7 +15,10 @@
           </div>
           <div class="col-md-2">
             <a href="{{ section.settings.referal_btn_link }}" class="lp-referal__refer-btn">
-              {{ section.settings.referal_btn_text }} <span>{{ section.settings.referal_points }}</span> {% render 'icon-points-white' %}
+              {{ section.settings.referal_btn_text }}
+              {% if section.settings.referal_points != empty %}
+              <span>{{ section.settings.referal_points }}</span> {% render 'icon-points-white' %}
+              {% endif %}
             </a>
           </div>
         </div>

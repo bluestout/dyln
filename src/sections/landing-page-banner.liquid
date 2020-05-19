@@ -1,3 +1,4 @@
+{% if section.settings.show %}
 <div class="container">
   <div class="row">
     <div class="col-md-2"></div>
@@ -18,12 +19,18 @@
     </div>
   </div>
 </div>
+{% endif %}
 
 {% schema %}
   {
     "name":"Landing Pages Banner",
     "class": "lp-banner",
     "settings":[
+      {
+      "type":"checkbox",
+      "id":"show",
+      "label":"Show Section?"
+      },
       {
         "type":"text",
         "id":"banner_title",

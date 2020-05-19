@@ -9,8 +9,12 @@
   height: auto;
   min-width: 500px;
 
-  + .landing-page-modal__overlay {
-    display: none;
+  &:empty {
+    background-color: green;
+
+    & + .landing-page-modal__overlay {
+      display: none;
+    }
   }
 
   @include media-query($medium-down) {

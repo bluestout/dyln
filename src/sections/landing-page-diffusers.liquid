@@ -1,19 +1,24 @@
 {% comment %} TODO add to cart logic for diffusers {% endcomment %}
 {% if section.settings.extra_product %}
-
 <div class="container">
   <div class="row justify-content-center">
     {% assign e_product = all_products[section.settings.extra_product] %}
     <div class="col-md-4">
-      {% render 'responsive-image' with
-        image: e_product.featured_image,
-        max_width: 700,
-        max_height: 700,
-        wrapper_class: "lp-diffusers__featured-image",
-        span: true
-      %}
+      <div class="lp-diffusers__header">
+        {% render 'responsive-image' with
+          image: e_product.featured_image,
+          max_width: 700,
+          max_height: 700,
+          wrapper_class: "lp-diffusers__featured-image",
+          span: true
+        %}
+
+        {% if section.settings-title != empty %}
+          <h3>{{ section.settings.title }}</h3>
+        {% endif %}
+      </div>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-6 col-lg-5">
       {% if section.settings.title != empty %}
         <div class="lp-diffusers__title-header">
           <h3 class="lp-diffusers__title">{{ section.settings.title }}</h3>

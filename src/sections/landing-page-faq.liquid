@@ -1,20 +1,22 @@
 {% if section.settings.show %}
   <div class="container" data-accordion-parent=true>
     <div class="row">
-      <h2>{{ section.settings.title }}</h2>
+      {% if section.settings.title != empty %}
+        <h2>{{ section.settings.title }}</h2>
+      {% endif %}
 
       <div class="lp-faq__container">
         {% for block in section.blocks %}
           {% if block.settings.faq_article != blank %}
-          {% assign lp_faq_article = articles[block.settings.faq_article] %}
-            <div class="lp-faq__item {% if forloop.index > limit %}data-faq-hidden-init{% endif %}">
+            {% assign lp_faq_article = articles[block.settings.faq_article] %}
+            <div class="lp-faq__item">
               <button class="lp-faq__item-title" data-accordion-button="{{ forloop.index }}">
                 <h4>{{ lp_faq_article.title }}</h4>
                 <span class="lp-faq__item-closed">+</span>
                 <span class="lp-faq__item-open">-</span>
               </button>
               <div class="lp-faq__item-content" data-accordion-content="{{ forloop.index }}">
-                <p>{{ lp_faq_article.content }}</p>
+                {{ lp_faq_article.content }}
               </div>
             </div>
           {% endif %}
