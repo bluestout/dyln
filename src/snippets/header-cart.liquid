@@ -3,7 +3,10 @@
 
   <div class="header-cart__wrap">
     <div class="header-cart__header" data-c-d-header>
-      <button type="button" class="header-cart__close" data-cart-drawer-toggle>{%- render 'icon-chevron-l' -%}</button>
+      <button type="button" class="header-cart__close" data-cart-drawer-toggle>
+        <span class="visually-hidden">{{ 'general.accessibility.close_cart' | t }}</span>
+        <span aria-hidden="true">{%- render 'icon-chevron-l' -%}</span>
+      </button>
       <h4 class="header-cart__title">{{ 'cart.general.your_cart' | t }}</h4>
       <a href="/cart" class="header-cart__cart">
         <span class="icon-fallback-text hide">{{ 'layout.cart.title' | t }}</span>

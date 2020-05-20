@@ -68,10 +68,34 @@ function handleize(text) {
     .replace(/^-/, "");
 }
 
+function toggleTabindexInChildren($element, mode) {
+  /**
+   * @param {$element} $element Element whose children's tabindex to toggle, required
+   * @param {mode}           mode Optional, mode 1 will show all tabindexed children, 2 will hide all
+   */
+  if (!$element || $element.length === 0) {
+    return null;
+  }
+
+  const $inactive = $element.find(`[tabindex="-1"]:not(img)`);
+  const $all = $element.find(`[tabindex]:not(img)`);
+
+  if (mode === 1) {
+    return $all.attr("tabindex", 0);
+  } else if (mode === 2) {
+    return $all.attr("tabindex", -1);
+  } else if ($inactive.length > 0) {
+    return $inactive.attr("tabindex", 0);
+  } else {
+    return $all.attr("tabindex", -1);
+  }
+}
+
 export {
   resizeImage,
   formatAndTrimPrice,
   ajaxHeaderMessage,
   stripHtml,
   handleize,
+  toggleTabindexInChildren,
 };

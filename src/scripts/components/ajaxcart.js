@@ -1,12 +1,13 @@
 import $ from "jquery";
 import { formatMoney } from "@shopify/theme-currency";
-import { formatAndTrimPrice } from "./ajax-helpers";
+import { formatAndTrimPrice } from "./helpers";
 import {
   quickCartUpsellHtml,
   quickCartLineItemHtml,
   cartLineItemHtml,
   cartTotalsHtml,
   emptyCartHtml,
+  toggleTabindexInChildren,
 } from "./ajaxcart-html";
 
 const datasets = {
@@ -479,10 +480,12 @@ function quickCartToggle(event) {
     $quickCart.removeClass(classes.open);
     $(selectors.quick.overlay).removeClass(classes.active);
     $("html").removeClass("no-scroll");
+    toggleTabindexInChildren($quickCart, 2);
   } else {
     $quickCart.addClass(classes.open);
     $(selectors.quick.overlay).addClass(classes.active);
     $("html").addClass("no-scroll");
+    toggleTabindexInChildren($quickCart, 1);
   }
 }
 

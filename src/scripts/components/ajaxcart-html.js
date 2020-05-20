@@ -4,7 +4,7 @@ import {
   formatAndTrimPrice,
   stripHtml,
   handleize,
-} from "./ajax-helpers";
+} from "./helpers";
 
 const names = {
   color: "color,colour",

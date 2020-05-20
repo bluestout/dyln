@@ -65,20 +65,22 @@ function checkAccordionState() {
 }
 
 function checkAccordionStateRsp() {
-  $(selectors.buttonRsp).each(function() {
-    const $source = $(this);
-    const index = $source.data(datasets.buttonRsp);
-    const $parent = $source.closest(selectors.parentRsp);
-    const $wrap = $source.closest(selectors.wrapRsp);
-    if ($parent.length > 0) {
-      const $content = $parent.find(selectors.getContentByIdRsp(index));
-      $source.removeClass(classes.open);
-      $content.hide();
-    }
-    if ($wrap.length > 0) {
-      $wrap.removeClass(classes.open);
-    }
-  });
+  if ($(window).width() < 992) {
+    $(selectors.buttonRsp).each(function() {
+      const $source = $(this);
+      const index = $source.data(datasets.buttonRsp);
+      const $parent = $source.closest(selectors.parentRsp);
+      const $wrap = $source.closest(selectors.wrapRsp);
+      if ($parent.length > 0) {
+        const $content = $parent.find(selectors.getContentByIdRsp(index));
+        $source.removeClass(classes.open);
+        $content.hide();
+      }
+      if ($wrap.length > 0) {
+        $wrap.removeClass(classes.open);
+      }
+    });
+  }
 }
 
 function handleAccordionClick(event) {

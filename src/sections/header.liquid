@@ -33,69 +33,74 @@
             <div class="site-header__mobile-body">
               <div class="site-header__mobile-inner">
                 {% if section.settings.bottle_enabled %}
-                  {% render 'header-bottle' with section.settings.bottle_title
-                    b_title: section.settings.bottle_section_title
-                    b_subtitle: section.settings.bottle_section_subtitle
-                    b_content: section.settings.bottle_section_content
-                    b_link: section.settings.bottle_section_link
-                    b_link_text: section.settings.bottle_section_link_text
-                    b_video: section.settings.bottle_section_video
-                    b_usp: section.settings.bottle_section_usp_title
-                    b_usp_icon_1: section.settings.bottle_section_usp_icon_1
-                    b_usp_title_1: section.settings.bottle_section_usp_title_1
-                    b_usp_content_1: section.settings.bottle_section_usp_content_1
-                    b_usp_icon_2: section.settings.bottle_section_usp_icon_2
-                    b_usp_title_2: section.settings.bottle_section_usp_title_2
-                    b_usp_content_2: section.settings.bottle_section_usp_content_2
-                    b_usp_icon_3: section.settings.bottle_section_usp_icon_3
-                    b_usp_title_3: section.settings.bottle_section_usp_title_3
+                  {% render 'header-bottle' with section.settings.bottle_title,
+                    b_title: section.settings.bottle_section_title,
+                    b_subtitle: section.settings.bottle_section_subtitle,
+                    b_content: section.settings.bottle_section_content,
+                    b_link: section.settings.bottle_section_link,
+                    b_link_text: section.settings.bottle_section_link_text,
+                    b_video: section.settings.bottle_section_video,
+                    b_usp: section.settings.bottle_section_usp_title,
+                    b_usp_icon_1: section.settings.bottle_section_usp_icon_1,
+                    b_usp_title_1: section.settings.bottle_section_usp_title_1,
+                    b_usp_content_1: section.settings.bottle_section_usp_content_1,
+                    b_usp_icon_2: section.settings.bottle_section_usp_icon_2,
+                    b_usp_title_2: section.settings.bottle_section_usp_title_2,
+                    b_usp_content_2: section.settings.bottle_section_usp_content_2,
+                    b_usp_icon_3: section.settings.bottle_section_usp_icon_3,
+                    b_usp_title_3: section.settings.bottle_section_usp_title_3,
                     b_usp_content_3: section.settings.bottle_section_usp_content_3
                   %}
                 {% endif %}
 
                 {% if section.settings.shop_enabled %}
-                  {% render 'header-shop' with section.settings.shop_menu
-                    shop_title: section.settings.shop_title
-                    prominent_links: section.settings.shop_prominent_links
-                    show_featured: section.settings.shop_show_featured
-                    featured_content: section.settings.shop_featured_content
-                    featured_image: section.settings.shop_featured_image
-                    featured_link_text: section.settings.shop_featured_link_text
-                    featured_link: section.settings.shop_featured_link
-                    all_link_text: section.settings.shop_all_link_text
-                    all_link: section.settings.shop_all_link
+                  {% render 'header-shop' with section.settings.shop_menu,
+                    s_title: section.settings.shop_title,
+                    s_p_links: section.settings.shop_prominent_links,
+                    s_featured: section.settings.shop_show_featured,
+                    s_f_content: section.settings.shop_featured_content,
+                    s_f_image: section.settings.shop_featured_image,
+                    s_f_text: section.settings.shop_featured_link_text,
+                    s_f_link: section.settings.shop_featured_link,
+                    s_all_text: section.settings.shop_all_link_text,
+                    s_all_link: section.settings.shop_all_link
                   %}
                 {% endif %}
 
                 {% if section.settings.about_enabled %}
-                  {% render 'header-about' with section.settings.about_menu
+                  {% render 'header-about' with section.settings.about_menu,
                     about_title: section.settings.about_title
                   %}
                 {% endif %}
 
                 {% if section.settings.login_enabled %}
                   <div class="d-lg-none">
-                    {% render 'header-login' %}
+                    {% render 'header-login' with
+                      l_title: section.settings.login_title,
+                      l_form_title: section.settings.form_title,
+                      l_reg_link: section.settings.register_link,
+                      l_reg_text: section.settings.register_link_text
+                     %}
                   </div>
                 {% endif %}
 
                 {% if section.settings.help_enabled %}
                   <div class="d-lg-none">
-                    {% render 'header-help' with section.settings.help_menu,
-                      s_title: section.settings.help_title
-                      s_image: section.settings.help_image
-                      s_link_1: section.settings.help_link_1
-                      s_link_text_1: section.settings.help_link_1_text
-                      s_link_2: section.settings.help_link_2
-                      s_link_text_2: section.settings.help_link_2_text
-                      s_link_3: section.settings.help_link_3
-                      s_link_text_3: section.settings.help_link_3_text
-                      s_faq_title: section.settings.faq_title
-                      s_faq_link: section.settings.faq_link
-                      s_faq_link_text: section.settings.faq_link_text
-                      s_faq_1: section.settings.faq_article_1
-                      s_faq_2: section.settings.faq_article_2
-                      s_faq_3: section.settings.faq_article_3
+                    {% include 'header-help' with section.settings.help_menu,
+                      h_title: section.settings.help_title,
+                      h_image: section.settings.help_image,
+                      h_link_1: section.settings.help_link_1,
+                      h_link_text_1: section.settings.help_link_1_text,
+                      h_link_2: section.settings.help_link_2,
+                      h_link_text_2: section.settings.help_link_2_text,
+                      h_link_3: section.settings.help_link_3,
+                      h_link_text_3: section.settings.help_link_3_text,
+                      h_faq_title: section.settings.faq_title,
+                      h_faq_link: section.settings.faq_link,
+                      h_faq_link_text: section.settings.faq_link_text,
+                      h_faq_1: section.settings.faq_article_1,
+                      h_faq_2: section.settings.faq_article_2,
+                      h_faq_3: section.settings.faq_article_3
                     %}
                   </div>
                 {% endif %}
@@ -103,9 +108,9 @@
                 {% if section.settings.search_enabled %}
                   <div class="d-lg-none">
                     {% render 'header-search' with
-                      enable_ajax: section.settings.s_ajax
-                      manual_popular: section.settings.s_pop_manual
-                      popular_terms: section.settings.s_pop_terms
+                      enable_ajax: section.settings.s_ajax,
+                      manual_popular: section.settings.s_pop_manual,
+                      popular_terms: section.settings.s_pop_terms,
                       popular_title: section.settings.s_pop_title
                     %}
                   </div>
@@ -126,27 +131,32 @@
 
             {% if section.settings.login_enabled %}
               <div class="site-header__utils-block d-none d-lg-inline-block">
-                {% render 'header-login' %}
+                {% render 'header-login' with
+                  l_title: section.settings.login_title,
+                  l_form_title: section.settings.form_title,
+                  l_reg_link: section.settings.register_link,
+                  l_reg_text: section.settings.register_link_text
+                  %}
               </div>
             {% endif %}
 
             {% if section.settings.help_enabled %}
               <div class="site-header__utils-block static d-none d-lg-inline-block">
                 {% render 'header-help' with section.settings.help_menu,
-                  s_title: section.settings.help_title
-                  s_image: section.settings.help_image
-                  s_link_1: section.settings.help_link_1
-                  s_link_text_1: section.settings.help_link_1_text
-                  s_link_2: section.settings.help_link_2
-                  s_link_text_2: section.settings.help_link_2_text
-                  s_link_3: section.settings.help_link_3
-                  s_link_text_3: section.settings.help_link_3_text
-                  s_faq_title: section.settings.faq_title
-                  s_faq_link: section.settings.faq_link
-                  s_faq_link_text: section.settings.faq_link_text
-                  s_faq_1: section.settings.faq_article_1
-                  s_faq_2: section.settings.faq_article_2
-                  s_faq_3: section.settings.faq_article_3
+                  h_title: section.settings.help_title,
+                  h_image: section.settings.help_image,
+                  h_link_1: section.settings.help_link_1,
+                  h_link_text_1: section.settings.help_link_1_text,
+                  h_link_2: section.settings.help_link_2,
+                  h_link_text_2: section.settings.help_link_2_text,
+                  h_link_3: section.settings.help_link_3,
+                  h_link_text_3: section.settings.help_link_3_text,
+                  h_faq_title: section.settings.faq_title,
+                  h_faq_link: section.settings.faq_link,
+                  h_faq_link_text: section.settings.faq_link_text,
+                  h_faq_1: section.settings.faq_article_1,
+                  h_faq_2: section.settings.faq_article_2,
+                  h_faq_3: section.settings.faq_article_3
                 %}
               </div>
             {% endif %}
@@ -154,9 +164,9 @@
             {% if section.settings.search_enabled %}
               <div class="site-header__utils-block static">
                 {% render 'header-search' with
-                  enable_ajax: section.settings.s_ajax
-                  manual_popular: section.settings.s_pop_manual
-                  popular_terms: section.settings.s_pop_terms
+                  enable_ajax: section.settings.s_ajax,
+                  manual_popular: section.settings.s_pop_manual,
+                  popular_terms: section.settings.s_pop_terms,
                   popular_title: section.settings.s_pop_title
                 %}
               </div>
@@ -164,11 +174,12 @@
 
             <div class="site-header__utils-block">
               <button type="button" class="site-header__utils-cart" data-cart-drawer-toggle>
-                <span class="icon-fallback-text hide">{{ 'layout.cart.title' | t }}</span>
+                <span class="visually-hidden">{{ 'layout.cart.title' | t }}</span>
                 <span class="site-header__utils-cart-num" data-cart-drawer-count>
                   {{ cart.item_count }}
+                  <span class="visually-hidden">{{ 'layout.cart.items_in_cart' | t }}</span>
                 </span>
-                <span class="site-header__utils-cart-icon">
+                <span class="site-header__utils-cart-icon" aria-hidden="true">
                   {% render 'icon-cart' %}
                 </span>
               </button>
@@ -442,6 +453,29 @@
         "id": "login_enabled",
         "label": "Show this menu",
         "default": true
+      },
+      {
+        "type": "text",
+        "id": "login_title",
+        "label": "Account Title",
+        "default": "Account"
+      },
+      {
+        "type": "text",
+        "id": "form_title",
+        "label": "Form Title",
+        "default": "LOGIN"
+      },
+      {
+        "type": "url",
+        "id": "register_link",
+        "label": "Register Link Text"
+      },
+      {
+        "type": "text",
+        "id": "register_link_text",
+        "label": "Register Link Text",
+        "default": "Register your new bottle"
       },
       {
         "type": "header",

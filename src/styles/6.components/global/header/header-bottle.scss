@@ -158,6 +158,9 @@
     }
 
     &__usp-header {
+      @include no-browser-styling;
+      width: 100%;
+      padding: 0;
       display: flex;
       flex-flow: row wrap;
     }
@@ -179,6 +182,8 @@
     &__usp-body {
       @include font-header(500);
       @include text(14px, 20px, $color-body-text, 0.16px);
+      display: block !important;
+      margin: 15px 0 0;
     }
 
     &__close {
@@ -403,6 +408,9 @@
     }
 
     &__usp-header {
+      @include no-browser-styling;
+      width: 100%;
+      padding: 0;
       cursor: pointer;
       display: flex;
       flex-flow: row wrap;
