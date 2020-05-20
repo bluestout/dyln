@@ -17,9 +17,10 @@
   }
 
   &__bg {
-    object-fit: cover;
     max-width: 100% !important;
     max-height: 100%;
+    object-fit: cover;
+    object-position: top;
   }
 
   &__body {

@@ -19,7 +19,6 @@
   }
 
   &__content {
-    @include font-header(700);
     @include text(16px, 24px, $color-body-text, 0.95px);
   }
 
@@ -109,7 +108,6 @@
   }
 
   &__answer {
-    @include font-body;
     @include text(18px, 24px, $color-body-text, 1.08px);
     padding: 10px 0 0;
 
@@ -147,6 +145,8 @@
       position: absolute;
       right: 5px;
       top: calc(50% - 2px);
+      width: auto;
+      opacity: 1 !important;
       border: 5px solid transparent;
       border-top: 5px solid $color-theme-4;
     }
@@ -156,6 +156,8 @@
       position: absolute;
       right: 5px;
       top: calc(50% - 1px);
+      width: auto;
+      opacity: 1 !important;
       border: 5px solid $color-theme-4;
       border-top: 5px solid $color-theme-7;
     }
@@ -163,26 +165,37 @@
 
   &__quick-nav {
     @include font-header(500);
-    font-size: 18px;
-    line-height: 40px;
-    letter-spacing: 1.06px;
 
-    > span {
-      font-weight: 700;
-      color: $color-body-text;
-      margin: 0 20px 0 0;
+    button {
+      @include no-browser-styling;
     }
 
-    > a {
-      @include transition(hover);
-      color: $color-theme-8;
-      margin: 0 0 0 8px;
-      padding: 0 8px 0 0;
-      border-right: 1px solid $color-theme-8;
+    a {
+      @include transition(color);
+    }
+  }
 
-      &:hover {
-        color: $color-main-1;
-      }
+  th {
+    @include font-header(500);
+    @include text(18px, 24px, $color-body-text, 1.06px);
+    padding: 3px 5px 3px 0;
+    border-top: 1px solid $color-theme-6;
+    border-bottom: 1px solid $color-theme-6;
+    text-align: left;
+
+    &:last-of-type {
+      text-align: left;
+    }
+  }
+
+  td {
+    @include text(16px, 22px, $color-body-text, 0.95px);
+    padding: 17px 5px 17px 0;
+    border-bottom: 1px solid $color-theme-6;
+    text-align: left;
+
+    &:last-of-type {
+      text-align: left;
     }
   }
 
@@ -241,10 +254,197 @@
   }
   */
 
+  @include media-query($xxl) {
+    th {
+      font-size: 15px;
+    }
+
+    td {
+      font-size: 15px;
+    }
+  }
+
+  @include media-query($xl-up) {
+    &__quick-nav {
+      font-size: 18px;
+      letter-spacing: 1.06px;
+      letter-spacing: 0.5px;
+    }
+  }
+
   @include media-query($xl) {
     &__quick-nav {
       font-size: 14px;
       letter-spacing: 0.5px;
+    }
+
+    th {
+      font-size: 14px;
+    }
+
+    td {
+      font-size: 14px;
+      letter-spacing: 0;
+    }
+  }
+
+  @include media-query($large) {
+    &__quick-nav {
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    th {
+      width: 50%;
+    }
+
+    td {
+      width: 50%;
+    }
+  }
+
+  @include media-query($large-down) {
+    table {
+      margin: 0 0 25px;
+    }
+  }
+
+  @include media-query($medium-up) {
+    &__quick-nav {
+      line-height: 40px;
+
+      > span {
+        display: inline !important;
+      }
+
+      button {
+        font-weight: 700;
+        color: $color-body-text;
+        margin: 0 20px 0 0;
+        padding: 0;
+        cursor: default;
+      }
+
+      a {
+        color: $color-theme-8;
+        margin: 0 0 0 8px;
+        padding: 0 8px 0 0;
+        border-right: 1px solid $color-theme-8;
+
+        &:hover {
+          color: $color-main-1;
+        }
+      }
+    }
+  }
+
+  @include media-query($medium-down) {
+    > h2 {
+      display: none;
+    }
+
+    > h3 {
+      font-size: 20px;
+      line-height: 28px;
+      letter-spacing: 1.18px;
+    }
+
+    &__content {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.83px;
+    }
+
+    > ul {
+      margin: 20px 0 30px;
+    }
+
+    > ul li {
+      padding: 9px 0;
+    }
+
+    &__subtitle {
+      font-size: 18px;
+      line-height: 26px;
+      letter-spacing: 1.06px;
+      margin-top: 20px;
+    }
+
+    &__question {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.83px;
+    }
+
+    &__answer {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.83px;
+    }
+
+    &__button-link {
+      font-size: 14px;
+      line-height: 18px;
+      letter-spacing: 1.8px;
+      padding: 8px 20px;
+    }
+
+    &__quick-nav {
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: 0.95px;
+
+      button {
+        position: relative;
+        font-weight: 700;
+        color: $color-body-text;
+        padding: 0 20px 0 0;
+
+        &::after {
+          @include transition(transform);
+          content: "<";
+          position: absolute;
+          right: 5px;
+          font-weight: 400;
+          transform: rotate(90deg);
+          display: inline-block;
+        }
+
+        &.open {
+          &::after {
+            transform: rotate(90deg) rotate3d(0, 1, 0, 180deg);
+          }
+        }
+      }
+
+      > span {
+        display: none;
+        width: 100%;
+      }
+
+      a {
+        @include transition(hover);
+        color: $color-theme-8;
+        margin: 0;
+        padding: 10px 0;
+        border-bottom: 1px solid $color-theme-15;
+        width: 100%;
+        display: block;
+
+        &:hover {
+          color: $color-main-1;
+        }
+      }
+    }
+
+    th {
+      font-size: 12px;
+      width: 50%;
+    }
+
+    td {
+      font-size: 12px;
+      width: 50%;
     }
   }
 }

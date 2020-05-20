@@ -2,15 +2,8 @@
   <h2>{{ section.settings.title }}</h2>
 {% endif %}
 
-<div class="contact-body__quick-nav">
-  <span>{{ section.settings.jump_to }}</span>
-  <a href="#contact-faqs-2">{{ section.settings.bottle_title }}</a>
-  <a href="#contact-faqs-3">{{ section.settings.diffuser_title }}</a>
-  <a href="#contact-faqs-4">{{ section.settings.use_title }}</a>
-</div>
-
+{% comment %} TODO - add this search in, in some form? {% endcomment %}
 {% comment %}
-TODO - add this search in, in some form?
 <div>
   <form action="/search" method="get" role="search" class="contact-body__search-form" data-contact-search-form>
     <label for="contact-faq-search" class="label-hidden">
@@ -32,7 +25,16 @@ TODO - add this search in, in some form?
     </button>
   </form>
 </div>
- {% endcomment %}
+{% endcomment %}
+
+<div class="contact-body__quick-nav">
+  <button data-c-q-n-button>{{ section.settings.jump_to }}</button>
+  <span data-c-q-n-list>
+    <a href="#contact-faqs-2" data-c-q-n-link>{{ section.settings.bottle_title }}</a>
+    <a href="#contact-faqs-3" data-c-q-n-link>{{ section.settings.diffuser_title }}</a>
+    <a href="#contact-faqs-4" data-c-q-n-link>{{ section.settings.use_title }}</a>
+  </span>
+</div>
 
 {% if section.blocks.size > 0 %}
   <h3 class="anchor" id="contact-faqs-1">{{ section.settings.top_title }}</h3>

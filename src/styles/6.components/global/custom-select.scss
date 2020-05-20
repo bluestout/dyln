@@ -22,6 +22,7 @@ $select-hover-color: $color-theme-25;
 }
 
 .custom-select-styled {
+  @include no-browser-styling;
   @include transition(all 0.2s ease-in);
   @include font-header;
   @include text(14px, 20px, $color-body-text, 0.83px);
@@ -33,16 +34,46 @@ $select-hover-color: $color-theme-25;
   background-color: $select-background;
   padding: 0;
   line-height: 30px;
+  text-align: left;
 
-  &::after {
-    content: "+";
+  &::after,
+  &::before {
+    @include transition(opacity);
     position: absolute;
-    font-weight: 700;
-    right: 1px;
+    font-weight: 500;
+    right: 0;
+    width: 15px;
     top: calc(50% - 10px);
     line-height: 20px;
     font-size: 16px;
     pointer-events: none;
+    text-align: center;
+  }
+
+  &::after {
+    content: "+";
+  }
+
+  &::before {
+    content: "-";
+  }
+
+  &.active {
+    &::after {
+      opacity: 0;
+    }
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  &:not(.active) {
+    &::after {
+      opacity: 1;
+    }
+    &::before {
+      opacity: 0;
+    }
   }
 }
 
@@ -58,21 +89,27 @@ $select-hover-color: $color-theme-25;
   list-style: none;
   background-color: $select-list-bg;
   border: none;
+}
 
-  li {
-    @include transition(background-color 0.15s ease-in);
-    font-size: 14px;
-    margin: 0;
-    padding: 1px 0;
-    text-indent: 15px;
-    background-color: $select-list-bg;
+.custom-select-option {
+  @include transition(background-color 0.15s ease-in);
+  @include no-browser-styling;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0;
+  padding: 2px 5px;
+  background-color: $select-list-bg;
+  border: none;
+  display: block;
+  width: 100%;
+  text-align: left;
 
-    &:hover {
-      background-color: $select-hover-color;
-    }
+  &:hover,
+  &:focus {
+    background-color: $select-hover-color;
+  }
 
-    &[rel="hide"] {
-      display: none;
-    }
+  &[rel="hide"] {
+    display: none;
   }
 }

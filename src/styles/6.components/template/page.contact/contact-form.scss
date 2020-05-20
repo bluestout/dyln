@@ -11,7 +11,7 @@
     input[type="email"],
     input[type="text"] {
       @include font-header;
-      @include text(14px, 20px, $color-body-text, 0.83px);
+      @include text(16px, 20px, $color-body-text, 0.83px);
       border: none;
       border-radius: 0;
       border-bottom: 1px solid $color-main;
@@ -24,7 +24,7 @@
 
     select {
       @include font-header;
-      @include text(14px, 20px, $color-body-text, 0.83px);
+      @include text(16px, 20px, $color-body-text, 0.83px);
       padding: 5px 0;
       border: none;
       border-radius: 0;
@@ -32,7 +32,7 @@
 
     textarea {
       @include font-header;
-      @include text(14px, 20px, $color-body-text, 0.83px);
+      @include text(16px, 20px, $color-body-text, 0.83px);
       border: 1px solid $color-main;
       border-radius: 0;
       padding: 5px;
@@ -68,5 +68,49 @@
   &__address {
     @include font-header(500);
     @include text(16px, 23px, $color-body-text, 0.95px);
+  }
+
+  @include media-query($medium-up) {
+    .custom-select-styled {
+      font-size: 16px;
+    }
+    .custom-select-options li {
+      font-size: 16px;
+    }
+  }
+
+  @include media-query($medium-down) {
+    &__title {
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.71px;
+      text-align: left;
+      margin: 0 0 10px;
+    }
+
+    &__form {
+      margin: 0 0 25px;
+    }
+
+    &__submit {
+      padding: 8px 20px;
+      letter-spacing: 2px;
+    }
+
+    &__success {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 1px;
+    }
+
+    &__address {
+      font-size: 12px;
+      line-height: 18px;
+      letter-spacing: 0.71px;
+    }
+
+    .custom-select-styled {
+      font-size: 16px;
+    }
   }
 }
