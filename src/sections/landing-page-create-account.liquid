@@ -1,0 +1,101 @@
+{% if section.settings.show %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="lp-account__container inactive-step" data-step>
+      <div class="container">
+        <div class="row flex-column align-items-center">
+          <span class="lp-account__step-num">{{ section.settings.step_number }}</span>
+          <div class="col-md-12 col-lg-6">
+            <h3>{{ section.settings.step_title }}</h3>
+          </div>
+          <div class="lp-account__recommendations">
+            {% for block in section.blocks %}
+              <div class="lp-account__recommendations-item">
+                <div class="lp-account__recommendations-item-icon">
+                  {%- if block.settings.feature_icon == "icon-bottle" -%}
+                      {% render 'icon-register-bottle' %}
+                    {% elsif block.settings.feature_icon == "icon-reminder" %}
+                      {% render 'icon-reminder' %}
+                    {% elsif block.settings.feature_icon == "icon-star" %}
+                      {% render 'icon-account-star' %}
+                  {%- endif -%}
+                </div>
+                <div class="lp-account__recommendations-item-content">
+                  <h4>{{ block.settings.feature_title }}</h4>
+                  <p>{{ block.settings.feature_content }}</p>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          <a href="{{ section.settings.account_btn_url }}" class="lp-account__create-account-btn d-flex">
+            {{ section.settings.account_btn_text }} <span>{{ section.settings.account_btn_text_bonus }}</span> {% render 'icon-points-white' %}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+  {
+  "name":"Landing Page Account",
+  "class":"lp-account",
+  "settings":[
+    {
+    "type":"checkbox",
+    "id":"show",
+    "label":"Show Section?"
+    },
+    {
+      "type":"text",
+      "id":"step_number",
+      "label":"Step Number",
+      "default":"3"
+    },
+    {
+      "type":"textarea",
+      "id":"step_title",
+      "label":"Step Title"
+    },
+    {
+      "type":"text",
+      "id":"account_btn_text",
+      "label":"Create Account Button Text"
+    },
+    {
+      "type":"text",
+      "id":"account_btn_text_bonus",
+      "label":"Create Account Disc. Text"
+    },
+    {
+      "type":"url",
+      "id":"account_btn_url",
+      "label":"Create Account Button URL"
+    }
+  ],
+  "blocks":[
+  {
+  "type":"text",
+  "name":"Features",
+  "settings":[
+    {
+      "type":"text",
+      "id":"feature_icon",
+      "label":"Feature Icon (possible use cases: icon-bottle, icon-start and icon-reminder)"
+    },
+    {
+      "type":"text",
+      "id":"feature_title",
+      "label":"Feature Title"
+    },
+    {
+      "type":"text",
+      "id":"feature_content",
+      "label":"Feature Content"
+    }
+  ]
+  }
+  ]
+  }
+{% endschema %}

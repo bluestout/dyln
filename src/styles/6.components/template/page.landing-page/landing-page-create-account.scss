@@ -1,0 +1,74 @@
+.lp-account {
+  &__create-account-btn {
+    @include button(solid, r, 2);
+    text-align: center;
+    width: 300px;
+
+    @include media-query($medium-down) {
+      margin-bottom: 40px;
+    }
+
+    span {
+      @include font-header(normal);
+      padding: 0 8px;
+    }
+  }
+
+  &__recommendations {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 600px;
+    margin-bottom: 20px;
+
+    @include media-query($medium-down) {
+      width: 100%;
+      margin-bottom: 0;
+    }
+  }
+
+  &__recommendations-item {
+    flex: 0 0 50%;
+    max-width: 50%;
+    width: 100%;
+    display: flex;
+    margin: 10px 0;
+    align-items: center;
+
+    @include media-query($small) {
+      flex: 0 0 90%;
+      max-width: 90%;
+      margin: 0 20px;
+      margin-bottom: 20px;
+    }
+
+    &-icon {
+      margin-right: 10px;
+      min-width: 50px;
+    }
+
+    &-content {
+      h4 {
+        @include font-header(bold);
+        @include text(16px, 1.2, $color-theme-24, 1.45px);
+        margin-bottom: 5px;
+        text-align: left;
+      }
+
+      p {
+        text-align: left;
+        padding-right: 15px;
+      }
+    }
+  }
+}
+
+.lp-register {
+  margin-bottom: 20px;
+
+  h3 {
+    margin-top: 0 !important;
+    margin-bottom: 5px !important;
+  }
+}

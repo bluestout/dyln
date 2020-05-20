@@ -1,0 +1,194 @@
+<h2>{{ section.settings.title }}</h2>
+
+<div class="container-fluid">
+  <div class="row">
+      {% assign step_num = section.settings.num_of_steps | plus: 0 %}
+      {% assign illustration_step = 0 %}
+      {% for i in (1..step_num) %}
+        <div class="lp-steps__step{% if forloop.first == true %} active-step{% else %} inactive-step{% endif %}" data-step>
+          <span class="lp-steps__step-num">{{ i }}</span>
+          <div class="lp-steps__step-tab-container" data-tabs-container>
+            <div class="lp-steps__step-tab-nav">
+              {% if section.settings.video_tab %}
+                <a class="lp-steps__step-tab active" data-tab-link="0">
+                  <h4>{{ section.settings.video_tab_title }}</h4>
+                </a>
+              {% endif %}
+
+              {% if section.settings.illustrations_tab %}
+                <a class="lp-steps__step-tab" data-tab-link="1">
+                  <h4>{{ section.settings.illustrations_tab_title }}</h4>
+                </a>
+              {% endif %}
+            </div>
+
+            <div class="lp-steps__step-tab-content-wrapper">
+            {% for block in section.blocks %}
+              {% assign block_step_num = block.settings.step_num | plus: 0 %}
+              {% if section.settings.video_tab and block.type == "video" and block_step_num == i %}
+                <div class="col-md-6 col-lg-5">
+                  <div class="lp-steps__step-tab-content active" data-tab="0">
+                    <iframe
+                            id="ytplayer"
+                            type="text/html"
+                            src="https://www.youtube.com/embed/{{ block.settings.video_id }}?autoplay=0&origin=http://example.com"
+                            frameborder="0"></iframe>
+                  </div>
+                </div>
+              {% endif %}
+
+              {% if section.settings.illustrations_tab or section.settings.illustration_header %}
+                {% if block_step_num == i %}
+
+                  <div class="col-md-6 col-lg-5">
+                    <div class="lp-steps__step-tab-content" data-tab="1">
+                      {% if block.type == "illustration_header" %}
+                        <div id="illustrationHeader">{{ block.settings.illustration_header }}</div>
+                      {% endif %}
+
+                      {% if block.type == "illustration" and block_step_num == i %}
+                        {% assign illustration_step = illustration_step | plus: 1 %}
+                        {{ block.settings.illustrations_gif }}
+                        <p><span>{{ illustration_step }}.</span> {{ block.settings.illustration_content }}</p>
+                      {% endif %}
+
+                      {% if block.type == "illustration_footer" %}
+                        <div id="illustrationFooter">{{ block.settings.illustration_footer }}</div>
+                      {% endif %}
+                    </div>
+                  </div>
+
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+            </div>
+          </div>
+        </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+  "name":"Landing Pages Steps",
+  "class":"lp-steps",
+  "settings":[
+    {
+      "type":"text",
+      "id":"title",
+      "label":"Heading",
+      "default":"Title"
+    },
+    {
+      "type":"checkbox",
+      "id":"video_tab",
+      "label":"Show first tab?"
+    },
+    {
+      "type":"text",
+      "id":"video_tab_title",
+      "label":"Insert title of first tab"
+    },
+    {
+      "type":"checkbox",
+      "id":"illustrations_tab",
+      "label":"Show second tab?"
+    },
+    {
+      "type":"text",
+      "id":"illustrations_tab_title",
+      "label":"Insert title of second tab"
+    },
+    {
+      "type":"text",
+      "id": "num_of_steps",
+      "label": "How many Step Sections?"
+    }
+  ],
+  "blocks":[
+    {
+      "type":"step",
+      "name":"Step Sections",
+      "settings":[
+        {
+          "type":"text",
+          "id":"step_num",
+          "label":"Step Number"
+        },
+        {
+          "type":"text",
+          "id":"step_title",
+          "label":"Step Title"
+        }]
+    },
+    {
+      "type":"video",
+      "name":"Video",
+      "settings":[
+      {
+        "type":"text",
+        "id":"step_num",
+        "label":"Step Number"
+      },
+      {
+        "type":"text",
+        "id":"video_id",
+        "label":"Step Video (Add YouTube Video ID)"
+      }]
+      },
+      {
+      "type":"illustration",
+      "name":"Illustration",
+      "settings":[
+        {
+          "type":"text",
+          "id":"step_num",
+          "label":"Step Number"
+        },
+        {
+          "type":"html",
+          "id":"illustrations_gif",
+          "label":"Paste embed code for Illustration step gif."
+        },
+        {
+          "type":"textarea",
+          "id": "illustration_content",
+          "label": "Insert text below the gif illustration example."
+        }
+      ]
+      },
+      {
+      "type":"illustration_header",
+      "name":"Illustration Tab Header",
+      "settings":[
+        {
+          "type":"text",
+          "id":"step_num",
+          "label":"Step Number"
+        },
+        {
+          "type":"richtext",
+          "id":"illustration_header",
+          "label":"Insert text to be displayed in the header of the illustration tab."
+        }
+      ]
+      },
+      {
+        "type":"illustration_footer",
+        "name":"Illustration Tab Footer",
+        "settings":[
+          {
+            "type":"text",
+            "id":"step_num",
+            "label":"Step Number"
+          },
+          {
+            "type":"richtext",
+            "id":"illustration_footer",
+            "label":"Insert text to be displayed in the footer of the illustration tab."
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
