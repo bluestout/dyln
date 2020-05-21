@@ -64,7 +64,16 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+  <nav class="visually-hidden skip-link">
+    <a class="skip-link" href="#MainContent" >{{ "general.accessibility.skip_to_content" | t }}</a>
+    <ul>
+      {% for link in linklists["accessibility-menu"].links %}
+        <li>
+          <a href="{{ link.url }}" class="skip-link">{{ link.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
 
   {% section 'header' %}
 

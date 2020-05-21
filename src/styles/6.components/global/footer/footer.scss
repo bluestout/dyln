@@ -66,9 +66,6 @@
     }
   }
 
-  &__lf-list-wrap {
-  }
-
   &__lf-list {
     display: flex;
     flex-flow: row nowrap;
@@ -157,6 +154,10 @@
     margin: 0 0 40px;
     display: inline-block;
     min-width: 51%;
+
+    &:focus {
+      color: $color-white;
+    }
   }
 
   &__menu-list {
@@ -175,6 +176,12 @@
     @include text(18px, 24px, $color-white, 0.16px);
     margin: 0;
     text-decoration: none;
+
+    &:hover,
+    &:focus {
+      color: $color-white;
+      font-weight: 700;
+    }
   }
 
   @include media-query($large-down) {

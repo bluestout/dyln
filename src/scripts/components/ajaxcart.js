@@ -1,13 +1,11 @@
 import $ from "jquery";
-import { formatMoney } from "@shopify/theme-currency";
-import { formatAndTrimPrice } from "./helpers";
+import { formatAndTrimPrice, toggleTabindexInChildren } from "./helpers";
 import {
   quickCartUpsellHtml,
   quickCartLineItemHtml,
   cartLineItemHtml,
   cartTotalsHtml,
   emptyCartHtml,
-  toggleTabindexInChildren,
 } from "./ajaxcart-html";
 
 const datasets = {
@@ -46,6 +44,8 @@ const selectors = {
     checkout: "[data-cart-drawer-checkout]",
     empty: "[data-cart-drawer-empty]",
     payments: "[data-cart-drawer-payments]",
+    focusOut: "[data-cart-drawer-focus-out]",
+    focusIn: "[data-cart-drawer-focus-in]",
   },
   cart: {
     container: "[data-cart-container]",
@@ -481,11 +481,13 @@ function quickCartToggle(event) {
     $(selectors.quick.overlay).removeClass(classes.active);
     $("html").removeClass("no-scroll");
     toggleTabindexInChildren($quickCart, 2);
+    $(selectors.quick.focusOut).focus();
   } else {
     $quickCart.addClass(classes.open);
     $(selectors.quick.overlay).addClass(classes.active);
     $("html").addClass("no-scroll");
     toggleTabindexInChildren($quickCart, 1);
+    $(selectors.quick.focusIn).focus();
   }
 }
 

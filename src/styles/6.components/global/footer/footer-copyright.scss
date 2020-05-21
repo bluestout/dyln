@@ -5,6 +5,12 @@
   a {
     color: $color-white;
     text-decoration: none;
+
+    &:hover,
+    &:focus {
+      color: $color-white;
+      font-weight: 700;
+    }
   }
 
   @include media-query($medium-down) {

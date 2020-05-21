@@ -397,7 +397,7 @@
         "max": 500,
         "step": 5,
         "unit": "$",
-        "label": "Shipping Threshold",
+        "label": "Shipping Threshold US",
         "default": 100
       },
       {
@@ -407,7 +407,7 @@
         "max": 500,
         "step": 5,
         "unit": "$",
-        "label": "Shipping Threshold",
+        "label": "Shipping Threshold CA",
         "default": 100
       },
       {
@@ -417,8 +417,78 @@
         "max": 500,
         "step": 5,
         "unit": "$",
-        "label": "Shipping Threshold",
+        "label": "Shipping Threshold Other",
         "default": 100
+      },
+      {
+        "type": "text",
+        "id": "empty_cart_title",
+        "label": "Empty Cart Title",
+        "default": "Your Cart is empty."
+      },
+      {
+        "type": "url",
+        "id": "empty_cart_link_1",
+        "label": "Empty Cart Link 1"
+      },
+      {
+        "type": "text",
+        "id": "empty_cart_link_text_1",
+        "label": "Empty Cart Link Text 1"
+      },
+      {
+        "type": "image_picker",
+        "id": "empty_cart_image_1",
+        "label": "Empty Cart Image 1",
+        "info": "90x90 max"
+      },
+      {
+        "type": "url",
+        "id": "empty_cart_link_2",
+        "label": "Empty Cart Link 2"
+      },
+      {
+        "type": "text",
+        "id": "empty_cart_link_text_2",
+        "label": "Empty Cart Link Text 2"
+      },
+      {
+        "type": "image_picker",
+        "id": "empty_cart_image_2",
+        "label": "Empty Cart Image 2",
+        "info": "90x90 max"
+      },
+      {
+        "type": "url",
+        "id": "empty_cart_link_3",
+        "label": "Empty Cart Link 3"
+      },
+      {
+        "type": "text",
+        "id": "empty_cart_link_text_3",
+        "label": "Empty Cart Link Text 3"
+      },
+      {
+        "type": "image_picker",
+        "id": "empty_cart_image_3",
+        "label": "Empty Cart Image 3",
+        "info": "90x90 max"
+      },
+      {
+        "type": "url",
+        "id": "empty_cart_link_4",
+        "label": "Empty Cart Link 4"
+      },
+      {
+        "type": "text",
+        "id": "empty_cart_link_text_4",
+        "label": "Empty Cart Link Text 4"
+      },
+      {
+        "type": "image_picker",
+        "id": "empty_cart_image_4",
+        "label": "Empty Cart Image 4",
+        "info": "90x90 max"
       }
     ]
   },

@@ -120,7 +120,7 @@ function quickCartUpsellHtml(product, url, index) {
 
   const select =
     options.length > 1
-      ? `<select name="id" class="visually-hidden shown-on-focus" data-upsell-select>${options}</select>`
+      ? `<select name="id" tabindex="-1" class="visually-hidden shown-on-focus" data-upsell-select>${options}</select>`
       : "";
 
   const linkHref = url ? `href="${url}"` : `href="/products/${product.handle}"`;
@@ -131,11 +131,11 @@ function quickCartUpsellHtml(product, url, index) {
       type="hidden"
       id="upsellQuantity${index}"
       name="quantity"
-      value="1"/>
-    <a ${linkHref} class="cart-drawer__upsell-image">
+      value="1" tabindex="-1"/>
+    <a ${linkHref} class="cart-drawer__upsell-image" tabindex="-1">
       ${productImageHtml(product)}
     </a>
-    <a ${linkHref} class="cart-drawer__upsell-content">
+    <a ${linkHref} class="cart-drawer__upsell-content" tabindex="-1">
       <h4 class="cart-drawer__upsell-item-title">${product.title}</h4>
       <p class="cart-drawer__upsell-text">
       <span data-upsell-price>
@@ -146,7 +146,7 @@ function quickCartUpsellHtml(product, url, index) {
     <div class="cart-drawer__upsell-form">
       ${optionsWrap}
       ${select}
-      <button type="button" class="cart-drawer__upsell-add" data-upsell-submit>
+      <button type="button" class="cart-drawer__upsell-add" data-upsell-submit tabindex="-1">
         <span data-upsell-loading class="loading-dots hide"></span>
         <span data-upsell-text>${theme.strings.addToCart}</span>
       </button>
@@ -187,7 +187,10 @@ function quickCartLineItemHtml(product, index) {
     <button class="cart-drawer__item-button"
       type="button"
       data-direction="down"
-      data-qty-change-ajax=".line-${index + 1}">-</button>
+      data-qty-change-ajax=".line-${index + 1}"
+      tabindex="-1">
+      -
+    </button>
 
     <input type="number"
       class="cart-drawer__item-input line-${index + 1}"
@@ -196,12 +199,16 @@ function quickCartLineItemHtml(product, index) {
       data-line="${index + 1}"
       value="${product.quantity}"
       aria-label="${theme.strings.quantity}"/
-      data-qty-input />
+      data-qty-input
+      tabindex="-1"/>
 
     <button class="cart-drawer__item-button"
       type="button"
       data-direction="up"
-      data-qty-change-ajax=".line-${index + 1}">+</button>
+      data-qty-change-ajax=".line-${index + 1}"
+      tabindex="-1">
+      +
+    </button>
   </div>`;
 
   // put together all the data into one line item
@@ -216,7 +223,7 @@ function quickCartLineItemHtml(product, index) {
       </a>
     </div>
     <div class="cart-drawer__item-content">
-      <a ${linkHref} class="cart-drawer__item-link">
+      <a ${linkHref} class="cart-drawer__item-link" tabindex="-1">
         <h4 class="cart-drawer__item-title">${product.product_title}</h4>
         <p class="cart-drawer__variant">${product.variant_title}</p>
       </a>
