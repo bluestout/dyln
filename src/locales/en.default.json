@@ -328,6 +328,13 @@
       "view_details": "View Details",
       "add": "Add",
       "more_colors": "More colors"
+    },
+    "subscription": {
+      "every": "Every",
+      "months": "months",
+      "years": "years",
+      "days": "days",
+      "subscribe": "Subscribe"
     }
   },
   "gift_cards": {

@@ -133,6 +133,12 @@
     width: 50%;
     padding: 0;
     height: 65px;
+
+    &:not(:disabled) {
+      &:hover {
+        bottom: 0;
+      }
+    }
   }
 
   &__regular-price {
@@ -146,12 +152,18 @@
     text-transform: uppercase;
   }
 
-  &__sub-button {
+  &__sub-btn {
     @include button(wire, square, 1);
     float: right;
     width: 50%;
     padding: 0;
     height: 65px;
+
+    &:not(:disabled) {
+      &:hover {
+        bottom: 0;
+      }
+    }
   }
 
   &__sub-price {
@@ -172,6 +184,34 @@
     left: 50%;
     bottom: 5px;
     transform: translate(-50%);
+  }
+
+  &__usps {
+    clear: both;
+    padding: 20px 0 0;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+
+  &__usp {
+    flex: 0 0 auto;
+
+    span {
+      @include font-header(500);
+      @include text(13px, 16px, $color-theme-8, 0.77px);
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 0 0 5px;
+    }
+
+    svg {
+      display: inline-block;
+      vertical-align: middle;
+      width: 28px;
+      height: 28px;
+    }
   }
 
   @include media-query($medium-down) {

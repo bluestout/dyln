@@ -1,7 +1,6 @@
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
-
-{% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true', class: "pdp-form__form", data-productid: product.id %}
+{% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true', class: "pdp-form__form"%}
   {% if product.available %}{% include 'subscription-product' %}{% endif %}
   <div class="pdp-form__price d-none d-md-block" data-price-wrapper>
     <span data-product-price>
@@ -87,7 +86,7 @@
     {% endif %}
   {% endfor %}
 
-  <select name="id" style="display:none !important;" data-pdp-select data-productid="{{ product.id }}">
+  <select name="id" style="display:none !important;" data-pdp-select>
     {% for variant in product.variants %}
       <option
         {% if variant == current_variant %}selected="selected"{% endif %}
@@ -140,7 +139,6 @@
       </span>
   </button>
 {% endform %}
-
 <div data-atc-anchor></div>
 
 <script data-pdp-options type="application/json">{% for option in product.options_with_values %}{% assign name_clean = option.name | downcase %}{% if name_clean == "color" %}{% assign name = "option" | append: forloop.index %}{"color": {{ name | json }}}{% break %}{% endif %}{% endfor %}</script>

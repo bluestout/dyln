@@ -1,80 +1,138 @@
 {% comment %} TODO add to cart logic for diffusers {% endcomment %}
 {% if section.settings.extra_product %}
-
-  {% if section.settings.title != empty %}
-    <div class="pdp-diffusers__title-header">
-      <h3 class="pdp-diffusers__title">{{ section.settings.title }}</h3>
-      {% if section.settings.note != empty %}
-        <span class="pdp-diffusers__note-button">
-          {% render 'icon-info' %}
-          <div class="pdp-diffusers__note-wrap">
-            <button class="pdp-diffusers__note-close" type="button">{% render 'icon-close' %}</button>
-            <div class="pdp-diffusers__note">{{ section.settings.note }}</div>
-          </div>
-        </span>
-      {% endif %}
-    </div>
-  {% endif %}
-
   {% assign e_product = all_products[section.settings.extra_product] %}
   {%- assign e_current_variant = e_product.selected_or_first_available_variant -%}
-  {% form 'product', e_product, data-product-form: '', data-product-handle: e_product.handle, data-enable-history-state: 'true', class: "pdp-diffusers__form", data-productid: product.id %}
-    {% if product.available %}{% include 'subscription-product' %}{% endif %}
+  {% unless e_product.id == product.id or product.handle contains "test" %}
+    {% if section.settings.title != empty %}
+      <div class="pdp-diffusers__title-header">
+        <h3 class="pdp-diffusers__title">{{ section.settings.title }}</h3>
+        {% if section.settings.note != empty %}
+          <span class="pdp-diffusers__note-button">
+            {% render 'icon-info' %}
+            <div class="pdp-diffusers__note-wrap">
+              <button class="pdp-diffusers__note-close" type="button">{% render 'icon-close' %}</button>
+              <div class="pdp-diffusers__note">{{ section.settings.note }}</div>
+            </div>
+          </span>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% assign sub_variants_map = e_product.metafields.subscriptions.original_to_hidden_variant_map %}
+    {% assign interval_frequencies = e_product.metafields.subscriptions.shipping_interval_frequency | split: ',' %}
+    {% assign interval_unit_type = e_product.metafields.subscriptions.shipping_interval_unit_type %}
+
+    <input name="subscription_variant_map" value={{ sub_variants_map | json }} type="hidden" data-subscription-variant-map/>
 
     {% unless e_product.has_only_default_variant %}
       <div class="pdp-diffusers__variants">
         {% for e_var in e_product.variants %}
           <div class="pdp-diffusers__variant">
-            <input class="pdp-diffusers__input" id="option-extra-{{ forloop.index }}" type="radio" name="id" value="{{ e_var.title }}" data-productid="{{ product.id }}"/>
+            <input class="pdp-diffusers__input" id="option-extra-{{ forloop.index }}" type="radio" name="id" value="{{ e_var.title }}"/>
             <label class="pdp-diffusers__label" for="option-extra-{{ forloop.index }}">{{ e_var.title }}</label>
           </div>
         {% endfor %}
       </div>
     {% endunless %}
 
-    <input type="hidden" id="Quantity" name="quantity" value="1" min="1" />
+    <div class="pdp-form__qty-wrap" data-subscription-quantity>
+      <label class="hide" for="Quantity">{{ 'products.product.quantity' | t }}</label>
+      <div class="pdp-form__qty-box">
+        <button type="button" class="pdp-form__qty-button" data-qty-change="#PdpQuantity" data-direction="down">-</button>
+        <input class="pdp-form__qty-input" type="number" id="PdpQuantity" name="quantity" value="1" min="1" data-qty-input>
+        <button type="button" class="pdp-form__qty-button" data-qty-change="#PdpQuantity" data-direction="up">+</button>
+      </div>
+    </div>
 
-    <div class="pdp-diffusers__btn-wrap">
+    <div class="pdp-diffusers__btn-wrap" data-subscription-regular-block>
       <button
-        class="pdp-diffusers__regular-btn"
-        type="submit"
-        name="add"
-        data-pdp-extra-submit
-        {% unless e_current_variant.available %}disabled="disabled"{% endunless %}>
-        <span class="pdp-diffusers__regular-price">
-          <span>
-            {{ e_current_variant.price | money }}
-          </span>
-
-          {% if e_product.compare_at_price_max > e_product.price %}
-            <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
-            <s>
-              {% if e_current_variant.compare_at_price > e_current_variant.price %}
-                {{ e_current_variant.compare_at_price | money }}
-              {% endif %}
-            </s>
-          {% endif %}
-        </span>
-        <span class="pdp-diffusers__regular-text">
-          {% if e_current_variant.available %}
-            {{ 'products.product.add_to_cart' | t }}
-          {% else %}
-            {{ 'products.product.sold_out' | t }}
-          {% endif %}
-        </span>
+        class="pdp-diffusers__regular-btn">
+        <span class="pdp-diffusers__regular-price">{{ e_current_variant.price | money }}</span>
+        <span class="pdp-diffusers__regular-text">{{ 'products.product.add_to_cart' | t }}</span>
       </button>
 
-      {% comment %} This is just a placeholder button {% endcomment %}
-      <button type="button" class="pdp-diffusers__sub-button">
-        <span class="pdp-diffusers__sub-price">$ 7.99</span>
-        <span class="pdp-diffusers__sub-btn-text">Subscribe</span>
-        <span class="pdp-diffusers__sub-btn-freq">Every Month</span>
+      <button type="button" class="pdp-diffusers__sub-btn">
+        <span class="pdp-diffusers__sub-price" data-subscription-current-price>{{ cart.currency.symbol }}{{ sub_variants_map[e_current_id].discount_variant_price }}</span>
+        <span class="pdp-diffusers__sub-btn-text">{{ 'products.subscription.subscribe' | t }}</span>
+        <span class="pdp-diffusers__sub-btn-freq" data-subscription-current-frequency>
+          {% render 'subscription-frequency' with interval_frequencies[0] as frequency, interval: interval_unit_type %}
+        </span>
       </button>
     </div>
 
-  {% endform %}
+    <div class="pdp-diffusers__btn-wrap" style="display: none;" data-subscription-sub-block>
+      <button
+        class="pdp-diffusers__regular-btn">
+        <span class="pdp-diffusers__regular-price" data-subscription-current-price>{{ cart.currency.symbol }}{{ sub_variants_map[e_current_id].discount_variant_price }}</span>
+        <span class="pdp-diffusers__regular-text">
+          {{ 'products.subscription.subscribe' | t }}
+        </span>
+      </button>
 
+      <div class="pdp-diffusers__sub-btn">
+        <select name="shipping_interval_frequency" id="pdp-diffuser-freq-select" data-custom>
+          {% for i_frequency in interval_frequencies %}
+            <option value="{{ i_frequency }}">
+              {% render 'subscription-frequency' with i_frequency as frequency, interval: interval_unit_type %}
+            </option>
+          {% endfor %}
+        </select>
+        <label for="pdp-diffuser-freq-select">{{ freq_label }}</label>
+      </div>
+
+      <input name="shipping_interval_unit_type" value="{{ interval_unit_type }}" type="hidden" />
+
+      {% if section.blocks.size > 0 %}
+        <div class="pdp-diffusers__usps">
+          {% for usp in section.blocks %}
+            <div class="pdp-diffusers__usp">
+              {% if usp.settings.icon == "circle-savings" %}
+                {% render 'icon-circle-savings' %}
+              {% elsif usp.settings.icon == "options" %}
+                {% render 'icon-options' %}
+              {% elsif usp.settings.icon == "circle-close" %}
+                {% render 'icon-circle-close' %}
+              {% endif %}
+              {% if usp.settings.title != empty %}
+                <span>{{ usp.settings.title }}</span>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  {% endunless %}
 {% endif %}
+
+{% comment %}
+  <script>
+    $('#add-to-cart-button').click(function(){
+      addItemToCart(949931647, 1, "1", "Months")
+    });
+  </script>
+  <script>
+    function addItemToCart(variant_id, qty, frequency, unit_type) {
+      data = {
+        "id": variant_id,
+        "quantity": qty,
+        "properties": {
+          "shipping_interval_frequency": frequency,
+          "shipping_interval_unit_type": unit_type
+        }
+      }
+      jQuery.ajax({
+        type: 'POST',
+        url: '/cart/add.js',
+        data: data,
+        dataType: 'json',
+        success: function() {
+          window.location.href = '/cart';
+        }
+      });
+      window.location = '/checkout';
+    }
+  </script>
+{% endcomment %}
 
 {% schema %}
   {
@@ -95,7 +153,46 @@
         "type": "textarea",
         "id": "note",
         "label": "Note"
-
+      },
+      {
+        "type": "text",
+        "id": "freq_label",
+        "label": "Frequency Label",
+        "default": "Change Frequency"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "usp",
+        "name": "Usp",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type":      "select",
+            "id":        "icon",
+            "label":     "Icon",
+            "options": [
+              {
+                "value": "circle-savings",
+                "label": "Circled Dollar"
+              },
+              {
+                "value": "options",
+                "label": "Options"
+              },
+              {
+                "value": "circle-close",
+                "label": "Circled X"
+              }
+            ],
+            "default":   "circle-savings",
+            "info":      "Select icon to be used"
+          }
+        ]
       }
     ]
   }
