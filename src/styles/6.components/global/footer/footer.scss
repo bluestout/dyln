@@ -78,6 +78,15 @@
     width: 312px;
     height: 312px;
     flex: 0 0 312px;
+    margin-right: 15px;
+    transform: translateY(0);
+    transition: ease-in-out transform 0.3s;
+
+    &:hover,
+    &:focus {
+      transform: translateY(-20px);
+      transition: ease-in-out transform 0.3s;
+    }
   }
 
   &__lf-a-overlay {
@@ -277,6 +286,27 @@
       line-height: 30px;
       letter-spacing: 0.11px;
     }
+  }
+}
+
+.site-footer__lf-list {
+  scrollbar-width: thin;
+  padding-bottom: 10px;
+
+  &::-webkit-scrollbar {
+    width: 20px;
+    height: 7px;
+    margin-top: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $color-black;
+    border-radius: 6px;
+    border: 1px solid transparent;
   }
 }
 

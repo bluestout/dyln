@@ -57,7 +57,8 @@
   &__link {
     @include no-browser-styling;
 
-    &:hover {
+    &:hover,
+    &:focus {
       .index-video__link-text {
         color: $color-main-1;
         border-color: $color-main-1;

@@ -6,15 +6,15 @@
     </div>
   {% endif %}
 
-  <div class="user-stories__stories" data-user-stories>
+  <div class="user-stories__stories" data-slider-wrapper>
     {% for block in section.blocks %}
       {% assign modulo = forloop.index | modulo: 2 %}
       {% assign content_order = " order-md-2" %}
       {% if modulo == 0 %}
         {% assign content_order = " order-md-0" %}
       {% endif %}
-      <div class="user-stories__story">
-        <div class="user-stories__s-media order-md-1">
+      <div class="user-stories__story" data-slider-item>
+        <div class="user-stories__s-media">
           <div class="user-stories__s-media-inner">
             {% if block.settings.image %}
               {% render 'responsive-image' with
@@ -43,17 +43,11 @@
       </div>
     {% endfor %}
   </div>
-
-  <div class="user-stories__slider-wrap">
-
-    {% assign blocks_0 = b_size | minus: 1 | times: 10 %}
-    <input class="user-stories__slider" type="range" max="{{ blocks_0 }}" min="0" step="1" value="0" data-user-stories-input>
-    {% assign isi_width = 100 | divided_by: b_size | append: '%'%}
-    <style>
-      :root {
-        --index-stories-input-w: {{ isi_width }};
-      }
-    </style>
+  <div class="next-arrow" data-next-arrow>
+    {% render 'icon-chevron-l' %}
+  </div>
+  <div class="prev-arrow" data-prev-arrow>
+    {% render 'icon-chevron-l' %}
   </div>
 {% endif %}
 

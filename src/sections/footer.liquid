@@ -1,7 +1,7 @@
 {%- if section.settings.lf_blog != empty -%}
   {%- if section.setting.show_lifestyle_on_hp_only == false or template.name == 'index' -%}
     <div class="site-footer__lifestyle">
-      <div class="site-footer__wave-top"></div>
+      <div class="site-footer__wave-top" data-transition-wave data-transition></div>
       <div class="site-footer__lifestyle-bg">
         <div class="container" data-tabs-container>
           {%- assign lf_blog = blogs[section.settings.lf_blog] -%}
@@ -30,7 +30,7 @@
               </div>
             </div>
             <div class="col-lg-7">
-              <div class="site-footer__lf-list-wrap">
+              <div class="site-footer__lf-list-wrap" data-slider-wrapper>
                 {% comment %} for each blog, create a new section {% endcomment %}
 
                 {% if section.settings.lf_recent != empty %}
