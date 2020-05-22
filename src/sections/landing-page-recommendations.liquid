@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="row">
+    <div class="lp-recommendations__header">
+      <h2>{{ section.settings.title }}</h2>
+      <div class="lp-recommendations__gif">
+        {{ section.settings.gif }}
+      </div>
+      <p>{{ section.settings.content }}</p>
+    </div>
+    <div class="lp-recommendations__item-wrapper">
+    {% for block in section.blocks %}
+      <div class="lp-recommendations__item">
+        {%- if block.settings.icon != blank -%}
+          <div class="lp-recommendations__item-icon">
+            {%- if block.settings.icon == "icon-check" -%}
+              {%- render 'icon-check' -%}
+              {%- elsif block.settings.icon == "icon-uncheck" -%}
+              {%- render 'icon-uncheck' -%}
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+        <div class="lp-recommendations__item-content">
+          <h3>{{ block.settings.recommendation_title }}</h3>
+          <p>{{ block.settings.recommendation_content }}</p>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name":"Landing Page Recommended",
+  "class": "lp-recommendations",
+  "settings":[
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "html",
+      "id": "gif",
+      "label": "Gif"
+    },
+    {
+      "type": "text",
+      "id": "content",
+      "label": "Content"
+    }
+  ],
+  "blocks":[
+    {
+      "type":"text",
+      "name":"Recommendations",
+      "settings":[
+        {
+          "type":"text",
+          "id":"icon",
+          "label":"Insert an icon, icons available: icon-check, icon-uncheck"
+        },
+        {
+          "type":"text",
+          "id":"recommendation_title",
+          "label":"Title"
+        },
+        {
+          "type":"textarea",
+          "id":"recommendation_content",
+          "label":"Content"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

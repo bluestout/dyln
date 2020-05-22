@@ -43,6 +43,7 @@
     "search": {
       "title": "Search our site",
       "placeholder": "Search",
+      "placeholder_long": "Search anything here!",
       "submit": "Submit",
       "heading": {
         "one": "Search result",
@@ -156,6 +157,12 @@
       "send": "Send",
       "required_fields": "* Required fields",
       "post_success": "Thanks for contacting us. We'll get back to you as soon as possible."
+    }
+  },
+  "landing_page": {
+    "steps": {
+      "step_navigation_previous": "Previous step",
+      "step_navigation_next": "Next step"
     }
   },
   "customer": {

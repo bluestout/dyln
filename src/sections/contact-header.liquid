@@ -1,20 +1,46 @@
-<div class="contact-header__wave"></div>
+{%- if section.settings.bg -%}
+  {%- assign wrapper_class = "contact-header__bg-wrap" -%}
+
+  {%- if section.settings.bg_rsp -%}
+    {%- assign wrapper_class = "contact-header__bg-wrap d-none d-sm-block" -%}
+    {%- render 'responsive-image' with
+      image: section.settings.bg_rsp,
+      max_width: 768,
+      max_height: 768,
+      wrapper_class: "contact-header__bg-wrap d-sm-none",
+      image_class: "contact-header__bg",
+    -%}
+  {%- endif -%}
+
+  {%- render 'responsive-image' with
+    image: section.settings.bg,
+    max_width: 1600,
+    max_height: 540,
+    wrapper_class: wrapper_class,
+    image_class: "contact-header__bg",
+  -%}
+{%- endif -%}
 
 <div class="contact-header__body">
   <div class="container">
-    <h1 class="contact-header__title">
-    {% if section.settings.title != blank %}
-      {{ section.settings.title }}
-    {% else %}
-      {{ page.title }}
-    {% endif %}
-    </h1>
-    <div class="contact-header__content">
-      {% if section.settings.content != blank %}
-        {{ section.settings.content | strip_html | strip | truncatewords: 30, '...' }}
-      {% else %}
-        {{ page.content | strip_html | strip | truncatewords: 30, '...' }}
-      {% endif %}
+    <div class="row">
+      <div class="col-lg-1 d-none d-lg-block"></div>
+      <div class="col-lg-5 col-7 align-self-center">
+        <h1 class="contact-header__title">
+        {% if section.settings.title != blank %}
+          {{ section.settings.title }}
+        {% else %}
+          {{ page.title }}
+        {% endif %}
+        </h1>
+        <div class="contact-header__content">
+          {% if section.settings.content != blank %}
+            {{ section.settings.content | strip_html | strip | truncatewords: 30, '...' }}
+          {% else %}
+            {{ page.content | strip_html | strip | truncatewords: 30, '...' }}
+          {% endif %}
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -35,6 +61,16 @@
         "id": "content",
         "label": "Description",
         "info": "Optional, defaults to page content."
+      },
+      {
+        "type": "image_picker",
+        "id": "bg",
+        "label": "Background"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg_rsp",
+        "label": "Background Mobile"
       }
     ]
   }

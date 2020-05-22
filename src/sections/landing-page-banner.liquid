@@ -1,0 +1,56 @@
+{% if section.settings.show %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-3">
+      <h2>{{ section.settings.banner_title }}</h2>
+    </div>
+    <div class="col-md-7">
+      <div class="lp-banner__wrapper">
+        {% render 'responsive-image' with
+          image: section.settings.banner_image,
+          max_width: 700,
+          max_height: 700,
+          wrapper_class: "landing-page-banner__img-wrapper",
+          image_class: "landing-page-banner__img",
+        %}
+        <a href="{{ section.settings.cta_link }}">{{ section.settings.cta_text }}</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+  {
+    "name":"Landing Pages Banner",
+    "class": "lp-banner",
+    "settings":[
+      {
+      "type":"checkbox",
+      "id":"show",
+      "label":"Show Section?"
+      },
+      {
+        "type":"text",
+        "id":"banner_title",
+        "label":"Title"
+      },
+      {
+        "type": "image_picker",
+        "id": "banner_image",
+        "label": "Banner Image"
+      },
+      {
+        "type": "text",
+        "id": "cta_text",
+        "label": "CTA Button Text"
+      },
+      {
+        "type": "url",
+        "id": "cta_link",
+        "label": "CTA Button Link"
+      }
+    ]
+  }
+{% endschema %}

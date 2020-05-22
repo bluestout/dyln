@@ -13,15 +13,16 @@ function getUrlParams() {
   return params;
 }
 
+// any select with data-custom attribute will be "converted" to a custom dropdown
 $(document).ready(() => {
   $("select[data-custom]").each(function() {
     const $this = $(this);
     const numberOfOptions = $(this).children("option").length;
 
     $this.addClass("custom-select-hidden");
-    $this.wrap("<div class='custom-select' data-custom-select></div>");
+    $this.wrap(`<div class="custom-select" data-custom-select></div>`);
     $this.after(
-      "<div class='custom-select-styled' data-custom-select-styled></div>"
+      `<button type="button" class="custom-select-styled" data-custom-select-styled></div>`
     );
 
     const $styledSelect = $this.next("[data-custom-select-styled]");
@@ -39,7 +40,7 @@ $(document).ready(() => {
     }
 
     const $list = $(
-      "<ul class='custom-select-options' data-custom-select-options></ul>"
+      `<div class="custom-select-options" data-custom-select-options></div>`
     ).insertAfter($styledSelect);
 
     for (let i = 0; i < numberOfOptions; i++) {
@@ -49,7 +50,7 @@ $(document).ready(() => {
           .eq(i)
           .attr("disabled") !== "disabled"
       ) {
-        $("<li />", {
+        $("<button />", {
           text: $this
             .children("option")
             .eq(i)
@@ -57,14 +58,32 @@ $(document).ready(() => {
           rel: $this
             .children("option")
             .eq(i)
-            .val()
+            .val(),
+          type: "button",
+          class: "custom-select-option",
         }).appendTo($list);
       }
     }
 
-    const $listItems = $list.children("li");
+    const $listItems = $list.children(".custom-select-option");
 
     $styledSelect.click(function(e) {
+      e.stopPropagation();
+      $("[data-custom-select-styled].active")
+        .not(this)
+        .each(function() {
+          $(this)
+            .removeClass("active")
+            .next("[data-custom-select-options]")
+            .hide();
+        });
+      $(this)
+        .toggleClass("active")
+        .next("[data-custom-select-options]")
+        .toggle();
+    });
+
+    $styledSelect.focus(function(e) {
       e.stopPropagation();
       $("[data-custom-select-styled].active")
         .not(this)
