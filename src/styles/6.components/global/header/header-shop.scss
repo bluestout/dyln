@@ -31,25 +31,6 @@
       }
 
       &.active {
-        .header-shop__main-text::after {
-          width: 100%;
-        }
-        .header-shop__main-text {
-          color: $color-body-text;
-        }
-
-        .icon-plus-vert {
-          top: 3px;
-          height: 2px;
-        }
-
-        .icon-plus-vert path {
-          stroke: $color-body-text;
-        }
-        .icon-plus-hor path {
-          stroke: $color-body-text;
-        }
-
         + .header-shop {
           pointer-events: auto;
           opacity: 1;
@@ -59,11 +40,19 @@
 
     &__main-text {
       @include font-header(700);
-      @include text(19px, 27px, $color-body-text, 1.5px);
+      @include text(18px, 25px, $color-body-text, 1.5px);
       @include transition(color);
       @include underline($color-body-text, false);
       display: inline-block;
       vertical-align: middle;
+
+      .active & {
+        color: $color-body-text;
+
+        &::after {
+          width: 100%;
+        }
+      }
     }
 
     &__main-icon {
@@ -83,12 +72,27 @@
         position: absolute;
         top: 0;
         left: 3px;
+
+        .active & {
+          top: 3px;
+          height: 2px;
+
+          path {
+            stroke: $color-body-text;
+          }
+        }
       }
 
       .icon-plus-hor {
         position: absolute;
         left: 0;
         top: 3px;
+
+        .active & {
+          path {
+            stroke: $color-body-text;
+          }
+        }
       }
     }
 

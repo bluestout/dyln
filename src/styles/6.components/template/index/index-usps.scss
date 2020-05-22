@@ -29,8 +29,8 @@
   }
 
   &__title {
-    @include font-header(500);
-    @include text(30px, 40px, $color-title, 1.77px);
+    @include text-subtitle;
+    font-weight: 500;
     margin: 0 0 30px;
   }
 
@@ -154,9 +154,6 @@
     }
 
     &__title {
-      font-size: 20px;
-      line-height: 28px;
-      letter-spacing: 1.18px;
       padding: 0 15px;
       text-align: center;
     }

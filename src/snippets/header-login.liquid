@@ -1,15 +1,18 @@
-<a class="header-login__main-link" href="" data-header-link="4">
-  <span class="header-login__main-text">Account</span>
-  <span class="header-login__main-icon">
+<a class="header-login__main-link" href="#" data-header-link="4">
+  <span class="header-login__main-text">{{ l_title }}</span>
+  <span class="header-login__main-icon" aria-hidden="true">
     {% render 'icon-plus-vertical' %}
     {% render 'icon-plus-horizontal' %}
   </span>
 </a>
 
 <div class="header-login" data-header-block="4">
-  <h3 class="header-login__title">Login</h3>
-  <button class="header-login__close"></button>
-  <div class="header-login__socials">
+  <h3 class="header-login__title">{{ l_form_title }}</h3>
+  <button class="header-login__close" data-header-block-close="4" tabindex="-1">
+    {% render 'icon-close' %}
+    <span class="visually-hidden">{{ 'general.accessibility.close' | t }}</span>
+  </button>
+  <div class="header-login__socials" data-header-toggle-element style="display:none;">
     <div class='oxi-social-login'></div>
   </div>
   {% form 'customer_login', class: 'header-login__form' %}
@@ -28,7 +31,8 @@
       autocomplete="off"
       autocapitalize="off"
       autofocus
-      required>
+      required
+      tabindex="-1">
 
     {% if form.password_needed %}
       <label for="HCustomerPassword" class="label-hidden">
@@ -39,24 +43,26 @@
         id="HCustomerPassword"
         class="header-login__input{% if form.errors contains 'password' %} error{% endif %}"
         placeholder="{{ 'customer.login.password' | t }}"
-        required />
+        required
+        tabindex="-1"/>
     {% endif %}
 
     <div class="header-login__account-links">
-      <a class="header-login__account-link" href="/account/register">{{ 'layout.customer.create_account' | t }}</a>
-      <a class="header-login__account-link" href="/account/login#forgot">{{ 'customer.login.forgot_password' | t }}</a>
+      <a class="header-login__account-link" href="/account/register" tabindex="-1">{{ 'layout.customer.create_account' | t }}</a>
+      <a class="header-login__account-link" href="/account/login#forgot" tabindex="-1">{{ 'customer.login.forgot_password' | t }}</a>
     </div>
 
     <div class="text-center">
-      <button type="submit" class="header-login__submit">{{ 'customer.login.sign_in' | t }}</button>
+      <button type="submit" class="header-login__submit" tabindex="-1">{{ 'customer.login.sign_in' | t }}</button>
     </div>
   {% endform %}
   <div class="header-login__separator"></div>
 
-  <a class="header-login__bottle-link" href="" >
-    <span class="header-login__bottle-wrap">
+  <a class="header-login__bottle-link" href="{{ l_reg_text }}" tabindex="-1">
+    <span class="header-login__bottle-wrap" aria-hidden="true">
       <img class="header-login__bottle-img" src="{{ 'dyln-register-bottle.png' | asset_url }}" alt="Register your new bottle" />
     </span>
-    <span class="header-login__bottle-text">Register your new bottle</span>
+    <span class="header-login__bottle-text">{{ l_reg_text }}</span>
   </a>
 </div>
+

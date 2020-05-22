@@ -1,6 +1,6 @@
 <a class="header-help__main-link" href="#" data-header-link="5">
-  <span class="header-help__main-text">{{ s_title }}</span>
-  <span class="header-help__main-icon">
+  <span class="header-help__main-text">{{ h_title }}</span>
+  <span class="header-help__main-icon" aria-hidden="true">
     {% render 'icon-plus-vertical' %}
     {% render 'icon-plus-horizontal' %}
   </span>
@@ -13,7 +13,7 @@
 
         <div class="col-lg-3 col-6 order-lg-1 order-2">
           {% render 'responsive-image' with
-            image: s_image,
+            image: h_image,
             max_width: 312,
             max_height: 312,
             image_class: "header-help__img",
@@ -26,7 +26,7 @@
             <ul class="header-help__nav-list">
               {% for link in linklists[header-help].links %}
                 <li class="header-help__nav-item">
-                  <a href="{{ link.url }}" class="header-help__nav-link">
+                  <a href="{{ link.url }}" class="header-help__nav-link" tabindex="-1">
                     {{ link.title }}
                   </a>
                 </li>
@@ -37,79 +37,79 @@
 
         <div class="col-lg-7 order-lg-3 order-3">
           <div class="header-help__big-links">
-            {% if s_link_text_1 != empty %}
-              <a class="header-help__big-link" href="{{ s_link_1 }}">
+            {% if h_link_text_1 != empty %}
+              <a class="header-help__big-link" href="{{ h_link_1 }}" tabindex="-1">
                 <span class="header-help__big-link-i">{% render 'icon-phone' %}</span>
-                <span class="header-help__big-link-t">{{ s_link_text_1 }}</span>
+                <span class="header-help__big-link-t">{{ h_link_text_1 }}</span>
               </a>
             {% endif %}
 
-            {% if s_link_text_2 != empty %}
-              <a class="header-help__big-link" href="{{ s_link_2 }}">
+            {% if h_link_text_2 != empty %}
+              <a class="header-help__big-link" href="{{ h_link_2 }}" tabindex="-1">
                 <span class="header-help__big-link-i">{% render 'icon-mail' %}</span>
-                <span class="header-help__big-link-t">{{ s_link_text_2 }}</span>
+                <span class="header-help__big-link-t">{{ h_link_text_2 }}</span>
               </a>
             {% endif %}
 
-            {% if s_link_text_3 != empty %}
-              <a class="header-help__big-link" href="{{ s_link_3 }}">
+            {% if h_link_text_3 != empty %}
+              <a class="header-help__big-link" href="{{ h_link_3 }}" tabindex="-1">
                 <span class="header-help__big-link-i">{% render 'icon-chat' %}</span>
-                <span class="header-help__big-link-t">{{ s_link_text_3 }}</span>
+                <span class="header-help__big-link-t">{{ h_link_text_3 }}</span>
               </a>
             {% endif %}
           </div>
 
           <div class="header-help__faq-header">
-            {% if s_faq_title != empty %}
-              <div class="header-help__faq-title">{{ s_faq_title }}</div>
+            {% if h_faq_title != empty %}
+              <div class="header-help__faq-title">{{ h_faq_title }}</div>
             {% endif %}
 
-            {% if s_faq_link_text != empty %}
-              <a href="{{ s_faq_link }}" class="header-help__faq-link">{{ s_faq_link_text }}</a>
+            {% if h_faq_link_text != empty %}
+              <a href="{{ h_faq_link }}" class="header-help__faq-link" tabindex="-1">{{ h_faq_link_text }}</a>
             {% endif %}
           </div>
 
           <div class="header-help__faqs" data-accordion-parent=true>
-            {% comment %} s_faq_1 {% endcomment %}
-            {% if s_faq_1 != empty %}
-              {% assign s_faq_article_1 = articles[s_faq_1] %}
+            {% comment %} h_faq_1 {% endcomment %}
+            {% if h_faq_1 != empty %}
+              {% assign h_faq_article_1 = articles[h_faq_1] %}
               <div class="header-help__faq">
-                <button class="header-help__faq-btn" data-accordion-button="1">
+                <button class="header-help__faq-btn" data-accordion-button="1" tabindex="-1">
                   <span class="header-help__faq-q">
-                    {{ s_faq_article_1.title }}
+                    {{ h_faq_article_1.title }}
                   </span>
                   <span class="header-help__faq-closed">+</span>
                   <span class="header-help__faq-open">-</span>
                 </button>
-                <div class="header-help__faq-a" data-accordion-content="1" style="display: none;">{{ s_faq_article_1.content | strip_html }}</div>
+                <div class="header-help__faq-a" data-accordion-content="1" style="display: none;">{{ h_faq_article_1.content | strip_html }}</div>
               </div>
             {% endif %}
 
-            {% if s_faq_2 != empty %}
-              {% assign s_faq_article_2 = articles[s_faq_2] %}
+            {% if h_faq_2 != empty %}
+              {% assign h_faq_article_2 = articles[h_faq_2] %}
               <div class="header-help__faq">
-                <button class="header-help__faq-btn" data-accordion-button="2">
+                <button class="header-help__faq-btn" data-accordion-button="2" tabindex="-1">
                   <span class="header-help__faq-q">
-                    {{ s_faq_article_2.title }}
+                    {{ h_faq_article_2.title }}
                   </span>
                   <span class="header-help__faq-closed">+</span>
                   <span class="header-help__faq-open">-</span>
                 </button>
-                <div class="header-help__faq-a" data-accordion-content="2" style="display: none;">{{ s_faq_article_2.content | strip_html }}</div>
+                <div class="header-help__faq-a" data-accordion-content="2" style="display: none;">{{ h_faq_article_2.content | strip_html }}</div>
               </div>
             {% endif %}
 
-            {% if s_faq_3 != empty %}
-              {% assign s_faq_article_3 = articles[s_faq_3] %}
+            {% if h_faq_3 != empty %}
+              {% assign h_faq_article_3 = articles[h_faq_3] %}
               <div class="header-help__faq">
-                <button class="header-help__faq-btn" data-accordion-button="3">
+                <button class="header-help__faq-btn" data-accordion-button="3" tabindex="-1">
                   <span class="header-help__faq-q">
-                    {{ s_faq_article_3.title }}
+                    {{ h_faq_article_3.title }}
                   </span>
                   <span class="header-help__faq-closed">+</span>
                   <span class="header-help__faq-open">-</span>
                 </button>
-                <div class="header-help__faq-a" data-accordion-content="3" style="display: none;">{{ s_faq_article_3.content | strip_html }}</div>
+                <div class="header-help__faq-a" data-accordion-content="3" style="display: none;">{{ h_faq_article_3.content | strip_html }}</div>
               </div>
             {% endif %}
 
@@ -119,7 +119,8 @@
     </div>
 
     <div class="header-help__close">
-      <button type="button" class="header-help__close-btn" data-header-block-close="5">
+      <button type="button" class="header-help__close-btn" data-header-block-close="5" tabindex="-1">
+        <span class="visually-hidden">{{ 'general.accessibility.close' | t }}</span>
         {% render 'icon-chevron-up' %}
       </button>
     </div>
@@ -127,3 +128,4 @@
 
   <div class="header-help__overlay"></div>
 </div>
+

@@ -4,6 +4,7 @@ import { formatMoney } from "@shopify/theme-currency";
 
 const classes = {
   active: "active",
+  focused: "focused",
 };
 
 const datasets = {

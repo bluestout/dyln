@@ -83,6 +83,12 @@
   &__btm-link {
     @include font-body;
     @include text(14px, 16px, $color-white);
+
+    &:hover,
+    &:focus {
+      font-weight: 700;
+      color: $color-white;
+    }
   }
 
   &__wave-wrap {
@@ -159,6 +165,11 @@
 
     &__btm-link {
       color: $color-body-text;
+
+      &:hover,
+      &:focus {
+        color: $color-body-text;
+      }
     }
 
     &__wave {

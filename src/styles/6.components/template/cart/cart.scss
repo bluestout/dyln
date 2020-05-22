@@ -1,51 +1,57 @@
 .cart {
-  padding: 66px 0 100px;
-  min-height: 1000px;
+  padding: 100px 0;
 
   &__form {
-    max-width: 680px;
     margin: 0 auto;
   }
 
   .afterpay-paragraph {
     margin: 0 auto;
-    max-width: 680px;
   }
 
   &__checkout {
+    @include button(solid, square, 1);
+    margin: 10px 0;
   }
 
   &__title {
-    @include text(32px, 38px, $color-title, 0.5px);
+    @include text-title;
     text-align: center;
-    margin: 0 0 70px;
+    margin: 0 0 60px;
   }
 
   &__note {
-    // @include paragraph-m-sb;
+    @include font-header(500);
+    @include text(20px, 30px, $color-title, 1px);
     text-align: center;
-    margin: 0 auto 30px;
+    margin: 30px auto;
+
+    a {
+      @include underline;
+      color: $color-main-1;
+    }
   }
 
   &__table {
     td {
-      @include text(11px, 27px, $color-theme-1);
-      padding: 25px 10px;
-      border-bottom: 1px solid rgba($color-theme-1, 0.5);
+      @include text(16px, 20px, $color-body-text);
+      padding: 20px 10px;
+      border-bottom: 1px solid $color-theme-6;
       text-align: center;
     }
 
     th {
-      @include text(11px, 27px, $color-theme-2, 2px);
-      text-transform: uppercase;
-      border-bottom: 1px solid rgba($color-theme-1, 0.5);
-      padding: 16px 10px;
+      @include font-header(700);
+      @include text(16px, 20px, $color-body-text, 2px);
+      border-bottom: 1px solid $color-theme-6;
+      padding: 10px;
       text-align: center;
     }
 
     &-product-image-wrap {
       margin: 0 auto;
       text-align: center;
+
       img {
         margin: auto;
         object-fit: cover;
@@ -61,12 +67,13 @@
     }
 
     &-product-title {
-      @include text(11px, 17px, $color-theme-1, 1px);
-      text-transform: uppercase;
+      @include font-header(500);
+      @include text(14px, 20px, $color-body-text, 1px);
     }
 
     &-product-info {
-      @include text(11px, 27px, $color-theme-1);
+      @include font-header;
+      @include text(14px, 20px, $color-body-text);
     }
 
     &-remove-wrap {
@@ -74,16 +81,9 @@
     }
 
     &-remove {
-      @include text(11px, 17px, $color-theme-2, 1px);
-      text-transform: uppercase;
-
-      &:hover {
-        font-weight: 700;
-      }
-    }
-
-    &-product-variant {
-      @include text(11px, 27px, $color-theme-1);
+      @include font-header(500);
+      @include text(14px, 20px, $color-main-2, 1px);
+      @include underline($color-main-2);
     }
 
     &-qty-wrap {
@@ -93,11 +93,11 @@
       display: inline-block;
 
       &::after {
-        @include text(22px, 1, $color-theme-1);
+        @include text(22px, 1, $color-body-text);
         content: "\203A";
         position: absolute;
         right: 5px;
-        top: 7px;
+        top: 3px;
         display: block;
         transform: rotate(90deg);
         pointer-events: none;
@@ -105,10 +105,12 @@
     }
 
     &-qty-select {
-      @include text(11px, 27px, $color-theme-1, 1px);
+      @include no-browser-styling;
+      @include text(14px, 20px, $color-body-text, 1px);
       padding: 3px 25px 3px 10px;
       cursor: pointer;
-      border: 1px solid $color-theme-1;
+      border: 1px solid $color-theme-6;
+      appearance: none;
     }
 
     &-cell::before {
@@ -121,14 +123,15 @@
   }
 
   &__totals-text {
-    @include text(11px, 27px, $color-theme-2, 2px);
-    text-transform: uppercase;
+    @include font-header(500);
+    @include text(14px, 20px, $color-body-text, 1px);
     display: inline-block;
     margin: 0 40px 0 0;
   }
 
   &__totals-value {
-    @include text(11px, 27px, $color-theme-2, 2px);
+    @include font-header(700);
+    @include text(14px, 20px, $color-body-text, 1px);
     text-transform: uppercase;
     display: inline-block;
   }
@@ -157,6 +160,7 @@
     &-checkout-wrap {
       margin: 0 0 15px;
       text-align: right;
+
       .cart-checkout {
         margin: 0 0 0 auto;
       }
@@ -167,8 +171,10 @@
     }
 
     &-notes-label {
-      @include text(11px, 17px, $color-theme-1);
+      @include font-header(500);
+      @include text(11px, 17px, $color-body-text);
       margin: 0 0 20px;
+      display: block;
     }
 
     &-tax-note {

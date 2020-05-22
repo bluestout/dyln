@@ -36,10 +36,8 @@
     display: block;
 
     &:hover {
-      .site-header__utils-cart-icon {
-        g {
-          stroke: $color-main-1;
-        }
+      .site-header__utils-cart-icon g {
+        stroke: $color-main-1;
       }
     }
   }
@@ -54,10 +52,8 @@
     text-align: center;
   }
 
-  &__utils-cart-icon {
-    g {
-      @include transition(stroke);
-    }
+  &__utils-cart-icon g {
+    @include transition(stroke);
   }
 
   @include media-query($large-down) {

@@ -38,14 +38,12 @@
             {% assign swatch = "color-swatch-" | append: color_handle %}
             <span class="pdp-form__color-wrap">
               <input
-                class="pdp-form__color-input"
+                class="pdp-form__color-input {{ swatch }}"
                 type="radio"
                 id="Option{{ option.position }}-{{ value | handleize }}"
                 name="options[{{ option.name }}]"
                 value="{{ value }}"{% if option.selected_value == value %} checked{% endif %} />
-              <label class="pdp-form__color-label {{ swatch }}" for="Option{{ option.position }}-{{ value | handleize }}">
-                <span class="hide">{{ value }}</span>
-              </label>
+              <label class="visually-hidden" for="Option{{ option.position }}-{{ value | handleize }}">{{ value }}</label>
             </span>
           {% endfor %}
         {% else %}

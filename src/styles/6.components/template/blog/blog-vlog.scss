@@ -27,8 +27,7 @@
       );
 
       h3 {
-        @include font-header(700);
-        @include text(30px, 1.3, white, 0);
+        @include text-subtitle($color-title-light);
         text-align: left;
         padding: 10px;
       }

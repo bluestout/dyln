@@ -1,6 +1,6 @@
 <a class="header-about__main-link" href="#" data-header-link="3">
   <span class="header-about__main-text">{{ about_title }}</span>
-  <span class="header-about__main-icon">
+  <span class="header-about__main-icon" aria-hidden="true">
     {% render 'icon-plus-vertical' %}
     {% render 'icon-plus-horizontal' %}
   </span>
@@ -10,11 +10,12 @@
   <div class="header-about__body">
     <div class="header-about__menu">
       {% for link in linklists[header-about].links %}
-        <a class="header-about__menu-link" href="{{ link.url }}">{{ link.title }}</a>
+        <a class="header-about__menu-link" href="{{ link.url }}" tabindex="-1">{{ link.title }}</a>
       {% endfor %}
     </div>
     <div class="header-about__close">
-      <button type="button" class="header-about__close-btn" data-header-block-close="3">
+      <button type="button" class="header-about__close-btn" data-header-block-close="3" tabindex="-1">
+        <span class="visually-hidden">{{ 'general.accessibility.close' | t }}</span>
         {% render 'icon-chevron-up' %}
       </button>
     </div>

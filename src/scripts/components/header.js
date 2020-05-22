@@ -1,4 +1,5 @@
 import $ from "jquery";
+import { toggleTabindexInChildren } from "./helpers";
 
 const datasets = {
   link: "header-link",
@@ -21,6 +22,7 @@ const selectors = {
   headerBody: "[data-site-header]",
   announcement: "[data-announcement-bar]",
   overlay: "[data-menu-mobile-overlay]",
+  iframe: "[data-header-toggle-element]",
 };
 
 const classes = {
@@ -116,33 +118,30 @@ function togglesInit() {
 
 function handleHeaderLinkClick(event) {
   event.preventDefault();
-  const $source = $(event.currentTarget);
+  const $link = $(event.currentTarget);
   const $links = $(selectors.link);
-  const $blocks = $(selectors.block);
 
-  if ($source.length <= 0) {
+  if ($link.length <= 0) {
     return;
   }
 
-  const id = $source.data(datasets.link);
+  const id = $link.data(datasets.link);
   const $block = $(selectors.blockById(id));
+  const $blocks = $(selectors.block);
+
+  $blocks
+    .not($block)
+    .find(selectors.iframe)
+    .toggle();
+  toggleTabindexInChildren($block);
+  toggleTabindexInChildren($blocks.not($block));
+  $block.find(selectors.iframe).toggle();
+  $links.not($link).removeClass(classes.active);
+  $link.toggleClass(classes.active);
 
   if ($(window).width() < 992) {
-    if ($block.length > 0) {
-      $blocks.not($block).slideUp();
-      $block.slideToggle();
-    }
-    if ($source.length > 0) {
-      $links.not($source).removeClass(classes.active);
-      $source.toggleClass(classes.active);
-    }
-  } else {
-    if ($links.length > 0) {
-      $links.not($source).removeClass(classes.active);
-    }
-    if ($source.length > 0) {
-      $source.toggleClass(classes.active);
-    }
+    $blocks.not($block).slideUp();
+    $block.slideToggle();
   }
 }
 
@@ -151,8 +150,12 @@ function handleHeaderLinkClose(event) {
   const $source = $(event.currentTarget);
   const id = $source.data(datasets.close);
   const $link = $(selectors.linkById(id));
+  const $block = $(selectors.blockById(id));
   if ($link.length > 0) {
     $link.removeClass(classes.active);
+  }
+  if ($block.length > 0) {
+    toggleTabindexInChildren($block);
   }
 }
 

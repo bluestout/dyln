@@ -26,8 +26,20 @@
   color: $color-main-2 !important;
 }
 
-.container {
-  @media screen and (min-width: 1360px) {
-    max-width: 1330px;
+body {
+  .container {
+    @media screen and (min-width: 1430px) {
+      max-width: $grid-container-max;
+    }
+  }
+
+  .row {
+    margin-right: -#{$grid-gap};
+    margin-left: -#{$grid-gap};
+
+    > [class*="col"] {
+      padding-right: $grid-gap;
+      padding-left: $grid-gap;
+    }
   }
 }

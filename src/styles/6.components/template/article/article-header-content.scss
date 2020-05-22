@@ -18,8 +18,7 @@
     }
 
     &-title {
-      @include font-header(bold);
-      @include text(40px, 1.2, $color-black, 2.3px);
+      @include text-title(bold);
 
       @include media-query($large-down) {
         font-size: 20px;

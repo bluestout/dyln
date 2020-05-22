@@ -1,0 +1,13 @@
+{% if e_c_l_link_text %}
+  <a href="{{ e_c_l_link }}" class="header-cart__empty-block" tabindex="-1">
+    <span class="header-cart__empty-title">{{ e_c_l_link_text }}</span>
+    {% if e_c_l_image %}
+      <span class="header-cart__empty-image" aria-ignore="true">
+        <img
+          class="header-login__bottle-img"
+          src="{{ e_c_l_image | img_url: '90x90'  }}"
+          alt="{{ e_c_l_link_text }}" />
+      </span>
+    {% endif %}
+  </a>
+{% endif %}

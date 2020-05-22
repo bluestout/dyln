@@ -66,6 +66,11 @@
   transition: none;
 }
 
+.shown-on-focus:focus {
+  @include visually-shown(absolute);
+  z-index: $z-top;
+}
+
 // Hide outline on focus for elements which are given focus by JS
 [tabindex="-1"]:focus {
   outline: none;

@@ -1,0 +1,74 @@
+{% if section.settings.title != empty %}
+  <h2>{{ section.settings.title }}</h2>
+{% endif %}
+
+{% if section.settings.description != empty %}
+  <div class="contact-body__content rte">{{ section.settings.description }}</div>
+{% endif %}
+
+{% if section.blocks.size > 0 %}
+  <ul data-accordion-parent=true>
+    {% for block in section.blocks %}
+      {% assign contact_faq_article = articles[block.settings.faq_article] %}
+      <li>
+        <button class="contact-body__faq-button" data-accordion-button="{{ forloop.index }}">
+          <span class="contact-body__question">
+            {{ contact_faq_article.title }}
+          </span>
+          <span class="contact-body__closed">+</span>
+          <span class="contact-body__open">-</span>
+        </button>
+        <div class="contact-body__answer" data-accordion-content="{{ forloop.index }}" style="display: none;">{{ contact_faq_article.content }}</div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+{% if section.settings.link_text != empty %}
+  <div>
+    <a href="{{ section.settings.link }}" class="contact-body__button-link">{{ section.settings.link_text }}</a>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Returns",
+    "class": "contact-body",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title"
+      },
+      {
+        "type": "textarea",
+        "id": "description",
+        "label": "Description"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Bottom Link"
+      },
+      {
+        "type": "text",
+        "id": "link_text",
+        "label": "Bottom Link Text"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "faq",
+        "name": "FAQ",
+        "settings": [
+          {
+            "type": "article",
+            "id": "faq_article",
+            "label": "FAQ article"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
