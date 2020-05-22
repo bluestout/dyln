@@ -23,7 +23,8 @@
 <div
   class="product-item{% if block_p.has_only_default_variant %} single{% endif %}"
   data-pi-item
-  data-pi-static-class="product-item{% if block_p.has_only_default_variant %} single{% endif %}">
+  data-pi-static-class="product-item{% if block_p.has_only_default_variant %} single{% endif %}"
+  tabindex="0">
   {% form 'product', block_p, data-product-form: '', data-product-handle: block_p.handle, class: "product-item__form" %}
 
     <input type="hidden" id="{{ block_p.id }}-quantity" name="quantity" value="1" min="1" />

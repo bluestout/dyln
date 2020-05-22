@@ -51,6 +51,27 @@
       },
       {
         "type": "color",
+        "id": "color_supplementary_1",
+        "label": "Theme supplementary 1",
+        "default": "#73c8e2",
+        "info": "Theme color 1 supplementary - Rarely used to supplement the theme main color in button box shadows and similar."
+      },
+      {
+        "type": "color",
+        "id": "color_supplementary_2",
+        "label": "Theme supplementary 2",
+        "default": "#67e3a9",
+        "info": "Theme color 2 supplementary - Rarely used to supplement the theme 2 color in button box shadows and similar."
+      },
+      {
+        "type": "color",
+        "id": "color_supplementary_3",
+        "label": "Theme supplementary 3",
+        "default": "#bbd3da",
+        "info": "Theme color 3 supplementary - Rarely used to supplement the theme 3 color in button box shadows and similar."
+      },
+      {
+        "type": "color",
         "id": "color_title",
         "label": "Title",
         "default": "#333C41"
@@ -119,6 +140,116 @@
         "id": "font_body",
         "default": "helvetica_n4",
         "label": "Body text"
+      },
+      {
+        "type": "range",
+        "id": "default_body_fs",
+        "min": 12,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 15,
+        "label": "Body Font Size"
+      }
+    ]
+  },
+  {
+    "name": "Default Page Styling",
+    "settings": [
+      {
+        "type": "range",
+        "id": "default_h1_fs",
+        "min": 12,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 36,
+        "label": "Header 1 font size"
+      },
+      {
+        "type": "range",
+        "id": "default_h2_fs",
+        "min": 12,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 30,
+        "label": "Header 2 font size"
+      },
+      {
+        "type": "range",
+        "id": "default_h3_fs",
+        "min": 12,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 26,
+        "label": "Header 3 font size"
+      },
+      {
+        "type": "range",
+        "id": "default_h4_fs",
+        "min": 12,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 22,
+        "label": "Header 4 font size"
+      },
+      {
+        "type": "range",
+        "id": "default_h5_fs",
+        "min": 12,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 18,
+        "label": "Header 5 font size"
+      },
+      {
+        "type": "range",
+        "id": "default_h6_fs",
+        "min": 12,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 16,
+        "label": "Header 6 font size"
+      },
+      {
+        "type": "range",
+        "id": "default_p_fs",
+        "min": 12,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 16,
+        "label": "Paragraph font size"
+      }
+    ]
+  },
+  {
+    "name": "Global Style Settings",
+    "settings": [
+      {
+        "type": "range",
+        "id": "default_grid_gap",
+        "min": 0,
+        "max": 50,
+        "step": 5,
+        "unit": "px",
+        "default": 15,
+        "label": "Grid gap & column padding"
+      },
+      {
+        "type": "range",
+        "id": "default_max_container",
+        "min": 1140,
+        "max": 1400,
+        "step": 10,
+        "unit": "px",
+        "default": 1330,
+        "label": "Maximum page container width"
       }
     ]
   },
@@ -210,6 +341,53 @@
     ]
   },
   {
+    "name": "Facebook Share meta",
+    "settings": [
+      { "type": "header", "content": "Index / Home Page" },
+      {
+        "type": "text",
+        "id": "index_fb_title",
+        "label": "Title",
+        "default": "The Bottle That Creates Alkaline Water On the Go!"
+      },
+      {
+        "type": "textarea",
+        "id": "index_fb_description",
+        "label": "description",
+        "default": "Stay hydrated with the patented ergonomic DYLN Living Water Bottle made from surgical-grade stainless steel and features a carrying handle."
+      },
+      { "type": "image_picker", "id": "index_fb_img", "label": "Image" },
+      { "type": "header", "content": "Landing / Full width page" },
+      {
+        "type": "text",
+        "id": "la_fb_title",
+        "label": "Title",
+        "default": "The Bottle That Creates Alkaline Water On the Go!"
+      },
+      {
+        "type": "textarea",
+        "id": "la_fb_description",
+        "label": "Description",
+        "default": "Stay hydrated with the patented ergonomic DYLN Living Water Bottle made from surgical-grade stainless steel and features a carrying handle."
+      },
+      { "type": "image_picker", "id": "la_fb_img", "label": "Image" },
+      { "type": "header", "content": "Product" },
+      {
+        "type": "text",
+        "id": "pd_fb_title",
+        "label": "Title",
+        "default": "The Bottle That Creates Alkaline Water On the Go!"
+      },
+      {
+        "type": "textarea",
+        "id": "pd_fb_description",
+        "label": "description",
+        "default": "Stay hydrated with the patented ergonomic DYLN Living Water Bottle made from surgical-grade stainless steel and features a carrying handle."
+      },
+      { "type": "image_picker", "id": "pd_fb_img", "label": "Image" }
+    ]
+  },
+  {
     "name": "Cart",
     "settings": [
       {
@@ -219,8 +397,98 @@
         "max": 500,
         "step": 5,
         "unit": "$",
-        "label": "Shipping Threshold",
+        "label": "Shipping Threshold US",
         "default": 100
+      },
+      {
+        "type": "range",
+        "id": "shipping_threshold_CA",
+        "min": 0,
+        "max": 500,
+        "step": 5,
+        "unit": "$",
+        "label": "Shipping Threshold CA",
+        "default": 100
+      },
+      {
+        "type": "range",
+        "id": "shipping_threshold_other",
+        "min": 0,
+        "max": 500,
+        "step": 5,
+        "unit": "$",
+        "label": "Shipping Threshold Other",
+        "default": 100
+      },
+      {
+        "type": "text",
+        "id": "empty_cart_title",
+        "label": "Empty Cart Title",
+        "default": "Your Cart is empty."
+      },
+      {
+        "type": "url",
+        "id": "empty_cart_link_1",
+        "label": "Empty Cart Link 1"
+      },
+      {
+        "type": "text",
+        "id": "empty_cart_link_text_1",
+        "label": "Empty Cart Link Text 1"
+      },
+      {
+        "type": "image_picker",
+        "id": "empty_cart_image_1",
+        "label": "Empty Cart Image 1",
+        "info": "90x90 max"
+      },
+      {
+        "type": "url",
+        "id": "empty_cart_link_2",
+        "label": "Empty Cart Link 2"
+      },
+      {
+        "type": "text",
+        "id": "empty_cart_link_text_2",
+        "label": "Empty Cart Link Text 2"
+      },
+      {
+        "type": "image_picker",
+        "id": "empty_cart_image_2",
+        "label": "Empty Cart Image 2",
+        "info": "90x90 max"
+      },
+      {
+        "type": "url",
+        "id": "empty_cart_link_3",
+        "label": "Empty Cart Link 3"
+      },
+      {
+        "type": "text",
+        "id": "empty_cart_link_text_3",
+        "label": "Empty Cart Link Text 3"
+      },
+      {
+        "type": "image_picker",
+        "id": "empty_cart_image_3",
+        "label": "Empty Cart Image 3",
+        "info": "90x90 max"
+      },
+      {
+        "type": "url",
+        "id": "empty_cart_link_4",
+        "label": "Empty Cart Link 4"
+      },
+      {
+        "type": "text",
+        "id": "empty_cart_link_text_4",
+        "label": "Empty Cart Link Text 4"
+      },
+      {
+        "type": "image_picker",
+        "id": "empty_cart_image_4",
+        "label": "Empty Cart Image 4",
+        "info": "90x90 max"
       }
     ]
   },
@@ -232,6 +500,167 @@
         "id": "favicon",
         "label": "Favicon image",
         "info": "Will be scaled down to 32 x 32px"
+      }
+    ]
+  },
+  {
+    "name": "Country/Inventory",
+    "settings": [
+      { "type": "header", "content": "Canada-Inventory" },
+      {
+        "type": "checkbox",
+        "id": "canada_inv",
+        "label": "All product Available",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "canada_inv_na",
+        "label": "List of not available product class",
+        "info": ".dyln-blue,.charcoal,.lime-green,.tango-orange,.neon-pink,.royal-purple"
+      },
+      {
+        "type": "checkbox",
+        "id": "canada_default",
+        "label": "Default product Available",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "canada_default_p",
+        "label": "set default product",
+        "default": "Matte-4653725315-royal-purple"
+      },
+      {
+        "type": "text",
+        "id": "cnada_dif_avil",
+        "label": "Diffusers not available",
+        "info": ".1diffuser,.3diffusers,.9diffusers, .4diffusers,.8diffusers",
+        "default": ".4diffusers,.8diffusers"
+      },
+      {
+        "type": "text",
+        "id": "cnada_dif_oavil",
+        "label": "Diffusers not available New bottle",
+        "info": ".1diffuser,.3diffusers,.9diffusers, .4diffusers,.8diffusers",
+        "default": ".4diffusers,.8diffusers"
+      },
+      { "type": "header", "content": "UK-Inventory" },
+      {
+        "type": "checkbox",
+        "id": "uk_inv",
+        "label": "All product Available",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "uk_inv_na",
+        "label": "List of not available product class",
+        "info": ".dyln-blue,.charcoal,.lime-green,.tango-orange,.neon-pink,.royal-purple"
+      },
+      {
+        "type": "checkbox",
+        "id": "uk_default",
+        "label": "Default product Available",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "uk_default_p",
+        "label": "set default product",
+        "default": "matte|4653725315|royal-purple"
+      },
+      {
+        "type": "text",
+        "id": "uk_dif_avil",
+        "label": "Diffusers not available",
+        "info": ".1diffuser,.3diffusers,.9diffusers, .4diffusers,.8diffusers",
+        "default": ".4diffusers,.8diffusers"
+      },
+      {
+        "type": "text",
+        "id": "uk_dif_oavil",
+        "label": "Diffusers not available New bottle",
+        "info": ".1diffuser,.3diffusers,.9diffusers, .4diffusers,.8diffusers",
+        "default": ".4diffusers,.8diffusers"
+      },
+      { "type": "header", "content": "4PX-Inventory" },
+      {
+        "type": "checkbox",
+        "id": "px_inv",
+        "label": "All product Available",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "px_inv_na",
+        "label": "List of not available product class",
+        "info": ".dyln-blue,.charcoal,.lime-green,.tango-orange,.neon-pink,.royal-purple"
+      },
+      {
+        "type": "checkbox",
+        "id": "px_default",
+        "label": "Default product Available",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "px_default_p",
+        "label": "set default product",
+        "default": "matte|4653725315|royal-purple"
+      },
+      {
+        "type": "text",
+        "id": "px_dif_uavil",
+        "label": "Diffusers not available",
+        "info": ".1diffuser,.3diffusers,.9diffusers, .4diffusers,.8diffusers",
+        "default": ".4diffusers,.8diffusers"
+      },
+      {
+        "type": "text",
+        "id": "px_dif_oavil",
+        "label": "Diffusers not available New bottle",
+        "info": ".1diffuser,.3diffusers,.9diffusers, .4diffusers,.8diffusers",
+        "default": ".4diffusers,.8diffusers"
+      },
+      { "type": "header", "content": "USX-Inventory" },
+      {
+        "type": "checkbox",
+        "id": "us_inv",
+        "label": "All product Available",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "us_inv_na",
+        "label": "List of not available product class",
+        "info": ".dyln-blue,.charcoal,.lime-green,.tango-orange,.neon-pink,.royal-purple"
+      },
+      {
+        "type": "checkbox",
+        "id": "us_default",
+        "label": "Default product Available",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "us_default_p",
+        "label": "set default product",
+        "default": "matte|4653725315|royal-purple"
+      },
+      {
+        "type": "text",
+        "id": "us_dif_avil",
+        "label": "Diffusers not available",
+        "info": ".1diffuser,.3diffusers,.9diffusers, .4diffusers,.8diffusers",
+        "default": ".1diffuser,.2diffusers,.9diffusers"
+      },
+      {
+        "type": "text",
+        "id": "us_dif_oavil",
+        "label": "Diffusers not available New bottle",
+        "info": ".1diffuser,.3diffusers,.9diffusers, .4diffusers,.8diffusers",
+        "default": ".1diffuser,.2diffusers,.9diffusers"
       }
     ]
   }

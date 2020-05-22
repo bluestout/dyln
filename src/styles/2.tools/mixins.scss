@@ -154,6 +154,17 @@
   }
 }
 
+@mixin text-subtitle($color: $color-title) {
+  @include font-header(700);
+  @include text(30px, 45px, $color, 1.77px);
+
+  @include media-query($medium-down) {
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 1.18px;
+  }
+}
+
 @mixin no-font-size {
   font-size: 0;
   line-height: 0;
@@ -244,11 +255,13 @@
     background-repeat: repeat-x;
     background-size: 300% 100%;
     background-position: 0 100%;
-    outline: none;
 
     &:not(:disabled) {
+      outline: none;
+
       &:focus {
         background-position: 50% 100%;
+        color: $btn-text-c;
       }
 
       &:hover {
@@ -290,9 +303,10 @@
     padding: 10px 36px;
     background-color: transparent;
     border: 3px solid $btn-def-c;
-    outline: none;
 
     &:not(:disabled) {
+      outline: none;
+
       &:focus {
         border-color: $btn-acc-c;
         color: $btn-text-c-alt;

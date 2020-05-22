@@ -6,11 +6,11 @@
 
     {% if block.settings.swatch_image %}
       {{ class_name }} {
-        background-image: url("{{ block.settings.swatch_image | img_url: '50x50' }}");
+        background-image: url("{{ block.settings.swatch_image | img_url: '50x50' }}") !important;
       }
     {% elsif block.settings.swatch_color != empty %}
       {{ class_name }} {
-        background-color: {{ block.settings.swatch_color }};
+        background-color: {{ block.settings.swatch_color }} !important;
       }
     {% endif %}
   {% endif %}

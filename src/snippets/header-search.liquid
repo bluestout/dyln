@@ -18,9 +18,10 @@
           placeholder="{{ 'general.search.placeholder' | t }}"
           data-header-search-input
           {% if enable_ajax %}data-header-search-input-ajax{% endif %}
+          tabindex="-1"
         />
 
-        <button type="submit" class="header-search__submit">
+        <button type="submit" class="header-search__submit" tabindex="-1">
           <span class="icon-fallback-text hide">{{ 'general.search.submit' | t }}</span>
           {% render 'icon-search' %}
         </button>
@@ -38,14 +39,20 @@
           <div class="header-search__pop-terms">
             {%- assign pop_terms = popular_terms | split: ',' -%}
             {% for pop_term in pop_terms %}
-              <button type="button" class="header-search__pop-term" data-popular-term{% if enable_ajax %} data-popular-term-ajax{% endif %} >{{ pop_term }}</button>
+              <button
+                type="button"
+                class="header-search__pop-term"
+                data-popular-term
+                {% if enable_ajax %}data-popular-term-ajax{% endif %}
+                tabindex="-1">{{ pop_term }}</button>
             {% endfor %}
           </div>
         </div>
       {% endif %}
 
       <div class="header-search__close">
-        <button type="button" class="header-search__close-btn" data-header-block-close="6">
+        <button type="button" class="header-search__close-btn" data-header-block-close="6" tabindex="-1">
+          <span class="visually-hidden">{{ 'general.accessibility.close' | t }}</span>
           {% render 'icon-chevron-up' %}
         </button>
       </div>

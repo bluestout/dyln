@@ -31,14 +31,6 @@ $color-theme-24: #333c10;
 $color-theme-25: #555656;
 $color-theme-26: #f9f9f9;
 
-$color-sup-1: #73c8e2;
-$color-sup-2: #73c8e2;
-$color-sup-3: #73c8e2;
-
-// theme complementary
-
-// theme background & type
-
 // slate variables
 $color-disabled: $color-black;
 $color-disabled-border: $color-black;
@@ -51,24 +43,19 @@ $placeholder-color-foreground: rgba($color-black, 0.8);
 $placeholder-color-background: rgba($color-black, 0.05);
 
 // Text colors
-$color-body-text: $color-black;
+$color-body-text: var(--color-body-text);
+$color-title: var(--color-title);
+$color-title-light: var(--color-title-light);
 
 // Background colors
 $color-body: $color-white;
+$color-background: var(--color-main-background);
+$color-background-mobile: var(--color-main-background-mobile);
 
 // Other colors
 $color-border: $color-black;
 
-// Theme colors
-$color-body-text: var(--color-body-text);
-$color-title: var(--color-title);
-$color-title-light: var(--color-title-light);
-$color-background: var(--color-main-background);
-$color-background-mobile: var(--color-main-background-mobile);
-$color-blog-card-background: var(--color-blog-card-background);
-$color-blog-tagged-background: var(--color-blog-tagged-background);
-$color-blog-card-category: var(--color-blog-card-category);
-$color-blog-card-title: var(--color-blog-card-title);
+// Settings theme colors
 $color-main: var(--color-main);
 $color-main-1: var(--color-main);
 $color-main-2: var(--color-main-2);
@@ -76,3 +63,12 @@ $color-main-3: var(--color-main-3);
 $color-accent-1: var(--color-accent);
 $color-accent-2: var(--color-accent-2);
 $color-accent-3: var(--color-accent-3);
+$color-sup-1: var(--color-supplementary-1);
+$color-sup-2: var(--color-supplementary-2);
+$color-sup-3: var(--color-supplementary-3);
+
+// blog colors
+$color-blog-card-title: var(--color-blog-card-title);
+$color-blog-card-background: var(--color-blog-card-background);
+$color-blog-card-category: var(--color-blog-card-category);
+$color-blog-tagged-background: var(--color-blog-tagged-background);

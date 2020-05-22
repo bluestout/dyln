@@ -12,49 +12,49 @@
   }
 
   h1 {
-    font-size: 36px;
+    font-size: $font-size-d-h1;
     line-height: 1.5;
     margin-top: 40px;
     margin-bottom: 20px;
   }
 
   h2 {
-    font-size: 30px;
+    font-size: $font-size-d-h2;
     line-height: 1.5;
     margin-top: 40px;
     margin-bottom: 20px;
   }
 
   h3 {
-    font-size: 26px;
+    font-size: $font-size-d-h3;
     line-height: 1.5;
     margin-top: 40px;
     margin-bottom: 20px;
   }
 
   h4 {
-    font-size: 22px;
+    font-size: $font-size-d-h4;
     line-height: 1.5;
     margin-top: 30px;
     margin-bottom: 15px;
   }
 
   h5 {
-    font-size: 18px;
+    font-size: $font-size-d-h5;
     line-height: 1.5;
     margin-top: 30px;
     margin-bottom: 15px;
   }
 
   h6 {
-    font-size: 16px;
+    font-size: $font-size-d-h6;
     line-height: 1.5;
     margin-top: 20px;
     margin-bottom: 10px;
   }
 
   p {
-    font-size: 16px;
+    font-size: $font-size-d-p;
     line-height: 1.5;
     clear: both;
 
