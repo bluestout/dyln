@@ -1,0 +1,14 @@
+{% if subscription-title != empty %}
+  <div class="pdp-diffusers__title-header">
+    <h3 class="pdp-diffusers__title">{{ subscription-title }}</h3>
+    {% if note != empty %}
+      <span class="pdp-diffusers__note-button">
+        {% render 'icon-info' %}
+        <div class="pdp-diffusers__note-wrap">
+          <button class="pdp-diffusers__note-close" type="button">{% render 'icon-close' %}</button>
+          <div class="pdp-diffusers__note">{{ note }}</div>
+        </div>
+      </span>
+    {% endif %}
+  </div>
+{% endif %}

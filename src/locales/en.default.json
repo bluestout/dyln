@@ -334,7 +334,12 @@
       "months": "months",
       "years": "years",
       "days": "days",
-      "subscribe": "Subscribe"
+      "subscribe": "Subscribe",
+      "change_frequency": "Change Frequency",
+      "save": "save",
+      "customize": "Customize",
+      "cancel_anytime": "Cancel anytime",
+      "change_amount": "Change Amount"
     }
   },
   "gift_cards": {
