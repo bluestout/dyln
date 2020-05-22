@@ -1,9 +1,7 @@
-$background: $color-background;
 $select-color: $color-body-text;
 $select-background: $color-background;
-$select-hover-color: $color-main-1;
-$select-width: 200px;
-$select-height: 30px;
+$select-list-bg: $color-theme-4;
+$select-hover-color: $color-theme-26;
 
 .custom-select-hidden {
   display: none;
@@ -24,6 +22,7 @@ $select-height: 30px;
 }
 
 .custom-select-styled {
+  @include no-browser-styling;
   @include transition(all 0.2s ease-in);
   @include font-header;
   @include text(14px, 20px, $color-body-text, 0.83px);
@@ -35,6 +34,47 @@ $select-height: 30px;
   background-color: $select-background;
   padding: 0;
   line-height: 30px;
+  text-align: left;
+
+  &::after,
+  &::before {
+    @include transition(opacity);
+    position: absolute;
+    font-weight: 500;
+    right: 0;
+    width: 15px;
+    top: calc(50% - 10px);
+    line-height: 20px;
+    font-size: 16px;
+    pointer-events: none;
+    text-align: center;
+  }
+
+  &::after {
+    content: "+";
+  }
+
+  &::before {
+    content: "-";
+  }
+
+  &.active {
+    &::after {
+      opacity: 0;
+    }
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  &:not(.active) {
+    &::after {
+      opacity: 1;
+    }
+    &::before {
+      opacity: 0;
+    }
+  }
 }
 
 .custom-select-options {
@@ -47,25 +87,29 @@ $select-height: 30px;
   margin: 0;
   padding: 0;
   list-style: none;
-  background-color: $color-theme-4;
+  background-color: $select-list-bg;
   border: none;
+}
 
-  li {
-    @include transition(all 0.15s ease-in);
-    font-size: 14px;
-    margin: 0;
-    padding: 1px 0;
-    text-indent: 15px;
-    &:hover {
-      color: $select-background;
-      background: $select-hover-color;
-      a,
-      span {
-        color: $select-background;
-      }
-    }
-    &[rel="hide"] {
-      display: none;
-    }
+.custom-select-option {
+  @include transition(background-color 0.15s ease-in);
+  @include no-browser-styling;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0;
+  padding: 2px 5px;
+  background-color: $select-list-bg;
+  border: none;
+  display: block;
+  width: 100%;
+  text-align: left;
+
+  &:hover,
+  &:focus {
+    background-color: $select-hover-color;
+  }
+
+  &[rel="hide"] {
+    display: none;
   }
 }
