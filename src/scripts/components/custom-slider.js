@@ -12,14 +12,10 @@ const $sliderItems = $(elements.sliderItem);
 const sliderWrapperWidth = $sliderWrapper.outerWidth();
 let sliderItemsWidth = 0;
 
-function init() {
-
-    return true;
-}
-
 function nextArrow() {
+    let maxScroll = calculateMaxScroll();
 
-    if (sliderWrapperWidth > $sliderWrapper.outerWidth()) {
+    if (sliderItemsWidth > maxScroll) {
         return false;
     }
 
@@ -37,20 +33,38 @@ function prevArrow() {
     $sliderWrapper.animate({scrollLeft: sliderItemsWidth}, 500);
 }
 
-$(document).ready(init);
+function calculateMaxScroll() {
+    let elementWidth = $sliderItems.length * $sliderItems.outerWidth();
+    let maxScrollVal = elementWidth - sliderWrapperWidth;
+
+    return maxScrollVal;
+}
+
 $(elements.nextArrow).on("click", nextArrow);
 $(elements.prevArrow).on("click", prevArrow);
 $(elements.sliderWrapper).swipeend(function(e, touch) {
-    console.log(touch.direction);
-    console.log(touch.xAmount);
+
+    if ($(window).width() < 1024) {
+        return false;
+    }
+
+    let maxScrollVal = calculateMaxScroll();
 
     if (touch.direction === "left") {
-        sliderItemsWidth = sliderItemsWidth + 450;
+        if ($sliderWrapper.scrollLeft() > maxScrollVal) {
+            return false;
+        }
+
+        sliderItemsWidth = sliderItemsWidth + 480;
         $sliderWrapper.animate({scrollLeft: sliderItemsWidth}, 300);
     }
 
     if (touch.direction === "right") {
-        sliderItemsWidth = sliderItemsWidth - 450;
+        if ($sliderWrapper.scrollLeft() === 0) {
+            return false;
+        }
+
+        sliderItemsWidth = sliderItemsWidth - 480;
         $sliderWrapper.animate({scrollLeft: sliderItemsWidth}, 300);
     }
 });
