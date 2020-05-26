@@ -36,6 +36,10 @@ const selectors = {
   shopMobileSlick: "[data-slick-pi-mobile]",
   slick: `[data-${datasets.slick}]`,
   slideById: (id) => `[data-slick-index=${id}]`,
+  submitSoldOutMail: "[data-submit-sold-out-btn]",
+  soldOutConfirm: "[data-submit-sold-out-confirm]",
+  soldOutForm: "[data-submit-sold-out-form]",
+  soldOutNotice: "[data-submit-sold-out-notice]"
 };
 
 function handleOptionClick(event) {
@@ -219,6 +223,18 @@ function renderProductOptions(variant, $parent) {
   return $select.change();
 }
 
+function onSoldOutMailSubmit(event) {
+  const $soldOutConfirm = $(selectors.soldOutConfirm);
+  const $soldOutForm = $(selectors.soldOutForm);
+  const $soldOutNotice = $(selectors.soldOutNotice);
+
+  event.preventDefault();
+
+  $soldOutForm.fadeOut();
+  $soldOutNotice.fadeOut();
+  $soldOutConfirm.delay(300).fadeIn();
+}
+
 function init() {
   if ($(window).width() < 768) {
     const $gallery = $(`${selectors.shopMobileSlick} ${selectors.gallery}`);
@@ -254,3 +270,4 @@ function init() {
 
 $(document).ready(init);
 $(document).on("click", selectors.value, handleOptionClick);
+$(document).on("click", selectors.submitSoldOutMail, onSoldOutMailSubmit);
