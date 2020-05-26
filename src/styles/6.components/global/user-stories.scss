@@ -111,12 +111,12 @@
 
   .prev-arrow {
     left: 0;
-    background: linear-gradient(267deg, rgba(231,240,242,0) 0%, rgba(28,28,28,0.165703781512605) 100%);
+    background: linear-gradient(267deg, rgba(231,240,242,0) 0%, rgba(28,28,28,0.16) 100%);
   }
 
   .next-arrow {
     right: 0;
-    background: linear-gradient(90deg, rgba(231,240,242,0) 0%, rgba(28,28,28,0.165703781512605) 100%);
+    background: linear-gradient(90deg, rgba(231,240,242,0) 0%, rgba(28,28,28,0.16) 100%);
 
     svg {
       transform: rotate(180deg);
