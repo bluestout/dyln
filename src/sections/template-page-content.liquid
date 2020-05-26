@@ -1,11 +1,43 @@
-<main class="col-md-8">
-    {{ section.settings.content }}
-</main>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2">
+            <div class="tp-sidebar">
+                <h2 class="tp-sidebar__title">{{ section.settings.title }}</h2>
+
+                <a href="tel:{{ section.settings.telephone }}" class="tp-sidebar__link">
+                  <span class="tp-sidebar__link-icon" aria-ignore="true">
+                      {% render 'icon-phone' %}
+                  </span>
+                    <span class="tp-sidebar__link-txt">{{ section.settings.telephone_title }}</span>
+                </a>
+
+                <a href="mailto:{{ section.settings.email }}" class="tp-sidebar__link">
+                  <span class="tp-sidebar__link-icon" aria-ignore="true">
+                      {% render 'icon-mail' %}
+                  </span>
+                  <span class="tp-sidebar__link-txt">{{ section.settings.email_title }}</span>
+                </a>
+
+                <a onclick="Smooch.open()" class="tp-sidebar__link">
+                  <span class="sidebar__link-icon" aria-ignore="true">
+                      {% render 'icon-chat' %}
+                  </span>
+                  <span class="tp-sidebar__link-txt">{{ section.settings.live_chat_title }}</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <main>
+                {{ section.settings.content }}
+            </main>
+        </div>
+    </div>
+</div>
 
 {% schema %}
 {
     "name":"Template Page Content",
-    "class":"tp-content col-md-8",
+    "class":"tp-content",
     "settings":[
     {
         "type":"checkbox",
@@ -16,6 +48,41 @@
         "type":"richtext",
         "id":"content",
         "label":"Content"
+    },
+    {
+        "type":"text",
+        "id":"title",
+        "label":"Sidebar Title"
+    },
+    {
+        "type":"text",
+        "id":"telephone_title",
+        "label":"Telephone Title"
+    },
+    {
+        "type":"text",
+        "id":"telephone",
+        "label":"Telephone"
+    },
+    {
+        "type":"text",
+        "id":"email_title",
+        "label":"E-mail Title"
+    },
+    {
+        "type":"text",
+        "id":"email",
+        "label":"E-mail"
+    },
+    {
+        "type":"text",
+        "id":"live_chat_title",
+        "label":"Live Chat Title"
+    },
+    {
+        "type":"text",
+        "id":"live_chat",
+        "label":"Live Chat"
     }
     ]
 }
