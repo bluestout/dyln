@@ -1,0 +1,33 @@
+<div class="container-fluid" style="background-image:url('{{ section.settings.header_background.src | image_url }}')">
+    <div class="container">
+        <div class="row">
+            <h1 class="tp-header__title">{{ section.settings.title }}</h1>
+        </div>
+    </div>
+</div>
+
+
+{% schema %}
+{
+    "name":"Template Page Header",
+    "class":"tp-header",
+    "settings":[
+        {
+            "type":"checkbox",
+            "id":"show",
+            "label":"Show Section?"
+        },
+        {
+            "type":"text",
+            "id":"title",
+            "label":"Page Title",
+        },
+        {
+            "type":"image_picker",
+            "id":"header_background",
+            "label":"Header Background Image"
+        }
+        ]
+}
+{% endschema %}
+5

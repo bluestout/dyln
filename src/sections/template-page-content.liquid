@@ -1,0 +1,22 @@
+<main class="col-md-8">
+    {{ section.settings.content }}
+</main>
+
+{% schema %}
+{
+    "name":"Template Page Content",
+    "class":"tp-content col-md-8",
+    "settings":[
+    {
+        "type":"checkbox",
+        "id":"show",
+        "label":"Show Content?"
+    },
+    {
+        "type":"richtext",
+        "id":"content",
+        "label":"Content"
+    }
+    ]
+}
+{% endschema %}
