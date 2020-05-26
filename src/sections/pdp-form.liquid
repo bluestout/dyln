@@ -130,13 +130,26 @@
     data-add-to-cart
     {% unless current_variant.available %}disabled="disabled"{% endunless %}>
       <span data-submit-button-text>
-        {% if current_variant.available %}
-          {{ 'products.product.add_to_cart' | t }}
-        {% else %}
-          {{ 'products.product.sold_out' | t }}
-        {% endif %}
+          {% if current_variant.available %}
+            {{ 'products.product.add_to_cart' | t }}
+          {% else %}
+            {{ 'products.product.sold_out' | t }}
+          {% endif %}
       </span>
   </button>
+
+  {% unless current_variant.available %}
+    <div class="pdp-form__sold-out">
+      <span class="pdp-form__sold-out-notice">{{ 'products.product.sold_out_notice' | t}}</span>
+      <div class="pdp-form__sold-out-email">
+        <input type="email" placeholder="{{ 'products.product.sold_out_email_placeholder' | t }}">
+        <button type="submit">{{ 'products.product.sold_out_email_btn_text' | t }}</button>
+      </div>
+      <span class="pdp-form__sold-out-email-confirm">{{ 'products.product.sold_out_email_confirm_txt' | t }}</span>
+      <div class="pdp-form__sold-out-gradient" style="background-image:url({{ 'out-of-stock-gradient.png' | asset_url }})">
+      </div>
+    </div>
+  {% endunless %}
 {% endform %}
 
 <div data-atc-anchor></div>
