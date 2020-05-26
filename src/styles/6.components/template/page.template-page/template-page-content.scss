@@ -1,0 +1,41 @@
+.tp-sidebar {
+  &__title {
+    @include font-header(700);
+    @include text(20px, 28px, $color-title, 1.11px);
+    margin: 0 0 10px;
+    text-align: center;
+  }
+
+  &__link {
+    display: block;
+    padding: 10px 5px;
+    width: 100%;
+    background-color: $color-theme-4;
+    margin: 0 0 3px;
+    text-align: center;
+
+    &-icon {
+      @include no-font-size;
+      margin: 0 10px 0 0;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &-txt {
+      @include font-header(700);
+      @include text(18px, 25px, $color-title, 1.06px);
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+}
+
+.tp-content {
+  margin-bottom: 100px;
+
+  main {
+    @include media-query($medium-down) {
+      margin-top: 40px;
+    }
+  }
+}
