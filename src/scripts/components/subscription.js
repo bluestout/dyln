@@ -33,13 +33,9 @@ function handleSubBlockToggle() {
 }
 
 function handleFrequencyChange() {
-  try {
-    const newFreq = $(`${selectors.freqSelect} option:selected`).text();
-    const $freq = $(selectors.subCurrentFreq);
-    $freq.text(newFreq);
-  } catch (error) {
-    // console.log(error);
-  }
+  const newFreq = $(`${selectors.freqSelect} option:selected`).text();
+  const $freq = $(selectors.subCurrentFreq);
+  $freq.text(newFreq);
 }
 
 function handleVariantClick() {
@@ -55,9 +51,7 @@ function handleVariantClick() {
     );
     $subprice.text(newSubPrice);
     $regularPrice.text(newRegularPrice);
-  } catch (error) {
-    // console.log(error);
-  }
+  } catch (error) {}
 }
 
 function handleCustomLabelClick() {
