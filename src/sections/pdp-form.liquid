@@ -140,9 +140,7 @@
 
 {% endform %}
 
-{% unless current_variant.available %}
-  {% render 'product-item-sold-out' %}
-{% endunless %}
+{% render 'product-item-sold-out' with available: current_variant.available  %}
 
 <div data-atc-anchor></div>
 

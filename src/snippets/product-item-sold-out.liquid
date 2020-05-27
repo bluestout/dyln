@@ -1,13 +1,13 @@
-<div class="product-form__sold-out">
-    <span class="product-form__sold-out-notice" data-submit-sold-out-notice>{{ 'products.product.sold_out_notice' | t}}</span>
-    <div class="product-form__sold-out-email" data-submit-sold-out-form>
+<div class="product-form__sold-out {% if available %}product-form__sold-out--hide{% endif %}" data-sold-out-mail>
+    <span class="product-form__sold-out-notice" data-sold-out-notice>{{ 'products.product.sold_out_notice' | t}}</span>
+    <div class="product-form__sold-out-email" data-sold-out-form>
         <input type="email" placeholder="{{ 'products.product.sold_out_email_placeholder' | t }}">
         <button id="submitSoldOut" type="submit" data-submit-sold-out-btn>{{ 'products.product.sold_out_email_btn_text' | t }}</button>
         {% comment %}
             TODO: Add 3rd party email service integration
         {% endcomment %}
     </div>
-    <span class="product-form__sold-out-email-confirm" data-submit-sold-out-confirm>{{ 'products.product.sold_out_email_confirm_txt' | t }}</span>
+    <span class="product-form__sold-out-email-confirm" data-sold-out-confirm>{{ 'products.product.sold_out_email_confirm_txt' | t }}</span>
     <div class="product-form__sold-out-gradient" style="background-image:url({{ 'out-of-stock-gradient.png' | asset_url }})">
     </div>
 </div>

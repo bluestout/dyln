@@ -199,18 +199,24 @@
           class="product-item__submit-btn"
           data-pi-submit
           data-add-to-cart
-          disabled="disabled"
-          >
+          {% unless block_p_def_v.available %}disabled="disabled"{% endunless %}
+         >
           <span class="product-item__submit-price" data-pi-submit-price>
-            {{ block_p_def_v.price | money | remove: ".00" | strip }}
+            {% if block_p_def_v.available %}
+              {{ block_p_def_v.price | money | remove: ".00" | strip }}
+            {% endif %}
           </span>
           <span class="product-item__submit-text" data-pi-submit-text>
-              {{ 'products.product.sold_out' | t }}
+               {% if block_p_def_v.available %}
+                 {{ 'products.product.add_to_cart' | t }}
+               {% else %}
+                 {{ 'products.product.sold_out' | t }}
+               {% endif %}
           </span>
         </button>
       </div>
 
-      {% render 'product-item-sold-out' %}
+      {% render 'product-item-sold-out' with available: block_p_def_v.available  %}
 
     </div>
 

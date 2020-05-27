@@ -36,10 +36,11 @@ const selectors = {
   shopMobileSlick: "[data-slick-pi-mobile]",
   slick: `[data-${datasets.slick}]`,
   slideById: (id) => `[data-slick-index=${id}]`,
+  soldOutMail: "[data-sold-out-mail]",
   submitSoldOutMail: "[data-submit-sold-out-btn]",
-  soldOutConfirm: "[data-submit-sold-out-confirm]",
-  soldOutForm: "[data-submit-sold-out-form]",
-  soldOutNotice: "[data-submit-sold-out-notice]"
+  soldOutConfirm: "[data-sold-out-confirm]",
+  soldOutForm: "[data-sold-out-form]",
+  soldOutNotice: "[data--sold-out-notice]"
 };
 
 function handleOptionClick(event) {
@@ -199,6 +200,7 @@ function renderProductPrice(variant, $parent) {
 function renderProductSubmit(variant, $parent) {
   const $submit = $parent.find(selectors.submit);
   const $submitText = $parent.find(selectors.submitText);
+  const $soldOutMail = $(selectors.soldOutMail);
 
   if (!variant) {
     $submit.attr("disabled", "disabled");
@@ -206,9 +208,13 @@ function renderProductSubmit(variant, $parent) {
   } else if (variant.available) {
     $submit.removeAttr("disabled");
     $submitText.text(theme.strings.addToCart);
+
+    $soldOutMail.fadeOut("fast");
   } else {
     $submit.attr("disabled", "disabled");
     $submitText.text(theme.strings.soldOut);
+
+    $soldOutMail.fadeIn("fast");
   }
   return null;
 }
