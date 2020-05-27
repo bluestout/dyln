@@ -131,14 +131,18 @@
     data-add-to-cart
     {% unless current_variant.available %}disabled="disabled"{% endunless %}>
       <span data-submit-button-text>
-        {% if current_variant.available %}
-          {{ 'products.product.add_to_cart' | t }}
-        {% else %}
-          {{ 'products.product.sold_out' | t }}
-        {% endif %}
+          {% if current_variant.available %}
+            {{ 'products.product.add_to_cart' | t }}
+          {% else %}
+            {{ 'products.product.sold_out' | t }}
+          {% endif %}
       </span>
   </button>
+
 {% endform %}
+
+{% render 'product-item-sold-out' with available: current_variant.available  %}
+
 <div data-atc-anchor></div>
 
 <script data-pdp-options type="application/json">{% for option in product.options_with_values %}{% assign name_clean = option.name | downcase %}{% if name_clean == "color" %}{% assign name = "option" | append: forloop.index %}{"color": {{ name | json }}}{% break %}{% endif %}{% endfor %}</script>
