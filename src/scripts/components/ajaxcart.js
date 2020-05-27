@@ -127,66 +127,47 @@ function ajaxRemoveFromCartButton(event) {
   const $this = $(this);
   const line = parseInt($this.data("remove-item"), 10);
 
-  return (async () => {
-    await new Promise((resolve) => {
-      resolve(
-        (inputStatus = setTimeout(() => {
-          ajaxChangeCartQty(line, 0, true);
-        }, 100))
-      );
-    });
-  })();
+  inputStatus = setTimeout(() => {
+    ajaxChangeCartQty(line, 0, true);
+  }, 100);
 }
 
 // change the input visuals & make the ajax request, if required
 function handlechangeAjaxButtonClick(event) {
   containerLoading(true);
   event.preventDefault();
+  inputStatus = setTimeout(() => {
+    const $source = $(event.currentTarget);
+    const $input = $($source.data("qty-change-ajax"));
+    const direction = $source.data("direction");
+    const line = $input.data("line");
+    let value = parseInt($input.val(), 10);
+    if (direction === "down") {
+      value -= 1;
+    } else if (direction === "up") {
+      value += 1;
+    }
 
-  return (async () => {
-    await new Promise((resolve) => {
-      resolve(
-        (inputStatus = setTimeout(() => {
-          const $source = $(event.currentTarget);
-          const $input = $($source.data("qty-change-ajax"));
-          const direction = $source.data("direction");
-          const line = $input.data("line");
-          let value = parseInt($input.val(), 10);
-          if (direction === "down") {
-            value -= 1;
-          } else if (direction === "up") {
-            value += 1;
-          }
-
-          if (line && typeof value === "number") {
-            ajaxChangeCartQty(line, value, true);
-          }
-        }, 100))
-      );
-    });
-  })();
+    if (line && typeof value === "number") {
+      ajaxChangeCartQty(line, value, true);
+    }
+  }, 100);
 }
 
 function handleQtyInputChange(event) {
   clearTimeout(inputStatus);
   containerLoading(true);
 
-  return (async () => {
-    await new Promise((resolve) => {
-      resolve(
-        (inputStatus = setTimeout(() => {
-          const $input = $(event.currentTarget);
-          const qty = $input.val();
-          const line = $input.data("line");
+  inputStatus = setTimeout(() => {
+    const $input = $(event.currentTarget);
+    const qty = $input.val();
+    const line = $input.data("line");
 
-          // if pId is added as a data attribute, this works as ajax, if not, it works as regular js
-          if (line && qty) {
-            ajaxChangeCartQty(line, qty, true);
-          }
-        }, 300))
-      );
-    });
-  })();
+    // if pId is added as a data attribute, this works as ajax, if not, it works as regular js
+    if (line && qty) {
+      ajaxChangeCartQty(line, qty, true);
+    }
+  }, 300);
 }
 
 // update the totals table on the cart page
@@ -219,6 +200,7 @@ function updateQuickCart(cart) {
   }
 
   // insert all the prepared items in the cart
+  // change checkout button type to submit to make it a regular button - right now it's using the recharge redirect to checkout script
   const form = `
     <form action="/cart" method="post" novalidate class="cart-drawer__form">
       <div class="cart-drawer__items-wrap" data-cart-drawer-wrap>
@@ -234,10 +216,10 @@ function updateQuickCart(cart) {
             ${formatAndTrimPrice(cart.total_price)}
           </span>
         </div>
-        <button class="cart-drawer__checkout" name="checkout" type="submit" data-cart-drawer-checkout>
-          <span class="cart-drawer__checkout-text">${
-            theme.strings.checkout
-          }</span>
+        <button class="cart-drawer__checkout" name="checkout" type="button" data-cart-drawer-checkout onclick="reChargeProcessCart()">
+          <span class="cart-drawer__checkout-text">
+            ${theme.strings.checkout}
+          </span>
           <svg class="cart-drawer__checkout-icon" width='20' height='22' viewBox='0 0 20 22' xmlns='http://www.w3.org/2000/svg'><g transform='translate(.573 1.784)' fill='none' fill-rule='evenodd'><rect stroke='#FFF' stroke-width='2' x='1' y='7.703' width='16.958' height='11.405' rx='2'/><path d='M3.991 7.122V4.608C3.991 2.063 6.071 0 8.635 0h1.688c2.565 0 4.644 2.063 4.644 4.608v2.514' stroke='#FFF' stroke-width='2' stroke-linejoin='round'/><ellipse fill='#FFF' cx='9.479' cy='12.149' rx='2.494' ry='2.095'/><path stroke='#FFF' stroke-width='2' stroke-linecap='round' d='M9.479 13.405v2.466'/></g></svg>
         </button>
         <div class="cart-drawer__payments">
@@ -309,23 +291,17 @@ function handleAjaxAddButtonClick(event) {
     toggleAddingToCartAnimation($source, false);
   }, 10000);
 
-  (async () => {
-    await new Promise((resolve) => {
-      resolve(
-        $.ajax({
-          type: "POST",
-          url: "/cart/add.js",
-          async: true,
-          data: $form.serialize(),
-          dataType: "json",
-          cache: false,
-          complete: (jqXHR, textStatus) => {
-            addToCartComplete(jqXHR, textStatus);
-          },
-        })
-      );
-    });
-  })();
+  $.ajax({
+    type: "POST",
+    url: "/cart/add.js",
+    async: false,
+    data: $form.serialize(),
+    dataType: "json",
+    cache: false,
+    complete: (jqXHR, textStatus) => {
+      addToCartComplete(jqXHR, textStatus);
+    },
+  });
 }
 
 function handleAjaxUpsellSubmit(event) {
@@ -352,28 +328,22 @@ function handleAjaxUpsellSubmit(event) {
     return;
   }
 
-  (async () => {
-    await new Promise((resolve) => {
-      resolve(
-        $.ajax({
-          type: "POST",
-          url: "/cart/add.js",
-          async: true,
-          data: {
-            quantity: 1,
-            id,
-          },
-          dataType: "json",
-          cache: false,
-          complete: (jqXHR, textStatus) => {
-            $loading.addClass(classes.hide);
-            $text.removeClass(classes.hide);
-            addToCartComplete(jqXHR, textStatus);
-          },
-        })
-      );
-    });
-  })();
+  $.ajax({
+    type: "POST",
+    url: "/cart/add.js",
+    async: false,
+    data: {
+      quantity: 1,
+      id,
+    },
+    dataType: "json",
+    cache: false,
+    complete: (jqXHR, textStatus) => {
+      $loading.addClass(classes.hide);
+      $text.removeClass(classes.hide);
+      addToCartComplete(jqXHR, textStatus);
+    },
+  });
 }
 
 function handleAjaxUpsellSelectChange(event) {
@@ -522,15 +492,19 @@ function handleUpsell(cart) {
 
   let pattern = "";
   const cartProductIds = [];
+  const cartProductsWithUpsell = [];
 
   for (let i = 0; i < cart.items.length; i++) {
-    cartProductIds.push(cart.items[i].product_id);
+    if (!cartProductIds.includes(cart.items[i].product_id)) {
+      cartProductIds.push(cart.items[i].product_id);
+      cartProductsWithUpsell.push(cart.items[i]);
+    }
   }
 
-  for (let i = 0; i < cart.items.length; i++) {
+  for (let i = 0; i < cartProductsWithUpsell.length; i++) {
     loop = true;
 
-    const item = cart.items[i];
+    const item = cartProductsWithUpsell[i];
 
     for (let j = 0; j < json.products.length; j++) {
       if (!loop) {
@@ -590,16 +564,14 @@ $(document).on("click", selectors.upsell.input, handleAjaxUpsellInputClick);
 $(document).ready(() => {
   containerLoading(true);
 
-  return (async () => {
-    await new Promise((resolve) => {
-      resolve(
-        $.getJSON("/cart.js", (json) => {
-          returnCartIfNotEmpty(json);
-        })
-      );
-    });
-  })();
+  reloadAjax();
 });
+
+function reloadAjax() {
+  $.getJSON("/cart.js", (json) => {
+    returnCartIfNotEmpty(json);
+  });
+}
 
 $(document).keyup((event) => {
   if (event.key === "Escape") {
@@ -607,4 +579,9 @@ $(document).keyup((event) => {
   }
 });
 
-export { addToCartComplete };
+export {
+  addToCartComplete,
+  quickCartOpen,
+  reloadAjax,
+  handleAjaxAddButtonClick,
+};

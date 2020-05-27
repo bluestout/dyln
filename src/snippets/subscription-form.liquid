@@ -1,18 +1,18 @@
 {% assign e_product = all_products[subscription-form] %}
 {%- assign e_current_variant = e_product.selected_or_first_available_variant -%}
 
-{% if e_product and e_product.metafields.has_subscription == "True" %}
+{% if e_product and e_product.metafields.subscriptions.has_subscription == "True" %}
   {% assign sub_variants_map = e_product.metafields.subscriptions.original_to_hidden_variant_map %}
   {% assign interval_frequencies = e_product.metafields.subscriptions.shipping_interval_frequency | split: ',' %}
   {% assign interval_unit_type = e_product.metafields.subscriptions.shipping_interval_unit_type %}
   {% assign e_current_id = e_current_variant.id | json %}
   {% assign e_current_sub_price = sub_variants_map[e_current_id].discount_variant_price %}
 
-  {% render 'subscription-title' with section.settings.title, note: section.settings.note %}
+  {% render 'subscription-title' with title, note: note %}
 
   {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true', class: "pdp-form__form"%}
 
-    <input name="subscription_variant_map" value={{ sub_variants_map | json }} type="hidden" data-subscription-variant-map/>
+    <input name="subscription_variant_map" value={{ sub_variants_map | json }} type="hidden" data-subscription-variant-map />
 
     {% unless e_product.has_only_default_variant %}
       <div class="pdp-diffusers__variants">
@@ -20,8 +20,8 @@
           <h4 class="pdp-diffusers__label"><strong>{{ 'products.subscription.change_amount' | t }}</strong></h4>
         {% endif %}
         {% for e_var in e_product.variants %}
-          <div class="pdp-diffusers__variant">
-            <input class="pdp-diffusers__input" id="option-extra-{{ forloop.index }}" type="radio" name="id" value="{{ e_var.title }}"/>
+          <div class="pdp-diffusers__variant" id="pdp-diffuser-variant-id-wrap">
+            <input class="pdp-diffusers__input" id="option-extra-{{ forloop.index }}" type="radio" name="id" value="{{ e_var.id }}" data-price={{ e_var.price| money }} {% if forloop.first %} checked="checked"{% endif %}/>
             <label class="pdp-diffusers__label" for="option-extra-{{ forloop.index }}">{{ e_var.title }}</label>
           </div>
         {% endfor %}
@@ -30,14 +30,17 @@
 
     <input type="hidden" name="quantity" value="1" />
 
-    <div class="pdp-diffusers__btn-wrap" data-subscription-regular-block>
+    <div class="pdp-diffusers__btn-wrap" data-subscription-button-block>
       <button
-        class="pdp-diffusers__regular-btn">
-        <span class="pdp-diffusers__regular-price">{{ e_current_variant.price | money }}</span>
-        <span class="pdp-diffusers__regular-text">{{ 'products.product.add_to_cart' | t }}</span>
+        id="pdp-diffuser-add-regular"
+        class="pdp-diffusers__regular-btn"
+        type="button">
+        <span class="pdp-diffusers__regular-price" data-subscription-regular-price data-subscription-loaded>{{ e_current_variant.price | money }}</span>
+        <span class="pdp-diffusers__regular-text" data-subscription-loaded>{{ 'products.product.add_to_cart' | t }}</span>
+        <span data-subscription-loading class="loading-dots hide"></span>
       </button>
 
-      <button type="button" class="pdp-diffusers__sub-btn">
+      <button type="button" class="pdp-diffusers__sub-btn" data-subscription-toggle>
         <span class="pdp-diffusers__sub-price" data-subscription-current-price>
           {{ cart.currency.symbol }}{{ e_current_sub_price }}
         </span>
@@ -48,15 +51,18 @@
       </button>
     </div>
 
-    <div class="pdp-diffusers__btn-wrap" style="display: none;" data-subscription-sub-block>
+    <div class="pdp-diffusers__btn-wrap hide" data-subscription-button-block>
       <button
-        class="pdp-diffusers__regular-btn">
-        <span class="pdp-diffusers__regular-price" data-subscription-current-price>
+        id="pdp-diffuser-add-subscription"
+        class="pdp-diffusers__regular-btn"
+        type="button">
+        <span class="pdp-diffusers__regular-price" data-subscription-current-price data-subscription-loaded>
           {{ cart.currency.symbol }}{{ e_current_sub_price }}
         </span>
-        <span class="pdp-diffusers__regular-text">
+        <span class="pdp-diffusers__regular-text" data-subscription-loaded>
           {{ 'products.subscription.subscribe' | t }}
         </span>
+        <span data-subscription-loading class="loading-dots hide"></span>
       </button>
 
       <div class="pdp-diffusers__sub-btn">
@@ -67,12 +73,16 @@
             </option>
           {% endfor %}
         </select>
-        <label for="pdp-diffuser-freq-select">{{ 'products.subscription.change_frequency' | t }}</label>
+        <label for="pdp-diffuser-freq-select" data-subscription-custom-label>{{ 'products.subscription.change_frequency' | t }}</label>
       </div>
 
-      <input name="shipping_interval_unit_type" value="{{ interval_unit_type }}" type="hidden" />
-
       {% render 'subscription-usps' %}
+
+      <button type="button" class="pdp-diffusers__sub-back" data-subscription-toggle>< Back to one time purchase</button>
+    </div>
+
+    <input name="shipping_interval_unit_type" value="{{ interval_unit_type }}" type="hidden" />
+    <input value="{{ cart.currency.symbol }}" type="hidden" data-subscription-currency-symbol />
 
   {% endform %}
 {% endif %}

@@ -76,7 +76,9 @@
           {% assign size_product = all_products[block.settings[size_product_name]] %}
           {% assign size_title = block.settings[size_title_name] %}
           {% if size_title != blank %}
-            <a href="{{ size_product.url }}" class="pdp-form__sizes-link">{{ size_title }}</a>
+            {% unless size_product.id == product.id %}
+              <a href="{{ size_product.url }}" class="pdp-form__sizes-link">{{ size_title }}</a>
+            {% endunless %}
           {% endif %}
         {% endfor %}
       </div>

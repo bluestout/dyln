@@ -36,7 +36,8 @@
               </div>
 
               <div class="cart__info-checkout-wrap">
-                <input data-cart-checkout type="submit" name="checkout" class="cart__checkout" value="{{ 'cart.general.checkout' | t }}"/>
+                {% comment %} <button data-cart-checkout type="submit" name="checkout" class="cart__checkout">{{ 'cart.general.checkout' | t }}</button> {% endcomment %}
+                <button data-cart-checkout type="button" name="checkout" class="cart__checkout" onclick="reChargeProcessCart()">{{ 'cart.general.checkout' | t }}</button>
               </div>
 
               <p class="cart__info-notes-label text-right">{{ 'cart.general.shipping_at_checkout' | t }}</p>
