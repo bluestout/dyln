@@ -149,13 +149,18 @@
 
   &__submit {
     @include button(solid, square, 2);
-    padding: 5px 0;
+    padding: 10px 0;
     width: 100%;
 
     span {
       @include font-header(700);
       @include text(24px, 30px, $color-white, 1.2px);
       text-transform: uppercase;
+    }
+
+    &:disabled {
+      background-color: $color-theme-8;
+      background-image: none;
     }
   }
 
