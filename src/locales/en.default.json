@@ -338,6 +338,18 @@
       "view_details": "View Details",
       "add": "Add",
       "more_colors": "More colors"
+    },
+    "subscription": {
+      "every": "Every",
+      "months": "months",
+      "years": "years",
+      "days": "days",
+      "subscribe": "Subscribe",
+      "change_frequency": "Change Frequency",
+      "save": "save",
+      "customize": "Customize",
+      "cancel_anytime": "Cancel anytime",
+      "change_amount": "Change Amount"
     }
   },
   "gift_cards": {

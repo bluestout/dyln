@@ -1,0 +1,8 @@
+{{ 'products.subscription.every' | t }}
+{% if frequency == "1" %}
+  {{ interval | remove: 's' }}
+{% elsif frequency == "12" and interval == "Months" %}
+  {{ 'products.subscription.years' | t | remove: 's' }}
+{% else %}
+  {{ frequency }} {{ interval }}
+{% endif %}

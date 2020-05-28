@@ -7,7 +7,7 @@
  */
 
 import $ from "jquery";
-import { getUrlParams } from "./ajax-helpers";
+import { getUrlParams } from "./helpers";
 
 const datasets = {
   tab: "tab",

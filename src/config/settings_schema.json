@@ -504,6 +504,32 @@
     ]
   },
   {
+    "name": "Product - Extra diffusers",
+    "settings": [
+      {
+        "type": "text",
+        "id": "extra_diffusers_title",
+        "label": "Section Title"
+      },
+      {
+        "type": "product",
+        "id": "extra_diffusers_product",
+        "label": "Addable Product"
+      },
+      {
+        "type": "textarea",
+        "id": "extra_diffusers_note",
+        "label": "Note"
+      },
+      {
+        "type": "textarea",
+        "id": "extra_diffusers_show_where",
+        "label": "On which products to show the add extra diffusers form? Input the individual product ids, separated by a comma",
+        "default": "1920834338904, 3234684803"
+      }
+    ]
+  },
+  {
     "name": "Country/Inventory",
     "settings": [
       { "type": "header", "content": "Canada-Inventory" },

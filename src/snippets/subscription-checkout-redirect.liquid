@@ -1,0 +1,25 @@
+<script>
+function reChargeProcessCart(event) {
+  event.preventDefault();
+  var paramCart = '&cart_token=' + (document.cookie.match('(^|; )cart=([^;]*)')||0)[2];
+  $.ajax({
+    type: 'GET',
+    url: '/cart.js',
+    dataType: 'text',
+    success: function(data) {
+      if (data.indexOf("shipping_interval_frequency") > -1) {
+        var paramDomain = 'myshopify_domain={{ shop.permanent_domain }}';
+        try {
+          var paramLinker = "&" + ga.getAll()[0].get('linkerParam');
+        } catch (err) {
+          var paramLinker = '';
+        }
+        var paramCustomer = '{% if customer %}&customer_id={{ customer.id }}&customer_email={{ customer.email }}{% endif %}';
+        window.location = "https://checkout.rechargeapps.com/r/checkout?" + paramDomain +  paramCart + paramLinker + paramCustomer;
+      } else {
+        window.location = '/checkout';
+      }
+    }
+  });
+}
+</script>

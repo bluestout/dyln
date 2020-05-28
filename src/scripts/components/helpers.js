@@ -91,6 +91,21 @@ function toggleTabindexInChildren($element, mode) {
   }
 }
 
+// check if url has parameters
+function getUrlParams() {
+  const params = {};
+  if (window.location.search.length > 0) {
+    document.location.search
+      .substr(1)
+      .split("&")
+      .forEach((pair) => {
+        const paramsSplit = pair.split("=");
+        params[paramsSplit[0]] = paramsSplit[1];
+      });
+  }
+  return params;
+}
+
 export {
   resizeImage,
   formatAndTrimPrice,
@@ -98,4 +113,5 @@ export {
   stripHtml,
   handleize,
   toggleTabindexInChildren,
+  getUrlParams,
 };

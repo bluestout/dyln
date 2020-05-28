@@ -1,5 +1,7 @@
 import $ from "jquery";
 
+const customSelectChange = new Event("customSelectChange");
+
 // check if url has parameters
 function getUrlParams() {
   const params = {};
@@ -105,6 +107,7 @@ $(document).ready(() => {
       $this.val($(this).attr("rel"));
       $this.change();
       $list.hide();
+      document.dispatchEvent(customSelectChange);
     });
 
     $(document).click(() => {

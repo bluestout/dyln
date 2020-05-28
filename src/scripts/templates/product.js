@@ -4,6 +4,7 @@ import "../components/custom-qty-input";
 import "../components/tabs";
 import "../components/transitions";
 import "../sections/product";
+import "../components/pdp-subscription";
 
 import "../../styles/product.scss";
 

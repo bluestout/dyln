@@ -30,9 +30,9 @@
     <input type="hidden" id="{{ block_p.id }}-quantity" name="quantity" value="1" min="1" />
 
     {% if block_p.has_only_default_variant %}
-      <input type="hidden" name="id" value="{{ block_p_def_v.id }}" />
+      <input type="hidden" name="id" value="{{ block_p_def_v.id }}" data-productid="{{ product.id }}" data-productid="{{ product.id }}"/>
     {% else %}
-      <select name="id" style="display:none !important;" data-pi-variant-select>
+      <select name="id" style="display:none !important;" data-pi-variant-select data-productid="{{ product.id }}">
         {% for p_i_variant in block_p.variants %}
           <option value="{{ p_i_variant.id }}"
             {% unless p_i_variant.available %}disabled="disabled"{% endunless %}

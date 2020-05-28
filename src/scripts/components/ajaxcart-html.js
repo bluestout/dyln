@@ -122,7 +122,6 @@ function quickCartUpsellHtml(product, url, index) {
     options.length > 1
       ? `<select name="id" tabindex="-1" class="visually-hidden shown-on-focus" data-upsell-select>${options}</select>`
       : "";
-
   const linkHref = url ? `href="${url}"` : `href="/products/${product.handle}"`;
 
   pattern = `
