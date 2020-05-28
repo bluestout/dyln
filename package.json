@@ -47,7 +47,8 @@
     "set-value": "^2.0.1",
     "lodash.template": "^4.5.0",
     "js-yaml": "^3.13.1",
-    "axios": "^0.18.1"
+    "axios": "^0.18.1",
+    "mem": "^4.0.0"
   },
   "scripts": {
     "start": "slate-tools start --env=dev",
