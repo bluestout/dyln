@@ -1,6 +1,5 @@
 <script>
-function reChargeProcessCart(event) {
-  event.preventDefault();
+function reChargeProcessCart() {
   var paramCart = '&cart_token=' + (document.cookie.match('(^|; )cart=([^;]*)')||0)[2];
   $.ajax({
     type: 'GET',
