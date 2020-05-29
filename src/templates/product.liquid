@@ -1,5 +1,4 @@
-<section data-section-id="{{ section.id }}" data-section-type="product">
-
+<section data-section-id="{{ section.id }}" data-section-type="product" data-pdp-product-id="{{ product.id }}">
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -97,6 +96,15 @@
   {% section 'pdp-user-images' %}
 
   {% render 'atc-bar' %}
+
+  <input type="hidden" data-current-product-id value="{{ product.id }}" />
+
+  <script type="application/ld+json" data-pdp-product-json>
+    {{ product | json }}
+  </script>
+  <script type="application/ld+json" data-pdp-product-options>
+    {{ product.options_with_values | json }}
+  </script>
 
 </section>
 

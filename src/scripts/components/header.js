@@ -36,15 +36,6 @@ const classes = {
   closed: "closed",
 };
 
-const events = {
-  resize: "resize",
-  click: "click",
-  scroll: "scroll",
-};
-
-const windowScrolledRedux = new Event("windowScrolledRedux");
-const windowWidthChanged = new Event("windowWidthChanged");
-
 function setIsHeaderScrolled() {
   const scroll = window.scrollY;
   if (scroll > 5) {
@@ -81,38 +72,10 @@ function handleNavToggle(event) {
   document.querySelector(selectors.nav).classList.toggle(classes.active);
 }
 
-function init() {
-  let ticking = false;
-
-  window.addEventListener(events.resize, () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        document.dispatchEvent(windowWidthChanged);
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
-
-  window.addEventListener(events.scroll, () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        setIsHeaderScrolled();
-        setHeaderBodyOffset(1);
-        document.dispatchEvent(windowScrolledRedux);
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
-
-  setHeaderBodyOffset();
-}
-
 function togglesInit() {
   const navToggles = document.querySelectorAll(selectors.navToggle);
   for (let i = 0; i < navToggles.length; i++) {
-    navToggles[i].addEventListener(events.click, handleNavToggle);
+    navToggles[i].addEventListener("click", handleNavToggle);
   }
 }
 
@@ -182,8 +145,13 @@ function handleHeaderButtonClick(event) {
   });
 }
 
+function onScroll() {
+  setIsHeaderScrolled();
+  setHeaderBodyOffset(1);
+}
+
 $(document).ready(() => {
-  init();
+  setHeaderBodyOffset();
 });
 
 $(document).on("click", selectors.link, handleHeaderLinkClick);
@@ -191,3 +159,4 @@ $(document).on("click", selectors.close, handleHeaderLinkClose);
 $(document).on("click", selectors.button, handleHeaderButtonClick);
 
 document.addEventListener("ajaxReloaded", togglesInit);
+document.addEventListener("windowScrolledRedux", onScroll);

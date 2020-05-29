@@ -10,7 +10,7 @@
     {% endif %}
 
     {% if section.blocks.size > 0 %}
-      <div class="pdp-user-img__images" pdp-user-images>
+      <div class="pdp-user-img__images" data-pdp-user-images>
         {% for block in section.blocks %}
           {% if block.settings.image %}
             <div class="pdp-user-img__item">
