@@ -31,3 +31,27 @@ if (window.navigator.cookieEnabled) {
     "supports-cookies"
   );
 }
+
+var windowScrolledRedux = new Event("windowScrolledRedux");
+var windowWidthChanged = new Event("windowWidthChanged");
+var ticking = false;
+
+window.addEventListener("resize", () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      document.dispatchEvent(windowWidthChanged);
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+
+window.addEventListener("scroll", () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      document.dispatchEvent(windowScrolledRedux);
+      ticking = false;
+    });
+    ticking = true;
+  }
+});

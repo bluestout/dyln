@@ -1,0 +1,396 @@
+window.onload = function() {
+  //make container changeable through the code in order to make the whole code work for product-item, not just for the pdp page
+  const container = `[data-section-type="product"]`;
+  const selectors = {
+    unavailableVariants: "#unavailable-variant",
+    unavailableNotices: "#unavailable-notify",
+    country: "#country-hidden",
+    geoInfo: "#geo-location-info",
+    submitButton: `${container} [data-submit-button]`,
+    submitButtonText: `${container} [data-submit-button-text]`,
+    soldOutForm: `${container} [data-sold-out-mail]`,
+    idSelect: `${container} select[name="id"]`,
+    currentOption: `${container} select[name="id"] option:selected`,
+    optionByVariant: (variant) =>
+      `${container} select[name="id"] option[value="${variant}"]`,
+    shippingNote: `${container} [data-pdp-shipping-note]`,
+    productId: `${container} [data-current-product-id]`,
+    atcAdd: "[data-atc-add]",
+    notifyMe: {
+      notice: `${container} [data-sold-out-notice]`,
+      submit: `${container} [data-submit-sold-out-btn]`,
+      form: `${container} [data-sold-out-form]`,
+      input: `${container} [data-sold-out-input]`,
+      message: `${container} [data-sold-out-message]`,
+    },
+  };
+
+  const attributes = {
+    shipping: "data-ship-message",
+  };
+
+  // change the add to cart depending on product availability
+  function renderSubmitButton() {
+    const $submitButton = $(selectors.submitButton);
+    const $submitButtonText = $(selectors.submitButtonText);
+    const uVariants = $(selectors.unavailableVariants).val();
+    const uNotices = $(selectors.unavailableNotices).val();
+    const currentVariant = $(selectors.idSelect).val();
+    const shippingMessage = $(selectors.currentOption).attr(
+      attributes.shipping
+    );
+    const $atcBarButton = $(selectors.atcAdd);
+    const $soldOutForm = $(selectors.soldOutForm);
+    const $shippingNote = $(selectors.shippingNote);
+
+    if (typeof shippingMessage !== "undefined") {
+      $shippingNote.text(shippingMessage);
+      $shippingNote.removeClass("hide");
+    } else {
+      $shippingNote.addClass("hide");
+    }
+
+    if (uVariants !== "") {
+      const uVariantsSplit = uVariants.split(",");
+      if ($.inArray(currentVariant, uVariantsSplit) !== -1) {
+        //if current variant is unavailable
+        $submitButton.attr("disabled", true);
+        $atcBarButton.attr("disabled", true);
+        $submitButtonText.text(theme.strings.unavailable);
+      } else {
+        //current variant is available
+        $submitButton.removeAttr("disabled");
+        $atcBarButton.removeAttr("disabled");
+        $submitButtonText.text(theme.strings.addToCart);
+      }
+    }
+
+    if (uNotices !== "") {
+      const uNoticesSplit = uNotices.split(",");
+      if ($.inArray(currentVariant, uNoticesSplit) !== -1) {
+        $soldOutForm.fadeIn();
+      } else {
+        $soldOutForm.fadeOut();
+      }
+    }
+  }
+
+  // get available variant
+  function getUnavailableVariant(country, productId) {
+    var cUrl = "/a/dyl/black-variants";
+    $.ajax({
+      url: cUrl,
+      type: "GET",
+      data: { country: country, product_id: productId },
+      dataType: "json",
+      success: function(response) {
+        $(selectors.unavailableVariants).val(response.out_of_stock);
+        $(selectors.unavailableNotices).val(response.nofify_order);
+        var $variantMessages = response.black_order;
+        // set variant selector option attribute
+        if ($variantMessages.length > 0) {
+          $.each($variantMessages, function(i, variantMessage) {
+            const variantMessageSegment = variantMessage.split(":");
+            // set ship message attribute
+            const variant = variantMessageSegment[0];
+            const message = variantMessageSegment[1];
+            const $selectorOption = $(selectors.optionByVariant(variant));
+            $selectorOption.attr(attributes.shipping, message);
+          });
+          renderSubmitButton();
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log(textStatus, errorThrown);
+      },
+    });
+
+    return $(selectors.unavailableVariants).val();
+  }
+
+  function IsEmail(email) {
+    var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(email);
+  }
+
+  // Store Data Notify Me Subscribe
+  $(selectors.notifyMe.submit).click(function() {
+    theme.strings.sold_out_email_invalid;
+    theme.strings.sold_out_email_confirm;
+    const notifyMessage = $(selectors.notifyMe.message);
+    notifyMessage.text("");
+    const $customerEmail = $(selectors.notifyMe.input);
+    if ($customerEmail.val() == "") {
+      $customerEmail.focus();
+      return false;
+    } else {
+      const customerEmail = $customerEmail.val();
+      if (IsEmail(customerEmail)) {
+        // send data
+        const cUrl = "/a/dyl/notify-me-data";
+        const country = $(selectors.country).val();
+        const productId = $(selectors.productId).val();
+        const variantId = $(selectors.idSelect).val();
+        const geoInfo = $(selectors.geoInfo).val();
+        $.ajax({
+          url: cUrl,
+          type: "GET",
+          data: {
+            email: customerEmail,
+            country: country,
+            product_id: productId,
+            variant_id: variantId,
+            geo_info: geoInfo,
+          },
+          dataType: "json",
+          success: function(response) {
+            $(selectors.notifyMe.notice).fadeOut(200);
+            $(selectors.notifyMe.form).fadeOut(200);
+            setTimeout(function() {
+              notifyMessage.text(response.message);
+              notifyMessage.fadeIn();
+            }, 100);
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+          },
+        });
+      } else {
+        $customerEmail.focus();
+        notifyMessage.text(theme.strings.sold_out_email_invalid);
+        notifyMessage.fadeIn();
+      }
+    }
+  });
+
+  //Check visitor IP Location Function
+  jQuery.ajax({
+    url:
+      "https://api.ipstack.com/check?access_key=c9ac55ecdf7513abc5581dd4c89b042b",
+    dataType: "jsonp",
+    success: function(location) {
+      // If the visitor is browsing from US.
+      const userGeo = `
+      ${location.ip}|${location.country_name}|
+      ${location.region_name}|${location.city}|
+      ${location.time_zone.id}|${location.country_code}|
+      ${location.region_code}`;
+      $(selectors.geoInfo).val(userGeo);
+      if (location.country_code === "US") {
+        $("body").addClass("location-us");
+        // $("#cart").addClass("loc-us");
+        // $("#cart li.location-us").addClass("offer-active");
+        // $("#promo .loca-us").addClass("offer-active");
+        // $("#promo-sub .sub-us").addClass("offer-active");
+        // $(".product-offer .bpro-us").addClass("p-active");
+        // $("#promo-product-wrap .bpro-us").addClass("p-active");
+      } else if (location.country_code === "CA") {
+        $("body").addClass("location-ca");
+        // $("#cart").addClass("loc-ca");
+        // $("#cart li.location-ca").addClass("offer-active");
+        // $("#promo .loca-ca").addClass("offer-active");
+        // $("#promo-sub .sub-ca").addClass("offer-active");
+        // $(".product-offer .bpro-ca").addClass("p-active");
+      } else {
+        $("body").addClass("location-other");
+        // $("#cart").addClass("loc-other");
+        // $("#cart li.location-other").addClass("offer-active");
+        // $("#promo .loca-other").addClass("offer-active");
+        // $("#promo-sub .sub-other").addClass("offer-active");
+        // $(".product-offer .bpro-other").addClass("p-active");
+        // $("#promo-product-wrap .bpro-other").addClass("p-active");
+      }
+
+      // country inventory
+      var country4px = [
+        "AU",
+        "AT",
+        "BE",
+        "BN",
+        "BG",
+        "KH",
+        "CY",
+        "CZ",
+        "DK",
+        "EE",
+        "FI",
+        "FR",
+        "DE",
+        "GR",
+        "HK",
+        "HU",
+        "IE",
+        "IT",
+        "JP",
+        "LA",
+        "LV",
+        "LI",
+        "LT",
+        "LU",
+        "MO",
+        "MY",
+        "MT",
+        "MC",
+        "NL",
+        "NZ",
+        "NO",
+        "PH",
+        "PL",
+        "PT",
+        "RO",
+        "SG",
+        "SK",
+        "SI",
+        "KR",
+        "ES",
+        "SE",
+        "CH",
+        "TW",
+        "TH",
+        "GB",
+        "VN",
+      ];
+      var country4pxall = [
+        "AU",
+        "AT",
+        "BE",
+        "BN",
+        "BG",
+        "KH",
+        "CA",
+        "CY",
+        "CZ",
+        "DK",
+        "EE",
+        "FI",
+        "FR",
+        "DE",
+        "GR",
+        "HK",
+        "HU",
+        "IE",
+        "IT",
+        "JP",
+        "LA",
+        "LV",
+        "LI",
+        "LT",
+        "LU",
+        "MO",
+        "MY",
+        "MT",
+        "MC",
+        "NL",
+        "NZ",
+        "NO",
+        "PH",
+        "PL",
+        "PT",
+        "RO",
+        "SG",
+        "SK",
+        "SI",
+        "KR",
+        "ES",
+        "SE",
+        "CH",
+        "TW",
+        "TH",
+        "GB",
+        "VN",
+      ];
+      // product page
+      var sUrl = window.location.href;
+      var newBtl = false;
+      var productPage = false;
+      var oldBtl = false;
+
+      // checking product page
+      if (sUrl.indexOf("/products/") != -1) {
+        var productId = $("[data-pdp-product-id]").data("pdp-product-id");
+        productPage = true;
+      }
+
+      // process everything else if product page
+      if (productPage) {
+        // Check dyln Orginal bottle page
+        if (
+          sUrl.indexOf("dyln-living-alkaline-stainless-steel-water-bottle") !=
+          -1
+        ) {
+          oldBtl = true;
+        }
+
+        // Check dyln Insulated bottle page
+        if (
+          sUrl.indexOf(
+            "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
+          ) != -1
+        ) {
+          newBtl = true;
+        }
+
+        // Function country inventory according to country
+        if (location.country_code === "CA") {
+          // 4PX - CA Country region
+          $(selectors.country).val("ca");
+
+          getUnavailableVariant("ca", productId);
+
+          // diffusers set
+          if (newBtl) {
+            var difAvla = "{{ settings.cnada_dif_oavil }}";
+          } else {
+            var difAvla = "{{ settings.cnada_dif_avil }}";
+          }
+
+          $("#product-options-new li")
+            .not(difAvla)
+            .addClass("y-active");
+          $("ul.pro-option li")
+            .not(difAvla)
+            .addClass("y-active");
+        } else if ($.inArray(location.country_code, country4px) != -1) {
+          // 4PX - HK Country region
+          $(selectors.country).val("px");
+          // set unavailable variants
+          getUnavailableVariant("px", productId);
+
+          // diffusers set
+          if (newBtl) {
+            var difAvla = "{{ settings.px_dif_oavil }}";
+          } else {
+            var difAvla = "{{ settings.px_dif_uavil }}";
+          }
+          $("#product-options-new li")
+            .not(difAvla)
+            .addClass("y-active");
+          $("ul.pro-option.dif li")
+            .not(difAvla)
+            .addClass("y-active");
+        } else {
+          // Senyx USA Country region
+          $(selectors.country).val("other");
+          // set unavailable variants
+          getUnavailableVariant("other", productId);
+
+          // diffusers set
+          if (newBtl) {
+            var difAvla = "{{ settings.us_dif_oavil }}";
+          } else {
+            var difAvla = "{{ settings.us_dif_avil }}";
+          }
+
+          $("#product-options-new li")
+            .not(difAvla)
+            .addClass("y-active");
+          $("ul.pro-option.dif li")
+            .not(difAvla)
+            .addClass("y-active");
+        }
+      } // end product page
+    },
+  });
+
+  document.addEventListener("productFormOptionChange", renderSubmitButton);
+};

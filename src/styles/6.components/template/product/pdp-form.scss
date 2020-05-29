@@ -37,12 +37,8 @@
     border-radius: 50%;
 
     &:disabled {
-      opacity: 0;
+      opacity: 0.5;
       cursor: not-allowed;
-
-      .pdp-form__color-wrap {
-        visibility: visible;
-      }
     }
 
     &:not(:disabled) {

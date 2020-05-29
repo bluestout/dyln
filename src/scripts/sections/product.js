@@ -14,6 +14,7 @@ import { register } from "@shopify/theme-sections";
 import { forceFocus } from "@shopify/theme-a11y";
 import { ProductForm } from "@shopify/theme-product-form";
 import { scrollTo } from "../components/scroll-to";
+import { handleize } from "../components/helpers";
 
 const classes = {
   hide: "hide",
@@ -55,7 +56,9 @@ const selectors = {
   select: "[data-pdp-select]",
   currentColor: "[data-pdp-current-color]",
   pdpOptions: "[data-pdp-options]",
-  userImages: "[pdp-user-images]",
+  userImages: "[data-pdp-user-images]",
+  json: "[data-pdp-product-json]",
+  jsonOptions: "[data-pdp-product-options]",
   video: {
     parent: "[data-pdp-video-parent]",
     content: "[data-pdp-video-non-video]",
@@ -83,9 +86,9 @@ const selectors = {
     price: "[data-price-price]",
     add: "[data-atc-add]",
     swatch: "[data-atc-swatch]",
-    swatchById: (id) => `[data-atc-swatch="${id}"]`,
+    swatchByName: (name) => `[data-atc-swatch="${name}"]`,
     text: "[data-atc-text]",
-    textById: (id) => `[data-atc-text="${id}"]`,
+    textByName: (name) => `[data-atc-text="${name}"]`,
   },
 };
 
@@ -93,13 +96,14 @@ const timing = {
   default: "200",
 };
 
+const productFormOptionChange = new Event("productFormOptionChange");
+
 register("product", {
-  async onLoad() {
+  onLoad() {
     const productFormElement = document.querySelector(selectors.productForm);
 
-    this.product = await this.getProductJson(
-      productFormElement.dataset.productHandle
-    );
+    this.product = this.getProductJsonHtml();
+    this.product.options = this.getProductOptionsJson();
     this.productForm = new ProductForm(productFormElement, this.product, {
       onOptionChange: this.onFormOptionChange.bind(this),
     });
@@ -123,6 +127,17 @@ register("product", {
     });
   },
 
+  getProductJsonHtml() {
+    const jsonHtml = this.container.querySelector(selectors.json).innerHTML;
+    return JSON.parse(jsonHtml);
+  },
+
+  getProductOptionsJson() {
+    const jsonHtml = this.container.querySelector(selectors.jsonOptions)
+      .innerHTML;
+    return JSON.parse(jsonHtml);
+  },
+
   onFormOptionChange(event) {
     const variant = event.dataset.variant;
 
@@ -132,15 +147,20 @@ register("product", {
     this.renderSubmitButton(variant);
     this.renderCurrentColor(variant);
     this.changeHiddenSelect(variant);
+    this.renderAtcBar(variant);
+    document.dispatchEvent(productFormOptionChange);
   },
 
   onClickEvent(event) {
     const thumbnail = event.target.closest(selectors.thumbnail);
     const source = event.originalTarget;
-    if (source && source.nodeName === "A" && source.hash) {
-      event.preventDefault();
-      this.handleSmoothScrollClick(source);
-    }
+
+    try {
+      if (source && source.hash) {
+        event.preventDefault();
+        this.handleSmoothScrollClick(source);
+      }
+    } catch (error) {}
 
     if (!thumbnail) {
       return;
@@ -302,6 +322,11 @@ register("product", {
     activeImage.classList.add(classes.hide);
     inactiveImage.classList.remove(classes.hide);
   },
+
+  renderAtcBar(variant) {
+    handleAtcOptionChange(`Option1-${handleize(variant.option1)}`, false);
+  },
+
   handleSmoothScrollClick(element) {
     const hash = element.hash;
     const body = document.querySelector("html");
@@ -518,12 +543,14 @@ function toggleAtcOptions() {
   return null;
 }
 
-function handleAtcOptionClick(event) {
-  const $source = $(event.currentTarget);
-  const targetData = $source.data(datasets.atc.option);
-  const $target = $(`#${targetData}`);
-  const $newSwatch = $(selectors.atc.swatchById(targetData));
-  const $newText = $(selectors.atc.textById(targetData));
+function handleAtcOptionChange(optionName, toggle) {
+  if (!optionName) {
+    return null;
+  }
+
+  const $target = $(`#${optionName}`);
+  const $newSwatch = $(selectors.atc.swatchByName(optionName));
+  const $newText = $(selectors.atc.textByName(optionName));
 
   if ($newSwatch.length > 0) {
     $(selectors.atc.swatch)
@@ -539,12 +566,18 @@ function handleAtcOptionClick(event) {
     $newText.show();
   }
 
-  if ($target.length > 0) {
+  if ($target.length > 0 && toggle) {
     $target.click();
     toggleAtcOptions();
   }
 
   return null;
+}
+
+function handleAtcOptionClick(event) {
+  const $source = $(event.currentTarget);
+  const targetData = $source.data(datasets.atc.option);
+  handleAtcOptionChange(targetData, true);
 }
 
 function handleAtcSubmit() {
@@ -580,6 +613,6 @@ $(document).on("click", selectors.atc.more, toggleAtcOptions);
 $(document).on("click", selectors.atc.option, handleAtcOptionClick);
 $(document).on("click", selectors.atc.add, handleAtcSubmit);
 
-$(document).on("windowScrolledRedux", handleAtcBar);
+document.addEventListener("windowScrolledRedux", handleAtcBar);
 
 $(document).ready(init);
