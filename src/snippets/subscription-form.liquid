@@ -16,14 +16,14 @@
     <input name="subscription_variant_map" value={{ sub_variants_map | json }} type="hidden" data-subscription-variant-map />
 
     {% unless e_product.has_only_default_variant %}
-      <div class="pdp-diffusers__variants">
+      <div class="diffusers__variants {% if sub_only %} standalone{% endif %}">
         {% if show_extras %}
-          <h4 class="pdp-diffusers__label"><strong>{{ 'products.subscription.change_amount' | t }}</strong></h4>
+          <h4 class="diffusers__label"><strong>{{ 'products.subscription.change_amount' | t }}</strong></h4>
         {% endif %}
         {% for e_var in e_product.variants %}
-          <div class="pdp-diffusers__variant" id="pdp-diffuser-variant-id-wrap">
-            <input class="pdp-diffusers__input" id="option-extra-{{ forloop.index }}" type="radio" name="id" value="{{ e_var.id }}" data-price={{ e_var.price| money }} {% if forloop.first %} checked="checked"{% endif %}/>
-            <label class="pdp-diffusers__label" for="option-extra-{{ forloop.index }}">{{ e_var.title }}</label>
+          <div class="diffusers__variant" id="pdp-diffuser-variant-id-wrap">
+            <input class="diffusers__input" id="option-extra-{{ forloop.index }}" type="radio" name="id" value="{{ e_var.id }}" data-price={{ e_var.price| money }} {% if forloop.first %} checked="checked"{% endif %}/>
+            <label class="diffusers__label {% if sub_only %} standalone{% endif %}" for="option-extra-{{ forloop.index }}">{{ e_var.title }}</label>
           </div>
         {% endfor %}
       </div>
@@ -32,22 +32,22 @@
     <input type="hidden" name="quantity" value="1" />
 
     {% unless sub_only %}
-      <div class="pdp-diffusers__btn-wrap" data-subscription-button-block>
+      <div class="diffusers__btn-wrap" data-subscription-button-block>
         <button
           id="pdp-diffuser-add-regular"
-          class="pdp-diffusers__regular-btn"
+          class="diffusers__regular-btn"
           type="button">
-          <span class="pdp-diffusers__regular-price" data-subscription-regular-price data-subscription-loaded>{{ e_current_variant.price | money }}</span>
-          <span class="pdp-diffusers__regular-text" data-subscription-loaded>{{ 'products.product.add_to_cart' | t }}</span>
+          <span class="diffusers__regular-price" data-subscription-regular-price data-subscription-loaded>{{ e_current_variant.price | money }}</span>
+          <span class="diffusers__regular-text" data-subscription-loaded>{{ 'products.product.add_to_cart' | t }}</span>
           <span data-subscription-loading class="loading-dots hide"></span>
         </button>
 
-        <button type="button" class="pdp-diffusers__sub-btn" data-subscription-toggle>
-          <span class="pdp-diffusers__sub-price" data-subscription-current-price>
+        <button type="button" class="diffusers__sub-btn" data-subscription-toggle>
+          <span class="diffusers__sub-price" data-subscription-current-price>
             {{ cart.currency.symbol }}{{ e_current_sub_price }}
           </span>
-          <span class="pdp-diffusers__sub-btn-text">{{ 'products.subscription.subscribe' | t }}</span>
-          <span class="pdp-diffusers__sub-btn-freq" data-subscription-current-frequency>
+          <span class="diffusers__sub-btn-text">{{ 'products.subscription.subscribe' | t }}</span>
+          <span class="diffusers__sub-btn-freq" data-subscription-current-frequency>
             {% render 'subscription-frequency' with interval_frequencies[0] as frequency, interval: interval_unit_type %}
           </span>
         </button>
@@ -55,24 +55,24 @@
     {% endunless %}
 
     {% if sub_only %}
-    <div class="pdp-diffusers__btn-wrap">
+    <div class="diffusers__btn-wrap">
     {% else %}
-    <div class="pdp-diffusers__btn-wrap hide" data-subscription-button-block>
+    <div class="diffusers__btn-wrap hide" data-subscription-button-block>
     {% endif %}
       <button
         id="pdp-diffuser-add-subscription"
-        class="pdp-diffusers__regular-btn"
+        class="diffusers__regular-btn"
         type="button">
-        <span class="pdp-diffusers__regular-price" data-subscription-current-price data-subscription-loaded>
+        <span class="diffusers__regular-price" data-subscription-current-price data-subscription-loaded>
           {{ cart.currency.symbol }}{{ e_current_sub_price }}
         </span>
-        <span class="pdp-diffusers__regular-text" data-subscription-loaded>
+        <span class="diffusers__regular-text" data-subscription-loaded>
           {{ 'products.subscription.subscribe' | t }}
         </span>
         <span data-subscription-loading class="loading-dots hide"></span>
       </button>
 
-      <div class="pdp-diffusers__sub-btn">
+      <div class="diffusers__sub-btn{% if sub_only %} standalone{% endif %}">
         <select name="shipping_interval_frequency" id="pdp-diffuser-freq-select" data-custom>
           {% for i_frequency in interval_frequencies %}
             <option value="{{ i_frequency }}">
@@ -80,13 +80,15 @@
             </option>
           {% endfor %}
         </select>
-        <label for="pdp-diffuser-freq-select" data-subscription-custom-label>{{ 'products.subscription.change_frequency' | t }}</label>
+        <div>
+          <label for="pdp-diffuser-freq-select" data-subscription-custom-label>{{ 'products.subscription.change_frequency' | t }}</label>
+        </div>
       </div>
 
       {% unless sub_only %}
         {% render 'subscription-usps' %}
 
-        <button type="button" class="pdp-diffusers__sub-back" data-subscription-toggle>
+        <button type="button" class="diffusers__sub-back" data-subscription-toggle>
           <span aria-ignore="true"><</span>&nbsp;<span>{{ 'products.subscription.back_to_one_time' | t }}</span>
         </button>
       {% endunless %}

@@ -1,15 +1,29 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-5"></div>
-    <div class="col-md-7">
-      <h2 class="diffusers__title">{{ section.settings.title }}</h2>
+    <div class="col-md-5 d-flex align-self-center diffusers__col-top">
+      {%- render 'responsive-image' with
+        image: section.settings.image,
+        max_width: 240,
+        max_height: 240,
+        wrapper_class: "diffusers__img-wrap",
+        image_class: "diffusers__img-wrap",
+      -%}
+    </div>
+    <div class="col-md-7 d-flex align-self-center diffusers__col-bottom">
+      <div>
+        <h2 class="diffusers__section-title">{{ section.settings.title }}</h2>
 
-      {% render 'subscription-usps' %}
+        {% render 'subscription-usps' with size: "large" %}
 
-      {% render 'subscription-form' with settings.extra_diffusers_product
-        show_extras: false,
-        sub_only: true,
-      %}
+        <div class="diffusers__usps-separator"></div>
+
+        <div class="diffusers__section-note">{{ section.settings.note }}</div>
+
+        {% render 'subscription-form' with settings.extra_diffusers_product
+          show_extras: false,
+          sub_only: true,
+        %}
+      </div>
     </div>
   </div>
 </div>
@@ -20,14 +34,19 @@
     "class": "diffusers",
     "settings": [
       {
-        "type": "textarea",
+        "type": "text",
         "id": "title",
         "label": "Title"
       },
       {
+        "type": "textarea",
+        "id": "note",
+        "label": "Note"
+      },
+      {
         "type": "image_picker",
-        "id": "background",
-        "label": "Background"
+        "id": "image",
+        "label": "Image"
       }
     ]
   }

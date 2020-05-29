@@ -1,4 +1,26 @@
-.pdp-diffusers {
+.diffusers {
+  background-color: $color-theme-27;
+  padding: 55px 0;
+  margin: 60px 0 70px;
+
+  &__img-wrap {
+    margin: auto 60px auto auto;
+  }
+
+  &__img {
+    object-fit: cover;
+  }
+
+  &__section-title {
+    @include text-title($color-main-1);
+  }
+
+  &__section-note {
+    @include font-header(500);
+    @include text(16px, 24px, $color-theme-8, 0.95px);
+    margin: 0 0 15px;
+  }
+
   &__title-header {
     position: relative;
     margin: 0 0 5px;
@@ -23,6 +45,10 @@
 
   &__variants {
     margin: 0 0 20px;
+
+    &.standalone {
+      margin: 0 0 5px;
+    }
   }
 
   &__variant {
@@ -43,6 +69,10 @@
     @include text(17px, 24px, $color-body-text, 1px);
     @include underline($color-main-1, false);
     pointer-events: none;
+
+    &.standalone {
+      color: $color-theme-8;
+    }
   }
 
   &__input {
@@ -55,7 +85,7 @@
     cursor: pointer;
 
     &:checked {
-      + .pdp-diffusers__label {
+      + .diffusers__label {
         color: $color-main-1;
 
         &::after {
@@ -71,6 +101,7 @@
 
   &__btn-wrap {
     @include clearfix;
+    max-width: 425px;
   }
 
   &__regular-btn {
@@ -106,6 +137,7 @@
     width: 50%;
     padding: 0;
     height: 65px;
+    background-color: $color-background;
 
     &:focus {
       outline: auto 5px;
@@ -166,12 +198,12 @@
     }
 
     .custom-select-options {
+      left: -2px;
+      top: -2px;
       background-color: $color-background;
       text-align: center;
       width: calc(100% + 4px);
       border: 2px solid $color-main-1;
-      left: -2px;
-      top: -2px;
     }
 
     .custom-select-option {
@@ -183,6 +215,12 @@
       &:hover,
       &:focus {
         background-color: $color-theme-13;
+      }
+    }
+
+    &.standalone {
+      .custom-select {
+        color: $color-theme-8;
       }
     }
   }
@@ -214,6 +252,11 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
+    max-width: 500px;
+  }
+
+  &__usps-separator {
+    min-height: 20px;
   }
 
   &__usp {
@@ -233,6 +276,19 @@
       width: 28px;
       height: 28px;
     }
+
+    &.large {
+      span {
+        font-size: 14px;
+        line-height: 20px;
+        margin: 0 0 0 15px;
+      }
+
+      svg {
+        width: 32px;
+        height: 32px;
+      }
+    }
   }
 
   &__sub-back {
@@ -244,6 +300,52 @@
   }
 
   @include media-query($medium-down) {
+    padding: 0;
+    margin: 100px 0 0;
+    background-image: linear-gradient(
+      to bottom,
+      $color-theme-27 0%,
+      $color-background 100%
+    );
+
+    &__col-bottom {
+      position: relative;
+      top: -50px;
+    }
+
+    &__col-top {
+      position: relative;
+      top: -75px;
+    }
+
+    &__img-wrap {
+      margin: auto;
+      max-width: 145px !important;
+      max-height: 145px !important;
+
+      &::before {
+        padding-top: 145px;
+      }
+    }
+
+    &__img {
+      margin: auto;
+      max-width: 145px !important;
+      max-height: 145px !important;
+    }
+
+    &__section-title {
+      text-align: center;
+    }
+
+    &__section-note {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.83px;
+      text-align: center;
+      margin: 0 0 30px;
+    }
+
     &__title-header {
       margin: 0 auto 5px;
       text-align: center;
@@ -285,6 +387,11 @@
 
     &__variants {
       margin: 0 0 10px;
+      text-align: center;
+
+      &.standalone {
+        margin: 0 0 10px;
+      }
     }
 
     &__variant {
@@ -350,6 +457,26 @@
 
     &__sub-btn-freq {
       display: none;
+    }
+
+    &__usps.large {
+      justify-content: space-around;
+    }
+
+    &__usp.large {
+      text-align: center;
+      span {
+        font-size: 10px;
+        line-height: 12px;
+        margin: 10px auto 0;
+        display: block;
+        text-align: center;
+      }
+
+      svg {
+        width: 30px;
+        height: 30px;
+      }
     }
   }
 }
