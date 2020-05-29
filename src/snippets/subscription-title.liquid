@@ -2,13 +2,10 @@
   <div class="pdp-diffusers__title-header">
     <h3 class="pdp-diffusers__title">{{ subscription-title }}</h3>
     {% if note != empty %}
-      <span class="pdp-diffusers__note-button">
+      <button type="button" class="pdp-diffusers__note-button" data-diffuser-info-modal-open data-diffuser-info-modal-focusout>
         {% render 'icon-info' %}
-        <div class="pdp-diffusers__note-wrap">
-          <span class="pdp-diffusers__note-close">{% render 'icon-close' %}</span>
-          <div class="pdp-diffusers__note">{{ note }}</div>
-        </div>
-      </span>
+        <span class="visually-hidden">{{ settings.diff_info_title }}</span>
+      </button>
     {% endif %}
   </div>
 {% endif %}

@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5"></div>
+    <div class="col-md-7">
+      <h2 class="diffusers__title">{{ section.settings.title }}</h2>
+
+      {% render 'subscription-usps' %}
+
+      {% render 'subscription-form' with settings.extra_diffusers_product
+        show_extras: false,
+        sub_only: true,
+      %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Diffusers",
+    "class": "diffusers",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "image_picker",
+        "id": "background",
+        "label": "Background"
+      }
+    ]
+  }
+{% endschema %}

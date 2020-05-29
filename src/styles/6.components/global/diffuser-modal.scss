@@ -1,0 +1,175 @@
+.diffuser-modal {
+  z-index: $z-diffuser-info;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: row wrap;
+
+  &__overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color-black, 0.5);
+  }
+
+  &__inner {
+    position: relative;
+    flex: 0 0 450px;
+    max-width: 450px;
+    margin: auto;
+    background-color: $color-background;
+  }
+
+  &__inner > h3 {
+    @include font-header(700);
+    @include text(30px, 36px, $color-main-1, 1.77px);
+    margin: 0 auto 10px;
+    padding: 0 25px;
+    text-align: center;
+  }
+
+  &__close-x {
+    @include no-browser-styling;
+    @include no-font-size;
+    z-index: $z-base;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 2px;
+
+    svg {
+      width: 10px;
+      height: 10px;
+    }
+
+    g {
+      stroke: $color-body-text;
+    }
+  }
+
+  &__img-wrap {
+    margin: 0 auto 10px;
+  }
+
+  &__img {
+    object-fit: cover;
+  }
+
+  &__description {
+    @include font-header(500);
+    @include text(16px, 22px, $color-body-text, 0.95px);
+    margin: 0 auto 15px;
+    padding: 0 25px;
+    text-align: center;
+
+    small {
+      font-size: 14px;
+      line-height: 18px;
+      letter-spacing: 0.83px;
+      color: $color-theme-8;
+      display: block;
+      margin: 10px 0 0;
+    }
+  }
+
+  &__banner {
+    @include clearfix;
+    background-image: linear-gradient(
+      to right,
+      $color-theme-4 0%,
+      $color-background 100%
+    );
+    padding: 20px 25px;
+    margin: 0 0 20px;
+  }
+
+  &__banner h4 {
+    @include font-header(700);
+    @include text(16px, 22px, $color-theme-17, 0.95px);
+    margin: 0 0 10px;
+  }
+
+  &__banner p {
+    @include font-header(500);
+    @include text(14px, 22px, $color-theme-8, 0.95px);
+  }
+
+  &__banner-img-wrap {
+    margin: auto;
+  }
+
+  &__banner-img {
+    object-fit: cover;
+  }
+
+  &__close-wrap {
+    margin: 0 auto 20px;
+    text-align: center;
+  }
+
+  &__close-btn {
+    @include button(solid, round, 1);
+    background-color: $color-theme-17;
+    background-image: none;
+
+    &:focus {
+      outline: auto 5px;
+    }
+  }
+
+  @include media-query($small) {
+    &__inner {
+      flex: 0 0 calc(100% - 30px);
+      max-width: calc(100% - 30px);
+      margin: 50px auto auto;
+    }
+
+    &__inner > h3 {
+      font-size: 22px;
+      line-height: 30px;
+      letter-spacing: 1px;
+      padding: 0 15px;
+    }
+
+    &__description {
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.5px;
+      padding: 0 15px;
+
+      small {
+        font-size: 11px;
+        line-height: 14px;
+        letter-spacing: 0.4px;
+      }
+    }
+
+    &__banner {
+      padding: 15px;
+    }
+
+    &__banner h4 {
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.5px;
+      margin: 0 0 5px;
+    }
+
+    &__banner p {
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.5px;
+    }
+
+    &__close-btn {
+      font-size: 14px;
+      letter-spacing: 0.9px;
+      padding: 8px 20px;
+    }
+  }
+}
