@@ -84,7 +84,6 @@ window.onload = function() {
       data: { country: country, product_id: productId },
       dataType: "json",
       success: function(response) {
-        //console.log(response);
         $(selectors.unavailableVariants).val(response.out_of_stock);
         $(selectors.unavailableNotices).val(response.nofify_order);
         var $variantMessages = response.black_order;
