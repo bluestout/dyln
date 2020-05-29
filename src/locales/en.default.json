@@ -325,6 +325,7 @@
       "sold_out_email_placeholder": "Enter email",
       "sold_out_email_btn_text": "Notify Me",
       "sold_out_email_confirm_txt": "Thank you for your interest!  We'll notify you via email as soon as this item is back in stock.",
+      "sold_out_email_invalid": "Invalid email Address",
       "unavailable": "Unavailable",
       "on_sale": "On Sale",
       "on_sale_from_html": "On Sale from {{ price }}",

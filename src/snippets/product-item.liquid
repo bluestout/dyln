@@ -220,6 +220,8 @@
 
     </div>
 
+    <input type="hidden" data-current-product-id value="{{ block_p.id }}" />
+
   {% endform %}
 
   {% if block_p != empty and block_p.has_only_default_variant == false %}

@@ -384,8 +384,6 @@ function addToCartComplete(jqXHR, textStatus) {
     jqXHR.responseJSON.description.length > 0
   ) {
     showMessage(jqXHR.responseJSON.description);
-  } else {
-    console.log("error: ", jqXHR.responseJSON.description);
   }
 }
 

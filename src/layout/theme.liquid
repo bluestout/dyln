@@ -69,6 +69,13 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
+  {% comment %}  {% endcomment %}
+  <input type="hidden" id="country-hidden" />
+  <input type="hidden" id="unavailable-variant" />
+  <input type="hidden" id="unavailable-notify" />
+  <input type="hidden" id="geo-location-info" />
+  {{ 'custom.js' | asset_url | script_tag  }}
+
   <nav class="visually-hidden skip-link">
     <a class="skip-link" href="#MainContent" >{{ "general.accessibility.skip_to_content" | t }}</a>
     <ul>
@@ -99,6 +106,13 @@
   {% include 'subscription-theme-footer' %}
 
   {% include 'subscription-checkout-redirect' %}
+
+  {% comment %} TODO remove after done testing {% endcomment %}
+  <style>
+    #preview-bar-iframe {
+      display: none !important;
+    }
+  </style>
 
 </body>
 </html>
