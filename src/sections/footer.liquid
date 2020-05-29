@@ -110,6 +110,44 @@
   {%- endif -%}
 {%- endif -%}
 
+<div class="site-footer__newsletter"
+     style="background-image:url({{ section.settings.footer_newsletter_background.src | image_url }})">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-6">
+        <div class="site-footer__newsletter-title">
+          <h2>{{ section.settings.footer_newsletter_title }}</h2>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-6 d-flex flex-column flex-lg-row align-items-lg-center">
+        <div class="col-md-12 col-lg-6">
+          <p>{{ section.settings.footer_newsletter_opt_in_text }}</p>
+          <div class="site-footer__newsletter-button-container">
+            <div class="site-footer__newsletter-button" data-button-slider></div>
+            <button id="email" class="active" data-email-opt-in>{{ 'layout.footer.email' | t }}</button>
+            <button id="sms" data-sms-opt-in>{{ 'layout.footer.sms' | t }}</button>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-6">
+          <div class="site-footer__newsletter-opt-in opt-in-email active" data-email-input>
+            {% comment %}
+              TODO: Add Klaviyo
+            {% endcomment %}
+            <input type="email" placeholder="{{ section.settings.email_placeholder }}" />
+            <button type="submit">{% render 'icon-send' %}</button>
+          </div>
+          <div class="site-footer__newsletter-opt-in opt-in-sms" data-phone-input>
+            {% comment %}
+              TODO: Add Klaviyo
+            {% endcomment %}
+            <input type="number" placeholder="{{ section.settings.telephone_placeholder }}" />
+            <button type="submit">{% render 'icon-send' %}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <footer class="site-footer__footer">
   <div class="site-footer__wave-middle"></div>
   <div class="site-footer__footer-bg">
@@ -156,6 +194,33 @@
     "name": "Footer",
     "class": "site-footer",
     "settings": [
+      {
+        "type": "text",
+        "id": "footer_newsletter_title",
+        "label": "Footer Newsletter Title"
+      },
+      {
+        "type": "image_picker",
+        "id": "footer_newsletter_background",
+        "label": "Footer Newsletter Background"
+      },
+      {
+        "type": "text",
+        "id": "footer_newsletter_opt_in_text",
+        "label": "Footer Newsletter Opt-In Text"
+      },
+      {
+        "type": "text",
+        "id": "telephone_placeholder",
+        "label": "Newsletter Phone Placeholder",
+        "default": "Telephone Number"
+      },
+      {
+        "type": "text",
+        "id": "email_placeholder",
+        "label": "Newsletter E-mail Placeholder",
+        "default": "Email Address"
+      },
       {
         "type": "link_list",
         "id": "menu",

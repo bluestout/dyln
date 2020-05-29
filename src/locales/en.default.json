@@ -313,6 +313,7 @@
       "payment_methods": "Payment methods accepted",
       "newsletter_title": "Get exclusive offers",
       "email": "Email",
+      "sms": "SMS",
       "phone": "Phone Number",
       "submit": "Subscribe!"
     }
