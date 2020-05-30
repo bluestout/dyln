@@ -1,16 +1,15 @@
-<div class="pdp-diffusers__usps">
-  <div class="pdp-diffusers__usp">
+<div class="diffusers__usps{% if size == 'large' %} large{% endif %}">
+  <div class="diffusers__usp{% if size == 'large' %} large{% endif %}">
+    {% render 'icon-shipping-truck' %}
+    <span>{{ 'products.subscription.free_shipping' | t }}</span>
+  </div>
+  <div class="diffusers__usp{% if size == 'large' %} large{% endif %}">
     {% render 'icon-circle-savings' %}
     <span>{{ 'products.subscription.save' | t }}</span>
   </div>
 
-  <div class="pdp-diffusers__usp">
+  <div class="diffusers__usp{% if size == 'large' %} large{% endif %}">
     {% render 'icon-options' %}
     <span>{{ 'products.subscription.customize' | t }}</span>
-  </div>
-
-  <div class="pdp-diffusers__usp">
-    {% render 'icon-circle-close' %}
-    <span>{{ 'products.subscription.cancel_anytime' | t }}</span>
   </div>
 </div>

@@ -689,5 +689,49 @@
         "default": ".1diffuser,.2diffusers,.9diffusers"
       }
     ]
+  },
+  {
+    "name": "Diffuser Info Modal",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "diff_info_image",
+        "label": "Image",
+        "info": "440x240"
+      },
+      {
+        "type": "text",
+        "id": "diff_info_title",
+        "label": "Title",
+        "default": "What's a Diffuser?"
+      },
+      {
+        "type": "textarea",
+        "id": "diff_info_description",
+        "label": "Description"
+      },
+      {
+        "type": "image_picker",
+        "id": "diff_info_banner_image",
+        "label": "Banner Image",
+        "info": "100x100"
+      },
+      {
+        "type": "text",
+        "id": "diff_info_banner_title",
+        "label": "Banner Title"
+      },
+      {
+        "type": "textarea",
+        "id": "diff_info_banner_description",
+        "label": "Banner Description"
+      },
+      {
+        "type": "text",
+        "id": "diff_info_close_text",
+        "label": "Close Button",
+        "default": "Got it!"
+      }
+    ]
   }
 ]

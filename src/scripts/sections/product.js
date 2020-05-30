@@ -15,7 +15,6 @@ import { forceFocus } from "@shopify/theme-a11y";
 import { ProductForm } from "@shopify/theme-product-form";
 import { scrollTo } from "../components/scroll-to";
 import { handleize } from "../components/helpers";
-import "../components/custom-select";
 
 const classes = {
   hide: "hide",

@@ -15,6 +15,8 @@ import "../components/ajaxcart";
 import "../components/scroll-to-data";
 import "../components/rte";
 import "../components/subscription";
+import "../components/diffuser-modal";
+import "../components/custom-select";
 
 import { focusHash, bindInPageLinks } from "@shopify/theme-a11y";
 
