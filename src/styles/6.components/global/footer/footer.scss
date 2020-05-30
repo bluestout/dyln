@@ -71,7 +71,7 @@
 
         button {
           position: relative;
-          z-index: 2;
+          z-index: 1;
           transition: ease-in-out all 0.3s;
           border: none;
           background: none;
@@ -414,6 +414,47 @@
       letter-spacing: 0.11px;
     }
   }
+
+  &__reach-out {
+    display: flex;
+    align-items: center;
+
+    @include media-query($large-down) {
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+
+    .social-links {
+      margin-left: 20px;
+      margin-top: 5px;
+
+      @include media-query($large-down) {
+        display: none;
+      }
+    }
+
+    .icon-divider svg {
+      margin: 10px;
+      margin-bottom: 30px;
+    }
+
+    a {
+      color: $color-white;
+
+      @include media-query($large-down) {
+        padding: 5px 0;
+      }
+    }
+
+    &-title {
+      @include font-header(700);
+      @include text(20px, 26px, $color-white, 1.18px);
+
+      @include media-query($large-down) {
+        text-align: center;
+      }
+    }
+  }
 }
 
 .site-footer__lf-list {
@@ -439,4 +480,5 @@
 
 @import "./footer-copyright";
 @import "./footer-newsletter";
+@import "./footer-payment";
 @import "./social-links";
