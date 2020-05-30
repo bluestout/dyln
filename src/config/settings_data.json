@@ -6,12 +6,30 @@
     "color_accent_1_s": "#0080b7",
     "color_accent_2_s": "#00bf76",
     "color_accent_3_s": "#b3d8e1",
+    "color_supplementary_1": "#73c8e2",
+    "color_supplementary_2": "#67e3a9",
+    "color_supplementary_3": "#bbd3da",
     "color_title": "#333c41",
     "color_title_light": "#fff",
     "color_body_text": "#161d25",
     "color_main_bg": "#fff",
+    "color_main_bg_mobile": "#fff",
+    "blog_article_card_background": "#fff",
+    "color_blog_tagged_background": "#f4f4f4",
+    "blog_article_card_title": "#161d25",
+    "blog_article_card_category_links": "#00aedb",
     "font_heading": "poppins_n4",
     "font_body": "open_sans_n4",
+    "default_body_fs": 15,
+    "default_h1_fs": 36,
+    "default_h2_fs": 30,
+    "default_h3_fs": 26,
+    "default_h4_fs": 22,
+    "default_h5_fs": 18,
+    "default_h6_fs": 16,
+    "default_p_fs": 16,
+    "default_grid_gap": 15,
+    "default_max_container": 1330,
     "share_image": "",
     "social_sharing_blog": true,
     "share_facebook": true,
@@ -25,11 +43,69 @@
     "social_tumblr_link": "",
     "social_youtube_link": "",
     "social_vimeo_link": "",
-    "cart_notes_enable": true,
+    "index_fb_title": "The Bottle That Creates Alkaline Water On the Go!",
+    "index_fb_description": "Stay hydrated with the patented ergonomic DYLN Living Water Bottle made from surgical-grade stainless steel and features a carrying handle.",
+    "index_fb_img": "",
+    "la_fb_title": "The Bottle That Creates Alkaline Water On the Go!",
+    "la_fb_description": "Stay hydrated with the patented ergonomic DYLN Living Water Bottle made from surgical-grade stainless steel and features a carrying handle.",
+    "la_fb_img": "",
+    "pd_fb_title": "The Bottle That Creates Alkaline Water On the Go!",
+    "pd_fb_description": "Stay hydrated with the patented ergonomic DYLN Living Water Bottle made from surgical-grade stainless steel and features a carrying handle.",
+    "pd_fb_img": "",
     "shipping_threshold": 100,
+    "shipping_threshold_CA": 100,
+    "shipping_threshold_other": 100,
+    "empty_cart_title": "Your Cart is empty.",
+    "empty_cart_link_1": "shopify://products/dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
+    "empty_cart_link_text_1": "Shop the bottle",
+    "empty_cart_image_1": "shopify://shop_images/dyln-cart-sport-cap.png",
+    "empty_cart_link_2": "shopify://collections/dyln-water-bottle-accessories",
+    "empty_cart_link_text_2": "Shop accessories",
+    "empty_cart_image_2": "shopify://shop_images/dyln-cart-water-bottle.png",
+    "empty_cart_link_3": "/account",
+    "empty_cart_link_text_3": "Become a member",
+    "empty_cart_image_3": "shopify://shop_images/dyln-cart-y-logo-on-blue.png",
+    "empty_cart_link_4": "shopify://pages/about-dyln-inspired",
+    "empty_cart_link_text_4": "Learn More",
+    "empty_cart_image_4": "shopify://shop_images/dyln-cart-ph-sign-in-drop.png",
     "favicon": "",
+    "extra_diffusers_title": "Add Extra Diffusers",
+    "extra_diffusers_product": "extra-vitabead-diffusers",
+    "extra_diffusers_note": "Keep the Enhanced hydration going either by adding extra Diffusers or by Subscribing and getting your Diffuser(s) as often as you need.<br>\n<span class=\"brand-blue\"><strong>Shipping is on us for US Customers</strong></span>",
+    "extra_diffusers_show_where": "1920834338904, 3234684803",
+    "canada_inv": true,
+    "canada_inv_na": "",
+    "canada_default": true,
+    "canada_default_p": "matte|9378529219|dyln-blue",
+    "cnada_dif_avil": ".4diffusers,.2diffusers,.3diffusers,.8diffusers,.9diffusers",
+    "cnada_dif_oavil": ".4diffusers,.2diffusers,.3diffusers,.8diffusers,.9diffusers",
+    "uk_inv": true,
+    "uk_inv_na": "",
+    "uk_default": true,
+    "uk_default_p": "matte|9378529219|dyln-blue",
+    "uk_dif_avil": ".3diffusers,.9diffusers",
+    "uk_dif_oavil": ".3diffusers,.9diffusers",
+    "px_inv": true,
+    "px_inv_na": "",
+    "px_default": true,
+    "px_default_p": "matte|9378529219|dyln-blue",
+    "px_dif_uavil": ".3diffusers,.9diffusers",
+    "px_dif_oavil": ".3diffusers,.9diffusers",
+    "us_inv": false,
+    "us_inv_na": ".tango-orange,.neon-pink,.crimson-red",
+    "us_default": true,
+    "us_default_p": "matte|9378529219|dyln-blue",
+    "us_dif_avil": ".3diffusers,.9diffusers",
+    "us_dif_oavil": ".3diffusers,.9diffusers",
+    "diff_info_image": "shopify://shop_images/dyln-diffuser-shown-inside-bottle-with-extractor.png",
+    "diff_info_title": "What's a Diffuser?",
+    "diff_info_description": "Each DYLN Bottle includes one Diffuser. Each VitaBead Diffuser lasts up to 315 refills, once those refills are up, easily replace your Diffuser using the Diffuser Removal tool*.\n<small>\n*Diffuser Removal Tool included with each bottle.</small>",
+    "diff_info_banner_image": "shopify://shop_images/dyln-diffuser-inside-shipping-box.png",
+    "diff_info_banner_title": "TIP:",
+    "diff_info_banner_description": "Subscribe to Diffusers, get them delivered automatically, save and get free shipping.",
+    "diff_info_close_text": "Got it!",
     "checkout_header_image": "",
-    "checkout_logo_image": "",
+    "checkout_logo_image": "shopify://shop_images/logo-dyln.png",
     "checkout_logo_position": "left",
     "checkout_logo_size": "medium",
     "checkout_body_background_image": "",
@@ -42,6 +118,10 @@
     "checkout_accent_color": "#197bbd",
     "checkout_button_color": "#197bbd",
     "checkout_error_color": "#e32c2b",
+    "title": "Add Extra Diffusers",
+    "extra_product": "recharge-testing-extra-vitabead-diffusers",
+    "note": "Keep the Enhanced hydration going either by adding extra Diffusers or by Subscribing and getting your Diffuser(s) as often as you need.<br>\n<span class=\"brand-blue\"><strong>Shipping is on us for US Customers</strong></span>",
+    "cart_notes_enable": true,
     "sections": {
       "404": {
         "type": "404",
@@ -104,6 +184,10 @@
           "about_title": "About Us",
           "about_menu": "2020-about-submenu",
           "login_enabled": true,
+          "login_title": "Account",
+          "form_title": "LOGIN",
+          "register_link": "",
+          "register_link_text": "Register your new bottle",
           "help_enabled": true,
           "help_title": "Help",
           "help_menu": "2020-help-submenu",
@@ -130,6 +214,9 @@
       "footer": {
         "type": "footer",
         "settings": {
+          "footer_newsletter_title": "Join the DYLN Community and get exclusive perks!",
+          "footer_newsletter_background": "shopify://shop_images/footer-newsletter-background.png",
+          "footer_newsletter_opt_in_text": "What's the easiest for you?",
           "menu": "2020-footer-menu",
           "show_lifestyle_on_hp_only": true,
           "lf_title": "The DYLN Lifestyle",
@@ -389,7 +476,7 @@
             "type": "color",
             "settings": {
               "title": "DYLN Blue",
-              "swatch_image": "",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-DYLN-blue.png",
               "swatch_color": "#00aedb"
             }
           },
@@ -397,7 +484,7 @@
             "type": "color",
             "settings": {
               "title": "Royal Purple",
-              "swatch_image": "",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-royal-purple.png",
               "swatch_color": "#522f77"
             }
           },
@@ -405,7 +492,7 @@
             "type": "color",
             "settings": {
               "title": "Bumble Yellow",
-              "swatch_image": "",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-bumble-yellow.png",
               "swatch_color": "#ffd839"
             }
           },
@@ -413,7 +500,7 @@
             "type": "color",
             "settings": {
               "title": "Forest Green",
-              "swatch_image": "",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-forest-green.png",
               "swatch_color": "#00961d"
             }
           },
@@ -421,7 +508,7 @@
             "type": "color",
             "settings": {
               "title": "Charcoal",
-              "swatch_image": "",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-charcoal.png",
               "swatch_color": "#545454"
             }
           },
@@ -429,7 +516,7 @@
             "type": "color",
             "settings": {
               "title": "Black",
-              "swatch_image": "",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-black.png",
               "swatch_color": "#28323c"
             }
           },
@@ -437,7 +524,7 @@
             "type": "color",
             "settings": {
               "title": "Rose Quartz",
-              "swatch_image": "",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-rose-quartz.png",
               "swatch_color": "#f6d0d9"
             }
           },
@@ -445,7 +532,7 @@
             "type": "color",
             "settings": {
               "title": "Pearl Grey",
-              "swatch_image": "",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-pearl-grey.png",
               "swatch_color": "#eceae5"
             }
           },
@@ -506,8 +593,8 @@
             "settings": {
               "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
               "product_upsell": "extra-vitabead-diffusers",
-              "product_upsell_2": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
-              "product_upsell_3": "diffuser-removal-tool"
+              "product_upsell_2": "diffuser-removal-tool",
+              "product_upsell_3": ""
             }
           }
         },
@@ -553,11 +640,7 @@
       },
       "pdp-diffusers": {
         "type": "pdp-diffusers",
-        "settings": {
-          "title": "Add Extra Diffusers",
-          "extra_product": "extra-vitabead-diffusers",
-          "note": "Keep the Enhanced hydration going either by adding extra Diffusers or by Subscribing and getting your Diffuser(s) as often as you need.<br>\n<span class=\"brand-blue\"><strong>Shipping is on us for US Customers</strong></span>"
-        }
+        "settings": {}
       },
       "pdp-usps": {
         "type": "pdp-usps",
@@ -898,7 +981,9 @@
         "type": "contact-header",
         "settings": {
           "title": "How can we help?",
-          "content": "We’re just a button away. Feel free to contact us anytime."
+          "content": "We’re just a button away. Feel free to contact us anytime.",
+          "bg": "",
+          "bg_rsp": ""
         }
       },
       "contact-body": {
@@ -906,8 +991,218 @@
         "settings": {
           "help_link_1": "",
           "help_1_is_modal": true,
-          "help_link_1_text": "Let's talk",
-          "modal_1_title": "Let's talk",
+          "help_link_1_text": "",
+          "modal_1_title": "",
+          "modal_1_button_1": "",
+          "modal_1_button_1_text": "",
+          "modal_1_button_2": "",
+          "modal_1_button_2_text": "",
+          "modal_1_note": "",
+          "help_link_2": "",
+          "help_2_is_modal": true,
+          "help_link_2_text": "",
+          "modal_2_title": "",
+          "modal_2_button_1": "",
+          "modal_2_button_1_text": "",
+          "modal_2_button_2": "",
+          "modal_2_button_2_text": "",
+          "modal_2_note": "",
+          "help_link_3": "",
+          "help_link_3_text": "",
+          "title": "Send us a quick message",
+          "address_title": "Business address",
+          "address": "18242 W McDurmott, Suite A<br>\nIrvine, CA 92614<br>\nUnited States"
+        }
+      },
+      "contact-faqs": {
+        "type": "contact-faqs",
+        "blocks": {
+          "1589303702187": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/does-the-dyln-bottle-filter-water"
+            }
+          },
+          "1589303711149": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/when-should-i-be-drinking-alkaline-water"
+            }
+          },
+          "1589303717652": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/how-long-can-i-keep-water-in-my-dyln-bottle"
+            }
+          },
+          "1589303723052": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/what-are-the-vitabeads"
+            }
+          },
+          "1589303728898": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/how-long-does-it-take-to-alkalize-the-water-and-how-high-does-the-ph-increase"
+            }
+          },
+          "1589303734817": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/how-long-does-each-vitabead-diffuser-last"
+            }
+          },
+          "1589303740647": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/how-long-does-the-insulated-dyln-bottle-keep-the-water-hot-or-cold"
+            }
+          },
+          "1589303746263": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/what-is-included-with-each-dyln-bottle-order"
+            }
+          },
+          "1589303753423": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/what-is-the-dyln-bottle-made-of"
+            }
+          },
+          "1589303760815": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/how-much-water-can-the-dyln-bottle-hold"
+            }
+          },
+          "1589303766031": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/can-i-add-fruit-or-essential-oils-to-my-dyln-bottle"
+            }
+          },
+          "1589824267033": {
+            "type": "faq_bottle",
+            "settings": {
+              "faq_article": "faqs/how-long-does-the-insulated-dyln-bottle-keep-the-water-hot-or-cold"
+            }
+          },
+          "1589824281427": {
+            "type": "faq_bottle",
+            "settings": {
+              "faq_article": "faqs/what-are-the-vitabeads"
+            }
+          },
+          "1589824294407": {
+            "type": "faq_diffuser",
+            "settings": {
+              "faq_article": "faqs/how-long-can-i-keep-water-in-my-dyln-bottle"
+            }
+          },
+          "1589824302989": {
+            "type": "faq_diffuser",
+            "settings": {
+              "faq_article": "faqs/does-the-dyln-bottle-filter-water"
+            }
+          },
+          "1589824309340": {
+            "type": "faq_use",
+            "settings": {
+              "faq_article": "faqs/can-i-add-fruit-or-essential-oils-to-my-dyln-bottle"
+            }
+          },
+          "1589824315803": {
+            "type": "faq_use",
+            "settings": {
+              "faq_article": "faqs/what-are-the-vitabeads"
+            }
+          }
+        },
+        "block_order": [
+          "1589303702187",
+          "1589303711149",
+          "1589303717652",
+          "1589303723052",
+          "1589303728898",
+          "1589303734817",
+          "1589303740647",
+          "1589303746263",
+          "1589303753423",
+          "1589303760815",
+          "1589303766031",
+          "1589824267033",
+          "1589824281427",
+          "1589824294407",
+          "1589824302989",
+          "1589824309340",
+          "1589824315803"
+        ],
+        "settings": {
+          "title": "FAQS",
+          "see_all_text": "See All FAQs",
+          "jump_to": "Jump to",
+          "top_title": "Top Questions",
+          "bottle_title": "Bottle Registration",
+          "diffuser_title": "Diffuser Subscription",
+          "use_title": "Use and Care"
+        }
+      },
+      "account-benefits": {
+        "type": "account-benefits",
+        "blocks": {
+          "1587565617984": {
+            "type": "usp",
+            "settings": {
+              "title": "Earn Points",
+              "description": "Earn 1 point per $1 spent and save!",
+              "icon": "star"
+            }
+          },
+          "1587565633412": {
+            "type": "usp",
+            "settings": {
+              "title": "Get Reminders",
+              "description": "Keep track of your diffuser’s lifespan",
+              "icon": "reminder"
+            }
+          },
+          "1587565638251": {
+            "type": "usp",
+            "settings": {
+              "title": "Track Orders",
+              "description": "Know exactly where your order is",
+              "icon": "track"
+            }
+          }
+        },
+        "block_order": ["1587565617984", "1587565633412", "1587565638251"],
+        "settings": {}
+      },
+      "page-header": {
+        "type": "page-header",
+        "blocks": {
+          "1588874838535": {
+            "type": "Page",
+            "settings": {
+              "page": "bulk-order",
+              "title": "",
+              "subtitle": "Order DYLN Living Water Bottles for your wellness program,<br>\ncorporate gifts or special event."
+            }
+          }
+        },
+        "block_order": ["1588874838535"],
+        "settings": {}
+      },
+      "contact-sidebar": {
+        "type": "contact-sidebar",
+        "settings": {
+          "title": "Need to talk to a human?",
+          "help_link_1": "",
+          "help_1_is_modal": true,
+          "help_link_1_text": "Lets talk",
+          "modal_1_title": "Lets talk",
           "modal_1_button_1": "tel:1-949-209-9401",
           "modal_1_button_1_text": "<strong>Support</strong> 1-949-209-9401",
           "modal_1_button_2": "tel:1-949-209-9401",
@@ -916,26 +1211,475 @@
           "help_link_2": "",
           "help_2_is_modal": true,
           "help_link_2_text": "Email us",
-          "modal_2_title": "",
+          "modal_2_title": "Email us",
           "modal_2_button_1": "mailto:support@dyln.co",
           "modal_2_button_1_text": "support@dyln.co",
-          "modal_2_button_2": "mailto:sales@dyln.com",
+          "modal_2_button_2": "mailto:sales@dyln.co",
           "modal_2_button_2_text": "sales@dyln.co",
           "modal_2_note": "",
-          "help_link_3": "",
-          "help_link_3_text": "Live chat",
+          "help_link_3": "#",
+          "help_link_3_text": "Live chat"
+        }
+      },
+      "contact-tabs-header": {
+        "type": "contact-tabs-header",
+        "blocks": {
+          "1589660674893": {
+            "type": "block",
+            "settings": {
+              "tab": true,
+              "title": "FAQs"
+            }
+          },
+          "1589660684094": {
+            "type": "block",
+            "settings": {
+              "tab": true,
+              "title": "Domestic Shipping"
+            }
+          },
+          "1589660694966": {
+            "type": "block",
+            "settings": {
+              "tab": true,
+              "title": "International Shipping"
+            }
+          },
+          "1589660703622": {
+            "type": "block",
+            "settings": {
+              "tab": true,
+              "title": "Returns"
+            }
+          },
+          "1589660709912": {
+            "type": "block",
+            "settings": {
+              "tab": true,
+              "title": "Contact Us"
+            }
+          }
+        },
+        "block_order": [
+          "1589660674893",
+          "1589660684094",
+          "1589660694966",
+          "1589660703622",
+          "1589660709912"
+        ],
+        "settings": {}
+      },
+      "contact-dom-ship": {
+        "type": "contact-dom-ship",
+        "settings": {
+          "title": "",
+          "description": ""
+        }
+      },
+      "contact-intl-ship": {
+        "type": "contact-intl-ship",
+        "settings": {}
+      },
+      "contact-form": {
+        "type": "contact-form",
+        "settings": {
           "title": "Send us a quick message",
-          "address_title": "Business address",
+          "address_title": "Business Adress",
           "address": "18242 W McDurmott, Suite A<br>\nIrvine, CA 92614<br>\nUnited States"
         }
       },
-      "contact-faqs": {
-        "type": "contact-faqs",
+      "contact-domestic": {
+        "type": "contact-domestic",
+        "blocks": {
+          "1589705057441": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/what-is-included-with-each-dyln-bottle-order"
+            }
+          },
+          "1589705066694": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/can-i-add-fruit-or-essential-oils-to-my-dyln-bottle"
+            }
+          },
+          "1589705072131": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/when-should-i-be-drinking-alkaline-water"
+            }
+          }
+        },
+        "block_order": ["1589705057441", "1589705066694", "1589705072131"],
         "settings": {
-          "title": "FAQS",
-          "see_all_text": "See All FAQs",
-          "faq_limit": 6,
-          "blog": "faqs"
+          "title": "Domestic Shipping",
+          "description": "After your payment is verified, it may take up to 24 hours to process and ship your order. This does not include weekends or holidays. Purchases made after 11 am PT will not be shipped out until the next business day. If you order after 11 am PT on a Friday, your order will likely be shipped out on the following Monday. Please refer to the chart below for rates/times.",
+          "table_title_1": "Delivery Times",
+          "table_1": "<table>\n      <thead>\n        <tr>\n          <th>Service</th>\n          <th>Delivery time</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>USPS First Class</td>\n          <td>5-7 Business Days</td>\n        </tr>\n        <tr>\n          <td>USPS First Class</td>\n          <td>5-7 Business Days</td>\n        </tr>\n        <tr>\n          <td>USPS First Class</td>\n          <td>5-7 Business Days</td>\n        </tr>\n      </tbody>\n    </table>",
+          "table_title_2": "Delivery Rates",
+          "table_2": "<table>\n      <thead>\n        <tr>\n          <th>Order Type</th>\n          <th>Delivery time</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>Subsscriptions</td>\n          <td>Free Shipping</td>\n        </tr>\n        <tr>\n          <td>Orders Above $75.00 USD</td>\n          <td>Free Shipping</td>\n        </tr>\n        <tr>\n          <td>Orders Below $75.00 USD</td>\n          <td>Calculated at checkout</td>\n        </tr>\n      </tbody>\n    </table>"
+        }
+      },
+      "contact-international": {
+        "type": "contact-international",
+        "blocks": {
+          "1589717404626": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/what-is-the-dyln-bottle-made-of"
+            }
+          },
+          "1589717414081": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/what-is-included-with-each-dyln-bottle-order"
+            }
+          },
+          "1589710043276": {
+            "type": "country",
+            "settings": {
+              "title": "Canada",
+              "content": "<table>\n  <thead>\n    <tr>\n      <th>Service</th>\n      <th>Delivery time</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>USPS First Class</td>\n      <td>5-7 Business Days</td>\n    </tr>\n    <tr>\n      <td>USPS First Class</td>\n      <td>5-7 Business Days</td>\n    </tr>\n    <tr>\n      <td>USPS First Class</td>\n      <td>5-7 Business Days</td>\n    </tr>\n  </tbody>\n</table>",
+              "content_2": ""
+            }
+          },
+          "1589710110741": {
+            "type": "country",
+            "settings": {
+              "title": "Brazil",
+              "content": "<p>Unfortunately we don’t ship to Brazil, stay tuned!</p>",
+              "content_2": ""
+            }
+          },
+          "1589717442457": {
+            "type": "country",
+            "settings": {
+              "title": "France",
+              "content": "<table>\n  <thead>\n    <tr>\n      <th>Service</th>\n      <th>Delivery time</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>USPS First Class</td>\n      <td>5-7 Business Days</td>\n    </tr>\n    <tr>\n      <td>USPS First Class</td>\n      <td>5-7 Business Days</td>\n    </tr>\n    <tr>\n      <td>USPS First Class</td>\n      <td>5-7 Business Days</td>\n    </tr>\n  </tbody>\n</table>",
+              "content_2": ""
+            }
+          }
+        },
+        "block_order": [
+          "1589717404626",
+          "1589717414081",
+          "1589710043276",
+          "1589710110741",
+          "1589717442457"
+        ],
+        "settings": {
+          "title": "International Shipping",
+          "description": "<strong>After your payment is verified, it may take up to 24 hours to process and ship your order. This does not include weekends or holidays. Purchases made after 11 am PT will not be shipped out until the next business day. If you order after 11 am PT on a Friday, your order will likely be shipped out on the following Monday. Please refer to the chart below for rates/times.</strong><br><br>\nWe offer free shipping for orders to Canada over $150. For all other international shipping destinations, we offer free shipping for orders over $175 *excluding Russia.",
+          "select_title": "Delivery Rates & Times",
+          "select_placeholder": "Select country to know more",
+          "show_country_name": true
+        }
+      },
+      "contact-returns": {
+        "type": "contact-returns",
+        "blocks": {
+          "1589748448157": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/how-long-does-the-insulated-dyln-bottle-keep-the-water-hot-or-cold"
+            }
+          },
+          "1589748455174": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/what-are-the-vitabeads"
+            }
+          }
+        },
+        "block_order": ["1589748448157", "1589748455174"],
+        "settings": {
+          "title": "Returns",
+          "description": "<strong>After your payment is verified, it may take up to 24 hours to process and ship your order. This does not include weekends or holidays. Purchases made after 11 am PT will not be shipped out until the next business day. If you order after 11 am PT on a Friday, your order will likely be shipped out on the following Monday. Please refer to the chart below for rates/times.</strong>",
+          "link": "#",
+          "link_text": "Start Return Process"
+        }
+      },
+      "landing-page-header": {
+        "type": "landing-page-header",
+        "settings": {
+          "title": "Let's get started!",
+          "background": "shopify://shop_images/landing-page-background-image.png",
+          "foreground_image": "shopify://shop_images/landing-page-foreground-image.png"
+        }
+      },
+      "landing-page-steps": {
+        "type": "landing-page-steps",
+        "blocks": {
+          "1589817105930": {
+            "type": "step",
+            "settings": {
+              "step_num": "1",
+              "step_title": ""
+            }
+          },
+          "1589817109050": {
+            "type": "step",
+            "settings": {
+              "step_num": "2",
+              "step_title": ""
+            }
+          },
+          "1589817112017": {
+            "type": "video",
+            "settings": {
+              "step_num": "1",
+              "video_id": "ar7_Nv9a6sA"
+            }
+          }
+        },
+        "block_order": ["1589817105930", "1589817109050", "1589817112017"],
+        "settings": {
+          "title": "Follow these easy steps to start…",
+          "video_tab": true,
+          "video_tab_title": "Video Instructions",
+          "illustrations_tab": true,
+          "illustrations_tab_title": "Ilustrated instructions",
+          "num_of_steps": "2"
+        }
+      },
+      "landing-page-create-account": {
+        "type": "landing-page-create-account",
+        "blocks": {
+          "1589817285634": {
+            "type": "text",
+            "settings": {
+              "feature_icon": "icon-bottle",
+              "feature_title": "Register your DYLN",
+              "feature_content": "Manage your bottles & hydration preferences"
+            }
+          },
+          "1589817292026": {
+            "type": "text",
+            "settings": {
+              "feature_icon": "icon-reminder",
+              "feature_title": "Get Reminders",
+              "feature_content": "Keep track on when you need to replace your Diffuser"
+            }
+          },
+          "1589817382982": {
+            "type": "text",
+            "settings": {
+              "feature_icon": "icon-star",
+              "feature_title": "Earn Points",
+              "feature_content": "Earn 1 point per $1 spent and save!"
+            }
+          }
+        },
+        "block_order": ["1589817285634", "1589817292026", "1589817382982"],
+        "settings": {
+          "show": true,
+          "step_number": "3",
+          "step_title": "Worried about not knowing when you will need to replace your Diffuser? Create your DYLN Account",
+          "account_btn_text": "Create Account",
+          "account_btn_text_bonus": "Get 150",
+          "account_btn_url": ""
+        }
+      },
+      "landing-page-register-bottle": {
+        "type": "landing-page-register-bottle",
+        "settings": {
+          "show": true,
+          "step_number": "4",
+          "step_title": "Already created a DYLN Account?",
+          "step_content": "Register your bottle, give it a name, and keep tabs on your Diffuser so it's up-to-date",
+          "register_btn_text": "Register your Bottle",
+          "register_btn_link": ""
+        }
+      },
+      "landing-page-referal": {
+        "type": "landing-page-referal",
+        "settings": {
+          "step_number": "5",
+          "step_title": "Enjoy & Share!",
+          "step_image": "shopify://shop_images/dyln-accessories.png",
+          "referal_btn_text": "Refer a Friend",
+          "referal_btn_link": "",
+          "referal_points": "150"
+        }
+      },
+      "landing-page-recommendations": {
+        "type": "landing-page-recommendations",
+        "blocks": {
+          "1589817950897": {
+            "type": "text",
+            "settings": {
+              "icon": "icon-check",
+              "recommendation_title": "pH Test Drops",
+              "recommendation_content": "Quality pH test drops are a quick and easy way to test the pH of water."
+            }
+          },
+          "1589817968157": {
+            "type": "text",
+            "settings": {
+              "icon": "icon-uncheck",
+              "recommendation_title": "pH paper test strips",
+              "recommendation_content": "pH strips are intended and designed for measuring urine and saliva, not water or alkaline water."
+            }
+          },
+          "1589818001093": {
+            "type": "text",
+            "settings": {
+              "icon": "icon-check",
+              "recommendation_title": "Electronic pH Meter",
+              "recommendation_content": "Using a calibrated pH test meter will provide the most precise results."
+            }
+          },
+          "1589818038523": {
+            "type": "text",
+            "settings": {
+              "icon": "icon-uncheck",
+              "recommendation_title": "Pool pH testing kits",
+              "recommendation_content": "This method will not give accurate or reliable results, because it is limited to an approximate pH range of 6.0—8.0."
+            }
+          }
+        },
+        "block_order": [
+          "1589817950897",
+          "1589817968157",
+          "1589818001093",
+          "1589818038523"
+        ],
+        "settings": {
+          "title": "Testing your water’s pH",
+          "gif": "",
+          "content": "Here are some recommendations on how to correctly test the pH of your water:"
+        }
+      },
+      "landing-page-banner": {
+        "type": "landing-page-banner",
+        "settings": {
+          "show": false,
+          "banner_title": "",
+          "banner_image": "",
+          "cta_text": "",
+          "cta_link": ""
+        }
+      },
+      "landing-page-diffusers": {
+        "type": "landing-page-diffusers",
+        "blocks": {
+          "1589818113237": {
+            "type": "text",
+            "settings": {
+              "icon": "icon-dolar-circle",
+              "recommendation_title": "Save"
+            }
+          },
+          "1589818128062": {
+            "type": "text",
+            "settings": {
+              "icon": "icon-settings",
+              "recommendation_title": "Customize"
+            }
+          },
+          "1589818142898": {
+            "type": "text",
+            "settings": {
+              "icon": "icon-close-circle-blue",
+              "recommendation_title": "Cancel anytime"
+            }
+          }
+        },
+        "block_order": ["1589818113237", "1589818128062", "1589818142898"],
+        "settings": {
+          "title": "Diffuser Title here",
+          "extra_product": "",
+          "note": "<p>We recommend replacing your Diffuser every 3 months but go ahead and <strong>customize quantity and frequency.</strong></p>"
+        }
+      },
+      "landing-page-faq": {
+        "type": "landing-page-faq",
+        "blocks": {
+          "1589818183209": {
+            "type": "faq",
+            "settings": {
+              "faq_article": ""
+            }
+          },
+          "1589818189673": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/how-long-does-the-insulated-dyln-bottle-keep-the-water-hot-or-cold"
+            }
+          },
+          "1589818198504": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/how-long-does-it-take-to-alkalize-the-water-and-how-high-does-the-ph-increase"
+            }
+          },
+          "1589818203430": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/how-much-water-can-the-dyln-bottle-hold"
+            }
+          },
+          "1589818210583": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/what-is-the-dyln-bottle-made-of"
+            }
+          }
+        },
+        "block_order": [
+          "1589818183209",
+          "1589818189673",
+          "1589818198504",
+          "1589818203430",
+          "1589818210583"
+        ],
+        "settings": {
+          "show": true,
+          "title": "FAQs"
+        }
+      },
+      "landing-page-modal": {
+        "type": "landing-page-modal",
+        "settings": {
+          "show": true,
+          "title": "Don't have a DYLN Bottle yet?",
+          "background": "shopify://shop_images/Pearl-Grey-Insulated-Bottle-vegetables-bg.jpg",
+          "cta_btn_url": "shopify://collections/all",
+          "cta_btn_text": "Shop Bottles",
+          "secondary_btn_url": "",
+          "secondary_btn_text": "I already have one, let's get started!",
+          "time_interval": "3000"
+        }
+      },
+      "template-page-header": {
+        "type": "template-page-header",
+        "settings": {
+          "show": true,
+          "title": "Patents and Trademarks",
+          "header_background": "shopify://shop_images/template-page-background.png"
+        }
+      },
+      "template-page-content": {
+        "type": "template-page-content",
+        "settings": {
+          "show": true,
+          "content": "<p><strong>Patents</strong></p>\n<p>Various products, as noted below, are covered by one or more United States patents. This webpage has been provided to facilitate notice of these patents to the public pursuant to Title 35 United States Code Section 287(a).</p>\n<p></p>\n<p>The listing below is provided in good faith and is believed to be accurate. However, only a few of our patents are noted below and the failure of a product to appear on this webpage does not mean that it is not covered by a patent we own or control.</p>\n<p></p>\n<p>DYLN Living Water Bottle</p>\n<p>U.S. Patent No. D740,609. Additional patents may be pending in the U.S. and elsewhere.</p>\n<p></p>\n<p><strong>Trademarks</strong></p>\n<p>DYLN, DYLN Inspired, VitaBeads, VitaPearl, and the mark which consists of a design in the shape of a letter \"Y\" with a solid circle located within the \"Y\" are registered trademarks of Dyln Lifestyle, LLC.</p>",
+          "show_sidebar": true,
+          "title": "Need to talk to a human?",
+          "telephone_title": "Let's talk",
+          "telephone": "0000-0000-000",
+          "email_title": "Email us",
+          "email": "test@test.com",
+          "live_chat_title": "Let's chat",
+          "live_chat": ""
+        }
+      },
+      "diffusers": {
+        "type": "diffusers",
+        "settings": {
+          "title": "Subscribe & Save!",
+          "note": "We recommend replacing your Diffuser every 3 months but go ahead and <strong>customize the frequency and quantity</strong>",
+          "image": "shopify://shop_images/dyln-many-diffusers-inside-shipping-box.png"
         }
       }
     },
