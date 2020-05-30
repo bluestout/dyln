@@ -350,7 +350,9 @@
       "save": "save",
       "customize": "Customize",
       "cancel_anytime": "Cancel anytime",
-      "change_amount": "Change Amount"
+      "free_shipping": "Free Shipping",
+      "change_amount": "Change Amount",
+      "back_to_one_time": "Back to one time purchase"
     }
   },
   "gift_cards": {

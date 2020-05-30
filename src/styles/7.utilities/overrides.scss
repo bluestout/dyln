@@ -37,9 +37,11 @@ body {
     margin-right: -#{$grid-gap};
     margin-left: -#{$grid-gap};
 
-    > [class*="col"] {
-      padding-right: $grid-gap;
-      padding-left: $grid-gap;
+    &:not(.no-gutters) {
+      > [class*="col"] {
+        padding-right: $grid-gap;
+        padding-left: $grid-gap;
+      }
     }
   }
 }
