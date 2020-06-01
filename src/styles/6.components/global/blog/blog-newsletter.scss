@@ -38,7 +38,7 @@
   }
 
   button {
-    @include poppins(bold);
+    @include font-header(bold);
     background-color: white;
     color: $color-theme-2;
     font-weight: 800;
@@ -60,7 +60,7 @@
     }
 
     p {
-      @include poppins(bold);
+      @include font-header(bold);
       width: 100px;
       text-align: left;
       margin-top: 10px;

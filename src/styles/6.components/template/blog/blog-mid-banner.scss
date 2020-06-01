@@ -1,6 +1,6 @@
 .blog-mid-banner {
   .mid-banner {
-    @include bg-image-only();
+    @include bg-image-only;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -8,7 +8,7 @@
     height: 113px;
 
     &__text {
-      @include poppins(bold);
+      @include font-header(bold);
       padding-left: 20px;
       color: white;
     }

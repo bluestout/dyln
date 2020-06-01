@@ -69,6 +69,12 @@ const selectors = {
     container: "[data-ajax-message-container]",
     text: "[data-ajax-message-text]",
   },
+  shipping: {
+    us: "[data-shipping-threshold-us]",
+    ca: "[data-shipping-threshold-ca]",
+    other: "[data-shipping-threshold-other]",
+    note: "[data-cart-shipping-note]",
+  },
 };
 
 const classes = {
@@ -433,6 +439,7 @@ function returnCartIfNotEmpty(json) {
   containerLoading();
   toggleAddingToCartAnimation($(selectors.add));
   handleCartDrawerCheckoutHeight();
+  handleFreeShippingMessage(json);
   document.dispatchEvent(ajaxReloaded);
 }
 
@@ -541,6 +548,37 @@ function handleUpsell(cart) {
     }
   }
   return pattern;
+}
+
+function handleFreeShippingMessage(cart) {
+  let threshold = 0;
+
+  if ($("body").hasClass("location-us")) {
+    threshold = $(selectors.shipping.us).val();
+  } else if ($("body").hasClass("location-ca")) {
+    threshold = $(selectors.shipping.ca).val();
+  } else {
+    threshold = $(selectors.shipping.other).val();
+  }
+
+  threshold = parseFloat(threshold);
+
+  const $note = $(selectors.shipping.note);
+  const total = cart.total_price / 100;
+  let remaining = threshold - total;
+  remaining = formatAndTrimPrice(remaining * 100);
+
+  if (cart.item_count < 1) {
+    $note.html(
+      theme.strings.free_shipping_empty_html.replace("###", threshold)
+    );
+  } else if (total >= threshold) {
+    $note.html(theme.strings.free_shipping_reached_html);
+  } else {
+    $note.html(
+      theme.strings.free_shipping_unreached_html.replace("###", remaining)
+    );
+  }
 }
 
 // on click, remove the item form cart

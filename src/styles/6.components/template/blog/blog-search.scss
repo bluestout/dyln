@@ -11,7 +11,7 @@
   }
 
   input[type="text"] {
-    @include poppins(bold);
+    @include font-header(bold);
     border: none;
     border-bottom: 1px solid $color-theme-1;
     font-size: 30px;
@@ -20,22 +20,22 @@
   }
 
   ::-webkit-input-placeholder {
-    @include poppins(bold);
+    @include font-header(bold);
     color: $color-theme-7;
   }
 
   ::-moz-placeholder {
-    @include poppins(bold);
+    @include font-header(bold);
     color: $color-theme-7;
   }
 
   :-ms-input-placeholder {
-    @include poppins(bold);
+    @include font-header(bold);
     color: $color-theme-7;
   }
 
   :-moz-placeholder {
-    @include poppins(bold);
+    @include font-header(bold);
     color: $color-theme-7;
   }
 }

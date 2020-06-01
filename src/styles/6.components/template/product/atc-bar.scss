@@ -114,13 +114,13 @@
   }
 
   &__current-text {
-    @include poppins(500);
+    @include font-header(500);
     @include text(17px, 23px, $color-theme-8, 1.34px);
   }
 
   &__show-more {
     @include no-browser-styling;
-    @include poppins(500);
+    @include font-header(500);
     @include text(17px, 23px, $color-theme-1, 1.34px);
     padding: 0;
     margin: 0;
@@ -135,12 +135,12 @@
   }
 
   &__title {
-    @include poppins(700);
+    @include font-header(700);
     @include text(24px, 26px, $color-title, 1.89px);
   }
 
   &__price {
-    @include poppins(500);
+    @include font-header(500);
     @include text(18px, 26px, $color-title, 1.42px);
   }
 

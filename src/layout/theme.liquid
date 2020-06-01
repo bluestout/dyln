@@ -7,8 +7,8 @@
   <meta name="theme-color" content="{{ settings.color_accent }}">
   <link rel="canonical" href="{{ canonical_url }}">
 
-  {% render 'ad-ap-anti-flicker' %}
-  {% render 'ad-ap-gtm' %}
+  {%- render 'ad-ap-anti-flicker' -%}
+  {%- render 'ad-ap-gtm-gtag' -%}
 
   {%- if settings.favicon != blank -%}
     <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
@@ -33,29 +33,26 @@
     <meta name="description" content="{{ page_description | escape }}">
   {%- endif -%}
 
-  {% render 'social-meta-tags' %}
-  {% render 'style-tags', layout: 'theme' %}
-  {% render 'css-variables' %}
+  {%- render 'social-meta-tags' -%}
+  {%- render 'style-tags', layout: 'theme' -%}
+  {%- render 'css-variables' -%}
 
-  {% comment %} Fonts {% endcomment %}
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins:400,500,700&display=swap" rel="stylesheet">
-
-  {% comment %} this is needed so translated strings can be used in js {% endcomment %}
+  {%- comment -%} this is needed so translated strings can be used in js {%- endcomment -%}
   {%- render 'theme-strings' -%}
 
   <script>
     document.documentElement.className = document.documentElement.className.replace('no-js', '');
-    {% if template.directory == 'customers' %}
+    {%- if template.directory == 'customers' -%}
       theme.allCountryOptionTags = {{ all_country_option_tags | json }};
-    {% endif %}
+    {%- endif -%}
   </script>
 
-  {% render 'script-tags', layout: 'theme' %}
+  {%- render 'script-tags', layout: 'theme' -%}
 
   {{ content_for_header }}
 
-  {% render 'weglot_hreftags' %}
-  {% render 'weglot_switcher' %}
+  {%- render 'weglot_hreftags' -%}
+  {%- render 'weglot_switcher' -%}
 
   <script
     src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -63,49 +60,35 @@
     crossorigin="anonymous"></script>
 </head>
 
-<body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}{% if template contains 'blog' %} {{ template | handleize }}{% endif %}">
+<body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}{%- if template contains 'blog' -%} {{ template | handleize }}{%- endif -%}">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K877228"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  {% comment %}  {% endcomment %}
-  <input type="hidden" id="country-hidden" />
-  <input type="hidden" id="unavailable-variant" />
-  <input type="hidden" id="unavailable-notify" />
-  <input type="hidden" id="geo-location-info" />
-  {{ 'custom.js' | asset_url | script_tag  }}
+  {%- render 'country-specific-data' -%}
 
-  <nav class="visually-hidden skip-link">
-    <a class="skip-link" href="#MainContent" >{{ "general.accessibility.skip_to_content" | t }}</a>
-    <ul>
-      {% for link in linklists["accessibility-menu"].links %}
-        <li>
-          <a href="{{ link.url }}" class="skip-link">{{ link.title }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-  </nav>
+  {%- render 'accessibility-menu' -%}
 
-  {% section 'header' %}
+  {%- section 'header' -%}
 
   <main role="main" id="MainContent">
     {{ content_for_layout }}
   </main>
 
-  {% render 'header-cart' %}
+  {%- section 'footer' -%}
 
-  {% section 'footer' %}
+  {%- render 'header-cart' -%}
 
   {%- section 'color-swatches' -%}
 
   {%- section 'cart-upsell' -%}
 
-  {% render 'ajax-message' %}
+  {%- render 'ajax-message' -%}
 
-  {% include 'subscription-theme-footer' %}
+  {%- include 'subscription-theme-footer' -%}
 
-  {% include 'subscription-checkout-redirect' %}
+  {%- include 'subscription-checkout-redirect' -%}
 
 </body>
 </html>

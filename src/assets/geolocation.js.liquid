@@ -1,7 +1,7 @@
 window.onload = function() {
   //make container changeable through the code in order to make the whole code work for product-item, not just for the pdp page
-  const container = `[data-section-type="product"]`;
-  const selectors = {
+  var container = `[data-section-type="product"]`;
+  var selectors = {
     unavailableVariants: "#unavailable-variant",
     unavailableNotices: "#unavailable-notify",
     country: "#country-hidden",
@@ -25,23 +25,23 @@ window.onload = function() {
     },
   };
 
-  const attributes = {
+  var attributes = {
     shipping: "data-ship-message",
   };
 
+  var geoLocationComplete = new Event("geoLocationComplete");
+
   // change the add to cart depending on product availability
   function renderSubmitButton() {
-    const $submitButton = $(selectors.submitButton);
-    const $submitButtonText = $(selectors.submitButtonText);
-    const uVariants = $(selectors.unavailableVariants).val();
-    const uNotices = $(selectors.unavailableNotices).val();
-    const currentVariant = $(selectors.idSelect).val();
-    const shippingMessage = $(selectors.currentOption).attr(
-      attributes.shipping
-    );
-    const $atcBarButton = $(selectors.atcAdd);
-    const $soldOutForm = $(selectors.soldOutForm);
-    const $shippingNote = $(selectors.shippingNote);
+    var $submitButton = $(selectors.submitButton);
+    var $submitButtonText = $(selectors.submitButtonText);
+    var uVariants = $(selectors.unavailableVariants).val();
+    var uNotices = $(selectors.unavailableNotices).val();
+    var currentVariant = $(selectors.idSelect).val();
+    var shippingMessage = $(selectors.currentOption).attr(attributes.shipping);
+    var $atcBarButton = $(selectors.atcAdd);
+    var $soldOutForm = $(selectors.soldOutForm);
+    var $shippingNote = $(selectors.shippingNote);
 
     if (typeof shippingMessage !== "undefined") {
       $shippingNote.text(shippingMessage);
@@ -51,7 +51,7 @@ window.onload = function() {
     }
 
     if (uVariants !== "") {
-      const uVariantsSplit = uVariants.split(",");
+      var uVariantsSplit = uVariants.split(",");
       if ($.inArray(currentVariant, uVariantsSplit) !== -1) {
         //if current variant is unavailable
         $submitButton.attr("disabled", true);
@@ -66,7 +66,7 @@ window.onload = function() {
     }
 
     if (uNotices !== "") {
-      const uNoticesSplit = uNotices.split(",");
+      var uNoticesSplit = uNotices.split(",");
       if ($.inArray(currentVariant, uNoticesSplit) !== -1) {
         $soldOutForm.fadeIn();
       } else {
@@ -76,7 +76,7 @@ window.onload = function() {
   }
 
   // get available variant
-  function getUnavailableVariant(country, productId) {
+  function setUnavailableVariants(country, productId) {
     var cUrl = "/a/dyl/black-variants";
     $.ajax({
       url: cUrl,
@@ -90,11 +90,11 @@ window.onload = function() {
         // set variant selector option attribute
         if ($variantMessages.length > 0) {
           $.each($variantMessages, function(i, variantMessage) {
-            const variantMessageSegment = variantMessage.split(":");
+            var variantMessageSegment = variantMessage.split(":");
             // set ship message attribute
-            const variant = variantMessageSegment[0];
-            const message = variantMessageSegment[1];
-            const $selectorOption = $(selectors.optionByVariant(variant));
+            var variant = variantMessageSegment[0];
+            var message = variantMessageSegment[1];
+            var $selectorOption = $(selectors.optionByVariant(variant));
             $selectorOption.attr(attributes.shipping, message);
           });
           renderSubmitButton();
@@ -117,21 +117,21 @@ window.onload = function() {
   $(selectors.notifyMe.submit).click(function() {
     theme.strings.sold_out_email_invalid;
     theme.strings.sold_out_email_confirm;
-    const notifyMessage = $(selectors.notifyMe.message);
+    var notifyMessage = $(selectors.notifyMe.message);
     notifyMessage.text("");
-    const $customerEmail = $(selectors.notifyMe.input);
+    var $customerEmail = $(selectors.notifyMe.input);
     if ($customerEmail.val() == "") {
       $customerEmail.focus();
       return false;
     } else {
-      const customerEmail = $customerEmail.val();
+      var customerEmail = $customerEmail.val();
       if (IsEmail(customerEmail)) {
         // send data
-        const cUrl = "/a/dyl/notify-me-data";
-        const country = $(selectors.country).val();
-        const productId = $(selectors.productId).val();
-        const variantId = $(selectors.idSelect).val();
-        const geoInfo = $(selectors.geoInfo).val();
+        var cUrl = "/a/dyl/notify-me-data";
+        var country = $(selectors.country).val();
+        var productId = $(selectors.productId).val();
+        var variantId = $(selectors.idSelect).val();
+        var geoInfo = $(selectors.geoInfo).val();
         $.ajax({
           url: cUrl,
           type: "GET",
@@ -169,37 +169,14 @@ window.onload = function() {
       "https://api.ipstack.com/check?access_key=c9ac55ecdf7513abc5581dd4c89b042b",
     dataType: "jsonp",
     success: function(location) {
+
       // If the visitor is browsing from US.
-      const userGeo = `
+      var userGeo = `
       ${location.ip}|${location.country_name}|
       ${location.region_name}|${location.city}|
       ${location.time_zone.id}|${location.country_code}|
       ${location.region_code}`;
       $(selectors.geoInfo).val(userGeo);
-      if (location.country_code === "US") {
-        $("body").addClass("location-us");
-        // $("#cart").addClass("loc-us");
-        // $("#cart li.location-us").addClass("offer-active");
-        // $("#promo .loca-us").addClass("offer-active");
-        // $("#promo-sub .sub-us").addClass("offer-active");
-        // $(".product-offer .bpro-us").addClass("p-active");
-        // $("#promo-product-wrap .bpro-us").addClass("p-active");
-      } else if (location.country_code === "CA") {
-        $("body").addClass("location-ca");
-        // $("#cart").addClass("loc-ca");
-        // $("#cart li.location-ca").addClass("offer-active");
-        // $("#promo .loca-ca").addClass("offer-active");
-        // $("#promo-sub .sub-ca").addClass("offer-active");
-        // $(".product-offer .bpro-ca").addClass("p-active");
-      } else {
-        $("body").addClass("location-other");
-        // $("#cart").addClass("loc-other");
-        // $("#cart li.location-other").addClass("offer-active");
-        // $("#promo .loca-other").addClass("offer-active");
-        // $("#promo-sub .sub-other").addClass("offer-active");
-        // $(".product-offer .bpro-other").addClass("p-active");
-        // $("#promo-product-wrap .bpro-other").addClass("p-active");
-      }
 
       // country inventory
       var country4px = [
@@ -250,145 +227,42 @@ window.onload = function() {
         "GB",
         "VN",
       ];
-      var country4pxall = [
-        "AU",
-        "AT",
-        "BE",
-        "BN",
-        "BG",
-        "KH",
-        "CA",
-        "CY",
-        "CZ",
-        "DK",
-        "EE",
-        "FI",
-        "FR",
-        "DE",
-        "GR",
-        "HK",
-        "HU",
-        "IE",
-        "IT",
-        "JP",
-        "LA",
-        "LV",
-        "LI",
-        "LT",
-        "LU",
-        "MO",
-        "MY",
-        "MT",
-        "MC",
-        "NL",
-        "NZ",
-        "NO",
-        "PH",
-        "PL",
-        "PT",
-        "RO",
-        "SG",
-        "SK",
-        "SI",
-        "KR",
-        "ES",
-        "SE",
-        "CH",
-        "TW",
-        "TH",
-        "GB",
-        "VN",
-      ];
+
+      if (location.country_code === "US") {
+        $("body").addClass("location-us");
+      } else if (location.country_code === "CA") {
+        $("body").addClass("location-ca");
+      } else {
+        $("body").addClass("location-other");
+      }
+
       // product page
       var sUrl = window.location.href;
-      var newBtl = false;
       var productPage = false;
-      var oldBtl = false;
 
-      // checking product page
+      // checking if we are on the product page
       if (sUrl.indexOf("/products/") != -1) {
         var productId = $("[data-pdp-product-id]").data("pdp-product-id");
         productPage = true;
       }
 
-      // process everything else if product page
       if (productPage) {
-        // Check dyln Orginal bottle page
-        if (
-          sUrl.indexOf("dyln-living-alkaline-stainless-steel-water-bottle") !=
-          -1
-        ) {
-          oldBtl = true;
-        }
-
-        // Check dyln Insulated bottle page
-        if (
-          sUrl.indexOf(
-            "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
-          ) != -1
-        ) {
-          newBtl = true;
-        }
-
         // Function country inventory according to country
         if (location.country_code === "CA") {
           // 4PX - CA Country region
           $(selectors.country).val("ca");
-
-          getUnavailableVariant("ca", productId);
-
-          // diffusers set
-          if (newBtl) {
-            var difAvla = "{{ settings.cnada_dif_oavil }}";
-          } else {
-            var difAvla = "{{ settings.cnada_dif_avil }}";
-          }
-
-          $("#product-options-new li")
-            .not(difAvla)
-            .addClass("y-active");
-          $("ul.pro-option li")
-            .not(difAvla)
-            .addClass("y-active");
+          setUnavailableVariants("ca", productId);
         } else if ($.inArray(location.country_code, country4px) != -1) {
           // 4PX - HK Country region
           $(selectors.country).val("px");
-          // set unavailable variants
-          getUnavailableVariant("px", productId);
-
-          // diffusers set
-          if (newBtl) {
-            var difAvla = "{{ settings.px_dif_oavil }}";
-          } else {
-            var difAvla = "{{ settings.px_dif_uavil }}";
-          }
-          $("#product-options-new li")
-            .not(difAvla)
-            .addClass("y-active");
-          $("ul.pro-option.dif li")
-            .not(difAvla)
-            .addClass("y-active");
+          setUnavailableVariants("px", productId);
         } else {
           // Senyx USA Country region
           $(selectors.country).val("other");
-          // set unavailable variants
-          getUnavailableVariant("other", productId);
-
-          // diffusers set
-          if (newBtl) {
-            var difAvla = "{{ settings.us_dif_oavil }}";
-          } else {
-            var difAvla = "{{ settings.us_dif_avil }}";
-          }
-
-          $("#product-options-new li")
-            .not(difAvla)
-            .addClass("y-active");
-          $("ul.pro-option.dif li")
-            .not(difAvla)
-            .addClass("y-active");
+          setUnavailableVariants("other", productId);
         }
-      } // end product page
+      }
+      document.dispatchEvent(geoLocationComplete);
     },
   });
 

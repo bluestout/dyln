@@ -217,13 +217,27 @@
           "footer_newsletter_title": "Join the DYLN Community and get exclusive perks!",
           "footer_newsletter_background": "shopify://shop_images/footer-newsletter-background.png",
           "footer_newsletter_opt_in_text": "What's the easiest for you?",
+          "telephone_placeholder": "Telephone Number",
+          "email_placeholder": "Email Address",
+          "show_amazon": true,
+          "show_google": true,
+          "show_paypal": true,
+          "show_apple": true,
+          "show_shopify": true,
+          "show_mastercard": true,
+          "show_amex": true,
+          "show_discover": true,
+          "show_visa": true,
           "menu": "2020-footer-menu",
           "show_lifestyle_on_hp_only": true,
           "lf_title": "The DYLN Lifestyle",
           "lf_content": "We are passionate about all health and environment issues, read more on our DYLN Blog",
           "lf_topics_h": "SELECT TOPIC",
           "lf_blog": "y-blog",
-          "lf_recent": "Recent"
+          "lf_recent": "Recent",
+          "reach_out_title": "Reach out to us",
+          "contact_mail": "support@dyln.co",
+          "contact_phone": "+1-949-558-2300"
         }
       },
       "1581510863955": {
