@@ -18,6 +18,8 @@
       @include media-query($large-down) {
         @include font-header(bold);
         @include text(20px, 1.2, $color-white, 1px);
+        text-align: left;
+        width: 50%;
       }
     }
 
@@ -300,6 +302,11 @@
     margin: 0;
     padding: 0;
     list-style: none;
+
+    @include media-query($medium-down) {
+      width: 50%;
+      margin: 0 auto;
+    }
   }
 
   &__menu-item {

@@ -154,16 +154,18 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-9 order-lg-1 order-1">
-          <div class="row">
+          <div class="row" data-tabs-container>
             {% for link in linklists[section.settings.menu].links %}
-              <div class="col-lg-3 col-6">
-                <div class="site-footer__p-link-wrap">
+              <div class="col-lg-3 col-12" data-accordion-parent=true>
+                <div class="site-footer__p-link-wrap" data-accordion-button="{{ forloop.index }}">
                   <a class="site-footer__parent-link" href="{{ link.url }}">
                     {{ link.title }}
+                    <span class="site-footer__closed">+</span>
+                    <span class="site-footer__open">-</span>
                   </a>
                 </div>
                 {% if link.links != blank %}
-                  <ul class="site-footer__menu-list">
+                  <ul class="site-footer__menu-list active" data-accordion-content="{{ forloop.index }}">
                     {% for childlink in link.links %}
                       <li class="site-footer__menu-item">
                         <a class="site-footer__menu-link" href="{{ childlink.url }}">
@@ -183,7 +185,15 @@
         </div>
 
         <div class="col-lg-3 order-lg-2 order-5">
-          {% render 'footer-payment-options' %}
+          {% render 'footer-payment-options' with
+            paypal: section.settings.show_paypal,
+            google: section.settings.show_google,
+            amazon: section.settings.show_amazon,
+            shopify: section.settings.show_shopify,
+            mastercard: section.settings.show_mastercard,
+            discover: section.settings.show_discover,
+            visa: section.settings.show_visa
+          %}
         </div>
 
         <div class="col-md-12 order-lg-3 order-3">
