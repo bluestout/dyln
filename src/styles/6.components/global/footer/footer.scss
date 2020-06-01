@@ -19,7 +19,6 @@
         @include font-header(bold);
         @include text(20px, 1.2, $color-white, 1px);
         text-align: left;
-        width: 50%;
       }
     }
 
@@ -35,9 +34,9 @@
       padding-bottom: 10px;
 
       @include media-query($large-down) {
+        @include text(14px, 1.2, $color-white, 0.5px);
         text-align: center;
         margin-top: 30px;
-        @include text(14px, 1.2, $color-white, 0.5px);
       }
     }
 
@@ -72,13 +71,14 @@
         }
 
         button {
+          @include font-header(bold);
+          @include text(18px, 1.2, $color-theme-24, 0.15px);
           position: relative;
           z-index: 1;
           transition: ease-in-out all 0.3s;
           border: none;
           background: none;
-          @include font-header(bold);
-          @include text(18px, 1.2, $color-theme-24, 0.15px);
+
 
           &.active {
             color: $color-white;
@@ -304,7 +304,6 @@
     list-style: none;
 
     @include media-query($medium-down) {
-      width: 50%;
       margin: 0 auto;
     }
   }
@@ -396,6 +395,29 @@
 
     &__p-link-wrap {
       text-align: center;
+
+      @include media-query($medium-down) {
+        width: 50%;
+        margin: 0 auto;
+      }
+
+      &.open {
+        .site-footer__closed {
+          display: none;
+        }
+        .site-footer__open {
+          display: inline-block;
+        }
+      }
+
+      &:not(.open) {
+        .site-footer__closed {
+          display: inline-block;
+        }
+        .site-footer__open {
+          display: none;
+        }
+      }
     }
 
     &__parent-link {
@@ -403,6 +425,13 @@
       line-height: 23px;
       letter-spacing: 0.13px;
       margin: 0 auto 10px;
+
+      @include media-query($large-down) {
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid $color-theme-17;
+        padding: 5px 0;
+      }
     }
 
     &__menu-list {
@@ -413,6 +442,15 @@
     &__menu-item {
       margin: 0;
       padding: 0;
+
+      @include media-query($large-down) {
+        width: 50%;
+        text-align: left;
+      }
+
+      @include media-query($medium-down) {
+        margin: 0 auto !important;
+      }
     }
 
     &__menu-link {
@@ -460,6 +498,13 @@
       @include media-query($large-down) {
         text-align: center;
       }
+    }
+  }
+
+  &__closed,
+  &__open {
+    @include media-query($large-up) {
+      display: none;
     }
   }
 }

@@ -156,7 +156,7 @@
         <div class="col-lg-9 order-lg-1 order-1">
           <div class="row" data-tabs-container>
             {% for link in linklists[section.settings.menu].links %}
-              <div class="col-lg-3 col-12" data-accordion-parent=true>
+              <div class="col-lg-3 col-12" data-accordion-parent=true accordion-mobile-only>
                 <div class="site-footer__p-link-wrap" data-accordion-button="{{ forloop.index }}">
                   <a class="site-footer__parent-link" href="{{ link.url }}">
                     {{ link.title }}
