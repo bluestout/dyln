@@ -15,6 +15,8 @@ import "../components/ajaxcart";
 import "../components/scroll-to-data";
 import "../components/rte";
 import "../components/subscription";
+import "../components/transitions";
+import "../components/footer";
 import "../components/diffuser-modal";
 import "../components/custom-select";
 

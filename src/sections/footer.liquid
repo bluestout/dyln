@@ -110,22 +110,62 @@
   {%- endif -%}
 {%- endif -%}
 
+<div class="site-footer__newsletter"
+     style="background-image:url({{ section.settings.footer_newsletter_background.src | image_url }})">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-6">
+        <div class="site-footer__newsletter-title">
+          <h2>{{ section.settings.footer_newsletter_title }}</h2>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-6 d-flex flex-column flex-lg-row align-items-lg-center">
+        <div class="col-md-12 col-lg-6">
+          <p>{{ section.settings.footer_newsletter_opt_in_text }}</p>
+          <div class="site-footer__newsletter-button-container">
+            <div class="site-footer__newsletter-button" data-button-slider></div>
+            <button id="email" class="active" data-email-opt-in>{{ 'layout.footer.email' | t }}</button>
+            <button id="sms" data-sms-opt-in>{{ 'layout.footer.sms' | t }}</button>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-6">
+          <div class="site-footer__newsletter-opt-in opt-in-email active" data-email-input>
+            {% comment %}
+              TODO: Add Klaviyo
+            {% endcomment %}
+            <input type="email" placeholder="{{ section.settings.email_placeholder }}" />
+            <button type="submit">{% render 'icon-send' %}</button>
+          </div>
+          <div class="site-footer__newsletter-opt-in opt-in-sms" data-phone-input>
+            {% comment %}
+              TODO: Add Klaviyo
+            {% endcomment %}
+            <input type="number" placeholder="{{ section.settings.telephone_placeholder }}" />
+            <button type="submit">{% render 'icon-send' %}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <footer class="site-footer__footer">
   <div class="site-footer__wave-middle"></div>
   <div class="site-footer__footer-bg">
     <div class="container">
       <div class="row">
-        <div class="col-lg-9 order-lg-1 order-2">
-          <div class="row">
+        <div class="col-lg-9 order-lg-1 order-1">
+          <div class="row" data-tabs-container>
             {% for link in linklists[section.settings.menu].links %}
-              <div class="col-lg-3 col-6">
-                <div class="site-footer__p-link-wrap">
+              <div class="col-lg-3 col-12" data-accordion-parent=true accordion-mobile-only>
+                <div class="site-footer__p-link-wrap" data-accordion-button="{{ forloop.index }}">
                   <a class="site-footer__parent-link" href="{{ link.url }}">
                     {{ link.title }}
+                    <span class="site-footer__closed">+</span>
+                    <span class="site-footer__open">-</span>
                   </a>
                 </div>
                 {% if link.links != blank %}
-                  <ul class="site-footer__menu-list">
+                  <ul class="site-footer__menu-list active" data-accordion-content="{{ forloop.index }}">
                     {% for childlink in link.links %}
                       <li class="site-footer__menu-item">
                         <a class="site-footer__menu-link" href="{{ childlink.url }}">
@@ -139,13 +179,56 @@
             {% endfor %}
           </div>
         </div>
-        <div class="col-lg-3 order-lg-2 order-1">
-          {% render 'footer-newsletter' %}
+
+        <div class="col-sm-12 order-2 d-flex d-lg-none justify-content-center">
           {% render 'social-links' %}
         </div>
-      </div>
-      <div class="footer-copyright">
-         © {{ "now" | date: "%Y" }}, DYLN Inspired | <a href="">Privacy Policy</a> | <a href="">Terms</a> | <a href="">IP</a>
+
+        <div class="col-lg-3 order-lg-2 order-5">
+          {% render 'footer-payment-options' with
+            paypal: section.settings.show_paypal,
+            google: section.settings.show_google,
+            amazon: section.settings.show_amazon,
+            shopify: section.settings.show_shopify,
+            mastercard: section.settings.show_mastercard,
+            discover: section.settings.show_discover,
+            visa: section.settings.show_visa
+          %}
+        </div>
+
+        <div class="col-md-12 order-lg-3 order-3">
+          <h3 class="site-footer__reach-out-title">{{ section.settings.reach_out_title }}</h3>
+        </div>
+
+        <div class="col-md-12 order-lg-4 order-4 d-flex no-gutters align-items-center">
+          <div class="col-sm-6 col-md-12 col-lg-7 col-sm-12">
+            <div class="site-footer__reach-out">
+              <a href="mailto:{{ section.settings.contact_mail }}">{{ section.settings.contact_mail }}</a>
+              <a href="tel:{{ section.settings.contact_phone }}">{{ section.settings.contact_phone }}</a>
+              <div class="d-flex d-md-none">
+                <div class="icon-divider">
+                  {% include 'icon-divider' %}
+                </div>
+              </div>
+              <div class="d-flex">
+                {% render 'social-links' %}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-5 d-none d-lg-flex">
+            <div class="footer-copyright">
+              © {{ "now" | date: "%Y" }}, DYLN Inspired | <a href="">Privacy Policy</a> | <a href="">Terms</a> | <a href="">IP</a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-sm-12 d-flex order-6 d-lg-none justify-content-center">
+          <div class="footer-copyright">
+            © {{ "now" | date: "%Y" }}, DYLN Inspired | <a href="">Privacy Policy</a> | <a href="">Terms</a> | <a href="">IP</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -156,6 +239,78 @@
     "name": "Footer",
     "class": "site-footer",
     "settings": [
+      {
+        "type": "text",
+        "id": "footer_newsletter_title",
+        "label": "Footer Newsletter Title"
+      },
+      {
+        "type": "image_picker",
+        "id": "footer_newsletter_background",
+        "label": "Footer Newsletter Background"
+      },
+      {
+        "type": "text",
+        "id": "footer_newsletter_opt_in_text",
+        "label": "Footer Newsletter Opt-In Text"
+      },
+      {
+        "type": "text",
+        "id": "telephone_placeholder",
+        "label": "Newsletter Phone Placeholder",
+        "default": "Telephone Number"
+      },
+      {
+        "type": "text",
+        "id": "email_placeholder",
+        "label": "Newsletter E-mail Placeholder",
+        "default": "Email Address"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_amazon",
+        "label": "Show Amazon Pay?"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_google",
+        "label": "Show Google Pay?"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_paypal",
+        "label": "Show PayPal"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_apple",
+        "label": "Show Apple Pay?"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_shopify",
+        "label": "Show Shopify Pay?"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_mastercard",
+        "label": "Show Mastercard?"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_amex",
+        "label": "Show Amex?"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_discover",
+        "label": "Show Discover?"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_visa",
+        "label": "Show Visa?"
+      },
       {
         "type": "link_list",
         "id": "menu",
@@ -191,8 +346,18 @@
       },
       {
         "type": "text",
-        "id": "lf_recent",
-        "label": "Recent Blogs Header"
+        "id": "reach_out_title",
+        "label": "Reach Out Title"
+      },
+      {
+        "type": "text",
+        "id": "contact_mail",
+        "label": "Reach Out Contact Mail"
+      },
+      {
+        "type": "text",
+        "id": "contact_phone",
+        "label": "Reach Out Contact Phone"
       }
     ]
   }

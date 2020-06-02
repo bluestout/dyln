@@ -1,0 +1,37 @@
+<div class="footer-payment">
+    <div class="footer-payment__options">
+        <h5 class="footer-payment__title">{{ 'layout.footer.payment_options_title' | t }}</h5>
+        <ul>
+            {% if amazon %}
+                <li><img src="{{ 'logo-amazon-pay-gray.png' | asset_img_url }}" alt="logo amazon pay"/></li>
+            {% endif %}
+            {% if google %}
+                <li><img src="{{ 'logo-google-pay-gray.png' | asset_img_url }}" alt="logo google pay"/></li>
+            {% endif %}
+            {% if apple %}
+                <li><img src="{{ 'logo-apple-pay-gray.png' | asset_img_url }}" alt="logo apple pay"/></li>
+            {% endif %}
+            {% if shopify %}
+                <li><img src="{{ 'logo-shopify-pay-gray.png' | asset_img_url }}" alt="logo shopify pay"/></li>
+            {% endif %}
+            {% if paypal %}
+                <li><img src="{{ 'logo-paypal-gray.png' | asset_img_url }}" alt="logo paypal"/></li>
+            {% endif %}
+        </ul>
+    </div>
+    <div class="footer-payment__methods">
+        <h5 class="footer-payment__title">{{ 'layout.footer.payment_methods_title' | t }}</h5>
+        <ul>
+            {% if mastercard %}
+                <li><img src="{{ 'logo-mastercard-gray.png' | asset_img_url }}" alt="logo mastercard" /></li>
+            {% endif %}
+            {% if amex %}
+                <li><img src="{{ 'logo-amex-gray.png' | asset_img_url }}" alt="logo amex" /></li>
+            {% endif %}
+            {% if discover %}
+                <li><img src="{{ 'logo-discover-gray.png' | asset_img_url }}" alt="logo discover" /></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+
