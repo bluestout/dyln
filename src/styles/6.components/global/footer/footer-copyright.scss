@@ -1,6 +1,8 @@
 .footer-copyright {
   @include font-header(500);
   @include text(12px, 14px, $color-white, 0.71px);
+  text-align: right;
+  width: 100%;
 
   a {
     color: $color-white;
@@ -13,7 +15,7 @@
     }
   }
 
-  @include media-query($medium-down) {
+  @include media-query($large-down) {
     font-size: 10px;
     line-height: 12px;
     letter-spacing: 0.59px;

@@ -313,8 +313,11 @@
       "payment_methods": "Payment methods accepted",
       "newsletter_title": "Get exclusive offers",
       "email": "Email",
+      "sms": "SMS",
       "phone": "Phone Number",
-      "submit": "Subscribe!"
+      "submit": "Subscribe!",
+      "payment_options_title": "Express Checkout",
+      "payment_methods_title": "Payment Methods"
     }
   },
   "products": {

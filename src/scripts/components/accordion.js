@@ -34,6 +34,7 @@ const selectors = {
   contentRsp: "[data-accordion-content-rsp]",
   parentRsp: "[data-accordion-parent-rsp]",
   wrapRsp: "[data-accordion-wrap-rsp]",
+  mobileOnly: "[data-accordion-mobile-only]",
   getContentById: (id) => `[data-${datasets.content}="${id}"]`,
   getContentByIdRsp: (id) => `[data-${datasets.contentRsp}="${id}"]`,
 };
@@ -43,6 +44,11 @@ const classes = {
 };
 
 function init() {
+  if ($(selectors.mobileOnly) && $(window).width() >= 992) {
+    detachEventHandlers();
+    return false;
+  }
+
   checkAccordionState();
   checkAccordionStateRsp();
 }
@@ -81,6 +87,11 @@ function checkAccordionStateRsp() {
       }
     });
   }
+}
+
+function detachEventHandlers() {
+  $(document).off("click", selectors.button, handleAccordionClick);
+  $(document).off("click", selectors.buttonRsp, handleAccordionClickRsp);
 }
 
 function handleAccordionClick(event) {
