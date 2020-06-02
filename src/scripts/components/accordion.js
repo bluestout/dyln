@@ -90,12 +90,12 @@ function checkAccordionStateRsp() {
 }
 
 function detachEventHandlers() {
-  $(document).off("click", selectors.button, handleAccordionClick);
   $(document).off("click", selectors.buttonRsp, handleAccordionClickRsp);
 }
 
 function handleAccordionClick(event) {
   event.preventDefault ? event.preventDefault() : (event.returnValue = false);
+  console.log("handleAccordionClick");
   const $source = $(event.currentTarget);
   const $parent = $source.closest(selectors.parent);
   const index = $source.data(datasets.button);

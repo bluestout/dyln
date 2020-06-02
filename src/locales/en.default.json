@@ -3,7 +3,8 @@
     "accessibility": {
       "skip_to_content": "Skip to content",
       "close": "Close",
-      "close_cart": "Close cart drawer"
+      "close_cart": "Close cart drawer",
+      "loading": "Loading"
     },
     "meta": {
       "tags": "Tagged \"{{ tags }}\"",

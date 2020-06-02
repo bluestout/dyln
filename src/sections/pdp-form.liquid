@@ -130,13 +130,14 @@
     data-submit-button
     data-add-to-cart
     {% unless current_variant.available %}disabled="disabled"{% endunless %}>
-      <span data-submit-button-text>
-          {% if current_variant.available %}
-            {{ 'products.product.add_to_cart' | t }}
-          {% else %}
-            {{ 'products.product.sold_out' | t }}
-          {% endif %}
+      <span data-submit-button-text data-add-to-cart-loaded>
+        {% if current_variant.available %}
+          {{ 'products.product.add_to_cart' | t }}
+        {% else %}
+          {{ 'products.product.sold_out' | t }}
+        {% endif %}
       </span>
+      <span data-add-to-cart-loading class="loading-dots hide"></span>
   </button>
 
   <p class="product-form__sold-out-notice hide" data-pdp-shipping-note></p>

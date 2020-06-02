@@ -224,7 +224,7 @@
   @include media-query($large-up) {
     &:hover,
     &:focus,
-    &.focused {
+    &.active {
       &:not(.single) {
         &::after,
         &::before {

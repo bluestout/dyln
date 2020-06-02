@@ -66,7 +66,9 @@ function quickCartUpsellHtml(product, url, index) {
               checkedStatus = `checked="checked"`;
               isChecked = true;
             }
-            colorInputs += `<label class="visually-hidden" for="cu-${k}-${option}-${j}" tabindex="-1">${variant.title}</label>`;
+            colorInputs += `<label class="visually-hidden" for="cu-${k}-${option}-${j}" tabindex="-1">${
+              variant.title
+            }</label>`;
             colorInputs += `<input type="radio"
               tabindex="-1"
               id="cu-${k}-${option}-${j}"
@@ -138,8 +140,8 @@ function quickCartUpsellHtml(product, url, index) {
       <h4 class="cart-drawer__upsell-item-title">${product.title}</h4>
       <p class="cart-drawer__upsell-text">
       <span data-upsell-price>
-      ${formatAndTrimPrice(product.price)}
-        </span>
+        ${formatAndTrimPrice(product.price)}
+      </span>
       </p>
     </a>
     <div class="cart-drawer__upsell-form">

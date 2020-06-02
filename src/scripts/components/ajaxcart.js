@@ -18,7 +18,7 @@ const datasets = {
 const selectors = {
   header: "[data-section-type='header']",
   add: "[data-add-to-cart]",
-  addText: "[data-add-to-cart-content]",
+  addText: "[data-add-to-cart-loaded]",
   addLoading: "[data-add-to-cart-loading]",
   remove: "[data-remove-item]",
   changeAjax: "[data-qty-change-ajax]",
@@ -476,10 +476,12 @@ function quickCartOpen(open) {
     $(selectors.quickcart).addClass(classes.open);
     $(selectors.quick.overlay).addClass(classes.active);
     document.querySelector("html").classList.add("no-scroll");
+    $(selectors.quick.focusIn).focus();
   } else {
     $(selectors.quickcart).removeClass(classes.open);
     $(selectors.quick.overlay).removeClass(classes.active);
     document.querySelector("html").classList.remove("no-scroll");
+    $(selectors.quick.focusOut).focus();
   }
 }
 
@@ -591,7 +593,7 @@ $(document).on("change", selectors.input, handleQtyInputChange);
 // toggle quick cart from the right
 $(document).on("click", selectors.quick.toggle, quickCartToggle);
 // ajaxify add to cart buttons
-$(document).on("click", selectors.add, handleAjaxAddButtonClick);
+$(document).on("click", selectors.add, addToCartComplete);
 $(document).on("click", selectors.upsell.submit, handleAjaxUpsellSubmit);
 $(document).on("change", selectors.upsell.select, handleAjaxUpsellSelectChange);
 $(document).on("click", selectors.upsell.input, handleAjaxUpsellInputClick);

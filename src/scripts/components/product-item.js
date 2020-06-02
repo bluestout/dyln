@@ -24,6 +24,7 @@ const selectors = {
   current: `.${classes.active}[data-${datasets.image}]`,
   image: `[data-${datasets.image}]`,
   item: "[data-pi-item]",
+  itemLink: "[data-pi-item-link]",
   opName: `[data-${datasets.opName}]`,
   json: "[data-product-json]",
   select: "[data-pi-variant-select]",
@@ -40,7 +41,7 @@ const selectors = {
   submitSoldOutMail: "[data-submit-sold-out-btn]",
   soldOutConfirm: "[data-sold-out-confirm]",
   soldOutForm: "[data-sold-out-form]",
-  soldOutNotice: "[data--sold-out-notice]"
+  soldOutNotice: "[data--sold-out-notice]",
 };
 
 function handleOptionClick(event) {
@@ -241,6 +242,23 @@ function onSoldOutMailSubmit(event) {
   $soldOutConfirm.delay(300).fadeIn();
 }
 
+function onFocusChange() {
+  const $src = $(document.activeElement);
+  const $item = $src.closest(selectors.item);
+  const $allOtherItems = $(selectors.item).not($item);
+  $allOtherItems.removeClass("active");
+
+  if ($item.length > 0) {
+    $item.addClass("active");
+  }
+  $allOtherItems.removeClass("active");
+}
+
+function onItemHoverOut() {
+  const $allItems = $(selectors.item);
+  $allItems.removeClass("active");
+}
+
 function init() {
   if ($(window).width() < 768) {
     const $gallery = $(`${selectors.shopMobileSlick} ${selectors.gallery}`);
@@ -277,3 +295,5 @@ function init() {
 $(document).ready(init);
 $(document).on("click", selectors.value, handleOptionClick);
 $(document).on("click", selectors.submitSoldOutMail, onSoldOutMailSubmit);
+$(document).on("focusin", onFocusChange);
+$(document).on("mouseleave", selectors.item, onItemHoverOut);
