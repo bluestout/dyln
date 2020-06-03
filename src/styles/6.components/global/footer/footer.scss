@@ -401,6 +401,10 @@
         margin: 0 auto;
       }
 
+      @include media-query($small) {
+        width: 70%;
+      }
+
       &.open {
         .site-footer__closed {
           display: none;
@@ -450,6 +454,10 @@
 
       @include media-query($medium-down) {
         margin: 0 auto !important;
+      }
+
+      @include media-query($small) {
+        width: 70%;
       }
     }
 
