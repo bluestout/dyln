@@ -5,7 +5,7 @@ const selectors = {
   emailOptIn: "[data-email-opt-in]",
   buttonSlider: "[data-button-slider]",
   emailInput: "[data-email-input]",
-  phoneInput: "[data-phone-input]"
+  phoneInput: "[data-phone-input]",
 };
 
 const classes = {
@@ -14,7 +14,6 @@ const classes = {
 };
 
 function handleSmsOptInClick() {
-  console.log($(selectors.buttonSlider));
   $(selectors.buttonSlider).addClass(classes.right);
   $(selectors.phoneInput).addClass(classes.active);
   $(selectors.smsOptIn).addClass(classes.active);
@@ -30,10 +29,7 @@ function handleEmailOptInClick() {
   $(selectors.emailOptIn).addClass(classes.active);
 }
 
-
 $(document).ready(() => {
   $(selectors.smsOptIn).on("click", handleSmsOptInClick);
   $(selectors.emailOptIn).on("click", handleEmailOptInClick);
 });
-
-

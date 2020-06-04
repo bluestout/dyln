@@ -95,7 +95,6 @@ function detachEventHandlers() {
 
 function handleAccordionClick(event) {
   event.preventDefault ? event.preventDefault() : (event.returnValue = false);
-  console.log("handleAccordionClick");
   const $source = $(event.currentTarget);
   const $parent = $source.closest(selectors.parent);
   const index = $source.data(datasets.button);
