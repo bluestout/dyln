@@ -156,8 +156,8 @@
         <div class="col-lg-9 order-lg-1 order-1">
           <div class="row" data-tabs-container>
             {% for link in linklists[section.settings.menu].links %}
-              <div class="col-lg-3 col-12" data-accordion-parent=true accordion-mobile-only>
-                <div class="site-footer__p-link-wrap" data-accordion-button="{{ forloop.index }}">
+              <div class="col-lg-3 col-12" data-accordion-parent-rsp=true data-accordion-mobile-only="true">
+                <div class="site-footer__p-link-wrap" data-accordion-button-rsp="{{ forloop.index }}">
                   <a class="site-footer__parent-link" href="{{ link.url }}">
                     {{ link.title }}
                     <span class="site-footer__closed">+</span>
@@ -165,7 +165,7 @@
                   </a>
                 </div>
                 {% if link.links != blank %}
-                  <ul class="site-footer__menu-list active" data-accordion-content="{{ forloop.index }}">
+                  <ul class="site-footer__menu-list active" data-accordion-content-rsp="{{ forloop.index }}">
                     {% for childlink in link.links %}
                       <li class="site-footer__menu-item">
                         <a class="site-footer__menu-link" href="{{ childlink.url }}">
