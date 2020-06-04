@@ -84,20 +84,20 @@
       top: 50px;
     }
 
-      h1 {
-        @include font-header(bold);
-        @include text(40px, 1.25, $color-theme-7, 2.3px);
-        text-align: center;
+    h1 {
+      @include font-header(bold);
+      @include text(40px, 1.25, $color-theme-7, 2.3px);
+      text-align: center;
 
-        @include media-query($medium-down) {
-          @include text(30px, 1.25, $color-theme-7, 1.7px);
-          margin-bottom: 5px;
-          width: 100%;
-        }
+      @include media-query($medium-down) {
+        @include text(30px, 1.25, $color-theme-7, 1.7px);
+        margin-bottom: 5px;
+        width: 100%;
+      }
     }
 
     p {
-      @include poppins(normal);
+      @include font-header;
       font-size: 24px;
       line-height: 1.3;
 

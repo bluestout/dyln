@@ -9,7 +9,7 @@
     <link rel="canonical" href="{{ canonical_url }}">
 
     {% render 'ad-ap-anti-flicker' %}
-    {% render 'ad-ap-gtm' %}
+    {% render 'ad-ap-gtm-gtag' %}
 
     {%- if settings.favicon != blank -%}
         <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">

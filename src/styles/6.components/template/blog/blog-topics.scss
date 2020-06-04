@@ -38,7 +38,7 @@
   }
 
   &__more-link {
-    @include poppins(medium);
+    @include font-header(medium);
     display: inline-block;
     margin-top: 20px;
     margin-bottom: 30px;

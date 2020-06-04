@@ -21,6 +21,9 @@ const selectors = {
   menu: "[data-menu-mobile]",
   headerBody: "[data-site-header]",
   announcement: "[data-announcement-bar]",
+  barUsa: "[data-announcement-bar-usa]",
+  barCa: "[data-announcement-bar-ca]",
+  barOther: "[data-announcement-bar-other]",
   overlay: "[data-menu-mobile-overlay]",
   iframe: "[data-header-toggle-element]",
 };
@@ -145,6 +148,22 @@ function handleHeaderButtonClick(event) {
   });
 }
 
+function setAnnouncementByCountry() {
+  if ($("body").hasClass("location-us")) {
+    $(selectors.barUsa).show();
+    $(selectors.barCa).hide();
+    $(selectors.barOther).hide();
+  } else if ($("body").hasClass("location-ca")) {
+    $(selectors.barUsa).hide();
+    $(selectors.barCa).show();
+    $(selectors.barOther).hide();
+  } else if ($("body").hasClass("location-other")) {
+    $(selectors.barUsa).hide();
+    $(selectors.barCa).hide();
+    $(selectors.barOther).show();
+  }
+}
+
 function onScroll() {
   setIsHeaderScrolled();
   setHeaderBodyOffset(1);
@@ -160,3 +179,4 @@ $(document).on("click", selectors.button, handleHeaderButtonClick);
 
 document.addEventListener("ajaxReloaded", togglesInit);
 document.addEventListener("windowScrolledRedux", onScroll);
+document.addEventListener("geoLocationComplete", setAnnouncementByCountry);

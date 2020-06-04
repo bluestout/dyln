@@ -18,7 +18,7 @@ const datasets = {
 const selectors = {
   header: "[data-section-type='header']",
   add: "[data-add-to-cart]",
-  addText: "[data-add-to-cart-content]",
+  addText: "[data-add-to-cart-loaded]",
   addLoading: "[data-add-to-cart-loading]",
   remove: "[data-remove-item]",
   changeAjax: "[data-qty-change-ajax]",
@@ -68,6 +68,12 @@ const selectors = {
   message: {
     container: "[data-ajax-message-container]",
     text: "[data-ajax-message-text]",
+  },
+  shipping: {
+    us: "[data-shipping-threshold-us]",
+    ca: "[data-shipping-threshold-ca]",
+    other: "[data-shipping-threshold-other]",
+    note: "[data-cart-shipping-note]",
   },
 };
 
@@ -433,6 +439,7 @@ function returnCartIfNotEmpty(json) {
   containerLoading();
   toggleAddingToCartAnimation($(selectors.add));
   handleCartDrawerCheckoutHeight();
+  handleFreeShippingMessage(json);
   document.dispatchEvent(ajaxReloaded);
 }
 
@@ -469,10 +476,12 @@ function quickCartOpen(open) {
     $(selectors.quickcart).addClass(classes.open);
     $(selectors.quick.overlay).addClass(classes.active);
     document.querySelector("html").classList.add("no-scroll");
+    $(selectors.quick.focusIn).focus();
   } else {
     $(selectors.quickcart).removeClass(classes.open);
     $(selectors.quick.overlay).removeClass(classes.active);
     document.querySelector("html").classList.remove("no-scroll");
+    $(selectors.quick.focusOut).focus();
   }
 }
 
@@ -543,6 +552,37 @@ function handleUpsell(cart) {
   return pattern;
 }
 
+function handleFreeShippingMessage(cart) {
+  let threshold = 0;
+
+  if ($("body").hasClass("location-us")) {
+    threshold = $(selectors.shipping.us).val();
+  } else if ($("body").hasClass("location-ca")) {
+    threshold = $(selectors.shipping.ca).val();
+  } else {
+    threshold = $(selectors.shipping.other).val();
+  }
+
+  threshold = parseFloat(threshold);
+
+  const $note = $(selectors.shipping.note);
+  const total = cart.total_price / 100;
+  let remaining = threshold - total;
+  remaining = formatAndTrimPrice(remaining * 100);
+
+  if (cart.item_count < 1) {
+    $note.html(
+      theme.strings.free_shipping_empty_html.replace("###", threshold)
+    );
+  } else if (total >= threshold) {
+    $note.html(theme.strings.free_shipping_reached_html);
+  } else {
+    $note.html(
+      theme.strings.free_shipping_unreached_html.replace("###", remaining)
+    );
+  }
+}
+
 // on click, remove the item form cart
 $(document).on("click", selectors.remove, ajaxRemoveFromCartButton);
 
@@ -553,7 +593,7 @@ $(document).on("change", selectors.input, handleQtyInputChange);
 // toggle quick cart from the right
 $(document).on("click", selectors.quick.toggle, quickCartToggle);
 // ajaxify add to cart buttons
-$(document).on("click", selectors.add, handleAjaxAddButtonClick);
+$(document).on("click", selectors.add, addToCartComplete);
 $(document).on("click", selectors.upsell.submit, handleAjaxUpsellSubmit);
 $(document).on("change", selectors.upsell.select, handleAjaxUpsellSelectChange);
 $(document).on("click", selectors.upsell.input, handleAjaxUpsellInputClick);

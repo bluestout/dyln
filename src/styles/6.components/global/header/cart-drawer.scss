@@ -294,13 +294,13 @@
   }
 
   &__total-text {
-    @include poppins(500);
+    @include font-header(500);
     @include text(16px, 22px, $color-body-text, 0.95px);
     float: left;
   }
 
   &__total-price {
-    @include poppins(500);
+    @include font-header(500);
     @include text(16px, 22px, $color-body-text, 0.95px);
     float: right;
   }
@@ -356,7 +356,7 @@
   }
 
   &__payments-title {
-    @include poppins(500);
+    @include font-header(500);
     @include text(11px, 16px, $color-body-text, 0.65px);
     align-self: center;
   }

@@ -6,14 +6,14 @@
     </div>
   {% endif %}
 
-  <div class="user-stories__stories" data-slider-wrapper>
+  <div class="user-stories__stories" data-slider-wrapper aria-roledescription="carousel">
     {% for block in section.blocks %}
       {% assign modulo = forloop.index | modulo: 2 %}
       {% assign content_order = " order-md-2" %}
       {% if modulo == 0 %}
         {% assign content_order = " order-md-0" %}
       {% endif %}
-      <div class="user-stories__story" data-slider-item>
+      <div class="user-stories__story" data-slider-item tabindex="0" aria-roledescription="slide">
         <div class="user-stories__s-media">
           <div class="user-stories__s-media-inner">
             {% if block.settings.image %}

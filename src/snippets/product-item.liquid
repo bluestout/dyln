@@ -23,8 +23,7 @@
 <div
   class="product-item{% if block_p.has_only_default_variant %} single{% endif %}"
   data-pi-item
-  data-pi-static-class="product-item{% if block_p.has_only_default_variant %} single{% endif %}"
-  tabindex="0">
+  data-pi-static-class="product-item{% if block_p.has_only_default_variant %} single{% endif %}">
   {% form 'product', block_p, data-product-form: '', data-product-handle: block_p.handle, class: "product-item__form" %}
 
     <input type="hidden" id="{{ block_p.id }}-quantity" name="quantity" value="1" min="1" />
@@ -46,7 +45,8 @@
     <a
       class="product-item__image-link"
       href="{{ block_p.url }}"
-      title="{{ 'products.product.view_details' | t }}">
+      title="{{ 'products.product.view_details' | t }}"
+      data-pi-item-link>
       <span class="product-item__gallery" data-pi-image-gallery>
         {% assign first = true %}
         {% assign any_image = false %}
@@ -152,7 +152,7 @@
                     name="options[{{ option.name }}]"
                     value="{{ value }}"
                     data-pi-option-value="{{ value }}"
-                    data-pi-option-name={{ name_clean }}
+                    data-pi-option-name="{{ name_clean }}"
                     data-pi-option-index="{{ option.position }}"
                     {% if forloop.first %}checked{% endif %}
                     title="{{ value | remove: '_' }}" />
@@ -201,18 +201,19 @@
           data-add-to-cart
           {% unless block_p_def_v.available %}disabled="disabled"{% endunless %}
          >
-          <span class="product-item__submit-price" data-pi-submit-price>
+          <span class="product-item__submit-price" data-pi-submit-price data-add-to-cart-loaded>
             {% if block_p_def_v.available %}
               {{ block_p_def_v.price | money | remove: ".00" | strip }}
             {% endif %}
           </span>
-          <span class="product-item__submit-text" data-pi-submit-text>
-               {% if block_p_def_v.available %}
-                 {{ 'products.product.add_to_cart' | t }}
-               {% else %}
-                 {{ 'products.product.sold_out' | t }}
-               {% endif %}
+          <span class="product-item__submit-text" data-pi-submit-text data-add-to-cart-loaded>
+            {% if block_p_def_v.available %}
+              {{ 'products.product.add_to_cart' | t }}
+            {% else %}
+              {{ 'products.product.sold_out' | t }}
+            {% endif %}
           </span>
+          <span data-add-to-cart-loading class="loading-dots hide">{{ 'general.accessibility.loading' | t }}</span>
         </button>
       </div>
 

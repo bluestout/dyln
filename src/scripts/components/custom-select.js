@@ -28,7 +28,6 @@ $(document).ready(() => {
     );
 
     const $styledSelect = $this.next("[data-custom-select-styled]");
-
     const params = getUrlParams();
     if (params.sort_by && $("body").hasClass("template-collection")) {
       $styledSelect.text($(`option[value="${params.sort_by}"]`).text());

@@ -15,7 +15,10 @@
       remove: {{ 'cart.general.remove' | t | json }},
       pay_using: {{ 'cart.general.pay_using' | t | json }},
       sold_out_email_confirm: {{ 'products.product.sold_out_email_confirm_txt' | t | json }},
-      sold_out_email_invalid: {{ 'products.product.sold_out_email_invalid' | t | json }}
+      sold_out_email_invalid: {{ 'products.product.sold_out_email_invalid' | t | json }},
+      free_shipping_reached_html: {{ 'cart.shipping.free_shipping_reached_html' | t | json }},
+      free_shipping_unreached_html: {{ 'cart.shipping.free_shipping_unreached_html' | t: price: "###" | json }},
+      free_shipping_empty_html: {{ 'cart.shipping.free_shipping_empty_html' | t: price: "###" | json }}
     },
     moneyFormat: {{ shop.money_format | json }},
     imageUrls: {

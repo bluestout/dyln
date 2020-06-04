@@ -153,6 +153,7 @@
       position: relative;
       display: inline-block;
       min-width: 51%;
+      pointer-events: none;
     }
 
     label::after {
@@ -186,10 +187,19 @@
       background-color: $color-background;
       width: 100%;
       text-align: center;
-      display: block;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      height: 61px;
 
       &::after {
-        content: none;
+        content: "";
+        position: absolute;
+        top: auto;
+        width: auto;
+        height: auto;
+        display: block;
+        cursor: pointer;
       }
 
       &::before {

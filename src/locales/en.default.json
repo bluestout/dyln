@@ -3,7 +3,8 @@
     "accessibility": {
       "skip_to_content": "Skip to content",
       "close": "Close",
-      "close_cart": "Close cart drawer"
+      "close_cart": "Close cart drawer",
+      "loading": "Loading"
     },
     "meta": {
       "tags": "Tagged \"{{ tags }}\"",
@@ -91,7 +92,6 @@
       "recent_articles_title": "Recent Articles",
       "popular_article_title": "Popular Articles",
       "side_menu_title": "Choose a topic",
-      "categories": "Categories",
       "other_topics_title": "Other Topics"
     },
     "search": {
