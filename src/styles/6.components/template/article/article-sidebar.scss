@@ -1,8 +1,15 @@
 .article {
   &__sidebar {
     .blog-side-menu {
-      @include media-query($large-down) {
-        display: none;
+      &.article-side-menu {
+        .blog-side-menu {
+          display: inline-block;
+
+          @include media-query($medium-down) {
+            display: none;
+          }
+
+        }
       }
     }
   }

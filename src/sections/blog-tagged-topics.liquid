@@ -7,7 +7,7 @@
     {% endfor %}
 
     {% assign count = 0 %}
-    {% for other_article in blogs.blog.articles %}
+    {% for other_article in blogs.y-blog.articles %}
 
       {% unless other_article.tags contains currentTag %}
         {% if count < 2 %}

@@ -38,11 +38,19 @@
       top: 50%;
       left: 50%;
       font-size: 36px;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%) scale(1);
+      transition: ease-in-out all 0.3s;
 
       svg {
         width: 70px;
         height: 70px;
+      }
+    }
+
+    &:hover {
+      .slider__item-play-icon {
+        transform: translate(-50%, -50%) scale(1.2);
+        transition: ease-in-out all 0.3s;
       }
     }
   }

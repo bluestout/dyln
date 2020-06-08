@@ -27,10 +27,14 @@
   &__category {
     @include font-body(500);
     @include text(12px, 20px, $color-blog-card-category, 1px);
-    display: block;
+    display: none;
     text-transform: uppercase;
     position: relative;
     z-index: $z-base;
+
+    &:first-child {
+      display: block;
+    }
 
     @include media-query($medium-down) {
       font-size: 10px;
