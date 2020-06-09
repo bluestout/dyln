@@ -25,10 +25,7 @@ function init() {
     values.articleTreshold = 1280;
   }
 
-  console.log(values.articleTreshold);
-
   if ($newsletterModal.hasClass(classes.onlyMobile) && $(window).width() > values.articleTreshold) {
-    console.log("is this exec");
     destroy();
     return false;
   }
