@@ -4,7 +4,14 @@ const elements = {
   newsletterBtn: "[data-newsletter-open-btn]",
   newsletterModal: "[data-newsletter-modal]",
   newsletterModalOverlay: "[data-newsletter-modal-overlay]",
+};
+
+const classes = {
   openModalSelector: "modal-opened",
+  onlyMobile: "only--mobile"
+};
+
+const values = {
   articleTreshold: 768
 };
 
@@ -15,10 +22,10 @@ function init() {
   const $newsletterOpenBtn = $(elements.newsletterBtn);
 
   if ($("body").hasClass("template-article")) {
-    elements.articleTreshold = 1280;
+    values.articleTreshold = 1280;
   }
 
-  if ($newsletterModal.hasClass("only--mobile") && $(window).width() > elements.articleTreshold) {
+  if ($newsletterModal.hasClass(classes.onlyMobile) && $(window).width() > values.articleTreshold) {
     destroy();
     return false;
   }
@@ -36,20 +43,20 @@ function init() {
 }
 
 function openModal() {
-  $newsletterModal.addClass(elements.openModalSelector);
-  $newsletterModalOverlay.addClass(elements.openModalSelector);
+  $newsletterModal.addClass(classes.openModalSelector);
+  $newsletterModalOverlay.addClass(classes.openModalSelector);
 
   return false;
 }
 
 function closeModal() {
-  $newsletterModal.removeClass(elements.openModalSelector);
-  $newsletterModalOverlay.removeClass(elements.openModalSelector);
+  $newsletterModal.removeClass(classes.openModalSelector);
+  $newsletterModalOverlay.removeClass(classes.openModalSelector);
 }
 
 function destroy() {
-  $newsletterModal.removeClass(elements.openModalSelector);
-  $newsletterModalOverlay.removeClass(elements.openModalSelector);
+  $newsletterModal.removeClass(classes.openModalSelector);
+  $newsletterModalOverlay.removeClass(classes.openModalSelector);
   $newsletterModal.off("click");
 }
 

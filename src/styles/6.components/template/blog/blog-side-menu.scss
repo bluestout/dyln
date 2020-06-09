@@ -65,7 +65,11 @@
       @include text(12px, 1.2, $color-theme-1, 1px);
       text-transform: uppercase;
       padding-bottom: 5px;
-      display: inline-block;
+      display: none;
+
+      &:first-child {
+        display: inline-block;
+      }
     }
 
     h3 {
@@ -83,6 +87,16 @@
 
       g {
         fill: $color-theme-7;
+      }
+    }
+  }
+
+  &.article-side-menu {
+    .blog-side-menu {
+      display: none;
+
+      @include media-query($medium-down) {
+        display: inline-block;
       }
     }
   }

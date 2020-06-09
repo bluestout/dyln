@@ -41,6 +41,10 @@
         svg {
           margin: 0 7px;
 
+          @include media-query($small) {
+            margin: 0 3px;
+          }
+
           &:hover {
             cursor: pointer;
 

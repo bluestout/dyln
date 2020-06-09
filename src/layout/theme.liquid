@@ -60,7 +60,7 @@
     crossorigin="anonymous"></script>
 </head>
 
-<body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}{%- if template contains 'blog' -%} {{ template | handleize }}{%- endif -%}">
+<body id="{{ page_title | handle }}" class="template-{{ template.name | handle }} {%- if template contains 'blog' -%} {{ template | handleize }}{%- endif -%}">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K877228"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -72,7 +72,7 @@
 
   {%- section 'header' -%}
 
-  <main role="main" id="MainContent">
+  <main role="main" id="MainContent" class="template-{{ template.name | handle }}">
     {{ content_for_layout }}
   </main>
 

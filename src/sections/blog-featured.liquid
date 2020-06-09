@@ -1,10 +1,10 @@
-{% assign article = articles[section.settings.featured_article] %}
-{% if article %}
+{% assign featured_article = articles[section.settings.featured_article] %}
+{% if featured_article != empty %}
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-12 col-lg-8">
       {% render 'blog-article-featured' with
-        article: article,
+        article: featured_article,
         size: "article-card--lg"
       %}
     </div>
