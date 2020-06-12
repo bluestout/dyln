@@ -16,7 +16,6 @@
     padding: 0 0 25px;
     margin: 0 15px 15px;
     display: flex;
-    flex-flow: row wrap;
 
     &:not(:last-of-type) {
       &::after {
@@ -46,7 +45,7 @@
 
   &__item-content {
     padding: 20px 0 0;
-    flex: 0 0 100%;
+    width: 100%;
   }
 
   &__item-link {
@@ -332,6 +331,9 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    padding-top: 10px;
   }
 
   &__payment {
@@ -351,6 +353,13 @@
         background-color: $color-theme-6;
         display: inline-block;
         vertical-align: middle;
+      }
+    }
+
+    &--amazon {
+      img {
+        top: 3px;
+        position: relative;
       }
     }
   }

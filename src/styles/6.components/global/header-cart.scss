@@ -8,6 +8,10 @@
   height: 100%;
   width: 500px;
 
+  @include media-query($medium-down) {
+    width: 100%;
+  }
+
   &.open {
     right: 0;
 
