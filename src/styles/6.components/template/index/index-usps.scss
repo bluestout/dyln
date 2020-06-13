@@ -5,6 +5,12 @@
   max-width: 100%;
   margin: 0 0 60px;
 
+  &__usps {
+    @include media-query($small) {
+      margin-bottom: 30px;
+    }
+  }
+
   &__wave-top {
     @include animated-wave;
     top: -1px;
@@ -15,9 +21,12 @@
   &__content {
     padding: 90px 0;
     min-height: 620px;
-    flex: 0 0 60%;
-    max-width: 60%;
-    margin: 0 auto;
+
+    @include media-query($medium-up) {
+      flex: 0 0 60%;
+      max-width: 60%;
+      margin: 0 auto;
+    }
   }
 
   &__bg-wrap {
