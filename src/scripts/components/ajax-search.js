@@ -10,6 +10,9 @@ function handleSearchInput() {
   const term = $(this).val();
   const searchURL = `/search?type=article&q=*${term}*`;
   const $resultsList = $(el.results);
+
+  $resultsList.show();
+
   if ($resultsList) {
     if (
       $resultsList.length > 0 &&
@@ -52,4 +55,16 @@ function handleSearchInput() {
   }
 }
 
+function closeSearch(event) {
+  let $container = $(".blog-search form");
+  let $resultsList = $(el.results);
+
+  if (!$container.is(event.target) && $container.has(event.target).length === 0) {
+    $resultsList.hide();
+  }
+}
+
 $(document).on("keyup change", el.searchInput, handleSearchInput);
+$(document).on("mouseup", function () {
+  closeSearch(event);
+});
