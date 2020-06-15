@@ -10,6 +10,26 @@
   }
 }
 
+.social-sharing {
+  a {
+    svg {
+      width: 20px;
+    }
+  }
+
+  a:first-of-type {
+    svg {
+      width: 8px;
+    }
+  }
+
+  a:last-of-type {
+    svg {
+      width: 14px;
+    }
+  }
+}
+
 .social-sharing svg path,
 .social-sharing svg g {
   fill: $color-theme-1;

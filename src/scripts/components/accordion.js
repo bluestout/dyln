@@ -53,13 +53,19 @@ function checkAccordionState() {
     const index = $source.data(datasets.button);
     const $parent = $source.closest(selectors.parent);
     const $wrap = $source.closest(selectors.wrap);
+
     if ($parent.length > 0) {
       const $content = $parent.find(selectors.getContentById(index));
       $source.removeClass(classes.open);
       $content.hide();
     }
+
     if ($wrap.length > 0) {
       $wrap.removeClass(classes.open);
+    }
+
+    if ($wrap.hasClass("is--open")) {
+      $parent.find(selectors.getContentById(index)).show();
     }
   });
 }
