@@ -19,6 +19,7 @@ const selectors = {
     button: "[data-c-q-n-button]",
     list: "[data-c-q-n-list]",
     link: "[data-c-q-n-link]",
+    icon: "[data-c-q-n-icon]",
   },
   modal: {
     link: "[data-contact-modal-link]",
@@ -64,6 +65,7 @@ function handleQuickNavButtonClick() {
   if ($(window).width() < 768) {
     $(selectors.quickNav.list).slideToggle();
     $(selectors.quickNav.button).toggleClass(classes.open);
+    $(selectors.quickNav.icon).toggleClass(classes.open);
   }
 }
 

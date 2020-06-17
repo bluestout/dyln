@@ -108,7 +108,7 @@
   }
 
   &__question {
-    @include font-header(500);
+    @include font-header(700);
     @include text(18px, 26px, $color-body-text, 1.06px);
     display: inline-block;
     vertical-align: middle;
@@ -185,6 +185,34 @@
 
   &__quick-nav {
     @include font-header(500);
+
+    &-icon {
+      display: inline-block;
+      position: relative;
+      left: -18px;
+      top: 5px;
+      width: 20%;
+
+      &.open > svg:first-of-type {
+        display: none;
+      }
+
+      &.open > svg:last-of-type {
+        display: inline-block;
+      }
+
+      @include media-query($medium-up) {
+        display: none;
+      }
+
+      svg {
+        width: 15%;
+
+        &:last-of-type {
+          display: none;
+        }
+      }
+    }
 
     button {
       @include no-browser-styling;
