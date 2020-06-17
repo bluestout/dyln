@@ -33,7 +33,7 @@
 
   &__list {
     margin-top: 15px;
-
+    
     ul {
       list-style: none;
       padding-left: 0;
@@ -126,6 +126,9 @@
     top: 0;
     right: 0;
     width: 200px;
+    border-top: 1px solid $color-black;
+    border-bottom: 1px solid $color-black;
+    padding: 7px 0;
 
     @include media-query($xl-down) {
       width: 160px;
