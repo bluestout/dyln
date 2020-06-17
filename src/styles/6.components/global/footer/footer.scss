@@ -331,6 +331,12 @@
     }
   }
 
+  @include media-query($large-up) {
+    &__p-link-wrap {
+      pointer-events: none;
+    }
+  }
+
   @include media-query($large-down) {
     &__lifestyle-bg {
       padding: 10px 0;
@@ -510,6 +516,12 @@
 
       @include media-query($large-down) {
         text-align: center;
+      }
+    }
+
+    &-tel {
+      @include media-query($large-up) {
+        margin-left: 10px;
       }
     }
   }
