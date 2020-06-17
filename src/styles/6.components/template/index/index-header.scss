@@ -93,6 +93,10 @@
 
   &__wave-wrap {
     overflow-y: hidden;
+
+    @include media-query($small) {
+      height: 1px;
+    }
   }
 
   &__wave {

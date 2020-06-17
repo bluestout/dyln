@@ -17,11 +17,14 @@
     text-align: center;
   }
 
-  &__feature {
-  }
   &__content {
     align-self: center;
+
+    @include media-query($medium-down) {
+      padding-top: 20px;
+    }
   }
+
   &__f-title {
     @include font-header(700);
     font-size: 30px;

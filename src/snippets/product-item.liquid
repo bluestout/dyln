@@ -137,7 +137,9 @@
       {% unless block_p.has_only_default_variant %}
       <div class="product-item__options">
         {% for option in block_p.options_with_values %}
-          <span class="product-item__options-label">{{ 'products.product.select_html' | t: option: option.name }}</span>
+          <span class="product-item__options-label product-item__options-label--desktop">{{ 'products.product.select_html' | t: option: option.name }}</span>
+          <span class="product-item__options-label product-item__options-label--mobile">{{ 'products.product.select_html_mobile' | t: option: option.name }}</span>
+
           {% assign name_clean = option.name | downcase %}
           {% if name_clean == "color" or name_clean == "sleeve color" or name_clean == "sleeve" %}
             <div class="product-item__colors" data-pi-option="{{ forloop.index }}">
