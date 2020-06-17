@@ -1,6 +1,12 @@
 .index-video {
   position: relative;
 
+  &__bg {
+    @include media-query($medium-down) {
+      margin-left: -30px;
+    }
+  }
+
   &__outer {
     margin: -18px 0 0;
     overflow: hidden;

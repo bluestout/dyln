@@ -232,7 +232,7 @@ function updateQuickCart(cart) {
           <span class="cart-drawer__payments-title">${
             theme.strings.pay_using
           }</span>
-          <span class="cart-drawer__payment">
+          <span class="cart-drawer__payment cart-drawer__payment--amazon">
             <img src="${theme.imageUrls.logoAmazon}" alt="Amazon Pay" />
           </span>
           <span class="cart-drawer__payment">

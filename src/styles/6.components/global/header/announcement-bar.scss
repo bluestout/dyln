@@ -38,6 +38,10 @@
   @include media-query($large-down) {
     &__link-wrap {
       text-align: center;
+
+      &.text-right {
+        text-align: right;
+      }
     }
 
     &__link {

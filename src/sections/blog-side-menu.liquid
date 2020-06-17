@@ -1,10 +1,10 @@
 <div class="blog-side-menu template-{{ template.name | handle }}" data-accordion-parent=false>
-  <div data-accordion-wrap=index>
-    <div class="blog-side-menu__btn" data-accordion-button=index>
+  <div class="is--open" data-accordion-wrap=index>
+    <div class="blog-side-menu__btn open" data-accordion-button=index>
       <h3>{{ 'blogs.general.side_menu_title' | t }}</h3>
       {% render 'icon-plus' %}
     </div>
-    <div class="blog-side-menu__list" data-accordion-content=index>
+    <div class="blog-side-menu__list blog-side-menu__list-open" data-accordion-content=index>
       <ul>
         {% for block in section.blocks %}
         {% assign article = articles[block.settings.side_menu_article] %}
