@@ -14,6 +14,9 @@
     display: flex;
     align-items: baseline;
     color: $color-theme-7;
+    border-top: 1px solid $color-black;
+    border-bottom: 1px solid $color-black;
+    padding: 5px 0;
 
     &:hover {
       color: $color-theme-1;
@@ -33,7 +36,7 @@
 
   &__list {
     margin-top: 15px;
-    
+
     ul {
       list-style: none;
       padding-left: 0;
@@ -83,7 +86,7 @@
     svg {
       position: absolute;
       right: 0;
-      top: 12px;
+      top: 16px;
 
       g {
         fill: $color-theme-7;
