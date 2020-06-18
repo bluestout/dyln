@@ -48,6 +48,7 @@ const selectors = {
   productForm: "[data-product-form]",
   productPrice: "[data-product-price]",
   thumbnail: "[data-product-single-thumbnail]",
+  slick: ".slick-slide",
   thumbnailById: (id) => `[data-thumbnail-id='${id}']`,
   thumbnailActive: "[data-product-single-thumbnail][aria-current]",
   gallery: "[data-pdp-gallery]",
@@ -154,6 +155,7 @@ register("product", {
   onClickEvent(event) {
     const thumbnail = event.target.closest(selectors.thumbnail);
     const source = event.originalTarget;
+    const slick = event.target.closest(selectors.slick);
 
     try {
       if (source && source.hash) {
@@ -162,14 +164,15 @@ register("product", {
       }
     } catch (error) {}
 
-    if (!thumbnail) {
-      return;
+    if (thumbnail) {
+      event.preventDefault();
+      this.renderFeaturedImage(thumbnail.dataset.thumbnailId);
+      this.renderActiveThumbnail(thumbnail.dataset.thumbnailId);
+    } else if (slick) {
+      $(selectors.galleryIndex).slick("slickGoTo", slick.dataset.slickIndex);
     }
 
-    event.preventDefault();
-
-    this.renderFeaturedImage(thumbnail.dataset.thumbnailId);
-    this.renderActiveThumbnail(thumbnail.dataset.thumbnailId);
+    return;
   },
 
   onKeyUpEvent(event) {

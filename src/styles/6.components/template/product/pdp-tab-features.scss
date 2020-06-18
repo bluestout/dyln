@@ -52,7 +52,7 @@
   }
 
   &__subtitle {
-    @include text-subtitle;
+    @include text-subtitle($color-main-1);
   }
 
   &__content-inner {
@@ -65,6 +65,7 @@
   &__content {
     @include font-body;
     @include text(20px, 27px, $color-body-text, 1.18px);
+    margin: 30px 0 0;
   }
 
   &__slider-wrap {
@@ -80,6 +81,16 @@
     display: none;
 
     &::-webkit-slider-thumb {
+      @include transition(all);
+      width: 15%;
+      width: var(--pdp-tab-input-w);
+      height: 4px;
+      border-radius: 2px;
+      border: none;
+      background-color: $color-theme-7;
+    }
+
+    &::-webkit-media-slider-thumb {
       @include transition(all);
       width: 15%;
       width: var(--pdp-tab-input-w);

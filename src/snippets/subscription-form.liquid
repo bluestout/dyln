@@ -21,9 +21,15 @@
           <h4 class="diffusers__label"><strong>{{ 'products.subscription.change_amount' | t }}</strong></h4>
         {% endif %}
         {% for e_var in e_product.variants %}
+          {% assign e_var_title = e_var.title %}
+          {% if e_var.title == "1 Diffuser" %}
+            {% assign e_var_title = "Single Pack" %}
+          {% elsif e_var.title contains "Diffusers" %}
+            {% assign e_var_title = e_var.title | replace: ' Diffusers', '-Pack'%}
+          {% endif %}
           <div class="diffusers__variant" id="pdp-diffuser-variant-id-wrap">
-            <input class="diffusers__input" id="option-extra-{{ forloop.index }}" type="radio" name="id" value="{{ e_var.id }}" data-price={{ e_var.price| money }} {% if forloop.first %} checked="checked"{% endif %}/>
-            <label class="diffusers__label {% if sub_only %} standalone{% endif %}" for="option-extra-{{ forloop.index }}">{{ e_var.title }}</label>
+            <input class="diffusers__input" id="option-extra-{{ forloop.index }}" type="radio" name="id" value="{{ e_var.id }}" data-price={{ e_var.price | money }} {% if forloop.first %} checked="checked"{% endif %}/>
+            <label class="diffusers__label {% if sub_only %} standalone{% endif %}" for="option-extra-{{ forloop.index }}">{{ e_var_title }}</label>
           </div>
         {% endfor %}
       </div>
