@@ -14,6 +14,9 @@
     display: flex;
     align-items: baseline;
     color: $color-theme-7;
+    border-top: 1px solid $color-black;
+    border-bottom: 1px solid $color-black;
+    padding: 8px 0;
 
     &:hover {
       color: $color-theme-1;
@@ -28,12 +31,15 @@
       padding-left: 5px;
       font-size: 12px;
       color: $color-black;
+      top: -2px;
+      position: relative;
+      left: 10px;
     }
   }
 
   &__list {
     margin-top: 15px;
-    
+
     ul {
       list-style: none;
       padding-left: 0;
@@ -83,7 +89,7 @@
     svg {
       position: absolute;
       right: 0;
-      top: 12px;
+      top: 18px;
 
       g {
         fill: $color-theme-7;
@@ -126,9 +132,6 @@
     top: 0;
     right: 0;
     width: 200px;
-    border-top: 1px solid $color-black;
-    border-bottom: 1px solid $color-black;
-    padding: 7px 0;
 
     @include media-query($xl-down) {
       width: 160px;
@@ -136,7 +139,7 @@
 
     @include media-query($large-down) {
       position: relative;
-      width: 100%;
+      width: 250px;
 
       &__btn {
         justify-content: center;
