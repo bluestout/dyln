@@ -142,6 +142,9 @@ register("product", {
   onFormOptionChange(event) {
     const variant = event.dataset.variant;
 
+    $(".pdp-form__color-input").removeClass("active-variant");
+    $(event.target).addClass("active-variant");
+
     // this.renderImages(variant);
     this.renderPrice(variant);
     this.renderComparePrice(variant);
@@ -580,6 +583,7 @@ function handleAtcOptionChange(optionName, toggle) {
 function handleAtcOptionClick(event) {
   const $source = $(event.currentTarget);
   const targetData = $source.data(datasets.atc.option);
+
   handleAtcOptionChange(targetData, true);
 }
 

@@ -25,6 +25,28 @@
     padding-right: 8px;
   }
 
+  &__options {
+    ul {
+      display: flex;
+
+      @include media-query($large-down) {
+        justify-content: center;
+      }
+    }
+
+    li {
+      &.footer-payment__google-pay {
+        img {
+          width: 30px;
+        }
+      }
+    }
+
+    img {
+      width: 50px;
+    }
+  }
+
   &__options,
   &__methods {
     margin-bottom: 20px;

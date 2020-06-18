@@ -59,11 +59,10 @@
         {% endif %}
       </select>
 
-      <label for="ContactFormMessage" class="visually-hidden">{{ 'contact.form.message' | t }}</label>
+      <label for="ContactFormMessage">{{ 'contact.form.message' | t }}</label>
       <textarea rows="10"
         name="contact[body]"
         id="ContactFormMessage"
-        placeholder="{{ 'contact.form.message' | t }} *"
         required />
         {%- if form.body -%}
           {{- form.body -}}

@@ -78,6 +78,10 @@
     &__title {
       font-size: 32px;
       line-height: 48px;
+
+      strong {
+        color: $color-theme-1;
+      }
     }
 
     &__usp-icon {

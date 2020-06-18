@@ -70,22 +70,7 @@ $(document).ready(() => {
 
     $styledSelect.click(function(e) {
       e.stopPropagation();
-      $("[data-custom-select-styled].active")
-        .not(this)
-        .each(function() {
-          $(this)
-            .removeClass("active")
-            .next("[data-custom-select-options]")
-            .hide();
-        });
-      $(this)
-        .toggleClass("active")
-        .next("[data-custom-select-options]")
-        .toggle();
-    });
 
-    $styledSelect.focus(function(e) {
-      e.stopPropagation();
       $("[data-custom-select-styled].active")
         .not(this)
         .each(function() {
@@ -94,6 +79,7 @@ $(document).ready(() => {
             .next("[data-custom-select-options]")
             .hide();
         });
+
       $(this)
         .toggleClass("active")
         .next("[data-custom-select-options]")

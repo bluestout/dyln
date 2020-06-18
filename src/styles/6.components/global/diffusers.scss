@@ -102,6 +102,14 @@
   &__btn-wrap {
     @include clearfix;
     max-width: 425px;
+
+    &.hide {
+      .diffusers__sub-btn {
+        @include media-query($small) {
+          height: 65px;
+        }
+      }
+    }
   }
 
   &__regular-btn {
@@ -122,12 +130,20 @@
   &__regular-price {
     @include font-header(500);
     @include text(16px, 20px, $color-white, 0.95px);
+
+    @include media-query($small) {
+      width: 100%;
+    }
   }
 
   &__regular-text {
     @include font-header(700);
     @include text(16px, 20px, $color-white, 0.95px);
     text-transform: uppercase;
+
+    @include media-query($small) {
+      width: 100%;
+    }
   }
 
   &__sub-btn {
@@ -138,6 +154,13 @@
     padding: 0;
     height: 65px;
     background-color: $color-background;
+
+    @include media-query($small) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 45px;
+    }
 
     &:focus {
       outline: auto 5px;
@@ -238,12 +261,21 @@
   &__sub-price {
     @include font-header(500);
     @include text(16px, 20px, $color-theme-8, 0.95px);
+
+    @include media-query($small) {
+      width: 100%;
+      padding-top: 3px;
+    }
   }
 
   &__sub-btn-text {
     @include font-header(700);
     @include text(16px, 20px, $color-theme-8, 0.95px);
     text-transform: uppercase;
+
+    @include media-query($small) {
+      width: 100%;
+    }
   }
 
   &__sub-btn-freq {

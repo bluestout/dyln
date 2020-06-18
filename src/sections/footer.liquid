@@ -205,7 +205,7 @@
           <div class="col-sm-6 col-md-12 col-lg-7 col-sm-12">
             <div class="site-footer__reach-out">
               <a href="mailto:{{ section.settings.contact_mail }}">{{ section.settings.contact_mail }}</a>
-              <a href="tel:{{ section.settings.contact_phone }}">{{ section.settings.contact_phone }}</a>
+              <a href="tel:{{ section.settings.contact_phone }}" class="site-footer__reach-out-tel">{{ section.settings.contact_phone }}</a>
               <div class="d-flex d-md-none">
                 <div class="icon-divider">
                   {% include 'icon-divider' %}
@@ -219,7 +219,7 @@
 
           <div class="col-lg-5 d-none d-lg-flex">
             <div class="footer-copyright">
-              © {{ "now" | date: "%Y" }}, DYLN Inspired | <a href="">Privacy Policy</a> | <a href="">Terms</a> | <a href="">IP</a>
+              © {{ "now" | date: "%Y" }}, DYLN Inspired | <a href="{{ section.settings.privacy_policy_link }}">Privacy Policy</a> | <a href="{{ section.settings.terms_agreements_link }}">Terms</a> | <a href="{{ section.settings.ip_link }}">IP</a>
             </div>
           </div>
 
@@ -227,7 +227,7 @@
 
         <div class="col-sm-12 d-flex order-6 d-lg-none justify-content-center">
           <div class="footer-copyright">
-            © {{ "now" | date: "%Y" }}, DYLN Inspired | <a href="">Privacy Policy</a> | <a href="">Terms</a> | <a href="">IP</a>
+            © {{ "now" | date: "%Y" }}, DYLN Inspired | <a href="{{ section.settings.privacy_policy_link }}">Privacy Policy</a> | <a href="{{ section.settings.terms_agreements_link }}">Terms</a> | <a href="{{ section.settings.ip_link }}">IP</a>
           </div>
         </div>
       </div>
@@ -359,6 +359,21 @@
         "type": "text",
         "id": "contact_phone",
         "label": "Reach Out Contact Phone"
+      },
+      {
+        "type": "url",
+        "id": "privacy_policy_url",
+        "label": "Privacy Policy Link"
+      },
+      {
+        "type": "url",
+        "id": "terms_agreements_link",
+        "label": "Terms and Agreements Link"
+      },
+      {
+        "type": "url",
+        "id": "ip_link",
+        "label": "IP Link"
       }
     ]
   }

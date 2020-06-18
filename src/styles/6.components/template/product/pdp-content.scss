@@ -2,6 +2,10 @@
   &__title {
     @include text-title;
     margin: 0 0 10px;
+
+    @include media-query($small) {
+      margin-left: 15px;
+    }
   }
 
   &__reviews {
