@@ -4,7 +4,8 @@
       "skip_to_content": "Skip to content",
       "close": "Close",
       "close_cart": "Close cart drawer",
-      "loading": "Loading"
+      "loading": "Loading",
+      "points": "Points"
     },
     "meta": {
       "tags": "Tagged \"{{ tags }}\"",
@@ -70,7 +71,8 @@
       "read_more": "Read more",
       "read_more_title": "Read more: {{ title }}",
       "by_author": "by {{ author }}",
-      "tags": "Tags"
+      "tags": "Tags",
+      "back_to_all_faqs": "Back to all FAQs"
     },
     "comments": {
       "title": "Leave a comment",

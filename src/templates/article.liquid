@@ -1,19 +1,24 @@
 {% if blog.handle contains "faq"  %}
 
-  {% section 'faq-article-header' %}
+  {% section 'faq-header' %}
 
   <div class="container">
     <div class="row">
-      <div class="col-lg-2">
+      <div class="col-lg-3 faq-article__col-sidebar">
         {% section 'contact-sidebar' %}
       </div>
-      <div class="col-lg-8">
+      <div class="col-lg-6 faq-article__col-main">
+        <div class="faq-article__back-wrap">
+          <a href="/pages/contact-us">
+            <span aria-hidden="true">{% render 'icon-chevron-l' %}</span>
+            <span>{{ 'blogs.article.back_to_all_faqs' | t }}</span>
+          </a>
+        </div>
         <article role="article" class="faq-article">
           <div class="faq-article__tags">
-            {{ article.tags }}
+            {{ article.tags[0] }}
           </div>
-          <h1 class="faq-article__title">
-          </h1>
+          <h1 class="faq-article__title">{{ article.title }}</h1>
           <div class="rte faq-article__content">
             {% assign article_content = article.content %}
             {% assign article_content = article_content | replace: '<h1', '<h2' %}
@@ -24,6 +29,8 @@
       </div>
     </div>
   </div>
+
+  {% section 'faq-footer' %}
 
 {% else %}
   {% section 'article-header' %}
@@ -156,4 +163,3 @@
   }
   </script>
 {% endif %}
-
