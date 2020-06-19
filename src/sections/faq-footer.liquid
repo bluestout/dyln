@@ -30,7 +30,7 @@
     {% endif %}
     {% if section.settings.content != blank %}
       <div class="faq-footer__content">
-        {{ section.settings.content | strip_html | strip | truncatewords: 30, '...' }}
+        {{ section.settings.content | strip }}
       </div>
     {% endif %}
     {% if section.settings.reg_title != blank %}
@@ -61,10 +61,10 @@
       </div>
     {% endif %}
 
-    {% if section.settings.bottom_text != empty  %}
-      <div>
-        <a class="faq-footer__link" href="{{ section.settings.bottom_link }}">
-          <span>{{ section.settings.bottom_text }}</span>
+    {% if section.settings.link_text != empty  %}
+      <div class="text-center">
+        <a class="faq-footer__link" href="{{ section.settings.link }}">
+          <span>{{ section.settings.link_text }}</span>
           {% if section.settings.points_icon %}
             <span aria-hidden="true">{% render 'icon-points-white' %}</span>
             <span class="visually-hidden">{{ 'general.accessibility.points' | t }}</span>

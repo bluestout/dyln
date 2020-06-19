@@ -8,6 +8,11 @@
   &__form {
     margin: 0 0 25px;
 
+    label {
+      @include font-header;
+      @include text(16px, 20px, $color-body-text, 0.83px);
+    }
+
     input[type="email"],
     input[type="text"] {
       @include font-header;

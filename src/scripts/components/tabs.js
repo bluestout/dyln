@@ -29,6 +29,7 @@ const classes = {
 const variables = {
   timing: "fast",
   contactParam: "contact-tab",
+  posted: "contact_posted",
 };
 
 function tabs(event) {
@@ -66,7 +67,9 @@ function tabs(event) {
 
 function checkTabHash() {
   const urlParams = getUrlParams();
-  if (urlParams[variables.contactParam]) {
+  if (urlParams[variables.posted]) {
+    $(selectors.linkByIndex(4)).click();
+  } else if (urlParams[variables.contactParam]) {
     const index = urlParams[variables.contactParam];
     $(selectors.linkByIndex(index)).click();
   }

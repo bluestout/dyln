@@ -185,37 +185,13 @@
 
   &__quick-nav {
     @include font-header(500);
-
-    &-icon {
-      display: inline-block;
-      position: relative;
-      left: -18px;
-      top: 5px;
-      width: 20%;
-
-      &.open > svg:first-of-type {
-        display: none;
-      }
-
-      &.open > svg:last-of-type {
-        display: inline-block;
-      }
-
-      @include media-query($medium-up) {
-        display: none;
-      }
-
-      svg {
-        width: 15%;
-
-        &:last-of-type {
-          display: none;
-        }
-      }
-    }
-
     button {
       @include no-browser-styling;
+
+      span {
+        display: inline-block;
+        vertical-align: middle;
+      }
     }
 
     a {
@@ -446,20 +422,28 @@
         position: relative;
         font-weight: 700;
         color: $color-body-text;
-        padding: 0 20px 0 0;
-        border-bottom: 1px solid $color-black;
+        padding: 0;
 
-        &::after {
-          @include transition(transform);
-          position: absolute;
-          right: 5px;
-          font-weight: 400;
+        span {
           display: inline-block;
+          vertical-align: middle;
+          border-bottom: 1px solid $color-black;
+          padding: 0 0 1px;
+        }
+
+        svg {
+          @include transition(transform);
+          position: relative;
+          top: -1px;
+          display: inline-block;
+          vertical-align: middle;
+          width: 8px;
+          height: 8px;
         }
 
         &.open {
-          &::after {
-            transform: rotate(90deg) rotate3d(0, 1, 0, 180deg);
+          svg {
+            transform: rotate(180deg);
           }
         }
       }

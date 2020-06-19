@@ -1,4 +1,6 @@
 .faq-article {
+  margin: 0 0 30px;
+
   &__tags {
     @include font-header(500);
     @include text(20px, 28px, $color-main-1, 1.2px);
@@ -54,6 +56,37 @@
     &__col-sidebar {
       flex: 0 0 16.666%;
       max-width: 16.666%;
+    }
+  }
+
+  @include media-query($medium-down) {
+    margin: 0 0 20px;
+
+    &__tags {
+      font-size: 10px;
+      line-height: 12px;
+      letter-spacing: 0.36px;
+      margin: 0 0 5px;
+    }
+
+    &__title {
+      font-size: 20px;
+      line-height: 28px;
+      letter-spacing: 1.2px;
+      margin: 0 0 30px;
+    }
+
+    &__back-wrap {
+      margin: 0 0 20px;
+
+      span {
+        font-size: 12px;
+        line-height: 16px;
+      }
+
+      svg {
+        height: 10px;
+      }
     }
   }
 }
