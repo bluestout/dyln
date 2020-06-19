@@ -24,6 +24,10 @@
     @media screen and (min-width: 2600px) {
       height: 100px;
     }
+
+    @include media-query($large-down) {
+      display: none;
+    }
   }
 
   .container,
