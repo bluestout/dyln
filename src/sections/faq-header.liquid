@@ -1,0 +1,71 @@
+{%- if section.settings.bg -%}
+  {%- assign wrapper_class = "faq-header__bg-wrap" -%}
+
+  {%- if section.settings.bg_rsp -%}
+    {%- assign wrapper_class = "faq-header__bg-wrap d-none d-sm-block" -%}
+    {%- render 'responsive-image' with
+      image: section.settings.bg_rsp,
+      max_width: 768,
+      max_height: 768,
+      wrapper_class: "faq-header__bg-wrap d-sm-none",
+      image_class: "faq-header__bg",
+    -%}
+  {%- endif -%}
+
+  {%- render 'responsive-image' with
+    image: section.settings.bg,
+    max_width: 1600,
+    max_height: 540,
+    wrapper_class: wrapper_class,
+    image_class: "faq-header__bg",
+  -%}
+{%- endif -%}
+
+<div class="faq-header__body">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 d-none d-md-block"></div>
+      <div class="col-md-6 align-self-center">
+        {% if section.settings.title != blank %}
+          <h2 class="faq-header__title">
+          {{ section.settings.title }}
+          </h2>
+        {% endif %}
+        {% if section.settings.content != blank %}
+          <div class="faq-header__content">
+            {{ section.settings.content | strip_html | strip | truncatewords: 30, '...' }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "FAQ Header",
+    "class": "faq-header",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "textarea",
+        "id": "content",
+        "label": "Description"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg",
+        "label": "Background"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg_rsp",
+        "label": "Background Mobile"
+      }
+    ]
+  }
+{% endschema %}
