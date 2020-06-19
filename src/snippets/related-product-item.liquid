@@ -26,10 +26,6 @@
       <span class="related-product__content">
         {{ related_p.metafields.info.related_description | strip_html | truncatewords: 10, '...'  }}
       </span>
-    {% else %}
-      <span class="related-product__content">
-        {{ related_p.description | strip_html | truncatewords: 10, '...'  }}
-      </span>
     {% endif %}
 
     <span class="related-product__price">

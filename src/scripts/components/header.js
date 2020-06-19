@@ -135,6 +135,7 @@ function handleHeaderButtonClick(event) {
   $ann.toggleClass(classes.closed);
   $menu.toggleClass(classes.open);
   $button.toggleClass(classes.open);
+  $("html").toggleClass("no-scroll");
 
   setTimeout(() => {
     setHeaderBodyOffset(2);
@@ -144,7 +145,7 @@ function handleHeaderButtonClick(event) {
 
   $menu.css({
     top: `${headerHeight}px`,
-    height: `calc(100vh - ${headerHeight}px)`,
+    height: `calc(100% - ${headerHeight}px)`,
   });
 }
 

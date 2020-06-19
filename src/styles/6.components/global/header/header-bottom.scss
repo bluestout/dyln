@@ -16,11 +16,12 @@
     border-radius: 15px;
     padding: 0;
     background-color: $color-white;
-    color: $color-white;
+    color: $color-body-text;
     border: none;
+    border-bottom: 1px solid $color-theme-6;
 
     &::placeholder {
-      color: $color-white;
+      color: $color-theme-8;
     }
   }
 

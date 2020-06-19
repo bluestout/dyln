@@ -530,10 +530,6 @@
     ]
   },
   {
-    "name": "Country/Inventory",
-    "settings": []
-  },
-  {
     "name": "Diffuser Info Modal",
     "settings": [
       {
@@ -574,6 +570,40 @@
         "id": "diff_info_close_text",
         "label": "Close Button",
         "default": "Got it!"
+      }
+    ]
+  },
+  {
+    "name": "Diffuser Sub Modal",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "diff_sub_image",
+        "label": "Image",
+        "info": "160x160"
+      },
+      {
+        "type": "text",
+        "id": "diff_sub_title",
+        "label": "Title",
+        "default": "Subscribe & Save!"
+      },
+      {
+        "type": "textarea",
+        "id": "diff_sub_note",
+        "label": "Description"
+      },
+      {
+        "type": "text",
+        "id": "diff_sub_ready_text",
+        "label": "Ready Button",
+        "default": "I'm ready to subscribe!"
+      },
+      {
+        "type": "text",
+        "id": "diff_sub_close_text",
+        "label": "Close Button",
+        "default": "Close"
       }
     ]
   },
