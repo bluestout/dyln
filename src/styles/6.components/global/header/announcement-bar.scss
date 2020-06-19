@@ -1,6 +1,10 @@
 .announcement-bar {
-  background-color: $color-main-1;
-  padding: 10px;
+  position: relative;
+
+  &__box {
+    background-color: $color-main-1;
+    padding: 10px;
+  }
 
   &.closed {
     opacity: 0;
