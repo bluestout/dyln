@@ -6,7 +6,7 @@
     {% assign page_content = page_content | replace_first: '<h1', '<TEMP' %}
     {% assign page_content = page_content | replace_first: '</h1', '</TEMP' %}
     {% assign page_content = page_content | replace: '<h1', '<h2' %}
-    {% assign page_content = page_content | replace: '</h1>', '</h2' %}
+    {% assign page_content = page_content | replace: '</h1', '</h2' %}
     {% assign page_content = page_content | replace_first: '<TEMP', '<h1' %}
     {% assign page_content = page_content | replace_first: '</TEMP', '</h1' %}
 

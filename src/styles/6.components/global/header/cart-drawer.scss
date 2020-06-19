@@ -32,7 +32,7 @@
 
   &__image-wrap {
     max-width: 100px;
-    margin: 0 30px 0 0;
+    padding: 0 30px 0 0;
   }
 
   &__image-link {
@@ -45,7 +45,7 @@
 
   &__item-content {
     padding: 20px 0 0;
-    width: 100%;
+    width: calc(100% - 101px);
   }
 
   &__item-link {

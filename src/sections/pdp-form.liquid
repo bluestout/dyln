@@ -145,8 +145,8 @@
 {% endform %}
 
 {% comment %} <!-- Insert QuadPay Widget --> {% endcomment %}
-<div id="qd-wrap" style="margin: 0; font-size:13px; font-weight: lighter; color: #00aedb;">
-  <quadpay-widget priceColor="#000" alignment="center" amount={{ current_variant.price | divided_by: 100.00 }} ></quadpay-widget>
+<div style="margin: 0 0 10px 0; min-height:20px;">
+  <quadpay-widget amount={{ current_variant.price }} ></quadpay-widget>
 </div>
 
 {% render 'product-item-sold-out' with available: current_variant.available unique_id: 1  %}

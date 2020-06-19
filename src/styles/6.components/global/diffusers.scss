@@ -44,7 +44,7 @@
   }
 
   &__variants {
-    margin: 0 0 20px;
+    margin: 20px 0;
 
     &.standalone {
       margin: 0 0 5px;
@@ -69,6 +69,7 @@
     @include text(17px, 24px, $color-body-text, 1px);
     @include underline($color-main-1, false);
     pointer-events: none;
+    margin: 0 0 5px;
 
     &.standalone {
       color: $color-theme-8;
@@ -101,6 +102,7 @@
 
   &__btn-wrap {
     @include clearfix;
+    position: relative;
     max-width: 425px;
 
     &.hide {
@@ -339,6 +341,9 @@
     @include no-browser-styling;
     padding: 0;
     margin: 10px 0 0;
+  }
+
+  &__sub-modal {
   }
 
   @include media-query($medium-down) {

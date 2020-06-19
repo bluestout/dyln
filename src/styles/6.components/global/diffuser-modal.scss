@@ -52,14 +52,6 @@
     }
   }
 
-  &__img-wrap {
-    margin: 0 auto 10px;
-  }
-
-  &__img {
-    object-fit: cover;
-  }
-
   &__description {
     @include font-header(500);
     @include text(16px, 22px, $color-body-text, 0.95px);
@@ -79,13 +71,13 @@
 
   &__banner {
     @include clearfix;
+    padding: 20px 25px;
+    margin: 0 0 20px;
     background-image: linear-gradient(
       to right,
       $color-theme-4 0%,
       $color-background 100%
     );
-    padding: 20px 25px;
-    margin: 0 0 20px;
   }
 
   &__banner h4 {
@@ -119,6 +111,114 @@
 
     &:focus {
       outline: auto 5px;
+    }
+  }
+
+  &__img-container {
+    position: relative;
+    padding: 50px 0;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background-color: $color-theme-27;
+    }
+  }
+
+  &__img-wrap {
+    z-index: 1;
+    margin: 0 auto 10px;
+  }
+
+  &__img {
+    object-fit: cover;
+  }
+
+  &__usps {
+    clear: both;
+    padding: 20px 0 0;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    max-width: 500px;
+  }
+
+  &__usps-separator {
+    min-height: 20px;
+  }
+
+  .diffusers__usp {
+    flex: 0 0 auto;
+    text-align: center;
+
+    span {
+      @include font-header(700);
+      @include text(14px, 20px, $color-theme-8, 0.83px);
+      display: block;
+      margin: 0;
+    }
+
+    svg {
+      width: 40px;
+      height: 30px;
+      margin: 0 0 5px;
+    }
+  }
+
+  &__subs-title {
+    @include font-header(700);
+    @include text(30px, 36px, $color-main-1, 1.77px);
+    margin: 0 auto 10px;
+    text-align: center;
+  }
+
+  &__subs-note {
+    @include font-header(500);
+    @include text(14px, 20px, $color-theme-8, 0.83px);
+    margin: 20px auto;
+    text-align: center;
+  }
+
+  &__subs-content {
+    position: relative;
+    background-color: $color-theme-27;
+    margin: -30px 0 0;
+    padding: 0 45px;
+  }
+
+  &__close-text-wrap {
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  &__close-text {
+    @include font-header(500);
+    @include text(14px, 20px, $color-theme-8, 0.83px);
+    @include no-browser-styling;
+    padding: 0;
+    margin: 0 0 10px;
+  }
+
+  &__subs-button-open {
+    @include no-browser-styling;
+    @include no-font-size;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    padding: 1px;
+
+    path,
+    circle {
+      stroke: $color-theme-8;
+    }
+
+    &:focus {
+      outline: 5px auto;
     }
   }
 
@@ -170,6 +270,49 @@
       font-size: 14px;
       letter-spacing: 0.9px;
       padding: 8px 20px;
+    }
+
+    &__img-wrap {
+      width: 100px;
+      height: 100px;
+    }
+
+    &__img {
+      width: 100px;
+      height: 100px;
+    }
+
+    &__img-container {
+      padding: 35px 0;
+    }
+
+    &__usps {
+      max-width: 100%;
+    }
+
+    .diffusers__usp {
+      flex: 0 0 auto;
+      text-align: center;
+
+      span {
+        font-size: 10px;
+        line-height: 12px;
+      }
+    }
+
+    &__subs-title {
+      font-size: 20px;
+      line-height: 28px;
+    }
+
+    &__subs-content {
+      margin: -20px 0 0;
+      padding: 0 20px;
+    }
+
+    &__subs-button-open {
+      top: auto;
+      bottom: 4px;
     }
   }
 }
