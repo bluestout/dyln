@@ -39,12 +39,8 @@
           <div class="header-search__pop-terms">
             {%- assign pop_terms = popular_terms | split: ',' -%}
             {% for pop_term in pop_terms %}
-              <button
-                type="button"
-                class="header-search__pop-term"
-                data-popular-term
-                {% if enable_ajax %}data-popular-term-ajax{% endif %}
-                tabindex="-1">{{ pop_term }}</button>
+              {% assign s_term = pop_term | strip | strip_newlines | strip_html | replace: ' ', '+' | replace: '_', '+' | replace: '-', '+' %}
+              <a href='/search?q={{ s_term }}' class="header-search__pop-term">{{ pop_term }}</a>
             {% endfor %}
           </div>
         </div>

@@ -79,64 +79,6 @@
     padding: 0 15px;
     margin: 0 auto;
     display: none;
-
-    &::-webkit-slider-thumb {
-      @include transition(all);
-      width: 15%;
-      width: var(--pdp-tab-input-w);
-      height: 4px;
-      border-radius: 2px;
-      border: none;
-      background-color: $color-theme-7;
-    }
-
-    &::-webkit-media-slider-thumb {
-      @include transition(all);
-      width: 15%;
-      width: var(--pdp-tab-input-w);
-      height: 4px;
-      border-radius: 2px;
-      border: none;
-      background-color: $color-theme-7;
-    }
-
-    &::-moz-range-thumb {
-      @include transition(all);
-      width: 15%;
-      width: var(--pdp-tab-input-w);
-      height: 4px;
-      border-radius: 2px;
-      border: none;
-      background-color: $color-theme-7;
-    }
-
-    &::-ms-thumb {
-      @include transition(all);
-      width: 15%;
-      width: var(--pdp-tab-input-w);
-      height: 4px;
-      border-radius: 2px;
-      border: none;
-      background-color: $color-theme-7;
-    }
-
-    &::-webkit-slider-runnable-track {
-      width: 100%;
-      height: 2px;
-      background-color: $color-theme-6;
-    }
-
-    &::-moz-range-track {
-      width: 100%;
-      height: 2px;
-      background-color: $color-theme-6;
-    }
-
-    &::-ms-track {
-      width: 100%;
-      height: 2px;
-      background-color: $color-theme-6;
-    }
   }
 
   .slick-slide {

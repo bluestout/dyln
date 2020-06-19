@@ -9,11 +9,19 @@
   {% assign e_current_sub_price = sub_variants_map[e_current_id].discount_variant_price %}
 
   {% unless sub_only %}
-    {% render 'subscription-title' with title, note: note %}
+    {% if title %}
+      {% render 'subscription-title' with title, note: note %}
+    {% endif %}
   {% endunless %}
 
   {% form 'product', e_product, data-product-form: '', data-product-handle: e_product.handle, data-enable-history-state: 'true', class: "pdp-form__form"%}
     <input name="subscription_variant_map" value={{ sub_variants_map | json }} type="hidden" data-subscription-variant-map />
+
+    {% unless sub_only %}
+      <div class="pdp-form__price pdp-form__price--sub" data-subscription-regular-price data-subscription-loaded>
+        {{ e_current_variant.price | money }}
+      </div>
+    {% endunless %}
 
     {% unless e_product.has_only_default_variant %}
       <div class="diffusers__variants {% if sub_only %} standalone{% endif %}">
@@ -57,6 +65,12 @@
             {% render 'subscription-frequency' with interval_frequencies[0] as frequency, interval: interval_unit_type %}
           </span>
         </button>
+
+        <button
+          type="button"
+          class="diffuser-modal__subs-button-open"
+          data-diffuser-sub-modal-open
+          data-diffuser-sub-modal-focusout>{% render 'icon-info' %}</button>
       </div>
     {% endunless %}
 
@@ -105,9 +119,14 @@
     </div>
     {% endif %}
 
-
     <input name="shipping_interval_unit_type" value="{{ interval_unit_type }}" type="hidden" />
     <input value="{{ cart.currency.symbol }}" type="hidden" data-subscription-currency-symbol />
 
+    {% if show_extras %}
+      {% comment %} <!-- Insert QuadPay Widget --> {% endcomment %}
+      <div style="margin: 0 0 10px 0; min-height:20px;">
+        <quadpay-widget amount={{ current_variant.price }} ></quadpay-widget>
+      </div>
+    {% endif %}
   {% endform %}
 {% endif %}

@@ -43,8 +43,7 @@
           {% render 'subscription-form' with settings.extra_diffusers_product
             current_product_id: product.id
             show_extras: true,
-            title: settings.extra_diffusers_title,
-            note: settings.extra_diffusers_note
+            note: settings.extra_diffusers_note,
           %}
         {% else %}
           {% section 'pdp-form' %}
@@ -96,6 +95,8 @@
   {% section 'pdp-user-images' %}
 
   {% render 'diffuser-modal' %}
+
+  {% render 'diffuser-sub-modal' %}
 
   {% render 'atc-bar' %}
 

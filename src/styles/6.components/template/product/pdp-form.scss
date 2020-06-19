@@ -5,6 +5,10 @@
     @include font-header(700);
     @include text(20px, 28px, $color-body-text, 1.18px);
     margin: 0 0 15px;
+
+    &--sub {
+      margin-top: 10px;
+    }
   }
 
   &__option-wrap {
@@ -171,6 +175,11 @@
       letter-spacing: 0.83px;
       margin: 0 10px 0 0;
       align-self: center;
+
+      &--sub {
+        text-align: center;
+        margin: 0 10px 0 0;
+      }
     }
 
     &__option-wrap {
