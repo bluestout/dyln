@@ -13,6 +13,10 @@
     height: 100%;
   }
 
+  &__bg {
+    object-fit: cover;
+  }
+
   &__container {
     height: 100%;
   }
@@ -179,17 +183,19 @@
     &__wave {
       bottom: 70px;
     }
+  }
 
+  @include media-query($small) {
     &__bg-wrap {
-      max-width: 100%;
+      max-width: 100% !important;
+
       &::before {
-        padding-top: 450px;
+        padding-top: 400px !important;
       }
     }
 
     &__bg {
-      max-width: 100%;
-      object-fit: cover;
+      max-width: 100% !important;
     }
   }
 }

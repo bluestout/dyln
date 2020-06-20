@@ -780,9 +780,21 @@
               "tab_3": true,
               "title_3": "Product Specs"
             }
+          },
+          "1592675641339": {
+            "type": "block",
+            "settings": {
+              "product": "extra-vitabead-diffusers",
+              "tab_1": true,
+              "title_1": "",
+              "tab_2": false,
+              "title_2": "",
+              "tab_3": false,
+              "title_3": ""
+            }
           }
         },
-        "block_order": ["1585675966927"],
+        "block_order": ["1585675966927", "1592675641339"],
         "settings": {}
       },
       "pdp-tab-features": {
@@ -816,10 +828,40 @@
               "title_6": "",
               "block_title_6": "",
               "block_content_6": ""
+            },
+            "1592675769807": {
+              "type": "block",
+              "settings": {
+                "product": "extra-vitabead-diffusers",
+                "image_1": "shopify://shop_images/dyln-bottle-included-diffuser.png",
+                "title_1": "<span>Detail oriented design</span><br>\n<span class=\"brand-blue\">+</span> <span>High quality materials</span>",
+                "block_title_1": "Plastic-free water",
+                "block_content_1": "Cap interior made ouf of Stainless Steel so your water never touches plastic.<br><br>\nSuper-easy to clean Silicone Gasket.",
+                "image_2": "shopify://shop_images/shop_bottles2.png",
+                "title_2": "<span>Detail oriented design</span><br>\n<span class=\"brand-blue\">+</span> <span>High quality materials</span>",
+                "block_title_2": "Plastic-free water",
+                "block_content_2": "Cap interior made ouf of Stainless Steel so your water never touches plastic.<br><br>\nSuper-easy to clean Silicone Gasket.",
+                "image_3": "shopify://shop_images/dyln-cart-water-bottle.png",
+                "title_3": "<span>Detail oriented design</span><br>\n<span class=\"brand-blue\">+</span> <span>High quality materials</span>",
+                "block_title_3": "Plastic-free water",
+                "block_content_3": "Cap interior made ouf of Stainless Steel so your water never touches plastic.<br><br>\nSuper-easy to clean Silicone Gasket.",
+                "image_4": "",
+                "title_4": "",
+                "block_title_4": "",
+                "block_content_4": "",
+                "image_5": "",
+                "title_5": "",
+                "block_title_5": "",
+                "block_content_5": "",
+                "image_6": "",
+                "title_6": "",
+                "block_title_6": "",
+                "block_content_6": ""
+              }
             }
           }
         },
-        "block_order": ["1585675993400"],
+        "block_order": ["1585675993400", "1592675769807"],
         "settings": {}
       },
       "pdp-tab-included": {

@@ -12,7 +12,6 @@ const variables = {
 };
 
 function handleModalLinkClick(event) {
-  console.log("handleModalLinkClick", event);
   const $this = $(event.currentTarget);
   const href = $this.attr("href");
   if (href.indexOf(variables.modalName) > -1) {

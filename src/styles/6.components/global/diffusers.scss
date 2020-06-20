@@ -157,13 +157,6 @@
     height: 65px;
     background-color: $color-background;
 
-    @include media-query($small) {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      height: 45px;
-    }
-
     &:focus {
       outline: auto 5px;
     }
@@ -343,9 +336,6 @@
     margin: 10px 0 0;
   }
 
-  &__sub-modal {
-  }
-
   @include media-query($medium-down) {
     padding: 0;
     margin: 100px 0 0;
@@ -457,8 +447,12 @@
       letter-spacing: 0.71px;
     }
 
+    &__btn-wrap {
+      margin: 0 auto;
+    }
+
     &__regular-btn {
-      height: 44px;
+      height: 45px;
       display: flex;
       flex-flow: column wrap;
       align-content: center;
@@ -479,13 +473,31 @@
       order: 1;
     }
 
-    &__sub-button {
-      height: 44px;
-      height: 44px;
+    &__sub-btn {
+      height: 45px;
       display: flex;
       flex-flow: column wrap;
       align-content: center;
       justify-content: center;
+
+      .custom-select {
+        font-size: 16px;
+        height: 20px;
+        line-height: 20px;
+      }
+
+      .custom-select-styled {
+        height: 41px;
+      }
+
+      .custom-select-option {
+        padding: 4px;
+      }
+
+      label {
+        font-size: 10px;
+        line-height: 14px;
+      }
     }
 
     &__sub-price {
@@ -500,6 +512,7 @@
       line-height: 14px;
       letter-spacing: 1.2px;
       order: 1;
+      display: block;
     }
 
     &__sub-btn-freq {
@@ -524,6 +537,12 @@
         width: 30px;
         height: 30px;
       }
+    }
+  }
+
+  @include media-query($small) {
+    &__usps {
+      display: none;
     }
   }
 }

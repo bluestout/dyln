@@ -142,7 +142,7 @@
         </ul>
 
         {% if paginate.pages > 1 %}
-          {% render 'pagination' %}
+          {% render 'pagination' with paginate %}
         {% endif %}
       {% endif %}
     {% endif %}
