@@ -1,0 +1,25 @@
+.list-c {
+  margin: 0 0 25px;
+
+  .list-c__collection {
+    margin: 20px 0 100px;
+  }
+
+  .list-c__c-title {
+    @include text-title;
+    text-align: center;
+    margin: 0 auto 30px;
+  }
+
+  @include media-query($medium-down) {
+    margin: 0 auto 20px;
+
+    .list-c__collection {
+      margin: 20px 0 60px;
+    }
+
+    .list-c__c-title {
+      margin: 0 auto 20px;
+    }
+  }
+}
