@@ -2,13 +2,14 @@
   @include transition(right);
   position: fixed;
   top: 0;
-  right: -510px;
+  right: -520px;
   z-index: $z-cart;
   background-color: $color-white;
   height: 100%;
   width: 500px;
 
   @include media-query($medium-down) {
+    right: calc(-100% - 30px);
     width: 100%;
   }
 

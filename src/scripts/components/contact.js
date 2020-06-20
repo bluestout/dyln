@@ -19,7 +19,6 @@ const selectors = {
     button: "[data-c-q-n-button]",
     list: "[data-c-q-n-list]",
     link: "[data-c-q-n-link]",
-    icon: "[data-c-q-n-icon]",
   },
   modal: {
     link: "[data-contact-modal-link]",
@@ -36,9 +35,8 @@ const variables = {
   modalName: "#contact-modal-",
 };
 
-function handleCountryChange(event) {
-  const $this = $(event.currentTarget);
-  const countryValue = $this.val();
+function handleCountryChange() {
+  const countryValue = $(selectors.select).val();
   const $newCountry = $(selectors.countryByHandle(countryValue));
   const $allCountries = $(selectors.country);
   $allCountries.not($newCountry).fadeOut(200, () => {
@@ -65,7 +63,6 @@ function handleQuickNavButtonClick() {
   if ($(window).width() < 768) {
     $(selectors.quickNav.list).slideToggle();
     $(selectors.quickNav.button).toggleClass(classes.open);
-    $(selectors.quickNav.icon).toggleClass(classes.open);
   }
 }
 
@@ -94,6 +91,7 @@ $(document).on("click", selectors.quickNav.button, handleQuickNavButtonClick);
 $(document).on("click", selectors.quickNav.link, handleQuickNavButtonClick);
 $(document).on("click", selectors.modal.link, handleModalLinkClick);
 $(document).on("click", selectors.modal.close, handleModalCloseClick);
+document.addEventListener("customSelectChange", handleCountryChange);
 
 $(document).keyup((event) => {
   if (event.key === "Escape") {

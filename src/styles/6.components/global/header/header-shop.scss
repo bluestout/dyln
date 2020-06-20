@@ -101,6 +101,7 @@
       z-index: $z-base;
       background-color: $color-background;
       padding: 45px 0 20px;
+      overflow: hidden;
     }
 
     &__wave {

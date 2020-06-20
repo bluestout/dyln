@@ -1,14 +1,14 @@
 {%- if section.settings.bg -%}
-  {%- assign wrapper_class = "contact-header__bg-wrap" -%}
+  {%- assign wrapper_class = "faq-header__bg-wrap" -%}
 
   {%- if section.settings.bg_rsp -%}
-    {%- assign wrapper_class = "contact-header__bg-wrap d-none d-sm-block" -%}
+    {%- assign wrapper_class = "faq-header__bg-wrap d-none d-sm-block" -%}
     {%- render 'responsive-image' with
       image: section.settings.bg_rsp,
       max_width: 768,
       max_height: 768,
-      wrapper_class: "contact-header__bg-wrap d-sm-none",
-      image_class: "contact-header__bg",
+      wrapper_class: "faq-header__bg-wrap d-sm-none",
+      image_class: "faq-header__bg",
     -%}
   {%- endif -%}
 
@@ -17,31 +17,25 @@
     max_width: 1600,
     max_height: 540,
     wrapper_class: wrapper_class,
-    image_class: "contact-header__bg",
+    image_class: "faq-header__bg",
   -%}
 {%- endif -%}
 
-<div class="contact-header__wave"></div>
-
-<div class="contact-header__body">
+<div class="faq-header__body">
   <div class="container">
     <div class="row">
-      <div class="col-lg-1 d-none d-lg-block"></div>
-      <div class="col-lg-5 col-7 align-self-center">
-        <h1 class="contact-header__title">
+      <div class="col-lg-3 d-none d-lg-block"></div>
+      <div class="col-lg-6 align-self-center">
         {% if section.settings.title != blank %}
+          <h2 class="faq-header__title">
           {{ section.settings.title }}
-        {% else %}
-          {{ page.title }}
+          </h2>
         {% endif %}
-        </h1>
-        <div class="contact-header__content">
-          {% if section.settings.content != blank %}
+        {% if section.settings.content != blank %}
+          <div class="faq-header__content">
             {{ section.settings.content | strip_html | strip | truncatewords: 30, '...' }}
-          {% else %}
-            {{ page.content | strip_html | strip | truncatewords: 30, '...' }}
-          {% endif %}
-        </div>
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -49,20 +43,18 @@
 
 {% schema %}
   {
-    "name": "Contact Header",
-    "class": "contact-header",
+    "name": "FAQ Header",
+    "class": "faq-header",
     "settings": [
       {
         "type": "text",
         "id": "title",
-        "label": "Title",
-        "info": "Optional, defaults to page title."
+        "label": "Title"
       },
       {
         "type": "textarea",
         "id": "content",
-        "label": "Description",
-        "info": "Optional, defaults to page content."
+        "label": "Description"
       },
       {
         "type": "image_picker",

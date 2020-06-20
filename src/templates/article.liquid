@@ -1,129 +1,165 @@
-{% section 'article-header' %}
-<div class="container">
-  <div class="row">
-    <div class="col-md-2 d-none d-xl-block"></div>
-    <div class="col-md-8">
-      <article role="article">
-        <header class="article__header">
-          <span class="article__header-category">
-            {% for tag in article.tags %}
-              <a href="{{ blog.url }}/tagged/{{ tag | handle }}?view=tagged">{{ tag }}</a>
-            {% endfor %}
-          </span>
-          <h1 class="article__header-title">{{ article.title }}</h1>
+{% if blog.handle contains "faq"  %}
 
-          <div class="article__header-detail">
-            <div class="article__date">
-              <p>{{ article.published_at | date: " %b %d, %Y" }}</p>
+  {% section 'faq-header' %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 faq-article__col-sidebar">
+        {% section 'contact-sidebar' %}
+      </div>
+      <div class="col-lg-6 faq-article__col-main">
+        <div class="faq-article__back-wrap">
+          <a href="/pages/contact-us">
+            <span aria-hidden="true">{% render 'icon-chevron-l' %}</span>
+            <span>{{ 'blogs.article.back_to_all_faqs' | t }}</span>
+          </a>
+        </div>
+        <article role="article" class="faq-article">
+          <div class="faq-article__tags">
+            {{ article.tags[0] }}
+          </div>
+          <h1 class="faq-article__title">{{ article.title }}</h1>
+          <div class="rte faq-article__content">
+            {% assign article_content = article.content %}
+            {% assign article_content = article_content | replace: '<h1', '<h2' %}
+            {% assign article_content = article_content | replace: '</h1', '</h2' %}
+            {{ article_content }}
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  {% section 'faq-footer' %}
+
+{% else %}
+  {% section 'article-header' %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2 d-none d-xl-block"></div>
+      <div class="col-md-8">
+        <article role="article">
+          <header class="article__header">
+            <span class="article__header-category">
+              {% for tag in article.tags %}
+                <a href="{{ blog.url }}/tagged/{{ tag | handle }}?view=tagged">{{ tag }}</a>
+              {% endfor %}
+            </span>
+            <h1 class="article__header-title">{{ article.title }}</h1>
+
+            <div class="article__header-detail">
+              <div class="article__date">
+                <p>{{ article.published_at | date: " %b %d, %Y" }}</p>
+              </div>
+              <div class="article__social">
+                <span>SHARE!</span>
+                {% render 'social-sharing' share_icons: true, share_title: article.title, share_permalink: article.url, share_image: article.image %}
+              </div>
             </div>
+          </header>
+
+          <div class="article__content">
+            {{ article.content }}
+          </div>
+
+          <footer class="article__footer">
             <div class="article__social">
-              <span>SHARE!</span>
+              <span>Share!</span>
               {% render 'social-sharing' share_icons: true, share_title: article.title, share_permalink: article.url, share_image: article.image %}
             </div>
-          </div>
-        </header>
-
-        <div class="article__content">
-          {{ article.content }}
-        </div>
-
-        <footer class="article__footer">
-          <div class="article__social">
-            <span>Share!</span>
-            {% render 'social-sharing' share_icons: true, share_title: article.title, share_permalink: article.url, share_image: article.image %}
-          </div>
-          <div class="article__rating">
-            <span>Rate this article</span>
-            <div class="article__rating-ratings">
-              {% render 'icon-blog-rating-4' %}
-              {% render 'icon-blog-rating-3' %}
-              {% render 'icon-blog-rating-2' %}
-              {% render 'icon-blog-rating-1' %}
+            <div class="article__rating">
+              <span>Rate this article</span>
+              <div class="article__rating-ratings">
+                {% render 'icon-blog-rating-4' %}
+                {% render 'icon-blog-rating-3' %}
+                {% render 'icon-blog-rating-2' %}
+                {% render 'icon-blog-rating-1' %}
+              </div>
             </div>
-          </div>
-        </footer>
+          </footer>
 
-        <div id="disqus_thread"></div>
-        <script>
+          <div id="disqus_thread"></div>
+          <script>
 
-          /**
-           *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-           *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-          /*
-          var disqus_config = function () {
-          this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-          this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-          };
-          */
-          (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://dyln-test.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-          })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </article>
-    </div>
-    <div class="col-md-2">
-      <div class="article__sidebar">
-        {% render 'newsletter-flyout' %}
+            /**
+            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+            /*
+            var disqus_config = function () {
+            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+            */
+            (function() { // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+              s.src = 'https://dyln-test.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </article>
+      </div>
+      <div class="col-md-2">
+        <div class="article__sidebar">
+          {% render 'newsletter-flyout' %}
+          {% section 'blog-side-menu' %}
+        </div>
+      </div>
+      <div class="col-md-12">
+        {% render 'article-other-topics' %}
         {% section 'blog-side-menu' %}
       </div>
     </div>
-    <div class="col-md-12">
-      {% render 'article-other-topics' %}
-      {% section 'blog-side-menu' %}
-    </div>
   </div>
-</div>
-<div class="newsletter-overlay" data-newsletter-modal-overlay></div>
+  <div class="newsletter-overlay" data-newsletter-modal-overlay></div>
 
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Article",
-  "articleBody": "{{ article.content | strip_html }}",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "{{ shop.url }}{{ page.url }}"
-  },
-  "headline": "{{ article.title }}",
-  {% if article.excerpt != blank %}
-    "description": "{{ article.excerpt | strip_html }}",
-  {% endif %}
-  {% if article.image %}
-    {% assign image_size = article.image.width | append: 'x' %}
-    "image": [
-      "https:{{ article | img_url: image_size }}"
-    ],
-  {% endif %}
-  "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' }}",
-  "dateCreated": "{{ article.created_at | date: '%Y-%m-%dT%H:%M:%SZ' }}",
-  "author": {
-    "@type": "Person",
-    "name": "{{ article.author }}"
-  },
-  "publisher": {
-    "@type": "Organization",
-    {% if settings.share_image %}
-      {% assign image_size = settings.share_image.width | append: 'x' %}
-      "logo": {
-        "@type": "ImageObject",
-        "height": "{{ settings.share_image.height }}",
-        "url": "https:{{ settings.share_image | img_url: image_size }}",
-        "width": "{{ settings.share_image.width }}"
-      },
-    {% elsif article.image %}
-      {% assign image_size = article.image.width | append: 'x' %}
-      "logo": {
-        "@type": "ImageObject",
-        "height": "{{ article.image.height }}",
-        "url": "https:{{ article.image | img_url: image_size }}",
-        "width": "{{ article.image.width }}"
-      },
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "articleBody": "{{ article.content | strip_html }}",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "{{ shop.url }}{{ page.url }}"
+    },
+    "headline": "{{ article.title }}",
+    {% if article.excerpt != blank %}
+      "description": "{{ article.excerpt | strip_html }}",
     {% endif %}
-    "name": "{{ shop.name }}"
+    {% if article.image %}
+      {% assign image_size = article.image.width | append: 'x' %}
+      "image": [
+        "https:{{ article | img_url: image_size }}"
+      ],
+    {% endif %}
+    "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' }}",
+    "dateCreated": "{{ article.created_at | date: '%Y-%m-%dT%H:%M:%SZ' }}",
+    "author": {
+      "@type": "Person",
+      "name": "{{ article.author }}"
+    },
+    "publisher": {
+      "@type": "Organization",
+      {% if settings.share_image %}
+        {% assign image_size = settings.share_image.width | append: 'x' %}
+        "logo": {
+          "@type": "ImageObject",
+          "height": "{{ settings.share_image.height }}",
+          "url": "https:{{ settings.share_image | img_url: image_size }}",
+          "width": "{{ settings.share_image.width }}"
+        },
+      {% elsif article.image %}
+        {% assign image_size = article.image.width | append: 'x' %}
+        "logo": {
+          "@type": "ImageObject",
+          "height": "{{ article.image.height }}",
+          "url": "https:{{ article.image | img_url: image_size }}",
+          "width": "{{ article.image.width }}"
+        },
+      {% endif %}
+      "name": "{{ shop.name }}"
+    }
   }
-}
-</script>
+  </script>
+{% endif %}

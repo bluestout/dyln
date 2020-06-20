@@ -1,0 +1,92 @@
+.faq-article {
+  margin: 0 0 30px;
+
+  &__tags {
+    @include font-header(500);
+    @include text(20px, 28px, $color-main-1, 1.2px);
+    text-transform: uppercase;
+    margin: 0 0 10px;
+  }
+
+  &__title {
+    @include font-header(700);
+    @include text(40px, 46px, $color-title, 2.36px);
+    margin: 0 0 40px;
+  }
+
+  &__content {
+  }
+
+  &__back-wrap {
+    margin: 0 0 25px;
+
+    span {
+      @include font-header(500);
+      @include text(14px, 20px, $color-body-text, 0.83px);
+      @include transition(color);
+      margin: 0 0 0 10px;
+    }
+
+    svg {
+      width: 8px;
+      height: 12px;
+    }
+
+    path {
+      @include transition(stroke);
+    }
+
+    &:hover,
+    &:focus {
+      span {
+        color: $color-main-1;
+      }
+      path {
+        stroke: $color-main-1;
+      }
+    }
+  }
+
+  @include media-query($xxl-up) {
+    &__col-main {
+      flex: 0 0 66.666%;
+      max-width: 66.666%;
+    }
+
+    &__col-sidebar {
+      flex: 0 0 16.666%;
+      max-width: 16.666%;
+    }
+  }
+
+  @include media-query($medium-down) {
+    margin: 0 0 20px;
+
+    &__tags {
+      font-size: 10px;
+      line-height: 12px;
+      letter-spacing: 0.36px;
+      margin: 0 0 5px;
+    }
+
+    &__title {
+      font-size: 20px;
+      line-height: 28px;
+      letter-spacing: 1.2px;
+      margin: 0 0 30px;
+    }
+
+    &__back-wrap {
+      margin: 0 0 20px;
+
+      span {
+        font-size: 12px;
+        line-height: 16px;
+      }
+
+      svg {
+        height: 10px;
+      }
+    }
+  }
+}

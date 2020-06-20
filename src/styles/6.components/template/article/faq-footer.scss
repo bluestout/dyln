@@ -1,0 +1,161 @@
+.faq-footer {
+  position: relative;
+  padding: 90px 0 0;
+  margin: 0 0 80px;
+
+  .container,
+  .row {
+    height: 100%;
+  }
+
+  &__bg-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    max-width: 100% !important;
+  }
+
+  &__bg {
+    max-width: 100% !important;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  &__body {
+    position: relative;
+  }
+
+  &__title {
+    @include font-header(700);
+    @include text(30px, 44px, $color-title, 1.77px);
+    text-align: center;
+
+    &.top {
+      margin: 0 0 10px;
+    }
+
+    &.bottom {
+      margin: 0 0 20px;
+    }
+  }
+
+  &__content {
+    @include font-header(500);
+    @include text(18px, 24px, $color-body-text, 1px);
+    margin: 0 0 40px;
+    text-align: center;
+
+    a {
+      color: $color-main-1;
+    }
+  }
+
+  &__usps {
+    max-width: 400px;
+    margin: 0 auto 30px;
+  }
+
+  &__usp {
+    margin: 0 0 20px;
+    display: flex;
+  }
+
+  &__usp-icon {
+    width: 70px;
+    flex: 0 0 70px;
+    text-align: center;
+    align-self: center;
+  }
+
+  &__usp-content {
+    flex: 1 0 calc(100% - 70px);
+
+    h4 {
+      @include text(16px, 22px, $color-body-text, 1.45px);
+      margin: 0 0 3px;
+    }
+
+    p {
+      @include text(16px, 22px, $color-body-text, 1.45px);
+    }
+  }
+
+  &__link {
+    @include button(solid, round, 1);
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: 1px;
+    padding: 9px 30px;
+
+    span {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
+  @include media-query($medium-down) {
+    margin: 0 0 40px;
+
+    &__title {
+      font-size: 20px;
+      line-height: 28px;
+      letter-spacing: 1.2px;
+
+      &.bottom {
+        margin: 0 0 30px;
+      }
+    }
+
+    &__content {
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 1px;
+    }
+
+    &__usps {
+      max-width: 100%;
+      margin: 0 auto 20px;
+    }
+
+    &__usp {
+      margin: 0 auto 10px;
+      max-width: 260px;
+    }
+
+    &__usp-icon {
+      width: 50px;
+      flex: 0 0 50px;
+      svg {
+        max-width: 20px;
+        max-height: 30px;
+      }
+    }
+
+    &__usp-content {
+      flex: 1 0 calc(100% - 50px);
+
+      h4 {
+        font-size: 10px;
+        line-height: 14px;
+        letter-spacing: 0.8px;
+        margin: 0 0 3px;
+      }
+
+      p {
+        font-size: 10px;
+        line-height: 14px;
+        letter-spacing: 0.8px;
+      }
+    }
+
+    &__link {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.8px;
+      padding: 5px 20px;
+    }
+  }
+}

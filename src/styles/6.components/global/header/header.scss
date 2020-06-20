@@ -7,8 +7,11 @@
     top: 0;
     left: 0;
     width: 100%;
-    padding: 15px;
     background-color: $color-white;
+  }
+
+  [data-site-header-container] {
+    padding: 15px;
   }
 
   &__utils {
@@ -57,6 +60,10 @@
   }
 
   @include media-query($large-down) {
+    [data-site-header-container] {
+      padding: 10px 15px;
+    }
+
     &__mobile-wrap {
       z-index: $z-header-rsp;
       position: fixed;

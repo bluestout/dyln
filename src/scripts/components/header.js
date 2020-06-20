@@ -20,6 +20,7 @@ const selectors = {
   button: "[data-mobile-menu-button]",
   menu: "[data-menu-mobile]",
   headerBody: "[data-site-header]",
+  headerContainer: "[data-site-header-container]",
   announcement: "[data-announcement-bar]",
   barUsa: "[data-announcement-bar-usa]",
   barCa: "[data-announcement-bar-ca]",
@@ -56,17 +57,12 @@ function setIsHeaderScrolled() {
 
 function setHeaderBodyOffset(mode) {
   const scroll = window.scrollY;
-  const $headerBody = $(selectors.headerBody);
-  const height = $(selectors.announcement).outerHeight();
+  const $anno = $(selectors.announcement);
 
-  const offset = height - scroll;
-
-  if (height > 0 && Math.sign(offset) === 1) {
-    if ($headerBody.css("top") !== offset) {
-      $headerBody.css("top", offset);
-    }
-  } else if ($headerBody.css("top") !== 0 || mode === 2) {
-    $headerBody.css("top", 0);
+  if (scroll >= 50 && $anno.length > 0) {
+    $anno.slideUp(400);
+  } else if ($anno.length > 0) {
+    $anno.slideDown(400);
   }
 }
 
@@ -100,7 +96,7 @@ function handleHeaderLinkClick(event) {
     .find(selectors.iframe)
     .toggle();
   toggleTabindexInChildren($block);
-  toggleTabindexInChildren($blocks.not($block));
+  toggleTabindexInChildren($blocks.not($block), 2);
   $block.find(selectors.iframe).toggle();
   $links.not($link).removeClass(classes.active);
   $link.toggleClass(classes.active);
@@ -121,7 +117,7 @@ function handleHeaderLinkClose(event) {
     $link.removeClass(classes.active);
   }
   if ($block.length > 0) {
-    toggleTabindexInChildren($block);
+    toggleTabindexInChildren($block, 2);
   }
 }
 
