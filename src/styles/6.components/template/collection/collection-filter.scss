@@ -223,4 +223,8 @@
       stroke: $color-body-text;
     }
   }
+
+  @include media-query($medium-down) {
+    top: 0;
+  }
 }
