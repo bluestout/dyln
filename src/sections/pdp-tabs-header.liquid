@@ -1,4 +1,4 @@
-{% assign has_blocks = false %}
+{% assign blocks_count = 0 %}
 {% for block in section.blocks %}
   {%- assign section_p = all_products[block.settings.product] -%}
   {% if section_p.handle == product.handle %}
@@ -24,21 +24,36 @@
       </a>
     {% endif %}
 
-    {% if block.settings.tab_1 or block.settings.tab_1 or block.settings.tab_3 %}
-      {% assign has_blocks = true %}
+    {% if block.settings.tab_1 %}
+      {% assign blocks_count = blocks_count | plus: 1 %}
+    {% endif %}
+    {% if block.settings.tab_2 %}
+      {% assign blocks_count = blocks_count | plus: 1 %}
+    {% endif %}
+    {% if block.settings.tab_3 %}
+      {% assign blocks_count = blocks_count | plus: 1 %}
     {% endif %}
     {% break %}
   {% endif %}
 {% endfor %}
 
 {% comment %} because we can't check section content outside sections {% endcomment %}
-{% unless has_blocks %}
+{% if blocks_count == 0 %}
 <style>
   body .pdp-tabs-header {
     display: none;
   }
 </style>
-{% endunless %}
+{% elsif blocks_count == 1 %}
+<style>
+  body .pdp-tabs-header {
+    border: none;
+  }
+  body .pdp-tabs-header__link {
+    display: none;
+  }
+</style>
+{% endif %}
 
 {% schema %}
   {

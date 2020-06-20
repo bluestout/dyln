@@ -272,11 +272,12 @@ function cartLineItemHtml(product, index) {
   // this is to make the product title center, if it has a title only
   let titleBr = "";
   let variantTitle = "";
+
   if (product.variant_title) {
     variantTitle = product.variant_title;
   }
 
-  if (product.variant_title) {
+  if (variantTitle) {
     titleBr = "<br>";
   }
 
@@ -326,6 +327,8 @@ function cartLineItemHtml(product, index) {
         <span class="cart__table-product-title">
           ${product.product_title}
         </span>
+        ${titleBr}
+        <span class="cart__table-product-info">${variantTitle}</span>
       </a>
       <div class="cart__table-remove-wrap">
         <a
@@ -350,7 +353,7 @@ function cartLineItemHtml(product, index) {
               ${product.product_title}
             </span>
             ${titleBr}
-            <br>
+            <span class="cart__table-product-info">${variantTitle}</span>
           </a>
           <div>
             ${showQuantity}

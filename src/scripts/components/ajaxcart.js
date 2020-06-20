@@ -142,8 +142,8 @@ function ajaxRemoveFromCartButton(event) {
 function handlechangeAjaxButtonClick(event) {
   containerLoading(true);
   event.preventDefault();
+  const $source = $(event.currentTarget);
   inputStatus = setTimeout(() => {
-    const $source = $(event.currentTarget);
     const $input = $($source.data("qty-change-ajax"));
     const direction = $source.data("direction");
     const line = $input.data("line");
@@ -593,7 +593,7 @@ $(document).on("change", selectors.input, handleQtyInputChange);
 // toggle quick cart from the right
 $(document).on("click", selectors.quick.toggle, quickCartToggle);
 // ajaxify add to cart buttons
-$(document).on("click", selectors.add, addToCartComplete);
+$(document).on("click", selectors.add, handleAjaxAddButtonClick);
 $(document).on("click", selectors.upsell.submit, handleAjaxUpsellSubmit);
 $(document).on("change", selectors.upsell.select, handleAjaxUpsellSelectChange);
 $(document).on("click", selectors.upsell.input, handleAjaxUpsellInputClick);

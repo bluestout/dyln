@@ -18,7 +18,7 @@
     <input name="subscription_variant_map" value={{ sub_variants_map | json }} type="hidden" data-subscription-variant-map />
 
     {% unless sub_only %}
-      <div class="pdp-form__price pdp-form__price--sub" data-subscription-regular-price data-subscription-loaded>
+      <div class="pdp-form__price pdp-form__price--sub" data-subscription-regular-price>
         {{ e_current_variant.price | money }}
       </div>
     {% endunless %}

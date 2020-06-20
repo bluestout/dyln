@@ -142,7 +142,7 @@
       pointer-events: none;
       background: radial-gradient(
         ellipse at top,
-        rgba($color-theme-19, 0.7) 0%,
+        rgba($color-theme-19, 0.3) 0%,
         transparent 60%,
         transparent 100%
       );
@@ -151,7 +151,7 @@
 
   @include media-query($small) {
     &__mobile-shadow {
-      height: 50px;
+      height: 30px;
     }
   }
 }

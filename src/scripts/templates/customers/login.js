@@ -30,7 +30,7 @@ function checkUrlHash() {
   const hash = window.location.hash;
 
   // Allow deep linking to recover password form
-  if (hash === "#recover") {
+  if (hash === "#forgot") {
     toggleRecoverPasswordForm();
   }
 }

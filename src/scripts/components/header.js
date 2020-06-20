@@ -55,7 +55,7 @@ function setIsHeaderScrolled() {
   }
 }
 
-function setHeaderBodyOffset(mode) {
+function setHeaderBodyOffset() {
   const scroll = window.scrollY;
   const $anno = $(selectors.announcement);
 
@@ -121,20 +121,28 @@ function handleHeaderLinkClose(event) {
   }
 }
 
-function handleHeaderButtonClick(event) {
-  const $menu = $(selectors.menu);
-  const $button = $(event.currentTarget);
-  const $ann = $(selectors.announcement);
-  const headerHeight = $(selectors.headerBody).outerHeight();
-  const $overlay = $(selectors.overlay);
+function closeAllHeaderLinks() {
+  const $link = $(selectors.link);
+  const $block = $(selectors.link);
+  $link.removeClass(classes.active);
+  toggleTabindexInChildren($block, 2);
+  console.log("closeAllHeaderLinks");
+}
 
+function handleHeaderButtonClick() {
+  const $menu = $(selectors.menu);
+  const $button = $(selectors.button);
+  const $ann = $(selectors.announcement);
+  const $overlay = $(selectors.overlay);
   $ann.toggleClass(classes.closed);
+
+  const headerHeight = $(selectors.headerBody).outerHeight();
   $menu.toggleClass(classes.open);
   $button.toggleClass(classes.open);
   $("html").toggleClass("no-scroll");
 
   setTimeout(() => {
-    setHeaderBodyOffset(2);
+    setHeaderBodyOffset();
   }, 20);
 
   $overlay.css("top", `${headerHeight}px`);
@@ -143,6 +151,17 @@ function handleHeaderButtonClick(event) {
     top: `${headerHeight}px`,
     height: `calc(100% - ${headerHeight}px)`,
   });
+}
+
+function closeMobileMenu() {
+  const $menu = $(selectors.menu);
+  const $button = $(selectors.button);
+  const $ann = $(selectors.announcement);
+  $menu.removeClass(classes.open);
+  $button.removeClass(classes.open);
+  $ann.removeClass(classes.closed);
+  $("html").removeClass("no-scroll");
+  console.log("closeMobileMenu");
 }
 
 function setAnnouncementByCountry() {
@@ -177,3 +196,5 @@ $(document).on("click", selectors.button, handleHeaderButtonClick);
 document.addEventListener("ajaxReloaded", togglesInit);
 document.addEventListener("windowScrolledRedux", onScroll);
 document.addEventListener("geoLocationComplete", setAnnouncementByCountry);
+
+export { closeAllHeaderLinks, closeMobileMenu };
