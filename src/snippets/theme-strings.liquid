@@ -19,6 +19,10 @@
       free_shipping_reached_html: {{ 'cart.shipping.free_shipping_reached_html' | t | json }},
       free_shipping_unreached_html: {{ 'cart.shipping.free_shipping_unreached_html' | t: price: "###" | json }},
       free_shipping_empty_html: {{ 'cart.shipping.free_shipping_empty_html' | t: price: "###" | json }},
+      free: {{ 'cart.shipping.free' | t | json }},
+      shipping: {{ 'cart.shipping.shipping' | t | json }},
+      every: {{ 'products.subscription.every' | t | json }},
+      year: {{ 'products.subscription.years' | t | remove: "s" | json }},
       show_more: {{ 'general.search.show_more' | t | json }},
       search_results: {{ 'general.search.heading.other' | t | json }},
       no_results_for: {{ 'general.search.no_results_for' | t | json }}

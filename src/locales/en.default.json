@@ -131,7 +131,9 @@
     "shipping": {
       "free_shipping_reached_html": "Yay! your oder gets <strong>Free Shipping!</strong>",
       "free_shipping_unreached_html": "Hey, you are {{ price }} away from <strong>Free Shipping!</strong>",
-      "free_shipping_empty_html": "<strong>Get Free Shipping</strong> when you spend ${{ price }} or more"
+      "free_shipping_empty_html": "<strong>Get Free Shipping</strong> when you spend ${{ price }} or more",
+      "free": "FREE!",
+      "shipping": "Shipping"
     }
   },
   "collections": {

@@ -122,12 +122,6 @@
     color: $color-title;
   }
 
-  .line-1 {
-  }
-
-  .money {
-  }
-
   &__remove {
     display: block;
     clear: both;
@@ -297,6 +291,7 @@
     @include font-header(500);
     @include text(16px, 22px, $color-body-text, 0.95px);
     float: left;
+    clear: left;
   }
 
   &__total-price {
@@ -369,5 +364,83 @@
     @include font-header(500);
     @include text(11px, 16px, $color-body-text, 0.65px);
     align-self: center;
+  }
+
+  .custom-select {
+    max-width: 120px;
+    border: 1px solid $color-theme-17;
+    border-radius: 1px;
+    margin: 0 0 13px;
+  }
+
+  .custom-select-styled {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+
+    &::before {
+      content: none;
+    }
+    &::after {
+      content: none;
+    }
+
+    span {
+      font-size: 10px;
+      line-height: 14px;
+      letter-spacing: 0.5px;
+      align-self: center;
+    }
+
+    svg {
+      align-self: center;
+      width: 12px;
+      height: 14px;
+    }
+  }
+
+  .custom-select-options {
+    top: calc(100% + 4px);
+    background-color: $color-white;
+    border: 1px solid $color-theme-17;
+    border-radius: 1px;
+    width: 220px;
+  }
+
+  .custom-select-option {
+    background-color: $color-white;
+    position: relative;
+    &:hover {
+      background-color: $color-white;
+    }
+
+    label {
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.7px;
+      pointer-events: none;
+    }
+
+    input {
+      @include no-browser-styling;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      padding: 0;
+
+      &:hover {
+        + label {
+          font-weight: 700;
+        }
+      }
+      &:focus {
+        outline: 5px auto;
+      }
+    }
   }
 }
