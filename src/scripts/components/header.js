@@ -126,7 +126,6 @@ function closeAllHeaderLinks() {
   const $block = $(selectors.link);
   $link.removeClass(classes.active);
   toggleTabindexInChildren($block, 2);
-  console.log("closeAllHeaderLinks");
 }
 
 function handleHeaderButtonClick() {
@@ -161,7 +160,6 @@ function closeMobileMenu() {
   $button.removeClass(classes.open);
   $ann.removeClass(classes.closed);
   $("html").removeClass("no-scroll");
-  console.log("closeMobileMenu");
 }
 
 function setAnnouncementByCountry() {
@@ -189,9 +187,9 @@ $(document).ready(() => {
   setHeaderBodyOffset();
 });
 
-$(document).on("click", selectors.link, handleHeaderLinkClick);
-$(document).on("click", selectors.close, handleHeaderLinkClose);
-$(document).on("click", selectors.button, handleHeaderButtonClick);
+// $(document).on("click", selectors.link, handleHeaderLinkClick);
+// $(document).on("click", selectors.close, handleHeaderLinkClose);
+// $(document).on("click", selectors.button, handleHeaderButtonClick);
 
 document.addEventListener("ajaxReloaded", togglesInit);
 document.addEventListener("windowScrolledRedux", onScroll);

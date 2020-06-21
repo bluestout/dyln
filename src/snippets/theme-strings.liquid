@@ -18,7 +18,10 @@
       sold_out_email_invalid: {{ 'products.product.sold_out_email_invalid' | t | json }},
       free_shipping_reached_html: {{ 'cart.shipping.free_shipping_reached_html' | t | json }},
       free_shipping_unreached_html: {{ 'cart.shipping.free_shipping_unreached_html' | t: price: "###" | json }},
-      free_shipping_empty_html: {{ 'cart.shipping.free_shipping_empty_html' | t: price: "###" | json }}
+      free_shipping_empty_html: {{ 'cart.shipping.free_shipping_empty_html' | t: price: "###" | json }},
+      show_more: {{ 'general.search.show_more' | t | json }},
+      search_results: {{ 'general.search.heading.other' | t | json }},
+      no_results_for: {{ 'general.search.no_results_for' | t | json }}
     },
     moneyFormat: {{ shop.money_format | json }},
     imageUrls: {

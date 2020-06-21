@@ -47,6 +47,7 @@
       "placeholder": "Search",
       "placeholder_long": "Search anything here!",
       "submit": "Submit",
+      "show_more": "Show more",
       "heading": {
         "one": "Search result",
         "other": "Search results"
@@ -55,7 +56,8 @@
         "one": "{{ count }} result for \"{{ terms }}\"",
         "other": "{{ count }} results for \"{{ terms }}\""
       },
-      "no_results_html": "Please try a different search term or go back to the <a href=\"/\">homepage</a>."
+      "no_results_html": "Please try a different search term or go back to the <a href=\"/\">homepage</a>.",
+      "no_results_for": "No results for "
     },
     "newsletter_form": {
       "newsletter_email": "Join our mailing list",

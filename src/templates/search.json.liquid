@@ -2,15 +2,14 @@
 
 {% capture results %}
   {% for item in search.results limit:5 %}
-    {% assign product = item %}
     {% assign size = "" %}
-    {% for tag in product.tags %}
+    {% for tag in item.tags %}
       {% if tag contains "size-" %}
         {% assign size = tag | remove: 'size-' | replace: '-', ' ' | replace: '_', ' ' | capitalize %}
       {% endif %}
     {% endfor %}
     {% assign c_title = "" %}
-    {% for c in product.collections %}
+    {% for c in item.collections %}
       {% if c.handle == 'all' or c.handle == 'most-popular' or c.handle == 'featured' %}
         {% continue %}
       {% endif %}
@@ -18,12 +17,13 @@
       {% break %}
     {% endfor %}
     {
-      "title"    : {{ product.title | json }},
-      "url"      : {{ product.url | within: product.collections.last | json }},
-      "thumbnail": {{ product.featured_image.src | product_img_url: 'medium' | json }},
+      "title"    : {{ item.title | json }},
+      "url"      : {{ item.url | json }},
+      "thumbnail": {{ item.featured_image.src | product_img_url: 'medium' | json }},
       "size": {{ size | json }},
       "collection": {{ c_title | json }},
-      "price"     : {{ product.price | money_without_trailing_zeros | json }}
+      "price"     : {{ item.price | money_without_trailing_zeros | json }},
+      "tags": {{ item.tags | json }}
     }
     {% unless forloop.last %},{% endunless %}
   {% endfor %}
