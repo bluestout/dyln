@@ -277,17 +277,8 @@
     }
   }
 
-  &__search-no-results {
-  }
-
   &__search-results {
     margin: 0 0 30px;
-  }
-
-  &__search-more {
-  }
-
-  &__search-more-link {
   }
 
   @include media-query($xxl) {
@@ -488,6 +479,33 @@
     td {
       font-size: 12px;
       width: 50%;
+    }
+
+    &__search-form {
+      margin: 0 0 30px;
+    }
+
+    &__search-input {
+      line-height: 24px;
+      padding: 8px 0;
+
+      &::placeholder {
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 1px;
+      }
+    }
+
+    &__search-submit {
+      align-self: center;
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    &__search-results {
+      margin: 0 0 30px;
     }
   }
 }
