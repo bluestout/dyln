@@ -2,30 +2,27 @@
   <h2>{{ section.settings.title }}</h2>
 {% endif %}
 
-{% comment %} TODO - add this search in, in some form? {% endcomment %}
-{% comment %}
-<div>
-  <form action="/search" method="get" role="search" class="contact-body__search-form" data-contact-search-form>
-    <label for="contact-faq-search" class="label-hidden">
-      {{ 'general.search.placeholder_long' | t }}
-    </label>
+<form action="/search" method="get" role="search" class="contact-body__search-form" data-contact-search-form>
+  <label for="contact-faq-search" class="label-hidden">
+    {{ 'general.search.placeholder_long' | t }}
+  </label>
 
-    <input type="search"
-      class="contact-body__search-input"
-      name="q"
-      id="contact-faq-search"
-      value="{{ search.terms | escape }}"
-      placeholder="{{ 'general.search.placeholder_long' | t }}"
-      data-contact-search-input
-    />
+  <input type="search"
+    class="contact-body__search-input"
+    name="q"
+    id="contact-faq-search"
+    value="{{ search.terms | escape }}"
+    placeholder="{{ 'general.search.placeholder_long' | t }}"
+    data-contact-search-input
+  />
 
-    <button type="submit" class="contact-body__search-submit" data-contact-search-submit>
-      <span class="visually-hidden">{{ 'general.search.submit' | t }}</span>
-      {% render 'icon-search' %}
-    </button>
-  </form>
-</div>
-{% endcomment %}
+  <button type="submit" class="contact-body__search-submit" data-contact-search-submit>
+    <span class="visually-hidden">{{ 'general.search.submit' | t }}</span>
+    {% render 'icon-search' %}
+  </button>
+</form>
+
+<div class="contact-body__search-results" data-contact-search-results></div>
 
 <div class="contact-body__quick-nav">
   <button data-c-q-n-button>
@@ -47,13 +44,13 @@
         {% assign contact_faq_article = articles[block.settings.faq_article] %}
         <li>
           <button class="contact-body__faq-button" data-accordion-button="{{ forloop.index }}">
-            <span class="contact-body__question">
+            <span class="contact-body__question" data-contact-searchable>
               {{ contact_faq_article.title }}
             </span>
             <span class="contact-body__closed">+</span>
             <span class="contact-body__open">-</span>
           </button>
-          <div class="contact-body__answer rte" data-accordion-content="{{ forloop.index }}" style="display: none;">{{ contact_faq_article.content }}</div>
+          <div class="contact-body__answer rte" data-accordion-content="{{ forloop.index }}" style="display: none;" data-contact-searchable>{{ contact_faq_article.content }}</div>
         </li>
       {% endif %}
     {% endfor %}
@@ -66,13 +63,13 @@
         {% assign contact_faq_article = articles[block.settings.faq_article] %}
         <li>
           <button class="contact-body__faq-button" data-accordion-button="{{ forloop.index }}">
-            <span class="contact-body__question">
+            <span class="contact-body__question" data-contact-searchable>
               {{ contact_faq_article.title }}
             </span>
             <span class="contact-body__closed">+</span>
             <span class="contact-body__open">-</span>
           </button>
-          <div class="contact-body__answer rte" data-accordion-content="{{ forloop.index }}" style="display: none;">{{ contact_faq_article.content }}</div>
+          <div class="contact-body__answer rte" data-accordion-content="{{ forloop.index }}" style="display: none;" data-contact-searchable>{{ contact_faq_article.content }}</div>
         </li>
       {% endif %}
     {% endfor %}
@@ -85,13 +82,13 @@
         {% assign contact_faq_article = articles[block.settings.faq_article] %}
         <li>
           <button class="contact-body__faq-button" data-accordion-button="{{ forloop.index }}">
-            <span class="contact-body__question">
+            <span class="contact-body__question" data-contact-searchable>
               {{ contact_faq_article.title }}
             </span>
             <span class="contact-body__closed">+</span>
             <span class="contact-body__open">-</span>
           </button>
-          <div class="contact-body__answer rte" data-accordion-content="{{ forloop.index }}" style="display: none;">{{ contact_faq_article.content }}</div>
+          <div class="contact-body__answer rte" data-accordion-content="{{ forloop.index }}" style="display: none;" data-contact-searchable>{{ contact_faq_article.content }}</div>
         </li>
       {% endif %}
     {% endfor %}
@@ -104,13 +101,13 @@
         {% assign contact_faq_article = articles[block.settings.faq_article] %}
         <li>
           <button class="contact-body__faq-button" data-accordion-button="{{ forloop.index }}">
-            <span class="contact-body__question">
+            <span class="contact-body__question" data-contact-searchable>
               {{ contact_faq_article.title }}
             </span>
             <span class="contact-body__closed">+</span>
             <span class="contact-body__open">-</span>
           </button>
-          <div class="contact-body__answer rte" data-accordion-content="{{ forloop.index }}" style="display: none;">{{ contact_faq_article.content }}</div>
+          <div class="contact-body__answer rte" data-accordion-content="{{ forloop.index }}" style="display: none;" data-contact-searchable>{{ contact_faq_article.content }}</div>
         </li>
       {% endif %}
     {% endfor %}

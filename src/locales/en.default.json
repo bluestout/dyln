@@ -47,6 +47,7 @@
       "placeholder": "Search",
       "placeholder_long": "Search anything here!",
       "submit": "Submit",
+      "show_more": "Show more",
       "heading": {
         "one": "Search result",
         "other": "Search results"
