@@ -219,7 +219,7 @@
 
           <div class="col-lg-5 d-none d-lg-flex">
             <div class="footer-copyright">
-              © {{ "now" | date: "%Y" }}, DYLN Inspired | <a href="{{ section.settings.privacy_policy_link }}">Privacy Policy</a> | <a href="{{ section.settings.terms_agreements_link }}">Terms</a> | <a href="{{ section.settings.ip_link }}">IP</a>
+              © {{ "now" | date: "%Y" }}, DYLN Inc. | <a href="{{ section.settings.privacy_policy_link }}">Privacy Policy</a> | <a href="{{ section.settings.terms_agreements_link }}">Terms</a> | <a href="{{ section.settings.ip_link }}">IP</a>
             </div>
           </div>
 
@@ -227,7 +227,10 @@
 
         <div class="col-sm-12 d-flex order-6 d-lg-none justify-content-center">
           <div class="footer-copyright">
-            © {{ "now" | date: "%Y" }}, DYLN Inspired | <a href="{{ section.settings.privacy_policy_link }}">Privacy Policy</a> | <a href="{{ section.settings.terms_agreements_link }}">Terms</a> | <a href="{{ section.settings.ip_link }}">IP</a>
+            <span>
+              © {{ "now" | date: "%Y" }}, DYLN Inc.
+            </span>
+            <span class="footer-copyright-delimiter">|</span> <a href="{{ section.settings.privacy_policy_link }}">Privacy Policy</a> | <a href="{{ section.settings.terms_agreements_link }}">Terms</a> | <a href="{{ section.settings.ip_link }}">IP</a>
           </div>
         </div>
       </div>

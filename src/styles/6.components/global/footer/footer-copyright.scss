@@ -16,9 +16,25 @@
   }
 
   @include media-query($large-down) {
+    > span:first-of-type {
+      display: block;
+      padding-bottom: 10px;
+    }
+
+    &-delimiter {
+      display: none;
+    }
+  }
+
+  @include media-query($large-down) {
     font-size: 10px;
     line-height: 12px;
     letter-spacing: 0.59px;
     text-align: center;
   }
+
+  @include media-query($large-down) {
+    font-size: 14px;
+  }
+
 }
