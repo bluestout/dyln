@@ -118,6 +118,7 @@
   &__answer {
     @include text(18px, 24px, $color-body-text, 1.08px);
     padding: 10px 0 0;
+    display: block;
 
     a {
       color: $color-main-1;
@@ -223,7 +224,6 @@
     }
   }
 
-  /*
   &__search-form {
     max-width: 100%;
     display: flex;
@@ -276,7 +276,10 @@
       }
     }
   }
-  */
+
+  &__search-results {
+    margin: 0 0 30px;
+  }
 
   @include media-query($xxl) {
     th {
@@ -476,6 +479,33 @@
     td {
       font-size: 12px;
       width: 50%;
+    }
+
+    &__search-form {
+      margin: 0 0 30px;
+    }
+
+    &__search-input {
+      line-height: 24px;
+      padding: 8px 0;
+
+      &::placeholder {
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 1px;
+      }
+    }
+
+    &__search-submit {
+      align-self: center;
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    &__search-results {
+      margin: 0 0 30px;
     }
   }
 }

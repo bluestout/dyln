@@ -29,7 +29,7 @@ function handleSearchInput() {
           $resultsList.html(
             `<p class='ajax-search__note'>${
               theme.strings.no_results_for
-              } "${term}".</p>`,
+            } "${term}".</p>`
           );
         } else {
           let results = "";
@@ -45,8 +45,10 @@ function handleSearchInput() {
           if (data.results_count > 5) {
             $resultsList.append(
               `<div class="ajax-search__more">
-              <a class="ajax-search__more-link " href="${searchURL}">Show more</a>
-            </div>`,
+              <a class="ajax-search__more-link " href="${searchURL}">
+                ${theme.strings.show_more}
+              </a>
+            </div>`
             );
           }
         }
@@ -59,12 +61,15 @@ function closeSearch(event) {
   let $container = $(".blog-search form");
   let $resultsList = $(el.results);
 
-  if (!$container.is(event.target) && $container.has(event.target).length === 0) {
+  if (
+    !$container.is(event.target) &&
+    $container.has(event.target).length === 0
+  ) {
     $resultsList.hide();
   }
 }
 
 $(document).on("keyup change", el.searchInput, handleSearchInput);
-$(document).on("mouseup", function () {
+$(document).on("mouseup", function() {
   closeSearch(event);
 });
