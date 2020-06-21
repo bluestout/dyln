@@ -11,11 +11,6 @@ const names = {
   amount: "amount,number",
 };
 
-const icons = {
-  cart:
-    "<svg width='35' height='28' viewBox='0 0 35 28' xmlns='http://www.w3.org/2000/svg'><g transform='translate(2 1)' stroke='#333C41' stroke-width='2' fill='none' fill-rule='evenodd' stroke-linecap='square'><path d='M25 4l-2.607 13H2.543L0 4M25 4l.682-4H32'/><circle cx='6.5' cy='23.5' r='2.5'/><circle cx='18.5' cy='23.5' r='2.5'/></g></svg>",
-};
-
 function adjustDiffuserText(text) {
   if (text === "1 Diffuser") {
     return "Single Pack";
@@ -157,6 +152,18 @@ function quickCartUpsellHtml(product, url, index) {
   return pattern;
 }
 
+function getFrequencyText(frequency, intervalUnit) {
+  let frequencyText = `${theme.strings.every}`;
+  if (frequency === "1") {
+    frequencyText += ` ${intervalUnit.replace("s", "")}`;
+  } else if (frequency === "12" && intervalUnit === "Months") {
+    frequencyText += ` ${theme.strings.year}`;
+  } else {
+    frequencyText += ` ${frequency} ${intervalUnit}`;
+  }
+  return frequencyText;
+}
+
 function quickCartLineItemHtml(product, index) {
   if (!product || index < 0) {
     return "";
@@ -182,7 +189,81 @@ function quickCartLineItemHtml(product, index) {
   } else {
     priceHtml = shownPrice;
   }
-  const linkHref = `href="${product.url}"`;
+  let linkHref = `href="${product.url}"`;
+
+  const subMetadata = JSON.parse($("[data-subscription-metadata]").html());
+
+  let isSubscription = false;
+
+  for (const key in subMetadata) {
+    if (!subMetadata.hasOwnProperty(key)) continue;
+
+    const obj = subMetadata[key];
+    for (const prop in obj) {
+      if (!obj.hasOwnProperty(prop)) continue;
+      if (obj[prop].discount_variant_id === product.variant_id) {
+        isSubscription = true;
+      }
+    }
+  }
+
+  if (isSubscription) {
+    linkHref = `href="${subMetadata.url}"`;
+  }
+
+  let subscriptionHtml = "";
+
+  const frequencyUnit = product.properties.shipping_interval_frequency;
+  const intervalUnit = product.properties.shipping_interval_unit_type;
+
+  if (isSubscription && frequencyUnit) {
+    subscriptionHtml = `
+    <div>
+    <div class="custom-select">
+      <button type="button" class="custom-select-styled" data-custom-select-free>
+        <span>
+        ${getFrequencyText(frequencyUnit, intervalUnit)}
+        </span>
+        <svg width="7" height="3" viewBox="0 0 7 3" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l2.5 2.5L6 0" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
+      </button>
+      <div class="custom-select-options" data-custom-select-options="" style="display: none;">
+    `;
+
+    for (let a = 0; a < subMetadata.frequencies.length; a++) {
+      const frequency = subMetadata.frequencies[a];
+      let checkedStatus = "";
+      if (frequency == frequencyUnit) {
+        checkedStatus = `checked="checked"`;
+      }
+      const frequencyText = getFrequencyText(frequency, intervalUnit);
+
+      subscriptionHtml += `
+        <div class="custom-select-option">
+          <input type="radio"
+          tabindex="-1"
+          id="sub-${product.variant_id}-${index}"
+          name="sub-${product.variant_id}-${index}"
+          value="${frequency}"
+          ${checkedStatus}
+          data-line="${index + 1}"
+          data-id="${product.variant_id}"
+          data-unit="${intervalUnit}"
+          data-frequency="${frequency}"
+          data-qc-frequency-input />
+          <label
+            for="sub-${product.variant_id}-${index}">
+            ${frequencyText}
+          </label>
+        </div>
+      `;
+    }
+    subscriptionHtml += `
+    </div>
+    </div>
+    </div>
+    `;
+  }
+
   const quantityHtml = `
   <div class="cart-drawer__item-qty">
     <button class="cart-drawer__item-button"
@@ -228,21 +309,13 @@ function quickCartLineItemHtml(product, index) {
         <h4 class="cart-drawer__item-title">${product.product_title}</h4>
         <p class="cart-drawer__variant">${product.variant_title}</p>
       </a>
+      ${subscriptionHtml}
       ${quantityHtml}
       <p class="cart-drawer__item-price">${priceHtml}</p>
 
       </div>
-      </div>
+    </div>
     `;
-
-  /*
-  <a
-    class="cart-drawer__remove"
-    href="/cart/change?line=${index}&amp;quantity=0"
-    data-remove-item="${index + 1}"
-    data-remove-id="${product.id}">
-  </a>
-  */
   return pattern;
 }
 

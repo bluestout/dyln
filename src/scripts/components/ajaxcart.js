@@ -46,6 +46,7 @@ const selectors = {
     payments: "[data-cart-drawer-payments]",
     focusOut: "[data-cart-drawer-focus-out]",
     focusIn: "[data-cart-drawer-focus-in]",
+    frequency: "[data-qc-frequency-input]",
   },
   cart: {
     container: "[data-cart-container]",
@@ -110,6 +111,38 @@ function ajaxChangeCartQty(id, qty, line) {
   if (line) {
     data = { quantity: qty, line: id };
   }
+  $.ajax({
+    type: "POST",
+    url: "/cart/change.js",
+    async: false,
+    data,
+    dataType: "json",
+    success: () => {
+      $.getJSON("/cart.js", (json) => {
+        returnCartIfNotEmpty(json);
+      });
+    },
+    cache: false,
+  });
+}
+
+function handleAjaxFrequencyClick(event) {
+  const $this = $(event.currentTarget);
+  const frequency = $this.data("frequency");
+  const unit = $this.data("unit");
+  const line = $this.data("line");
+  ajaxChangeCartLineItem(frequency, unit, line);
+}
+
+function ajaxChangeCartLineItem(frequency, unit, line) {
+  containerLoading(true);
+  const data = {
+    line: line,
+    properties: {
+      shipping_interval_frequency: frequency,
+      shipping_interval_unit_type: unit,
+    },
+  };
   $.ajax({
     type: "POST",
     url: "/cart/change.js",
@@ -229,9 +262,9 @@ function updateQuickCart(cart) {
           <svg class="cart-drawer__checkout-icon" width='20' height='22' viewBox='0 0 20 22' xmlns='http://www.w3.org/2000/svg'><g transform='translate(.573 1.784)' fill='none' fill-rule='evenodd'><rect stroke='#FFF' stroke-width='2' x='1' y='7.703' width='16.958' height='11.405' rx='2'/><path d='M3.991 7.122V4.608C3.991 2.063 6.071 0 8.635 0h1.688c2.565 0 4.644 2.063 4.644 4.608v2.514' stroke='#FFF' stroke-width='2' stroke-linejoin='round'/><ellipse fill='#FFF' cx='9.479' cy='12.149' rx='2.494' ry='2.095'/><path stroke='#FFF' stroke-width='2' stroke-linecap='round' d='M9.479 13.405v2.466'/></g></svg>
         </button>
         <div class="cart-drawer__payments">
-          <span class="cart-drawer__payments-title">${
-            theme.strings.pay_using
-          }</span>
+          <span class="cart-drawer__payments-title">
+            ${theme.strings.pay_using}
+          </span>
           <span class="cart-drawer__payment cart-drawer__payment--amazon">
             <img src="${theme.imageUrls.logoAmazon}" alt="Amazon Pay" />
           </span>
@@ -567,6 +600,7 @@ function handleFreeShippingMessage(cart) {
 
   const $note = $(selectors.shipping.note);
   const total = cart.total_price / 100;
+  const $totals = $(selectors.quick.totals);
   let remaining = threshold - total;
   remaining = formatAndTrimPrice(remaining * 100);
 
@@ -576,6 +610,14 @@ function handleFreeShippingMessage(cart) {
     );
   } else if (total >= threshold) {
     $note.html(theme.strings.free_shipping_reached_html);
+    $totals.append(
+      `<span class="cart-drawer__total-text brand-blue">
+        ${theme.strings.shipping}
+      </span>
+      <span class="cart-drawer__total-price brand-blue">
+        ${theme.strings.free}
+      </span>`
+    );
   } else {
     $note.html(
       theme.strings.free_shipping_unreached_html.replace("###", remaining)
@@ -597,6 +639,7 @@ $(document).on("click", selectors.add, handleAjaxAddButtonClick);
 $(document).on("click", selectors.upsell.submit, handleAjaxUpsellSubmit);
 $(document).on("change", selectors.upsell.select, handleAjaxUpsellSelectChange);
 $(document).on("click", selectors.upsell.input, handleAjaxUpsellInputClick);
+$(document).on("click", selectors.quick.frequency, handleAjaxFrequencyClick);
 
 // run ajax on page load to get cart contents
 $(document).ready(() => {

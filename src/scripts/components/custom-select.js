@@ -94,18 +94,21 @@ $(document).ready(() => {
       $list.hide();
       document.dispatchEvent(customSelectChange);
     });
-
-    $(document).click(() => {
-      $styledSelect.removeClass("active");
-      $list.hide();
-    });
   });
+});
 
-  $("[data-custom-select-free]").click(function(event) {
-    event.stopPropagation();
-    $(this)
-      .toggleClass("active")
-      .next("[data-custom-select-options]")
-      .toggle();
-  });
+$(document).on("click", "[data-custom-select-free]", (event) => {
+  event.stopPropagation();
+  const $this = $(event.currentTarget);
+  $this
+    .toggleClass("active")
+    .next("[data-custom-select-options]")
+    .toggle();
+});
+
+$(document).click(() => {
+  const $styledSelect = $("[data-custom-select-styled]");
+  const $list = $("[data-custom-select-options]");
+  $styledSelect.removeClass("active");
+  $list.hide();
 });
