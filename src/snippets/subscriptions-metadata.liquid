@@ -2,10 +2,12 @@
   {% assign subscription_p = all_products[settings.extra_diffusers_product] %}
   {% assign subscription_p_frequencies = subscription_p.metafields.subscriptions.shipping_interval_frequency | split: ',' %}
   {% assign subscription_p_map = subscription_p.metafields.subscriptions.original_to_hidden_variant_map %}
+  {% assign subscription_p_unit_type = subscription_p.metafields.subscriptions.shipping_interval_unit_type %}
   {
     "id": {{ subscription_p.id | json }},
     "frequencies": {{ subscription_p_frequencies | json }},
     "map": {{ subscription_p_map | json }},
-    "url": {{ subscription_p.url | json }}
+    "url": {{ subscription_p.url | json }},
+    "unit": {{ subscription_p_unit_type | json }}
   }
 </script>

@@ -362,7 +362,9 @@
       "cancel_anytime": "Cancel anytime",
       "free_shipping": "Free Shipping",
       "change_amount": "Change Amount",
-      "back_to_one_time": "Back to one time purchase"
+      "back_to_one_time": "Back to one time purchase",
+      "select_frequency": "Select Frequency",
+      "select_frequency_and_confirm": "You must select a frequency and tick the subscription checkbox."
     }
   },
   "gift_cards": {

@@ -366,11 +366,59 @@
     align-self: center;
   }
 
+  &__subscription-box {
+    margin: 0 0 13px;
+
+    > button {
+      @include font-header(500);
+      @include text(13px, 16px, $color-white, 0.5px);
+      text-transform: uppercase;
+      border: none;
+      border-radius: 2px 0 0 2px;
+      padding: 3px 9px;
+      height: 25px;
+      background-color: $color-theme-17;
+      width: 145px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
+  input[type="checkbox"] {
+    @include no-browser-styling;
+    position: relative;
+    border-radius: 2px;
+    border: 1px solid $color-theme-17;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 10px 0 0;
+    cursor: pointer;
+
+    &:checked {
+      background-color: $color-theme-17;
+
+      &::before {
+        content: "";
+        background-image: url("data:image/svg+xml,%3Csvg width='8' height='6' viewBox='0 0 8 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 2.671L2.458 5.1 7 .2' stroke='%23FFF' fill='none' fill-rule='evenodd' stroke-linecap='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        display: block;
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+
   .custom-select {
-    max-width: 120px;
+    width: 150px;
     border: 1px solid $color-theme-17;
     border-radius: 1px;
-    margin: 0 0 13px;
+    height: 25px;
+    line-height: 25px;
   }
 
   .custom-select-styled {
@@ -378,6 +426,7 @@
     display: flex;
     justify-content: space-between;
     padding: 0 10px;
+    height: 23px;
 
     &::before {
       content: none;
@@ -395,17 +444,23 @@
 
     svg {
       align-self: center;
-      width: 12px;
-      height: 14px;
+      width: 10px;
+      height: 12px;
     }
   }
 
   .custom-select-options {
+    left: 0;
+    right: 0;
     top: calc(100% + 4px);
     background-color: $color-white;
     border: 1px solid $color-theme-17;
     border-radius: 1px;
-    width: 220px;
+    width: 295px;
+
+    &.full {
+      left: auto;
+    }
   }
 
   .custom-select-option {
@@ -440,6 +495,73 @@
       }
       &:focus {
         outline: 5px auto;
+      }
+    }
+  }
+
+  @include media-query($small) {
+    &__image-wrap {
+      max-width: 70px;
+      padding: 0 8px 0 0;
+    }
+
+    &__item-content {
+      width: calc(100% - 71px);
+    }
+
+    &__subscription-box {
+      margin: 0 0 13px;
+
+      > button {
+        font-size: 9px;
+        letter-spacing: 0;
+        width: 100px;
+        padding: 3px 5px;
+      }
+    }
+
+    input[type="checkbox"] {
+      width: 10px;
+      height: 10px;
+      margin: 0;
+
+      &:checked {
+        &::before {
+          top: 1px;
+          left: 1px;
+          width: 10px;
+          height: 10px;
+        }
+      }
+    }
+
+    .custom-select {
+      width: 105px;
+    }
+
+    .custom-select-styled {
+      padding: 0 4px;
+      span {
+        font-size: 9px;
+        letter-spacing: 0;
+      }
+
+      svg {
+        width: 8px;
+        height: 8px;
+      }
+    }
+
+    .custom-select-options {
+      width: 205px;
+    }
+
+    .custom-select-option {
+      padding: 1px 3px;
+      label {
+        font-size: 11px;
+        line-height: 14px;
+        letter-spacing: 0.5px;
       }
     }
   }
