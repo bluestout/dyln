@@ -52,7 +52,7 @@
             {% endif %}
 
             {% if h_link_text_3 != empty %}
-              <a class="header-help__big-link" href="{{ h_link_3 }}" tabindex="-1">
+              <a class="header-help__big-link" onclick="Smooch.open();" tabindex="-1">
                 <span class="header-help__big-link-i">{% render 'icon-chat' %}</span>
                 <span class="header-help__big-link-t">{{ h_link_text_3 }}</span>
               </a>
