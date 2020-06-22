@@ -2,10 +2,6 @@
   &__title {
     @include text-title;
     margin: 0 0 10px;
-
-    @include media-query($small) {
-      margin-left: 15px;
-    }
   }
 
   &__reviews {
@@ -87,6 +83,12 @@
         line-height: 15px;
         letter-spacing: 0.65px;
       }
+    }
+  }
+
+  @include media-query($small) {
+    &__title {
+      margin-left: 15px;
     }
   }
 }
