@@ -143,7 +143,14 @@ register("product", {
     const variant = event.dataset.variant;
 
     $(".pdp-form__color-input").removeClass("active-variant");
+    $(".pdp-form__color-wrap").removeClass("active-variant--unavailable");
     $(event.target).addClass("active-variant");
+
+    setTimeout(function () {
+      if ($(".pdp-form__submit").attr("disabled")) {
+        $(event.target.offsetParent).addClass("active-variant--unavailable");
+      }
+    }, 100);
 
     // this.renderImages(variant);
     this.renderPrice(variant);

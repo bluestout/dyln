@@ -27,6 +27,8 @@
       <a href="{{ blog.url }}/tagged/{{ tag | handle }}?view=tagged" class="blog-topics__more-link">More from {{ tag }}</a>
     </div>
   {% endfor %}
+
+    {% render 'blog-side-menu' %}
   </div>
 {% endif %}
 

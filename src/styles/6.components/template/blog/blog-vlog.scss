@@ -11,6 +11,7 @@
 
       @include media-query($medium-down) {
         margin: 0;
+        background: white;
       }
     }
 
@@ -30,6 +31,10 @@
         @include text-subtitle($color-title-light);
         text-align: left;
         padding: 10px;
+
+        @include media-query($medium-down) {
+          padding: 20px;
+        }
       }
     }
 
@@ -55,6 +60,14 @@
     }
   }
 
+  &__slider {
+    @include no-browser-styling;
+    width: 100%;
+    max-width: 1330px;
+    padding: 0 15px;
+    margin: 0 auto;
+  }
+
   .article-card__thumbnail-wrapper {
     min-width: 700px;
     height: 400px;
@@ -62,10 +75,89 @@
     img {
       min-height: 100%;
       object-fit: cover;
+
+      @include media-query($small) {
+        margin: 0 10px;
+      }
     }
 
     @include media-query($medium-down) {
       min-width: 90vw;
     }
+  }
+}
+
+.blog-vlog {
+  margin: 70px 0 0;
+
+  &__slider-wrap {
+    margin-bottom: 40px;
+    padding: 0 15px;
+
+    @include media-query($medium-up) {
+      padding: 0 100px;
+      margin: 0 auto;
+      width: 780px;
+    }
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    @include transition(all);
+    width: 15%;
+    width: var(--pdp-tab-input-w);
+    height: 4px;
+    border-radius: 2px;
+    border: none;
+    background-color: $color-theme-7;
+    -webkit-appearance: none;
+  }
+
+  input[type="range"]::-webkit-media-slider-thumb {
+    @include transition(all);
+    width: 15%;
+    width: var(--pdp-tab-input-w);
+    height: 4px;
+    border-radius: 2px;
+    border: none;
+    background-color: $color-theme-7;
+    -webkit-appearance: none;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    @include transition(all);
+    width: 15%;
+    width: var(--pdp-tab-input-w);
+    height: 4px;
+    border-radius: 2px;
+    border: none;
+    background-color: $color-theme-7;
+  }
+
+  input[type="range"]::-ms-thumb {
+    @include transition(all);
+    width: 15%;
+    width: var(--pdp-tab-input-w);
+    height: 4px;
+    border-radius: 2px;
+    border: none;
+    background-color: $color-theme-7;
+  }
+
+  input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 2px;
+    background-color: $color-theme-6;
+  }
+
+  input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 2px;
+    background-color: $color-theme-6;
+  }
+
+  input[type="range"]::-ms-track {
+    width: 100%;
+    height: 2px;
+    background-color: $color-theme-6;
   }
 }

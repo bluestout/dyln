@@ -7,10 +7,12 @@
     </div>
   </div>
 
-  <div class="container-fluid">
+  <div class="container-fluid d-flex flex-column">
     <div class="blog-video-wrapper slider" data-blog-vlog>
+      {% assign b_size = 0 %}
       {% for block in section.blocks %}
         {% assign article = articles[block.settings.vlog_articles] %}
+        {% assign b_size = b_size | plus: 1 %}
         <div class="slider__item">
           <a href="{{ article.url }}" class="slider__item-wrapper">
             {%- render 'responsive-image' with
@@ -31,6 +33,18 @@
           </a>
         </div>
       {% endfor %}
+    </div>
+
+    <div class="blog-vlog__slider-wrap">
+      {% assign blocks_0 = b_size | minus: 1 | times: 10 %}
+      {% comment %} 10 steps for each slide, so it's smoother {% endcomment %}
+      <input class="blog-vlog__slider" type="range" max="{{ blocks_0 }}" min="0" step="1" value="0" data-blog-vlog-input>
+      {% assign ptf_width = 100 | divided_by: b_size | append: '%'%}
+      <style>
+        :root {
+          --pdp-tab-input-w: {{ ptf_width }};
+        }
+      </style>
     </div>
   </div>
 {% endif %}
