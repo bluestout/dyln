@@ -99,7 +99,7 @@
     overflow-y: hidden;
 
     @include media-query($small) {
-      height: 1px;
+      height: 5px;
     }
   }
 
