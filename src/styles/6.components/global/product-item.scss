@@ -150,7 +150,7 @@
     }
 
     &:focus {
-      outline: auto 5px;
+      outline: auto 5px rgba($color-main-1, 0.5);
     }
   }
 
@@ -196,7 +196,7 @@
 
     &:focus {
       + .product-item__value-label {
-        outline: auto 5px;
+        outline: auto 5px rgba($color-main-1, 0.5);
       }
     }
 
