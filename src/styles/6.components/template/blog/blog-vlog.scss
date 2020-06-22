@@ -96,6 +96,8 @@
 
     @include media-query($medium-up) {
       padding: 0 100px;
+      margin: 0 auto;
+      width: 780px;
     }
   }
 
