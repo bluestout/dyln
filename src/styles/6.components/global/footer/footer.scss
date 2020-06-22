@@ -80,7 +80,6 @@
           border: none;
           background: none;
 
-
           &.active {
             color: $color-white;
             transition: ease-in-out all 0.3s;
@@ -232,7 +231,7 @@
     display: block;
     background-image: linear-gradient(
       to bottom,
-      transparent 0%,
+      rgba($color-theme-9, 0.01) 0%,
       $color-theme-9 100%
     );
   }
