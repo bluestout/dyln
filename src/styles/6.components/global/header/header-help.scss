@@ -136,7 +136,7 @@
     &__big-links {
       display: flex;
       flex-flow: row wrap;
-      justify-content: space-between;
+      justify-content: start;
       margin: 0 0 35px;
     }
 
@@ -146,6 +146,12 @@
       border-radius: 20px;
       background-color: $color-theme-13;
       display: inline-block;
+      margin-right: 5px;
+      margin-bottom: 10px;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     &__big-link-i {

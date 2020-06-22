@@ -1,11 +1,23 @@
 <div id="newsletterModal" class="newsletter-flyout template-{{ template.name | handle }}" data-newsletter-modal>
-  <h2>The best Health Tips directly in your inbox</h2>
-  <form id="newsletter-subscription">
-    <label for="newsletterEmail">Your Email</label>
-    <input type="email" id="newsletterEmail" />
-<button type="submit">I want to subscribe!</button>
-</form>
+  <h2>{{ 'blogs.newsletter.title' | t }}</h2>
+  {% form 'customer' %}
+    {{ form.errors | default_errors }}
+    <label for="newsletterEmail">{{ 'blogs.newsletter.email_placeholder' | t }}</label>
+    <input type="hidden" name="contact[tags]" value="newsletter">
+    <input type="email"
+            class="newsletter__input"
+            name="contact[email]"
+            id="NewsletterEmail"
+            value="{% if customer.email != blank %}{{ customer.email }}{% endif %}"
+            autocorrect="off"
+            autocapitalize="off">
+    <button class="newsletter__submit" type="submit" name="commit" id="NewsletterSubscribe">
+      {{ 'blogs.newsletter.submit' | t }}
+    </button>
+  {% endform %}
 </div>
 <div class="newsletter-flyout-opener" data-newsletter-open-btn>
-  <p>Subscribe!</p>
+  <p>{{ 'blogs.newsletter.submit_flyout' | t }}</p>
 </div>
+
+

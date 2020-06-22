@@ -4,6 +4,7 @@
 {% assign block_p_colors = "" %}
 {% assign color = "" %}
 {% assign color_classes = "" %}
+{% assign imperial_size = block_p.metafields.product.imperial_unit %}
 
 {% for option in block_p.options_with_values %}
   {% if option.name == "Color" or option.name == "Sleeve Color" or option.name == "Sleeve" %}
@@ -120,6 +121,10 @@
           {% break %}
         {% endif %}
       {% endfor %}
+
+      <span class="product-item__size">
+        {{ imperial_size }} {{ 'products.product.imperial_size' | t }}
+      </span>
 
       <span class="product-item__price">
         <span data-pi-price>

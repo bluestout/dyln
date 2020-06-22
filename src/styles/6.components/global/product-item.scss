@@ -77,6 +77,12 @@
     display: block;
   }
 
+  &__size {
+    @include font-header(700);
+    @include text(16px, 23px, $color-theme-1, 0.95px);
+    display: block;
+  }
+
   &__price {
     @include font-header(700);
     @include text(16px, 23px, $color-body-text, 0.95px);

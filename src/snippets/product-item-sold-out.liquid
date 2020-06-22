@@ -1,10 +1,12 @@
 <div class="product-form__sold-out {% if available %}product-form__sold-out--hide{% endif %}" data-sold-out-mail>
 	<span class="product-form__sold-out-notice" data-sold-out-notice>{{ 'products.product.sold_out_notice' | t}}</span>
-	<form class="product-form__sold-out-email" data-sold-out-form action="/a/dyl/notify-me-data">
-		<label for="sold-out-input-{{ unique_id }}" class="visually-hidden">{{ 'products.product.sold_out_email_placeholder' | t }}</label>
-		<input type="email" placeholder="{{ 'products.product.sold_out_email_placeholder' | t }}" id="sold-out-input-{{ unique_id }}" data-sold-out-input />
-		<button type="button" data-submit-sold-out-btn>{{ 'products.product.sold_out_email_btn_text' | t }}</button>
-	</form>
+	<div class="product-form__sold-out-email">
+		<form class="product-form__sold-out-email" data-sold-out-form action="/a/dyl/notify-me-data">
+			<label for="sold-out-input-{{ unique_id }}" class="visually-hidden">{{ 'products.product.sold_out_email_placeholder' | t }}</label>
+			<input type="email" placeholder="{{ 'products.product.sold_out_email_placeholder' | t }}" id="sold-out-input-{{ unique_id }}" data-sold-out-input />
+			<button type="button" data-submit-sold-out-btn>{{ 'products.product.sold_out_email_btn_text' | t }}</button>
+		</form>
+	</div>
 	<span class="product-form__sold-out-email-confirm" data-sold-out-message>{{ 'products.product.sold_out_email_confirm_txt' | t }}</span>
 	<div class="product-form__sold-out-gradient" style="background-image:url({{ 'out-of-stock-gradient.png' | asset_url }})"></div>
 </div>

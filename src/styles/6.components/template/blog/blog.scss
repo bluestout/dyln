@@ -31,6 +31,14 @@
   }
 }
 
+.blog-topics {
+  margin-bottom: 0;
+}
+
+main.template-blog {
+  background-color: #f4f4f4;
+}
+
 @import "./blog-header";
 @import "../../global/blog/blog-newsletter";
 @import "./blog-featured";

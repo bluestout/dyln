@@ -70,7 +70,11 @@
     margin: 0;
     padding: 0;
     text-align: left;
-    display: block;
+
+    @include media-query($small) {
+      display: flex;
+      align-items: center;
+    }
 
     &.open {
       .index-usps__usp-closed {
