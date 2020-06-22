@@ -1,6 +1,7 @@
 .blog-topics {
   .article-card {
     overflow: hidden;
+    min-height: 290px;
 
     &__content {
       h3 {

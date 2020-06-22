@@ -8,6 +8,7 @@ const elements = {
 
 function init() {
   const $slider = $(elements.slider);
+  const $input = $(elements.input);
 
   if ($slider.length > 0 && $slider.find(">div").length > 1) {
     $slider.slick({
@@ -25,6 +26,8 @@ function init() {
           settings: {
             slidesToShow: 1,
             slidesToScroll: 1,
+            centerPadding: '20px',
+            centerMode: true,
             infinite: true,
             dots: false,
             variableWidth: false
@@ -33,6 +36,11 @@ function init() {
       ]
     });
   }
+
+  $slider.on("afterChange", (slick, currentSlide) => {
+    const inputVal = currentSlide.currentSlide * 10;
+    $input.val(inputVal).change();
+  });
 }
 
 function handleInputChange(event) {

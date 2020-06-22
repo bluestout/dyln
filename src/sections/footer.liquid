@@ -103,7 +103,7 @@
 {%- endif -%}
 
 {%- if section.settings.lf_blog != empty -%}
-  {%- if section.setting.show_lifestyle_on_hp_only == false or template.name == 'index' -%}
+  {%- if section.setting.show_lifestyle_on_hp_only == false or template.name == 'index' or template.name == 'blog' -%}
   <div class="site-footer__separator gray"></div>
   {%- else -%}
     <div class="site-footer__separator"></div>

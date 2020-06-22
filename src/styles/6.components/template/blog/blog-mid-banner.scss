@@ -41,18 +41,17 @@
       }
 
       &__link-wrap {
-        margin-bottom: 15px;
+        margin: 15px 0;
       }
 
       &__link {
         font-size: 16px;
-        padding: 10px 20px;
+        padding: 10px;
       }
     }
 
     @include media-query($small) {
-      flex-wrap: nowrap;
-      // test
+      flex-wrap: wrap;
     }
   }
 }

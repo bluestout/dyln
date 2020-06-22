@@ -306,4 +306,9 @@
   color: $color-theme-28;
   pointer-events: none;
   display: none;
+
+  @include media-query($medium-up) {
+    top: 22px;
+    left: 20px;
+  }
 }
