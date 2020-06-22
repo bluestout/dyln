@@ -87,9 +87,6 @@ const classes = {
 
 const ajaxReloaded = new Event("ajaxReloaded");
 
-// const colors = window.theme.colors || [];
-// const sizes = ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl"];
-
 let containerState;
 function containerLoading(state) {
   if (state) {
