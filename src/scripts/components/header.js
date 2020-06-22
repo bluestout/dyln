@@ -187,9 +187,9 @@ $(document).ready(() => {
   setHeaderBodyOffset();
 });
 
-// $(document).on("click", selectors.link, handleHeaderLinkClick);
-// $(document).on("click", selectors.close, handleHeaderLinkClose);
-// $(document).on("click", selectors.button, handleHeaderButtonClick);
+$(document).on("click", selectors.link, handleHeaderLinkClick);
+$(document).on("click", selectors.close, handleHeaderLinkClose);
+$(document).on("click", selectors.button, handleHeaderButtonClick);
 
 document.addEventListener("ajaxReloaded", togglesInit);
 document.addEventListener("windowScrolledRedux", onScroll);
