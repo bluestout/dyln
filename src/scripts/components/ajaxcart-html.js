@@ -61,9 +61,12 @@ function quickCartUpsellHtml(product, url, index) {
               checkedStatus = `checked="checked"`;
               isChecked = true;
             }
-            colorInputs += `<label class="visually-hidden" for="cu-${k}-${option}-${j}" tabindex="-1">${
-              variant.title
-            }</label>`;
+            colorInputs += `<label
+                class="visually-hidden"
+                for="cu-${k}-${option}-${j}"
+                tabindex="-1">
+                ${variant.title}
+              </label>`;
             colorInputs += `<input type="radio"
               tabindex="-1"
               id="cu-${k}-${option}-${j}"
@@ -153,6 +156,9 @@ function quickCartUpsellHtml(product, url, index) {
 }
 
 function getFrequencyText(frequency, intervalUnit) {
+  if (!frequency) {
+    return theme.strings.select_frequency;
+  }
   let frequencyText = `${theme.strings.every}`;
   if (frequency === "1") {
     frequencyText += ` ${intervalUnit.replace("s", "")}`;
@@ -197,36 +203,69 @@ function quickCartLineItemHtml(product, index) {
 
   for (const key in subMetadata) {
     if (!subMetadata.hasOwnProperty(key)) continue;
-
-    const obj = subMetadata[key];
-    for (const prop in obj) {
-      if (!obj.hasOwnProperty(prop)) continue;
-      if (obj[prop].discount_variant_id === product.variant_id) {
-        isSubscription = true;
+    if (key === "map") {
+      const obj = subMetadata[key];
+      for (const prop in obj) {
+        if (!obj.hasOwnProperty(prop)) continue;
+        if (obj[prop].discount_variant_id === product.variant_id) {
+          isSubscription = true;
+        }
       }
     }
   }
 
-  if (isSubscription) {
+  if (isSubscription && subMetadata.url) {
     linkHref = `href="${subMetadata.url}"`;
   }
 
   let subscriptionHtml = "";
+  let subscriptionInputDataReference = "data-qc-frequency-input";
+  let productVariantTitle = product.variant_title;
+  if (productVariantTitle.toLowerCase().indexOf("diffuser") > -1) {
+    productVariantTitle = adjustDiffuserText(productVariantTitle);
+  }
 
   const frequencyUnit = product.properties.shipping_interval_frequency;
-  const intervalUnit = product.properties.shipping_interval_unit_type;
+  let intervalUnit = product.properties.shipping_interval_unit_type;
 
-  if (isSubscription && frequencyUnit) {
-    subscriptionHtml = `
-    <div>
-    <div class="custom-select">
+  if (subMetadata.id && product.product_id === subMetadata.id) {
+    subscriptionInputDataReference = "data-qc-frequency-selection";
+    intervalUnit = subMetadata.unit;
+  }
+
+  if (
+    (isSubscription && frequencyUnit) ||
+    (subMetadata.id && product.product_id === subMetadata.id)
+  ) {
+    subscriptionHtml = `<div class="cart-drawer__subscription-box">`;
+    let customSelectOptionsClassname = "custom-select-options";
+
+    if (subMetadata.id && product.product_id === subMetadata.id) {
+      customSelectOptionsClassname = "custom-select-options full";
+      subscriptionHtml += `<input type="checkbox"
+          id="sub-check-${product.variant_id}-${index}"
+          name="sub-check-${product.variant_id}-${index}"
+          data-qc-subscription-confirm />
+        <label
+          for="sub-check-${product.variant_id}-${index}"
+          class="visually-hidden">
+          ${theme.strings.subscribe}
+        </label>
+        <button type="button" data-qc-subscription-convert>
+          <span data-qc-subscription-price>
+            ${formatMoney(product.price, theme.moneyFormat)}
+          </span>
+          <span><strong>${theme.strings.subscribe}</strong></span>
+        </button>`;
+    }
+    subscriptionHtml += `<div class="custom-select">
       <button type="button" class="custom-select-styled" data-custom-select-free>
-        <span>
+        <span data-qc-subscription-description>
         ${getFrequencyText(frequencyUnit, intervalUnit)}
         </span>
         <svg width="7" height="3" viewBox="0 0 7 3" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l2.5 2.5L6 0" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
       </button>
-      <div class="custom-select-options" data-custom-select-options="" style="display: none;">
+      <div class="${customSelectOptionsClassname}" data-custom-select-options="" style="display: none;">
     `;
 
     for (let a = 0; a < subMetadata.frequencies.length; a++) {
@@ -236,6 +275,20 @@ function quickCartLineItemHtml(product, index) {
         checkedStatus = `checked="checked"`;
       }
       const frequencyText = getFrequencyText(frequency, intervalUnit);
+
+      let subVariantPrice = 0;
+      let subVariantId = 0;
+
+      try {
+        subVariantId = subMetadata.map[product.variant_id].discount_variant_id;
+        subVariantPrice = formatMoney(
+          subMetadata.map[product.variant_id].discount_variant_price,
+          theme.moneyFormat
+        );
+      } catch (error) {
+        subVariantPrice = formatMoney(product.price, theme.moneyFormat);
+        subVariantId = product.id;
+      }
 
       subscriptionHtml += `
         <div class="custom-select-option">
@@ -247,9 +300,12 @@ function quickCartLineItemHtml(product, index) {
           ${checkedStatus}
           data-line="${index + 1}"
           data-id="${product.variant_id}"
+          data-sub-id="${subVariantId}"
           data-unit="${intervalUnit}"
           data-frequency="${frequency}"
-          data-qc-frequency-input />
+          data-text="${frequencyText}"
+          data-price="${subVariantPrice}"
+          ${subscriptionInputDataReference} />
           <label
             for="sub-${product.variant_id}-${index}">
             ${frequencyText}
@@ -297,6 +353,7 @@ function quickCartLineItemHtml(product, index) {
   const pattern = `
   <div
     class="cart-drawer__item"
+    data-cart-drawer-item
     data-line="${index + 1}"
     data-quantity="${product.quantity}">
     <div class="cart-drawer__image-wrap">
@@ -307,7 +364,7 @@ function quickCartLineItemHtml(product, index) {
     <div class="cart-drawer__item-content">
       <a ${linkHref} class="cart-drawer__item-link" tabindex="-1">
         <h4 class="cart-drawer__item-title">${product.product_title}</h4>
-        <p class="cart-drawer__variant">${product.variant_title}</p>
+        <p class="cart-drawer__variant">${productVariantTitle}</p>
       </a>
       ${subscriptionHtml}
       ${quantityHtml}

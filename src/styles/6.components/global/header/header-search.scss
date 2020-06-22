@@ -69,7 +69,7 @@
     &__submit {
       @include no-font-size;
       border: none;
-      background: transparent;
+      background: $color-transparent;
       border-radius: 0;
       padding: 0;
       margin: 0;
@@ -86,7 +86,7 @@
       }
 
       &:hover {
-        background: transparent;
+        background: $color-transparent;
         g {
           stroke: $color-main-1;
         }
@@ -113,7 +113,7 @@
       @include text(18px, 25px, $color-body-text, 1.06px);
       display: inline-block;
       border: none;
-      background: transparent;
+      background: $color-transparent;
       padding: 0;
       margin: 0 30px 15px;
     }
@@ -127,7 +127,7 @@
     &__close-btn {
       border: none;
       box-shadow: none;
-      background: transparent;
+      background: $color-transparent;
       border-radius: 0;
       margin: 0;
       padding: 1px 3px;

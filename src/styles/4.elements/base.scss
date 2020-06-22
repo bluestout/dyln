@@ -66,7 +66,7 @@ input[type="password"],
 input[type="search"] {
   font-size: 16px;
   line-height: 1;
-  background-color: transparent;
+  background-color: $color-transparent;
   border-radius: 0;
   width: 100%;
 }
@@ -74,7 +74,7 @@ input[type="search"] {
 textarea {
   font-size: 16px;
   line-height: 1;
-  background-color: transparent;
+  background-color: $color-transparent;
   padding: 5px;
   border-radius: 0;
   width: 100%;

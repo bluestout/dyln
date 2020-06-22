@@ -94,7 +94,7 @@ function handleHeaderLinkClick(event) {
   $blocks
     .not($block)
     .find(selectors.iframe)
-    .toggle();
+    .hide();
   toggleTabindexInChildren($block);
   toggleTabindexInChildren($blocks.not($block), 2);
   $block.find(selectors.iframe).toggle();
@@ -113,9 +113,11 @@ function handleHeaderLinkClose(event) {
   const id = $source.data(datasets.close);
   const $link = $(selectors.linkById(id));
   const $block = $(selectors.blockById(id));
+  $block.find(selectors.iframe).toggle();
   if ($link.length > 0) {
     $link.removeClass(classes.active);
   }
+
   if ($block.length > 0) {
     toggleTabindexInChildren($block, 2);
   }
@@ -123,7 +125,8 @@ function handleHeaderLinkClose(event) {
 
 function closeAllHeaderLinks() {
   const $link = $(selectors.link);
-  const $block = $(selectors.link);
+  const $blocks = $(selectors.link);
+  $blocks.find(selectors.iframe).hide();
   $link.removeClass(classes.active);
   toggleTabindexInChildren($block, 2);
 }

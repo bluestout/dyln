@@ -7,6 +7,7 @@ import {
   cartTotalsHtml,
   emptyCartHtml,
 } from "./ajaxcart-html";
+import { subscriptionAjax } from "./subscription";
 
 const datasets = {
   upsell: {
@@ -47,6 +48,13 @@ const selectors = {
     focusOut: "[data-cart-drawer-focus-out]",
     focusIn: "[data-cart-drawer-focus-in]",
     frequency: "[data-qc-frequency-input]",
+    freqSelection: "[data-qc-frequency-selection]",
+    item: "[data-cart-drawer-item]",
+    subPrice: "[data-qc-subscription-price]",
+    subDescription: "[data-qc-subscription-description]",
+    subConvert: "[data-qc-subscription-convert]",
+    subAgree: "[data-qc-subscription-convert]",
+    subConfirm: "[data-qc-subscription-confirm]",
   },
   cart: {
     container: "[data-cart-container]",
@@ -103,7 +111,7 @@ function containerLoading(state) {
 
 // insert id/line, quantity, isline?
 // reduce the remove from cart & change quantity for id & line to 1 function
-function ajaxChangeCartQty(id, qty, line) {
+function ajaxChangeCartQty(id, qty, line, delay) {
   let data = { quantity: qty, id };
   if (line) {
     data = { quantity: qty, line: id };
@@ -116,7 +124,9 @@ function ajaxChangeCartQty(id, qty, line) {
     dataType: "json",
     success: () => {
       $.getJSON("/cart.js", (json) => {
-        returnCartIfNotEmpty(json);
+        if (!delay) {
+          returnCartIfNotEmpty(json);
+        }
       });
     },
     cache: false,
@@ -128,10 +138,44 @@ function handleAjaxFrequencyClick(event) {
   const frequency = $this.data("frequency");
   const unit = $this.data("unit");
   const line = $this.data("line");
-  ajaxChangeCartLineItem(frequency, unit, line);
+  ajaxChangeSubscriptionLineItem(frequency, unit, line);
 }
 
-function ajaxChangeCartLineItem(frequency, unit, line) {
+function handleAjaxFreqSelectionClick(event) {
+  const $this = $(event.currentTarget);
+  const text = $this.data("text");
+  const price = $this.data("price");
+
+  const $item = $this.closest(selectors.quick.item);
+  $item.find(selectors.quick.subPrice).text(price);
+  $item.find(selectors.quick.subDescription).text(text);
+}
+
+function handleAjaxSubscriptionConversionClick(event) {
+  const $this = $(event.currentTarget);
+  const confirm = $this
+    .closest(selectors.quick.item)
+    .find(selectors.quick.subConfirm)
+    .prop("checked");
+  const $input = $this
+    .closest(selectors.quick.item)
+    .find(`${selectors.quick.freqSelection}`)
+    .filter(":checked");
+  const frequency = $input.data("frequency");
+  const unit = $input.data("unit");
+  const line = $input.data("line");
+  const subId = $input.data("sub-id");
+
+  if (confirm && $input.length > 0) {
+    containerLoading(true);
+    ajaxChangeCartQty(line, 0, true, true);
+    subscriptionAjax(subId, 1, frequency, unit);
+  } else {
+    showMessage(theme.strings.select_frequency_and_confirm);
+  }
+}
+
+function ajaxChangeSubscriptionLineItem(frequency, unit, line) {
   containerLoading(true);
   const data = {
     line: line,
@@ -637,6 +681,16 @@ $(document).on("click", selectors.upsell.submit, handleAjaxUpsellSubmit);
 $(document).on("change", selectors.upsell.select, handleAjaxUpsellSelectChange);
 $(document).on("click", selectors.upsell.input, handleAjaxUpsellInputClick);
 $(document).on("click", selectors.quick.frequency, handleAjaxFrequencyClick);
+$(document).on(
+  "click",
+  selectors.quick.freqSelection,
+  handleAjaxFreqSelectionClick
+);
+$(document).on(
+  "click",
+  selectors.quick.subConvert,
+  handleAjaxSubscriptionConversionClick
+);
 
 // run ajax on page load to get cart contents
 $(document).ready(() => {

@@ -16,7 +16,7 @@
   &__faq-btn {
     @include clearfix;
     width: 100%;
-    background-color: transparent;
+    background-color: $color-transparent;
     border: none;
     border-radius: 0;
     margin: 0;

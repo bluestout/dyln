@@ -197,7 +197,7 @@
     &__faq-btn {
       @include clearfix;
       width: 100%;
-      background-color: transparent;
+      background-color: $color-transparent;
       border: none;
       border-radius: 0;
       margin: 0;
@@ -266,7 +266,7 @@
     &__close-btn {
       border: none;
       box-shadow: none;
-      background: transparent;
+      background: $color-transparent;
       border-radius: 0;
       margin: 0;
       padding: 1px 3px;
@@ -420,7 +420,7 @@
     &__faq-btn {
       @include clearfix;
       width: 100%;
-      background-color: transparent;
+      background-color: $color-transparent;
       border: none;
       border-radius: 0;
       margin: 0;

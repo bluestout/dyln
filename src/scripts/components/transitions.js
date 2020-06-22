@@ -3,21 +3,26 @@ import $ from "jquery";
 const elements = {
   animatedElements: "[data-transition]",
   transitionWave: "[data-transition-wave]",
+  transitionWaveRsp: "[data-transition-wave-rsp]",
   transitionFade: "[data-transition-fade]",
 };
 
 const classes = {
   waveTransitioned: "wave-transition",
+  waveTransitionedRsp: "wave-transition-rsp",
   fadeTransitioned: "fade-transition",
 };
 
 const $animatedElements = $(elements.animatedElements);
 const $transitionWave = $(elements.transitionWave);
+const $transitionWaveRsp = $(elements.transitionWaveRsp);
+
 const $transitionFade = $(elements.transitionFade);
 const $window = $(window);
 
 function onScroll() {
   $transitionWave.addClass(classes.waveTransitioned);
+  $transitionWaveRsp.addClass(classes.waveTransitionedRsp);
   $transitionFade.addClass(classes.fadeTransitioned);
 
   checkIfInView();

@@ -236,7 +236,7 @@
     &__close-btn {
       border: none;
       box-shadow: none;
-      background: transparent;
+      background: $color-transparent;
       border-radius: 0;
       margin: 0;
       padding: 1px 3px;
@@ -387,7 +387,7 @@
         right: 0;
         width: calc(100% - 50px);
         height: 1px;
-        background-color: transparent;
+        background-color: $color-transparent;
       }
     }
 

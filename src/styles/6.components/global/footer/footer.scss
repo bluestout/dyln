@@ -80,7 +80,6 @@
           border: none;
           background: none;
 
-
           &.active {
             color: $color-white;
             transition: ease-in-out all 0.3s;
@@ -105,7 +104,7 @@
         border: 2px solid $color-white;
         color: $color-white;
         padding: 10px;
-        background-color: transparent;
+        background-color: $color-transparent;
 
         &::-webkit-input-placeholder {
           color: $color-white;
@@ -121,7 +120,7 @@
       }
 
       button {
-        background-color: transparent;
+        background-color: $color-transparent;
         border: 2px solid $color-white;
         color: $color-white;
         position: relative;
@@ -232,7 +231,7 @@
     display: block;
     background-image: linear-gradient(
       to bottom,
-      transparent 0%,
+      $color-transparent 0%,
       $color-theme-9 100%
     );
   }
@@ -545,13 +544,13 @@
   }
 
   &::-webkit-scrollbar-track {
-    background: transparent;
+    background: $color-transparent;
   }
 
   &::-webkit-scrollbar-thumb {
     background-color: $color-black;
     border-radius: 6px;
-    border: 1px solid transparent;
+    border: 1px solid $color-transparent;
   }
 }
 

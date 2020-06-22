@@ -22,10 +22,10 @@
 
     &::after {
       content: "";
-      display: inline-block;
       position: absolute;
       right: -130px;
-      top: 0px;
+      top: 0;
+      display: inline-block;
       width: 100px;
       height: 200px;
       transform: rotate(-25deg);

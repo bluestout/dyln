@@ -189,7 +189,13 @@
                   <label
                     class="product-item__value-label"
                     for="{{ block_p.id }}-option{{ option.position }}-{{ value | handleize }}">
-                    {{ value }}
+                    {% assign adjusted_diffuser_title = value %}
+                    {% if adjusted_diffuser_title == "1 Diffuser" %}
+                      {% assign adjusted_diffuser_title = "Single Pack" %}
+                    {% elsif adjusted_diffuser_title contains "Diffusers" %}
+                      {% assign adjusted_diffuser_title = value | replace: ' Diffusers', '-Pack'%}
+                    {% endif %}
+                    {{ adjusted_diffuser_title }}
                   </label>
                 </span>
               {% endfor %}

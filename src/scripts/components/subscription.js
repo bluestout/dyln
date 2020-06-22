@@ -84,9 +84,20 @@ function addSubscriptionAjax() {
   const variantId = $(selectors.subVariantSelected).val();
   const mapJson = JSON.parse($(selectors.subVariantMap).val());
   const newId = mapJson[variantId].discount_variant_id;
+  subscriptionAjax(newId, 1, frequency, unit);
+}
+
+function subscriptionAjax(id, quantity, frequency, unit) {
+  if ((!id, !frequency, !unit)) {
+    return null;
+  }
+  let qty = quantity;
+  if (!quantity) {
+    qty = 1;
+  }
   const data = {
-    id: newId,
-    quantity: 1,
+    id: id,
+    quantity: qty,
     properties: {
       shipping_interval_frequency: frequency,
       shipping_interval_unit_type: unit,
@@ -119,3 +130,5 @@ $(document).on("click", selectors.subRegularAdd, handleRegularAdd);
 
 document.addEventListener("customSelectChange", handleFrequencyChange);
 document.addEventListener("ajaxReloaded", finishLoading);
+
+export { subscriptionAjax };

@@ -25,7 +25,10 @@
       year: {{ 'products.subscription.years' | t | remove: "s" | json }},
       show_more: {{ 'general.search.show_more' | t | json }},
       search_results: {{ 'general.search.heading.other' | t | json }},
-      no_results_for: {{ 'general.search.no_results_for' | t | json }}
+      no_results_for: {{ 'general.search.no_results_for' | t | json }},
+      subscribe: {{ 'products.subscription.subscribe' | t | json }},
+      select_frequency: {{ 'products.subscription.select_frequency' | t | json }},
+      select_frequency_and_confirm: {{ 'products.subscription.select_frequency_and_confirm' | t | json }}
     },
     moneyFormat: {{ shop.money_format | json }},
     imageUrls: {

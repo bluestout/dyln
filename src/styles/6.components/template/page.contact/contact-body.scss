@@ -168,7 +168,7 @@
       top: calc(50% - 2px);
       width: auto;
       opacity: 1 !important;
-      border: 5px solid transparent;
+      border: 5px solid $color-transparent;
       border-top: 5px solid $color-theme-4;
     }
 
@@ -253,7 +253,7 @@
   &__search-submit {
     @include no-font-size;
     border: none;
-    background: transparent;
+    background: $color-transparent;
     border-radius: 0;
     padding: 0;
     margin: 0;
@@ -270,7 +270,7 @@
     }
 
     &:hover {
-      background: transparent;
+      background: $color-transparent;
       g {
         stroke: $color-main-1;
       }
