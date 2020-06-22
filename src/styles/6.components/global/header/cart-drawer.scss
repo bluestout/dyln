@@ -494,7 +494,7 @@
         }
       }
       &:focus {
-        outline: 5px auto;
+        outline: 5px auto rgba($color-main-1, 0.5);
       }
     }
   }
