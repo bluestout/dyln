@@ -172,7 +172,7 @@
   &__current-filters {
     @include transition(border-color);
     padding: 5px 0;
-    border-top: 1px solid transparent;
+    border-top: 1px solid $color-transparent;
 
     &.active {
       border-top: 1px solid $color-theme-6;

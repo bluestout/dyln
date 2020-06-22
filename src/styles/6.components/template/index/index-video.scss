@@ -111,8 +111,8 @@
       background: radial-gradient(
         ellipse at top,
         rgba($color-theme-19, 0.3) 0%,
-        ($color-theme-19, 0.01) 60%,
-        ($color-theme-19, 0.01) 100%
+        $color-transparent 60%,
+        $color-transparent 100%
       );
       padding: 0;
     }

@@ -18,7 +18,7 @@
       position: absolute;
       top: -21px;
       left: 60%;
-      border: 10px solid transparent;
+      border: 10px solid $color-transparent;
       border-bottom: 10px solid rgba($color-black, 0.11);
     }
 
@@ -27,7 +27,7 @@
       position: absolute;
       top: -20px;
       left: 60%;
-      border: 10px solid transparent;
+      border: 10px solid $color-transparent;
       border-bottom: 10px solid $color-white;
     }
 
@@ -139,7 +139,7 @@
       @include text(16px, 32px, $color-body-text, 0.95px);
       width: 100%;
       height: 34px;
-      background-color: transparent;
+      background-color: $color-transparent;
       border-radius: 0;
       border: 1px solid $color-theme-10;
       padding: 0 16px;
@@ -291,7 +291,7 @@
       @include text(16px, 24px, $color-body-text, 0.95px);
       width: 100%;
       height: 24px;
-      background-color: transparent;
+      background-color: $color-transparent;
       border-radius: 0;
       border-top: none;
       border-left: none;

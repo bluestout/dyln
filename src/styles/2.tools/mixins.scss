@@ -226,7 +226,7 @@
   } @else if $color == white {
     $btn-def-c: $color-white;
     $btn-acc-c: $color-white;
-    $btn-sup-c: transparent;
+    $btn-sup-c: $color-transparent;
     $btn-text-c: $color-body-text;
 
     @if $type == wire {
@@ -301,7 +301,7 @@
     box-shadow: none;
     text-decoration: none;
     padding: 10px 36px;
-    background-color: transparent;
+    background-color: $color-transparent;
     border: 3px solid $btn-def-c;
 
     &:not(:disabled) {
