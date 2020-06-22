@@ -83,12 +83,6 @@
     display: block;
   }
 
-  &__size {
-    @include font-header(700);
-    @include text(16px, 23px, $color-theme-1, 0.95px);
-    display: block;
-  }
-
   &__options {
     margin: 0 0 5px;
   }
