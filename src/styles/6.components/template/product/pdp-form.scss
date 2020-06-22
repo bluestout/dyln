@@ -29,6 +29,14 @@
     @include no-font-size;
     position: relative;
     display: inline-block;
+
+    &.active-variant--unavailable {
+      opacity: 0.5;
+
+      .exclamation-variant {
+        display: block;
+      }
+    }
   }
 
   &__color-input {
@@ -288,4 +296,14 @@
       }
     }
   }
+}
+
+.exclamation-variant {
+  font-size: 20px;
+  position: relative;
+  top: 14px;
+  font-weight: 700;
+  color: $color-theme-28;
+  pointer-events: none;
+  display: none;
 }

@@ -37,6 +37,7 @@
             {% assign color_handle = value | strip | strip_html | strip_newlines | handleize %}
             {% assign swatch = "color-swatch-" | append: color_handle %}
             <span class="pdp-form__color-wrap">
+              <div class="exclamation-variant">!</div>
               <input
                 class="pdp-form__color-input {{ swatch }}"
                 type="radio"

@@ -88,7 +88,7 @@
 
   @include media-query($small) {
     &__title {
-      margin-left: 15px;
+      margin-left: 15px !important;
     }
   }
 }
