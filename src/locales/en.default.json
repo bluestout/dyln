@@ -354,7 +354,8 @@
       "select_html_mobile": "Swipe to select {{ option }}",
       "view_details": "View Details",
       "add": "Add",
-      "more_colors": "More colors"
+      "more_colors": "More colors",
+      "imperial_size": "oz"
     },
     "subscription": {
       "every": "Every",
