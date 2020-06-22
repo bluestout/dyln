@@ -49,5 +49,10 @@
         padding: 10px 20px;
       }
     }
+
+    @include media-query($small) {
+      flex-wrap: nowrap;
+      // test
+    }
   }
 }

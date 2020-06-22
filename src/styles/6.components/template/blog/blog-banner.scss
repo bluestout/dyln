@@ -49,6 +49,13 @@
   }
 
   &__content {
+    position: relative;
+    left: 20px;
+
+    @include media-query($medium-down) {
+      left: 0;
+    }
+
     h2 {
       @include font-header(700);
       font-size: 30px;

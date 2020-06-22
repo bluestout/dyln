@@ -122,7 +122,8 @@
   }
 }
 
-.blog-search {
+.blog-search,
+.blog-topics {
   .justify-content-center {
     position: relative;
   }
@@ -144,6 +145,10 @@
       &__btn {
         justify-content: center;
       }
+    }
+
+    @include media-query($small) {
+      width: 100%;
     }
 
     h3 {
