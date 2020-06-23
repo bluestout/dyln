@@ -128,7 +128,7 @@ function closeAllHeaderLinks() {
   const $blocks = $(selectors.link);
   $blocks.find(selectors.iframe).hide();
   $link.removeClass(classes.active);
-  toggleTabindexInChildren($block, 2);
+  toggleTabindexInChildren($blocks, 2);
 }
 
 function handleHeaderButtonClick() {
