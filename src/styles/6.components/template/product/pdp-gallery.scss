@@ -2,6 +2,10 @@
   &__images {
     max-width: 700px;
     padding: 0 40px;
+
+    @include media-query($xxl-up) {
+      left: 30px;
+    }
   }
 
   &__image-item {

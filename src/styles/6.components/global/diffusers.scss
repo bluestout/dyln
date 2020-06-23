@@ -103,7 +103,10 @@
   &__btn-wrap {
     @include clearfix;
     position: relative;
-    max-width: 425px;
+
+    @include media-query($medium-down) {
+      max-width: 425px;
+    }
 
     &.hide {
       .diffusers__sub-btn {

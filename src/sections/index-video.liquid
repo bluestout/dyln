@@ -52,9 +52,11 @@
           <source src="{{- section.settings.video -}}" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-      {%- elsif section.settings.video_embed != blank -%}
+        <span class="index-video__back-link" id="videoBackLink" data-index-video-back-btn>{{ 'general.accessibility.video_back' | t }}</span>
+        {%- elsif section.settings.video_embed != blank -%}
         <div class="index-video__video">
           {{- section.settings.video_embed -}}
+          <span class="index-video__back-link" id="videoBackLink" data-index-video-back-btn>{{ 'general.accessibility.video_back' | t }}</span>
         </div>
       {%- endif -%}
     </div>
