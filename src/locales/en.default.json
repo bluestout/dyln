@@ -5,7 +5,8 @@
       "close": "Close",
       "close_cart": "Close cart drawer",
       "loading": "Loading",
-      "points": "Points"
+      "points": "Points",
+      "video_back": "Back"
     },
     "meta": {
       "tags": "Tagged \"{{ tags }}\"",

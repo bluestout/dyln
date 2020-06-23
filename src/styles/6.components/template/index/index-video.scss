@@ -23,6 +23,16 @@
     }
   }
 
+  &__back-link {
+    display: block;
+    margin-top: 15px;
+    @include text(16px, 1.2, $color-theme-1, 0);
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   &__content-outer {
     position: absolute;
     left: 0;
