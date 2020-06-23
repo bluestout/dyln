@@ -117,6 +117,10 @@
   }
 
   @include media-query($medium-down) {
+    &.active {
+      margin-bottom: 150px;
+    }
+
     &__outer {
       background: radial-gradient(
         ellipse at top,
@@ -125,6 +129,13 @@
         $color-transparent 100%
       );
       padding: 0;
+      overflow: visible;
+    }
+
+    &__back-link {
+      position: absolute;
+      left: 15px;
+      z-index: 1;
     }
 
     &__bg-outer {
@@ -170,6 +181,12 @@
         width: 18px;
         height: 18px;
       }
+    }
+  }
+
+  @include media-query($small) {
+    &.active {
+      margin-bottom: 170px;
     }
   }
 }
