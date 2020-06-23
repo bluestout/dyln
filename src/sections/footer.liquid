@@ -130,11 +130,25 @@
         </div>
         <div class="col-md-12 col-lg-6">
           <div class="site-footer__newsletter-opt-in opt-in-email active" data-email-input>
-            {% comment %}
-              TODO: Add Klaviyo
-            {% endcomment %}
-            <input type="email" placeholder="{{ section.settings.email_placeholder }}" />
-            <button type="submit">{% render 'icon-send' %}</button>
+            {% form 'customer' %}
+              {{ form.errors | default_errors }}
+              {% if form.posted_successfully? %}
+                <p class="newsletter__confirmation">{{ 'general.newsletter_form.confirmation' | t }}</p>
+              {% else %}
+                <input type="hidden" name="contact[tags]" value="newsletter" style="width: 0">
+                <input type="email"
+                       class="newsletter__input"
+                       name="contact[email]"
+                       id="NewsletterEmail"
+                       value="{% if customer.email != blank %}{{ customer.email }}{% endif %}"
+                       placeholder="{{ section.settings.email_placeholder }}"
+                       autocorrect="off"
+                       autocapitalize="off">
+                <button class="newsletter__submit" type="submit" name="commit" id="NewsletterSubscribe">
+                  {% render 'icon-send' %}
+                </button>
+              {% endif %}
+            {% endform %}
           </div>
           <div class="site-footer__newsletter-opt-in opt-in-sms" data-phone-input>
             {% comment %}

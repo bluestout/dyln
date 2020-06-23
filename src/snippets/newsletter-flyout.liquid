@@ -2,18 +2,22 @@
   <h2>{{ 'blogs.newsletter.title' | t }}</h2>
   {% form 'customer' %}
     {{ form.errors | default_errors }}
-    <label for="newsletterEmail">{{ 'blogs.newsletter.email_placeholder' | t }}</label>
-    <input type="hidden" name="contact[tags]" value="newsletter">
-    <input type="email"
-            class="newsletter__input"
-            name="contact[email]"
-            id="NewsletterEmail"
-            value="{% if customer.email != blank %}{{ customer.email }}{% endif %}"
-            autocorrect="off"
-            autocapitalize="off">
-    <button class="newsletter__submit" type="submit" name="commit" id="NewsletterSubscribe">
-      {{ 'blogs.newsletter.submit' | t }}
-    </button>
+    {% if form.posted_successfully? %}
+      <p class="newsletter__confirmation">{{ 'general.newsletter_form.confirmation' | t }}</p>
+    {% else %}
+      <label for="newsletterEmail">{{ 'blogs.newsletter.email_placeholder' | t }}</label>
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <input type="email"
+              class="newsletter__input"
+              name="contact[email]"
+              id="NewsletterEmail"
+              value="{% if customer.email != blank %}{{ customer.email }}{% endif %}"
+              autocorrect="off"
+              autocapitalize="off">
+      <button class="newsletter__submit" type="submit" name="commit" id="NewsletterSubscribe">
+        {{ 'blogs.newsletter.submit' | t }}
+      </button>
+    {% endif %}
   {% endform %}
 </div>
 <div class="newsletter-flyout-opener" data-newsletter-open-btn>

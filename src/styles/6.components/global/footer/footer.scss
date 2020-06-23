@@ -95,6 +95,12 @@
     &-opt-in {
       display: none;
 
+      form {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
       &.active {
         display: flex;
         justify-content: center;
