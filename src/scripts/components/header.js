@@ -90,6 +90,7 @@ function handleHeaderLinkClick(event) {
   const id = $link.data(datasets.link);
   const $block = $(selectors.blockById(id));
   const $blocks = $(selectors.block);
+  const $iframe = $(selectors.iframe);
 
   $blocks
     .not($block)
@@ -100,6 +101,8 @@ function handleHeaderLinkClick(event) {
   $block.find(selectors.iframe).toggle();
   $links.not($link).removeClass(classes.active);
   $link.toggleClass(classes.active);
+
+  $iframe.show();
 
   if ($(window).width() < 992) {
     $blocks.not($block).slideUp();
