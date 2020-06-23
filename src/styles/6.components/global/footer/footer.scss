@@ -106,6 +106,12 @@
         justify-content: center;
       }
 
+      .klaviyo_field_group {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
       input {
         border: 2px solid $color-white;
         color: $color-white;

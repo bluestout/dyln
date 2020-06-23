@@ -102,5 +102,29 @@
   <!-- QuadPay: Modern Browsers -->
   <script async src="https://widgets.quadpay.com/quadpay-widget-2.2.6.js" type="application/javascript"></script>
 
+<script type="text/javascript" src="https://www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
+<script type="text/javascript">
+  (function(){
+    // Your JavaScript here
+    KlaviyoSubscribe.attachToForms('#email_signup', {
+      hide_form_on_success: false,
+      success: function ($form) {
+        $form.find('span.klaviyo_field_group').fadeOut();
+        $form.next('.klaviyo_messages .success_message').fadeIn();
+      }
+
+    });
+
+    KlaviyoSubscribe.attachToForms('#email_signup_pre', {
+      hide_form_on_success: false,
+      success: function ($form) {
+        $form.find('span.klaviyo_field_group').fadeOut();
+        $form.next('.klaviyo_messages .success_message').fadeIn();
+      }
+
+    });
+  })();
+</script>
+
 </body>
 </html>
