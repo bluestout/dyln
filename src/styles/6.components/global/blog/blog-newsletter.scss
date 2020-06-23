@@ -7,12 +7,21 @@
   color: $color-white;
   width: 367px;
 
+  .klaviyo_field_group {
+    display: inline-block;
+    margin-bottom: 10px;
+
+    @include media-query($medium-down) {
+      margin-bottom: 0;
+    }
+  }
+
   @include media-query($xl-down) {
     display: none;
 
     &.modal-opened {
       position: fixed;
-      display: inline-block !important;
+      display: inline-block;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -37,7 +46,8 @@
     color: $color-white;
   }
 
-  button {
+  button,
+  .newsletter__submit {
     @include font-header(bold);
     background-color: white;
     color: $color-theme-2;
@@ -78,6 +88,11 @@
 
     @include media-query($xl-down) {
       display: none;
+    }
+
+    .newsletter__submit {
+      position: relative;
+      z-index: 1;
     }
 
     + .newsletter-flyout-opener {

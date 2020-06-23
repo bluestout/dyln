@@ -32,13 +32,6 @@ function init() {
 
   $newsletterOpenBtn.on("click", openModal);
 
-  $(document).on("click", closeModal);
-
-  $newsletterModal.on("click", (event) => {
-    event.stopPropagation();
-    return false;
-  });
-
   return true;
 }
 
@@ -61,4 +54,10 @@ function destroy() {
 }
 
 $(document).ready(init);
+$(document).mouseup(function(e) {
+  const $newsletterModal = $(elements.newsletterModal);
 
+  if (!$newsletterModal.is(e.target) && $newsletterModal.has(e.target).length === 0) {
+    closeModal();
+  }
+});

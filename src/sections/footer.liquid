@@ -130,15 +130,26 @@
         </div>
         <div class="col-md-12 col-lg-6">
           <div class="site-footer__newsletter-opt-in opt-in-email active" data-email-input>
-            {% comment %}
-              TODO: Add Klaviyo
-            {% endcomment %}
-            <input type="email" placeholder="{{ section.settings.email_placeholder }}" />
-            <button type="submit">{% render 'icon-send' %}</button>
+            <div class="email-signup">
+              <form novalidate="" target="_blank" method="GET" data-ajax-submit="//manage.kmail-lists.com/ajax/subscriptions/subscribe" action="//manage.kmail-lists.com/subscriptions/subscribe" class=" klaviyo_standard_embed_e9NMuf" id="email_signup">
+                <span class="klaviyo_field_group">
+                <input value="e9NMuf" name="g" type="hidden">
+                <input placeholder="{{ section.settings.email_placeholder }}" id="k_id_email" name="email" type="email" class="newsletter__input">
+                <button class="newsletter__submit klaviyo_submit_button btn" type="submit" name="commit" id="NewsletterSubscribe">
+                  {% render 'icon-send' %}
+                </button>
+                </span>
+              </form>
+
+              <div class="klaviyo_messages">
+                <div style="display:none;" class="success_message"></div>
+                <div style="display:none;" class="error_message"></div>
+              </div>
+            </div>
           </div>
           <div class="site-footer__newsletter-opt-in opt-in-sms" data-phone-input>
             {% comment %}
-              TODO: Add Klaviyo
+              TODO: Add SMS API
             {% endcomment %}
             <input type="number" placeholder="{{ section.settings.telephone_placeholder }}" />
             <button type="submit">{% render 'icon-send' %}</button>
