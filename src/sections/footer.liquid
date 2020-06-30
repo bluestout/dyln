@@ -111,7 +111,9 @@
 {%- endif -%}
 
 <div class="site-footer__newsletter"
-     style="background-image:url({{ section.settings.footer_newsletter_background.src | image_url }})">
+  style="background-image:url({{ section.settings.footer_newsletter_background.src | image_url }})"
+  data-transition-wave
+  data-transition>
   <div class="container">
     <div class="row">
       <div class="col-md-12 col-lg-6">
@@ -160,7 +162,9 @@
   </div>
 </div>
 <footer class="site-footer__footer">
-  <div class="site-footer__wave-middle"></div>
+
+  <div class="site-footer__wave-middle" data-transition-wave data-transition></div>
+
   <div class="site-footer__footer-bg">
     <div class="container">
       <div class="row">

@@ -2,14 +2,21 @@
   position: relative;
 
   &__newsletter {
-    width: 100%;
+    @include transition(background-position 5000 ease);
     height: 300px;
     display: flex;
     align-items: center;
     margin-top: -20px;
+    background-position: 0 0;
+    background-repeat: repeat-x;
+    width: 100%;
 
     @include media-query($large-down) {
-      height: 380px;
+      height: 400px;
+    }
+
+    @include media-query($small) {
+      padding-bottom: 30px;
     }
 
     &-title {
@@ -157,13 +164,13 @@
   &__wave-top {
     @include animated-wave;
     top: 0;
-    height: 74px;
-    background-image: url("data:image/svg+xml,%3Csvg width='1600' height='74' viewBox='0 0 1600 74' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1600 46c266.667 4.641 266.667 13.923 0 27.846H0V46c20.745-2.053 36.344-4.607 46.798-7.66C115.553 18.251 226.984-1.572 330 .174c112.97 1.914 463.096 54.137 593 58.944 95.694 3.541 184.524 3.816 227.548 4.02C1270.503 63.707 1523.704 44.672 1600 46z' fill='%23F4F4F4' fill-rule='evenodd'/%3E%3C/svg%3E");
+    height: 37px;
+    background-image: url("data:image/svg+xml,%3Csvg width='1600' height='37' viewBox='0 0 1600 37' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1600 22v15H0V22c39.333 0 65.667-.667 79-2C192.353 8.665 281 2 348 1c227.63-3.397 492.546 25.068 575 28.12 95.694 3.54 184.524 3.815 227.548 4.019C1219.49 33.465 1340.236 28.755 1513 23c18.424-.614 47.424-.947 87-1z' fill='%23F4F4F4' fill-rule='evenodd'/%3E%3C/svg%3E");
   }
 
   &__lifestyle {
     position: relative;
-    padding: 74px 0 0;
+    padding: 37px 0 0;
   }
 
   &__lifestyle-bg {
@@ -286,8 +293,8 @@
 
   &__footer {
     position: relative;
-    margin: -50px 0 0;
-    padding: 50px 0 0;
+    margin: -46px 0 0;
+    padding: 46px 0 0;
   }
 
   &__footer-bg {
@@ -298,8 +305,8 @@
   &__wave-middle {
     @include animated-wave;
     top: 0;
-    height: 50px;
-    background-image: url("data:image/svg+xml,%3Csvg width='1600' height='50' viewBox='0 0 1600 50' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1600 19v31H-1l1-31c155.944 10.783 257.436 28.006 376 26 230.594-3.9 462.386-24.566 642-35C1181.383.509 1268.85 0 1301 0c85.667 0 185.333 6.333 299 19z' fill='%2300AEDB' fill-rule='evenodd'/%3E%3C/svg%3E");
+    height: 46px;
+    background-image: url("data:image/svg+xml,%3Csvg width='1600' height='46' viewBox='0 0 1600 46' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1600 16v30H0V16c37 0 75 3 106 8s123.534 18.765 234 17c215.55-3.444 495.155-34.135 751-40 82.695-1.896 219.767 8.759 324 14 72.128 3.627 129.152 2.363 139 2 9.102-.336 24.435-.67 46-1z' fill='%2300AEDB' fill-rule='evenodd'/%3E%3C/svg%3E");
   }
 
   &__parent-link {
