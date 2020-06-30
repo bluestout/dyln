@@ -37,11 +37,17 @@
             {% assign color_handle = value | strip | strip_html | strip_newlines | handleize %}
             {% assign swatch = "color-swatch-" | append: color_handle %}
             <span class="pdp-form__color-wrap">
-              <div class="exclamation-variant">!</div>
+              <span class="pdp-form__exclamation-variant">!</span>
               <input
                 class="pdp-form__color-input {{ swatch }}"
                 type="radio"
                 id="Option{{ option.position }}-{{ value | handleize }}"
+                {% for p_v in product.variants %}
+                  {% if p_v.title == value %}
+                    data-variant-id="{{ p_v.id }}"
+                    {% break %}
+                  {% endif %}
+                {% endfor %}
                 name="options[{{ option.name }}]"
                 value="{{ value }}"{% if option.selected_value == value %} checked{% endif %} />
               <label class="visually-hidden" for="Option{{ option.position }}-{{ value | handleize }}">{{ value }}</label>

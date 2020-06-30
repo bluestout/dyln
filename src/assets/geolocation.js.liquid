@@ -16,6 +16,7 @@ window.onload = function() {
     shippingNote: `${container} [data-pdp-shipping-note]`,
     productId: `${container} [data-current-product-id]`,
     atcAdd: "[data-atc-add]",
+    exclamation: "[data-variant-exclamation-id]",
     notifyMe: {
       notice: `${container} [data-sold-out-notice]`,
       submit: `${container} [data-submit-sold-out-btn]`,
@@ -75,6 +76,27 @@ window.onload = function() {
     }
   }
 
+  function renderAtcBarButtons() {
+    var uVariants = $(selectors.unavailableVariants).val();
+    if (uVariants !== "") {
+      var uVariantsSplit = uVariants.split(",");
+      var $exclamations = $(selectors.exclamation);
+      for (var i = 0; i < $exclamations.length; i++) {
+        const $exclamation = $($exclamations[i]);
+        if (
+          $.inArray(
+            $exclamation.data("variant-exclamation-id").toString(),
+            uVariantsSplit
+          ) !== -1
+        ) {
+          $exclamation.show();
+        } else {
+          $exclamation.hide();
+        }
+      }
+    }
+  }
+
   // get available variant
   function setUnavailableVariants(country, productId) {
     var cUrl = "/a/dyl/black-variants";
@@ -99,6 +121,7 @@ window.onload = function() {
           });
           renderSubmitButton();
         }
+        renderAtcBarButtons();
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.log(textStatus, errorThrown);
@@ -169,7 +192,6 @@ window.onload = function() {
       "https://api.ipstack.com/check?access_key=c9ac55ecdf7513abc5581dd4c89b042b",
     dataType: "jsonp",
     success: function(location) {
-
       // If the visitor is browsing from US.
       var userGeo = `
       ${location.ip}|${location.country_name}|

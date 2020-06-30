@@ -135,9 +135,11 @@
   &__regular-price {
     @include font-header(500);
     @include text(16px, 20px, $color-white, 0.95px);
+    flex: 1 0 51%;
 
     @include media-query($small) {
       width: 100%;
+      flex: 1 0 100%;
     }
   }
 
@@ -145,9 +147,11 @@
     @include font-header(700);
     @include text(16px, 20px, $color-white, 0.95px);
     text-transform: uppercase;
+    flex: 1 0 51%;
 
     @include media-query($small) {
       width: 100%;
+      flex: 1 0 100%;
     }
   }
 
@@ -259,10 +263,12 @@
   &__sub-price {
     @include font-header(500);
     @include text(16px, 20px, $color-theme-8, 0.95px);
+    flex: 1 0 51%;
 
     @include media-query($small) {
       width: 100%;
       padding-top: 3px;
+      flex: 1 0 100%;
     }
   }
 
@@ -270,9 +276,11 @@
     @include font-header(700);
     @include text(16px, 20px, $color-theme-8, 0.95px);
     text-transform: uppercase;
+    flex: 1 0 51%;
 
     @include media-query($small) {
       width: 100%;
+      flex: 1 0 100%;
     }
   }
 
@@ -457,7 +465,7 @@
     &__regular-btn {
       height: 45px;
       display: flex;
-      flex-flow: column wrap;
+      flex-flow: row wrap;
       align-content: center;
       justify-content: center;
     }
@@ -479,7 +487,7 @@
     &__sub-btn {
       height: 45px;
       display: flex;
-      flex-flow: column wrap;
+      flex-flow: row wrap;
       align-content: center;
       justify-content: center;
 

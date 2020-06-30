@@ -67,6 +67,7 @@
     border: 4px solid $color-white;
     background-color: $color-white;
     border-radius: 50%;
+    background-position: center;
 
     &:disabled {
       opacity: 0.5;
@@ -166,6 +167,20 @@
       background-color: $color-theme-8;
       background-image: none;
     }
+  }
+
+  &__exclamation-variant {
+    font-size: 20px;
+    position: absolute;
+    top: 0;
+    font-weight: 700;
+    color: $color-theme-28;
+    pointer-events: none;
+    display: none;
+    width: 100%;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
   }
 
   @include media-query($large-up) {
