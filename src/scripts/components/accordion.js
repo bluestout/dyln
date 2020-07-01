@@ -42,6 +42,8 @@ const classes = {
   open: "open",
 };
 
+const speed = 200;
+
 function init() {
   checkAccordionState();
   checkAccordionStateRsp();
@@ -112,7 +114,7 @@ function handleAccordionClick(event) {
     $(selectors.parent)
       .find(selectors.content)
       .not($content)
-      .slideUp();
+      .slideUp(speed);
 
     if ($wrap.length > 0) {
       $(selectors.parent)
@@ -121,7 +123,7 @@ function handleAccordionClick(event) {
         .removeClass(classes.open);
     }
   }
-  $content.slideToggle();
+  $content.slideToggle(speed);
   $source.toggleClass(classes.open);
   if ($wrap.length > 0) {
     $wrap.toggleClass(classes.open);
@@ -153,7 +155,7 @@ function handleAccordionClickRsp(event) {
       $(selectors.parentRsp)
         .find(selectors.contentRsp)
         .not($content)
-        .slideUp();
+        .slideUp(speed);
 
       if ($wrap.length > 0) {
         $(selectors.parentRsp)
@@ -163,7 +165,7 @@ function handleAccordionClickRsp(event) {
       }
     }
     $source.toggleClass(classes.open);
-    $content.slideToggle();
+    $content.slideToggle(speed);
     if ($wrap.length > 0) {
       $wrap.toggleClass(classes.open);
     }

@@ -1,44 +1,33 @@
 import $ from "jquery";
+import { toggleTabindexInChildren } from "./helpers";
 
 const selectors = {
-  button: "[data-index-video-open]",
-  backBtn: "[data-index-video-back-btn]",
-  videoWrap: "[data-index-video]",
-  contentWrap: "[data-index-video-content]",
-  bg: "[data-index-video-bg]",
-  indexVideo: ".index-video"
+  videoOpen: "[data-index-video-open]",
+  videoModal: "[data-index-video-modal]",
+  videoClose: "[data-index-video-close]",
+  focusOut: "[data-index-video-focusout]",
+  focusIn: "[data-index-video-focusin]",
 };
 
-const classes = {
-  active: "active",
-};
-
-function videoOpen() {
-  const $wrap = $(selectors.videoWrap);
-  const $content = $(selectors.contentWrap);
-  const $bg = $(selectors.bg);
-  const $indexVideo = $(selectors.indexVideo);
-
-  $bg.toggleClass(classes.active);
-  $indexVideo.toggleClass(classes.active);
-  $content.fadeOut("fast", () => {
-    $wrap.fadeIn();
-  });
+function handleVideoOpenClick() {
+  const $modal = $(selectors.videoModal);
+  $modal.fadeIn();
+  toggleTabindexInChildren($modal, 1);
+  $(selectors.focusIn).focus();
 }
 
-function sectionOpen() {
-  const $content = $(selectors.contentWrap);
-  const $wrap = $(selectors.videoWrap);
-  const $bg = $(selectors.bg);
-  const $indexVideo = $(selectors.indexVideo);
-
-  $bg.toggleClass(classes.active);
-  $indexVideo.toggleClass(classes.active);
-  $wrap.fadeOut("fast", () => {
-    $content.fadeIn();
-  });
-
+function handleVideoCloseClick() {
+  const $modal = $(selectors.videoModal);
+  $modal.fadeOut();
+  toggleTabindexInChildren($modal, 2);
+  $(selectors.focusOut).focus();
 }
 
-$(document).on("click", selectors.button, videoOpen);
-$(document).on("click", selectors.backBtn, sectionOpen);
+$(document).on("click", selectors.videoOpen, handleVideoOpenClick);
+$(document).on("click", selectors.videoClose, handleVideoCloseClick);
+
+$(document).keyup((event) => {
+  if (event.key === "Escape") {
+    handleModalCloseClick();
+  }
+});

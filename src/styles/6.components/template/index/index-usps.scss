@@ -99,6 +99,8 @@
   }
 
   &__usp-icon {
+    @include no-font-size;
+    padding: 1px;
     width: 60px;
     display: inline-block;
     vertical-align: middle;
