@@ -99,6 +99,7 @@
     background-position: center;
     background-size: contain;
     border-radius: 50%;
+    background-position: center;
     cursor: pointer;
     padding: 0;
 
@@ -114,6 +115,7 @@
       box-shadow: none;
       border: 4px solid $color-white;
       border-radius: 50%;
+      background-position: center;
     }
 
     &.active,

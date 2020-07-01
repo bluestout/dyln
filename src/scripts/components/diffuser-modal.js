@@ -17,7 +17,7 @@ const selectors = {
 function closeModal(noFocus) {
   $(selectors.modal).fadeOut("fast");
   toggleTabindexInChildren($(selectors.modal), 2);
-  if (!noFocus) {
+  if (noFocus !== true) {
     $(selectors.focusOut).focus();
   }
 }
@@ -31,7 +31,7 @@ function openModal() {
 function closeModalSub(noFocus) {
   $(selectors.modalSub).fadeOut("fast");
   toggleTabindexInChildren($(selectors.modalSub), 2);
-  if (!noFocus) {
+  if (noFocus !== true) {
     $(selectors.focusOutSub).focus();
   }
 }

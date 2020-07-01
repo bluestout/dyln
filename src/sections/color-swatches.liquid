@@ -6,7 +6,7 @@
 
     {% if block.settings.swatch_image %}
       {{ class_name }} {
-        background-image: url("{{ block.settings.swatch_image | img_url: '50x50' }}") !important;
+        background-image: url("{{ block.settings.swatch_image | img_url: '44x44' }}") !important;
       }
     {% elsif block.settings.swatch_color != empty %}
       {{ class_name }} {
@@ -25,7 +25,7 @@
           {% if block.settings.title != empty %}
             "swatch_name": {{- block.settings.title | json -}},
             {% if block.settings.swatch_image %}
-              "image": {{- block.settings.swatch_image | img_url: '50x50' | json -}},
+              "image": {{- block.settings.swatch_image | img_url: '44x44' | json -}},
               "color": null
               {%- elsif block.settings.swatch_color -%}
                 "image": null,

@@ -14,7 +14,6 @@
   }
 
   &__faq-btn {
-    @include clearfix;
     width: 100%;
     background-color: $color-transparent;
     border: none;
@@ -22,7 +21,7 @@
     margin: 0;
     padding: 0;
     text-align: left;
-    display: block;
+    display: flex;
 
     &.open {
       .pdp-faqs__faq-closed {
@@ -46,33 +45,41 @@
   &__faq-closed {
     @include font-header(700);
     @include text(20px, 28px, $color-main-1, 1.77px);
+    align-self: center;
     text-align: center;
     width: 10px;
-    margin: 0 30px 0 0;
-    float: right;
+    margin: 0 25px 0 5px;
   }
 
   &__faq-open {
     @include font-header(700);
     @include text(20px, 28px, $color-main-1, 1.77px);
+    align-self: center;
     text-align: center;
     width: 10px;
-    margin: 0 30px 0 0;
-    float: right;
+    margin: 0 25px 0 5px;
   }
 
   &__faq-q {
     @include font-header(700);
     @include text(20px, 28px, $color-title);
-    display: inline-block;
-    vertical-align: middle;
     width: calc(100% - 111px);
+    flex: 1 0 calc(100% - 111px);
+    align-self: center;
   }
 
   &__faq-a {
     @include font-body;
     @include text(18px, 24px, $color-body-text, 1.08px);
     padding: 10px 0 0;
+  }
+
+  @include media-query($large-down) {
+    &__title {
+      padding: 0 0 30px;
+      margin: 0 0 15px;
+      border-bottom: 1px solid $color-main-1;
+    }
   }
 
   @include media-query($medium-down) {
@@ -83,7 +90,8 @@
       line-height: 33px;
       letter-spacing: 1.42px;
       text-align: center;
-      margin: 0 0 20px;
+      padding: 0 0 20px;
+      margin: 0 0 10px;
     }
 
     &__faq {
@@ -110,6 +118,7 @@
       line-height: 20px;
       letter-spacing: 0.83px;
       width: calc(100% - 40px);
+      flex: 1 0 calc(100% - 40px);
     }
 
     &__faq-a {

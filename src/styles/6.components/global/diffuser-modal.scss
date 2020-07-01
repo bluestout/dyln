@@ -36,7 +36,7 @@
   &__close-x {
     @include no-browser-styling;
     @include no-font-size;
-    z-index: $z-base;
+    z-index: $z-modal-close;
     position: absolute;
     top: 10px;
     right: 10px;
@@ -212,7 +212,9 @@
     right: 4px;
     padding: 1px;
 
-    path,
+    path {
+      fill: $color-theme-8;
+    }
     circle {
       stroke: $color-theme-8;
     }

@@ -140,6 +140,7 @@
     background-color: $color-white;
     border-radius: 50%;
     cursor: pointer;
+    background-position: center;
 
     &:checked {
       box-shadow: 0 0 7px 0 rgba($color-black, 0.5);
@@ -309,10 +310,6 @@
     &__gallery {
       display: block;
       margin: 0 0 10px;
-    }
-
-    &__title {
-      display: none;
     }
 
     &__subtitle {
