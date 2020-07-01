@@ -1,10 +1,4 @@
 {%- assign current_variant = product.selected_or_first_available_variant -%}
-<div class="ninja">{{ product.options_with_values | json }}</div>
-<div class="ninja">
-  {% for p_v in product.variants %}
-    {{ p_v | json }}
-  {% endfor %}
-</div>
 {% for option in product.options_with_values %}
   {% assign name_clean = option.name | downcase %}
   {% if name_clean == "color" %}
@@ -15,14 +9,6 @@
             {% assign color_handle = value | strip | strip_html | strip_newlines | handleize %}
             {% assign swatch = "color-swatch-" | append: color_handle %}
             <span class="atc-bar__color-wrap">
-              <span
-                class="atc-bar__exclamation-variant"
-                {% for p_v in product.variants %}
-                  {% if p_v.title == value %}
-                    data-variant-exclamation-id="{{ p_v.id }}"
-                    {% break %}
-                  {% endif %}
-                {% endfor %}>!</span>
               <input
                 id="Atc-Option{{ option.position }}-{{ value }}"
                 class="atc-bar__color-input {{ swatch }}"
@@ -36,7 +22,7 @@
         </div>
         <div class="atc-bar__current">
           <span class="atc-bar__current-content">
-            <span class="atc-bar__current-swatch">
+            <span class="atc-bar__current-swatch" data-atc-current>
               {% for value in option.values %}
                 {% assign color_handle = value | strip | strip_html | strip_newlines | handleize %}
                 {% assign swatch = "color-swatch-" | append: color_handle %}
@@ -46,6 +32,7 @@
                   {% unless option.selected_value == value %}style="display:none;"{% endunless %}>
                 </span>
               {% endfor %}
+              <span class="atc-bar__exclamation-variant">!</span>
             </span>
             <span class="atc-bar__current-bar">
               {% for value in option.values %}

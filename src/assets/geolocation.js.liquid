@@ -16,7 +16,7 @@ window.onload = function() {
     shippingNote: `${container} [data-pdp-shipping-note]`,
     productId: `${container} [data-current-product-id]`,
     atcAdd: "[data-atc-add]",
-    exclamation: "[data-variant-exclamation-id]",
+    atcCurrent: "[data-atc-current]",
     notifyMe: {
       notice: `${container} [data-sold-out-notice]`,
       submit: `${container} [data-submit-sold-out-btn]`,
@@ -41,6 +41,7 @@ window.onload = function() {
     var currentVariant = $(selectors.idSelect).val();
     var shippingMessage = $(selectors.currentOption).attr(attributes.shipping);
     var $atcBarButton = $(selectors.atcAdd);
+    var $atcCurrent = $(selectors.atcCurrent);
     var $soldOutForm = $(selectors.soldOutForm);
     var $shippingNote = $(selectors.shippingNote);
 
@@ -57,11 +58,17 @@ window.onload = function() {
         //if current variant is unavailable
         $submitButton.attr("disabled", true);
         $atcBarButton.attr("disabled", true);
+        $atcBarButton.text(theme.strings.soldOut);
+        $atcBarButton.addClass("unavailable");
+        $atcCurrent.addClass("unavailable");
         $submitButtonText.text(theme.strings.unavailable);
       } else {
         //current variant is available
         $submitButton.removeAttr("disabled");
         $atcBarButton.removeAttr("disabled");
+        $atcBarButton.text(theme.strings.add);
+        $atcBarButton.removeClass("unavailable");
+        $atcCurrent.removeClass("unavailable");
         $submitButtonText.text(theme.strings.addToCart);
       }
     }
@@ -72,27 +79,6 @@ window.onload = function() {
         $soldOutForm.fadeIn();
       } else {
         $soldOutForm.fadeOut();
-      }
-    }
-  }
-
-  function renderAtcBarButtons() {
-    var uVariants = $(selectors.unavailableVariants).val();
-    if (uVariants !== "") {
-      var uVariantsSplit = uVariants.split(",");
-      var $exclamations = $(selectors.exclamation);
-      for (var i = 0; i < $exclamations.length; i++) {
-        const $exclamation = $($exclamations[i]);
-        if (
-          $.inArray(
-            $exclamation.data("variant-exclamation-id").toString(),
-            uVariantsSplit
-          ) !== -1
-        ) {
-          $exclamation.show();
-        } else {
-          $exclamation.hide();
-        }
       }
     }
   }
@@ -121,7 +107,6 @@ window.onload = function() {
           });
           renderSubmitButton();
         }
-        renderAtcBarButtons();
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.log(textStatus, errorThrown);
