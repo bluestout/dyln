@@ -32,6 +32,11 @@ window.onload = function() {
 
   var geoLocationComplete = new Event("geoLocationComplete");
 
+  function submitButtonLoaded() {
+    var $submitButton = $(selectors.submitButton);
+    $submitButton.removeClass("loading");
+  }
+
   // change the add to cart depending on product availability
   function renderSubmitButton() {
     var $submitButton = $(selectors.submitButton);
@@ -92,6 +97,7 @@ window.onload = function() {
       data: { country: country, product_id: productId },
       dataType: "json",
       success: function(response) {
+        submitButtonLoaded();
         $(selectors.unavailableVariants).val(response.out_of_stock);
         $(selectors.unavailableNotices).val(response.nofify_order);
         var $variantMessages = response.black_order;
@@ -105,10 +111,11 @@ window.onload = function() {
             var $selectorOption = $(selectors.optionByVariant(variant));
             $selectorOption.attr(attributes.shipping, message);
           });
-          renderSubmitButton();
         }
+        renderSubmitButton();
       },
       error: function(jqXHR, textStatus, errorThrown) {
+        submitButtonLoaded();
         console.log(textStatus, errorThrown);
       },
     });
@@ -178,11 +185,11 @@ window.onload = function() {
     dataType: "jsonp",
     success: function(location) {
       // If the visitor is browsing from US.
-      var userGeo = `
-      ${location.ip}|${location.country_name}|
-      ${location.region_name}|${location.city}|
-      ${location.time_zone.id}|${location.country_code}|
-      ${location.region_code}`;
+      var userGeo = `${location.ip}|${location.country_name}|${
+        location.region_name
+      }|${location.city}|${location.time_zone.id}|${location.country_code}|${
+        location.region_code
+      }`;
       $(selectors.geoInfo).val(userGeo);
 
       // country inventory

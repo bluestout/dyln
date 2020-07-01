@@ -175,6 +175,16 @@
       background-color: $color-theme-8;
       background-image: none;
     }
+
+    &.loading {
+      [data-add-to-cart-loaded] {
+        display: none !important;
+      }
+
+      [data-add-to-cart-loading] {
+        display: block !important;
+      }
+    }
   }
 
   &__exclamation-variant {
