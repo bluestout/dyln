@@ -1,6 +1,6 @@
 <div class="index-features__wave-top" data-transition data-transition-wave></div>
 
-<div class="container">
+<div class="container regular">
   {% if section.settings.title != blank %}
     <h2 class="index-features__title">{{ section.settings.title }}</h2>
   {% endif %}
@@ -35,8 +35,8 @@
               image: block.settings.image,
               max_width: 425,
               max_height: 425,
-              wrapper_class: "index-header__bg-wrap",
-              image_class: "index-header__bg",
+              wrapper_class: "index-features__bg-wrap",
+              image_class: "index-features__bg",
             %}
           {% endif %}
         </div>

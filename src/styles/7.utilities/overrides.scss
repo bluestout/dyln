@@ -27,7 +27,7 @@
 }
 
 body {
-  .container {
+  .container:not(.regular) {
     @media screen and (min-width: 1430px) {
       max-width: $grid-container-max;
     }

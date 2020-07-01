@@ -232,9 +232,19 @@
             </div>
           </div>
 
+
           <div class="col-lg-5 d-none d-lg-flex">
             <div class="footer-copyright">
-              © {{ "now" | date: "%Y" }}, DYLN Inc. | <a href="{{ section.settings.privacy_policy_link }}">Privacy Policy</a> | <a href="{{ section.settings.terms_agreements_link }}">Terms</a> | <a href="{{ section.settings.ip_link }}">IP</a>
+              © {{ "now" | date: "%Y" }}, DYLN Inc.
+              {% if section.settings.privacy_policy_url != empty %}
+                | <a href="{{ section.settings.privacy_policy_url }}">Privacy Policy</a>
+              {% endif %}
+              {% if section.settings.terms_agreements_link != empty %}
+                | <a href="{{ section.settings.terms_agreements_link }}">Terms</a>
+              {% endif %}
+              {% if section.settings.ip_link != empty %}
+                | <a href="{{ section.settings.ip_link }}">IP</a>
+              {% endif %}
             </div>
           </div>
 
@@ -245,7 +255,15 @@
             <span>
               © {{ "now" | date: "%Y" }}, DYLN Inc.
             </span>
-            <span class="footer-copyright-delimiter">|</span> <a href="{{ section.settings.privacy_policy_link }}">Privacy Policy</a> | <a href="{{ section.settings.terms_agreements_link }}">Terms</a> | <a href="{{ section.settings.ip_link }}">IP</a>
+            {% if section.settings.privacy_policy_url != empty %}
+              <span class="footer-copyright-delimiter">|</span> <a href="{{ section.settings.privacy_policy_url }}">Privacy Policy</a>
+            {% endif %}
+            {% if section.settings.terms_agreements_link != empty %}
+              | <a href="{{ section.settings.terms_agreements_link }}">Terms</a>
+            {% endif %}
+            {% if section.settings.ip_link != empty %}
+              | <a href="{{ section.settings.ip_link }}">IP</a>
+            {% endif %}
           </div>
         </div>
       </div>

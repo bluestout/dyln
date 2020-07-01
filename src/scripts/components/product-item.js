@@ -41,7 +41,7 @@ const selectors = {
   submitSoldOutMail: "[data-submit-sold-out-btn]",
   soldOutConfirm: "[data-sold-out-confirm]",
   soldOutForm: "[data-sold-out-form]",
-  soldOutNotice: "[data--sold-out-notice]",
+  soldOutNotice: "[data-sold-out-notice]",
 };
 
 function handleOptionClick(event) {
