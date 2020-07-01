@@ -67,6 +67,7 @@
     border: 4px solid $color-white;
     background-color: $color-white;
     border-radius: 50%;
+    background-position: center;
 
     &:disabled {
       opacity: 0.5;
@@ -92,9 +93,10 @@
   }
 
   &__current-swatch {
+    position: relative;
     align-self: center;
 
-    span {
+    [data-atc-swatch] {
       @include no-font-size;
       width: 44px;
       height: 44px;
@@ -104,6 +106,29 @@
       display: inline-block;
       vertical-align: middle;
     }
+
+    &.unavailable {
+      [data-atc-swatch] {
+        opacity: 0.5;
+      }
+      .atc-bar__exclamation-variant {
+        display: block;
+      }
+    }
+  }
+
+  &__exclamation-variant {
+    font-size: 20px;
+    position: absolute;
+    top: 0;
+    font-weight: 700;
+    color: $color-theme-28;
+    pointer-events: none;
+    display: none;
+    width: 100%;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
   }
 
   &__current-content {
@@ -165,6 +190,10 @@
     &:disabled {
       background-color: $color-theme-8;
       background-image: none;
+    }
+
+    &.unavailable {
+      padding: 10px 20px;
     }
   }
 

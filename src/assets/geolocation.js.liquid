@@ -16,6 +16,7 @@ window.onload = function() {
     shippingNote: `${container} [data-pdp-shipping-note]`,
     productId: `${container} [data-current-product-id]`,
     atcAdd: "[data-atc-add]",
+    atcCurrent: "[data-atc-current]",
     notifyMe: {
       notice: `${container} [data-sold-out-notice]`,
       submit: `${container} [data-submit-sold-out-btn]`,
@@ -31,6 +32,11 @@ window.onload = function() {
 
   var geoLocationComplete = new Event("geoLocationComplete");
 
+  function submitButtonLoaded() {
+    var $submitButton = $(selectors.submitButton);
+    $submitButton.removeClass("loading");
+  }
+
   // change the add to cart depending on product availability
   function renderSubmitButton() {
     var $submitButton = $(selectors.submitButton);
@@ -40,6 +46,7 @@ window.onload = function() {
     var currentVariant = $(selectors.idSelect).val();
     var shippingMessage = $(selectors.currentOption).attr(attributes.shipping);
     var $atcBarButton = $(selectors.atcAdd);
+    var $atcCurrent = $(selectors.atcCurrent);
     var $soldOutForm = $(selectors.soldOutForm);
     var $shippingNote = $(selectors.shippingNote);
 
@@ -56,11 +63,17 @@ window.onload = function() {
         //if current variant is unavailable
         $submitButton.attr("disabled", true);
         $atcBarButton.attr("disabled", true);
+        $atcBarButton.text(theme.strings.soldOut);
+        $atcBarButton.addClass("unavailable");
+        $atcCurrent.addClass("unavailable");
         $submitButtonText.text(theme.strings.unavailable);
       } else {
         //current variant is available
         $submitButton.removeAttr("disabled");
         $atcBarButton.removeAttr("disabled");
+        $atcBarButton.text(theme.strings.add);
+        $atcBarButton.removeClass("unavailable");
+        $atcCurrent.removeClass("unavailable");
         $submitButtonText.text(theme.strings.addToCart);
       }
     }
@@ -84,6 +97,7 @@ window.onload = function() {
       data: { country: country, product_id: productId },
       dataType: "json",
       success: function(response) {
+        submitButtonLoaded();
         $(selectors.unavailableVariants).val(response.out_of_stock);
         $(selectors.unavailableNotices).val(response.nofify_order);
         var $variantMessages = response.black_order;
@@ -97,10 +111,11 @@ window.onload = function() {
             var $selectorOption = $(selectors.optionByVariant(variant));
             $selectorOption.attr(attributes.shipping, message);
           });
-          renderSubmitButton();
         }
+        renderSubmitButton();
       },
       error: function(jqXHR, textStatus, errorThrown) {
+        submitButtonLoaded();
         console.log(textStatus, errorThrown);
       },
     });
@@ -169,13 +184,12 @@ window.onload = function() {
       "https://api.ipstack.com/check?access_key=c9ac55ecdf7513abc5581dd4c89b042b",
     dataType: "jsonp",
     success: function(location) {
-
       // If the visitor is browsing from US.
-      var userGeo = `
-      ${location.ip}|${location.country_name}|
-      ${location.region_name}|${location.city}|
-      ${location.time_zone.id}|${location.country_code}|
-      ${location.region_code}`;
+      var userGeo = `${location.ip}|${location.country_name}|${
+        location.region_name
+      }|${location.city}|${location.time_zone.id}|${location.country_code}|${
+        location.region_code
+      }`;
       $(selectors.geoInfo).val(userGeo);
 
       // country inventory

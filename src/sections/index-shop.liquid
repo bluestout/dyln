@@ -12,7 +12,7 @@
       {% if block.type == "product" and block.settings.product != empty %}
         <div class="col-lg-3 index-shop__prod-col">
           {% assign p_item = all_products[block.settings.product] %}
-          {% render 'product-item' with p_item %}
+          {% render 'product-item' with p_item, hide_title_mobile: true %}
         </div>
       {% endif %}
     {% endfor %}

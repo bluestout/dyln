@@ -146,7 +146,7 @@ register("product", {
     $(".pdp-form__color-wrap").removeClass("active-variant--unavailable");
     $(event.target).addClass("active-variant");
 
-    setTimeout(function () {
+    setTimeout(function() {
       if ($(".pdp-form__submit").attr("disabled")) {
         $(event.target.offsetParent).addClass("active-variant--unavailable");
       }
@@ -395,8 +395,7 @@ function init() {
       slidesToShow: 1,
       centerMode: true,
       centerPadding: "100px",
-      autoplay: true,
-      autoplaySpeed: 15000,
+      autoplay: false,
       responsive: [
         {
           breakpoint: 576,
