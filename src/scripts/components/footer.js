@@ -6,6 +6,7 @@ const selectors = {
   buttonSlider: "[data-button-slider]",
   emailInput: "[data-email-input]",
   phoneInput: "[data-phone-input]",
+  submitPhone: "[data-phone-submit]"
 };
 
 const classes = {
@@ -29,7 +30,22 @@ function handleEmailOptInClick() {
   $(selectors.emailOptIn).addClass(classes.active);
 }
 
+function triggerSmsSubmission(event) {
+  event.preventDefault();
+
+  $(".opt-in-sms").find("button[type='button']").trigger("click");
+}
+
+function moveCustomBtn() {
+  setTimeout(function () {
+    $("[data-phone-submit]").insertAfter($(".XIWpM"));
+  }, 1500);
+}
+
 $(document).ready(() => {
   $(selectors.smsOptIn).on("click", handleSmsOptInClick);
   $(selectors.emailOptIn).on("click", handleEmailOptInClick);
+  $(selectors.submitPhone).on("click", triggerSmsSubmission);
+
+  moveCustomBtn();
 });

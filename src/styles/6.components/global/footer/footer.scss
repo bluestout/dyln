@@ -142,6 +142,38 @@
     }
   }
 
+  .opt-in-sms {
+    h1 {
+      display: none;
+    }
+
+    > div > div > div > div {
+      display: none;
+    }
+
+    > div {
+      min-width: auto;
+    }
+
+    > div > div > div > div:nth-of-type(2) {
+      display: block;
+
+      input[name="phone_number"] {
+        border: 2px solid white;
+        color: white;
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0);
+        width: 200px;
+        border-radius: 0;
+      }
+    }
+
+    button {
+      padding: 7.5px;
+      top: 1.5px;
+    }
+  }
+
   &__separator {
     min-height: 50px;
 
