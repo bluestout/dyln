@@ -62,12 +62,13 @@ $font-body-bold-weight: var(--font-body-bold-weight);
 // z-index values
 $z-base: 1;
 $z-header-blocks: 2;
-$z-header: 2;
 $z-contact-modal: 2;
 $z-contact-select: 2;
 $z-modal-close: 2;
-$z-cart: 3;
+$z-atc: 3;
+$z-header: 4;
 $z-header-rsp: 4;
+$z-cart: 4;
 $z-diffuser-info: 5;
 $z-top: 10;
 $z-overlay-content: 11;

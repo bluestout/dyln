@@ -1,14 +1,16 @@
 import { formatMoney } from "@shopify/theme-currency";
 
-const elements = {
+const selectors = {
   message: {
     container: "[data-ajax-message-container]",
     text: "[data-ajax-message-text]",
   },
+  gorgiasChat: "#gorgias-web-messenger-container",
 };
 
 const classes = {
   active: "active",
+  hide: "hide",
 };
 
 function resizeImage(src, size) {
@@ -39,10 +41,10 @@ function ajaxHeaderMessage(message) {
     return null;
   }
   clearTimeout(eventHolder);
-  $(elements.message.text).html(message);
-  $(elements.message.container).addClass(classes.active);
+  $(selectors.message.text).html(message);
+  $(selectors.message.container).addClass(classes.active);
   eventHolder = setTimeout(() => {
-    $(elements.message.container).removeClass(classes.active);
+    $(selectors.message.container).removeClass(classes.active);
   }, 4000);
   return eventHolder;
 }
@@ -106,6 +108,19 @@ function getUrlParams() {
   return params;
 }
 
+function toggleChatBubble(state) {
+  const $chat = $(selectors.gorgiasChat);
+  if ($chat.length === 0) {
+    return;
+  } else if (state === 1) {
+    return $chat.addClass(classes.hide);
+  } else if (state === 2) {
+    return $chat.removeClass(classes.hide);
+  } else {
+    return $chat.toggleClass(classes.hide);
+  }
+}
+
 export {
   resizeImage,
   formatAndTrimPrice,
@@ -114,4 +129,5 @@ export {
   handleize,
   toggleTabindexInChildren,
   getUrlParams,
+  toggleChatBubble,
 };

@@ -1,5 +1,9 @@
 import $ from "jquery";
-import { formatAndTrimPrice, toggleTabindexInChildren } from "./helpers";
+import {
+  formatAndTrimPrice,
+  toggleTabindexInChildren,
+  toggleChatBubble,
+} from "./helpers";
 import {
   quickCartUpsellHtml,
   quickCartLineItemHtml,
@@ -32,6 +36,7 @@ const selectors = {
   nav: "[data-main-navigation]",
   pageWrap: "[data-page-overlay]",
   productPrice: "[data-product-price]",
+  cartHeader: "[data-c-d-header]",
   quick: {
     toggle: "[data-cart-drawer-toggle]",
     content: "[data-cart-drawer-content]",
@@ -531,12 +536,14 @@ function quickCartToggle(event) {
     $("html").removeClass("no-scroll");
     toggleTabindexInChildren($quickCart, 2);
     $(selectors.quick.focusOut).focus();
+    toggleChatBubble(2);
   } else {
     $quickCart.addClass(classes.open);
     $(selectors.quick.overlay).addClass(classes.active);
     $("html").addClass("no-scroll");
     toggleTabindexInChildren($quickCart, 1);
     $(selectors.quick.focusIn).focus();
+    toggleChatBubble(1);
   }
 }
 
@@ -560,10 +567,14 @@ function quickCartOpen(open) {
 }
 
 function handleCartDrawerCheckoutHeight() {
-  const quickcartHeight = $(selectors.quick.content).outerHeight();
+  const windowHeight = $(window).height();
   const totalsHeight = $(selectors.quick.totalsWrap).outerHeight();
-
-  $(selectors.quick.wrap).css("height", quickcartHeight - totalsHeight);
+  const cartHeaderHeight = $(selectors.cartHeader).outerHeight();
+  const cartShipNoteHeight = $(selectors.shipping.note).outerHeight();
+  $(selectors.quick.wrap).css(
+    "height",
+    windowHeight - totalsHeight - cartHeaderHeight - cartShipNoteHeight
+  );
 }
 
 function handleUpsell(cart) {
@@ -717,3 +728,5 @@ export {
   reloadAjax,
   handleAjaxAddButtonClick,
 };
+
+document.addEventListener("windowWidthChanged", handleCartDrawerCheckoutHeight);
