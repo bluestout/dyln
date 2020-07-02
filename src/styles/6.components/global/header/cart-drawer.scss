@@ -110,8 +110,9 @@
 
   &__item-price {
     @include font-header(500);
-    @include text(16px, 23px, $color-title, 0.95px);
+    @include text(16px, 34px, $color-title, 0.95px);
     float: right;
+    height: 34px;
   }
 
   .strike-line {
