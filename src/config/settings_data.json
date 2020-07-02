@@ -220,7 +220,7 @@
           "help_link_3": "",
           "help_link_3_text": "Chat Live",
           "faq_title": "FAQs",
-          "faq_article_1": "faqs/how-long-does-it-take-to-alkalize-the-water-and-how-high-does-the-ph-increase",
+          "faq_article_1": "",
           "faq_article_2": "faqs/how-much-water-can-the-dyln-bottle-hold",
           "faq_article_3": "faqs/what-are-the-vitabeads",
           "faq_link": "shopify://pages/contact-us",
@@ -286,17 +286,29 @@
               "icon": "acid-reflux",
               "title": "Combats Acid Reflux"
             }
+          },
+          "1593467218779": {
+            "type": "feature",
+            "settings": {
+              "icon": "",
+              "title": ""
+            }
           }
         },
-        "block_order": ["1581511352400", "1581511373641", "1581511386435"],
+        "block_order": [
+          "1581511352400",
+          "1581511373641",
+          "1581511386435",
+          "1593467218779"
+        ],
         "settings": {
           "background": "shopify://shop_images/dyln-homepage-hiking.jpg",
-          "background_rsp": "shopify://shop_images/dyln-homepage-hiking-mobile.jpg",
+          "background_rsp": "shopify://shop_images/index-header-background.jpg",
           "title": "Alkaline Water equals enhanced hydration, create it on the go.",
           "link_url": "shopify://products/dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
-          "link_text": "Shop",
-          "bottom_url": "",
-          "bottom_text": "<a class=\"index-header__btm-link\" href=\"#\" data-scroll-to=\".index-video\">\n  <span>Watch how it works</span>\n  <span class=\"d-md-none\" aria-hidden=\"true\"><svg width=\"7\" height=\"3\" viewbox=\"0 0 7 3\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M1 0l2.5 2.5L6 0\" stroke=\"#333C41\" fill=\"none\" fill-rule=\"evenodd\"></path></svg></span>\n</a>"
+          "link_text": "Shop Now",
+          "bottom_url": "#",
+          "bottom_text": "Watch how it works"
         }
       },
       "1581513413625": {
@@ -365,7 +377,7 @@
           "1581526771835": {
             "type": "product",
             "settings": {
-              "product": "dyln-living-alkaline-stainless-steel-water-bottle"
+              "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
             }
           },
           "1581526781483": {
@@ -380,7 +392,7 @@
               "collection": "dyln-water-bottle-accessories",
               "title": "SHOP ACCESORIES",
               "title_mobile": "Accessories",
-              "image": "shopify://shop_images/dyln-accessories.png"
+              "image": "shopify://shop_images/accessories_bottles6.png"
             }
           },
           "1581526803448": {
@@ -391,10 +403,24 @@
               "title_mobile": "Diffusers",
               "image": "shopify://shop_images/shop_bottles2.png"
             }
+          },
+          "1593635959842": {
+            "type": "product",
+            "settings": {
+              "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
+            }
+          },
+          "1593635998765": {
+            "type": "product",
+            "settings": {
+              "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
+            }
           }
         },
         "block_order": [
           "1581526771835",
+          "1593635998765",
+          "1593635959842",
           "1581526781483",
           "1581526789016",
           "1581526803448"
@@ -412,7 +438,7 @@
               "image": "shopify://shop_images/dyln-homepage-woman-kitchen.jpg",
               "title": "Transforming Powers",
               "content": "<p><span class=\"brand-blue\"><strong>Alkalizing</strong></span> your water is the Diffusers Job</p>\n<p><span class=\"brand-blue\"><strong>1 x Diffuser</strong></span> included with each DYLN Bottle.</p>\n<p><span class=\"brand-blue\"><strong>300 L or 3 months</strong></span> until you have to replace your Diffuser</p>",
-              "bottom": "<p>Diffuser Subscription available <a href=\"\">here.</a></p>"
+              "bottom": "<p>Diffuser Subscription available <a href=\"/collections/extra-diffusers\">here.</a></p>"
             }
           },
           "1581519592416": {
@@ -421,7 +447,7 @@
               "image": "shopify://shop_images/dyln-homepage-woman-market.jpg",
               "title": "Quality + Design",
               "content": "<p><span class=\"brand-green\"><strong>Ergonomic design</strong></span> makes it a perfect fit for your hand</p>\n<p><span class=\"brand-green\"><strong>Durable</strong></span> 316 Stainless Steel exterior.</p>\n<p><span class=\"brand-green\"><strong>3 layered insulation</strong></span> to keep your water cold for up to 24 hrs.</p>",
-              "bottom": "<p>Check out the bottle’s <a href=\"\">Tech Specs.</a></p>"
+              "bottom": "<p>Check out the bottle’s <a href=\"/products/dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth\">Tech Specs.</a></p>"
             }
           }
         },
@@ -513,7 +539,7 @@
             "type": "color",
             "settings": {
               "title": "DYLN Blue",
-              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-DYLN-blue.png",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-DYLN-blue_7368bf49-1764-4d79-878a-41646aef0e4a.png",
               "swatch_color": "#00aedb"
             }
           },
@@ -521,7 +547,7 @@
             "type": "color",
             "settings": {
               "title": "Royal Purple",
-              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-royal-purple.png",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-royal-purple_239d3456-18f3-44b5-b668-96bf6679fc75.png",
               "swatch_color": "#522f77"
             }
           },
@@ -529,7 +555,7 @@
             "type": "color",
             "settings": {
               "title": "Bumble Yellow",
-              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-bumble-yellow.png",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-bumble-yellow_23018667-7b61-4d0a-bcef-5f2f91cc3bd6.png",
               "swatch_color": "#ffd839"
             }
           },
@@ -537,7 +563,7 @@
             "type": "color",
             "settings": {
               "title": "Forest Green",
-              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-forest-green.png",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-forest-green_4fab9b6c-d805-4dac-b33e-d1a3eed4b24c.png",
               "swatch_color": "#00961d"
             }
           },
@@ -545,7 +571,7 @@
             "type": "color",
             "settings": {
               "title": "Charcoal",
-              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-charcoal.png",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-charcoal_545af695-2df4-4137-9af1-80466dc6451d.png",
               "swatch_color": "#545454"
             }
           },
@@ -553,7 +579,7 @@
             "type": "color",
             "settings": {
               "title": "Black",
-              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-black.png",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-black_cf04c6b7-e8c7-4cce-97d0-2f20eba6ca44.png",
               "swatch_color": "#28323c"
             }
           },
@@ -561,7 +587,7 @@
             "type": "color",
             "settings": {
               "title": "Rose Quartz",
-              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-rose-quartz.png",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-rose-quartz_de62e7cd-b21c-40ca-9b60-9fc31a6b28b1.png",
               "swatch_color": "#f6d0d9"
             }
           },
@@ -569,7 +595,7 @@
             "type": "color",
             "settings": {
               "title": "Pearl Grey",
-              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-pearl-grey.png",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-pearl-grey_e670a522-c598-49d3-9229-a0db99cc6024.png",
               "swatch_color": "#eceae5"
             }
           },
@@ -693,7 +719,7 @@
             "type": "usp",
             "settings": {
               "icon": "detoxifying",
-              "title": "Detoxifies your body"
+              "title": "Detoxify your body"
             }
           },
           "1585675460377": {
@@ -728,7 +754,7 @@
         "settings": {
           "title": "What does drinking <strong>Alkaline <span class=\"brand-blue\">+</span> Antioxidant</strong> water do for your health?",
           "show": true,
-          "image": "shopify://shop_images/dyln-woman-drinking-gym.png"
+          "image": "shopify://shop_images/Woman-Drinking-Gym-Summer-July-2019-4960x3307px.png"
         }
       },
       "pdp-video": {
@@ -811,7 +837,7 @@
             "type": "block",
             "settings": {
               "product": "extra-vitabead-diffusers",
-              "image_1": "shopify://shop_images/dyln-bottle-included-diffuser.png",
+              "image_1": "shopify://shop_images/dyln-diffuser-large.min.png",
               "title_1": "<span>Detail oriented design</span><br>\n<span class=\"brand-blue\">+</span> <span>High quality materials</span>",
               "block_title_1": "Plastic-free water",
               "block_content_1": "Cap interior made ouf of Stainless Steel so your water never touches plastic.<br><br>\nSuper-easy to clean Silicone Gasket.",
@@ -1147,7 +1173,7 @@
           "1589303728898": {
             "type": "faq",
             "settings": {
-              "faq_article": "faqs/how-long-does-it-take-to-alkalize-the-water-and-how-high-does-the-ph-increase"
+              "faq_article": ""
             }
           },
           "1589303734817": {
@@ -1210,16 +1236,16 @@
               "faq_article": "faqs/does-the-dyln-bottle-filter-water"
             }
           },
-          "1589824309340": {
-            "type": "faq_use",
-            "settings": {
-              "faq_article": ""
-            }
-          },
           "1589824315803": {
             "type": "faq_use",
             "settings": {
               "faq_article": "faqs/what-are-the-vitabeads"
+            }
+          },
+          "1593199426074": {
+            "type": "faq_use",
+            "settings": {
+              "faq_article": "faqs/no-fruit-in-my-dyln-bottle"
             }
           }
         },
@@ -1239,8 +1265,8 @@
           "1589824281427",
           "1589824294407",
           "1589824302989",
-          "1589824309340",
-          "1589824315803"
+          "1589824315803",
+          "1593199426074"
         ],
         "settings": {
           "title": "FAQS",
@@ -1361,6 +1387,13 @@
               "tab": true,
               "title": "Contact Us"
             }
+          },
+          "1593472437040": {
+            "type": "block",
+            "settings": {
+              "tab": false,
+              "title": "My new tab"
+            }
           }
         },
         "block_order": [
@@ -1368,7 +1401,8 @@
           "1589660684094",
           "1589660694966",
           "1589660703622",
-          "1589660709912"
+          "1589660709912",
+          "1593472437040"
         ],
         "settings": {}
       },
@@ -1702,7 +1736,7 @@
           "1589818198504": {
             "type": "faq",
             "settings": {
-              "faq_article": "faqs/how-long-does-it-take-to-alkalize-the-water-and-how-high-does-the-ph-increase"
+              "faq_article": ""
             }
           },
           "1589818203430": {
@@ -1796,7 +1830,7 @@
           "title_color": "#ffffff",
           "background": "shopify://shop_images/blog-mid-upper-background.png",
           "background_color": "#00aedb",
-          "product_image": "shopify://shop_images/dyln-diffuser-shown-inside-bottle-with-extractor.png",
+          "product_image": "shopify://shop_images/HowItWorks_GifMockup.png",
           "link_url": "",
           "link_text": ""
         }
@@ -1894,7 +1928,7 @@
           "title_color": "#00aedb",
           "background": "",
           "background_color": "#ffffff",
-          "product_image": "shopify://shop_images/blog-mid-banner-lower.png",
+          "product_image": "shopify://shop_images/bottles-banner.png",
           "link_url": "shopify://collections",
           "link_text": "Shop Bottles"
         }
