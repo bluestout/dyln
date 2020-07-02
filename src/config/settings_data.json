@@ -10,13 +10,13 @@
     "color_supplementary_2": "#67e3a9",
     "color_supplementary_3": "#bbd3da",
     "color_title": "#333c41",
-    "color_title_light": "#fff",
-    "color_body_text": "#161d25",
+    "color_title_light": "#ffffff",
+    "color_body_text": "#333c41",
     "color_main_bg": "#fff",
     "color_main_bg_mobile": "#fff",
     "blog_article_card_background": "#fff",
     "color_blog_tagged_background": "#f4f4f4",
-    "blog_article_card_title": "#161d25",
+    "blog_article_card_title": "#333c41",
     "blog_article_card_category_links": "#00aedb",
     "font_heading": "poppins_n4",
     "font_body": "open_sans_n4",
@@ -380,6 +380,18 @@
               "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
             }
           },
+          "1593635998765": {
+            "type": "product",
+            "settings": {
+              "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
+            }
+          },
+          "1593635959842": {
+            "type": "product",
+            "settings": {
+              "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
+            }
+          },
           "1581526781483": {
             "type": "product",
             "settings": {
@@ -402,18 +414,6 @@
               "title": "SHOP DIFFUSERS",
               "title_mobile": "Diffusers",
               "image": "shopify://shop_images/shop_bottles2.png"
-            }
-          },
-          "1593635959842": {
-            "type": "product",
-            "settings": {
-              "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
-            }
-          },
-          "1593635998765": {
-            "type": "product",
-            "settings": {
-              "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
             }
           }
         },
@@ -539,7 +539,7 @@
             "type": "color",
             "settings": {
               "title": "DYLN Blue",
-              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-DYLN-blue_7368bf49-1764-4d79-878a-41646aef0e4a.png",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-DYLN-blue.png",
               "swatch_color": "#00aedb"
             }
           },
@@ -547,7 +547,7 @@
             "type": "color",
             "settings": {
               "title": "Royal Purple",
-              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-royal-purple_239d3456-18f3-44b5-b668-96bf6679fc75.png",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-royal-purple.png",
               "swatch_color": "#522f77"
             }
           },
@@ -555,7 +555,7 @@
             "type": "color",
             "settings": {
               "title": "Bumble Yellow",
-              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-bumble-yellow_23018667-7b61-4d0a-bcef-5f2f91cc3bd6.png",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-bumble-yellow.png",
               "swatch_color": "#ffd839"
             }
           },
@@ -563,7 +563,7 @@
             "type": "color",
             "settings": {
               "title": "Forest Green",
-              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-forest-green_4fab9b6c-d805-4dac-b33e-d1a3eed4b24c.png",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-forest-green.png",
               "swatch_color": "#00961d"
             }
           },
@@ -571,7 +571,7 @@
             "type": "color",
             "settings": {
               "title": "Charcoal",
-              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-charcoal_545af695-2df4-4137-9af1-80466dc6451d.png",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-charcoal.png",
               "swatch_color": "#545454"
             }
           },
@@ -579,7 +579,7 @@
             "type": "color",
             "settings": {
               "title": "Black",
-              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-black_cf04c6b7-e8c7-4cce-97d0-2f20eba6ca44.png",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-black.png",
               "swatch_color": "#28323c"
             }
           },
@@ -587,7 +587,7 @@
             "type": "color",
             "settings": {
               "title": "Rose Quartz",
-              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-rose-quartz_de62e7cd-b21c-40ca-9b60-9fc31a6b28b1.png",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-rose-quartz.png",
               "swatch_color": "#f6d0d9"
             }
           },
@@ -595,7 +595,7 @@
             "type": "color",
             "settings": {
               "title": "Pearl Grey",
-              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-pearl-grey_e670a522-c598-49d3-9229-a0db99cc6024.png",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-pearl-grey.png",
               "swatch_color": "#eceae5"
             }
           },
