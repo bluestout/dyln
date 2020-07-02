@@ -56,7 +56,7 @@
     "shipping_threshold_CA": 150,
     "shipping_threshold_other": 200,
     "empty_cart_title": "Your Cart is empty.",
-    "empty_cart_link_1": "shopify://collections",
+    "empty_cart_link_1": "shopify://products/dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
     "empty_cart_link_text_1": "Shop the bottle",
     "empty_cart_image_1": "shopify://shop_images/dyln-cart-water-bottle.png",
     "empty_cart_link_2": "shopify://collections/dyln-water-bottle-accessories",
@@ -207,8 +207,18 @@
           "login_enabled": true,
           "login_title": "Account",
           "form_title": "LOGIN",
+          "open_register_text": "Create Account",
           "register_link": "/account/register",
           "register_link_text": "Register your new bottle",
+          "login_benefit_1": "Earn Points",
+          "login_benefit_content_1": "Earn 1 point per $1 spent and save!",
+          "login_benefit_icon_1": "star",
+          "login_benefit_2": "Get Reminders",
+          "login_benefit_content_2": "Keep track of your diffuser's lifespan",
+          "login_benefit_icon_2": "blue-reminder",
+          "login_benefit_3": "Track Orders",
+          "login_benefit_content_3": "Know exactly where your order is",
+          "login_benefit_icon_3": "track",
           "help_enabled": true,
           "help_title": "Help",
           "help_menu": "2020-help-submenu",
@@ -286,29 +296,18 @@
               "icon": "acid-reflux",
               "title": "Combats Acid Reflux"
             }
-          },
-          "1593467218779": {
-            "type": "feature",
-            "settings": {
-              "icon": "",
-              "title": ""
-            }
           }
         },
-        "block_order": [
-          "1581511352400",
-          "1581511373641",
-          "1581511386435",
-          "1593467218779"
-        ],
+        "block_order": ["1581511352400", "1581511373641", "1581511386435"],
         "settings": {
           "background": "shopify://shop_images/dyln-homepage-hiking.jpg",
-          "background_rsp": "shopify://shop_images/index-header-background.jpg",
+          "background_rsp": "shopify://shop_images/dyln-homepage-hiking-mobile.jpg",
           "title": "Alkaline Water equals enhanced hydration, create it on the go.",
           "link_url": "shopify://products/dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
-          "link_text": "Shop Now",
+          "link_text": "Shop",
           "bottom_url": "#",
-          "bottom_text": "Watch how it works"
+          "bottom_text": "Watch how it works",
+          "bottom_scroll_to": ".index-video"
         }
       },
       "1581513413625": {
@@ -320,7 +319,8 @@
           "link_text": "Watch full Video",
           "video": "",
           "video_embed": "<iframe src=\"https://www.youtube.com/embed/PHVhV5h7pbA\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\" width=\"560\" height=\"315\" frameborder=\"0\"></iframe>",
-          "format": "GIF"
+          "video_width": 600,
+          "video_height": 450
         }
       },
       "1581513429392": {
@@ -833,7 +833,7 @@
               "block_content_6": ""
             }
           },
-          "1592675769807": {
+          "1592676156939": {
             "type": "block",
             "settings": {
               "product": "extra-vitabead-diffusers",
@@ -864,7 +864,7 @@
             }
           }
         },
-        "block_order": ["1585675993400", "1592675769807"],
+        "block_order": ["1585675993400", "1592676156939"],
         "settings": {}
       },
       "pdp-tab-included": {
@@ -1236,16 +1236,16 @@
               "faq_article": "faqs/does-the-dyln-bottle-filter-water"
             }
           },
+          "1589824309340": {
+            "type": "faq_use",
+            "settings": {
+              "faq_article": ""
+            }
+          },
           "1589824315803": {
             "type": "faq_use",
             "settings": {
               "faq_article": "faqs/what-are-the-vitabeads"
-            }
-          },
-          "1593199426074": {
-            "type": "faq_use",
-            "settings": {
-              "faq_article": "faqs/no-fruit-in-my-dyln-bottle"
             }
           }
         },
@@ -1265,8 +1265,8 @@
           "1589824281427",
           "1589824294407",
           "1589824302989",
-          "1589824315803",
-          "1593199426074"
+          "1589824309340",
+          "1589824315803"
         ],
         "settings": {
           "title": "FAQS",
@@ -1387,13 +1387,6 @@
               "tab": true,
               "title": "Contact Us"
             }
-          },
-          "1593472437040": {
-            "type": "block",
-            "settings": {
-              "tab": false,
-              "title": "My new tab"
-            }
           }
         },
         "block_order": [
@@ -1401,9 +1394,19 @@
           "1589660684094",
           "1589660694966",
           "1589660703622",
-          "1589660709912",
-          "1593472437040"
+          "1589660709912"
         ],
+        "settings": {}
+      },
+      "contact-dom-ship": {
+        "type": "contact-dom-ship",
+        "settings": {
+          "title": "",
+          "description": ""
+        }
+      },
+      "contact-intl-ship": {
+        "type": "contact-intl-ship",
         "settings": {}
       },
       "contact-form": {
