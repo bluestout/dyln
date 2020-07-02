@@ -66,7 +66,14 @@
       </div>
       {%- if section.settings.bottom_text != empty -%}
         <div class="index-header__btm">
-          {{ section.settings.bottom_text }}
+          <a
+            class="index-header__btm-link"
+            href="{{ section.settings.bottom_url }}"
+            {% if section.settings.bottom_scroll_to != empty %}
+              data-scroll-to="{{ section.settings.bottom_scroll_to }}"
+            {% endif %}>
+            {{ section.settings.bottom_text }}
+          </a>
         </div>
       {%- endif -%}
     </div>
@@ -108,14 +115,20 @@
         "label": "Link Text"
       },
       {
-        "type": "textarea",
+        "type": "url",
         "id": "bottom_url",
         "label": "Bottom Link"
       },
       {
-        "type": "textarea",
+        "type": "text",
         "id": "bottom_text",
         "label": "Bottom Link Text"
+      },
+      {
+        "type": "text",
+        "id": "bottom_scroll_to",
+        "label": "Bottom Link ScrollTo",
+        "info": "If a html selector is input here, the link will smooth scroll to that selector instead of going to an url."
       }
     ],
     "blocks": [

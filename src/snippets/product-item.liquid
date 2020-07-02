@@ -177,6 +177,7 @@
                     title="{{ value | remove: '_' }}">
                     <span {% comment %} class="hide" {% endcomment %}>{{ value }}</span>
                   </label>
+                  <span class="product-item__exclamation" data-pi-option-exclamation>!</span>
                 </div>
               {% endfor %}
             </div>
@@ -238,7 +239,9 @@
         </button>
       </div>
 
+      {% comment %}
       {% render 'product-item-sold-out' with available: block_p_def_v.available  %}
+      {% endcomment %}
 
     </div>
 

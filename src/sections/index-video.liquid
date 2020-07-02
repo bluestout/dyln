@@ -1,4 +1,4 @@
-<div class="index-video__outer" id="index-video" data-transition-fade data-transition>
+<div class="index-video__outer" id="index-video" data-transition-fade data-transition data-index-video-focusout>
   {%- if section.settings.background -%}
     <div class="index-video__bg-outer active" data-index-video-bg>
       {%- render 'responsive-image' with
@@ -12,7 +12,7 @@
     </div>
   {%- endif -%}
 
-  <div class="index-video__content-outer" data-index-video-content>
+  <div class="index-video__content-outer">
     <div class="index-video__container container">
       <div class="index-video__row row">
         <div class="col-xl-2 col-lg-1 d-none d-lg-block"></div>
@@ -45,24 +45,36 @@
 
     </div>
   </div>
+</div>
 
-  <div class="index-video__video-outer" data-index-video>
-    <div class="container">
+<div class="index-video__modal-wrap" style="display:none;" data-index-video-modal>
+  <div class="index-video__modal-outer" data-index-video-close></div>
+  <div class="index-video__modal">
+    <button class="index-video__modal-close" data-index-video-close tabindex="-1" data-index-video-focusin>
+      {% render 'icon-close' %}
+      <span class="visually-hidden">{{ 'general.accessibility.close' | t }}</span>
+    </button>
+    <div class="container" tabindex="-1">
       {%- if section.settings.video != blank -%}
-        <video class="index-video__video" playsinline width="500" height="300">
+        <video class="index-video__video" playsinline width="{{ section.settings.video_width }}" height="{{ section.settings.video_height }}">
           <source src="{{- section.settings.video -}}" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-        <span class="index-video__back-link" id="videoBackLink" data-index-video-back-btn>{{ 'general.accessibility.video_back' | t }}</span>
         {%- elsif section.settings.video_embed != blank -%}
         <div class="index-video__video">
           {{- section.settings.video_embed -}}
-          <span class="index-video__back-link" id="videoBackLink" data-index-video-back-btn>{{ 'general.accessibility.video_back' | t }}</span>
         </div>
       {%- endif -%}
     </div>
+    <button
+      class="visually-hidden"
+      data-index-video-close
+      tabindex="-1">
+      {{ 'general.accessibility.close' | t }}
+    </button>
   </div>
 </div>
+
 
 {% schema %}
   {
@@ -95,7 +107,7 @@
         "type": "textarea",
         "id": "video",
         "label": "Video",
-        "info": "Upload a video to Shopify files and paste the source url here."
+        "info": "Upload a video to Shopify files and paste the source url here. Or paste the source url to a video here."
       },
       {
         "type": "textarea",
@@ -104,9 +116,22 @@
         "info": "Or use an embed from youtube, vimeo or similar. Copy/paste the embed code here."
       },
       {
-        "type": "text",
-        "id": "format",
-        "label": "Video Format"
+        "type": "range",
+        "id": "video_width",
+        "label": "Video Width",
+        "min": 300,
+        "max": 900,
+        "step": 10,
+        "default": 600
+      },
+      {
+        "type": "range",
+        "id": "video_height",
+        "label": "Video Height",
+        "min": 300,
+        "max": 680,
+        "step": 10,
+        "default": 450
       }
     ],
     "presets": [{

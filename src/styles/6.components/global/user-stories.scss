@@ -1,6 +1,6 @@
 .user-stories {
-  margin: 0 0 50px;
   position: relative;
+  margin: 0 0 50px;
   -webkit-overflow-scrolling: touch;
 
   .slick-arrow {
@@ -16,7 +16,7 @@
   &__stories {
     position: relative;
     scrollbar-width: thin;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     -webkit-overflow-scrolling: touch;
 
     &:hover {
@@ -54,14 +54,13 @@
   .next-arrow,
   .prev-arrow {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 100%;
+    z-index: $z-base;
+    top: 0;
+    height: calc(100% - 10px);
     width: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1;
     opacity: 0;
     transition: ease-in-out all 0.3s;
 
@@ -101,7 +100,7 @@
   }
 
   .prev-arrow {
-    left: 0;
+    left: 15px;
     background: linear-gradient(
       267deg,
       rgba(231, 240, 242, 0) 0%,
@@ -110,7 +109,7 @@
   }
 
   .next-arrow {
-    right: 0;
+    right: 15px;
     background: linear-gradient(
       90deg,
       rgba(231, 240, 242, 0) 0%,
@@ -260,30 +259,80 @@
     }
   }
 
-  @include media-query($xl-down) {
-    &__stories {
-      &:not(.slick-initialized) {
-        .user-stories__story {
-          flex: 0 0 66.66%;
-          max-width: 66.66%;
-        }
-      }
+  @media screen and (min-width: $grid-large) and (max-width: $grid-xl) {
+    .next-arrow,
+    .prev-arrow {
+      width: 100px;
+    }
+
+    &__s-c-wrap {
+      min-height: 320px;
+      padding: 20px;
+    }
+
+    &__s-title {
+      font-size: 20px;
+      line-height: 28px;
+      letter-spacing: 1px;
+    }
+
+    &__s-content {
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 1px;
+    }
+    &__s-author {
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 1px;
     }
   }
 
   @include media-query($large-down) {
-    &__slider-wrap {
-      width: calc(100% - 124px);
+    &__stories {
+      &:not(.slick-initialized) {
+        .user-stories__story {
+          flex: 0 0 33.333%;
+          max-width: 33.333%;
+        }
+      }
+    }
+
+    .next-arrow,
+    .prev-arrow {
+      width: 80px;
+    }
+
+    &__story {
+      padding: 0 5px;
+    }
+
+    &__s-c-wrap {
+      min-height: 300px;
+      padding: 15px;
+    }
+
+    &__s-title {
+      font-size: 18px;
+      line-height: 26px;
+      letter-spacing: 0.9px;
+    }
+
+    &__s-content {
+      font-size: 14px;
+      line-height: 22px;
+      letter-spacing: 0.8px;
+    }
+
+    &__s-author {
+      font-size: 14px;
+      line-height: 22px;
+      letter-spacing: 0.8px;
     }
   }
 
   @include media-query($medium-down) {
     margin: 0 0 20px;
-
-    &__title {
-      letter-spacing: 0.97px;
-      margin: 0 0 20px;
-    }
 
     &__stories {
       &:not(.slick-initialized) {
@@ -292,6 +341,11 @@
           max-width: 50%;
         }
       }
+    }
+
+    &__title {
+      letter-spacing: 0.97px;
+      margin: 0 0 20px;
     }
 
     &__story {
