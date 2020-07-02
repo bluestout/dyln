@@ -27,6 +27,12 @@ const selectors = {
   barOther: "[data-announcement-bar-other]",
   overlay: "[data-menu-mobile-overlay]",
   iframe: "[data-header-toggle-element]",
+  openLoginBlock: "[data-header-open-login-block]",
+  openRegisterBlock: "[data-header-open-register-block]",
+  loginBlock: "[data-header-login-block]",
+  registerBlock: "[data-header-register-block]",
+  accountButton: "[data-mobile-account-button]",
+  gorgiasChat: "#gorgias-web-messenger-container",
 };
 
 const classes = {
@@ -81,13 +87,23 @@ function togglesInit() {
 function handleHeaderLinkClick(event) {
   event.preventDefault();
   const $link = $(event.currentTarget);
-  const $links = $(selectors.link);
 
   if ($link.length <= 0) {
     return;
   }
 
   const id = $link.data(datasets.link);
+  headerSublinkOpen(id);
+}
+
+function headerSublinkOpen(id) {
+  const $link = $(selectors.linkById(id));
+
+  if ($link.length <= 0) {
+    return;
+  }
+
+  const $links = $(selectors.link);
   const $block = $(selectors.blockById(id));
   const $blocks = $(selectors.block);
   const $iframe = $(selectors.iframe);
@@ -140,6 +156,7 @@ function handleHeaderButtonClick() {
   const $ann = $(selectors.announcement);
   const $overlay = $(selectors.overlay);
   $ann.toggleClass(classes.closed);
+  $(selectors.gorgiasChat).toggleClass(classes.hide);
 
   const headerHeight = $(selectors.headerBody).outerHeight();
   $menu.toggleClass(classes.open);
@@ -189,6 +206,34 @@ function onScroll() {
   setHeaderBodyOffset(1);
 }
 
+function handleLoginOpenClick(event) {
+  event.stopPropagation();
+  event.preventDefault();
+  $(selectors.registerBlock).fadeOut(150, () => {
+    $(selectors.loginBlock).fadeIn();
+  });
+}
+
+function handleRegisterOpenClick(event) {
+  event.stopPropagation();
+  event.preventDefault();
+  $(selectors.loginBlock).fadeOut(150, () => {
+    $(selectors.registerBlock).fadeIn();
+  });
+}
+
+function handleAccountMobileBtnClick() {
+  if (!$(selectors.menu).hasClass(classes.open)) {
+    handleHeaderButtonClick();
+  }
+
+  setTimeout(() => {
+    if (!$(selectors.linkById(4)).hasClass(classes.active)) {
+      headerSublinkOpen(4);
+    }
+  }, 50);
+}
+
 $(document).ready(() => {
   setHeaderBodyOffset();
 });
@@ -196,6 +241,9 @@ $(document).ready(() => {
 $(document).on("click", selectors.link, handleHeaderLinkClick);
 $(document).on("click", selectors.close, handleHeaderLinkClose);
 $(document).on("click", selectors.button, handleHeaderButtonClick);
+$(document).on("click", selectors.openLoginBlock, handleLoginOpenClick);
+$(document).on("click", selectors.openRegisterBlock, handleRegisterOpenClick);
+$(document).on("click", selectors.accountButton, handleAccountMobileBtnClick);
 
 document.addEventListener("ajaxReloaded", togglesInit);
 document.addEventListener("windowScrolledRedux", onScroll);

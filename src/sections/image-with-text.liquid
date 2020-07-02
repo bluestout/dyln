@@ -19,7 +19,8 @@
         {% render 'responsive-image' with
           image: section.settings.image,
           max_width: 545,
-          max_height: 545
+          max_height: 545,,
+          snippet_index: 25
         %}
       {% else %}
         {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}

@@ -279,6 +279,7 @@
     },
     "register": {
       "title": "Create Your Account",
+      "title_dyln": "Create Your DYLN Account",
       "first_name": "First Name",
       "last_name": "Last Name",
       "email": "Email",
@@ -286,6 +287,7 @@
       "submit": "Create Account",
       "cancel": "Return to Store",
       "already_have_account_html": "Already have an account? <a href='/account/login/'>Log In</a>",
+      "already_have_account": "Already have an account?",
       "benefits_await": "Your Benefits Await!"
     }
   },

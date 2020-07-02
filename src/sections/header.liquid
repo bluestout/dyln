@@ -93,8 +93,19 @@
                       {% render 'header-login' with
                         l_title: section.settings.login_title,
                         l_form_title: section.settings.form_title,
-                        l_reg_link: section.settings.register_link,
-                        l_reg_text: section.settings.register_link_text
+                        l_register_text: section.settings.register_link_text,
+                        l_register_url: section.settings.register_link_url,
+                        l_register_open: section.settings.open_register_text,
+                        l_benefit_title: section.settings.login_benefit_title,
+                        l_benefit_1: section.settings.login_benefit_1,
+                        l_benefit_content_1: section.settings.login_benefit_content_1,
+                        l_benefit_icon_1: section.settings.login_benefit_icon_1,
+                        l_benefit_2: section.settings.login_benefit_2,
+                        l_benefit_content_2: section.settings.login_benefit_content_2,
+                        l_benefit_icon_2: section.settings.login_benefit_icon_2,
+                        l_benefit_3: section.settings.login_benefit_3,
+                        l_benefit_content_3: section.settings.login_benefit_content_3,
+                        l_benefit_icon_3: section.settings.login_benefit_icon_3
                       %}
                     </div>
                   {% endif %}
@@ -137,9 +148,20 @@
                   {% render 'header-login' with
                     l_title: section.settings.login_title,
                     l_form_title: section.settings.form_title,
-                    l_reg_link: section.settings.register_link,
-                    l_reg_text: section.settings.register_link_text
-                    %}
+                    l_register_text: section.settings.register_link_text,
+                    l_register_url: section.settings.register_link_url,
+                    l_register_open: section.settings.open_register_text,
+                    l_benefit_title: section.settings.login_benefit_title,
+                    l_benefit_1: section.settings.login_benefit_1,
+                    l_benefit_content_1: section.settings.login_benefit_content_1,
+                    l_benefit_icon_1: section.settings.login_benefit_icon_1,
+                    l_benefit_2: section.settings.login_benefit_2,
+                    l_benefit_content_2: section.settings.login_benefit_content_2,
+                    l_benefit_icon_2: section.settings.login_benefit_icon_2,
+                    l_benefit_3: section.settings.login_benefit_3,
+                    l_benefit_content_3: section.settings.login_benefit_content_3,
+                    l_benefit_icon_3: section.settings.login_benefit_icon_3
+                  %}
                 </div>
               {% endif %}
 
@@ -174,6 +196,20 @@
                   %}
                 </div>
               {% endif %}
+
+              <div class="site-header__utils-block d-lg-none">
+                {% if customer %}
+                  <a class="site-header__utils-account" href="/account">
+                    <span class="site-header__utils-cart-icon" aria-hidden="true">{% render 'icon-user' %}</span>
+                    <span class="visually-hidden">{{ 'layout.customer.account' | t }}</span>
+                  </a>
+                {% else %}
+                  <button class="site-header__utils-account" data-mobile-account-button>
+                    <span class="site-header__utils-cart-icon" aria-hidden="true">{% render 'icon-user' %}</span>
+                    <span class="visually-hidden">{{ 'layout.customer.account' | t }}</span>
+                  </button>
+                {% endif %}
+              </div>
 
               <div class="site-header__utils-block">
                 <button type="button" class="site-header__utils-cart" data-cart-drawer-toggle data-cart-drawer-focus-out>
@@ -555,15 +591,117 @@
         "default": "LOGIN"
       },
       {
+        "type": "text",
+        "id": "open_register_text",
+        "label": "Create Account Button",
+        "default": "Create Account"
+      },
+      {
         "type": "url",
-        "id": "register_link",
-        "label": "Register Link Text"
+        "id": "register_link_url",
+        "label": "Register Link"
       },
       {
         "type": "text",
         "id": "register_link_text",
         "label": "Register Link Text",
         "default": "Register your new bottle"
+      },
+      {
+        "type": "text",
+        "id": "login_benefit_title",
+        "label": "Benefits Title",
+        "default": "Your Benefits Await!"
+      },
+      {
+        "type": "textarea",
+        "id": "login_benefit_1",
+        "label": "Benefit Title 1"
+      },
+      {
+        "type": "textarea",
+        "id": "login_benefit_content_1",
+        "label": "Benefit Description 1"
+      },
+      {
+        "type": "select",
+        "id": "login_benefit_icon_1",
+        "label": "Benefit Icon 1",
+        "options": [
+          {
+            "value": "blue-reminder",
+            "label": "Reminder bubble"
+          },
+          {
+            "value": "track",
+            "label": "Track Order"
+          },
+          {
+            "value": "star",
+            "label": "Star"
+          }
+        ],
+        "info": "Icon name to be used."
+      },
+      {
+        "type": "textarea",
+        "id": "login_benefit_2",
+        "label": "Benefit Title 2"
+      },
+      {
+        "type": "textarea",
+        "id": "login_benefit_content_2",
+        "label": "Benefit Description 2"
+      },
+      {
+        "type": "select",
+        "id": "login_benefit_icon_2",
+        "label": "Benefit Icon 2",
+        "options": [
+          {
+            "value": "blue-reminder",
+            "label": "Reminder bubble"
+          },
+          {
+            "value": "track",
+            "label": "Track Order"
+          },
+          {
+            "value": "star",
+            "label": "Star"
+          }
+        ],
+        "info": "Icon name to be used."
+      },
+      {
+        "type": "textarea",
+        "id": "login_benefit_3",
+        "label": "Benefit Title 3"
+      },
+      {
+        "type": "textarea",
+        "id": "login_benefit_content_3",
+        "label": "Benefit Description 3"
+      },
+      {
+        "type": "select",
+        "id": "login_benefit_icon_3",
+        "label": "Benefit Icon 3",
+        "options": [
+          {
+            "value": "blue-reminder",
+            "label": "Reminder bubble"
+          },
+          {
+            "value": "track",
+            "label": "Track Order"
+          },
+          {
+            "value": "star",
+            "label": "Star"
+          }
+        ],
+        "info": "Icon name to be used."
       },
       {
         "type": "header",
