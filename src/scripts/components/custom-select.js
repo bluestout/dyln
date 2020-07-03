@@ -1,19 +1,7 @@
 import $ from "jquery";
+import { getUrlParams } from "./helpers";
 
 const customSelectChange = new Event("customSelectChange");
-
-// check if url has parameters
-function getUrlParams() {
-  const params = {};
-  if (window.location.search.length > 0) {
-    const pairs = document.location.search.substr(1).split("&");
-    for (let i = 0; i < pairs.length; i++) {
-      const paramsSplit = pairs[i].split("=");
-      params[paramsSplit[0]] = paramsSplit[1];
-    }
-  }
-  return params;
-}
 
 // any select with data-custom attribute will be "converted" to a custom dropdown
 $(document).ready(() => {

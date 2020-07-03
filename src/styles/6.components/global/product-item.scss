@@ -72,14 +72,14 @@
 
   &__subtitle {
     @include font-header(700);
-    @include text(16px, 23px, $color-theme-1, 0.95px);
+    @include text(12px, 18px, $color-body-text, 0.7px);
     margin: 0 0 5px;
     display: block;
   }
 
   &__size {
     @include font-header(700);
-    @include text(16px, 23px, $color-theme-1, 0.95px);
+    @include text(12px, 18px, $color-body-text, 0.7px);
     display: block;
   }
 
@@ -96,18 +96,17 @@
   &__options-label {
     @include font-header(700);
     @include text(12px, 17px, $color-body-text, 0.71px);
-    display: none;
     margin: 0 0 10px;
 
     &--desktop {
-      @include media-query($medium-up) {
-        display: inline-block;
+      @include media-query($medium-down) {
+        display: inline-none;
       }
     }
 
     &--mobile {
-      @include media-query($medium-down) {
-        display: inline-block;
+      @include media-query($medium-up) {
+        display: inline-none;
       }
     }
   }
@@ -337,6 +336,12 @@
       display: none;
     }
 
+    &__size {
+      font-size: 10px;
+      line-height: 16px;
+      letter-spacing: 0.6px;
+    }
+
     &__price {
       display: none;
     }
@@ -403,14 +408,12 @@
     }
 
     &__submit-price {
-      font-weight: 500;
       font-size: 14px;
       line-height: 20px;
       letter-spacing: 1.94px;
     }
 
     &__submit-text {
-      font-weight: 500;
       font-size: 14px;
       line-height: 20px;
       letter-spacing: 1.94px;

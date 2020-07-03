@@ -153,12 +153,12 @@
   &__cat-option-icon {
     display: inline-block;
     vertical-align: middle;
+    margin: 0 10px 0 0;
   }
 
   &__cat-option-text {
     @include font-header(500);
     @include text(14px, 20px, $color-body-text, 0.83px);
-    margin: 0 0 0 10px;
     display: inline-block;
     vertical-align: middle;
   }

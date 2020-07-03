@@ -16,6 +16,15 @@
     }
   }
 
+  &__bottom-wave {
+    position: absolute;
+    bottom: -1px;
+    height: 25px;
+    width: 100%;
+    background: url("data:image/svg+xml,%3Csvg width='320' height='23' viewBox='0 0 320 23' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0v23h320c-27.788-.276-51.455-1.276-71-3-37.258-3.286-94.269-11.791-125-14C69.086 2.053 27.753.053 0 0z' fill='%23FFF' fill-rule='evenodd'/%3E%3C/svg%3E");
+    background-size: cover;
+  }
+
   &__content {
     margin: auto auto auto 0;
   }
@@ -78,8 +87,14 @@
       max-width: 160px;
     }
 
+    &__usps {
+      justify-content: space-evenly;
+      width: 100%;
+    }
+
     &__usp {
-      width: calc(33.33% - 10px);
+      width: auto;
+      max-width: 30%;
     }
 
     &__usp-title {
@@ -102,6 +117,7 @@
     &__usps {
       position: absolute;
       bottom: -40px;
+      z-index: $z-base;
     }
 
     &__bg {
