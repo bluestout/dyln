@@ -143,6 +143,10 @@
   }
 
   .opt-in-sms {
+    @include media-query($large-down) {
+      margin-top: -15px;
+    }
+
     h1 {
       display: none;
     }
@@ -165,12 +169,35 @@
         background-color: rgba(255, 255, 255, 0);
         width: 200px;
         border-radius: 0;
+        font-family: "Open Sans", sans-serif;
+        @include text(15px, 1.2, $color-white, 0px);
+
+        @include media-query($xxl-down) {
+          width: 80%;
+        }
+
+        @include media-query($xl-down) {
+          width: 70%;
+        }
+
+        @include media-query($large-down) {
+          width: 200px;
+        }
+
+        & + p {
+          display: none;
+        }
       }
     }
 
     button {
-      padding: 7.5px;
-      top: 1.5px;
+      height: 45px;
+      width: 42px;
+      top: 1px;
+
+      @include media-query($medium-down) {
+        top: 1px;
+      }
     }
   }
 
