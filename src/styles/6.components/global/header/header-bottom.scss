@@ -10,15 +10,14 @@
   padding: 10px 15px;
 
   &__input {
-    font-size: 16px;
-    line-height: 28px;
+    font-size: 16px !important;
+    line-height: 28px !important;
     height: 28px;
-    border-radius: 15px;
-    padding: 0;
-    background-color: $color-white;
+    border-radius: 15px !important;
+    padding: 0 10px;
+    background-color: $color-white !important;
     color: $color-body-text;
     border: none;
-    border-bottom: 1px solid $color-theme-6;
 
     &::placeholder {
       color: $color-theme-8;
