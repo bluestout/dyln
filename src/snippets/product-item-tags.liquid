@@ -1,0 +1,26 @@
+{% for tag in block_p.tags %}
+  {% if tag contains "size-" %}
+    <span class="hide" data-pi-option-size="{{ tag }}">
+      {{ tag | remove: 'size-' }}
+    </span>
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% for tag in block_p.tags %}
+  {% if tag contains "mouth-" %}
+    <span class="hide" data-pi-option-mouth="{{ tag }}">
+      {{ tag | remove: 'mouth-' }}
+    </span>
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% for tag in block_p.tags %}
+  {% if tag contains "guard-" %}
+    <span class="hide" data-pi-option-guard="{{ tag }}">
+      {{ tag | remove: 'guard-' }}
+    </span>
+    {% break %}
+  {% endif %}
+{% endfor %}

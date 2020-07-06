@@ -26,14 +26,46 @@
   class="product-item{% if block_p.has_only_default_variant %} single{% endif %}"
   data-pi-item
   data-pi-static-class="product-item{% if block_p.has_only_default_variant %} single{% endif %}">
-
-
   {% if settings.extra_diffusers_product == block_p.handle %}
-    {% render 'subscription-form' with settings.extra_diffusers_product
-      current_product_id: block_p.id
-      show_extras: true,
-      note: settings.extra_diffusers_note,
-    %}
+    <a
+      class="product-item__image-link"
+      href="{{ block_p.url }}"
+      title="{{ 'products.product.view_details' | t }}"
+      data-pi-item-link>
+      <span class="product-item__gallery" data-pi-image-gallery>
+        <span class="product-item__gallery-img">
+          {% render 'responsive-image' with
+            image: block_p.featured_image,
+            max_width: 300,
+            max_height: 450,
+            wrapper_class: "product-item__g-img-wrap",
+            image_class: "product-item__gallery-img"
+            span: true,
+          %}
+        </span>
+      </span>
+
+      {% if hide_title_mobile %}
+        <h3 class="product-item__title d-none d-md-inline-block">
+          {{ block_p.title }}
+        </h3>
+      {% else %}
+        <h3 class="product-item__title">
+          {{ block_p.title }}
+        </h3>
+      {% endif %}
+
+      {% render 'product-item-tags' with block_p: block_p %}
+    </a>
+
+    <div class="product-item__hover subscription">
+      {% render 'subscription-form' with settings.extra_diffusers_product
+        current_product_id: block_p.id
+        show_extras: false,
+        note: settings.extra_diffusers_note,
+        hide_price: true,
+      %}
+    </div>
   {% else %}
     {% form 'product', block_p, data-product-form: '', data-product-handle: block_p.handle, class: "product-item__form" %}
 
@@ -120,32 +152,7 @@
           </h3>
         {% endif %}
 
-        {% for tag in block_p.tags %}
-          {% if tag contains "size-" %}
-            <span class="hide" data-pi-option-size="{{ tag }}">
-              {{ tag | remove: 'size-' }}
-            </span>
-            {% break %}
-          {% endif %}
-        {% endfor %}
-
-        {% for tag in block_p.tags %}
-          {% if tag contains "mouth-" %}
-            <span class="hide" data-pi-option-mouth="{{ tag }}">
-              {{ tag | remove: 'mouth-' }}
-            </span>
-            {% break %}
-          {% endif %}
-        {% endfor %}
-
-        {% for tag in block_p.tags %}
-          {% if tag contains "guard-" %}
-            <span class="hide" data-pi-option-guard="{{ tag }}">
-              {{ tag | remove: 'guard-' }}
-            </span>
-            {% break %}
-          {% endif %}
-        {% endfor %}
+        {% render 'product-item-tags' with block_p: block_p %}
 
         {% if imperial_size %}
           <span class="product-item__size">

@@ -2,7 +2,7 @@
 {%- capture mouth_title -%}{{ 'collections.filters.mouth' | t }}{%- endcapture -%}
 {%- capture color_title -%}{{ 'collections.filters.color' | t }}{%- endcapture -%}
 {%- capture guard_title -%}{{ 'collections.filters.guard' | t }}{%- endcapture -%}
-{%- assign collection_has_colors = false -%}
+{%- assign collection_has_colors = true -%}
 
 {%- for product in collection -%}
   {%- for option in product.options_with_values -%}
@@ -17,7 +17,7 @@
 {%- endfor -%}
 
 <div class="container">
-  {%- if template == "list-collections" or collection.handle == "all" -%}
+  {%- if template == "list-collections" -%}
     <div class="c-filter__header">
       <button type="button" class="c-filter__header-button" data-cat-button>
         <span class="c-filter__header-text">{{ 'collections.general.categories' | t }}</span>

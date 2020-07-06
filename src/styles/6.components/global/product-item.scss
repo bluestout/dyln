@@ -254,6 +254,115 @@
     text-align: center;
   }
 
+  .diffusers__variants {
+    margin: 5px 0 12px;
+  }
+
+  .diffusers__variant {
+    font-size: 0;
+
+    &:not(:last-of-type) {
+      margin: 0 10px 5px 0;
+    }
+  }
+
+  .diffusers__label {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+  }
+
+  .diffusers__regular-btn {
+    display: flex;
+    flex-flow: row wrap;
+    height: 44px;
+  }
+
+  .diffusers__regular-price {
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.5px;
+    align-self: center;
+  }
+
+  .diffusers__regular-text {
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.5px;
+    align-self: center;
+  }
+
+  .diffusers__sub-btn {
+    display: flex;
+    flex-flow: row wrap;
+    height: 44px;
+
+    .custom-select-styled {
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.5px;
+      height: 40px;
+    }
+
+    .custom-select {
+      height: 20px;
+      line-height: 20px;
+    }
+
+    .custom-select-option {
+      font-size: 12px;
+      line-height: 14px;
+      letter-spacing: 0.4px;
+      padding: 3px;
+    }
+
+    .no-pointer {
+      font-size: 0;
+      text-align: center;
+      align-self: center;
+      width: 100%;
+      height: 20px;
+    }
+  }
+
+  .diffusers__sub-price {
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.5px;
+    align-self: center;
+  }
+
+  .diffusers__sub-btn-text {
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.5px;
+    align-self: center;
+  }
+
+  .diffusers__sub-btn-freq {
+    display: none;
+  }
+
+  .diffuser-modal__subs-button-open {
+    display: none;
+  }
+
+  .diffusers__usps {
+    display: none;
+  }
+
+  .loading-dots {
+    align-self: center;
+    width: 100%;
+  }
+
+  [data-subscription-custom-label] {
+    font-size: 9px;
+    line-height: 12px;
+    letter-spacing: 0.2px;
+  }
+
   @include media-query($large-up) {
     &:hover,
     &:focus,
@@ -290,6 +399,10 @@
       pointer-events: none;
       background-color: $color-white;
       padding: 0 15px 25px;
+
+      &.subscription {
+        top: calc(100% - 65px);
+      }
     }
 
     &__form {
