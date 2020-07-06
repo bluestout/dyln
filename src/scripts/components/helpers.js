@@ -106,6 +106,21 @@ function getUrlParams() {
   return params;
 }
 
+// check if url has parameters
+function getUrlHashParams() {
+  const params = {};
+  if (window.location.hash.length > 0) {
+    document.location.hash
+      .substr(1)
+      .split("&")
+      .forEach((pair) => {
+        const paramsSplit = pair.split("=");
+        params[paramsSplit[0]] = paramsSplit[1];
+      });
+  }
+  return params;
+}
+
 export {
   resizeImage,
   formatAndTrimPrice,
@@ -114,4 +129,5 @@ export {
   handleize,
   toggleTabindexInChildren,
   getUrlParams,
+  getUrlHashParams,
 };

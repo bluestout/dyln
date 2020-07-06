@@ -153,6 +153,7 @@
       "size": "Size",
       "color": "Color",
       "mouth": "Mouth",
+      "guard": "Guard",
       "clear_all": "Clear All"
     }
   },

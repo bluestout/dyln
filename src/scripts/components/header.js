@@ -70,6 +70,9 @@ function setHeaderBodyOffset() {
   } else if ($anno.length > 0) {
     $anno.slideDown(400);
   }
+  setTimeout(() => {
+    resetOffsetHeight();
+  }, 401);
 }
 
 function handleNavToggle(event) {
@@ -201,9 +204,13 @@ function setAnnouncementByCountry() {
   }
 }
 
+function resetOffsetHeight() {
+  $(selectors.offset).css("min-height", $(selectors.headerBody).outerHeight());
+}
+
 function onScroll() {
   setIsHeaderScrolled();
-  setHeaderBodyOffset(1);
+  setHeaderBodyOffset();
 }
 
 function handleLoginOpenClick(event) {
@@ -247,6 +254,7 @@ $(document).on("click", selectors.accountButton, handleAccountMobileBtnClick);
 
 document.addEventListener("ajaxReloaded", togglesInit);
 document.addEventListener("windowScrolledRedux", onScroll);
+document.addEventListener("windowWidthChanged", resetOffsetHeight);
 document.addEventListener("geoLocationComplete", setAnnouncementByCountry);
 
 export { closeAllHeaderLinks, closeMobileMenu };
