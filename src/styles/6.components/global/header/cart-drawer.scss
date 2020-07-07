@@ -371,19 +371,23 @@
 
   &__subscription-box {
     margin: 0 0 13px;
+  }
 
-    > button {
+  &__subscription-box-btn {
+    @include no-font-size;
+    border: none;
+    border-radius: 2px 0 0 2px;
+    padding: 3px 9px;
+    height: 25px;
+    background-color: $color-theme-17;
+    width: 145px;
+    display: inline-block;
+    vertical-align: middle;
+
+    span {
       @include font-header(500);
-      @include text(13px, 16px, $color-white, 0.5px);
+      @include text(13px, 19px, $color-white, 0.5px);
       text-transform: uppercase;
-      border: none;
-      border-radius: 2px 0 0 2px;
-      padding: 3px 9px;
-      height: 25px;
-      background-color: $color-theme-17;
-      width: 145px;
-      display: inline-block;
-      vertical-align: middle;
     }
   }
 
@@ -514,12 +518,15 @@
 
     &__subscription-box {
       margin: 0 0 13px;
+    }
 
-      > button {
+    &__subscription-box-btn {
+      width: 100px;
+      padding: 3px 5px;
+
+      > span {
         font-size: 9px;
         letter-spacing: 0;
-        width: 100px;
-        padding: 3px 5px;
       }
     }
 
