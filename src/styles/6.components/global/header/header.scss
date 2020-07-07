@@ -196,6 +196,10 @@
 #shopify-section-header-about,
 #shopify-section-header-bottle {
   display: inline-block;
+
+  @include media-query($large-down) {
+    display: block;
+  }
 }
 
 @import "./announcement-bar";
