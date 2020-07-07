@@ -72,7 +72,7 @@
 
   {%- render 'accessibility-menu' -%}
 
-  {%- section 'header' -%}
+  {% render 'header-container' %}
 
   <main role="main" id="MainContent" class="template-{{ template.name | handle }}">
     {{ content_for_layout }}

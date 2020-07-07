@@ -1,0 +1,230 @@
+{% if section.settings.enabled %}
+  {% if section.settings.all_link_text != empty %}
+    <a href="{{ section.settings.all_link }}" class="header-shop__main-all-link">{{ section.settings.all_link_text }}</a>
+  {% endif %}
+
+  <a class="header-shop__main-link" href="#" data-header-link="2">
+    <span class="header-shop__main-text">{{ section.settings.title }}</span>
+    <span class="header-shop__main-icon" aria-hidden="true">
+      {% render 'icon-plus-vertical' %}
+      {% render 'icon-plus-horizontal' %}
+    </span>
+  </a>
+
+  <div class="header-shop" data-header-block="2">
+    <div class="header-shop__body">
+      <div class="header-shop__wave"></div>
+      <div class="container">
+        <div class="row">
+          {% if section.settings.show_featured %}
+            <div class="col-xl-8 col-lg-7">
+          {% else %}
+            <div class="col-12">
+          {% endif %}
+
+            {% assign prominent_links_a = section.settings.prominent_links | split: ',' %}
+            <div class="header-shop__menu" data-accordion-parent-rsp=true>
+              {% for link in linklists[section.settings.menu].links %}
+                {% assign is_prominent = false %}
+                {% assign p_link_clean = "" %}
+                {% assign title_clean = "" %}
+
+                {% for p_link in prominent_links_a %}
+                  {% assign p_link_clean = p_link | strip | handleize %}
+                  {% assign title_clean = link.title | strip | handleize %}
+                  {% if p_link_clean == title_clean %}
+                    {% assign is_prominent = true %}
+                    {% break %}
+                  {% endif %}
+                {% endfor %}
+
+                <div
+                  class="header-shop__link-parent{% if is_prominent == true %} prominent{% endif %}"
+                  data-accordion-wrap-rsp="{{ forloop.index }}">
+                  <div class="header-shop__link-header">
+                    {% if link.handle contains "bottle" %}
+                      <span class="header-shop__link-menu-img-wrap">
+                        <img
+                          class="header-shop__link-menu-img"
+                          src="{{ 'dyln-bottle-rsp-menu.png' | asset_url }}"
+                          alt="{{ link.title }} Image" />
+                      </span>
+                    {% elsif link.handle contains "accessories" %}
+                      <span class="header-shop__link-menu-img-wrap">
+                        <img
+                          class="header-shop__link-menu-img"
+                          src="{{ 'dyln-bottle-cap-rsp-menu.png' | asset_url }}"
+                          alt="{{ link.title }} Image" />
+                      </span>
+                    {% elsif link.handle contains "diffuser" %}
+                      <span class="header-shop__link-menu-img-wrap">
+                        <img
+                          class="header-shop__link-menu-img"
+                          src="{{ 'dyln-diffuser-rsp-menu.png' | asset_url }}"
+                          alt="{{ link.title }} Image" />
+                      </span>
+                    {% endif %}
+
+                    <a
+                      class="header-shop__link-top"
+                      href="{{ link.url }}"
+                      data-accordion-button-rsp="{{ forloop.index }}"
+                      tabindex="-1">
+                      {{ link.title }}
+                    {% if is_prominent == true %}
+                      <a class="header-shop__shop-all" href="{{ link.url }}" tabindex="-1">{{ 'header.shop.shop_all' | t }}</a>
+                    {% endif %}
+                  </div>
+                  {% if link.links != blank %}
+                    {% if is_prominent == true %}
+                      <div class="header-shop__link-list prominent" data-accordion-content-rsp="{{ forloop.index }}">
+                        {% for childlink in link.links limit: 6 %}
+                          <a class="header-shop__link-sub prominent" href="{{ childlink.url }}" tabindex="-1">
+                            {% assign link_image = childlink.object.featured_image %}
+                            {% if childlink.object.image %}
+                              {% assign link_image = childlink.object.image %}
+                            {% endif %}
+
+                            {% if link_image %}
+                              {% render 'responsive-image' with
+                                image: link_image,
+                                max_width: 120,
+                                max_height: 170,
+                                wrapper_class: "header-shop__link-img-wrap",
+                                image_class: "header-shop__link-img",
+                                span: true,
+                                snippet_index: 58
+                              %}
+                            {% endif %}
+
+                            <span class="header-shop__link-sub-a-p">
+                              {{ childlink.title }}
+                            </span>
+                          </a>
+                        {% endfor %}
+                      </div>
+                    {% else %}
+                      <div class="header-shop__link-list" data-accordion-content-rsp="{{ forloop.index }}">
+                        {% for childlink in link.links %}
+                          {% assign child_class = "" %}
+                          {% if childlink.title == "Learn More" %}
+                            {% assign child_class = " brand" %}
+                          {% endif %}
+                          <div>
+                            <a class="header-shop__link-sub-a{{ child_class }}" href="{{ childlink.url }}" tabindex="-1">
+                              {{ childlink.title }}
+                            </a>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+
+          {% if section.settings.show_featured %}
+            </div>
+            <div class="col-xl-4 col-lg-5">
+              <div class="header-shop__featured">
+                <div class="header-shop__f-content-wrap">
+                  <div class="header-shop__f-content">{{ section.settings.featured_content }}</div>
+                  {% if section.settings.featured_link_text != empty %}
+                    <a href="{{ section.settings.featured_link }}" class="header-shop__f-link" tabindex="-1">{{ section.settings.featured_link_text }}</a>
+                  {% endif %}
+                </div>
+                {% if section.settings.featured_image %}
+                  {% render 'responsive-image' with
+                    image: section.settings.featured_image,
+                    max_width: 71,
+                    max_height: 210,
+                    wrapper_class: "header-shop__f-img-wrap",
+                    image_class: "header-shop__f-img",
+                    snippet_index: 59
+                  %}
+                {% endif %}
+              </div>
+            </div>
+          {% else %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="header-shop__close">
+        <button type="button" class="header-shop__close-btn" data-header-block-close="2" tabindex="-1">
+          <span class="visually-hidden">{{ 'general.accessibility.close' | t }}</span>
+          {% render 'icon-chevron-up' %}
+        </button>
+      </div>
+    </div>
+
+    <div class="header-shop__overlay" data-header-block-close="2"></div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Header Shop",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enabled",
+        "label": "Show this menu",
+        "default": true
+      },
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Shop Menu"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Shop Link Title",
+        "default": "Shop"
+      },
+      {
+        "type": "textarea",
+        "id": "prominent_links",
+        "label": "Prominent Links",
+        "info": "Which links should have a more prominent display? (Full width, with featured images if available). Paste them here and separate with comma."
+      },
+      {
+        "type": "checkbox",
+        "id": "show_featured",
+        "label": "Show Featured"
+      },
+      {
+        "type": "textarea",
+        "id": "featured_content",
+        "label": "Featured content"
+      },
+      {
+        "type": "image_picker",
+        "id": "featured_image",
+        "label": "Featured Image"
+      },
+      {
+        "type": "url",
+        "id": "featured_link",
+        "label": "Featured Link"
+      },
+      {
+        "type": "text",
+        "id": "featured_link_text",
+        "label": "Featured Link Text"
+      },
+      {
+        "type": "url",
+        "id": "all_link",
+        "label": "Shop All Link"
+      },
+      {
+        "type": "text",
+        "id": "all_link_text",
+        "label": "Shop All Link Text"
+      }
+    ]
+  }
+{% endschema %}

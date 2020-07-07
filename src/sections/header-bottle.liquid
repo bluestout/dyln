@@ -1,0 +1,283 @@
+{% if section.settings.enabled %}
+  <a class="header-bottle__main-link" href="#" data-header-link="1">
+    <span class="header-bottle__main-text">{{ section.settings.main_title }}</span>
+    <span class="header-bottle__main-icon" aria-hidden="true">
+      {% render 'icon-plus-vertical' %}
+      {% render 'icon-plus-horizontal' %}
+    </span>
+  </a>
+
+  <div class="header-bottle" data-header-block="1">
+    <div class="header-bottle__body">
+      <div class="container">
+        <div class="row">
+          {% if section.settings.video != empty %}
+            <div class="col-lg-6">
+              <div class="header-bottle__content-wrap">
+                <h2 class="header-bottle__c-title rsp">{{ section.settings.title }}</h2>
+                <h4 class="header-bottle__c-subtitle rsp">{{ section.settings.subtitle }}{% render 'icon-chevron-down' %}</h4>
+              </div>
+              <div class="header-bottle__video" data-header-toggle-element style="display:none;">
+                {{ section.settings.video }}
+              </div>
+            </div>
+          {% endif %}
+
+          {% if section.settings.video != empty %}
+            <div class="col-lg-6">
+          {% else %}
+            <div class="col-12">
+          {% endif %}
+            <div class="header-bottle__content-wrap">
+              <h2 class="header-bottle__c-title desktop">{{ section.settings.title }}</h2>
+              <a href="#" class="header-bottle__c-subtitle desktop" data-scroll-to=".index-video">See how</a>
+              <div class="header-bottle__c-content">{{ section.settings.content }}</div>
+              {% if section.settings.link_text != empty %}
+                <a class="header-bottle__c-link" href="{{ section.settings.link }}" tabindex="-1">{{ section.settings.link_text }}</a>
+              {% endif %}
+            </div>
+          {% if section.settings.video != empty %}
+            </div>
+          {% else %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="header-bottle__usps">
+        <div class="header-bottle__usps-wave"></div>
+        <div class="header-bottle__usps-c-wrap">
+          <div class="container" data-accordion-parent-rsp=true>
+            <div class="row">
+              <div class="col-lg-3">
+                <h5 class="header-bottle__usps-title">{{ section.settings.usp_title }}</h5>
+              </div>
+
+              {% if section.settings.usp_title_1 or section.settings.usp_content_1 %}
+                <div class="col-lg-3">
+                  <div class="header-bottle__usp">
+                    <button type="button" class="header-bottle__usp-header" data-accordion-button-rsp="1" tabindex="-1">
+                      <div class="header-bottle__usp-icon">
+                        {% if section.settings.usp_icon_1 == "alkaline" %}
+                          {% render 'icon-alkaline' %}
+                        {% elsif section.settings.usp_icon_1 == "antioxidant" %}
+                          {% render 'icon-antioxidant' %}
+                        {% elsif section.settings.usp_icon_1 == "infused" %}
+                          {% render 'icon-infused' %}
+                        {% endif %}
+                      </div>
+                      <h5 class="header-bottle__usp-title">{{ section.settings.usp_title_1 }}</h5>
+                      <span class="header-bottle__usp-closed">+</span>
+                      <span class="header-bottle__usp-open">-</span>
+                    </button>
+                    <div class="header-bottle__usp-body" data-accordion-content-rsp="1">{{ section.settings.usp_content_1 }}</div>
+                  </div>
+                </div>
+              {% endif %}
+
+              {% if section.settings.usp_title_2 or section.settings.usp_content_2 %}
+                <div class="col-lg-3">
+                  <div class="header-bottle__usp">
+                    <button class="header-bottle__usp-header" data-accordion-button-rsp="2" tabindex="-1">
+                      <div class="header-bottle__usp-icon">
+                        {% if section.settings.usp_icon_2 == "alkaline" %}
+                          {% render 'icon-alkaline' %}
+                        {% elsif section.settings.usp_icon_2 == "antioxidant" %}
+                          {% render 'icon-antioxidant' %}
+                        {% elsif section.settings.usp_icon_2 == "infused" %}
+                          {% render 'icon-infused' %}
+                        {% endif %}
+                      </div>
+                      <h5 class="header-bottle__usp-title">{{ section.settings.usp_title_2 }}</h5>
+                      <span class="header-bottle__usp-closed">+</span>
+                      <span class="header-bottle__usp-open">-</span>
+                    </button>
+                    <div class="header-bottle__usp-body" data-accordion-content-rsp="2">{{ section.settings.usp_content_2 }}</div>
+                  </div>
+                </div>
+              {% endif %}
+
+              {% if section.settings.usp_title_3 or section.settings.usp_content_3 %}
+                <div class="col-lg-3">
+                  <div class="header-bottle__usp">
+                    <button class="header-bottle__usp-header" data-accordion-button-rsp="3" tabindex="-1">
+                      <div class="header-bottle__usp-icon">
+                        {% if section.settings.usp_icon_3 == "alkaline" %}
+                          {% render 'icon-alkaline' %}
+                        {% elsif section.settings.usp_icon_3 == "antioxidant" %}
+                          {% render 'icon-antioxidant' %}
+                        {% elsif section.settings.usp_icon_3 == "infused" %}
+                          {% render 'icon-infused' %}
+                        {% endif %}
+                      </div>
+                      <h5 class="header-bottle__usp-title">{{ section.settings.usp_title_3 }}</h5>
+                      <span class="header-bottle__usp-closed">+</span>
+                      <span class="header-bottle__usp-open">-</span>
+                    </button>
+                    <div class="header-bottle__usp-body" data-accordion-content-rsp="3">{{ section.settings.usp_content_3 }}</div>
+                  </div>
+                </div>
+              {% endif %}
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-bottle__close">
+        <button type="button" class="header-bottle__close-btn" data-header-block-close="1" tabindex="-1">
+          <span class="visually-hidden">{{ 'general.accessibility.close' | t }}</span>
+          {% render 'icon-chevron-up' %}
+        </button>
+      </div>
+    </div>
+    <div class="header-bottle__overlay" data-header-block-close="1"></div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Header Bottle",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enabled",
+        "label": "Show this menu",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "main_title",
+        "label": "Bottle Link Title",
+        "default": "The Bottle"
+      },
+      {
+        "type": "textarea",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "textarea",
+        "id": "subtitle",
+        "label": "Subtitle"
+      },
+      {
+        "type": "textarea",
+        "id": "content",
+        "label": "Content"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Link URL"
+      },
+      {
+        "type": "text",
+        "id": "link_text",
+        "label": "Link Text"
+      },
+      {
+        "type": "textarea",
+        "id": "video",
+        "label": "Video Embed",
+        "info": "Paste the youtube video embed code here."
+      },
+      {
+        "type": "textarea",
+        "id": "usp_title",
+        "label": "USPs Title"
+      },
+      {
+        "type": "select",
+        "id": "usp_icon_1",
+        "label": "USP Icon 1",
+        "options": [
+          {
+            "value": "alkaline",
+            "label": "Alkaline"
+          },
+          {
+            "value": "antioxidant",
+            "label": "Antioxidant"
+          },
+          {
+            "value": "infused",
+            "label": "Infused"
+          }
+        ],
+        "info": "Icon to be used."
+      },
+      {
+        "type": "textarea",
+        "id": "usp_title_1",
+        "label": "USP Title 1"
+      },
+      {
+        "type": "textarea",
+        "id": "usp_content_1",
+        "label": "USP Content 1"
+      },
+      {
+        "type": "select",
+        "id": "usp_icon_2",
+        "label": "USP Icon 2",
+        "options": [
+          {
+            "value": "alkaline",
+            "label": "Alkaline"
+          },
+          {
+            "value": "antioxidant",
+            "label": "Antioxidant"
+          },
+          {
+            "value": "infused",
+            "label": "Infused"
+          }
+        ],
+        "info": "Icon to be used."
+      },
+      {
+        "type": "textarea",
+        "id": "usp_title_2",
+        "label": "USP Title 2"
+      },
+      {
+        "type": "textarea",
+        "id": "usp_content_2",
+        "label": "USP Content 2"
+      },
+      {
+        "type": "select",
+        "id": "usp_icon_3",
+        "label": "USP Icon 3",
+        "options": [
+          {
+            "value": "alkaline",
+            "label": "Alkaline"
+          },
+          {
+            "value": "antioxidant",
+            "label": "Antioxidant"
+          },
+          {
+            "value": "infused",
+            "label": "Infused"
+          }
+        ],
+        "info": "Icon to be used."
+      },
+      {
+        "type": "textarea",
+        "id": "usp_title_3",
+        "label": "USP Title 3"
+      },
+      {
+        "type": "textarea",
+        "id": "usp_content_3",
+        "label": "USP Content 3"
+      }
+    ]
+  }
+{% endschema %}
+

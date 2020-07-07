@@ -192,6 +192,16 @@
   }
 }
 
+#shopify-section-header-shop,
+#shopify-section-header-about,
+#shopify-section-header-bottle {
+  display: inline-block;
+
+  @include media-query($large-down) {
+    display: block;
+  }
+}
+
 @import "./announcement-bar";
 @import "./header-button";
 @import "./header-logo";
