@@ -1,0 +1,224 @@
+{% if section.settings.help_enabled %}
+  <a class="header-help__main-link" href="#" data-header-link="5">
+    <span class="header-help__main-text">{{ section.settings.help_title }}</span>
+    <span class="header-help__main-icon" aria-hidden="true">
+      {% render 'icon-plus-vertical' %}
+      {% render 'icon-plus-horizontal' %}
+    </span>
+  </a>
+
+  <div class="header-help" data-header-block="5">
+    <div class="header-help__body">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-6 order-lg-1 order-2">
+            {% render 'responsive-image' with
+              image: section.settings.help_image,
+              max_width: 312,
+              max_height: 312,
+              image_class: "header-help__img",
+              wrapper_class: "header-help__img-wrap",
+              snippet_index: 57
+            %}
+          </div>
+
+          <div class="col-lg-2 col-6 order-lg-2 order-1">
+            <nav class="header-help__nav">
+              <ul class="header-help__nav-list">
+                {% for link in linklists[section.settings.help_menu].links %}
+                  <li class="header-help__nav-item">
+                    <a href="{{ link.url }}" class="header-help__nav-link" tabindex="-1">
+                      {{ link.title }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </nav>
+          </div>
+
+          <div class="col-lg-7 order-lg-3 order-3">
+            <div class="header-help__big-links">
+              {% if section.settings.help_link_1_text != empty %}
+                <a class="header-help__big-link" href="{{ section.settings.help_link_1 }}" tabindex="-1">
+                  <span class="header-help__big-link-i">{% render 'icon-phone' %}</span>
+                  <span class="header-help__big-link-t">{{ section.settings.help_link_1_text }}</span>
+                </a>
+              {% endif %}
+
+              {% if section.settings.help_link_2_text != empty %}
+                <a class="header-help__big-link" href="{{ section.settings.help_link_2 }}" tabindex="-1">
+                  <span class="header-help__big-link-i">{% render 'icon-mail' %}</span>
+                  <span class="header-help__big-link-t">{{ section.settings.help_link_2_text }}</span>
+                </a>
+              {% endif %}
+
+              {% if section.settings.help_link_3_text != empty %}
+                <a class="header-help__big-link" onclick="Smooch.open();" tabindex="-1">
+                  <span class="header-help__big-link-i">{% render 'icon-chat' %}</span>
+                  <span class="header-help__big-link-t">{{ section.settings.help_link_3_text }}</span>
+                </a>
+              {% endif %}
+            </div>
+
+            <div class="header-help__faq-header">
+              {% if section.settings.faq_title != empty %}
+                <div class="header-help__faq-title">{{ section.settings.faq_title }}</div>
+              {% endif %}
+
+              {% if section.settings.faq_link_text != empty %}
+                <a href="{{ section.settings.faq_link }}" class="header-help__faq-link" tabindex="-1">{{ section.settings.faq_link_text }}</a>
+              {% endif %}
+            </div>
+
+            <div class="header-help__faqs" data-accordion-parent=true>
+              {% comment %} section.settings.faq_article_1 {% endcomment %}
+              {% if section.settings.faq_article_1 != empty %}
+                {% assign h_faq_article_1 = articles[section.settings.faq_article_1] %}
+                <div class="header-help__faq">
+                  <button class="header-help__faq-btn" data-accordion-button="1" tabindex="-1">
+                    <span class="header-help__faq-q">
+                      {{ h_faq_article_1.title }}
+                    </span>
+                    <span class="header-help__faq-closed">+</span>
+                    <span class="header-help__faq-open">-</span>
+                  </button>
+                  <div class="header-help__faq-a" data-accordion-content="1" style="display: none;">{{ h_faq_article_1.content | strip_html }}</div>
+                </div>
+              {% endif %}
+
+              {% if section.settings.faq_article_2 != empty %}
+                {% assign h_faq_article_2 = articles[section.settings.faq_article_2] %}
+                <div class="header-help__faq">
+                  <button class="header-help__faq-btn" data-accordion-button="2" tabindex="-1">
+                    <span class="header-help__faq-q">
+                      {{ h_faq_article_2.title }}
+                    </span>
+                    <span class="header-help__faq-closed">+</span>
+                    <span class="header-help__faq-open">-</span>
+                  </button>
+                  <div class="header-help__faq-a" data-accordion-content="2" style="display: none;">{{ h_faq_article_2.content | strip_html }}</div>
+                </div>
+              {% endif %}
+
+              {% if section.settings.faq_article_3 != empty %}
+                {% assign h_faq_article_3 = articles[section.settings.faq_article_3] %}
+                <div class="header-help__faq">
+                  <button class="header-help__faq-btn" data-accordion-button="3" tabindex="-1">
+                    <span class="header-help__faq-q">
+                      {{ h_faq_article_3.title }}
+                    </span>
+                    <span class="header-help__faq-closed">+</span>
+                    <span class="header-help__faq-open">-</span>
+                  </button>
+                  <div class="header-help__faq-a" data-accordion-content="3" style="display: none;">{{ h_faq_article_3.content | strip_html }}</div>
+                </div>
+              {% endif %}
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-help__close">
+        <button type="button" class="header-help__close-btn" data-header-block-close="5" tabindex="-1">
+          <span class="visually-hidden">{{ 'general.accessibility.close' | t }}</span>
+          {% render 'icon-chevron-up' %}
+        </button>
+      </div>
+    </div>
+
+    <div class="header-help__overlay" data-header-block-close="5"></div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Header Help",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "help_enabled",
+        "label": "Show this menu",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "help_title",
+        "label": "Help Title",
+        "default": "Help"
+      },
+      {
+        "type": "link_list",
+        "id": "help_menu",
+        "label": "Help Menu"
+      },
+      {
+        "type": "image_picker",
+        "id": "help_image",
+        "label": "Help menu Image"
+      },
+      {
+        "type": "url",
+        "id": "help_link_1",
+        "label": "Phone Link"
+      },
+      {
+        "type": "text",
+        "id": "help_link_1_text",
+        "label": "Phone Link Text"
+      },
+      {
+        "type": "url",
+        "id": "help_link_2",
+        "label": "Email Link"
+      },
+      {
+        "type": "text",
+        "id": "help_link_2_text",
+        "label": "Email Link Text"
+      },
+      {
+        "type": "url",
+        "id": "help_link_3",
+        "label": "Chat Link"
+      },
+      {
+        "type": "text",
+        "id": "help_link_3_text",
+        "label": "Chat Link Text"
+      },
+      {
+        "type": "text",
+        "id": "faq_title",
+        "label": "FAQs Title",
+        "default": "FAQs"
+      },
+      {
+        "type": "article",
+        "id": "faq_article_1",
+        "label": "FAQ Article 1"
+      },
+      {
+        "type": "article",
+        "id": "faq_article_2",
+        "label": "FAQ Article 2"
+      },
+      {
+        "type": "article",
+        "id": "faq_article_3",
+        "label": "FAQ Article 3"
+      },
+      {
+        "type": "url",
+        "id": "faq_link",
+        "label": "FAQ link"
+      },
+      {
+        "type": "text",
+        "id": "faq_link_text",
+        "label": "FAQ link text"
+      }
+    ]
+  }
+{% endschema %}
