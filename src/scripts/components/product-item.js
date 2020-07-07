@@ -225,6 +225,7 @@ function renderProductOptions(variant, $parent) {
     return null;
   }
   const $select = $parent.find(selectors.select);
+  $select.find("option").removeAttr("selected");
   const $newOption = $select.find(`option[value="${variant.id}"]`);
   $newOption.attr("selected", "selected");
   return $select.change();

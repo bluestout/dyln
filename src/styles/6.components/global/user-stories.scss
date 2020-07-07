@@ -142,6 +142,14 @@
         order: 2 !important;
       }
     }
+
+    &:first-of-type {
+      padding: 0 12px 0 0;
+    }
+
+    &:last-of-type {
+      padding: 0 0 0 12px;
+    }
   }
 
   &__s-media {
@@ -162,6 +170,7 @@
     background-color: $color-theme-4;
     min-height: 425px;
     padding: 40px;
+    flex: auto;
   }
 
   &__s-title {
@@ -305,6 +314,14 @@
 
     &__story {
       padding: 0 5px;
+
+      &:first-of-type {
+        padding: 0 5px 0 0;
+      }
+
+      &:last-of-type {
+        padding: 0 0 0 5px;
+      }
     }
 
     &__s-c-wrap {
@@ -346,10 +363,6 @@
     &__title {
       letter-spacing: 0.97px;
       margin: 0 0 20px;
-    }
-
-    &__story {
-      padding: 0 10px;
     }
 
     &__slider-wrap {

@@ -4,7 +4,7 @@
 
 <div class="list-c">
   <div class="container">
-    {% for link in linklists["list-collections"].links %}
+    {% for link in linklists[settings.collections_all_linklist].links %}
       {% assign list_c = link.object %}
       <div class="list-c__collection">
         <h2 class="list-c__c-title">{{ list_c.title }}</h2>

@@ -9,7 +9,13 @@
       {% else %}
         {% assign active_tab_class = "" %}
       {% endif %}
-      <button type="button" class="contact-tabs-header__link{{ active_tab_class }}" data-tab-link={{ forloop.index0 }} data-c-tab="{{ block.settings.title }}">{{ block.settings.title }}</button>
+      <button
+        type="button"
+        class="contact-tabs-header__link{{ active_tab_class }}"
+        data-tab-link={{ forloop.index }}
+        data-c-tab="{{ block.settings.title }}">
+        {{ block.settings.title }}
+      </button>
     {% endif %}
   {% endfor %}
 </div>

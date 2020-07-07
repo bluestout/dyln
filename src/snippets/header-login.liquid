@@ -7,62 +7,216 @@
 </a>
 
 <div class="header-login" data-header-block="4">
-  <h3 class="header-login__title">{{ l_form_title }}</h3>
-  <button class="header-login__close" data-header-block-close="4" tabindex="-1">
-    {% render 'icon-close' %}
-    <span class="visually-hidden">{{ 'general.accessibility.close' | t }}</span>
-  </button>
-  <div class="header-login__socials" data-header-toggle-element style="display:none;">
-    <div class='oxi-social-login'></div>
-  </div>
-  {% form 'customer_login', class: 'header-login__form' %}
+  <div data-header-login-block>
+    <h3 class="header-login__title">{{ l_form_title }}</h3>
+    <button class="header-login__close" data-header-block-close="4" tabindex="-1">
+      {% render 'icon-close' %}
+      <span class="visually-hidden">{{ 'general.accessibility.close' | t }}</span>
+    </button>
+    <div class="header-login__socials" data-header-toggle-element style="display:none;">
+      <div class='oxi-social-login'></div>
+    </div>
+    {% form 'customer_login', class: 'header-login__form' %}
 
-    {{ form.errors | default_errors }}
+      {{ form.errors | default_errors }}
 
-    <label for="HCustomerEmail" class="label-hidden">
-      {{ 'customer.login.email' | t }}
-    </label>
-    <input type="email"
-      name="customer[email]"
-      id="HCustomerEmail"
-      class="header-login__input{% if form.errors contains 'email' %} error{% endif %}"
-      placeholder="{{ 'customer.login.email' | t }}"
-      spellcheck="false"
-      autocomplete="off"
-      autocapitalize="off"
-      autofocus
-      required
-      tabindex="-1">
-
-    {% if form.password_needed %}
-      <label for="HCustomerPassword" class="label-hidden">
-        {{ 'customer.login.password' | t }}
+      <label for="HCustomerEmail" class="label-hidden">
+        {{ 'customer.login.email' | t }}
       </label>
-      <input type="password"
-        name="customer[password]"
-        id="HCustomerPassword"
-        class="header-login__input{% if form.errors contains 'password' %} error{% endif %}"
-        placeholder="{{ 'customer.login.password' | t }}"
+      <input type="email"
+        name="customer[email]"
+        id="HCustomerEmail"
+        class="header-login__input{% if form.errors contains 'email' %} error{% endif %}"
+        placeholder="{{ 'customer.login.email' | t }}"
+        spellcheck="false"
+        autocomplete="off"
+        autocapitalize="off"
+        autofocus
         required
-        tabindex="-1"/>
-    {% endif %}
+        tabindex="-1">
 
-    <div class="header-login__account-links">
-      <a class="header-login__account-link" href="/account/register" tabindex="-1">{{ 'layout.customer.create_account' | t }}</a>
-      <a class="header-login__account-link" href="/account/login#forgot" tabindex="-1">{{ 'customer.login.forgot_password' | t }}</a>
+      {% if form.password_needed %}
+        <label for="HCustomerPassword" class="label-hidden">
+          {{ 'customer.login.password' | t }}
+        </label>
+        <input type="password"
+          name="customer[password]"
+          id="HCustomerPassword"
+          class="header-login__input{% if form.errors contains 'password' %} error{% endif %}"
+          placeholder="{{ 'customer.login.password' | t }}"
+          required
+          tabindex="-1"/>
+      {% endif %}
+
+      <div class="header-login__account-links">
+        <a class="header-login__account-link" href="/account/login#forgot" tabindex="-1">{{ 'customer.login.forgot_password' | t }}</a>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="header-login__submit" tabindex="-1">{{ 'customer.login.log_in' | t }}</button>
+      </div>
+    {% endform %}
+    <div class="header-login__separator"></div>
+
+    <h4 class="header-login__subtitle">{{ 'customer.register.title_dyln' | t }}</h4>
+
+    <div class="header-login__benefits-inline">
+      {% if l_benefit_1 != empty %}
+        <div class="header-login__benefit-i">
+          {% if l_benefit_icon_1 == "star" %}
+          {% render 'icon-blue-star' %}
+          {% elsif l_benefit_icon_1 == "blue-reminder" %}
+          {% render 'icon-blue-reminder' %}
+          {% elsif l_benefit_icon_1 == "track" %}
+          {% render 'icon-track' %}
+          {% endif %}
+          <div><span>{{ l_benefit_1 }}</span></div>
+        </div>
+      {% endif %}
+      {% if l_benefit_2 != empty %}
+        <div class="header-login__benefit-i">
+          {% if l_benefit_icon_2 == "star" %}
+          {% render 'icon-blue-star' %}
+          {% elsif l_benefit_icon_2 == "blue-reminder" %}
+          {% render 'icon-blue-reminder' %}
+          {% elsif l_benefit_icon_2 == "track" %}
+          {% render 'icon-track' %}
+          {% endif %}
+          <div><span>{{ l_benefit_2 }}</span></div>
+        </div>
+      {% endif %}
+      {% if l_benefit_3 != empty %}
+        <div class="header-login__benefit-i">
+          {% if l_benefit_icon_3 == "star" %}
+          {% render 'icon-blue-star' %}
+          {% elsif l_benefit_icon_3 == "blue-reminder" %}
+          {% render 'icon-blue-reminder' %}
+          {% elsif l_benefit_icon_3 == "track" %}
+          {% render 'icon-track' %}
+          {% endif %}
+          <div><span>{{ l_benefit_3 }}</span></div>
+        </div>
+      {% endif %}
     </div>
 
     <div class="text-center">
-      <button type="submit" class="header-login__submit" tabindex="-1">{{ 'customer.login.sign_in' | t }}</button>
+      <button class="header-login__button-wire" data-header-open-register-block>{{ l_register_open }}</button>
     </div>
-  {% endform %}
-  <div class="header-login__separator"></div>
 
-  <a class="header-login__bottle-link" href="{{ l_reg_link }}" tabindex="-1">
-    <span class="header-login__bottle-wrap" aria-hidden="true">
-      <img class="header-login__bottle-img" src="{{ 'dyln-register-bottle.png' | asset_url }}" alt="Register your new bottle" />
-    </span>
-    <span class="header-login__bottle-text">{{ l_reg_text }}</span>
-  </a>
+    {% if l_register_text != empty %}
+      <div class="header-login__separator"></div>
+      <div class="text-center">
+        <a class="header-login__button-wire-alt" href="{{ l_register_url }}">{{ l_register_text }}</a>
+      </div>
+    {% endif %}
+  </div>
+
+  <div data-header-register-block style="display:none;">
+    <h3 class="header-login__title-alt">{{ l_register_open }}</h3>
+    <button class="header-login__close" data-header-block-close="4" tabindex="-1">
+      {% render 'icon-close' %}
+      <span class="visually-hidden">{{ 'general.accessibility.close' | t }}</span>
+    </button>
+    <div class="header-login__socials" data-header-toggle-element style="display:none;">
+      <div class='oxi-social-login'></div>
+    </div>
+    {% form 'create_customer' %}
+      {{ form.errors | default_errors }}
+
+      <label for="HCFirstName" class="label-hidden">
+        {{ 'customer.register.first_name' | t }}
+      </label>
+      <input type="text"
+        name="customer[first_name]"
+        id="HCFirstName"
+        placeholder="{{ 'customer.register.first_name' | t }}"
+        class="header-login__input half-left"
+        autofocus
+        {% if form.first_name %}value="{{ form.first_name }}"{% endif %} />
+
+      <label for="HCLastName" class="label-hidden">
+        {{ 'customer.register.last_name' | t }}
+      </label>
+      <input type="text"
+        name="customer[last_name]"
+        id="HCLastName"
+        class="header-login__input half-right"
+        placeholder="{{ 'customer.register.last_name' | t }}"
+        {% if form.last_name %}value="{{ form.last_name }}"{% endif %} />
+
+      <label for="HCREmail" class="label-hidden">
+        {{ 'customer.register.email' | t }}
+      </label>
+      <input type="email"
+        name="customer[email]"
+        id="HCREmail"
+        class="header-login__input"
+        placeholder="{{ 'customer.register.email' | t }}"
+        value="{% if form.email %}{{ form.email }}{% endif %}"
+        spellcheck="false"
+        autocomplete="off"
+        autocapitalize="off" />
+
+      <label for="HCRCreatePassword" class="label-hidden">
+        {{ 'customer.register.password' | t }}
+      </label>
+      <input type="password"
+        name="customer[password]"
+        id="HCRCreatePassword"
+        class="header-login__input"
+        placeholder="{{ 'customer.register.password' | t }}" />
+
+      <p class="header-login__link-static">
+        {{ 'customer.register.already_have_account' | t }}<button data-header-open-login-block>{{ 'customer.login.log_in' | t }}</button>
+      </p>
+
+      <div class="text-center">
+        <button type="submit" class="header-login__submit" tabindex="-1">{{ 'customer.register.submit' | t }}</button>
+      </div>
+    {% endform %}
+
+    <h5 class="header-login__benefits-title">{{ l_benefit_title }}</h5>
+    <div class="header-login__benefits-block">
+      <div class="header-login__benefit-b">
+        {% if l_benefit_icon_1 == "star" %}
+          <div class="header-login__benefit-b-icon">{% render 'icon-blue-star' %}</div>
+          {% elsif l_benefit_icon_1 == "blue-reminder" %}
+          <div class="header-login__benefit-b-icon">{% render 'icon-blue-reminder' %}</div>
+          {% elsif l_benefit_icon_1 == "track" %}
+          <div class="header-login__benefit-b-icon">{% render 'icon-track' %}</div>
+        {% endif %}
+        <div class="header-login__benefit-b-content">
+          <span><strong>{{ l_benefit_1 }}</strong></span><br>
+          <span>{{ l_benefit_content_1 }}</span>
+        </div>
+      </div>
+      <div class="header-login__benefit-b">
+        {% if l_benefit_icon_2 == "star" %}
+          <div class="header-login__benefit-b-icon">{% render 'icon-blue-star' %}</div>
+          {% elsif l_benefit_icon_2 == "blue-reminder" %}
+          <div class="header-login__benefit-b-icon">{% render 'icon-blue-reminder' %}</div>
+          {% elsif l_benefit_icon_2 == "track" %}
+          <div class="header-login__benefit-b-icon">{% render 'icon-track' %}</div>
+        {% endif %}
+        <div class="header-login__benefit-b-content">
+          <span><strong>{{ l_benefit_2 }}</strong></span><br>
+          <span>{{ l_benefit_content_2 }}</span>
+        </div>
+      </div>
+      <div class="header-login__benefit-b">
+        {% if l_benefit_icon_3 == "star" %}
+          <div class="header-login__benefit-b-icon">{% render 'icon-blue-star' %}</div>
+          {% elsif l_benefit_icon_3 == "blue-reminder" %}
+          <div class="header-login__benefit-b-icon">{% render 'icon-blue-reminder' %}</div>
+          {% elsif l_benefit_icon_3 == "track" %}
+          <div class="header-login__benefit-b-icon">{% render 'icon-track' %}</div>
+        {% endif %}
+        <div class="header-login__benefit-b-content">
+          <span><strong>{{ l_benefit_3 }}</strong></span><br>
+          <span>{{ l_benefit_content_3 }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 

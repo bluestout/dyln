@@ -5,7 +5,6 @@
       <h2 class="user-stories__title">{{ section.settings.title }}</h2>
     </div>
   {% endif %}
-
   <div class="container relative">
     <div class="user-stories__stories" data-slider-wrapper aria-roledescription="carousel">
       {% for block in section.blocks %}
@@ -24,6 +23,7 @@
                   max_height: 425,
                   wrapper_class: "user-stories__img-wrap",
                   image_class: "user-stories__img",
+                  snippet_index: 50
                 %}
               {% endif %}
             </div>

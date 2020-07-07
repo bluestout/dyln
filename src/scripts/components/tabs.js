@@ -7,7 +7,7 @@
  */
 
 import $ from "jquery";
-import { getUrlParams } from "./helpers";
+import { getUrlParams, getUrlHashParams } from "./helpers";
 
 const datasets = {
   tab: "tab",
@@ -67,10 +67,12 @@ function tabs(event) {
 
 function checkTabHash() {
   const urlParams = getUrlParams();
+  const urlHashParams = getUrlHashParams();
+
   if (urlParams[variables.posted]) {
-    $(selectors.linkByIndex(4)).click();
-  } else if (urlParams[variables.contactParam]) {
-    const index = urlParams[variables.contactParam];
+    $(selectors.linkByIndex(5)).click();
+  } else if (urlHashParams[variables.contactParam]) {
+    const index = urlHashParams[variables.contactParam];
     $(selectors.linkByIndex(index)).click();
   }
 }
