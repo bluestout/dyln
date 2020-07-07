@@ -1,0 +1,88 @@
+{% if section.settings.search_enabled %}
+  <a class="header-search__main-link" href="#" data-header-link="6">
+    {% render 'icon-search' %}
+  </a>
+
+  <div class="header-search" data-header-block="6">
+    <div class="header-search__body">
+      <div class="container">
+        <form action="/search" method="get" role="search" class="header-search__form">
+          <label for="Search-{{ section_id }}" class="label-hidden">
+            {{ 'general.search.placeholder' | t }}
+          </label>
+
+          <input type="search"
+            class="header-search__input"
+            name="q"
+            id="Search-{{ section_id }}"
+            value="{{ search.terms | escape }}"
+            placeholder="{{ 'general.search.placeholder' | t }}"
+            data-header-search-input
+            tabindex="-1"
+          />
+
+          <button type="submit" class="header-search__submit" tabindex="-1">
+            <span class="icon-fallback-text hide">{{ 'general.search.submit' | t }}</span>
+            {% render 'icon-search' %}
+          </button>
+        </form>
+
+        {% if section.settings.s_pop_manual %}
+          <div class="header-search__popular">
+            {% if section.settings.s_pop_title != empty %}
+              <h6 class="header-search__pop-title">{{ section.settings.s_pop_title }}</h6>
+            {% endif %}
+            <div class="header-search__pop-terms">
+              {%- assign pop_terms = section.settings.s_pop_terms | split: ',' -%}
+              {% for pop_term in pop_terms %}
+                {% assign s_term = pop_term | strip | strip_newlines | strip_html | replace: ' ', '+' | replace: '_', '+' | replace: '-', '+' %}
+                <a href='/search?q={{ s_term }}' class="header-search__pop-term">{{ pop_term }}</a>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+        <div class="header-search__close">
+          <button type="button" class="header-search__close-btn" data-header-block-close="6" tabindex="-1">
+            <span class="visually-hidden">{{ 'general.accessibility.close' | t }}</span>
+            {% render 'icon-chevron-up' %}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-search__overlay" data-header-block-close="6"></div>
+
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Header Search",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "search_enabled",
+        "label": "Show this menu",
+        "default": true
+      },
+      {
+        "type": "textarea",
+        "id": "s_pop_title",
+        "label": "Popular Title"
+      },
+      {
+        "type": "checkbox",
+        "id": "s_pop_manual",
+        "label": "Show Popular Terms",
+        "info": "Manual setting, any search app will have separate popular term functionality and display."
+      },
+      {
+        "type": "textarea",
+        "id": "s_pop_terms",
+        "label": "Popular Terms",
+        "info": "Manually list popular terms. Separate with comma(,).   "
+      }
+    ]
+  }
+{% endschema %}

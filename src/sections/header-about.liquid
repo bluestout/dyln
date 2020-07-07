@@ -1,0 +1,51 @@
+{% if section.settings.enabled %}
+  <a class="header-about__main-link" href="#" data-header-link="3">
+    <span class="header-about__main-text">{{ section.settings.title }}</span>
+    <span class="header-about__main-icon" aria-hidden="true">
+      {% render 'icon-plus-vertical' %}
+      {% render 'icon-plus-horizontal' %}
+    </span>
+  </a>
+
+  <div class="header-about" data-header-block="3">
+    <div class="header-about__body">
+      <div class="header-about__menu">
+        {% for link in linklists[section.settings.menu].links %}
+          <a class="header-about__menu-link" href="{{ link.url }}" tabindex="-1">{{ link.title }}</a>
+        {% endfor %}
+      </div>
+      <div class="header-about__close">
+        <button type="button" class="header-about__close-btn" data-header-block-close="3" tabindex="-1">
+          <span class="visually-hidden">{{ 'general.accessibility.close' | t }}</span>
+          {% render 'icon-chevron-up' %}
+        </button>
+      </div>
+    </div>
+    <div class="header-about__overlay" data-header-block-close="3"></div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Header About",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enabled",
+        "label": "Show this menu",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "About Link Title",
+        "default": "About Us"
+      },
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "About Menu"
+      }
+    ]
+  }
+{% endschema %}
