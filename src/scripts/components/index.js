@@ -25,9 +25,3 @@ function handleVideoCloseClick() {
 
 $(document).on("click", selectors.videoOpen, handleVideoOpenClick);
 $(document).on("click", selectors.videoClose, handleVideoCloseClick);
-
-$(document).keyup((event) => {
-  if (event.key === "Escape") {
-    handleModalCloseClick();
-  }
-});

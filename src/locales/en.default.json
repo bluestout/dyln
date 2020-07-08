@@ -375,7 +375,7 @@
       "change_amount": "Change Amount",
       "back_to_one_time": "Back to one time purchase",
       "select_frequency": "Select Frequency",
-      "select_frequency_and_confirm": "You must select a frequency and tick the subscription checkbox."
+      "select_frequency_prompt": "You must select a frequency."
     }
   },
   "gift_cards": {
