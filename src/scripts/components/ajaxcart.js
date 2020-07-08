@@ -1,5 +1,9 @@
 import $ from "jquery";
-import { formatAndTrimPrice, toggleTabindexInChildren } from "./helpers";
+import {
+  formatAndTrimPrice,
+  toggleTabindexInChildren,
+  toggleChatBubble,
+} from "./helpers";
 import {
   quickCartUpsellHtml,
   quickCartLineItemHtml,
@@ -32,6 +36,7 @@ const selectors = {
   nav: "[data-main-navigation]",
   pageWrap: "[data-page-overlay]",
   productPrice: "[data-product-price]",
+  cartHeader: "[data-c-d-header]",
   quick: {
     toggle: "[data-cart-drawer-toggle]",
     content: "[data-cart-drawer-content]",
@@ -48,13 +53,10 @@ const selectors = {
     focusOut: "[data-cart-drawer-focus-out]",
     focusIn: "[data-cart-drawer-focus-in]",
     frequency: "[data-qc-frequency-input]",
-    freqSelection: "[data-qc-frequency-selection]",
     item: "[data-cart-drawer-item]",
     subPrice: "[data-qc-subscription-price]",
     subDescription: "[data-qc-subscription-description]",
     subConvert: "[data-qc-subscription-convert]",
-    subAgree: "[data-qc-subscription-convert]",
-    subConfirm: "[data-qc-subscription-confirm]",
   },
   cart: {
     container: "[data-cart-container]",
@@ -135,43 +137,51 @@ function ajaxChangeCartQty(id, qty, line, delay) {
 
 function handleAjaxFrequencyClick(event) {
   const $this = $(event.currentTarget);
-  const frequency = $this.data("frequency");
-  const unit = $this.data("unit");
-  const line = $this.data("line");
-  ajaxChangeSubscriptionLineItem(frequency, unit, line);
-}
-
-function handleAjaxFreqSelectionClick(event) {
-  const $this = $(event.currentTarget);
-  const text = $this.data("text");
-  const price = $this.data("price");
-
-  const $item = $this.closest(selectors.quick.item);
-  $item.find(selectors.quick.subPrice).text(price);
-  $item.find(selectors.quick.subDescription).text(text);
+  if ($this.data("subscription") === "no") {
+    const text = $this.data("text");
+    const price = $this.data("price");
+    const $item = $this.closest(selectors.quick.item);
+    $item.find(selectors.quick.subPrice).text(`${price} `);
+    $item.find(selectors.quick.subDescription).text(text);
+  } else if ($this.data("subscription") === "yes") {
+    const frequency = $this.data("frequency");
+    const unit = $this.data("unit");
+    const line = $this.data("line");
+    ajaxChangeSubscriptionLineItem(frequency, unit, line);
+  }
 }
 
 function handleAjaxSubscriptionConversionClick(event) {
   const $this = $(event.currentTarget);
   const confirm = $this
     .closest(selectors.quick.item)
-    .find(selectors.quick.subConfirm)
+    .find(selectors.quick.subConvert)
     .prop("checked");
   const $input = $this
     .closest(selectors.quick.item)
-    .find(`${selectors.quick.freqSelection}`)
+    .find(`${selectors.quick.frequency}`)
     .filter(":checked");
+
   const frequency = $input.data("frequency");
   const unit = $input.data("unit");
   const line = $input.data("line");
   const subId = $input.data("sub-id");
+  const id = $input.data("id");
 
-  if (confirm && $input.length > 0) {
+  if (confirm && $input.length > 0 && $input.data("subscription") === "no") {
     containerLoading(true);
     ajaxChangeCartQty(line, 0, true, true);
     subscriptionAjax(subId, 1, frequency, unit);
-  } else {
-    showMessage(theme.strings.select_frequency_and_confirm);
+  } else if ($input.data("subscription") === "yes" && !confirm) {
+    containerLoading(true);
+    ajaxChangeCartQty(line, 0, true, true);
+    ajaxAddToCart({ quantity: 1, id: id });
+  } else if (confirm && $input.length === 0) {
+    showMessage(theme.strings.select_frequency_prompt);
+    $this
+      .closest(selectors.quick.item)
+      .find(selectors.quick.subConvert)
+      .prop("checked", false);
   }
 }
 
@@ -371,11 +381,18 @@ function handleAjaxAddButtonClick(event) {
     toggleAddingToCartAnimation($source, false);
   }, 10000);
 
+  ajaxAddToCart($form.serialize());
+}
+
+function ajaxAddToCart(data) {
+  if (!data) {
+    return null;
+  }
   $.ajax({
     type: "POST",
     url: "/cart/add.js",
     async: false,
-    data: $form.serialize(),
+    data: data,
     dataType: "json",
     cache: false,
     complete: (jqXHR, textStatus) => {
@@ -531,12 +548,14 @@ function quickCartToggle(event) {
     $("html").removeClass("no-scroll");
     toggleTabindexInChildren($quickCart, 2);
     $(selectors.quick.focusOut).focus();
+    toggleChatBubble(2);
   } else {
     $quickCart.addClass(classes.open);
     $(selectors.quick.overlay).addClass(classes.active);
     $("html").addClass("no-scroll");
     toggleTabindexInChildren($quickCart, 1);
     $(selectors.quick.focusIn).focus();
+    toggleChatBubble(1);
   }
 }
 
@@ -560,10 +579,14 @@ function quickCartOpen(open) {
 }
 
 function handleCartDrawerCheckoutHeight() {
-  const quickcartHeight = $(selectors.quick.content).outerHeight();
+  const windowHeight = $(window).height();
   const totalsHeight = $(selectors.quick.totalsWrap).outerHeight();
-
-  $(selectors.quick.wrap).css("height", quickcartHeight - totalsHeight);
+  const cartHeaderHeight = $(selectors.cartHeader).outerHeight();
+  const cartShipNoteHeight = $(selectors.shipping.note).outerHeight();
+  $(selectors.quick.wrap).css(
+    "height",
+    windowHeight - totalsHeight - cartHeaderHeight - cartShipNoteHeight
+  );
 }
 
 function handleUpsell(cart) {
@@ -683,11 +706,6 @@ $(document).on("click", selectors.upsell.input, handleAjaxUpsellInputClick);
 $(document).on("click", selectors.quick.frequency, handleAjaxFrequencyClick);
 $(document).on(
   "click",
-  selectors.quick.freqSelection,
-  handleAjaxFreqSelectionClick
-);
-$(document).on(
-  "click",
   selectors.quick.subConvert,
   handleAjaxSubscriptionConversionClick
 );
@@ -717,3 +735,5 @@ export {
   reloadAjax,
   handleAjaxAddButtonClick,
 };
+
+document.addEventListener("windowWidthChanged", handleCartDrawerCheckoutHeight);
