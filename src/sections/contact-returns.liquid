@@ -10,16 +10,18 @@
   <ul data-accordion-parent=true>
     {% for block in section.blocks %}
       {% assign contact_faq_article = articles[block.settings.faq_article] %}
-      <li>
-        <button class="contact-body__faq-button" data-accordion-button="{{ forloop.index }}">
-          <span class="contact-body__question">
-            {{ contact_faq_article.title }}
-          </span>
-          <span class="contact-body__closed">+</span>
-          <span class="contact-body__open">-</span>
-        </button>
-        <div class="contact-body__answer rte" data-accordion-content="{{ forloop.index }}" style="display: none;">{{ contact_faq_article.content }}</div>
-      </li>
+      {% if block.settings.faq_article != empty %}
+        <li>
+          <button class="contact-body__faq-button" data-accordion-button="{{ forloop.index }}">
+            <span class="contact-body__question">
+              {{ contact_faq_article.title }}
+            </span>
+            <span class="contact-body__closed">+</span>
+            <span class="contact-body__open">-</span>
+          </button>
+          <div class="contact-body__answer rte" data-accordion-content="{{ forloop.index }}" style="display: none;">{{ contact_faq_article.content }}</div>
+        </li>
+      {% endif %}
     {% endfor %}
   </ul>
 {% endif %}
