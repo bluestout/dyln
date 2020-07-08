@@ -10,7 +10,7 @@
   }
 
   &__outer {
-    z-index: 1;
+    z-index: $z-base;
     margin: -3px 0 0;
     overflow: hidden;
     padding: 0 0 40px;
@@ -191,7 +191,7 @@
     &__back-link {
       position: absolute;
       left: 15px;
-      z-index: 1;
+      z-index: $z-base;
     }
 
     &__bg-outer {

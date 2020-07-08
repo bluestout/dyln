@@ -13,6 +13,7 @@
 
     @include media-query($large-down) {
       height: 400px;
+      text-align: center;
     }
 
     @include media-query($small) {
@@ -49,14 +50,14 @@
     }
 
     &-button {
+      z-index: $z-base;
+      position: absolute;
+      top: 5px;
+      left: 5px;
       width: 100px;
       height: 75%;
       border-radius: 50px;
       background-color: $color-theme-17;
-      position: absolute;
-      top: 5px;
-      left: 5px;
-      z-index: 1;
       transition: ease-in-out all 0.3s;
 
       &.right {
@@ -65,24 +66,28 @@
       }
 
       &-container {
+        position: relative;
         background-color: $color-white;
         border-radius: 50px;
         width: 200px;
         padding: 10px;
-        position: relative;
-        display: flex;
+        margin: 0 20px 0 0;
+        display: inline-flex;
         justify-content: space-around;
 
+        @include media-query($xl) {
+          margin: 0 10px 15px 0;
+        }
+
         @include media-query($large-down) {
-          margin: 0 auto;
-          margin-bottom: 20px;
+          margin: 0 10px 10px;
         }
 
         button {
           @include font-header(bold);
           @include text(18px, 1.2, $color-theme-24, 0.15px);
           position: relative;
-          z-index: 1;
+          z-index: $z-base;
           transition: ease-in-out all 0.3s;
           border: none;
           background: none;
@@ -102,6 +107,10 @@
     &-opt-in {
       display: none;
 
+      @include media-query($large-down) {
+        margin: 0 10px 10px;
+      }
+
       form {
         width: 100%;
         display: flex;
@@ -109,8 +118,7 @@
       }
 
       &.active {
-        display: flex;
-        justify-content: center;
+        display: inline-block;
       }
 
       .klaviyo_field_group {

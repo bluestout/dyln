@@ -9,11 +9,13 @@
   }
 
   &__link {
+    @include no-browser-styling;
     height: 40px;
     padding: 0 25px;
     margin: 0 0 3px;
     background-color: $color-theme-4;
     display: block;
+    cursor: pointer;
   }
 
   &__link-i {

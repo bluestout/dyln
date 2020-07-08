@@ -36,18 +36,20 @@
           {% for value in option.values %}
             {% assign color_handle = value | strip | strip_html | strip_newlines | handleize %}
             {% assign swatch = "color-swatch-" | append: color_handle %}
-            <span class="pdp-form__color-wrap">
+            {% assign variant_id = "" %}
+            {% for p_v in product.variants %}
+              {% if p_v.title == value %}
+                {% assign variant_id = p_v.id %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+            <span class="pdp-form__color-wrap" data-geo-specific-variant="{{ variant_id }}">
               <span class="pdp-form__exclamation-variant">!</span>
               <input
                 class="pdp-form__color-input {{ swatch }}"
                 type="radio"
                 id="Option{{ option.position }}-{{ value | handleize }}"
-                {% for p_v in product.variants %}
-                  {% if p_v.title == value %}
-                    data-variant-id="{{ p_v.id }}"
-                    {% break %}
-                  {% endif %}
-                {% endfor %}
+                data-variant-id="{{ variant_id }}"
                 name="options[{{ option.name }}]"
                 value="{{ value }}"{% if option.selected_value == value %} checked{% endif %} />
               <label class="visually-hidden" for="Option{{ option.position }}-{{ value | handleize }}">{{ value }}</label>
@@ -131,32 +133,33 @@
   </div>
 
   <button
-    class="pdp-form__submit loading"
+    class="pdp-form__submit"
     type="submit"
     name="add"
     data-submit-button
     data-add-to-cart
     {% unless current_variant.available %}disabled="disabled"{% endunless %}>
-      <span data-submit-button-text data-add-to-cart-loaded>
+      <span data-submit-button-text data-add-to-cart-loaded class="hide">
         {% if current_variant.available %}
           {{ 'products.product.add_to_cart' | t }}
         {% else %}
           {{ 'products.product.sold_out' | t }}
         {% endif %}
       </span>
-      <span data-add-to-cart-loading class="loading-dots hide"></span>
+      <span data-add-to-cart-loading class="loading-dots"></span>
   </button>
 
   <p class="product-form__sold-out-notice hide" data-pdp-shipping-note></p>
 
 {% endform %}
 
-{% comment %} <!-- Insert QuadPay Widget --> {% endcomment %}
-<div style="margin: 0 0 10px 0; min-height:20px;">
-  <quadpay-widget amount={{ current_variant.price }} ></quadpay-widget>
-</div>
-
 {% render 'product-item-sold-out' with available: current_variant.available unique_id: 1  %}
+
+{% comment %} <!-- Insert QuadPay Widget --> {% endcomment %}
+<div>
+  <quadpay-widget amount={{ current_variant.price }} ></quadpay-widget>
+  <div class="product-form__sold-out-gradient" style="background-image:url({{ 'out-of-stock-gradient.png' | asset_url }})"></div>
+</div>
 
 <div data-atc-anchor></div>
 

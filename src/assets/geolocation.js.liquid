@@ -13,6 +13,7 @@ window.onload = function() {
     currentOption: `${container} select[name="id"] option:selected`,
     optionByVariant: (variant) =>
       `${container} select[name="id"] option[value="${variant}"]`,
+    pdpInputByVariantId: (id) => `[data-geo-specific-variant="${id}"]`,
     shippingNote: `${container} [data-pdp-shipping-note]`,
     productId: `${container} [data-current-product-id]`,
     atcAdd: "[data-atc-add]",
@@ -33,8 +34,7 @@ window.onload = function() {
   var geoLocationComplete = new Event("geoLocationComplete");
 
   function submitButtonLoaded() {
-    var $submitButton = $(selectors.submitButton);
-    $submitButton.removeClass("loading");
+    $(selectors.submitButton).removeClass("loading");
   }
 
   // change the add to cart depending on product availability
@@ -101,6 +101,11 @@ window.onload = function() {
         $(selectors.unavailableVariants).val(response.out_of_stock);
         $(selectors.unavailableNotices).val(response.nofify_order);
         var $variantMessages = response.black_order;
+
+        for (let i = 0; i < response.out_of_stock.length; i++) {
+          const oosVariant = response.out_of_stock[i];
+          $(selectors.pdpInputByVariantId(oosVariant)).addClass("unavailable");
+        }
         // set variant selector option attribute
         if ($variantMessages.length > 0) {
           $.each($variantMessages, function(i, variantMessage) {

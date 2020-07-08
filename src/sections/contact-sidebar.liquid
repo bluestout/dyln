@@ -91,10 +91,10 @@
 {% endif %}
 
 {% if section.settings.help_link_3_text != empty %}
-  <a class="contact-sidebar__link" href="{{ section.settings.help_link_2 }}">
+  <button type="button" onclick="Smooch.open();" class="contact-sidebar__link">
     <span class="contact-sidebar__link-i">{% render 'icon-chat' %}</span>
     <span class="contact-sidebar__link-t">{{ section.settings.help_link_3_text }}</span>
-  </a>
+  </button>
 {% endif %}
 
 {% schema %}

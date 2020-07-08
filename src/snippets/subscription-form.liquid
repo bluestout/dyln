@@ -52,6 +52,12 @@
     <input type="hidden" name="quantity" value="1" />
 
     {% unless sub_only %}
+      <div class="hide" data-subscription-button-block>
+        <button type="button" class="diffusers__sub-back" data-subscription-toggle>
+          <span aria-ignore="true"><</span>&nbsp;<span>{{ 'products.subscription.back_to_one_time' | t }}</span>
+        </button>
+      </div>
+
       <div class="diffusers__btn-wrap" data-subscription-button-block>
         <button
           id="pdp-diffuser-add-regular"
@@ -113,10 +119,6 @@
 
       {% unless sub_only %}
         {% render 'subscription-usps' %}
-
-        <button type="button" class="diffusers__sub-back" data-subscription-toggle>
-          <span aria-ignore="true"><</span>&nbsp;<span>{{ 'products.subscription.back_to_one_time' | t }}</span>
-        </button>
       {% endunless %}
 
     {% if sub_only %}

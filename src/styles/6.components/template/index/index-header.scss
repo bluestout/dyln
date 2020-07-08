@@ -90,12 +90,11 @@
   }
 
   &__btm-link {
-    @include font-body;
+    @include font-body(700);
     @include text(14px, 16px, $color-white);
 
     &:hover,
     &:focus {
-      font-weight: 700;
       color: $color-white;
     }
   }
