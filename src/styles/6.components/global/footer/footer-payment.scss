@@ -1,11 +1,12 @@
 .footer-payment {
   &__title {
-    @include font-header(700);
-    @include text(20px, 26px, $color-white, 1.18px);
+    @include font-header(500);
+    @include text(15px, 26px, $color-white, 1.18px);
     margin: 0 0 20px;
 
     @include media-query($large-down) {
       text-align: center;
+      margin-bottom: 10px;
     }
   }
 
@@ -50,5 +51,13 @@
   &__options,
   &__methods {
     margin-bottom: 20px;
+  }
+
+  &__methods {
+    li {
+      @include media-query($large-down) {
+        width: 30px;
+      }
+    }
   }
 }

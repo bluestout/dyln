@@ -333,7 +333,8 @@
       "phone": "Phone Number",
       "submit": "Subscribe!",
       "payment_options_title": "Express Checkout",
-      "payment_methods_title": "Payment Methods"
+      "payment_methods_title": "Payment Methods",
+      "live_chat": "Live Chat"
     }
   },
   "products": {

@@ -1,8 +1,9 @@
 .footer-copyright {
   @include font-header(500);
   @include text(12px, 14px, $color-white, 0.71px);
-  text-align: right;
+  text-align: center;
   width: 100%;
+  margin-bottom: 20px;
 
   a {
     color: $color-white;
@@ -15,7 +16,7 @@
     }
   }
 
-  @include media-query($large-down) {
+  @include media-query($medium-down) {
     > span:first-of-type {
       display: block;
       padding-bottom: 10px;
