@@ -1,5 +1,5 @@
 {% if section.settings.enabled %}
-  {% if section.settings.all_link_text != empty %}
+  {% if section.settings.all_link_text != blank %}
     <a href="{{ section.settings.all_link }}" class="header-shop__main-all-link">{{ section.settings.all_link_text }}</a>
   {% endif %}
 
@@ -129,7 +129,7 @@
               <div class="header-shop__featured">
                 <div class="header-shop__f-content-wrap">
                   <div class="header-shop__f-content">{{ section.settings.featured_content }}</div>
-                  {% if section.settings.featured_link_text != empty %}
+                  {% if section.settings.featured_link_text != blank %}
                     <a href="{{ section.settings.featured_link }}" class="header-shop__f-link" tabindex="-1">{{ section.settings.featured_link_text }}</a>
                   {% endif %}
                 </div>

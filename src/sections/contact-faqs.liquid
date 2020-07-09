@@ -1,4 +1,4 @@
-{% if section.settings.title != empty %}
+{% if section.settings.title != blank %}
   <h2>{{ section.settings.title }}</h2>
 {% endif %}
 
@@ -41,7 +41,7 @@
   <ul class="no-top-m" data-accordion-parent=true>
     {% for block in section.blocks %}
       {% assign contact_faq_article = articles[block.settings.faq_article] %}
-      {% if block.type == "faq" and contact_faq_article != empty %}
+      {% if block.type == "faq" and contact_faq_article != blank %}
         <li>
           <button class="contact-body__faq-button" data-accordion-button="{{ forloop.index }}">
             <span class="contact-body__question" data-contact-searchable>
@@ -60,7 +60,7 @@
   <ul class="no-top-m" data-accordion-parent=true>
     {% for block in section.blocks %}
       {% assign contact_faq_article = articles[block.settings.faq_article] %}
-      {% if block.type == "faq_bottle" and contact_faq_article != empty %}
+      {% if block.type == "faq_bottle" and contact_faq_article != blank %}
         <li>
           <button class="contact-body__faq-button" data-accordion-button="{{ forloop.index }}">
             <span class="contact-body__question" data-contact-searchable>
@@ -79,7 +79,7 @@
   <ul class="no-top-m" data-accordion-parent=true>
     {% for block in section.blocks %}
       {% assign contact_faq_article = articles[block.settings.faq_article] %}
-      {% if block.type == "faq_diffuser" and contact_faq_article != empty %}
+      {% if block.type == "faq_diffuser" and contact_faq_article != blank %}
         <li>
           <button class="contact-body__faq-button" data-accordion-button="{{ forloop.index }}">
             <span class="contact-body__question" data-contact-searchable>
@@ -98,7 +98,7 @@
   <ul class="no-top-m" data-accordion-parent=true>
     {% for block in section.blocks %}
       {% assign contact_faq_article = articles[block.settings.faq_article] %}
-      {% if block.type == "faq_use" and contact_faq_article != empty %}
+      {% if block.type == "faq_use" and contact_faq_article != blank %}
         <li>
           <button class="contact-body__faq-button" data-accordion-button="{{ forloop.index }}">
             <span class="contact-body__question" data-contact-searchable>

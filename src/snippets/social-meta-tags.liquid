@@ -19,11 +19,11 @@
   Template specific overides
 {% endcomment %}
 {%- if template_base == 'index' -%}
-  {% if settings.index_fb_title != empty %}
+  {% if settings.index_fb_title != blank %}
     {%- assign og_title = settings.index_fb_title -%}
   {% endif %}
 
-  {% if settings.index_fb_description != empty %}
+  {% if settings.index_fb_description != blank %}
     {%- assign og_description = settings.index_fb_description -%}
   {% endif %}
 
@@ -40,12 +40,12 @@
 {%- elsif template_base == 'product' -%}
   {%- assign og_type = 'product' -%}
   {%- if product.handle contains 'dyln-living-alkaline-stainless-steel-water-bottle' -%}
-    {% if settings.pd_fb_title != empty %}
+    {% if settings.pd_fb_title != blank %}
       {%- assign og_title = settings.pd_fb_title -%}
     {% else %}
       {%- assign og_title = product.title | strip_html -%}
     {% endif %}
-    {% if settings.pd_fb_description != empty %}
+    {% if settings.pd_fb_description != blank %}
       {%- assign og_description = settings.pd_fb_description -%}
     {% endif %}
     {% if settings.pd_fb_img %}
