@@ -197,9 +197,9 @@
   }
 
   .stamped-review-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr 2fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    // display: grid;
+    // grid-template-columns: 1fr 1fr 2fr;
+    // grid-template-rows: 1fr 1fr 1fr;
 
     .author {
       @include font-header(500);
@@ -225,7 +225,7 @@
     .review-location {
       @include font-header(500);
       @include text(12px, 17px, $color-theme-8, 0.71px);
-      margin-left: 80px;
+      // margin-left: 80px;
       grid-column: 1 / 5;
       grid-row: 3;
     }
@@ -249,13 +249,13 @@
 
   .stamped-review-header-title {
     @include font-header(700);
-    @include text(20px, 28px, $color-main-1, 1.18px);
+    @include text(20px, 28px, $color-main-1, 0.8px);
     margin: 20px 0 5px;
   }
 
   .stamped-review-content-body {
     @include font-body(400);
-    @include text(15px, 26px, $color-body-text, 0.95px);
+    @include text(15px, 26px, $color-body-text, 0.2px);
   }
 
   .stamped-share-icon {
@@ -410,9 +410,9 @@
     }
 
     .stamped-review-header {
-      display: grid;
-      grid-template-columns: 1fr 1fr 2fr;
-      grid-template-rows: 1fr 1fr 1fr;
+      // display: grid;
+      // grid-template-columns: 1fr 1fr 2fr;
+      // grid-template-rows: 1fr 1fr 1fr;
 
       .author {
         font-size: 14px;
@@ -424,13 +424,12 @@
     .stamped-review-header-title {
       font-size: 16px;
       line-height: 26px;
-      letter-spacing: 0.89px;
     }
 
     .stamped-review-content-body {
       font-size: 14px;
       line-height: 22px;
-      letter-spacing: 0.71px;
+      letter-spacing: 0;
     }
 
     .stamped-pagination {
@@ -777,7 +776,7 @@
     }
 
     .stamped-review-header {
-      grid-template-columns: 1fr 1fr 1fr;
+      // grid-template-columns: 1fr 1fr 1fr;
 
       .author {
         font-size: 14px;
@@ -802,7 +801,6 @@
       .review-location {
         font-size: 9px;
         line-height: 12px;
-        margin-left: 80px;
       }
 
       .review-location span {
@@ -828,13 +826,12 @@
     .stamped-review-header-title {
       font-size: 12px;
       line-height: 17px;
-      letter-spacing: 0.71px;
+      letter-spacing: 0.4px;
     }
 
     .stamped-review-content-body {
       font-size: 14px;
       line-height: 17px;
-      letter-spacing: 0.83px;
     }
 
     .stamped-review-footer {
