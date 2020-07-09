@@ -1,8 +1,8 @@
-{% if section.settings.title != empty %}
+{% if section.settings.title != blank %}
   <h2>{{ section.settings.title }}</h2>
 {% endif %}
 
-{% if section.settings.description != empty %}
+{% if section.settings.description != blank %}
   <div class="contact-body__content rte">{{ section.settings.description }}</div>
 {% endif %}
 
@@ -10,7 +10,7 @@
 {% assign any_faq_set = false %}
 {% for block in section.blocks %}
   {% if any_faq_set and any_country_set %}{% break %}{% endif %}
-  {% if block.type == "country" and block.settings.title != empty %}
+  {% if block.type == "country" and block.settings.title != blank %}
     {% assign any_country_set = true %}
   {% endif %}
   {% if block.type == "faq" and block.settings.faq_article %}
@@ -23,7 +23,7 @@
     {% for block in section.blocks %}
       {% if block.type == "faq" %}
         {% assign contact_faq_article = articles[block.settings.faq_article] %}
-        {% if block.settings.faq_article != empty %}
+        {% if block.settings.faq_article != blank %}
           <li>
             <button class="contact-body__faq-button" data-accordion-button="{{ forloop.index }}">
               <span class="contact-body__question">
@@ -46,7 +46,7 @@
     <select data-custom data-c-country-select id="contact-international-shipping">
       <option value="" disabled selected hidden>{{ section.settings.select_placeholder }}</option>
       {% for block in section.blocks %}
-        {% if block.type == "country" and block.settings.title != empty %}
+        {% if block.type == "country" and block.settings.title != blank %}
           <option value="{{ block.settings.title | handleize }}">{{ block.settings.title }}</option>
         {% endif %}
       {% endfor %}
@@ -55,20 +55,20 @@
 
   <div class="row">
     {% for block in section.blocks %}
-      {% if block.type == "country" and block.settings.title != empty %}
+      {% if block.type == "country" and block.settings.title != blank %}
         {% if section.settings.show_country_name %}
           <div class="col-12" style="display: none;" data-c-contact-country="{{ block.settings.title | handleize }}">
             <h4 class="contact-body__subtitle">{{ block.settings.title }}</h4>
           </div>
         {% endif %}
-        {% if block.settings.content != empty %}
+        {% if block.settings.content != blank %}
           <div class="col-lg-6" style="display: none;" data-c-contact-country="{{ block.settings.title | handleize }}">
             <div class="rte">
               {{ block.settings.content }}
             </div>
           </div>
         {% endif %}
-        {% if block.settings.content_2 != empty %}
+        {% if block.settings.content_2 != blank %}
           <div class="col-lg-6" style="display: none;" data-c-contact-country="{{ block.settings.title | handleize }}">
             <div class="rte">
               {{ block.settings.content_2 }}

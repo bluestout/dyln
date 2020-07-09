@@ -63,7 +63,7 @@
       </div>
     {% endif %}
 
-    {% if section.settings.link_text != empty  %}
+    {% if section.settings.link_text != blank  %}
       <div class="text-center">
         <a class="faq-footer__link" href="{{ section.settings.link }}">
           <span>{{ section.settings.link_text }}</span>

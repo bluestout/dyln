@@ -14,6 +14,10 @@ function handleVideoOpenClick() {
   $modal.fadeIn();
   toggleTabindexInChildren($modal, 1);
   $(selectors.focusIn).focus();
+  const video = $modal.find("video").get(0);
+  if (video && !video.controls) {
+    video.play();
+  }
 }
 
 function handleVideoCloseClick() {
@@ -21,6 +25,11 @@ function handleVideoCloseClick() {
   $modal.fadeOut();
   toggleTabindexInChildren($modal, 2);
   $(selectors.focusOut).focus();
+  const video = $modal.find("video").get(0);
+  if (video && !video.controls) {
+    video.pause();
+    video.currentTime = 0;
+  }
 }
 
 $(document).on("click", selectors.videoOpen, handleVideoOpenClick);
