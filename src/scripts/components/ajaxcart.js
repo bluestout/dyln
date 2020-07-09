@@ -527,8 +527,8 @@ function returnCartIfNotEmpty(json) {
     updateQuickCartCount(json);
     toggleQuickCartEmptyStatus(true);
   }
-  containerLoading();
-  toggleAddingToCartAnimation($(selectors.add));
+  containerLoading(false);
+  toggleAddingToCartAnimation($(selectors.add), false);
   handleCartDrawerCheckoutHeight();
   handleFreeShippingMessage(json);
   document.dispatchEvent(ajaxReloaded);

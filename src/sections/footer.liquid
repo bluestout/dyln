@@ -123,41 +123,37 @@
           <h2>{{ section.settings.footer_newsletter_title }}</h2>
         </div>
       </div>
-      <div class="col-md-12 col-lg-6 d-flex flex-column flex-lg-row align-items-lg-center">
-        <div class="col-md-12 col-lg-6">
-          <p>{{ section.settings.footer_newsletter_opt_in_text }}</p>
-          <div class="site-footer__newsletter-button-container">
-            <div class="site-footer__newsletter-button" data-button-slider></div>
-            <button id="email" class="active" data-email-opt-in>{{ 'layout.footer.email' | t }}</button>
-            <button id="sms" data-sms-opt-in>{{ 'layout.footer.sms' | t }}</button>
-          </div>
+      <div class="col-md-12 col-lg-6">
+        <p>{{ section.settings.footer_newsletter_opt_in_text }}</p>
+        <div class="site-footer__newsletter-button-container">
+          <div class="site-footer__newsletter-button" data-button-slider></div>
+          <button id="email" class="active" data-email-opt-in>{{ 'layout.footer.email' | t }}</button>
+          <button id="sms" data-sms-opt-in>{{ 'layout.footer.sms' | t }}</button>
         </div>
-        <div class="col-md-12 col-lg-6">
-          <div class="site-footer__newsletter-opt-in opt-in-email active" data-email-input>
-            <div class="email-signup">
-              <form novalidate="" target="_blank" method="GET" data-ajax-submit="//manage.kmail-lists.com/ajax/subscriptions/subscribe" action="//manage.kmail-lists.com/subscriptions/subscribe" class=" klaviyo_standard_embed_e9NMuf" id="email_signup">
-                <span class="klaviyo_field_group">
-                <input value="e9NMuf" name="g" type="hidden">
-                <input placeholder="{{ section.settings.email_placeholder }}" id="k_id_email" name="email" type="email" class="newsletter__input">
-                <button class="newsletter__submit klaviyo_submit_button btn" type="submit" name="commit" id="NewsletterSubscribe">
-                  {% render 'icon-send' %}
-                </button>
-                </span>
-              </form>
+        <div class="site-footer__newsletter-opt-in opt-in-email active" data-email-input>
+          <div class="email-signup">
+            <form novalidate="" target="_blank" method="GET" data-ajax-submit="//manage.kmail-lists.com/ajax/subscriptions/subscribe" action="//manage.kmail-lists.com/subscriptions/subscribe" class=" klaviyo_standard_embed_e9NMuf" id="email_signup">
+              <span class="klaviyo_field_group">
+              <input value="e9NMuf" name="g" type="hidden">
+              <input placeholder="{{ section.settings.email_placeholder }}" id="k_id_email" name="email" type="email" class="newsletter__input">
+              <button class="newsletter__submit klaviyo_submit_button btn" type="submit" name="commit" id="NewsletterSubscribe">
+                {% render 'icon-send' %}
+              </button>
+              </span>
+            </form>
 
-              <div class="klaviyo_messages">
-                <div style="display:none;" class="success_message"></div>
-                <div style="display:none;" class="error_message"></div>
-              </div>
+            <div class="klaviyo_messages">
+              <div style="display:none;" class="success_message"></div>
+              <div style="display:none;" class="error_message"></div>
             </div>
           </div>
-          <div class="site-footer__newsletter-opt-in opt-in-sms" data-phone-input>
-            {% comment %}
-              TODO: Add SMS API
-            {% endcomment %}
-            <input type="number" placeholder="{{ section.settings.telephone_placeholder }}" />
-            <button type="submit">{% render 'icon-send' %}</button>
-          </div>
+        </div>
+        <div class="site-footer__newsletter-opt-in opt-in-sms" data-phone-input>
+          {% comment %}
+            TODO: Add SMS API
+          {% endcomment %}
+          <input type="number" placeholder="{{ section.settings.telephone_placeholder }}" />
+          <button type="submit">{% render 'icon-send' %}</button>
         </div>
       </div>
     </div>

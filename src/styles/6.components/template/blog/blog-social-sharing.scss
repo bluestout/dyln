@@ -6,17 +6,16 @@
   }
 
   &__social-sharing {
-    display: none;
-    width: auto;
+    z-index: $z-social-sharing;
     position: absolute;
     top: 10px;
     right: 15px;
+    display: none;
+    width: auto;
     background-color: $color-white;
-    z-index: 10;
     padding: 15px;
     padding-bottom: 10px;
     padding-right: 10px;
-
 
     .social-sharing svg path,
     .social-sharing svg g {

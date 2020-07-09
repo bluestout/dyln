@@ -179,6 +179,11 @@
       @include font-header(700);
       @include text(20px, 28px, $color-main-1, 1.18px);
       float: left;
+
+      &:hover,
+      &:active {
+        color: $color-main-1;
+      }
     }
 
     &__faq-link {

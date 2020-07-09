@@ -110,10 +110,10 @@
   &.article-side-menu,
   &.template-article {
     @include media-query($medium-down) {
-      width: 100%;
+      z-index: $z-blog-sidemenu;
       top: auto;
+      width: 100%;
       margin-bottom: 70px;
-      z-index: 5;
 
       h3 {
         @include text(20px, 1.2, $color-theme-7, 1px);

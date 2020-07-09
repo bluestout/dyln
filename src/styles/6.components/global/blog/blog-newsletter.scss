@@ -92,15 +92,15 @@
 
     .newsletter__submit {
       position: relative;
-      z-index: 1;
+      z-index: $z-base;
     }
 
     + .newsletter-flyout-opener {
       @include media-query($xl-down) {
-        display: inline-block;
         position: fixed;
         top: 150px;
         width: 62px;
+        display: inline-block;
       }
 
       @include media-query($small) {
@@ -113,15 +113,15 @@
 .newsletter-overlay {
   &.modal-opened {
     @include transition(opacity);
+    z-index: $z-top;
+    position: fixed;
+    top: 0;
+    left: 0;
     transition-delay: 30ms;
     width: 100%;
     height: 100%;
     background-color: $color-black;
     opacity: 0.5;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: $z-top;
   }
 }
 

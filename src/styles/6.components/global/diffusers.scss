@@ -44,7 +44,7 @@
   }
 
   &__variants {
-    margin: 20px 0;
+    margin: 0 0 20px;
 
     &.standalone {
       margin: 0 0 5px;
@@ -344,7 +344,7 @@
     @include text(12px, 15px, $color-body-text, 0.71px);
     @include no-browser-styling;
     padding: 0;
-    margin: 10px 0 0;
+    margin: 0 0 10px;
   }
 
   @include media-query($medium-down) {

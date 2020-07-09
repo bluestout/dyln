@@ -68,11 +68,11 @@ function tabs(event) {
 function checkTabHash() {
   const urlParams = getUrlParams();
   const urlHashParams = getUrlHashParams();
+  const index = urlHashParams[variables.contactParam];
 
   if (urlParams[variables.posted]) {
     $(selectors.linkByIndex(5)).click();
   } else if (urlHashParams[variables.contactParam]) {
-    const index = urlHashParams[variables.contactParam];
     $(selectors.linkByIndex(index)).click();
   }
 }

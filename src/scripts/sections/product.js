@@ -50,6 +50,8 @@ const selectors = {
   thumbnail: "[data-product-single-thumbnail]",
   slick: ".slick-slide",
   thumbnailById: (id) => `[data-thumbnail-id='${id}']`,
+  galleryByColor: (color) => `[data-gallery-image-color='${color}']`,
+  thumbnailByColor: (color) => `[data-gallery-index-color='${color}']`,
   thumbnailActive: "[data-product-single-thumbnail][aria-current]",
   gallery: "[data-pdp-gallery]",
   galleryIndex: "[data-pdp-gallery-index]",
@@ -142,17 +144,16 @@ register("product", {
   onFormOptionChange(event) {
     const variant = event.dataset.variant;
 
-    $(".pdp-form__color-input").removeClass("active-variant");
-    $(".pdp-form__color-wrap").removeClass("active-variant--unavailable");
-    $(event.target).addClass("active-variant");
-
-    setTimeout(function() {
-      if ($(".pdp-form__submit").attr("disabled")) {
-        $(event.target.offsetParent).addClass("active-variant--unavailable");
+    let variantColorOption = "";
+    for (let i = 0; i < this.product.options.length; i++) {
+      const productOption = this.product.options[i];
+      if (productOption.name === "Color" || productOption.name === "color") {
+        variantColorOption = variant[`option${productOption.position}`];
       }
-    }, 100);
+    }
 
     // this.renderImages(variant);
+    this.renderGalleryByColor(variantColorOption);
     this.renderPrice(variant);
     this.renderComparePrice(variant);
     this.renderSubmitButton(variant);
@@ -215,6 +216,22 @@ register("product", {
     } else {
       submitButton.disabled = true;
       submitButtonText.innerText = theme.strings.soldOut;
+    }
+  },
+
+  renderGalleryByColor(color) {
+    if (!color || color.length === 0) {
+      return null;
+    }
+
+    const colorElement = this.container.querySelector(
+      selectors.galleryByColor(color)
+    );
+    const slickElement = colorElement.closest(selectors.slick);
+    const index = slickElement.dataset.slickIndex;
+    const gallerySlick = this.container.querySelector(selectors.gallery);
+    if (index && gallerySlick) {
+      $(gallerySlick).slick("slickGoTo", index, false);
     }
   },
 

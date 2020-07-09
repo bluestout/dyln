@@ -63,7 +63,7 @@
 
             <div class="header-help__faq-header">
               {% if section.settings.faq_title != empty %}
-                <div class="header-help__faq-title">{{ section.settings.faq_title }}</div>
+                <a {% if section.settings.faq_link != empty %} href="{{ section.settings.faq_link }}"{% endif %} class="header-help__faq-title" tabindex="-1">{{ section.settings.faq_title }}</a>
               {% endif %}
 
               {% if section.settings.faq_link_text != empty %}

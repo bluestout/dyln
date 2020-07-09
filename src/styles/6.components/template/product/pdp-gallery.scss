@@ -39,7 +39,7 @@
   }
 
   &__play {
-    z-index: 1;
+    z-index: $z-base;
     position: absolute;
     bottom: 15px;
     left: 30px;
@@ -86,6 +86,22 @@
       flex-flow: row nowrap;
       overflow-x: scroll;
       overflow-y: hidden;
+      scrollbar-width: thin;
+      ::-webkit-scrollbar {
+        width: 20px !important;
+        height: 7px !important;
+        margin-top: 5px !important;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: $color-transparent !important;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background-color: $color-black !important;
+        border-radius: 6px !important;
+        border: 1px solid $color-transparent !important;
+      }
     }
 
     &__image-item {
