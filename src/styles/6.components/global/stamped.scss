@@ -190,6 +190,9 @@
 
   .stamped-review {
     border: none;
+    border-bottom: 1px solid $color-theme-28;
+    padding-bottom: 20px;
+    margin: 0;
   }
 
   .stamped-questions .stamped-review-header {
@@ -327,14 +330,13 @@
       clear: none;
       float: left;
       width: 50%;
-      border: none;
 
       &:nth-of-type(2n) {
-        padding: 0 0 0 20px;
+        padding: 20px 0 20px 20px;
       }
 
       &:nth-of-type(2n + 1) {
-        padding: 0 20px 0 0;
+        padding: 20px 20px 20px 0;
         clear: left;
       }
     }
@@ -665,7 +667,7 @@
     }
 
     .stamped-review {
-      margin-bottom: 20px;
+      padding-bottom: 20px;
       padding-top: 15px;
     }
 
