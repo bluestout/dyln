@@ -44,9 +44,15 @@
 
   &__image-wrapper {
     position: absolute;
-    bottom: 15px;
+    bottom: 24px;
+    max-width: 240px;
+
+    @include media-query($large-down) {
+      bottom: 35px;
+    }
 
     @include media-query($medium-down) {
+      bottom: 26px;
       height: 200px;
       width: 100%;
     }

@@ -52,9 +52,9 @@
       font-size: 30px;
     }
 
-    h3 {
+    h4 {
       @include font-header(bold);
-      @include text(30px, 1.2, $color-theme-7, 1.8px);
+      @include text(30px, 1.2, $color-theme-8, 1.8px);
       width: 100%;
       text-align: center;
     }
@@ -69,13 +69,17 @@
     &-tab {
       display: inline-block;
       padding: 10px;
-      border: 2px solid $color-black;
-      border-bottom: 2px solid $color-white;
+      border: 2px solid $color-theme-8;
+      border-bottom: 2px solid $color-black;
       border-top-right-radius: 5px;
       border-top-left-radius: 5px;
       opacity: 0.5;
       position: relative;
       top: 2px;
+
+      &.active {
+        border: 2px solid $color-black;
+      }
 
       &:nth-of-type(2n) {
         left: -2px;
@@ -95,6 +99,10 @@
 
       &.active {
         opacity: 1;
+
+        h4 {
+          color: $color-black;
+        }
       }
 
       &-content {

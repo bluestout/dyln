@@ -6,7 +6,7 @@
     <div class="col-md-4">
       <div class="lp-diffusers__header">
         {% render 'responsive-image' with
-          image: e_product.featured_image,
+          image: section.settings.diffuser_product_image,
           max_width: 700,
           max_height: 700,
           wrapper_class: "lp-diffusers__featured-image",
@@ -129,6 +129,11 @@
         "type": "product",
         "id": "extra_product",
         "label": "Addable Product"
+      },
+      {
+      "type": "image_picker",
+      "id": "diffuser_product_image",
+      "label": "Custom Diffuser Image"
       },
       {
         "type": "richtext",
