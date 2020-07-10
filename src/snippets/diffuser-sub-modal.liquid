@@ -1,0 +1,34 @@
+<div class="diffuser-modal" data-diffuser-sub-modal style="display:none;">
+  <div class="diffuser-modal__overlay" data-diffuser-sub-modal-close></div>
+  <div class="diffuser-modal__inner">
+    <button type="button" class="diffuser-modal__close-x" data-diffuser-sub-modal-close tabindex="-1" data-diffuser-sub-modal-focusin>
+      {% render 'icon-close' %}
+      <span class="visually-hidden">{{ 'general.accessibility.close' | t }}</span>
+    </button>
+    <div class="diffuser-modal__img-container">
+      {%- render 'responsive-image' with
+        image: settings.diff_sub_image,
+        max_width: 160,
+        max_height: 160,
+        wrapper_class: "diffuser-modal__img-wrap",
+        image_class: "diffuser-modal__img",
+        snippet_index: 56
+      -%}
+    </div>
+    <div class="diffuser-modal__subs-content">
+      <h2 class="diffuser-modal__subs-title">{{ settings.diff_sub_title }}</h2>
+
+      {% render 'subscription-usps'%}
+
+      <div class="diffuser-modal__subs-note">{{ settings.diff_sub_note }}</div>
+
+      <div class="diffuser-modal__close-wrap m-0">
+        <button type="button" class="diffuser-modal__close-btn" data-diffuser-sub-modal-close tabindex="-1">{{ settings.diff_sub_ready_text }}</button>
+      </div>
+
+      <div class="diffuser-modal__close-text-wrap">
+        <button type="button" class="diffuser-modal__close-text" data-diffuser-sub-modal-close tabindex="-1">{{ settings.diff_sub_close_text }}</button>
+      </div>
+    </div>
+  </div>
+</div>

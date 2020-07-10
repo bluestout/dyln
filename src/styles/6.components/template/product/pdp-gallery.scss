@@ -1,7 +1,11 @@
 .pdp-gallery {
   &__images {
     max-width: 700px;
-    padding: 0 40px 0 0;
+    padding: 0 40px;
+
+    @include media-query($xxl-up) {
+      left: 30px;
+    }
   }
 
   &__image-item {
@@ -35,7 +39,7 @@
   }
 
   &__play {
-    z-index: 1;
+    z-index: $z-base;
     position: absolute;
     bottom: 15px;
     left: 30px;
@@ -82,6 +86,23 @@
       flex-flow: row nowrap;
       overflow-x: scroll;
       overflow-y: hidden;
+      scrollbar-width: thin;
+    }
+
+    ::-webkit-scrollbar {
+      width: 20px;
+      height: 7px;
+      margin-top: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: $color-transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: $color-black;
+      border-radius: 6px;
+      border: 1px solid $color-transparent;
     }
 
     &__image-item {

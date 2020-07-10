@@ -1,0 +1,151 @@
+{% assign show_offset = true %}
+
+{% if template == "no-template" %}
+  {% assign show_offset = false %}
+{% endif %}
+
+<section class="site-header" data-section-id="{{ section.id }}" data-section-type="header">
+
+  <header role="banner" class="site-header__main" data-site-header>
+
+    {% section 'header-announcement' %}
+
+    <div data-site-header-container>
+      <div class="container-fluid">
+        <div class="row no-gutters">
+          <div class="col-lg-auto col-4 order-lg-1 order-2  align-self-center">
+            {% render 'header-logo' %}
+          </div>
+
+          <div class="col-lg col-4 align-self-center static order-1 order-lg-2">
+            {% render 'header-button' %}
+            <div class="site-header__mobile-wrap" data-menu-mobile>
+              <div class="site-header__mobile-overlay" data-menu-mobile-overlay></div>
+              <div class="site-header__mobile-shadow"></div>
+              <div class="site-header__mobile-body">
+                <div class="site-header__mobile-inner">
+
+                  {% section 'header-bottle' %}
+
+                  {% section 'header-shop' %}
+
+                  {% section 'header-about' %}
+
+                  <div class="d-lg-none">
+                    {% section 'header-login' %}
+                  </div>
+
+                  <div class="d-lg-none">
+                    {% section 'header-help' %}
+                  </div>
+                </div>
+
+                {% render 'header-bottom' with
+                  phone: section.settings.help_link_1
+                  phone_text: section.settings.help_link_1_text
+                %}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg col-4 align-self-center static order-3 order-lg-3">
+            <div class="site-header__utils">
+
+              <div class="site-header__utils-block d-none d-lg-inline-block">
+                {% section 'header-login' %}
+              </div>
+
+              <div class="site-header__utils-block static d-none d-lg-inline-block">
+                {% section 'header-help' %}
+              </div>
+
+              <div class="site-header__utils-block static d-none d-lg-inline-block">
+                {% section 'header-search' %}
+              </div>
+
+              <div class="site-header__utils-block d-lg-none">
+                {% if customer %}
+                  <a class="site-header__utils-account" href="/account">
+                    <span class="site-header__utils-cart-icon" aria-hidden="true">{% render 'icon-user' %}</span>
+                    <span class="visually-hidden">{{ 'layout.customer.account' | t }}</span>
+                  </a>
+                {% else %}
+                  <button class="site-header__utils-account" data-mobile-account-button>
+                    <span class="site-header__utils-cart-icon" aria-hidden="true">{% render 'icon-user' %}</span>
+                    <span class="visually-hidden">{{ 'layout.customer.account' | t }}</span>
+                  </button>
+                {% endif %}
+              </div>
+
+              <div class="site-header__utils-block">
+                <button type="button" class="site-header__utils-cart" data-cart-drawer-toggle data-cart-drawer-focus-out>
+                  <span class="visually-hidden">{{ 'layout.cart.title' | t }}</span>
+                  <span class="site-header__utils-cart-num" data-cart-drawer-count>
+                    {{ cart.item_count }}
+                    <span class="visually-hidden">{{ 'layout.cart.items_in_cart' | t }}</span>
+                  </span>
+                  <span class="site-header__utils-cart-icon" aria-hidden="true">
+                    {% render 'icon-cart' %}
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+</section>
+
+<div class="header-offset{% if show_offset %} always{% endif %}" data-header-offset></div>
+
+{% if section.settings.logo != blank %}
+  <style>
+    .header-logo__link {
+      display: block;
+      max-width: {{ section.settings.logo_max_width }}px;
+    }
+  </style>
+{% endif %}
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "{{ shop.name }}",
+  {% if section.settings.logo %}
+    {% assign image_size = section.settings.logo.width | append:'x' %}
+    "logo": "https:{{ section.settings.logo | img_url: image_size }}",
+  {% endif %}
+  "sameAs": [
+    "{{ settings.social_twitter_link }}",
+    "{{ settings.social_facebook_link }}",
+    "{{ settings.social_pinterest_link }}",
+    "{{ settings.social_instagram_link }}",
+    "{{ settings.social_tumblr_link }}",
+    "{{ settings.social_snapchat_link }}",
+    "{{ settings.social_youtube_link }}",
+    "{{ settings.social_vimeo_link }}"
+  ],
+  "url": "{{ shop.url }}{{ page.url }}"
+}
+</script>
+
+{% if template.name == 'index' %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "{{ shop.name }}",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ shop.url }}/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "url": "{{ shop.url }}{{ page.url }}"
+    }
+  </script>
+{% endif %}
+

@@ -1,8 +1,43 @@
-blog-header
+<div class="container-fluid d-flex"
+     style="background-image:url('{{ section.settings.background.src | image_url }}')"​​​​​​>
+  <div class="container d-flex">
+    <div class="row">
+      <div class="col-md-4 col-lg-5 d-flex align-items-center">
+        <div class="blog-header__content">
+          {%- if section.settings.title != blank -%}
+            <h2>{{- section.settings.title -}}</h2>
+          {% else %}
+            <h2>{{ 'blogs.general.blog_title' | t }}</h2>
+          {% endif %}
+          <p>{{- section.settings.content -}}</p>
+        </div>
+      </div>
+      {% render 'newsletter-flyout' %}
+    </div>
+  </div>
+  <div class="newsletter-overlay" data-newsletter-modal-overlay></div>
+</div>
 
 {% schema %}
-  {
-    "name": "Blog Header",
-    "class": "blog-header"
-  }
+{
+  "name": "Blog Header",
+  "class": "blog-header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "content",
+      "label": "Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "background",
+      "label": "Background"
+    }
+  ]
+}
 {% endschema %}

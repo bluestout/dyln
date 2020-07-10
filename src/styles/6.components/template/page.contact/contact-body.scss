@@ -1,206 +1,524 @@
 .contact-body {
-  margin: 40px 0;
+  margin: 0 0 25px;
 
-  &__container {
-    max-width: 880px;
+  > h2 {
+    @include text-title;
+    margin: 0 0 20px;
   }
 
-  &__big-links {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    margin: 0 0 55px;
-  }
+  > h3 {
+    @include font-header(700);
+    @include text(30px, 40px, $color-title, 1.77px);
+    margin: 0 0 10px;
+    display: block;
 
-  &__big-link {
-    height: 40px;
-    padding: 0 25px;
-    border-radius: 20px;
-    background-color: $color-theme-13;
-    display: inline-block;
+    &.anchor {
+      padding-top: 80px;
+      margin-top: -40px;
 
-    &:active {
-      + .contact-body__modal-wrap {
-        opacity: 1;
-        pointer-events: auto;
+      @include media-query($small) {
+        text-align: center;
       }
     }
   }
 
-  &__big-link-i {
-    @include no-font-size;
-    margin: 0 5px 0 0;
-    display: inline-block;
-    vertical-align: middle;
+  &__content {
+    @include text(16px, 24px, $color-body-text, 0.95px);
   }
 
-  &__big-link-t {
-    @include font-header(700);
-    @include text(18px, 40px, $color-body-text, 1.06px);
-    display: inline-block;
-    vertical-align: middle;
+  > ul {
+    @include clearfix;
+    list-style: none;
+    margin: 40px 0 60px;
+    padding: 0;
+
+    &.no-top-m {
+      margin-top: 0;
+    }
   }
 
-  &__modal-wrap {
-    @include transition(opacity);
-    z-index: $z-contact-modal;
-    position: fixed;
-    top: 100px;
-    left: 0;
+  > ul li {
+    padding: 11px 0;
+    border-bottom: 1px solid $color-main-1;
     width: 100%;
-    height: 100%;
-    background-color: rgba($color-black, 0.5);
-    display: flex;
-    flex-flow: row wrap;
-    opacity: 0;
-    pointer-events: none;
-
-    &.active,
-    &:hover {
-      opacity: 1;
-      pointer-events: auto;
-    }
-  }
-
-  &__modal {
-    position: relative;
-    background-color: $color-background;
-    flex: 0 0 540px;
-    width: 540px;
-    margin: auto;
-    padding: 20px 30px 30px;
-  }
-
-  &__modal-title {
-    @include font-header(700);
-    @include text(16px, 20px, $color-body-text, 0.95px);
-    margin: 0 0 20px;
-    text-align: center;
-  }
-
-  &__modal-close {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    padding: 2px;
     margin: 0;
-    border: none;
-    border-radius: 0;
-    background: transparent;
 
-    g {
-      stroke: $color-body-text;
+    &:first-of-type {
+      border-top: 1px solid $color-main-1;
     }
   }
 
-  &__modal-buttons {
+  [data-faq-hidden-init] {
+    display: none;
+  }
+
+  &__faq-button {
+    @include clearfix;
+    @include no-browser-styling;
+    width: 100%;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    display: flex;
+
+    &.open {
+      .contact-body__closed {
+        display: none;
+      }
+      .contact-body__open {
+        display: block;
+      }
+    }
+
+    &:not(.open) {
+      .contact-body__closed {
+        display: block;
+      }
+      .contact-body__open {
+        display: none;
+      }
+    }
+  }
+
+  &__subtitle {
+    @include font-header(700);
+    @include text(20px, 28px, $color-title, 1.18px);
+    margin: 0 0 10px;
+    display: block;
+
+    @include media-query($small) {
+      text-align: center;
+    }
+
+    &.anchor {
+      padding-top: 80px;
+      margin-top: -40px;
+    }
+  }
+
+  &__closed,
+  &__open {
+    @include font-header(700);
+    @include text(20px, 28px, $color-main-1, 1.77px);
+    text-align: center;
+    width: 10px;
+    margin: 0 20px 0 10px;
+    align-self: center;
+  }
+
+  &__question {
+    @include font-header(700);
+    @include text(18px, 28px, $color-body-text, 1.06px);
+    align-self: center;
+    width: calc(100% - 50px);
+  }
+
+  &__answer {
+    @include text(18px, 24px, $color-body-text, 1.08px);
+    padding: 10px 0 0;
+    display: block;
+
+    a {
+      color: $color-main-1;
+    }
+  }
+
+  &__select-wrap {
+    z-index: $z-contact-select;
+    position: relative;
+    max-width: 290px;
+    margin: 0 0 15px;
+
+    @include media-query($small) {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  &__button-wrapper {
+    @include media-query($small) {
+      text-align: center;
+    }
+  }
+
+  &__button-link {
+    @include button(solid, round, 1);
+    font-size: 18px;
+    line-height: 18px;
+    letter-spacing: 2.5px;
+    padding: 11px 25px;
+  }
+
+  .custom-select-styled {
+    @include text(16px, 32px, $color-body-text, 1px);
+    position: relative;
+    font-weight: 700;
+    height: 32px;
+    width: 290px;
+    padding: 0 5px;
+    background-color: $color-theme-4;
+    width: 100%;
+
+    &::after {
+      content: "";
+      position: absolute;
+      right: 5px;
+      top: calc(50% - 2px);
+      width: auto;
+      opacity: 1 !important;
+      border: 5px solid $color-transparent;
+      border-top: 5px solid $color-theme-4;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      right: 5px;
+      top: calc(50% - 1px);
+      width: auto;
+      opacity: 1 !important;
+      border: 5px solid $color-theme-4;
+      border-top: 5px solid $color-theme-7;
+    }
+  }
+
+  &__quick-nav {
+    @include font-header(500);
+    button {
+      @include no-browser-styling;
+
+      span {
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+
+    a {
+      @include transition(color);
+    }
+  }
+
+  th {
+    @include font-header(500);
+    @include text(18px, 24px, $color-body-text, 1.06px);
+    padding: 3px 5px 3px 0;
+    border-top: 1px solid $color-theme-6;
+    border-bottom: 1px solid $color-theme-6;
+    text-align: left;
+
+    &:last-of-type {
+      text-align: left;
+    }
+  }
+
+  td {
+    @include text(16px, 22px, $color-body-text, 0.95px);
+    padding: 17px 5px 17px 0;
+    border-bottom: 1px solid $color-theme-6;
+    text-align: left;
+
+    &:last-of-type {
+      text-align: left;
+    }
+  }
+
+  &__search-form {
+    max-width: 100%;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
+    margin: 0 0 40px;
   }
 
-  &__modal-button {
-    height: 45px;
-    padding: 0 25px;
-    border-radius: 20px;
-    background-color: $color-theme-13;
-    display: inline-block;
+  &__search-input {
+    @include font-header(500);
+    @include text(16px, 36px, $color-title, 1px);
+    padding: 10px 0;
+    border: none;
+    border-bottom: 2px solid $color-main-1;
+    max-width: calc(100% - 50px);
+    flex: 0 0 calc(100% - 50px);
+
+    &::placeholder {
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 1.77px;
+      opacity: 1;
+      color: $color-theme-8;
+    }
   }
 
-  &__modal-b-i {
+  &__search-submit {
     @include no-font-size;
-    margin: 0 5px 0 0;
-    display: inline-block;
-    vertical-align: middle;
+    border: none;
+    background: $color-transparent;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    align-self: flex-end;
 
     svg {
-      max-width: 30px;
-      max-height: 20px;
+      width: 45px;
+      height: 45px;
+    }
+
+    g {
+      @include transition(stroke);
+      stroke: $color-body-text;
+    }
+
+    &:hover {
+      background: $color-transparent;
+      g {
+        stroke: $color-main-1;
+      }
     }
   }
 
-  &__modal-b-t {
-    @include font-header;
-    @include text(12px, 45px, $color-body-text, 0.71px);
+  &__search-results {
+    margin: 0 0 30px;
+  }
+
+  @include media-query($xxl) {
+    th {
+      font-size: 15px;
+    }
+
+    td {
+      font-size: 15px;
+    }
+  }
+
+  @include media-query($xl-up) {
+    &__quick-nav {
+      font-size: 18px;
+      letter-spacing: 1.06px;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  @include media-query($xl) {
+    &__quick-nav {
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    th {
+      font-size: 14px;
+    }
+
+    td {
+      font-size: 14px;
+      letter-spacing: 0;
+    }
+  }
+
+  @include media-query($large) {
+    &__quick-nav {
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    th {
+      width: 50%;
+    }
+
+    td {
+      width: 50%;
+    }
+  }
+
+  @include media-query($large-down) {
+    table {
+      margin: 0 0 25px;
+    }
+  }
+
+  @include media-query($medium-up) {
+    &__quick-nav {
+      line-height: 40px;
+
+      > span {
+        display: inline !important;
+      }
+
+      button {
+        font-weight: 700;
+        color: $color-body-text;
+        margin: 0 20px 0 0;
+        padding: 0;
+        cursor: default;
+      }
+
+      a {
+        color: $color-theme-8;
+        margin: 0 0 0 8px;
+        padding: 0 8px 0 0;
+        border-right: 1px solid $color-theme-8;
+
+        &:hover {
+          color: $color-main-1;
+        }
+      }
+    }
+  }
+
+  @include media-query($medium-down) {
+    > h2 {
+      display: none;
+    }
+
+    > h3 {
+      font-size: 20px;
+      line-height: 28px;
+      letter-spacing: 1.18px;
+    }
+
+    &__content {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.83px;
+    }
+
+    > ul {
+      margin: 20px 0 30px;
+    }
+
+    > ul li {
+      padding: 9px 0;
+    }
+
+    &__subtitle {
+      font-size: 18px;
+      line-height: 26px;
+      letter-spacing: 1.06px;
+      margin-top: 20px;
+    }
+
+    &__question {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.83px;
+    }
+
+    &__answer {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.83px;
+    }
+
+    &__button-link {
+      font-size: 14px;
+      line-height: 18px;
+      letter-spacing: 1.8px;
+      padding: 8px 20px;
+    }
+
+    &__quick-nav {
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: 0.95px;
+
+      button {
+        position: relative;
+        font-weight: 700;
+        color: $color-body-text;
+        padding: 0;
+
+        span {
+          display: inline-block;
+          vertical-align: middle;
+          border-bottom: 1px solid $color-black;
+          padding: 0 0 1px;
+        }
+
+        svg {
+          @include transition(transform);
+          position: relative;
+          top: -1px;
+          display: inline-block;
+          vertical-align: middle;
+          width: 8px;
+          height: 8px;
+        }
+
+        &.open {
+          svg {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      > span {
+        display: none;
+        width: 100%;
+      }
+
+      a {
+        @include transition(hover);
+        color: $color-theme-8;
+        margin: 0;
+        padding: 10px 0;
+        border-bottom: 1px solid $color-theme-15;
+        width: 100%;
+        display: block;
+
+        &:hover {
+          color: $color-main-1;
+        }
+      }
+    }
+
+    th {
+      font-size: 12px;
+      width: 50%;
+    }
+
+    td {
+      font-size: 12px;
+      width: 50%;
+    }
+
+    &__search-form {
+      margin: 0 0 30px;
+    }
+
+    &__search-input {
+      line-height: 24px;
+      padding: 8px 0;
+
+      &::placeholder {
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 1px;
+      }
+    }
+
+    &__search-submit {
+      align-self: center;
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    &__search-results {
+      margin: 0 0 30px;
+    }
+  }
+}
+
+.contact-form {
+  .custom-select-styled {
+    width: 100%;
+  }
+
+  label[for="ContactFormMessage"] {
+    margin-bottom: 10px;
     display: inline-block;
-    vertical-align: middle;
-  }
-
-  &__modal-note {
-    @include font-header(700);
-    @include text(10px, 12px, $color-body-text, 0.59px);
-    margin: 20px 0 0;
-    text-align: center;
-  }
-
-  &__form-title {
-    @include font-header(700);
-    @include text(18px, 25px, $color-body-text, 1.06px);
-    text-align: right;
-  }
-
-  &__form {
-    margin: 0 0 25px;
-
-    input[type="email"],
-    input[type="text"] {
-      @include font-header;
-      @include text(14px, 20px, $color-body-text, 0.83px);
-      border: none;
-      border-radius: 0;
-      border-bottom: 1px solid $color-main;
-      padding: 5px 0;
-
-      &::placeholder {
-        opacity: 1;
-      }
-    }
-
-    select {
-      @include font-header;
-      @include text(14px, 20px, $color-body-text, 0.83px);
-      padding: 5px 0;
-      border: none;
-      border-radius: 0;
-    }
-
-    textarea {
-      @include font-header;
-      @include text(14px, 20px, $color-body-text, 0.83px);
-      border: 1px solid $color-main;
-      border-radius: 0;
-      padding: 5px;
-
-      &::placeholder {
-        opacity: 1;
-      }
-    }
-  }
-
-  &__form-footer {
-    @include clearfix;
-    margin: 10px 0 0;
-  }
-
-  &__form-note {
-    @include font-header;
-    @include text(9px, 12px, $color-body-text, 0.53px);
-    float: left;
-  }
-
-  &__form-submit {
-    @include button(solid, round, 1);
-    float: right;
-  }
-
-  &__success {
-    @include font-header(500);
-    @include text(18px, 28px, $color-body-text, 1.06px);
-    margin: 0 0 20px;
-  }
-
-  &__address {
-    @include font-header(500);
-    @include text(16px, 23px, $color-body-text, 0.95px);
+    border-top: 1px solid $color-theme-1;
+    width: 100%;
+    padding-top: 10px;
   }
 }

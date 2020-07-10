@@ -1,0 +1,54 @@
+.footer-payment {
+  &__title {
+    @include font-header(700);
+    @include text(20px, 26px, $color-white, 1.18px);
+    margin: 0 0 20px;
+
+    @include media-query($large-down) {
+      text-align: center;
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+
+    @include media-query($large-down) {
+      width: 70%;
+      margin: 0 auto;
+      text-align: center;
+    }
+  }
+
+  li {
+    display: inline-block;
+    padding-right: 8px;
+  }
+
+  &__options {
+    ul {
+      display: flex;
+
+      @include media-query($large-down) {
+        justify-content: center;
+      }
+    }
+
+    li {
+      &.footer-payment__google-pay {
+        img {
+          width: 30px;
+        }
+      }
+    }
+
+    img {
+      width: 50px;
+    }
+  }
+
+  &__options,
+  &__methods {
+    margin-bottom: 20px;
+  }
+}

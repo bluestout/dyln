@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="article__other-topics">
+      {% for tag in article.tags %}
+        {% assign currentTag = tag %}
+      {% endfor %}
+
+      <h2>More on {{ currentTag }}</h2>
+      <div class="article__other-wrapper">
+        {% assign count = 0 %}
+        {% for article in blogs.y-blog.articles %}
+          {% if count < 2 %}
+            {% if article.tags contains currentTag %}
+              {% assign count = count | plus: 1 %}
+              {% render 'blog-article-card-horisontal' with
+                article: article,
+                size: article-card--md
+              %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>

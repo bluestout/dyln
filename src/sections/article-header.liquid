@@ -1,0 +1,46 @@
+{% if section.settings.show %}
+<div class="row">
+  <div class="container-fluid">
+    <div class="article-header__wrapper">
+      {% for block in section.blocks %}
+        {% assign featured_article = articles[block.settings.featured_articles] %}
+        <div class="article-header__featured">
+          <a href="{{ featured_article.url }}"></a>
+          <div class="article-header__title">
+            <h3>{{- featured_article.title -}}</h3>
+          </div>
+        </div>
+        {% include 'icon-divider' %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name":"Article Featured Header",
+  "class":"article-header",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show",
+      "label": "Show this section?"
+    }
+  ],
+  "blocks":[
+    {
+      "type":"article",
+      "name":"Article Header Featured",
+      "limit":3,
+      "settings":[
+        {
+          "type":"article",
+          "id":"featured_articles",
+          "label":"Select Featured Articles to be displayed in the header"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

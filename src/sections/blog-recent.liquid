@@ -1,0 +1,59 @@
+{% if section.settings.show %}
+  <div class="container">
+    {% if section.settings.title != blank %}
+      <h2>{{- section.settings.title -}}</h2>
+    {% else %}
+      <h2>{{ 'blogs.general.recent_articles_title' | t }}</h2>
+    {% endif %}
+
+    <div class="row justify-content-center">
+      {% if section.content.blog_custom %}
+
+        {% for blog_article in section.settings.blog_custom.articles limit: 2 %}
+          <div class="col-md-6 col-lg-4">
+            {% render 'blog-recent' with
+              blog_article: blog_article,
+              size: "article-card--sm"
+            %}
+          </div>
+        {% endfor %}
+
+      {% else %}
+        {% for blog_article in blog.articles limit: 2 %}
+          <div class="col-md-6 col-lg-4">
+            {% render 'blog-recent' with
+              blog_article: blog_article,
+              size: "article-card--sm"
+            %}
+          </div>
+        {% endfor %}
+
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Blog Recent",
+  "class": "blog-recent",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Recent Articles Title"
+    },
+    {
+      "type": "checkbox",
+      "id": "show",
+      "label": "Show this section?",
+      "default": true
+    },
+    {
+      "type": "blog",
+      "id": "blog_custom",
+      "label": "Specify from which Blog to display the articles"
+    }
+  ]
+}
+{% endschema %}

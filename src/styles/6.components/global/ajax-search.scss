@@ -1,0 +1,23 @@
+.ajax-search {
+  background-color: $color-white;
+  box-shadow: 0px 0px 10px $color-theme-19;
+
+  &__item {
+    &-wrap {
+      padding: 15px 10px;
+      border-bottom: 1px solid $color-theme-19;
+      background-color: $color-white;
+    }
+
+    &-link {
+      @include font-header(medium);
+      @include text(15px, 1.2, $color-theme-1, 1px);
+    }
+  }
+
+  &__more-link {
+    @include button(solid, r, 1);
+    margin: 10px 0;
+    margin-left: 10px;
+  }
+}

@@ -1,0 +1,11 @@
+{% if subscription-title != blank %}
+  <div class="diffusers__title-header">
+    <h3 class="diffusers__title">{{ subscription-title }}</h3>
+    {% if note != blank %}
+      <button type="button" class="diffusers__note-button" data-diffuser-info-modal-open data-diffuser-info-modal-focusout>
+        {% render 'icon-info' %}
+        <span class="visually-hidden">{{ settings.diff_info_title }}</span>
+      </button>
+    {% endif %}
+  </div>
+{% endif %}

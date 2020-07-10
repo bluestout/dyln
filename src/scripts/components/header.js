@@ -1,4 +1,5 @@
 import $ from "jquery";
+import { toggleTabindexInChildren } from "./helpers";
 
 const datasets = {
   link: "header-link",
@@ -19,8 +20,19 @@ const selectors = {
   button: "[data-mobile-menu-button]",
   menu: "[data-menu-mobile]",
   headerBody: "[data-site-header]",
+  headerContainer: "[data-site-header-container]",
   announcement: "[data-announcement-bar]",
+  barUsa: "[data-announcement-bar-usa]",
+  barCa: "[data-announcement-bar-ca]",
+  barOther: "[data-announcement-bar-other]",
   overlay: "[data-menu-mobile-overlay]",
+  iframe: "[data-header-toggle-element]",
+  openLoginBlock: "[data-header-open-login-block]",
+  openRegisterBlock: "[data-header-open-register-block]",
+  loginBlock: "[data-header-login-block]",
+  registerBlock: "[data-header-register-block]",
+  accountButton: "[data-mobile-account-button]",
+  gorgiasChat: "#gorgias-web-messenger-container",
 };
 
 const classes = {
@@ -33,15 +45,6 @@ const classes = {
   open: "open",
   closed: "closed",
 };
-
-const events = {
-  resize: "resize",
-  click: "click",
-  scroll: "scroll",
-};
-
-const windowScrolledRedux = new Event("windowScrolledRedux");
-const windowWidthChanged = new Event("windowWidthChanged");
 
 function setIsHeaderScrolled() {
   const scroll = window.scrollY;
@@ -58,20 +61,18 @@ function setIsHeaderScrolled() {
   }
 }
 
-function setHeaderBodyOffset(mode) {
+function setHeaderBodyOffset() {
   const scroll = window.scrollY;
-  const $headerBody = $(selectors.headerBody);
-  const height = $(selectors.announcement).outerHeight();
+  const $anno = $(selectors.announcement);
 
-  const offset = height - scroll;
-
-  if (height > 0 && Math.sign(offset) === 1) {
-    if ($headerBody.css("top") !== offset) {
-      $headerBody.css("top", offset);
-    }
-  } else if ($headerBody.css("top") !== 0 || mode === 2) {
-    $headerBody.css("top", 0);
+  if (scroll >= 50 && $anno.length > 0) {
+    $anno.slideUp(400);
+  } else if ($anno.length > 0) {
+    $anno.slideDown(400);
   }
+  setTimeout(() => {
+    resetOffsetHeight();
+  }, 401);
 }
 
 function handleNavToggle(event) {
@@ -79,70 +80,52 @@ function handleNavToggle(event) {
   document.querySelector(selectors.nav).classList.toggle(classes.active);
 }
 
-function init() {
-  let ticking = false;
-
-  window.addEventListener(events.resize, () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        document.dispatchEvent(windowWidthChanged);
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
-
-  window.addEventListener(events.scroll, () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        setIsHeaderScrolled();
-        setHeaderBodyOffset(1);
-        document.dispatchEvent(windowScrolledRedux);
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
-
-  setHeaderBodyOffset();
-}
-
 function togglesInit() {
   const navToggles = document.querySelectorAll(selectors.navToggle);
   for (let i = 0; i < navToggles.length; i++) {
-    navToggles[i].addEventListener(events.click, handleNavToggle);
+    navToggles[i].addEventListener("click", handleNavToggle);
   }
 }
 
 function handleHeaderLinkClick(event) {
   event.preventDefault();
-  const $source = $(event.currentTarget);
-  const $links = $(selectors.link);
-  const $blocks = $(selectors.block);
+  const $link = $(event.currentTarget);
 
-  if ($source.length <= 0) {
+  if ($link.length <= 0) {
     return;
   }
 
-  const id = $source.data(datasets.link);
+  const id = $link.data(datasets.link);
+  headerSublinkOpen(id);
+}
+
+function headerSublinkOpen(id) {
+  const $link = $(selectors.linkById(id));
+
+  if ($link.length <= 0) {
+    return;
+  }
+
+  const $links = $(selectors.link);
   const $block = $(selectors.blockById(id));
+  const $blocks = $(selectors.block);
+  const $iframe = $(selectors.iframe);
+
+  $blocks
+    .not($block)
+    .find(selectors.iframe)
+    .hide();
+  toggleTabindexInChildren($block);
+  toggleTabindexInChildren($blocks.not($block), 2);
+  $block.find(selectors.iframe).toggle();
+  $links.not($link).removeClass(classes.active);
+  $link.toggleClass(classes.active);
+
+  $iframe.show();
 
   if ($(window).width() < 992) {
-    if ($block.length > 0) {
-      $blocks.not($block).slideUp();
-      $block.slideToggle();
-    }
-    if ($source.length > 0) {
-      $links.not($source).removeClass(classes.active);
-      $source.toggleClass(classes.active);
-    }
-  } else {
-    if ($links.length > 0) {
-      $links.not($source).removeClass(classes.active);
-    }
-    if ($source.length > 0) {
-      $source.toggleClass(classes.active);
-    }
+    $blocks.not($block).slideUp();
+    $block.slideToggle();
   }
 }
 
@@ -151,40 +134,127 @@ function handleHeaderLinkClose(event) {
   const $source = $(event.currentTarget);
   const id = $source.data(datasets.close);
   const $link = $(selectors.linkById(id));
+  const $block = $(selectors.blockById(id));
+  $block.find(selectors.iframe).toggle();
   if ($link.length > 0) {
     $link.removeClass(classes.active);
   }
+
+  if ($block.length > 0) {
+    toggleTabindexInChildren($block, 2);
+  }
 }
 
-function handleHeaderButtonClick(event) {
-  const $menu = $(selectors.menu);
-  const $button = $(event.currentTarget);
-  const $ann = $(selectors.announcement);
-  const headerHeight = $(selectors.headerBody).outerHeight();
-  const $overlay = $(selectors.overlay);
+function closeAllHeaderLinks() {
+  const $link = $(selectors.link);
+  const $blocks = $(selectors.link);
+  $blocks.find(selectors.iframe).hide();
+  $link.removeClass(classes.active);
+  toggleTabindexInChildren($blocks, 2);
+}
 
+function handleHeaderButtonClick() {
+  const $menu = $(selectors.menu);
+  const $button = $(selectors.button);
+  const $ann = $(selectors.announcement);
+  const $overlay = $(selectors.overlay);
   $ann.toggleClass(classes.closed);
+  $(selectors.gorgiasChat).toggleClass(classes.hide);
+
+  const headerHeight = $(selectors.headerBody).outerHeight();
   $menu.toggleClass(classes.open);
   $button.toggleClass(classes.open);
+  $("html").toggleClass("no-scroll");
 
   setTimeout(() => {
-    setHeaderBodyOffset(2);
+    setHeaderBodyOffset();
   }, 20);
 
   $overlay.css("top", `${headerHeight}px`);
 
   $menu.css({
     top: `${headerHeight}px`,
-    height: `calc(100vh - ${headerHeight}px)`,
+    height: `calc(100% - ${headerHeight}px)`,
   });
 }
 
+function closeMobileMenu() {
+  const $menu = $(selectors.menu);
+  const $button = $(selectors.button);
+  const $ann = $(selectors.announcement);
+  $menu.removeClass(classes.open);
+  $button.removeClass(classes.open);
+  $ann.removeClass(classes.closed);
+  $("html").removeClass("no-scroll");
+}
+
+function setAnnouncementByCountry() {
+  if ($("body").hasClass("location-us")) {
+    $(selectors.barUsa).show();
+    $(selectors.barCa).hide();
+    $(selectors.barOther).hide();
+  } else if ($("body").hasClass("location-ca")) {
+    $(selectors.barUsa).hide();
+    $(selectors.barCa).show();
+    $(selectors.barOther).hide();
+  } else if ($("body").hasClass("location-other")) {
+    $(selectors.barUsa).hide();
+    $(selectors.barCa).hide();
+    $(selectors.barOther).show();
+  }
+}
+
+function resetOffsetHeight() {
+  $(selectors.offset).css("min-height", $(selectors.headerBody).outerHeight());
+}
+
+function onScroll() {
+  setIsHeaderScrolled();
+  setHeaderBodyOffset();
+}
+
+function handleLoginOpenClick(event) {
+  event.stopPropagation();
+  event.preventDefault();
+  $(selectors.registerBlock).fadeOut(150, () => {
+    $(selectors.loginBlock).fadeIn();
+  });
+}
+
+function handleRegisterOpenClick(event) {
+  event.stopPropagation();
+  event.preventDefault();
+  $(selectors.loginBlock).fadeOut(150, () => {
+    $(selectors.registerBlock).fadeIn();
+  });
+}
+
+function handleAccountMobileBtnClick() {
+  if (!$(selectors.menu).hasClass(classes.open)) {
+    handleHeaderButtonClick();
+  }
+
+  setTimeout(() => {
+    if (!$(selectors.linkById(4)).hasClass(classes.active)) {
+      headerSublinkOpen(4);
+    }
+  }, 50);
+}
+
 $(document).ready(() => {
-  init();
+  setHeaderBodyOffset();
 });
 
 $(document).on("click", selectors.link, handleHeaderLinkClick);
 $(document).on("click", selectors.close, handleHeaderLinkClose);
 $(document).on("click", selectors.button, handleHeaderButtonClick);
+$(document).on("click", selectors.openLoginBlock, handleLoginOpenClick);
+$(document).on("click", selectors.openRegisterBlock, handleRegisterOpenClick);
+$(document).on("click", selectors.accountButton, handleAccountMobileBtnClick);
 
 document.addEventListener("ajaxReloaded", togglesInit);
+document.addEventListener("windowScrolledRedux", onScroll);
+document.addEventListener("windowWidthChanged", resetOffsetHeight);
+document.addEventListener("geoLocationComplete", setAnnouncementByCountry);
+
+export { closeAllHeaderLinks, closeMobileMenu };

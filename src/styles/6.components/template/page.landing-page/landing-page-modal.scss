@@ -1,0 +1,117 @@
+.landing-page-modal {
+  position: fixed;
+  background-color: $color-theme-25;
+  margin: 0 auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 900;
+  height: auto;
+  min-width: 500px;
+
+  &:empty {
+    background-color: green;
+
+    & + .landing-page-modal__overlay {
+      display: none;
+    }
+  }
+
+  @include media-query($medium-down) {
+    min-width: 90%;
+  }
+
+  &__container {
+    background-size: cover;
+    background-position: center center;
+
+    h2 {
+      @include font-header(bold);
+      @include text(30px, 1.2, $color-white, 1.7px);
+    }
+
+    &.modal-opened {
+      display: inline;
+    }
+
+    &.modal-closed {
+      display: none;
+    }
+  }
+
+  &__cta {
+    position: relative;
+    top: -25px;
+    text-align: center;
+  }
+
+  &__cta-btn {
+    @include button(solid, r, 1);
+    display: inline-block;
+    width: auto;
+    margin-bottom: 20px;
+  }
+
+  &__secondary-btn {
+    @include font-body(normal);
+    @include text(14px, 1.2, $color-white, 1px);
+    text-decoration: underline;
+    display: block;
+    width: 100%;
+  }
+
+  &__image {
+    width: 100%;
+    max-height: 400px;
+    max-width: 100%;
+
+    img {
+      max-width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+  }
+
+  &__content {
+    position: relative;
+  }
+
+  &__title {
+    position: absolute;
+    top: 0;
+    padding: 50px;
+    text-align: center;
+  }
+
+  &__close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: $color-white;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.7;
+    z-index: 100;
+    display: none;
+
+    &.modal-closed {
+      display: none;
+    }
+
+    &.modal-opened {
+      display: inline-block;
+    }
+  }
+}

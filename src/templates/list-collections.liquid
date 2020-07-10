@@ -4,11 +4,11 @@
 
 <div class="list-c">
   <div class="container">
-    {% for link in linklists["list-collections"].links %}
+    {% for link in linklists[settings.collections_all_linklist].links %}
       {% assign list_c = link.object %}
       <div class="list-c__collection">
         <h2 class="list-c__c-title">{{ list_c.title }}</h2>
-        <div class="row">
+        <div class="row justify-content-center">
           {% for c_product in list_c.products %}
             <div class="col-lg-3" data-pi-item-col>
               {% render 'product-item' with c_product %}
@@ -18,8 +18,9 @@
       </div>
     {% endfor %}
 
-    {% section 'subscribe-save' %}
   </div>
 </div>
+
+{% section 'diffusers' %}
 
 {% section 'user-stories' %}

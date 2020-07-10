@@ -13,6 +13,12 @@ import "../components/tabs";
 import "../components/header";
 import "../components/ajaxcart";
 import "../components/scroll-to-data";
+import "../components/rte";
+import "../components/subscription";
+import "../components/transitions";
+import "../components/footer";
+import "../components/diffuser-modal";
+import "../components/custom-select";
 
 import { focusHash, bindInPageLinks } from "@shopify/theme-a11y";
 
@@ -27,3 +33,27 @@ if (window.navigator.cookieEnabled) {
     "supports-cookies"
   );
 }
+
+var windowScrolledRedux = new Event("windowScrolledRedux");
+var windowWidthChanged = new Event("windowWidthChanged");
+var ticking = false;
+
+window.addEventListener("resize", () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      document.dispatchEvent(windowWidthChanged);
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+
+window.addEventListener("scroll", () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      document.dispatchEvent(windowScrolledRedux);
+      ticking = false;
+    });
+    ticking = true;
+  }
+});

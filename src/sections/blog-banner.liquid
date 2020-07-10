@@ -1,0 +1,76 @@
+{% if section.settings.show %}
+  <div class="blog-banner-seperator"></div>
+<div class="container-fluid"​​​​​​ style="background-image:url('{{ section.settings.background.src | image_url }}')"​​​​​​>
+  <div class="container">
+    <div class="row">
+      {% if section.settings.product_image.src != blank %}
+        <div class="col-6 col-sm-6">
+          <div class="blog-banner__image">
+            {%- render 'responsive-image' with
+              image: section.settings.product_image,
+              max_width: 768,
+              max_height: 768,
+              snippet_index: 3
+            -%}
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="col-6 col-sm-3">
+        <div class="blog-banner__content">
+          {% if section.settings.title != blank %}
+            <h2>{{- section.settings.title -}}</h2>
+          {% endif %}
+
+          {%- if section.settings.link_text != blank -%}
+            <div class="blog-banner__link-wrap">
+              <a class="blog-banner__link" href="{{- section.settings.link_url -}}">{{- section.settings.link_text -}}</a>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="blog-banner-seperator"></div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Blog Banner",
+  "class": "blog-banner",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show",
+      "label": "Show Section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "image_picker",
+      "id": "background",
+      "label": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product Image"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link Text"
+    }
+  ]
+}
+{% endschema %}

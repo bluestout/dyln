@@ -18,16 +18,19 @@
   }
 
   &__body {
+    position: relative;
     background-color: $color-theme-16;
     padding: 20px 0;
   }
 
   &__container {
     position: relative;
+    max-width: 1140px !important;
   }
 
   &__title {
-    @include text-title;
+    @include font-header(400);
+    @include text(30px, 44px, $color-title, 1.3px);
     font-weight: 400;
     margin: 0 auto 25px;
     text-align: center;
@@ -46,18 +49,20 @@
   &__usp-icon {
     @include no-font-size;
     position: relative;
-    width: 104px;
-    height: 104px;
+    width: 60px;
+    height: 60px;
     background-color: $color-theme-17;
     border-radius: 50%;
     display: inline-block;
-    margin: 0 0 20px;
+    margin: 0 0 15px;
 
     svg {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      max-width: 40px;
+      max-height: 40px;
     }
 
     g {
@@ -71,34 +76,7 @@
 
   &__usp-text {
     @include font-header(500);
-    @include text(14px, 18px, $color-body-text, 0.83px);
-  }
-
-  @include media-query($large-down) {
-    &__title {
-      font-size: 32px;
-      line-height: 48px;
-    }
-
-    &__usp-icon {
-      width: 80px;
-      height: 80px;
-      margin: 0 0 10px;
-
-      svg {
-        max-width: 40px;
-        max-height: 40px;
-      }
-
-      g {
-        stroke: $color-white;
-      }
-    }
-
-    &__usp-text {
-      font-size: 12px;
-      line-height: 18px;
-    }
+    @include text(12px, 16px, $color-body-text, 0.83px);
   }
 
   @include media-query($medium-down) {
@@ -116,9 +94,19 @@
     }
 
     &__title {
-      font-size: 20px;
-      line-height: 28px;
+      font-size: 22px;
+      line-height: 30px;
+      letter-spacing: 1px;
       margin: 0 auto 20px;
+
+      strong {
+        color: $color-theme-1;
+      }
+    }
+
+    &__usps {
+      margin: 0 auto;
+      max-width: 300px;
     }
 
     &__usp {
@@ -130,7 +118,7 @@
     }
 
     &__usp-icon {
-      background-color: transparent;
+      background-color: $color-transparent;
       margin: 0 10px 0 0;
       width: 30px;
       height: 30px;
@@ -162,13 +150,13 @@
     }
   }
 
-  @media screen and (min-width: $grid-xs + 1px) {
+  @include media-query($small-up) {
     &__img-wrap {
       display: none;
     }
   }
 
-  @media screen and (max-width: $grid-xs) {
+  @include media-query($small) {
     margin: 30px 0 39px;
 
     &__img-wrap {
@@ -183,12 +171,25 @@
     }
 
     &__body {
-      background-image: linear-gradient(
-        to bottom,
-        $color-white 0%,
-        $color-white 50%,
-        $color-theme-4 100%
-      );
+      background: $color-white;
+    }
+
+    &__bg-top {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 50%;
+      background: $color-white;
+    }
+
+    &__bg-bottom {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient($color-white, $color-theme-4);
     }
 
     &__img {

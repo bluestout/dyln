@@ -1,0 +1,40 @@
+.article__social {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  span {
+    @include font-body(bold);
+    @include text(14px, 0.8, $color-theme-7, 0.83px);
+    margin-right: 15px;
+  }
+}
+
+.social-sharing {
+  a {
+    svg {
+      width: 20px;
+    }
+  }
+
+  a:first-of-type {
+    svg {
+      width: 8px;
+    }
+  }
+
+  a:last-of-type {
+    svg {
+      width: 14px;
+    }
+  }
+}
+
+.social-sharing svg path,
+.social-sharing svg g {
+  fill: $color-theme-1;
+}
+
+.social-sharing a {
+  padding-right: 10px;
+}

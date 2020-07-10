@@ -1,0 +1,157 @@
+.contact-tabs-header {
+  margin: 0 0 40px;
+
+  @include media-query($xxl-up) {
+    &__link {
+      letter-spacing: 1px;
+      padding: 5px 20px;
+      font-size: 18px;
+      line-height: 26px;
+    }
+  }
+
+  @include media-query($xxl) {
+    &__link {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+
+  @include media-query($xl) {
+    &__link {
+      font-size: 14px;
+      line-height: 24px;
+      letter-spacing: 0.5px;
+      padding: 5px 10px;
+    }
+  }
+
+  @include media-query($large) {
+    &__link {
+      font-size: 14px;
+      line-height: 24px;
+      letter-spacing: 0.5px;
+      padding: 5px 10px;
+    }
+  }
+
+  @include media-query($medium-up) {
+    &__list {
+      display: flex !important;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      border-bottom: 1px solid $color-theme-7;
+    }
+
+    &__link {
+      @include font-header(700);
+      @include no-browser-styling;
+      @include transition(border-color);
+      position: relative;
+      bottom: -2px;
+      color: $color-body-text;
+      display: block;
+      border-bottom: 3px solid $color-transparent;
+      border-radius: 0;
+
+      &.current {
+        display: none;
+      }
+
+      &.active {
+        border-bottom: 3px solid $color-theme-1;
+      }
+
+      &.current {
+        display: none;
+      }
+
+      &.active {
+        border-bottom: 3px solid $color-theme-1;
+      }
+    }
+  }
+
+  @include media-query($medium-down) {
+    border-bottom: 1.5px solid $color-theme-7;
+    border-top: 1.5px solid $color-theme-7;
+    margin: 0 0 30px;
+
+    &__list {
+      display: none;
+    }
+
+    &__link {
+      @include font-header(500);
+      @include text(20px, 28px, $color-body-text, 1.18px);
+      @include no-browser-styling;
+      @include transition(color);
+      padding: 5px 0;
+      display: block;
+      text-align: left;
+      width: 100%;
+      border-top: 1.5px solid $color-theme-15;
+      border-radius: 0;
+
+      &.current {
+        position: relative;
+        display: block;
+        border-top: none;
+        padding: 10px 30px 10px 0;
+        font-weight: 700;
+
+        &::after {
+          @include transition(opacity);
+          content: "+";
+          position: absolute;
+          right: 10px;
+          pointer-events: none;
+          font-weight: 400;
+          width: 15px;
+          text-align: center;
+        }
+
+        &::before {
+          @include transition(opacity);
+          content: "-";
+          position: absolute;
+          right: 10px;
+          pointer-events: none;
+          font-weight: 400;
+          width: 15px;
+          text-align: center;
+        }
+      }
+
+      &.current:not(.open) {
+        &::after {
+          opacity: 1;
+        }
+
+        &::before {
+          opacity: 0;
+        }
+      }
+
+      &.current.open {
+        &::after {
+          opacity: 0;
+        }
+
+        &::before {
+          opacity: 1;
+        }
+      }
+
+      &.active {
+        display: none;
+      }
+
+      &:not(.current) {
+        &:hover {
+          color: $color-main-1;
+        }
+      }
+    }
+  }
+}

@@ -4,6 +4,7 @@ import { formatMoney } from "@shopify/theme-currency";
 
 const classes = {
   active: "active",
+  focused: "focused",
 };
 
 const datasets = {
@@ -23,6 +24,7 @@ const selectors = {
   current: `.${classes.active}[data-${datasets.image}]`,
   image: `[data-${datasets.image}]`,
   item: "[data-pi-item]",
+  itemLink: "[data-pi-item-link]",
   opName: `[data-${datasets.opName}]`,
   json: "[data-product-json]",
   select: "[data-pi-variant-select]",
@@ -35,6 +37,11 @@ const selectors = {
   shopMobileSlick: "[data-slick-pi-mobile]",
   slick: `[data-${datasets.slick}]`,
   slideById: (id) => `[data-slick-index=${id}]`,
+  soldOutMail: "[data-sold-out-mail]",
+  submitSoldOutMail: "[data-submit-sold-out-btn]",
+  soldOutConfirm: "[data-sold-out-confirm]",
+  soldOutForm: "[data-sold-out-form]",
+  soldOutNotice: "[data-sold-out-notice]",
 };
 
 function handleOptionClick(event) {
@@ -194,6 +201,7 @@ function renderProductPrice(variant, $parent) {
 function renderProductSubmit(variant, $parent) {
   const $submit = $parent.find(selectors.submit);
   const $submitText = $parent.find(selectors.submitText);
+  const $soldOutMail = $(selectors.soldOutMail);
 
   if (!variant) {
     $submit.attr("disabled", "disabled");
@@ -201,9 +209,13 @@ function renderProductSubmit(variant, $parent) {
   } else if (variant.available) {
     $submit.removeAttr("disabled");
     $submitText.text(theme.strings.addToCart);
+
+    $soldOutMail.fadeOut("fast");
   } else {
     $submit.attr("disabled", "disabled");
     $submitText.text(theme.strings.soldOut);
+
+    $soldOutMail.fadeIn("fast");
   }
   return null;
 }
@@ -213,9 +225,39 @@ function renderProductOptions(variant, $parent) {
     return null;
   }
   const $select = $parent.find(selectors.select);
+  $select.find("option").removeAttr("selected");
   const $newOption = $select.find(`option[value="${variant.id}"]`);
   $newOption.attr("selected", "selected");
   return $select.change();
+}
+
+function onSoldOutMailSubmit(event) {
+  const $soldOutConfirm = $(selectors.soldOutConfirm);
+  const $soldOutForm = $(selectors.soldOutForm);
+  const $soldOutNotice = $(selectors.soldOutNotice);
+
+  event.preventDefault();
+
+  $soldOutForm.fadeOut();
+  $soldOutNotice.fadeOut();
+  $soldOutConfirm.delay(300).fadeIn();
+}
+
+function onFocusChange() {
+  const $src = $(document.activeElement);
+  const $item = $src.closest(selectors.item);
+  const $allOtherItems = $(selectors.item).not($item);
+  $allOtherItems.removeClass("active");
+
+  if ($item.length > 0) {
+    $item.addClass("active");
+  }
+  $allOtherItems.removeClass("active");
+}
+
+function onItemHoverOut() {
+  const $allItems = $(selectors.item);
+  $allItems.removeClass("active");
 }
 
 function init() {
@@ -253,3 +295,6 @@ function init() {
 
 $(document).ready(init);
 $(document).on("click", selectors.value, handleOptionClick);
+$(document).on("click", selectors.submitSoldOutMail, onSoldOutMailSubmit);
+$(document).on("focusin", onFocusChange);
+$(document).on("mouseleave", selectors.item, onItemHoverOut);

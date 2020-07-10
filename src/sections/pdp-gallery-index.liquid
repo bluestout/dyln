@@ -6,34 +6,38 @@
     <div class="pdp-g-index__dots" data-pdp-gallery-index>
       {% for image in product.images %}
         {% unless image.alt contains "featured-collection-image" %}
-          <div class="pdp-g-index__dot-link">
+          {% assign img_color = "" %}
+          {% if image.alt contains "color:" %}
+            {% assign img_alt_split_at_color = image.alt | split: 'color:'  %}
+            {% assign img_color = img_alt_split_at_color[1] %}
+          {% endif %}
+          {%- capture wrapper_attributes -%}{% if img_color.size > 0 %} data-gallery-index-color="{{ img_color }}"{% endif %}{%- endcapture -%}
+          <button class="pdp-g-index__dot-link" type="button">
             {% render 'responsive-image' with
               image: image,
               max_width: 90,
               max_height: 90,
-              image_attributes: "data-product-featured-image",
+              wrapper_attributes: wrapper_attributes,
               wrapper_class: "pdp-g-index__dot-wrap",
               image_class: "pdp-g-index__dot-img",
-              snippet_index: 3,
+              snippet_index: 38,
             %}
-          </div>
+          </button>
         {% endunless %}
       {% endfor %}
 
       {% if product.metafields.info.video != blank %}
-        <div class="pdp-g-index__dot-link">
+        <button class="pdp-g-index__dot-link" type="button">
           <div class="pdp-g-index__dot-wrap video">
             {% if product.metafields.info.video_thumbnail != blank %}
               <img src="{{ product.metafields.info.video_thumbnail }}" alt="Video Thumbnail" />
             {% endif %}
           </div>
-        </div>
+        </button>
       {% endif %}
     </div>
   </div>
-
 {% endif %}
-
 
 {% schema %}
   {

@@ -1,0 +1,16 @@
+.article {
+  &__sidebar {
+    .blog-side-menu {
+      &.article-side-menu {
+        .blog-side-menu {
+          display: inline-block;
+
+          @include media-query($medium-down) {
+            display: none;
+          }
+
+        }
+      }
+    }
+  }
+}

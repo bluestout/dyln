@@ -1,6 +1,9 @@
 import $ from "jquery";
-import { formatMoney } from "@shopify/theme-currency";
-import { formatAndTrimPrice } from "./ajax-helpers";
+import {
+  formatAndTrimPrice,
+  toggleTabindexInChildren,
+  toggleChatBubble,
+} from "./helpers";
 import {
   quickCartUpsellHtml,
   quickCartLineItemHtml,
@@ -8,11 +11,19 @@ import {
   cartTotalsHtml,
   emptyCartHtml,
 } from "./ajaxcart-html";
+import { subscriptionAjax } from "./subscription";
+
+const datasets = {
+  upsell: {
+    id: "id",
+    price: "price",
+  },
+};
 
 const selectors = {
   header: "[data-section-type='header']",
   add: "[data-add-to-cart]",
-  addText: "[data-add-to-cart-content]",
+  addText: "[data-add-to-cart-loaded]",
   addLoading: "[data-add-to-cart-loading]",
   remove: "[data-remove-item]",
   changeAjax: "[data-qty-change-ajax]",
@@ -25,11 +36,7 @@ const selectors = {
   nav: "[data-main-navigation]",
   pageWrap: "[data-page-overlay]",
   productPrice: "[data-product-price]",
-  addUpsell: "[data-add-upsell]",
-  upsellWrap: "[data-add-upsell-wrap]",
-  upsellSelect: "[data-upsell-select]",
-  upsellText: "[data-add-upsell-text]",
-  upsellProgress: "[data-add-upsell-loading]",
+  cartHeader: "[data-c-d-header]",
   quick: {
     toggle: "[data-cart-drawer-toggle]",
     content: "[data-cart-drawer-content]",
@@ -43,6 +50,13 @@ const selectors = {
     checkout: "[data-cart-drawer-checkout]",
     empty: "[data-cart-drawer-empty]",
     payments: "[data-cart-drawer-payments]",
+    focusOut: "[data-cart-drawer-focus-out]",
+    focusIn: "[data-cart-drawer-focus-in]",
+    frequency: "[data-qc-frequency-input]",
+    item: "[data-cart-drawer-item]",
+    subPrice: "[data-qc-subscription-price]",
+    subDescription: "[data-qc-subscription-description]",
+    subConvert: "[data-qc-subscription-convert]",
   },
   cart: {
     container: "[data-cart-container]",
@@ -51,9 +65,26 @@ const selectors = {
     upsell: "[data-cart-upsell-settings]",
     checkout: "[data-cart-checkout]",
   },
+  upsell: {
+    wrap: "[data-upsell-wrap]",
+    submit: "[data-upsell-submit]",
+    select: "[data-upsell-select]",
+    text: "[data-upsell-text]",
+    loading: "[data-upsell-loading]",
+    input: "[data-upsell-input]",
+    price: "[data-upsell-price]",
+    inputById: (id) =>
+      `${selectors.upsell.input}[data-${datasets.upsell.id}="${id}"]`,
+  },
   message: {
     container: "[data-ajax-message-container]",
     text: "[data-ajax-message-text]",
+  },
+  shipping: {
+    us: "[data-shipping-threshold-us]",
+    ca: "[data-shipping-threshold-ca]",
+    other: "[data-shipping-threshold-other]",
+    note: "[data-cart-shipping-note]",
   },
 };
 
@@ -65,9 +96,6 @@ const classes = {
 };
 
 const ajaxReloaded = new Event("ajaxReloaded");
-
-// const colors = window.theme.colors || [];
-// const sizes = ["xxs", "xs", "s", "m", "l", "xl", "2xl", "3xl"];
 
 let containerState;
 function containerLoading(state) {
@@ -85,11 +113,87 @@ function containerLoading(state) {
 
 // insert id/line, quantity, isline?
 // reduce the remove from cart & change quantity for id & line to 1 function
-function ajaxChangeCartQty(id, qty, line) {
+function ajaxChangeCartQty(id, qty, line, delay) {
   let data = { quantity: qty, id };
   if (line) {
     data = { quantity: qty, line: id };
   }
+  $.ajax({
+    type: "POST",
+    url: "/cart/change.js",
+    async: false,
+    data,
+    dataType: "json",
+    success: () => {
+      $.getJSON("/cart.js", (json) => {
+        if (!delay) {
+          returnCartIfNotEmpty(json);
+        }
+      });
+    },
+    cache: false,
+  });
+}
+
+function handleAjaxFrequencyClick(event) {
+  const $this = $(event.currentTarget);
+  if ($this.data("subscription") === "no") {
+    const text = $this.data("text");
+    const price = $this.data("price");
+    const $item = $this.closest(selectors.quick.item);
+    $item.find(selectors.quick.subPrice).text(`${price} `);
+    $item.find(selectors.quick.subDescription).text(text);
+  } else if ($this.data("subscription") === "yes") {
+    const frequency = $this.data("frequency");
+    const unit = $this.data("unit");
+    const line = $this.data("line");
+    ajaxChangeSubscriptionLineItem(frequency, unit, line);
+  }
+}
+
+function handleAjaxSubscriptionConversionClick(event) {
+  const $this = $(event.currentTarget);
+  const confirm = $this
+    .closest(selectors.quick.item)
+    .find(selectors.quick.subConvert)
+    .prop("checked");
+  const $input = $this
+    .closest(selectors.quick.item)
+    .find(`${selectors.quick.frequency}`)
+    .filter(":checked");
+
+  const frequency = $input.data("frequency");
+  const unit = $input.data("unit");
+  const line = $input.data("line");
+  const subId = $input.data("sub-id");
+  const id = $input.data("id");
+
+  if (confirm && $input.length > 0 && $input.data("subscription") === "no") {
+    containerLoading(true);
+    ajaxChangeCartQty(line, 0, true, true);
+    subscriptionAjax(subId, 1, frequency, unit);
+  } else if ($input.data("subscription") === "yes" && !confirm) {
+    containerLoading(true);
+    ajaxChangeCartQty(line, 0, true, true);
+    ajaxAddToCart({ quantity: 1, id: id });
+  } else if (confirm && $input.length === 0) {
+    showMessage(theme.strings.select_frequency_prompt);
+    $this
+      .closest(selectors.quick.item)
+      .find(selectors.quick.subConvert)
+      .prop("checked", false);
+  }
+}
+
+function ajaxChangeSubscriptionLineItem(frequency, unit, line) {
+  containerLoading(true);
+  const data = {
+    line: line,
+    properties: {
+      shipping_interval_frequency: frequency,
+      shipping_interval_unit_type: unit,
+    },
+  };
   $.ajax({
     type: "POST",
     url: "/cart/change.js",
@@ -113,66 +217,47 @@ function ajaxRemoveFromCartButton(event) {
   const $this = $(this);
   const line = parseInt($this.data("remove-item"), 10);
 
-  return (async () => {
-    await new Promise((resolve) => {
-      resolve(
-        (inputStatus = setTimeout(() => {
-          ajaxChangeCartQty(line, 0, true);
-        }, 100))
-      );
-    });
-  })();
+  inputStatus = setTimeout(() => {
+    ajaxChangeCartQty(line, 0, true);
+  }, 100);
 }
 
 // change the input visuals & make the ajax request, if required
 function handlechangeAjaxButtonClick(event) {
   containerLoading(true);
   event.preventDefault();
+  const $source = $(event.currentTarget);
+  inputStatus = setTimeout(() => {
+    const $input = $($source.data("qty-change-ajax"));
+    const direction = $source.data("direction");
+    const line = $input.data("line");
+    let value = parseInt($input.val(), 10);
+    if (direction === "down") {
+      value -= 1;
+    } else if (direction === "up") {
+      value += 1;
+    }
 
-  return (async () => {
-    await new Promise((resolve) => {
-      resolve(
-        (inputStatus = setTimeout(() => {
-          const $source = $(event.currentTarget);
-          const $input = $($source.data("qty-change-ajax"));
-          const direction = $source.data("direction");
-          const line = $input.data("line");
-          let value = parseInt($input.val(), 10);
-          if (direction === "down") {
-            value -= 1;
-          } else if (direction === "up") {
-            value += 1;
-          }
-
-          if (line && typeof value === "number") {
-            ajaxChangeCartQty(line, value, true);
-          }
-        }, 100))
-      );
-    });
-  })();
+    if (line && typeof value === "number") {
+      ajaxChangeCartQty(line, value, true);
+    }
+  }, 100);
 }
 
 function handleQtyInputChange(event) {
   clearTimeout(inputStatus);
   containerLoading(true);
 
-  return (async () => {
-    await new Promise((resolve) => {
-      resolve(
-        (inputStatus = setTimeout(() => {
-          const $input = $(event.currentTarget);
-          const qty = $input.val();
-          const line = $input.data("line");
+  inputStatus = setTimeout(() => {
+    const $input = $(event.currentTarget);
+    const qty = $input.val();
+    const line = $input.data("line");
 
-          // if pId is added as a data attribute, this works as ajax, if not, it works as regular js
-          if (line && qty) {
-            ajaxChangeCartQty(line, qty, true);
-          }
-        }, 300))
-      );
-    });
-  })();
+    // if pId is added as a data attribute, this works as ajax, if not, it works as regular js
+    if (line && qty) {
+      ajaxChangeCartQty(line, qty, true);
+    }
+  }, 300);
 }
 
 // update the totals table on the cart page
@@ -205,6 +290,7 @@ function updateQuickCart(cart) {
   }
 
   // insert all the prepared items in the cart
+  // change checkout button type to submit to make it a regular button - right now it's using the recharge redirect to checkout script
   const form = `
     <form action="/cart" method="post" novalidate class="cart-drawer__form">
       <div class="cart-drawer__items-wrap" data-cart-drawer-wrap>
@@ -220,17 +306,17 @@ function updateQuickCart(cart) {
             ${formatAndTrimPrice(cart.total_price)}
           </span>
         </div>
-        <button class="cart-drawer__checkout" name="checkout" type="submit" data-cart-drawer-checkout>
-          <span class="cart-drawer__checkout-text">${
-            theme.strings.checkout
-          }</span>
+        <button class="cart-drawer__checkout" name="checkout" type="button" data-cart-drawer-checkout onclick="reChargeProcessCart()">
+          <span class="cart-drawer__checkout-text">
+            ${theme.strings.checkout}
+          </span>
           <svg class="cart-drawer__checkout-icon" width='20' height='22' viewBox='0 0 20 22' xmlns='http://www.w3.org/2000/svg'><g transform='translate(.573 1.784)' fill='none' fill-rule='evenodd'><rect stroke='#FFF' stroke-width='2' x='1' y='7.703' width='16.958' height='11.405' rx='2'/><path d='M3.991 7.122V4.608C3.991 2.063 6.071 0 8.635 0h1.688c2.565 0 4.644 2.063 4.644 4.608v2.514' stroke='#FFF' stroke-width='2' stroke-linejoin='round'/><ellipse fill='#FFF' cx='9.479' cy='12.149' rx='2.494' ry='2.095'/><path stroke='#FFF' stroke-width='2' stroke-linecap='round' d='M9.479 13.405v2.466'/></g></svg>
         </button>
         <div class="cart-drawer__payments">
-          <span class="cart-drawer__payments-title">${
-            theme.strings.pay_using
-          }</span>
-          <span class="cart-drawer__payment">
+          <span class="cart-drawer__payments-title">
+            ${theme.strings.pay_using}
+          </span>
+          <span class="cart-drawer__payment cart-drawer__payment--amazon">
             <img src="${theme.imageUrls.logoAmazon}" alt="Amazon Pay" />
           </span>
           <span class="cart-drawer__payment">
@@ -295,30 +381,31 @@ function handleAjaxAddButtonClick(event) {
     toggleAddingToCartAnimation($source, false);
   }, 10000);
 
-  (async () => {
-    await new Promise((resolve) => {
-      resolve(
-        $.ajax({
-          type: "POST",
-          url: "/cart/add.js",
-          async: true,
-          data: $form.serialize(),
-          dataType: "json",
-          cache: false,
-          complete: (jqXHR, textStatus) => {
-            addToCartComplete(jqXHR, textStatus);
-          },
-        })
-      );
-    });
-  })();
+  ajaxAddToCart($form.serialize());
 }
 
-function handleAjaxAddUpsell(event) {
+function ajaxAddToCart(data) {
+  if (!data) {
+    return null;
+  }
+  $.ajax({
+    type: "POST",
+    url: "/cart/add.js",
+    async: false,
+    data: data,
+    dataType: "json",
+    cache: false,
+    complete: (jqXHR, textStatus) => {
+      addToCartComplete(jqXHR, textStatus);
+    },
+  });
+}
+
+function handleAjaxUpsellSubmit(event) {
   event.preventDefault();
   const $source = $(event.currentTarget);
-  const $text = $source.find(selectors.upsellText);
-  const $loading = $source.find(selectors.upsellProgress);
+  const $text = $source.find(selectors.upsell.text);
+  const $loading = $source.find(selectors.upsell.loading);
 
   toggleAddingToCartAnimation($source, true);
   $loading.removeClass(classes.hide);
@@ -330,36 +417,56 @@ function handleAjaxAddUpsell(event) {
     $text.removeClass(classes.hide);
   }, 10000);
 
-  const $wrap = $source.closest(selectors.upsellWrap);
+  const $wrap = $source.closest(selectors.upsell.wrap);
   const id =
-    $wrap.find(`${selectors.upsellSelect} option:selected`).val() || false;
+    $wrap.find(`${selectors.upsell.select} option:selected`).val() || false;
 
   if (!id && !(typeof id === "number")) {
     return;
   }
 
-  (async () => {
-    await new Promise((resolve) => {
-      resolve(
-        $.ajax({
-          type: "POST",
-          url: "/cart/add.js",
-          async: true,
-          data: {
-            quantity: 1,
-            id,
-          },
-          dataType: "json",
-          cache: false,
-          complete: (jqXHR, textStatus) => {
-            $loading.addClass(classes.hide);
-            $text.removeClass(classes.hide);
-            addToCartComplete(jqXHR, textStatus);
-          },
-        })
-      );
-    });
-  })();
+  $.ajax({
+    type: "POST",
+    url: "/cart/add.js",
+    async: false,
+    data: {
+      quantity: 1,
+      id,
+    },
+    dataType: "json",
+    cache: false,
+    complete: (jqXHR, textStatus) => {
+      $loading.addClass(classes.hide);
+      $text.removeClass(classes.hide);
+      addToCartComplete(jqXHR, textStatus);
+    },
+  });
+}
+
+function handleAjaxUpsellSelectChange(event) {
+  const $source = $(event.currentTarget);
+  const $parent = $source.closest(selectors.upsell.wrap);
+  const $option = $source.find(`option:selected`);
+  const id = $option.data(datasets.upsell.id);
+  const price = $option.data(datasets.upsell.price);
+  renderUpsellPrice($parent, price);
+  $(selectors.upsell.input).removeAttr("checked");
+  $(selectors.upsell.inputById(id)).attr("checked", "checked");
+}
+
+function handleAjaxUpsellInputClick(event) {
+  const $source = $(event.currentTarget);
+  const $parent = $source.closest(selectors.upsell.wrap);
+  const id = $source.data(datasets.upsell.id);
+  const price = $source.data(datasets.upsell.price);
+  $parent.find(selectors.upsell.select).val(id);
+
+  renderUpsellPrice($parent, price);
+}
+
+function renderUpsellPrice($upsell, price) {
+  const $price = $upsell.find(selectors.upsell.price);
+  $price.text(price);
 }
 
 function addToCartComplete(jqXHR, textStatus) {
@@ -374,8 +481,6 @@ function addToCartComplete(jqXHR, textStatus) {
     jqXHR.responseJSON.description.length > 0
   ) {
     showMessage(jqXHR.responseJSON.description);
-  } else {
-    console.log("error: ", jqXHR.responseJSON.description);
   }
 }
 
@@ -422,9 +527,10 @@ function returnCartIfNotEmpty(json) {
     updateQuickCartCount(json);
     toggleQuickCartEmptyStatus(true);
   }
-  containerLoading();
-  toggleAddingToCartAnimation($(selectors.add));
+  containerLoading(false);
+  toggleAddingToCartAnimation($(selectors.add), false);
   handleCartDrawerCheckoutHeight();
+  handleFreeShippingMessage(json);
   document.dispatchEvent(ajaxReloaded);
 }
 
@@ -440,10 +546,16 @@ function quickCartToggle(event) {
     $quickCart.removeClass(classes.open);
     $(selectors.quick.overlay).removeClass(classes.active);
     $("html").removeClass("no-scroll");
+    toggleTabindexInChildren($quickCart, 2);
+    $(selectors.quick.focusOut).focus();
+    toggleChatBubble(2);
   } else {
     $quickCart.addClass(classes.open);
     $(selectors.quick.overlay).addClass(classes.active);
     $("html").addClass("no-scroll");
+    toggleTabindexInChildren($quickCart, 1);
+    $(selectors.quick.focusIn).focus();
+    toggleChatBubble(1);
   }
 }
 
@@ -457,18 +569,24 @@ function quickCartOpen(open) {
     $(selectors.quickcart).addClass(classes.open);
     $(selectors.quick.overlay).addClass(classes.active);
     document.querySelector("html").classList.add("no-scroll");
+    $(selectors.quick.focusIn).focus();
   } else {
     $(selectors.quickcart).removeClass(classes.open);
     $(selectors.quick.overlay).removeClass(classes.active);
     document.querySelector("html").classList.remove("no-scroll");
+    $(selectors.quick.focusOut).focus();
   }
 }
 
 function handleCartDrawerCheckoutHeight() {
-  const quickcartHeight = $(selectors.quick.content).outerHeight();
+  const windowHeight = $(window).height();
   const totalsHeight = $(selectors.quick.totalsWrap).outerHeight();
-
-  $(selectors.quick.wrap).css("height", quickcartHeight - totalsHeight);
+  const cartHeaderHeight = $(selectors.cartHeader).outerHeight();
+  const cartShipNoteHeight = $(selectors.shipping.note).outerHeight();
+  $(selectors.quick.wrap).css(
+    "height",
+    windowHeight - totalsHeight - cartHeaderHeight - cartShipNoteHeight
+  );
 }
 
 function handleUpsell(cart) {
@@ -478,15 +596,19 @@ function handleUpsell(cart) {
 
   let pattern = "";
   const cartProductIds = [];
+  const cartProductsWithUpsell = [];
 
   for (let i = 0; i < cart.items.length; i++) {
-    cartProductIds.push(cart.items[i].product_id);
+    if (!cartProductIds.includes(cart.items[i].product_id)) {
+      cartProductIds.push(cart.items[i].product_id);
+      cartProductsWithUpsell.push(cart.items[i]);
+    }
   }
 
-  for (let i = 0; i < cart.items.length; i++) {
+  for (let i = 0; i < cartProductsWithUpsell.length; i++) {
     loop = true;
 
-    const item = cart.items[i];
+    const item = cartProductsWithUpsell[i];
 
     for (let j = 0; j < json.products.length; j++) {
       if (!loop) {
@@ -527,6 +649,46 @@ function handleUpsell(cart) {
   return pattern;
 }
 
+function handleFreeShippingMessage(cart) {
+  let threshold = 0;
+
+  if ($("body").hasClass("location-us")) {
+    threshold = $(selectors.shipping.us).val();
+  } else if ($("body").hasClass("location-ca")) {
+    threshold = $(selectors.shipping.ca).val();
+  } else {
+    threshold = $(selectors.shipping.other).val();
+  }
+
+  threshold = parseFloat(threshold);
+
+  const $note = $(selectors.shipping.note);
+  const total = cart.total_price / 100;
+  const $totals = $(selectors.quick.totals);
+  let remaining = threshold - total;
+  remaining = formatAndTrimPrice(remaining * 100);
+
+  if (cart.item_count < 1) {
+    $note.html(
+      theme.strings.free_shipping_empty_html.replace("###", threshold)
+    );
+  } else if (total >= threshold) {
+    $note.html(theme.strings.free_shipping_reached_html);
+    $totals.append(
+      `<span class="cart-drawer__total-text brand-blue">
+        ${theme.strings.shipping}
+      </span>
+      <span class="cart-drawer__total-price brand-blue">
+        ${theme.strings.free}
+      </span>`
+    );
+  } else {
+    $note.html(
+      theme.strings.free_shipping_unreached_html.replace("###", remaining)
+    );
+  }
+}
+
 // on click, remove the item form cart
 $(document).on("click", selectors.remove, ajaxRemoveFromCartButton);
 
@@ -538,22 +700,28 @@ $(document).on("change", selectors.input, handleQtyInputChange);
 $(document).on("click", selectors.quick.toggle, quickCartToggle);
 // ajaxify add to cart buttons
 $(document).on("click", selectors.add, handleAjaxAddButtonClick);
-$(document).on("click", selectors.addUpsell, handleAjaxAddUpsell);
+$(document).on("click", selectors.upsell.submit, handleAjaxUpsellSubmit);
+$(document).on("change", selectors.upsell.select, handleAjaxUpsellSelectChange);
+$(document).on("click", selectors.upsell.input, handleAjaxUpsellInputClick);
+$(document).on("click", selectors.quick.frequency, handleAjaxFrequencyClick);
+$(document).on(
+  "click",
+  selectors.quick.subConvert,
+  handleAjaxSubscriptionConversionClick
+);
 
 // run ajax on page load to get cart contents
 $(document).ready(() => {
   containerLoading(true);
 
-  return (async () => {
-    await new Promise((resolve) => {
-      resolve(
-        $.getJSON("/cart.js", (json) => {
-          returnCartIfNotEmpty(json);
-        })
-      );
-    });
-  })();
+  reloadAjax();
 });
+
+function reloadAjax() {
+  $.getJSON("/cart.js", (json) => {
+    returnCartIfNotEmpty(json);
+  });
+}
 
 $(document).keyup((event) => {
   if (event.key === "Escape") {
@@ -561,4 +729,11 @@ $(document).keyup((event) => {
   }
 });
 
-export { addToCartComplete };
+export {
+  addToCartComplete,
+  quickCartOpen,
+  reloadAjax,
+  handleAjaxAddButtonClick,
+};
+
+document.addEventListener("windowWidthChanged", handleCartDrawerCheckoutHeight);

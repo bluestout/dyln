@@ -1,0 +1,130 @@
+.newsletter-flyout {
+  position: absolute;
+  right: 0;
+  bottom: 45px;
+  background-color: $color-theme-2;
+  padding: 20px 25px;
+  color: $color-white;
+  width: 367px;
+
+  .klaviyo_field_group {
+    display: inline-block;
+    margin-bottom: 10px;
+
+    @include media-query($medium-down) {
+      margin-bottom: 0;
+    }
+  }
+
+  @include media-query($xl-down) {
+    display: none;
+
+    &.modal-opened {
+      position: fixed;
+      display: inline-block;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 230px;
+      width: 80%;
+      z-index: $z-overlay-content;
+    }
+  }
+
+  h2 {
+    margin-bottom: 15px;
+    padding-right: 100px;
+    min-height: 70px;
+    font-size: 18px;
+  }
+
+  input[type="email"] {
+    border: none;
+    border-bottom: 1px solid $color-white;
+    padding: 5px;
+    padding-left: 0;
+    color: $color-white;
+  }
+
+  button,
+  .newsletter__submit {
+    @include font-header(bold);
+    background-color: white;
+    color: $color-theme-2;
+    font-weight: 800;
+    border-radius: 50px;
+    margin-top: 20px;
+    font-size: 14px;
+    padding: 10px 20px;
+    border: none;
+  }
+
+  &-opener {
+    position: absolute;
+    right: 0;
+    top: 40%;
+    width: 60px;
+
+    @include media-query($medium-up) {
+      display: none;
+    }
+
+    p {
+      @include font-header(bold);
+      width: 100px;
+      text-align: left;
+      margin-top: 10px;
+      color: white;
+      background-color: $color-theme-2;
+      transform: rotate(-90deg);
+      padding: 5px 0 5px 10px;
+    }
+  }
+
+  &.template-article {
+    bottom: auto;
+    right: auto;
+    width: 350px;
+
+    @include media-query($xl-down) {
+      display: none;
+    }
+
+    .newsletter__submit {
+      position: relative;
+      z-index: $z-base;
+    }
+
+    + .newsletter-flyout-opener {
+      @include media-query($xl-down) {
+        position: fixed;
+        top: 150px;
+        width: 62px;
+        display: inline-block;
+      }
+
+      @include media-query($small) {
+        top: 200px;
+      }
+    }
+  }
+}
+
+.newsletter-overlay {
+  &.modal-opened {
+    @include transition(opacity);
+    z-index: $z-top;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition-delay: 30ms;
+    width: 100%;
+    height: 100%;
+    background-color: $color-black;
+    opacity: 0.5;
+  }
+}
+
+&.template-article {
+  overflow-x: hidden;
+}

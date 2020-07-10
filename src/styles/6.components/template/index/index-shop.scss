@@ -19,12 +19,12 @@
 
   &__c-img-wrap {
     margin: 0 auto 20px;
-    height: 240px;
+    height: 260px;
     overflow: hidden;
   }
 
   &__c-img {
-    object-fit: cover;
+    object-fit: contain;
   }
 
   &__c-title {

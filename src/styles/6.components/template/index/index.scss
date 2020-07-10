@@ -4,3 +4,7 @@
 @import "./index-shop";
 @import "./index-features";
 @import "../../global/user-stories";
+
+main.template-index {
+  overflow-x: hidden;
+}

@@ -1,0 +1,27 @@
+{% assign featured_article = articles[section.settings.featured_article] %}
+{% if featured_article != blank %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12 col-lg-8">
+      {% render 'blog-article-featured' with
+        article: featured_article,
+        size: "article-card--lg"
+      %}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Blog Featured",
+  "class": "blog-featured",
+  "settings": [
+      {
+      "type": "article",
+      "id": "featured_article",
+      "label": "Article to feature on Blog page"
+      }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,166 @@
+{%- if section.settings.bg -%}
+  {%- assign wrapper_class = "faq-footer__bg-wrap" -%}
+
+  {%- if section.settings.bg_rsp -%}
+    {%- assign wrapper_class = "faq-footer__bg-wrap d-none d-sm-block" -%}
+    {%- render 'responsive-image' with
+      image: section.settings.bg_rsp,
+      max_width: 768,
+      max_height: 768,
+      wrapper_class: "faq-footer__bg-wrap d-sm-none",
+      image_class: "faq-footer__bg",
+      snippet_index: 17
+    -%}
+  {%- endif -%}
+
+  {%- render 'responsive-image' with
+    image: section.settings.bg,
+    max_width: 1600,
+    max_height: 540,
+    wrapper_class: wrapper_class,
+    image_class: "faq-footer__bg",
+    snippet_index: 18
+  -%}
+{%- endif -%}
+
+<div class="faq-footer__body">
+  <div class="container">
+    {% if section.settings.title != blank %}
+      <h2 class="faq-footer__title top">
+      {{ section.settings.title }}
+      </h2>
+    {% endif %}
+    {% if section.settings.content != blank %}
+      <div class="faq-footer__content">
+        {{ section.settings.content | strip }}
+      </div>
+    {% endif %}
+    {% if section.settings.reg_title != blank %}
+      <h2 class="faq-footer__title bottom">
+      {{ section.settings.reg_title }}
+      </h2>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="faq-footer__usps">
+        {% for block in section.blocks %}
+          <div class="faq-footer__usp">
+            <div class="faq-footer__usp-icon">
+              {% if block.settings.icon == "blue-reminder" %}
+                {% render 'icon-blue-reminder' %}
+              {% elsif block.settings.icon == "bottle-silhouette" %}
+                {% render 'icon-bottle-silhouette' %}
+              {% elsif block.settings.icon == "star" %}
+                {% render 'icon-blue-star' %}
+              {% endif %}
+            </div>
+            <div class="faq-footer__usp-content">
+              <h4>{{ block.settings.title }}</h4>
+              <p>{{ block.settings.description }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.link_text != blank  %}
+      <div class="text-center">
+        <a class="faq-footer__link" href="{{ section.settings.link }}">
+          <span>{{ section.settings.link_text }}</span>
+          {% if section.settings.points_icon %}
+            <span aria-hidden="true">{% render 'icon-points-white' %}</span>
+            <span class="visually-hidden">{{ 'general.accessibility.points' | t }}</span>
+          {% endif %}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "FAQ Footer",
+    "class": "faq-footer",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "bg",
+        "label": "Background"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg_rsp",
+        "label": "Background Mobile"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "textarea",
+        "id": "content",
+        "label": "Description"
+      },
+      {
+        "type": "text",
+        "id": "reg_title",
+        "label": "Registration Title"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Bottom Link"
+      },
+      {
+        "type": "text",
+        "id": "link_text",
+        "label": "Bottom Link Text"
+      },
+      {
+        "type":      "checkbox",
+        "id":        "points_icon",
+        "label":     "Points Icon",
+        "info":      "Show Points Icon at the end of the link text?"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "usp",
+        "name": "Usp",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description"
+          },
+          {
+            "type": "select",
+            "id": "icon",
+            "label": "Icon",
+            "options": [
+              {
+                "value": "blue-reminder",
+                "label": "Reminder bubble"
+              },
+              {
+                "value": "bottle-silhouette",
+                "label": "Bottle silhouette"
+              },
+              {
+                "value": "star",
+                "label": "Star"
+              }
+            ],
+            "info": "Icon name to be used."
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

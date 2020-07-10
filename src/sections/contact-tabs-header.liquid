@@ -1,0 +1,56 @@
+{% assign has_blocks = false %}
+<button type="button" class="contact-tabs-header__link current" data-c-tab-current>{{ section.blocks[0].settings.title }}</button>
+<div class="contact-tabs-header__list" data-c-tab-list>
+  {% for block in section.blocks %}
+    {% if block.settings.tab %}
+      {% assign has_blocks = true %}
+      {% if forloop.first %}
+        {% assign active_tab_class = " active" %}
+      {% else %}
+        {% assign active_tab_class = "" %}
+      {% endif %}
+      <button
+        type="button"
+        class="contact-tabs-header__link{{ active_tab_class }}"
+        data-tab-link={{ forloop.index }}
+        data-c-tab="{{ block.settings.title }}">
+        {{ block.settings.title }}
+      </button>
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% comment %} because we can't check section content outside sections {% endcomment %}
+{% unless has_blocks %}
+<style>
+  body .contact-tabs-header {
+    display: none;
+  }
+</style>
+{% endunless %}
+
+{% schema %}
+  {
+    "name": "Tabs Header",
+    "class": "contact-tabs-header",
+    "blocks": [
+      {
+        "type": "block",
+        "name": "Tab",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "tab",
+            "label": "Tab",
+            "info": "Show tab?"
+          },
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Tab Title"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

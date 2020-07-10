@@ -13,23 +13,35 @@ non-minified json:
       {% assign cart_upsell_3 = all_products[block.settings.product_upsell_3] %}
       {
         "active_id": {{ cart_p.id | json }},
-        "upsell_url": {{ cart_upsell_1.url | json }},
-        "upsell_product": {{ cart_upsell_1 | json }},
-        "upsell_url_2": {{ cart_upsell_2.url | json }},
-        "upsell_product_2": {{ cart_upsell_2 | json }},
-        "upsell_url_2": {{ cart_upsell_3.url | json }},
-        "upsell_product_2": {{ cart_upsell_3 | json }}
+        {% if cart_upsell_1 != blank %}
+          "upsell_url": {{ cart_upsell_1.url | json }},
+          "upsell_product": {{ cart_upsell_1 | json }},
+        {% else %}
+          "upsell_url": "",
+          "upsell_product": "",
+        {% endif %}
+        {% if cart_upsell_2 != blank %}
+          "upsell_url_2": {{ cart_upsell_2.url | json }},
+          "upsell_product_2": {{ cart_upsell_2 | json }},
+        {% else %}
+          "upsell_url_2": "",
+          "upsell_product_2": "",
+        {% endif %}
+        {% if cart_upsell_3 != blank %}
+          "upsell_url_3": {{ cart_upsell_3.url | json }},
+          "upsell_product_3": {{ cart_upsell_3 | json }}
+        {% else %}
+          "upsell_url_3": "",
+          "upsell_product_3": ""
+        {% endif %}
       }{% unless forloop.last %},{% endunless %}
     {% endfor %}
   ]
 }
+ {% endcomment %}
 
-{% endcomment %}
 
-
-<script data-cart-upsell-settings type="application/json">
-  { "header": {{ section.settings.title | json }},"products": [{% for block in section.blocks %}{% assign cart_p = all_products[block.settings.product] %}{% assign cart_upsell_1 = all_products[block.settings.product_upsell] %}{% assign cart_upsell_2 = all_products[block.settings.product_upsell_2] %}{% assign cart_upsell_3 = all_products[block.settings.product_upsell_3] %}{"active_id": {{ cart_p.id | json }},"upsell_url": {{ cart_upsell_1.url | json }},"upsell_product": {{ cart_upsell_1 | json }},"upsell_url_2": {{ cart_upsell_2.url | json }},"upsell_product_2": {{ cart_upsell_2 | json }},"upsell_url_2": {{ cart_upsell_3.url | json }},"upsell_product_2": {{ cart_upsell_3 | json }}}{% unless forloop.last %},{% endunless %}{% endfor %}]}
-</script>
+<script data-cart-upsell-settings type="application/json">{"header": {{ section.settings.title | json }},"products": [{% for block in section.blocks %}{% assign cart_p = all_products[block.settings.product] %}{% assign cart_upsell_1 = all_products[block.settings.product_upsell] %}{% assign cart_upsell_2 = all_products[block.settings.product_upsell_2] %}{% assign cart_upsell_3 = all_products[block.settings.product_upsell_3] %}{"active_id": {{ cart_p.id | json }},{% if cart_upsell_1 != blank %}"upsell_url": {{ cart_upsell_1.url | json }},"upsell_product": {{ cart_upsell_1 | json }},{% else %}"upsell_url": "","upsell_product": "",{% endif %}{% if cart_upsell_2 != blank %}"upsell_url_2": {{ cart_upsell_2.url | json }},"upsell_product_2": {{ cart_upsell_2 | json }},{% else %}"upsell_url_2": "","upsell_product_2": "",{% endif %}{% if cart_upsell_3 != blank %}"upsell_url_3": {{ cart_upsell_3.url | json }},"upsell_product_3": {{ cart_upsell_3 | json }}{% else %}"upsell_url_3": "","upsell_product_3": ""{% endif %}}{% unless forloop.last %},{% endunless %}{% endfor %}]}</script>
 
 {% schema %}
   {

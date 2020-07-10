@@ -154,6 +154,17 @@
   }
 }
 
+@mixin text-subtitle($color: $color-title) {
+  @include font-header(700);
+  @include text(30px, 45px, $color, 1.77px);
+
+  @include media-query($medium-down) {
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 1.18px;
+  }
+}
+
 @mixin no-font-size {
   font-size: 0;
   line-height: 0;
@@ -215,7 +226,7 @@
   } @else if $color == white {
     $btn-def-c: $color-white;
     $btn-acc-c: $color-white;
-    $btn-sup-c: transparent;
+    $btn-sup-c: $color-transparent;
     $btn-text-c: $color-body-text;
 
     @if $type == wire {
@@ -244,25 +255,27 @@
     background-repeat: repeat-x;
     background-size: 300% 100%;
     background-position: 0 100%;
-    outline: none;
 
     &:not(:disabled) {
+      outline: none;
+
       &:focus {
         background-position: 50% 100%;
+        color: $btn-text-c;
       }
 
       &:hover {
-        bottom: 5px;
+        bottom: 3px;
         background-position: 50% 100%;
-        box-shadow: 0 2px 2px $btn-sup-c;
+        box-shadow: 0 1px 3px 1px $btn-sup-c;
         &::after {
           content: "";
           position: absolute;
-          bottom: -5px;
+          bottom: -3px;
           left: 0;
           display: block;
           width: 100%;
-          height: 5px;
+          height: 3px;
         }
       }
 
@@ -288,27 +301,28 @@
     box-shadow: none;
     text-decoration: none;
     padding: 10px 36px;
-    background-color: transparent;
+    background-color: $color-transparent;
     border: 3px solid $btn-def-c;
-    outline: none;
 
     &:not(:disabled) {
+      outline: none;
+
       &:focus {
         border-color: $btn-acc-c;
         color: $btn-text-c-alt;
       }
 
       &:hover {
-        bottom: 5px;
+        bottom: 3px;
         box-shadow: 0 2px 2px $btn-sup-c;
         &::after {
           content: "";
           position: absolute;
-          bottom: -5px;
+          bottom: -3px;
           left: 0;
           display: block;
           width: 100%;
-          height: 5px;
+          height: 3px;
         }
       }
 
@@ -383,8 +397,8 @@
   }
 }
 
-@mixin animated-wave($time: 1000ms, $z-index: $z-base) {
-  @include transition(background-position $time);
+@mixin animated-wave($time: 5000ms, $z-index: $z-base) {
+  @include transition(background-position $time ease);
   position: absolute;
   left: 0;
   @if $z-index != 0 {

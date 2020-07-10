@@ -1,17 +1,10 @@
 .user-stories {
+  position: relative;
   margin: 0 0 50px;
-
-  .slick-initialized .slick-slide {
-  }
+  -webkit-overflow-scrolling: touch;
 
   .slick-arrow {
     display: none !important;
-  }
-
-  .slick-prev {
-  }
-
-  .slick-next {
   }
 
   &__title {
@@ -21,6 +14,15 @@
   }
 
   &__stories {
+    position: relative;
+    scrollbar-width: thin;
+    padding-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+
+    &:hover {
+      cursor: move;
+    }
+
     &:not(.slick-initialized) {
       display: flex;
       flex-flow: row nowrap;
@@ -31,10 +33,123 @@
         max-width: 25%;
       }
     }
+
+    &::-webkit-scrollbar {
+      width: 20px;
+      height: 7px;
+      margin-top: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: $color-transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $color-black;
+      border-radius: 6px;
+      border: 1px solid $color-transparent;
+    }
+  }
+
+  .next-arrow,
+  .prev-arrow {
+    position: absolute;
+    z-index: $z-base;
+    top: 0;
+    height: calc(100% - 10px);
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: ease-in-out all 0.3s;
+
+    @include media-query($medium-down) {
+      width: 50px;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    svg {
+      width: 50px;
+      height: 50px;
+
+      @include media-query($medium-down) {
+        width: 30px;
+        height: 30px;
+      }
+
+      path {
+        stroke: $color-white;
+      }
+    }
+  }
+
+  &:hover {
+    .prev-arrow {
+      opacity: 1;
+      transition: ease-in-out all 0.3s;
+    }
+
+    .next-arrow {
+      opacity: 1;
+      transition: ease-in-out all 0.3s;
+    }
+  }
+
+  .prev-arrow {
+    left: 15px;
+    background: linear-gradient(
+      267deg,
+      rgba(231, 240, 242, 0) 0%,
+      rgba(28, 28, 28, 0.16) 100%
+    );
+  }
+
+  .next-arrow {
+    right: 15px;
+    background: linear-gradient(
+      90deg,
+      rgba(231, 240, 242, 0) 0%,
+      rgba(28, 28, 28, 0.16) 100%
+    );
+
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__img-wrap {
+    max-width: 100% !important;
+  }
+
+  &__img {
+    max-width: 100% !important;
+    min-height: 100%;
+    max-height: 100%;
+    object-fit: cover;
   }
 
   &__story {
     padding: 0 12px;
+    display: flex !important;
+    flex-direction: column;
+
+    &:nth-of-type(2n - 1) {
+      .user-stories__s-media {
+        order: 2 !important;
+      }
+    }
+
+    &:first-of-type {
+      padding: 0 12px 0 0;
+    }
+
+    &:last-of-type {
+      padding: 0 0 0 12px;
+    }
   }
 
   &__s-media {
@@ -55,6 +170,7 @@
     background-color: $color-theme-4;
     min-height: 425px;
     padding: 40px;
+    flex: auto;
   }
 
   &__s-title {
@@ -91,28 +207,37 @@
   }
 
   &__slider {
+    -webkit-appearance: none;
     width: 100%;
-    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
-    width: 100%; /* Specific width is required for Firefox. */
-    background: transparent; /* Otherwise white in Chrome */
+    height: 5px;
+    background: $color-transparent;
     outline: none;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
 
     &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
       width: 15%;
       width: var(--index-stories-input-w);
-      height: 4px;
-      border-radius: 2px;
-      border: none;
-      background-color: $color-theme-7;
+      height: 5px;
+      background: $color-black;
+      cursor: pointer;
+      top: -2px;
+      position: relative;
+      border-radius: 15px;
     }
 
     &::-moz-range-thumb {
       width: 15%;
       width: var(--index-stories-input-w);
-      height: 4px;
-      border-radius: 2px;
-      border: none;
-      background-color: $color-theme-7;
+      height: 5px;
+      background: $color-black;
+      cursor: pointer;
+      top: -2px;
+      position: relative;
+      border-radius: 15px;
     }
 
     &::-ms-thumb {
@@ -143,30 +268,88 @@
     }
   }
 
-  @include media-query($xl-down) {
-    &__stories {
-      &:not(.slick-initialized) {
-        .user-stories__story {
-          flex: 0 0 66.66%;
-          max-width: 66.66%;
-        }
-      }
+  @media screen and (min-width: $grid-large) and (max-width: $grid-xl) {
+    .next-arrow,
+    .prev-arrow {
+      width: 100px;
+    }
+
+    &__s-c-wrap {
+      min-height: 320px;
+      padding: 20px;
+    }
+
+    &__s-title {
+      font-size: 20px;
+      line-height: 28px;
+      letter-spacing: 1px;
+    }
+
+    &__s-content {
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 1px;
+    }
+    &__s-author {
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 1px;
     }
   }
 
   @include media-query($large-down) {
-    &__slider-wrap {
-      width: calc(100% - 124px);
+    &__stories {
+      &:not(.slick-initialized) {
+        .user-stories__story {
+          flex: 0 0 33.333%;
+          max-width: 33.333%;
+        }
+      }
+    }
+
+    .next-arrow,
+    .prev-arrow {
+      width: 80px;
+    }
+
+    &__story {
+      padding: 0 5px;
+
+      &:first-of-type {
+        padding: 0 5px 0 0;
+      }
+
+      &:last-of-type {
+        padding: 0 0 0 5px;
+      }
+    }
+
+    &__s-c-wrap {
+      min-height: 300px;
+      padding: 15px;
+    }
+
+    &__s-title {
+      font-size: 18px;
+      line-height: 26px;
+      letter-spacing: 0.9px;
+    }
+
+    &__s-content {
+      font-size: 14px;
+      line-height: 22px;
+      letter-spacing: 0.8px;
+    }
+
+    &__s-author {
+      font-size: 14px;
+      line-height: 22px;
+      letter-spacing: 0.8px;
     }
   }
 
   @include media-query($medium-down) {
     margin: 0 0 20px;
-
-    &__title {
-      letter-spacing: 0.97px;
-      margin: 0 0 20px;
-    }
 
     &__stories {
       &:not(.slick-initialized) {
@@ -177,8 +360,9 @@
       }
     }
 
-    &__story {
-      padding: 0 10px;
+    &__title {
+      letter-spacing: 0.97px;
+      margin: 0 0 20px;
     }
 
     &__slider-wrap {

@@ -1,6 +1,10 @@
 .announcement-bar {
-  background-color: $color-main-1;
-  padding: 10px;
+  position: relative;
+
+  &__box {
+    background-color: $color-main-1;
+    padding: 10px;
+  }
 
   &.closed {
     opacity: 0;
@@ -26,12 +30,22 @@
     &__link {
       @include font-header(500);
       @include text(14px, 20px, $color-white, 0.83px);
+
+      &:hover,
+      &:focus {
+        font-weight: 700;
+        color: $color-white;
+      }
     }
   }
 
   @include media-query($large-down) {
     &__link-wrap {
       text-align: center;
+
+      &.text-right {
+        text-align: right;
+      }
     }
 
     &__link {
@@ -40,6 +54,10 @@
       line-height: 14px;
       letter-spacing: 1.2px;
       padding: 7px 15px;
+
+      &:focus {
+        box-shadow: 0 0 5px $color-white;
+      }
     }
   }
 

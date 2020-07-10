@@ -3,9 +3,12 @@
 
   <div class="header-cart__wrap">
     <div class="header-cart__header" data-c-d-header>
-      <button type="button" class="header-cart__close" data-cart-drawer-toggle>{%- render 'icon-chevron-l' -%}</button>
+      <button type="button" class="header-cart__close" data-cart-drawer-toggle data-cart-drawer-focus-in tabindex="-1">
+        <span class="visually-hidden">{{ 'general.accessibility.close_cart' | t }}</span>
+        <span aria-hidden="true">{%- render 'icon-chevron-l' -%}</span>
+      </button>
       <h4 class="header-cart__title">{{ 'cart.general.your_cart' | t }}</h4>
-      <a href="/cart" class="header-cart__cart">
+      <span class="header-cart__cart">
         <span class="icon-fallback-text hide">{{ 'layout.cart.title' | t }}</span>
         <span class="header-cart__cart-num" data-cart-drawer-count>
           {{ cart.item_count }}
@@ -13,7 +16,7 @@
         <span class="header-cart__cart-icon">
           {% render 'icon-cart' %}
         </span>
-      </a>
+      </span>
     </div>
 
     <div class="header-cart__body" data-c-d-body>
@@ -31,49 +34,33 @@
       </div>
 
       <div class="header-cart__empty-cart" {% unless cart.item_count == 0 %}style="display:none;"{% endunless %} data-cart-drawer-empty>
-        <p class="header-cart__empty-note">{{ 'cart.general.empty' | t }}</p>
+        {% if settings.empty_cart_title %}
+          <h6 class="header-cart__empty-note">{{ settings.empty_cart_title }}</h6>
+          {% else %}
+          <h6 class="header-cart__empty-note">{{ 'cart.general.empty' | t }}</h6>
+        {% endif %}
 
-        <a href="" class="header-cart__empty-block">
-          <span class="header-cart__empty-title">{{ 'cart.general.shop_bottle' | t }}</span>
-          <span class="header-cart__empty-image">
-            <img
-              class="header-login__bottle-img"
-              src="{{ 'dyln-cart-sport-cap.png' | asset_url }}"
-              alt="{{ 'cart.general.shop_bottle' | t }}" />
-          </span>
-        </a>
+        {% for i in (1..4) %}
+          {% assign link_string = "empty_cart_link_" | append: i %}
+          {% assign link_text_string = "empty_cart_link_text_" | append: i %}
+          {% assign image_string = "empty_cart_image_" | append: i %}
 
-        <a href="" class="header-cart__empty-block">
-          <span class="header-cart__empty-title">{{ 'cart.general.shop_accessories' | t }}</span>
-          <span class="header-cart__empty-image">
-            <img
-              class="header-login__bottle-img"
-              src="{{ 'dyln-cart-water-bottle.png' | asset_url }}"
-              alt="{{ 'cart.general.shop_accessories' | t }}" />
-          </span>
-        </a>
-
-        <a href="" class="header-cart__empty-block">
-          <span class="header-cart__empty-title">{{ 'cart.general.become_member' | t }}</span>
-          <span class="header-cart__empty-image">
-            {% render 'logo-icon' %}
-          </span>
-        </a>
-
-        <a href="" class="header-cart__empty-block">
-          <span class="header-cart__empty-title">{{ 'cart.general.learn_more' | t }}</span>
-          <span class="header-cart__empty-image">
-            {% render 'icon-ph' %}
-          </span>
-        </a>
+          {% render 'empty-cart-link' with
+            e_c_l_link: settings[link_string],
+            e_c_l_link_text: settings[link_text_string],
+            e_c_l_image: settings[image_string],
+          %}
+        {% endfor %}
       </div>
 
+      {% comment %} cart content, loaded with ajax {% endcomment %}
       <div
         class="cart-drawer"
         data-cart-drawer-content
         data-loader
         {% if cart.item_count == 0 %}style="display:none;"{% endif %}>
       </div>
+      <button type="button" class="visually-hidden skip-link" data-cart-drawer-toggle tabindex="-1">{{ 'general.accessibility.close_cart' | t }}</button>
     </div>
   </div>
 </div>

@@ -1,0 +1,23 @@
+.blog-popular {
+  .row {
+    @include media-query($medium-down) {
+      flex-wrap: nowrap;
+    }
+  }
+
+  .article-card {
+    &__wrapper {
+      @include media-query($medium-down) {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+&.blog-tagged {
+  .blog-popular {
+    padding-bottom: 80px;
+    margin-bottom: 0;
+  }
+}

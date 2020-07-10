@@ -1,5 +1,34 @@
 {% section 'contact-header' %}
 
-{% section 'contact-body' %}
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      {% section 'contact-sidebar' %}
+    </div>
+    <div class="col-lg-9">
+      <div class="contact-tabs" data-tabs-container="contact-tab">
+        {% section 'contact-tabs-header' %}
 
-{% section 'contact-faqs' %}
+        <div class="contact-tab-1 active" data-tab=1>
+          {% section 'contact-faqs' %}
+        </div>
+
+        <div class="contact-tab-2" data-tab=2 style="display:none">
+          {% section 'contact-domestic' %}
+        </div>
+
+        <div class="contact-tab-3" data-tab=3 style="display:none">
+          {% section 'contact-international' %}
+        </div>
+
+        <div class="contact-tab-4" data-tab=4 style="display:none">
+          {% section 'contact-returns' %}
+        </div>
+
+        <div class="contact-tab-5" data-tab=5 style="display:none">
+          {% section 'contact-form' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,55 +5,51 @@
       <h2 class="user-stories__title">{{ section.settings.title }}</h2>
     </div>
   {% endif %}
-
-  <div class="user-stories__stories" data-user-stories>
-    {% for block in section.blocks %}
-      {% assign modulo = forloop.index | modulo: 2 %}
-      {% assign content_order = " order-md-2" %}
-      {% if modulo == 0 %}
-        {% assign content_order = " order-md-0" %}
-      {% endif %}
-      <div class="user-stories__story">
-        <div class="user-stories__s-media order-md-1">
-          <div class="user-stories__s-media-inner">
-            {% if block.settings.image %}
-              {% render 'responsive-image' with
-                image: block.settings.image,
-                max_width: 425,
-                max_height: 425,
-                wrapper_class: "user-stories__img-wrap",
-                image_class: "user-stories__img",
-              %}
-            {% endif %}
+  <div class="container relative">
+    <div class="user-stories__stories" data-slider-wrapper aria-roledescription="carousel">
+      {% for block in section.blocks %}
+        {% assign modulo = forloop.index | modulo: 2 %}
+        {% assign content_order = " order-md-2" %}
+        {% if modulo == 0 %}
+          {% assign content_order = " order-md-0" %}
+        {% endif %}
+        <div class="user-stories__story" data-slider-item tabindex="0" aria-roledescription="slide">
+          <div class="user-stories__s-media">
+            <div class="user-stories__s-media-inner">
+              {% if block.settings.image %}
+                {% render 'responsive-image' with
+                  image: block.settings.image,
+                  max_width: 425,
+                  max_height: 425,
+                  wrapper_class: "user-stories__img-wrap",
+                  image_class: "user-stories__img",
+                  snippet_index: 50
+                %}
+              {% endif %}
+            </div>
+          </div>
+          <div class="user-stories__s-c-wrap">
+            <h4 class="user-stories__s-title">{{ block.settings.title }}</h4>
+            <div class="user-stories__s-rating">
+              {% assign star_count = block.settings.rating %}
+              {% for i in (1..star_count) %}
+                <span class="user-stories__s-star">
+                  {% render 'icon-star' %}
+                </span>
+              {% endfor %}
+            </div>
+            <div class="user-stories__s-content">{{ block.settings.content }}</div>
+            <div class="user-stories__s-author">{{ block.settings.author }}</div>
           </div>
         </div>
-        <div class="user-stories__s-c-wrap">
-          <h4 class="user-stories__s-title">{{ block.settings.title }}</h4>
-          <div class="user-stories__s-rating">
-            {% assign star_count = block.settings.rating %}
-            {% for i in (1..star_count) %}
-              <span class="user-stories__s-star">
-                {% render 'icon-star' %}
-              </span>
-            {% endfor %}
-          </div>
-          <div class="user-stories__s-content">{{ block.settings.content }}</div>
-          <div class="user-stories__s-author">{{ block.settings.author }}</div>
-        </div>
-      </div>
-    {% endfor %}
-  </div>
-
-  <div class="user-stories__slider-wrap">
-
-    {% assign blocks_0 = b_size | minus: 1 | times: 10 %}
-    <input class="user-stories__slider" type="range" max="{{ blocks_0 }}" min="0" step="1" value="0" data-user-stories-input>
-    {% assign isi_width = 100 | divided_by: b_size | append: '%'%}
-    <style>
-      :root {
-        --index-stories-input-w: {{ isi_width }};
-      }
-    </style>
+      {% endfor %}
+    </div>
+    <div class="next-arrow" data-next-arrow>
+      {% render 'icon-chevron-l' %}
+    </div>
+    <div class="prev-arrow" data-prev-arrow>
+      {% render 'icon-chevron-l' %}
+    </div>
   </div>
 {% endif %}
 

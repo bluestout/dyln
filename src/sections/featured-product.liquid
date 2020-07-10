@@ -22,6 +22,7 @@
       image_attributes: "data-product-featured-image",
       wrapper_class: wrapper_class,
       wrapper_attributes: "data-product-image-wrapper",
+      snippet_index: 22
     %}
   {% endfor %}
 
@@ -101,13 +102,14 @@
       data-add-to-cart
       {% unless product.available %}disabled="disabled"{% endunless %}
       {% if section_onboarding %}disabled="disabled"{% endif %}>
-        <span data-add-to-cart-text>
+        <span data-add-to-cart-text data-add-to-cart-loaded>
           {% if product.available %}
             {{ 'products.product.add_to_cart' | t }}
           {% else %}
             {{ 'products.product.sold_out' | t }}
           {% endif %}
         </span>
+        <span data-add-to-cart-loading class="loading-dots hide"></span>
     </button>
   </form>
 
@@ -162,7 +164,7 @@
       "https:{{ product.featured_image.src | img_url: image_size }}"
     ],
   {% endif %}
-  "description": "{{ product.description | strip_html | escape }}",
+  "description": {{ product.description | json }},
   {% if current_variant.sku != blank %}
     "sku": "{{ current_variant.sku }}",
   {% endif %}

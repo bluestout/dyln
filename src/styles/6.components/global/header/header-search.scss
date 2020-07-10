@@ -49,15 +49,18 @@
 
     &__input {
       @include font-header(500);
-      @include text(20px, 50px, $color-title, 1.2px);
-      padding: 15px 0;
+      font-size: 20px !important;
+      line-height: 50px !important;
+      color: $color-title;
+      letter-spacing: 1.2px;
+      padding: 10px 0;
       border: none;
       border-bottom: 1px solid $color-main-1;
       max-width: calc(100% - 85px);
       flex: 0 0 calc(100% - 85px);
 
       &::placeholder {
-        font-size: 50px;
+        font-size: 40px !important;
         letter-spacing: 3px;
         opacity: 0.75;
       }
@@ -66,7 +69,7 @@
     &__submit {
       @include no-font-size;
       border: none;
-      background: transparent;
+      background: $color-transparent;
       border-radius: 0;
       padding: 0;
       margin: 0;
@@ -83,14 +86,11 @@
       }
 
       &:hover {
-        background: transparent;
+        background: $color-transparent;
         g {
           stroke: $color-main-1;
         }
       }
-    }
-
-    &__results {
     }
 
     &__popular {
@@ -113,7 +113,7 @@
       @include text(18px, 25px, $color-body-text, 1.06px);
       display: inline-block;
       border: none;
-      background: transparent;
+      background: $color-transparent;
       padding: 0;
       margin: 0 30px 15px;
     }
@@ -127,7 +127,7 @@
     &__close-btn {
       border: none;
       box-shadow: none;
-      background: transparent;
+      background: $color-transparent;
       border-radius: 0;
       margin: 0;
       padding: 1px 3px;
@@ -146,121 +146,5 @@
 
   @include media-query($large-down) {
     display: none;
-
-    &__main-link {
-      display: none;
-
-      g {
-        @include transition(stroke);
-        stroke: $color-body-text;
-      }
-
-      &:hover {
-        g {
-          stroke: $color-main-1;
-        }
-      }
-
-      &.active {
-        + .header-search {
-          pointer-events: auto;
-          opacity: 1;
-        }
-      }
-    }
-
-    &__body {
-      position: relative;
-      z-index: $z-base;
-      background-color: $color-background;
-      padding: 65px 0 20px;
-    }
-
-    &__form {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: space-between;
-    }
-
-    &__input {
-      @include font-header(500);
-      @include text(20px, 50px, $color-title, 1.2px);
-      padding: 15px 0;
-      border: none;
-      border-bottom: 1px solid $color-main-1;
-      max-width: calc(100% - 85px);
-      flex: 0 0 calc(100% - 85px);
-
-      &::placeholder {
-        font-size: 50px;
-        letter-spacing: 3px;
-        opacity: 0.75;
-      }
-    }
-
-    &__submit {
-      @include no-font-size;
-      border: none;
-      background: transparent;
-      border-radius: 0;
-      padding: 0;
-      margin: 0;
-      align-self: flex-end;
-
-      svg {
-        width: 45px;
-        height: 45px;
-      }
-
-      g {
-        @include transition(stroke);
-        stroke: $color-body-text;
-      }
-
-      &:hover {
-        background: transparent;
-        g {
-          stroke: $color-main-1;
-        }
-      }
-    }
-
-    &__results {
-    }
-
-    &__popular {
-      margin: 55px 0 0;
-    }
-
-    &__pop-title {
-      @include font-header(700);
-      @include text(30px, 43px, $color-main-1, 1.77px);
-      text-align: center;
-      margin: 0 0 20px;
-    }
-
-    &__pop-terms {
-      text-align: center;
-    }
-
-    &__pop-term {
-      @include font-header(700);
-      @include text(18px, 25px, $color-body-text, 1.06px);
-      display: inline-block;
-      border: none;
-      background: transparent;
-      padding: 0;
-      margin: 0 30px 15px;
-    }
-
-    &__close {
-      display: none;
-    }
-
-    &__overlay {
-      display: none;
-    }
   }
 }

@@ -1,8 +1,17 @@
 .index-video {
   position: relative;
+  padding-top: 80px;
+  margin-top: -80px;
+
+  &__bg {
+    @include media-query($medium-down) {
+      margin-left: -30px;
+    }
+  }
 
   &__outer {
-    margin: -18px 0 0;
+    z-index: $z-base;
+    margin: -3px 0 0;
     overflow: hidden;
     padding: 0 0 40px;
   }
@@ -14,6 +23,61 @@
 
     &:not(.active) {
       opacity: 0;
+    }
+  }
+
+  &__back-link {
+    display: block;
+    margin-top: 15px;
+    @include text(16px, 1.2, $color-theme-1, 0);
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__modal-wrap {
+    z-index: $z-contact-modal;
+    position: fixed;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color-black, 0.5);
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  &__modal-outer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__modal {
+    position: relative;
+    z-index: $z-contact-modal;
+    background-color: $color-background;
+    flex: 0 0 auto;
+    width: auto;
+    margin: auto;
+    padding: 30px;
+  }
+
+  &__modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 2px;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    background: $color-transparent;
+
+    g {
+      stroke: $color-body-text;
     }
   }
 
@@ -44,8 +108,7 @@
   }
 
   &__title {
-    @include font-header(700);
-    @include text(30px, 45px, $color-title, 1.77px);
+    @include text-subtitle;
     margin: 0 0 10px;
   }
 
@@ -58,7 +121,8 @@
   &__link {
     @include no-browser-styling;
 
-    &:hover {
+    &:hover,
+    &:focus {
       .index-video__link-text {
         color: $color-main-1;
         border-color: $color-main-1;
@@ -100,15 +164,34 @@
     margin: auto;
   }
 
+  @include media-query($large-down) {
+    &__modal {
+      padding: 20px;
+      max-width: 100vw;
+    }
+
+    &__modal-close {
+      top: 5px;
+      right: 5px;
+    }
+  }
+
   @include media-query($medium-down) {
     &__outer {
       background: radial-gradient(
         ellipse at top,
         rgba($color-theme-19, 0.3) 0%,
-        transparent 60%,
-        transparent 100%
+        $color-transparent 60%,
+        $color-transparent 100%
       );
       padding: 0;
+      overflow: visible;
+    }
+
+    &__back-link {
+      position: absolute;
+      left: 15px;
+      z-index: $z-base;
     }
 
     &__bg-outer {
@@ -127,9 +210,6 @@
     }
 
     &__title {
-      font-size: 20px;
-      line-height: 28px;
-      letter-spacing: 1.18px;
       margin: 0 0 10px;
     }
 
@@ -157,6 +237,15 @@
         width: 18px;
         height: 18px;
       }
+    }
+
+    &__modal {
+      padding: 15px;
+    }
+
+    &__modal-close {
+      top: 2px;
+      right: 2px;
     }
   }
 }

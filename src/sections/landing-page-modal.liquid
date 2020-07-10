@@ -1,0 +1,80 @@
+{%- if section.settings.show -%}
+  <div class="landing-page-modal__container modal-closed" data-time-interval="{{ section.settings.time_interval }}" data-modal>
+    <div class="landing-page-modal__content">
+      {%- render 'responsive-image' with
+        image: section.settings.background,
+        max_width: 700,
+        max_height: 700,
+        wrapper_class: "landing-page-modal__image",
+        snippet_index: 36
+      -%}
+
+      <div class="landing-page-modal__title">
+        <h2>{{ section.settings.title }}</h2>
+      </div>
+    </div>
+
+    <div class="landing-page-modal__cta">
+      <a href="{{ section.settings.cta_btn_url }}" class="landing-page-modal__cta-btn">
+        {{ section.settings.cta_btn_text }}
+      </a>
+      <a href="{{ section.settings.secondary_btn_url }}" class="landing-page-modal__secondary-btn">
+        {{ section.settings.secondary_btn_text }}
+      </a>
+    </div>
+
+    <div class="landing-page-modal__close-modal" data-close-modal>
+      {% render 'icon-close-black' %}
+      <span class="visually-hidden">{{ 'general.accessibility.close' | t }}</span>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Landing Page Modal",
+    "class": "landing-page-modal",
+    "settings": [
+    {
+      "type": "checkbox",
+      "id": "show",
+      "label": "Show modal?"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "image_picker",
+      "id": "background",
+      "label": "Background"
+    },
+    {
+      "type": "url",
+      "id": "cta_btn_url",
+      "label": "CTA Button URL"
+    },
+    {
+      "type": "text",
+      "id": "cta_btn_text",
+      "label": "CTA Button Text"
+    },
+    {
+      "type": "url",
+      "id": "secondary_btn_url",
+      "label": "Secondary Link URL"
+    },
+    {
+      "type": "text",
+      "id": "secondary_btn_text",
+      "label": "Secondary Link Text"
+    },
+    {
+      "type": "text",
+      "id": "time_interval",
+      "label": "In how many miliseconds do you want the modal to popup?"
+    }
+  ]
+  }
+{% endschema %}

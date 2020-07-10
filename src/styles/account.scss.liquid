@@ -426,7 +426,8 @@ $z-top: 10;
         background-position: 50% 100%;
       }
 
-      &:hover {
+      &:hover,
+      &:focus {
         bottom: 5px;
         background-position: 50% 100%;
         box-shadow: 0 2px 2px $btn-sup-c;
@@ -473,7 +474,8 @@ $z-top: 10;
         color: $btn-text-c-alt;
       }
 
-      &:hover {
+      &:hover,
+      &:focus {
         bottom: 5px;
         box-shadow: 0 2px 2px $btn-sup-c;
         &::after {
@@ -885,12 +887,6 @@ $z-top: 10;
   background-color: $color-main-1;
 }
 
-.account-body__tabs {
-}
-
-.account-body__tab {
-}
-
 // account dashboard
 .account-dash {
   margin: 0 0 100px;
@@ -1111,9 +1107,6 @@ $half: round($loops / 2);
   letter-spacing: 1.06px;
   display: inline-block;
   vertical-align: middle;
-}
-
-.account-dash__subs {
 }
 
 .account-dash__sub {
@@ -1804,9 +1797,6 @@ $half: round($loops / 2);
   margin: 0 auto 15px;
 }
 
-.registration-modal__country-select {
-}
-
 .registration-modal__btn-final {
   @include button(wire, round, 1);
 }
@@ -2017,9 +2007,6 @@ $half: round($loops / 2);
 
 .account-edit__input-wrap {
   margin: 0 0 15px;
-}
-
-.account-edit__input {
 }
 
 .account-edit__radio {
@@ -2256,9 +2243,6 @@ $half: round($loops / 2);
   }
 }
 
-.account-bottle__body {
-}
-
 .account-bottle__image-wrap {
   float: left;
   width: 75px;
@@ -2451,9 +2435,6 @@ $half: round($loops / 2);
 .account-bottle__hydro-icon-wrap {
   width: 56px;
   float: left;
-}
-
-.account-bottle__hydro-icon {
 }
 
 .account-bottle__hydro-content {

@@ -1,4 +1,5 @@
 import { scrollTo } from "./scroll-to";
+import { closeAllHeaderLinks, closeMobileMenu } from "./header";
 
 const data = "scroll-to";
 const element = `[data-${data}]`;
@@ -11,16 +12,16 @@ for (let i = 0; i < allScroll.length; i++) {
 }
 
 function clickListener(event) {
+  event.preventDefault();
   const source = event.currentTarget;
-  const href = source.dataset.scrollTo;
-  if (href) {
-    const hashLoc = href.indexOf("#");
-    if (hashLoc > -1) {
-      const id = href.substring(hashLoc);
-      const target = document.getElementById(id);
+  let target = source.dataset.scrollTo;
+  if (target) {
+    target = document.querySelector(target);
+    if (target) {
+      closeAllHeaderLinks();
+      closeMobileMenu();
       const body = document.querySelector("html");
-      console.log("id", id);
-      scrollTo(body, target.offsetTop, 500);
+      scrollTo(body, target.offsetTop, 1000);
     }
   }
 }

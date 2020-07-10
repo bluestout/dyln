@@ -9,6 +9,7 @@
   &__items-wrap {
     max-height: calc(100% - 180px);
     overflow-y: auto;
+    padding: 10px 0 0;
   }
 
   &__item {
@@ -16,7 +17,6 @@
     padding: 0 0 25px;
     margin: 0 15px 15px;
     display: flex;
-    flex-flow: row wrap;
 
     &:not(:last-of-type) {
       &::after {
@@ -33,7 +33,7 @@
 
   &__image-wrap {
     max-width: 100px;
-    margin: 0 30px 0 0;
+    padding: 0 30px 0 0;
   }
 
   &__image-link {
@@ -46,7 +46,7 @@
 
   &__item-content {
     padding: 20px 0 0;
-    flex: 1 0 auto;
+    width: calc(100% - 101px);
   }
 
   &__item-link {
@@ -111,8 +111,9 @@
 
   &__item-price {
     @include font-header(500);
-    @include text(16px, 23px, $color-title, 0.95px);
+    @include text(16px, 34px, $color-title, 0.95px);
     float: right;
+    height: 34px;
   }
 
   .strike-line {
@@ -121,12 +122,6 @@
 
   .strike-text {
     color: $color-title;
-  }
-
-  .line-1 {
-  }
-
-  .money {
   }
 
   &__remove {
@@ -141,6 +136,7 @@
     text-transform: uppercase;
     margin: 0 0 15px;
     padding: 0 15px;
+    display: none;
   }
 
   &__item-upsell {
@@ -178,13 +174,96 @@
     @include text(14px, 20px, $color-title, 1.5px);
   }
 
-  &__upsell-selectbox {
+  &__upsell-radio-color {
+    @include transition(box-shadow, border-color);
+    @include no-browser-styling;
+    width: 21px;
+    height: 21px;
+    border: 2px solid $color-theme-4;
+    border-radius: 50%;
+    background-position: center;
+    cursor: pointer;
+    margin: 0 3px 0 0;
+
+    &:not(:disabled) {
+      &:not(:checked) {
+        box-shadow: none;
+      }
+
+      &:hover {
+        border-color: $color-theme-6;
+        box-shadow: 0 0 7px 0 rgba($color-black, 0.5);
+      }
+
+      &:checked {
+        box-shadow: 0 0 7px 0 rgba($color-black, 0.5);
+        border-color: $color-white;
+      }
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &__upsell-color-wrap {
     margin: 0 0 15px;
   }
 
-  &__upsell-select {
-    width: 100%;
-    padding: 5px;
+  &__upsell-input-wrap {
+    text-align: center;
+    width: 48%;
+    float: left;
+    margin: 0 1% 3px;
+  }
+
+  &__upsell-label {
+    @include transition(color);
+    @include underline($color-main-1, false);
+    @include font-header(500);
+    @include text(12px, 20px, $color-body-text, 1px);
+    display: inline-block;
+  }
+
+  &__upsell-radio-input {
+    @include no-browser-styling;
+    height: 1px;
+    width: 1px;
+
+    &:not(:disabled) {
+      + .cart-drawer__upsell-label {
+        cursor: pointer;
+      }
+
+      &:hover {
+        + .cart-drawer__upsell-label {
+          color: $color-main-1;
+        }
+      }
+
+      &:checked {
+        + .cart-drawer__upsell-label {
+          color: $color-main-1;
+
+          &::after {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    &:disabled {
+      + .cart-drawer__upsell-label {
+        color: $color-theme-8;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &__upsell-selectbox {
+    @include clearfix;
+    margin: 0 0 15px;
   }
 
   &__upsell-add {
@@ -192,9 +271,6 @@
     text-transform: uppercase;
     padding: 6px;
     width: 100%;
-  }
-
-  .upsell-loading-dots {
   }
 
   &__totals-wrap {
@@ -209,21 +285,21 @@
     }
   }
 
-
   &__total {
     @include clearfix;
-    margin: 0 0 40px;
+    margin: 0 0 20px;
   }
 
   &__total-text {
-    @include poppins(500);
-    @include text(16px,22px,$color-body-text,0.95px);
+    @include font-header(500);
+    @include text(16px, 22px, $color-body-text, 0.95px);
     float: left;
+    clear: left;
   }
 
   &__total-price {
-    @include poppins(500);
-    @include text(16px,22px,$color-body-text,0.95px);
+    @include font-header(500);
+    @include text(16px, 22px, $color-body-text, 0.95px);
     float: right;
   }
 
@@ -254,6 +330,9 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    padding-top: 10px;
   }
 
   &__payment {
@@ -275,11 +354,225 @@
         vertical-align: middle;
       }
     }
+
+    &--amazon {
+      img {
+        top: 3px;
+        position: relative;
+      }
+    }
   }
 
   &__payments-title {
-    @include poppins(500);
-    @include text(11px,16px,$color-body-text,0.65px);
+    @include font-header(500);
+    @include text(11px, 16px, $color-body-text, 0.65px);
     align-self: center;
+  }
+
+  &__subscription-box {
+    margin: 0 0 13px;
+  }
+
+  &__subscription-box-btn {
+    @include no-font-size;
+    border: none;
+    border-radius: 2px 0 0 2px;
+    padding: 3px 9px;
+    height: 25px;
+    background-color: $color-theme-17;
+    width: 145px;
+    display: inline-block;
+    vertical-align: middle;
+
+    span {
+      @include font-header(500);
+      @include text(13px, 19px, $color-white, 0.5px);
+      text-transform: uppercase;
+    }
+  }
+
+  input[type="checkbox"] {
+    @include no-browser-styling;
+    position: relative;
+    border-radius: 2px;
+    border: 1px solid $color-theme-17;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 10px 0 0;
+    cursor: pointer;
+
+    &:checked {
+      background-color: $color-theme-17;
+
+      &::before {
+        content: "";
+        background-image: url("data:image/svg+xml,%3Csvg width='8' height='6' viewBox='0 0 8 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 2.671L2.458 5.1 7 .2' stroke='%23FFF' fill='none' fill-rule='evenodd' stroke-linecap='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        display: block;
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+
+  .custom-select {
+    width: 150px;
+    border: 1px solid $color-theme-17;
+    border-radius: 1px;
+    height: 25px;
+    line-height: 25px;
+  }
+
+  .custom-select-styled {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    height: 23px;
+
+    &::before {
+      content: none;
+    }
+    &::after {
+      content: none;
+    }
+
+    span {
+      font-size: 10px;
+      line-height: 14px;
+      letter-spacing: 0.5px;
+      align-self: center;
+    }
+
+    svg {
+      align-self: center;
+      width: 10px;
+      height: 12px;
+    }
+  }
+
+  .custom-select-options {
+    left: 0;
+    right: 0;
+    top: calc(100% + 4px);
+    background-color: $color-white;
+    border: 1px solid $color-theme-17;
+    border-radius: 1px;
+    width: 295px;
+
+    &.full {
+      left: auto;
+    }
+  }
+
+  .custom-select-option {
+    background-color: $color-white;
+    position: relative;
+    &:hover {
+      background-color: $color-white;
+    }
+
+    label {
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.7px;
+      pointer-events: none;
+    }
+
+    input {
+      @include no-browser-styling;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      padding: 0;
+
+      &:hover {
+        + label {
+          font-weight: 700;
+        }
+      }
+      &:focus {
+        outline: 5px auto rgba($color-main-1, 0.5);
+      }
+    }
+  }
+
+  @include media-query($small) {
+    &__image-wrap {
+      max-width: 70px;
+      padding: 0 8px 0 0;
+    }
+
+    &__item-content {
+      width: calc(100% - 71px);
+    }
+
+    &__subscription-box {
+      margin: 0 0 13px;
+    }
+
+    &__subscription-box-btn {
+      width: 100px;
+      padding: 3px 5px;
+
+      > span {
+        font-size: 9px;
+        letter-spacing: 0;
+      }
+    }
+
+    input[type="checkbox"] {
+      width: 10px;
+      height: 10px;
+      margin: 0;
+
+      &:checked {
+        &::before {
+          top: 1px;
+          left: 1px;
+          width: 10px;
+          height: 10px;
+        }
+      }
+    }
+
+    .custom-select {
+      width: 105px;
+    }
+
+    .custom-select-styled {
+      padding: 0 4px;
+      span {
+        font-size: 9px;
+        letter-spacing: 0;
+      }
+
+      svg {
+        width: 8px;
+        height: 8px;
+      }
+    }
+
+    .custom-select-options {
+      width: 205px;
+    }
+
+    .custom-select-option {
+      padding: 1px 3px;
+      label {
+        font-size: 11px;
+        line-height: 14px;
+        letter-spacing: 0.5px;
+      }
+    }
   }
 }

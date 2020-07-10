@@ -1,0 +1,33 @@
+{% if section.settings.show %}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <form>
+          <input type="text" placeholder="{{ 'blogs.search.placeholder' | t }}" data-blog-search-input />
+          <span class="blog-search__utils-search-icon">
+            {% render 'icon-search' %}
+          </span>
+        </form>
+        <div class="ajax-search" data-blog-search-results>
+        </div>
+      </div>
+      {% render 'blog-side-menu' %}
+
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Blog Search",
+  "class": "blog-search",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show",
+      "label": "Show this section?",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

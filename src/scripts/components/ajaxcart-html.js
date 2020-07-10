@@ -1,63 +1,173 @@
 import { formatMoney } from "@shopify/theme-currency";
-import { resizeImage, formatAndTrimPrice } from "./ajax-helpers";
+import {
+  resizeImage,
+  formatAndTrimPrice,
+  stripHtml,
+  handleize,
+} from "./helpers";
 
-const icons = {
-  cart:
-    "<svg width='35' height='28' viewBox='0 0 35 28' xmlns='http://www.w3.org/2000/svg'><g transform='translate(2 1)' stroke='#333C41' stroke-width='2' fill='none' fill-rule='evenodd' stroke-linecap='square'><path d='M25 4l-2.607 13H2.543L0 4M25 4l.682-4H32'/><circle cx='6.5' cy='23.5' r='2.5'/><circle cx='18.5' cy='23.5' r='2.5'/></g></svg>"
+const names = {
+  color: "color,colour",
+  amount: "amount,number",
 };
+
+function adjustDiffuserText(text) {
+  if (text === "1 Diffuser") {
+    return "Single Pack";
+  } else if (text && text.indexOf(" Diffusers") > -1) {
+    return text.replace(" Diffusers", "-pack");
+  }
+  return text;
+}
 
 function quickCartUpsellHtml(product, url, index) {
   if (!product || !index) {
-    return "";
+    return;
   }
   let pattern = "";
   let options = "";
-  for (let k = 0; k < product.variants.length; k++) {
-    const variant = product.variants[k];
-    options += `
-    <option
-      ${variant.available ? "" : "disabled='disabled'"}
-      value="${variant.id}">
-        ${variant.title}
-    </option>
-    `;
+  let optionsWrap = "";
+
+  if (product.variants) {
+    for (let k = 0; k < product.variants.length; k++) {
+      const variant = product.variants[k];
+      options += `
+      <option
+        ${variant.available ? "" : "disabled='disabled'"}
+        value="${variant.id}"
+        data-price="${formatAndTrimPrice(variant.price)}"
+        data-id="${variant.id}">
+          ${variant.title}
+      </option>
+      `;
+    }
+
+    for (let k = 0; k < product.options.length; k++) {
+      const option = product.options[k].trim().toLowerCase();
+      const optionlabel = `option${k + 1}`;
+      if (names.color.indexOf(option) > -1) {
+        let colorInputs = "";
+        let isChecked = false;
+        for (let j = 0; j < product.variants.length; j++) {
+          const variant = product.variants[j];
+
+          if (variant[optionlabel]) {
+            const colorHandle = stripHtml(
+              handleize(variant.title.trim().toLowerCase())
+            );
+            const swatch = `color-swatch-${colorHandle}`;
+            let checkedStatus = "";
+            if (variant.available && !isChecked) {
+              checkedStatus = `checked="checked"`;
+              isChecked = true;
+            }
+            colorInputs += `<label
+                class="visually-hidden"
+                for="cu-${k}-${option}-${j}"
+                tabindex="-1">
+                ${variant.title}
+              </label>`;
+            colorInputs += `<input type="radio"
+              tabindex="-1"
+              id="cu-${k}-${option}-${j}"
+              name="cu-${k}-${option}"
+              value="${variant[optionlabel]}"
+              class="cart-drawer__upsell-radio-color ${swatch}"
+              data-price="${formatAndTrimPrice(variant.price)}"
+              data-id="${variant.id}"
+              data-upsell-input
+              ${checkedStatus}
+              ${variant.available ? "" : `disabled="disabled"`} />`;
+          }
+        }
+        optionsWrap += `<div class="cart-drawer__upsell-selectbox">${colorInputs}</div>`;
+      } else {
+        let amountInputs = "";
+        let isChecked = false;
+        for (let j = 0; j < product.variants.length; j++) {
+          const variant = product.variants[j];
+          if (variant[optionlabel]) {
+            amountInputs += `<span class="cart-drawer__upsell-input-wrap">`;
+            let checkedStatus = "";
+            if (variant.available && !isChecked) {
+              checkedStatus = `checked="checked"`;
+              isChecked = true;
+            }
+            amountInputs += `<input type="radio"
+              tabindex="-1"
+              id="cu-${k}-${option}-${j}"
+              name="cu-${k}-${option}"
+              value="${adjustDiffuserText(variant[optionlabel])}"
+              class="cart-drawer__upsell-radio-input"
+              data-price="${formatAndTrimPrice(variant.price)}"
+              data-id="${variant.id}"
+              data-upsell-input
+              ${checkedStatus}
+              ${variant.available ? "" : `disabled="disabled"`} />`;
+            amountInputs += `<label
+              class="cart-drawer__upsell-label"
+              for="cu-${k}-${option}-${j}"
+              tabindex="-1">
+              ${adjustDiffuserText(variant[optionlabel])}
+            </label>`;
+            amountInputs += "</span>";
+          }
+        }
+        optionsWrap += `<div class="cart-drawer__upsell-selectbox">${amountInputs}</div>`;
+      }
+    }
   }
 
   const select =
-    options.length > 0
-      ? `<div class="cart-drawer__upsell-selectbox"><select name="id" class="cart-drawer__upsell-select" data-upsell-select>${options}</select></div>`
+    options.length > 1
+      ? `<select name="id" tabindex="-1" class="visually-hidden shown-on-focus" data-upsell-select>${options}</select>`
       : "";
-
   const linkHref = url ? `href="${url}"` : `href="/products/${product.handle}"`;
 
   pattern = `
-  <div class="cart-drawer__item-upsell" data-add-upsell-wrap>
+  <div class="cart-drawer__item-upsell" data-upsell-wrap>
     <input
       type="hidden"
       id="upsellQuantity${index}"
       name="quantity"
-      value="1"/>
-    <a ${linkHref} class="cart-drawer__upsell-image">
+      value="1" tabindex="-1"/>
+    <a ${linkHref} class="cart-drawer__upsell-image" tabindex="-1">
       ${productImageHtml(product)}
     </a>
-    <a ${linkHref} class="cart-drawer__upsell-content">
+    <a ${linkHref} class="cart-drawer__upsell-content" tabindex="-1">
       <h4 class="cart-drawer__upsell-item-title">${product.title}</h4>
       <p class="cart-drawer__upsell-text">
-        <span data-cart-upsell-item-price="${product.variants[0].id}">
-          ${formatAndTrimPrice(product.price)}
-        </span>
+      <span data-upsell-price>
+        ${formatAndTrimPrice(product.price)}
+      </span>
       </p>
     </a>
     <div class="cart-drawer__upsell-form">
+      ${optionsWrap}
       ${select}
-      <button type="button" class="cart-drawer__upsell-add" data-add-upsell>
-        <span data-add-upsell-loading class="upsell-loading-dots hide"></span>
-        <span data-add-upsell-text>${theme.strings.addToCart}</span>
+      <button type="button" class="cart-drawer__upsell-add" data-upsell-submit tabindex="-1">
+        <span data-upsell-loading class="loading-dots hide"></span>
+        <span data-upsell-text>${theme.strings.addToCart}</span>
       </button>
     </div>
   </div>
   `;
   return pattern;
+}
+
+function getFrequencyText(frequency, intervalUnit) {
+  if (!frequency) {
+    return theme.strings.select_frequency;
+  }
+  let frequencyText = `${theme.strings.every}`;
+  if (frequency === "1") {
+    frequencyText += ` ${intervalUnit.replace("s", "")}`;
+  } else if (frequency === "12" && intervalUnit === "Months") {
+    frequencyText += ` ${theme.strings.year}`;
+  } else {
+    frequencyText += ` ${frequency} ${intervalUnit}`;
+  }
+  return frequencyText;
 }
 
 function quickCartLineItemHtml(product, index) {
@@ -85,13 +195,149 @@ function quickCartLineItemHtml(product, index) {
   } else {
     priceHtml = shownPrice;
   }
-  const linkHref = `href="${product.url}"`;
+  let linkHref = `href="${product.url}"`;
+
+  const subMetadata = JSON.parse($("[data-subscription-metadata]").html());
+
+  const invertedVariantArray = {};
+
+  // check if product CAN be a subscription
+  let isSubscription = false;
+  for (const key in subMetadata) {
+    if (!subMetadata.hasOwnProperty(key)) continue;
+    if (key === "map") {
+      const obj = subMetadata[key];
+      for (const prop in obj) {
+        invertedVariantArray[obj[prop].discount_variant_id] = prop;
+        if (!obj.hasOwnProperty(prop)) continue;
+        if (obj[prop].discount_variant_id === product.variant_id) {
+          isSubscription = true;
+        }
+      }
+    }
+  }
+
+  if (isSubscription && subMetadata.url) {
+    linkHref = `href="${subMetadata.url}"`;
+  }
+
+  let subscriptionHtml = "";
+  let productVariantTitle = product.variant_title;
+  if (productVariantTitle.toLowerCase().indexOf("diffuser") > -1) {
+    productVariantTitle = adjustDiffuserText(productVariantTitle);
+  }
+
+  const frequencyUnit = product.properties.shipping_interval_frequency;
+  let intervalUnit = product.properties.shipping_interval_unit_type;
+
+  let isSubscribableProduct = false;
+  if (subMetadata.id && product.product_id === subMetadata.id) {
+    intervalUnit = subMetadata.unit;
+    isSubscribableProduct = true;
+  }
+
+  if (isSubscription || isSubscribableProduct) {
+    subscriptionHtml = `<div class="cart-drawer__subscription-box">`;
+    let customSelectOptionsClassname = "custom-select-options";
+
+    customSelectOptionsClassname = "custom-select-options full";
+    subscriptionHtml += `<input type="checkbox"
+        id="sub-check-${product.variant_id}-${index}"
+        name="sub-check-${product.variant_id}-${index}"
+        data-qc-subscription-convert
+        ${isSubscription ? "checked=checked" : ""}
+        />
+      <label
+        for="sub-check-${product.variant_id}-${index}"
+        class="visually-hidden">
+        ${theme.strings.subscribe}
+      </label>
+      <span class="cart-drawer__subscription-box-btn">
+        <span data-qc-subscription-price>
+          ${formatMoney(product.price, theme.moneyFormat)}
+        </span>
+        <span><strong>${theme.strings.subscribe}</strong></span>
+      </span>`;
+
+    subscriptionHtml += `<div class="custom-select">
+      <button type="button" class="custom-select-styled" data-custom-select-free>
+        <span data-qc-subscription-description>
+        ${getFrequencyText(frequencyUnit, intervalUnit)}
+        </span>
+        <svg width="7" height="3" viewBox="0 0 7 3" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l2.5 2.5L6 0" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
+      </button>
+      <div class="${customSelectOptionsClassname}" data-custom-select-options="" style="display: none;">
+    `;
+
+    for (let a = 0; a < subMetadata.frequencies.length; a++) {
+      const frequency = subMetadata.frequencies[a];
+      let checkedStatus = "";
+      if (frequency == frequencyUnit) {
+        checkedStatus = `checked="checked"`;
+      }
+      const frequencyText = getFrequencyText(frequency, intervalUnit);
+
+      let subVariantPrice = 0;
+      let subVariantId = 0;
+      let regularVariantId = 0;
+
+      try {
+        regularVariantId = invertedVariantArray[product.variant_id];
+      } catch (error) {
+        regularVariantId = product.variant_id;
+      }
+
+      try {
+        subVariantId = subMetadata.map[product.variant_id].discount_variant_id;
+        subVariantPrice = formatMoney(
+          subMetadata.map[product.variant_id].discount_variant_price,
+          theme.moneyFormat
+        );
+      } catch (error) {
+        subVariantPrice = formatMoney(product.price, theme.moneyFormat);
+        subVariantId = product.id;
+      }
+
+      subscriptionHtml += `
+        <div class="custom-select-option">
+          <input type="radio"
+          tabindex="-1"
+          id="sub-${product.variant_id}-${index}"
+          name="sub-${product.variant_id}-${index}"
+          value="${frequency}"
+          ${checkedStatus}
+          data-line="${index + 1}"
+          data-id="${regularVariantId}"
+          data-sub-id="${subVariantId}"
+          data-unit="${intervalUnit}"
+          data-frequency="${frequency}"
+          data-text="${frequencyText}"
+          data-price="${subVariantPrice}"
+          data-subscription=${isSubscription ? "yes" : "no"}
+          data-qc-frequency-input />
+          <label
+            for="sub-${product.variant_id}-${index}">
+            ${frequencyText}
+          </label>
+        </div>
+      `;
+    }
+    subscriptionHtml += `
+    </div>
+    </div>
+    </div>
+    `;
+  }
+
   const quantityHtml = `
   <div class="cart-drawer__item-qty">
     <button class="cart-drawer__item-button"
       type="button"
       data-direction="down"
-      data-qty-change-ajax=".line-${index + 1}">-</button>
+      data-qty-change-ajax=".line-${index + 1}"
+      tabindex="-1">
+      -
+    </button>
 
     <input type="number"
       class="cart-drawer__item-input line-${index + 1}"
@@ -100,18 +346,23 @@ function quickCartLineItemHtml(product, index) {
       data-line="${index + 1}"
       value="${product.quantity}"
       aria-label="${theme.strings.quantity}"/
-      data-qty-input />
+      data-qty-input
+      tabindex="-1"/>
 
     <button class="cart-drawer__item-button"
       type="button"
       data-direction="up"
-      data-qty-change-ajax=".line-${index + 1}">+</button>
+      data-qty-change-ajax=".line-${index + 1}"
+      tabindex="-1">
+      +
+    </button>
   </div>`;
 
   // put together all the data into one line item
   const pattern = `
   <div
     class="cart-drawer__item"
+    data-cart-drawer-item
     data-line="${index + 1}"
     data-quantity="${product.quantity}">
     <div class="cart-drawer__image-wrap">
@@ -120,25 +371,17 @@ function quickCartLineItemHtml(product, index) {
       </a>
     </div>
     <div class="cart-drawer__item-content">
-      <a ${linkHref} class="cart-drawer__item-link">
+      <a ${linkHref} class="cart-drawer__item-link" tabindex="-1">
         <h4 class="cart-drawer__item-title">${product.product_title}</h4>
-        <p class="cart-drawer__variant">${product.variant_title}</p>
+        <p class="cart-drawer__variant">${productVariantTitle}</p>
       </a>
+      ${subscriptionHtml}
       ${quantityHtml}
       <p class="cart-drawer__item-price">${priceHtml}</p>
 
       </div>
-      </div>
+    </div>
     `;
-
-  /*
-  <a
-    class="cart-drawer__remove"
-    href="/cart/change?line=${index}&amp;quantity=0"
-    data-remove-item="${index + 1}"
-    data-remove-id="${product.id}">
-  </a>
-  */
   return pattern;
 }
 
@@ -168,16 +411,18 @@ function cartLineItemHtml(product, index) {
   // this is to make the product title center, if it has a title only
   let titleBr = "";
   let variantTitle = "";
+
   if (product.variant_title) {
     variantTitle = product.variant_title;
   }
 
-  if (product.variant_title) {
+  if (variantTitle) {
     titleBr = "<br>";
   }
 
   const showLink = `href="${product.url}"`;
   const lineTotal = formatMoney(product.line_price, theme.moneyFormat);
+  const linePrice = formatMoney(product.price, theme.moneyFormat);
 
   const selectOptions = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   let selectOptionsString = "";
@@ -221,6 +466,8 @@ function cartLineItemHtml(product, index) {
         <span class="cart__table-product-title">
           ${product.product_title}
         </span>
+        ${titleBr}
+        <span class="cart__table-product-info">${variantTitle}</span>
       </a>
       <div class="cart__table-remove-wrap">
         <a
@@ -231,13 +478,6 @@ function cartLineItemHtml(product, index) {
           ${theme.strings.remove}
         </a>
       </div>
-    </td>
-
-    <td
-      class="cart__table-cell d-none d-md-table-cell">
-      <a class="cart__table-product-variant" ${showLink}>
-        ${variantTitle}
-      </a>
     </td>
 
     <td class="cart__table-cell" data-label="${theme.strings.quantity}">
@@ -252,10 +492,7 @@ function cartLineItemHtml(product, index) {
               ${product.product_title}
             </span>
             ${titleBr}
-            <span class="cart__table-product-info">
-              ${variantTitle}
-            </span>
-            <br>
+            <span class="cart__table-product-info">${variantTitle}</span>
           </a>
           <div>
             ${showQuantity}
@@ -274,7 +511,12 @@ function cartLineItemHtml(product, index) {
           </div>
         </div>
       </div>
+    </td>
 
+    <td
+      class="cart__table-cell d-none d-md-table-cell"
+      data-label="${theme.strings.cart_price}">
+      ${linePrice}
     </td>
 
     <td
@@ -335,5 +577,5 @@ export {
   quickCartLineItemHtml,
   cartLineItemHtml,
   cartTotalsHtml,
-  emptyCartHtml
+  emptyCartHtml,
 };

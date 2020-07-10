@@ -32,8 +32,8 @@
   &__cat-btn {
     @include no-browser-styling;
     padding: 5px 0;
-    &:not(:first-of-type) {
-      margin: 0 0 0 50px;
+    &:not(:last-of-type) {
+      margin: 0 50px 0 0;
     }
 
     &.active {
@@ -84,9 +84,6 @@
     @include clearfix;
   }
 
-  &__cat-options {
-  }
-
   &__cat-color {
     @include transition(box-shadow);
     @include no-browser-styling;
@@ -114,6 +111,7 @@
       box-shadow: none;
       border: 4px solid $color-white;
       border-radius: 50%;
+      background-position: center;
     }
 
     &.active,
@@ -123,8 +121,8 @@
       }
     }
 
-    &:not(:first-of-type) {
-      margin: 0 0 0 14px;
+    &:not(:last-of-type) {
+      margin: 0 14px 5px 0;
     }
   }
 
@@ -137,8 +135,8 @@
     @include underline($color-body-text, false);
     padding: 10px 8px;
 
-    &:not(:first-of-type) {
-      margin: 0 0 0 60px;
+    &:not(:last-of-type) {
+      margin: 0 60px 0 0;
     }
 
     &.active {
@@ -151,12 +149,12 @@
   &__cat-option-icon {
     display: inline-block;
     vertical-align: middle;
+    margin: 0 10px 0 0;
   }
 
   &__cat-option-text {
     @include font-header(500);
     @include text(14px, 20px, $color-body-text, 0.83px);
-    margin: 0 0 0 10px;
     display: inline-block;
     vertical-align: middle;
   }
@@ -172,7 +170,7 @@
   &__current-filters {
     @include transition(border-color);
     padding: 5px 0;
-    border-top: 1px solid transparent;
+    border-top: 1px solid $color-transparent;
 
     &.active {
       border-top: 1px solid $color-theme-6;
@@ -185,7 +183,7 @@
     padding: 2px 0;
 
     &:not(:first-of-type) {
-      margin: 0 0 0 15px;
+      margin: 0 15px 0 0;
     }
 
     &:hover {
@@ -221,6 +219,125 @@
     path {
       @include transition(stroke);
       stroke: $color-body-text;
+    }
+  }
+
+  @include media-query($medium-down) {
+    top: 0;
+    &__header-button {
+      padding: 3px 0;
+    }
+
+    &__header-text {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.8px;
+    }
+
+    &__header-icon {
+      svg {
+        width: 9px;
+      }
+    }
+
+    &__cat-btn {
+      padding: 3px 0;
+
+      &:not(:last-of-type) {
+        margin: 0 30px 0 0;
+      }
+    }
+
+    &__cat-icon {
+      margin: 0 10px 0 0;
+      padding: 5px 0;
+    }
+
+    &__cat-btn-text {
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.7px;
+    }
+
+    &__cat-btn-icon {
+      svg {
+        width: 9px;
+      }
+    }
+
+    &__cat-color {
+      width: 30px;
+      height: 30px;
+
+      &::before {
+        border-width: 3px;
+      }
+
+      &.active,
+      &:hover {
+        &::before {
+          box-shadow: 0 0 4px 0 rgba($color-black, 0.5);
+        }
+      }
+
+      &:not(:last-of-type) {
+        margin: 0 10px 5px 0;
+      }
+    }
+
+    &__cat-list {
+      padding: 10px 0;
+    }
+
+    &__cat-option {
+      padding: 5px;
+
+      &:not(:last-of-type) {
+        margin: 0 30px 0 0;
+      }
+    }
+
+    &__cat-option-icon {
+      margin: 0 auto;
+    }
+
+    &__cat-option-text {
+      font-size: 10px;
+      line-height: 14px;
+      letter-spacing: 0.6px;
+      display: block;
+    }
+
+    &__reset-filters {
+      font-size: 10px;
+      line-height: 14px;
+      letter-spacing: 0.6px;
+      padding: 3px 0;
+    }
+
+    &__current-filters {
+      padding: 3px 0;
+    }
+
+    &__current-filter {
+      padding: 2px 0;
+
+      &:not(:last-of-type) {
+        margin: 0 10px 0 0;
+      }
+    }
+
+    &__current-title {
+      font-size: 9px;
+      line-height: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    &__current-icon {
+      svg {
+        width: 7px;
+        height: 7px;
+      }
     }
   }
 }

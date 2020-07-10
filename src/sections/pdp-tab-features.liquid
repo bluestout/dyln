@@ -14,24 +14,25 @@
         {% assign b_subtitle = block.settings[b_subtitle_name] %}
         {% assign b_content = block.settings[b_content_name] %}
 
-        {% if b_title != empty %}
+        {% if b_title != blank %}
           {% assign b_size = b_size | plus: 1 %}
           <div class="pdp-tab-1__feature">
             <h3 class="pdp-tab-1__title">{{ b_title }}</h3>
             <div class="pdp-tab-1__content-wrap">
               <div class="row no-gutters">
-                <div class="col-md-6 pdp-tab-1__col">
-                  {% if b_image != empty %}
+                <div class="col-md-6 align-self-center">
+                  {% if b_image != blank %}
                     {% render 'responsive-image' with
                       image: b_image,
                       max_width: 500,
                       max_height: 500,
                       wrapper_class: "pdp-tab-1__img-wrap",
                       image_class: "pdp-tab-1__img",
+                      snippet_index: 40
                     %}
                   {% endif %}
                 </div>
-                <div class="col-md-6 d-flex pdp-tab-1__col">
+                <div class="col-md-6 align-self-center">
                   <div class="pdp-tab-1__content-inner">
                     <h5 class="pdp-tab-1__subtitle">{{ b_subtitle }}</h5>
                     <div class="pdp-tab-1__content">{{ b_content }}</div>

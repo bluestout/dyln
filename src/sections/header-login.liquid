@@ -1,0 +1,365 @@
+{% if section.settings.login_enabled %}
+{% endif %}
+
+<a class="header-login__main-link" href="#" data-header-link="4">
+  <span class="header-login__main-text">{{ section.settings.login_title }}</span>
+  <span class="header-login__main-icon" aria-hidden="true">
+    {% render 'icon-plus-vertical' %}
+    {% render 'icon-plus-horizontal' %}
+  </span>
+</a>
+
+<div class="header-login" data-header-block="4">
+  <div data-header-login-block>
+    <h3 class="header-login__title">{{ section.settings.form_title }}</h3>
+    <button class="header-login__close" data-header-block-close="4" tabindex="-1">
+      {% render 'icon-close' %}
+      <span class="visually-hidden">{{ 'general.accessibility.close' | t }}</span>
+    </button>
+    <div class="header-login__socials" data-header-toggle-element style="display:none;">
+      <div class='oxi-social-login'></div>
+    </div>
+    {% form 'customer_login', class: 'header-login__form' %}
+
+      {{ form.errors | default_errors }}
+
+      <label for="HCustomerEmail" class="label-hidden">
+        {{ 'customer.login.email' | t }}
+      </label>
+      <input type="email"
+        name="customer[email]"
+        id="HCustomerEmail"
+        class="header-login__input{% if form.errors contains 'email' %} error{% endif %}"
+        placeholder="{{ 'customer.login.email' | t }}"
+        spellcheck="false"
+        autocomplete="off"
+        autocapitalize="off"
+        autofocus
+        required
+        tabindex="-1">
+
+      {% if form.password_needed %}
+        <label for="HCustomerPassword" class="label-hidden">
+          {{ 'customer.login.password' | t }}
+        </label>
+        <input type="password"
+          name="customer[password]"
+          id="HCustomerPassword"
+          class="header-login__input{% if form.errors contains 'password' %} error{% endif %}"
+          placeholder="{{ 'customer.login.password' | t }}"
+          required
+          tabindex="-1"/>
+      {% endif %}
+
+      <div class="header-login__account-links">
+        <a class="header-login__account-link" href="/account/login#forgot" tabindex="-1">{{ 'customer.login.forgot_password' | t }}</a>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="header-login__submit" tabindex="-1">{{ 'customer.login.log_in' | t }}</button>
+      </div>
+    {% endform %}
+    <div class="header-login__separator"></div>
+
+    <h4 class="header-login__subtitle">{{ 'customer.register.title_dyln' | t }}</h4>
+
+    <div class="header-login__benefits-inline">
+      {% if section.settings.login_benefit_1 != blank %}
+        <div class="header-login__benefit-i">
+          {% if section.settings.login_benefit_icon_1 == "star" %}
+          {% render 'icon-blue-star' %}
+          {% elsif section.settings.login_benefit_icon_1 == "blue-reminder" %}
+          {% render 'icon-blue-reminder' %}
+          {% elsif section.settings.login_benefit_icon_1 == "track" %}
+          {% render 'icon-track' %}
+          {% endif %}
+          <div><span>{{ section.settings.login_benefit_1 }}</span></div>
+        </div>
+      {% endif %}
+      {% if section.settings.login_benefit_2 != blank %}
+        <div class="header-login__benefit-i">
+          {% if section.settings.login_benefit_icon_2 == "star" %}
+          {% render 'icon-blue-star' %}
+          {% elsif section.settings.login_benefit_icon_2 == "blue-reminder" %}
+          {% render 'icon-blue-reminder' %}
+          {% elsif section.settings.login_benefit_icon_2 == "track" %}
+          {% render 'icon-track' %}
+          {% endif %}
+          <div><span>{{ section.settings.login_benefit_2 }}</span></div>
+        </div>
+      {% endif %}
+      {% if section.settings.login_benefit_3 != blank %}
+        <div class="header-login__benefit-i">
+          {% if section.settings.login_benefit_icon_3 == "star" %}
+          {% render 'icon-blue-star' %}
+          {% elsif section.settings.login_benefit_icon_3 == "blue-reminder" %}
+          {% render 'icon-blue-reminder' %}
+          {% elsif section.settings.login_benefit_icon_3 == "track" %}
+          {% render 'icon-track' %}
+          {% endif %}
+          <div><span>{{ section.settings.login_benefit_3 }}</span></div>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="text-center">
+      <button class="header-login__button-wire" data-header-open-register-block>{{ section.settings.open_register_text }}</button>
+    </div>
+
+    {% if section.settings.register_link_text != blank %}
+      <div class="header-login__separator"></div>
+      <div class="text-center">
+        <a class="header-login__button-wire-alt" href="{{ section.settings.register_link_url }}">{{ section.settings.register_link_text }}</a>
+      </div>
+    {% endif %}
+  </div>
+
+  <div data-header-register-block style="display:none;">
+    <h3 class="header-login__title-alt">{{ section.settings.open_register_text }}</h3>
+    <button class="header-login__close" data-header-block-close="4" tabindex="-1">
+      {% render 'icon-close' %}
+      <span class="visually-hidden">{{ 'general.accessibility.close' | t }}</span>
+    </button>
+    <div class="header-login__socials" data-header-toggle-element style="display:none;">
+      <div class='oxi-social-login'></div>
+    </div>
+    {% form 'create_customer' %}
+      {{ form.errors | default_errors }}
+
+      <label for="HCFirstName" class="label-hidden">
+        {{ 'customer.register.first_name' | t }}
+      </label>
+      <input type="text"
+        name="customer[first_name]"
+        id="HCFirstName"
+        placeholder="{{ 'customer.register.first_name' | t }}"
+        class="header-login__input half-left"
+        autofocus
+        {% if form.first_name %}value="{{ form.first_name }}"{% endif %} />
+
+      <label for="HCLastName" class="label-hidden">
+        {{ 'customer.register.last_name' | t }}
+      </label>
+      <input type="text"
+        name="customer[last_name]"
+        id="HCLastName"
+        class="header-login__input half-right"
+        placeholder="{{ 'customer.register.last_name' | t }}"
+        {% if form.last_name %}value="{{ form.last_name }}"{% endif %} />
+
+      <label for="HCREmail" class="label-hidden">
+        {{ 'customer.register.email' | t }}
+      </label>
+      <input type="email"
+        name="customer[email]"
+        id="HCREmail"
+        class="header-login__input"
+        placeholder="{{ 'customer.register.email' | t }}"
+        value="{% if form.email %}{{ form.email }}{% endif %}"
+        spellcheck="false"
+        autocomplete="off"
+        autocapitalize="off" />
+
+      <label for="HCRCreatePassword" class="label-hidden">
+        {{ 'customer.register.password' | t }}
+      </label>
+      <input type="password"
+        name="customer[password]"
+        id="HCRCreatePassword"
+        class="header-login__input"
+        placeholder="{{ 'customer.register.password' | t }}" />
+
+      <p class="header-login__link-static">
+        {{ 'customer.register.already_have_account' | t }}<button data-header-open-login-block>{{ 'customer.login.log_in' | t }}</button>
+      </p>
+
+      <div class="text-center">
+        <button type="submit" class="header-login__submit" tabindex="-1">{{ 'customer.register.submit' | t }}</button>
+      </div>
+    {% endform %}
+
+    <h5 class="header-login__benefits-title">{{ section.settings.login_benefit_title }}</h5>
+    <div class="header-login__benefits-block">
+      <div class="header-login__benefit-b">
+        {% if section.settings.login_benefit_icon_1 == "star" %}
+          <div class="header-login__benefit-b-icon">{% render 'icon-blue-star' %}</div>
+          {% elsif section.settings.login_benefit_icon_1 == "blue-reminder" %}
+          <div class="header-login__benefit-b-icon">{% render 'icon-blue-reminder' %}</div>
+          {% elsif section.settings.login_benefit_icon_1 == "track" %}
+          <div class="header-login__benefit-b-icon">{% render 'icon-track' %}</div>
+        {% endif %}
+        <div class="header-login__benefit-b-content">
+          <span><strong>{{ section.settings.login_benefit_1 }}</strong></span><br>
+          <span>{{ section.settings.login_benefit_content_1 }}</span>
+        </div>
+      </div>
+      <div class="header-login__benefit-b">
+        {% if section.settings.login_benefit_icon_2 == "star" %}
+          <div class="header-login__benefit-b-icon">{% render 'icon-blue-star' %}</div>
+          {% elsif section.settings.login_benefit_icon_2 == "blue-reminder" %}
+          <div class="header-login__benefit-b-icon">{% render 'icon-blue-reminder' %}</div>
+          {% elsif section.settings.login_benefit_icon_2 == "track" %}
+          <div class="header-login__benefit-b-icon">{% render 'icon-track' %}</div>
+        {% endif %}
+        <div class="header-login__benefit-b-content">
+          <span><strong>{{ section.settings.login_benefit_2 }}</strong></span><br>
+          <span>{{ section.settings.login_benefit_content_2 }}</span>
+        </div>
+      </div>
+      <div class="header-login__benefit-b">
+        {% if section.settings.login_benefit_icon_3 == "star" %}
+          <div class="header-login__benefit-b-icon">{% render 'icon-blue-star' %}</div>
+          {% elsif section.settings.login_benefit_icon_3 == "blue-reminder" %}
+          <div class="header-login__benefit-b-icon">{% render 'icon-blue-reminder' %}</div>
+          {% elsif section.settings.login_benefit_icon_3 == "track" %}
+          <div class="header-login__benefit-b-icon">{% render 'icon-track' %}</div>
+        {% endif %}
+        <div class="header-login__benefit-b-content">
+          <span><strong>{{ section.settings.login_benefit_3 }}</strong></span><br>
+          <span>{{ section.settings.login_benefit_content_3 }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Header Login",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "login_enabled",
+        "label": "Show this menu",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "login_title",
+        "label": "Account Title",
+        "default": "Account"
+      },
+      {
+        "type": "text",
+        "id": "form_title",
+        "label": "Form Title",
+        "default": "LOGIN"
+      },
+      {
+        "type": "text",
+        "id": "open_register_text",
+        "label": "Create Account Button",
+        "default": "Create Account"
+      },
+      {
+        "type": "url",
+        "id": "register_link_url",
+        "label": "Register Link"
+      },
+      {
+        "type": "text",
+        "id": "register_link_text",
+        "label": "Register Link Text",
+        "default": "Register your new bottle"
+      },
+      {
+        "type": "text",
+        "id": "login_benefit_title",
+        "label": "Benefits Title",
+        "default": "Your Benefits Await!"
+      },
+      {
+        "type": "textarea",
+        "id": "login_benefit_1",
+        "label": "Benefit Title 1"
+      },
+      {
+        "type": "textarea",
+        "id": "login_benefit_content_1",
+        "label": "Benefit Description 1"
+      },
+      {
+        "type": "select",
+        "id": "login_benefit_icon_1",
+        "label": "Benefit Icon 1",
+        "options": [
+          {
+            "value": "blue-reminder",
+            "label": "Reminder bubble"
+          },
+          {
+            "value": "track",
+            "label": "Track Order"
+          },
+          {
+            "value": "star",
+            "label": "Star"
+          }
+        ],
+        "info": "Icon name to be used."
+      },
+      {
+        "type": "textarea",
+        "id": "login_benefit_2",
+        "label": "Benefit Title 2"
+      },
+      {
+        "type": "textarea",
+        "id": "login_benefit_content_2",
+        "label": "Benefit Description 2"
+      },
+      {
+        "type": "select",
+        "id": "login_benefit_icon_2",
+        "label": "Benefit Icon 2",
+        "options": [
+          {
+            "value": "blue-reminder",
+            "label": "Reminder bubble"
+          },
+          {
+            "value": "track",
+            "label": "Track Order"
+          },
+          {
+            "value": "star",
+            "label": "Star"
+          }
+        ],
+        "info": "Icon name to be used."
+      },
+      {
+        "type": "textarea",
+        "id": "login_benefit_3",
+        "label": "Benefit Title 3"
+      },
+      {
+        "type": "textarea",
+        "id": "login_benefit_content_3",
+        "label": "Benefit Description 3"
+      },
+      {
+        "type": "select",
+        "id": "login_benefit_icon_3",
+        "label": "Benefit Icon 3",
+        "options": [
+          {
+            "value": "blue-reminder",
+            "label": "Reminder bubble"
+          },
+          {
+            "value": "track",
+            "label": "Track Order"
+          },
+          {
+            "value": "star",
+            "label": "Star"
+          }
+        ],
+        "info": "Icon name to be used."
+      }
+    ]
+  }
+{% endschema %}

@@ -3,6 +3,8 @@
 <div class="pdp-usps__wave-top"></div>
 
 <div class="pdp-usps__body">
+  <div class="pdp-usps__bg-top"></div>
+  <div class="pdp-usps__bg-bottom"></div>
   {% if section.settings.image %}
     {%- render 'responsive-image' with
       image: section.settings.image,
@@ -10,6 +12,7 @@
       max_height: 576,
       wrapper_class: "pdp-usps__img-wrap",
       image_class: "pdp-usps__img",
+      snippet_index: 48
     -%}
   {% endif %}
 

@@ -1,5 +1,4 @@
-<section data-section-id="{{ section.id }}" data-section-type="product">
-
+<section data-section-id="{{ section.id }}" data-section-type="product" data-pdp-product-id="{{ product.id }}">
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -29,9 +28,38 @@
 
         {% section 'pdp-content' %}
 
-        {% section 'pdp-form' %}
+        {% assign show_diffusers_products = settings.extra_diffusers_show_where | split: ',' %}
+        {% assign show_diffuser_form = false %}
 
-        {% section 'pdp-diffusers' %}
+        {% for s_d_product in show_diffusers_products %}
+          {% assign compare_p_id = product.id | append: ' ' | strip %}
+          {% if s_d_product == compare_p_id %}
+            {% assign show_diffuser_form = true %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+
+        {% if settings.extra_diffusers_product == product.handle %}
+          {% render 'subscription-form' with settings.extra_diffusers_product
+            current_product_id: product.id
+            show_extras: true,
+            note: settings.extra_diffusers_note,
+          %}
+        {% else %}
+          {% section 'pdp-form' %}
+        {% endif %}
+
+        {% if show_diffuser_form %}
+          {% unless settings.extra_diffusers_product == product.handle %}
+            {% render 'subscription-form' with settings.extra_diffusers_product
+              current_product_id: product.id
+              show_extras: false,
+              title: settings.extra_diffusers_title,
+              note: settings.extra_diffusers_note
+              hide_price: true
+            %}
+          {% endunless %}
+        {% endif %}
 
       </div>
     </div>
@@ -67,7 +95,20 @@
 
   {% section 'pdp-user-images' %}
 
+  {% render 'diffuser-modal' %}
+
+  {% render 'diffuser-sub-modal' %}
+
   {% render 'atc-bar' %}
+
+  <input type="hidden" data-current-product-id value="{{ product.id }}" />
+
+  <script type="application/ld+json" data-pdp-product-json>
+    {{ product | json }}
+  </script>
+  <script type="application/ld+json" data-pdp-product-options>
+    {{ product.options_with_values | json }}
+  </script>
 
 </section>
 
@@ -83,7 +124,7 @@
       "https:{{ product.featured_image.src | img_url: image_size }}"
     ],
   {% endif %}
-  "description": "{{ product.description | strip_html | escape }}",
+  "description": {{ product.description | json }},
   {% if current_variant.sku != blank %}
     "sku": "{{ current_variant.sku }}",
   {% endif %}

@@ -1,0 +1,12 @@
+<nav class="visually-hidden skip-link">
+  <a class="skip-link" href="#MainContent" >{{ "general.accessibility.skip_to_content" | t }}</a>
+  {% if settings.accessibility_menu != blank %}
+    <ul>
+      {% for link in linklists[settings.accessibility_menu].links %}
+        <li>
+          <a href="{{ link.url }}" class="skip-link">{{ link.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</nav>

@@ -1,10 +1,10 @@
 {% if section.settings.type == "shopify" and recommendations.products_count > 0 %}
   <div class="container pdp-related__container">
     <h2 class="pdp-related__title">{{ section.settings.title }}</h2>
-    <div class="row">
+    <div class="row justify-content-center">
       {% for r_product in recommendations.products limit: section.settings.r_limit %}
         <div class="col-md-4">
-          {% render 'related-product-item' with r_product %}
+          {% render 'product-item' with r_product %}
         </div>
       {% endfor %}
     </div>
@@ -14,22 +14,22 @@
     {%- if product.handle == block.settings.product -%}
       <div class="container pdp-related__container">
         <h2 class="pdp-related__title">{{ section.settings.title }}</h2>
-        <div class="row">
-          {% if block.settings.product_1 != empty %}
+        <div class="row justify-content-center">
+          {% if block.settings.product_1 != blank %}
             <div class="col-md-4">
-              {% render 'related-product-item' with all_products[block.settings.product_1] %}
+              {% render 'product-item' with all_products[block.settings.product_1] %}
             </div>
           {% endif %}
 
-          {% if block.settings.product_2 != empty %}
+          {% if block.settings.product_2 != blank %}
             <div class="col-md-4">
-              {% render 'related-product-item' with all_products[block.settings.product_2] %}
+              {% render 'product-item' with all_products[block.settings.product_2] %}
             </div>
           {% endif %}
 
-          {% if block.settings.product_3 != empty %}
+          {% if block.settings.product_3 != blank %}
             <div class="col-md-4">
-              {% render 'related-product-item' with all_products[block.settings.product_3] %}
+              {% render 'product-item' with all_products[block.settings.product_3] %}
             </div>
           {% endif %}
         </div>

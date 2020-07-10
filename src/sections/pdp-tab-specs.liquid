@@ -15,9 +15,9 @@
               {% assign e_illustration = block.settings[e_illustration_name] %}
               {% assign e_text = block.settings[e_text_name] %}
 
-              {% if e_image or e_illustration != empty %}
+              {% if e_image or e_illustration != empblankty %}
                 <button type="button" class="pdp-tab-3__element" data-pdp-specs-element={{ n }}>
-                  {% if e_illustration != empty %}
+                  {% if e_illustration != blank %}
                     <span class="pdp-tab-3__illustration">
                       {% if e_illustration == "bottle-cap" %}
                         {% render 'illustration-bottle-cap' %}
@@ -34,7 +34,8 @@
                       max_height: 400,
                       wrapper_class: "pdp-tab-3__img-wrap",
                       image_class: "pdp-tab-3__img",
-                      span: true
+                      span: true,
+                      snippet_index: 46
                     %}
                   {% endif %}
                   <span class="pdp-tab-3__el-text">{{ e_text }}</span>
@@ -51,13 +52,13 @@
             {% assign e_video = block.settings[e_video_name] %}
             {% assign e_embed = block.settings[e_embed_name] %}
 
-            {% if e_embed != empty %}
+            {% if e_embed != blank %}
               <div class="pdp-tab-3__video-wrap" data-pdp-specs-video-wrap={{ n }} style="display:none;">
                 {{ e_embed }}
               </div>
-            {% elsif e_video != empty %}
+            {% elsif e_video != blank %}
               <div class="pdp-tab-3__video-wrap" data-pdp-specs-video-wrap={{ n }} style="display:none;">
-                <video class="pdp-tab-3__video" playsinline controls  width="500" height="300">
+                <video class="pdp-tab-3__video" playsinline controls  width="500" height="375">
                   <source src="{{- e_video -}}" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>

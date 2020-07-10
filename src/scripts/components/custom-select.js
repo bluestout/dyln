@@ -1,31 +1,21 @@
 import $ from "jquery";
+import { getUrlParams } from "./helpers";
 
-// check if url has parameters
-function getUrlParams() {
-  const params = {};
-  if (window.location.search.length > 0) {
-    const pairs = document.location.search.substr(1).split("&");
-    for (let i = 0; i < pairs.length; i++) {
-      const paramsSplit = pairs[i].split("=");
-      params[paramsSplit[0]] = paramsSplit[1];
-    }
-  }
-  return params;
-}
+const customSelectChange = new Event("customSelectChange");
 
+// any select with data-custom attribute will be "converted" to a custom dropdown
 $(document).ready(() => {
   $("select[data-custom]").each(function() {
     const $this = $(this);
     const numberOfOptions = $(this).children("option").length;
 
     $this.addClass("custom-select-hidden");
-    $this.wrap("<div class='custom-select' data-custom-select></div>");
+    $this.wrap(`<div class="custom-select" data-custom-select></div>`);
     $this.after(
-      "<div class='custom-select-styled' data-custom-select-styled></div>"
+      `<button type="button" class="custom-select-styled" data-custom-select-styled></div>`
     );
 
     const $styledSelect = $this.next("[data-custom-select-styled]");
-
     const params = getUrlParams();
     if (params.sort_by && $("body").hasClass("template-collection")) {
       $styledSelect.text($(`option[value="${params.sort_by}"]`).text());
@@ -39,7 +29,7 @@ $(document).ready(() => {
     }
 
     const $list = $(
-      "<ul class='custom-select-options' data-custom-select-options></ul>"
+      `<div class="custom-select-options" data-custom-select-options></div>`
     ).insertAfter($styledSelect);
 
     for (let i = 0; i < numberOfOptions; i++) {
@@ -49,7 +39,7 @@ $(document).ready(() => {
           .eq(i)
           .attr("disabled") !== "disabled"
       ) {
-        $("<li />", {
+        $("<button />", {
           text: $this
             .children("option")
             .eq(i)
@@ -57,15 +47,18 @@ $(document).ready(() => {
           rel: $this
             .children("option")
             .eq(i)
-            .val()
+            .val(),
+          type: "button",
+          class: "custom-select-option",
         }).appendTo($list);
       }
     }
 
-    const $listItems = $list.children("li");
+    const $listItems = $list.children(".custom-select-option");
 
     $styledSelect.click(function(e) {
       e.stopPropagation();
+
       $("[data-custom-select-styled].active")
         .not(this)
         .each(function() {
@@ -74,6 +67,7 @@ $(document).ready(() => {
             .next("[data-custom-select-options]")
             .hide();
         });
+
       $(this)
         .toggleClass("active")
         .next("[data-custom-select-options]")
@@ -86,19 +80,23 @@ $(document).ready(() => {
       $this.val($(this).attr("rel"));
       $this.change();
       $list.hide();
-    });
-
-    $(document).click(() => {
-      $styledSelect.removeClass("active");
-      $list.hide();
+      document.dispatchEvent(customSelectChange);
     });
   });
+});
 
-  $("[data-custom-select-free]").click(function(event) {
-    event.stopPropagation();
-    $(this)
-      .toggleClass("active")
-      .next("[data-custom-select-options]")
-      .toggle();
-  });
+$(document).on("click", "[data-custom-select-free]", (event) => {
+  event.stopPropagation();
+  const $this = $(event.currentTarget);
+  $this
+    .toggleClass("active")
+    .next("[data-custom-select-options]")
+    .toggle();
+});
+
+$(document).click(() => {
+  const $styledSelect = $("[data-custom-select-styled]");
+  const $list = $("[data-custom-select-options]");
+  $styledSelect.removeClass("active");
+  $list.hide();
 });

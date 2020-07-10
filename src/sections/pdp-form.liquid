@@ -1,8 +1,7 @@
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
-
-{% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true', class: "pdp-form__form" %}
-
+{% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true', class: "pdp-form__form"%}
+  {% if product.available %}{% include 'subscription-product' %}{% endif %}
   <div class="pdp-form__price d-none d-md-block" data-price-wrapper>
     <span data-product-price>
       {{ current_variant.price | money }}
@@ -37,16 +36,23 @@
           {% for value in option.values %}
             {% assign color_handle = value | strip | strip_html | strip_newlines | handleize %}
             {% assign swatch = "color-swatch-" | append: color_handle %}
-            <span class="pdp-form__color-wrap">
+            {% assign variant_id = "" %}
+            {% for p_v in product.variants %}
+              {% if p_v.title == value %}
+                {% assign variant_id = p_v.id %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+            <span class="pdp-form__color-wrap" data-geo-specific-variant="{{ variant_id }}">
+              <span class="pdp-form__exclamation-variant">!</span>
               <input
-                class="pdp-form__color-input"
+                class="pdp-form__color-input {{ swatch }}"
                 type="radio"
                 id="Option{{ option.position }}-{{ value | handleize }}"
+                data-variant-id="{{ variant_id }}"
                 name="options[{{ option.name }}]"
                 value="{{ value }}"{% if option.selected_value == value %} checked{% endif %} />
-              <label class="pdp-form__color-label {{ swatch }}" for="Option{{ option.position }}-{{ value | handleize }}">
-                <span class="hide">{{ value }}</span>
-              </label>
+              <label class="visually-hidden" for="Option{{ option.position }}-{{ value | handleize }}">{{ value }}</label>
             </span>
           {% endfor %}
         {% else %}
@@ -79,7 +85,9 @@
           {% assign size_product = all_products[block.settings[size_product_name]] %}
           {% assign size_title = block.settings[size_title_name] %}
           {% if size_title != blank %}
-            <a href="{{ size_product.url }}" class="pdp-form__sizes-link">{{ size_title }}</a>
+            {% unless size_product.id == product.id %}
+              <a href="{{ size_product.url }}" class="pdp-form__sizes-link">{{ size_title }}</a>
+            {% endunless %}
           {% endif %}
         {% endfor %}
       </div>
@@ -131,15 +139,27 @@
     data-submit-button
     data-add-to-cart
     {% unless current_variant.available %}disabled="disabled"{% endunless %}>
-      <span data-submit-button-text>
+      <span data-submit-button-text data-add-to-cart-loaded class="hide">
         {% if current_variant.available %}
           {{ 'products.product.add_to_cart' | t }}
         {% else %}
           {{ 'products.product.sold_out' | t }}
         {% endif %}
       </span>
+      <span data-add-to-cart-loading class="loading-dots"></span>
   </button>
+
+  <p class="product-form__sold-out-notice hide" data-pdp-shipping-note></p>
+
 {% endform %}
+
+{% render 'product-item-sold-out' with available: current_variant.available unique_id: 1  %}
+
+{% comment %} <!-- Insert QuadPay Widget --> {% endcomment %}
+<div>
+  <quadpay-widget amount={{ current_variant.price }} ></quadpay-widget>
+  <div class="product-form__sold-out-gradient" style="background-image:url({{ 'out-of-stock-gradient.png' | asset_url }})"></div>
+</div>
 
 <div data-atc-anchor></div>
 

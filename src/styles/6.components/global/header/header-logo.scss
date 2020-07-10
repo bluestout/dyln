@@ -1,9 +1,14 @@
 .header-logo {
-  padding: 0 10px 0 0;
+  @include no-font-size;
+  padding: 0 25px 0 0;
   text-align: center;
 
   &__link {
     @include no-font-size;
     display: inline-block;
+  }
+
+  @include media-query($large-down) {
+    padding: 0;
   }
 }

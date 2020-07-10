@@ -1,0 +1,20 @@
+.blog-featured {
+  &__article {
+    text-align: left;
+
+    .article-card__thumbnail-wrapper {
+      height: 500px;
+      max-width: 100%;
+
+      @include media-query($xl-down) {
+        height: 350px;
+      }
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}

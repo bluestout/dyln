@@ -1,0 +1,27 @@
+.blog-recent-tagged {
+  .recent-articles__card {
+    margin: 10px 0;
+    margin-bottom: 40px;
+    min-height: 550px;
+
+    @include media-query($large-down) {
+      min-height: 300px;
+    }
+
+    .article-card__thumbnail-wrapper {
+      height: 420px;
+      max-height: 420px;
+      min-width: 100%;
+
+      @include media-query($large-down) {
+        height: 290px;
+      }
+    }
+  }
+}
+
+.blog-recent {
+  .article-card {
+    min-height: 280px;
+  }
+}

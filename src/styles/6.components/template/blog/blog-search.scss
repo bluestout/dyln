@@ -1,0 +1,41 @@
+.blog-search {
+  margin-top: 50px;
+
+  form {
+    display: flex;
+    align-items: flex-end;
+
+    @include media-query($large-down) {
+      display: none;
+    }
+  }
+
+  input[type="text"] {
+    @include font-header(bold);
+    border: none;
+    border-bottom: 1px solid $color-theme-1;
+    font-size: 30px;
+    padding-bottom: 5px;
+    padding-left: 0;
+  }
+
+  ::-webkit-input-placeholder {
+    @include font-header(bold);
+    color: $color-theme-7;
+  }
+
+  ::-moz-placeholder {
+    @include font-header(bold);
+    color: $color-theme-7;
+  }
+
+  :-ms-input-placeholder {
+    @include font-header(bold);
+    color: $color-theme-7;
+  }
+
+  :-moz-placeholder {
+    @include font-header(bold);
+    color: $color-theme-7;
+  }
+}

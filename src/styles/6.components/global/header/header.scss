@@ -7,8 +7,14 @@
     top: 0;
     left: 0;
     width: 100%;
-    padding: 15px;
     background-color: $color-white;
+  }
+
+  [data-site-header-container] {
+    padding: 15px;
+    > .container-fluid {
+      padding: 0;
+    }
   }
 
   &__utils {
@@ -36,10 +42,8 @@
     display: block;
 
     &:hover {
-      .site-header__utils-cart-icon {
-        g {
-          stroke: $color-main-1;
-        }
+      .site-header__utils-cart-icon g {
+        stroke: $color-main-1;
       }
     }
   }
@@ -54,13 +58,25 @@
     text-align: center;
   }
 
+  &__utils-account {
+    @include no-browser-styling;
+    padding: 0;
+  }
+
+  &__utils-cart-icon g {
+    @include transition(stroke);
+  }
+
   &__utils-cart-icon {
-    g {
-      @include transition(stroke);
-    }
+    @include no-font-size;
+    display: block;
   }
 
   @include media-query($large-down) {
+    [data-site-header-container] {
+      padding: 10px 15px;
+    }
+
     &__mobile-wrap {
       z-index: $z-header-rsp;
       position: fixed;
@@ -139,17 +155,50 @@
       pointer-events: none;
       background: radial-gradient(
         ellipse at top,
-        rgba($color-theme-19, 0.7) 0%,
-        transparent 60%,
-        transparent 100%
+        rgba($color-theme-19, 0.3) 0%,
+        $color-transparent 60%,
+        $color-transparent 100%
       );
+    }
+
+    &__utils-cart-num {
+      font-size: 8px;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    &__utils-cart-icon {
+      svg {
+        width: 23px;
+        height: 20px;
+      }
     }
   }
 
   @include media-query($small) {
     &__mobile-shadow {
-      height: 50px;
+      height: 30px;
     }
+
+    &__utils-block {
+      &:not(:last-of-type) {
+        margin: 0 5px 0 0;
+      }
+
+      &:last-of-type {
+        margin: 0 0 0 5px;
+      }
+    }
+  }
+}
+
+#shopify-section-header-shop,
+#shopify-section-header-about,
+#shopify-section-header-bottle {
+  display: inline-block;
+
+  @include media-query($large-down) {
+    display: block;
   }
 }
 

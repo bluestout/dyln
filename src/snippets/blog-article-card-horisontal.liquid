@@ -1,0 +1,20 @@
+<div class="article-card article-card--horisontal article-card--md">
+  <a href="{{ article.url }}" class="article-card__wrapper">
+
+    {%- render 'responsive-image' with
+      image: article.image.src,
+      max_width: 768,
+      max_height: 768,
+      wrapper_class: "article-card__thumbnail-wrapper",
+      image_class: "article-card__thumbnail",
+      snippet_index: 51
+    -%}
+
+    <div class="article-card__content-text">
+      {% for tag in article.tags %}
+        <span class="article-card__category">{{ tag }}</span>
+      {% endfor %}
+      <h3>{{- article.title -}}</h3>
+    </div>
+  </a>
+</div>

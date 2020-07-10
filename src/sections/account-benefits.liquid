@@ -1,0 +1,48 @@
+{% for block in section.blocks %}
+  <div class="account-benefits__usp">
+    <div class="account-benefits__icon">
+      {%- if block.settings.icon == "star" -%}
+        {%- render 'icon-account-star' -%}
+      {%- elsif block.settings.icon == "reminder" -%}
+        {%- render 'icon-account-reminder' -%}
+      {%- elsif block.settings.icon == "track" -%}
+        {%- render 'icon-account-track' -%}
+      {%- endif -%}
+    </div>
+    <div class="account-benefits__content">
+      <h4 class="account-benefits__title">{{ block.settings.title }}</h4>
+      <p class="account-benefits__description">{{ block.settings.description }}</p>
+    </div>
+  </div>
+{% endfor %}
+
+{% schema %}
+  {
+    "name": "account-benefits",
+    "class": "account-benefits",
+    "blocks": [
+      {
+        "type": "usp",
+        "name": "Usp",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description"
+          },
+          {
+            "type": "text",
+            "id": "icon",
+            "label": "Icon",
+            "info": "Icon name to be used. Icons available: star, reminder, track. Copy one of these and paste it in the text field."
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

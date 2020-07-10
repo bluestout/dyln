@@ -1,0 +1,93 @@
+{% if section.settings.title != blank %}
+  <h2>{{ section.settings.title }}</h2>
+{% endif %}
+
+{% if section.settings.description != blank %}
+  <div class="contact-body__content rte">{{ section.settings.description }}</div>
+{% endif %}
+
+{% if section.blocks.size > 0 %}
+  <ul data-accordion-parent=true>
+    {% for block in section.blocks %}
+      {% assign contact_faq_article = articles[block.settings.faq_article] %}
+      {% if block.settings.faq_article != blank %}
+        <li>
+          <button class="contact-body__faq-button" data-accordion-button="{{ forloop.index }}">
+            <span class="contact-body__question">
+              {{ contact_faq_article.title }}
+            </span>
+            <span class="contact-body__closed">+</span>
+            <span class="contact-body__open">-</span>
+          </button>
+          <div class="contact-body__answer rte" data-accordion-content="{{ forloop.index }}" style="display: none;">{{ contact_faq_article.content }}</div>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+{% endif %}
+
+<div class="row">
+  {% if section.settings.table_1 != blank %}
+    <div class="col-lg-6">
+      <h4 class="contact-body__subtitle">{{ section.settings.table_title_1 }}</h4>
+      {{ section.settings.table_1 }}
+    </div>
+  {% endif %}
+  {% if section.settings.table_2 != blank %}
+    <div class="col-lg-6">
+      <h4 class="contact-body__subtitle">{{ section.settings.table_title_2 }}</h4>
+      {{ section.settings.table_2 }}
+    </div>
+  {% endif %}
+</div>
+{% schema %}
+  {
+    "name": "Domestic",
+    "class": "contact-body",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title"
+      },
+      {
+        "type": "textarea",
+        "id": "description",
+        "label": "Description"
+      },
+      {
+        "type": "text",
+        "id": "table_title_1",
+        "label": "Table Title 1"
+      },
+      {
+        "type": "textarea",
+        "id": "table_1",
+        "label": "Table 1"
+      },
+      {
+        "type": "text",
+        "id": "table_title_2",
+        "label": "Table Title 2"
+      },
+      {
+        "type": "textarea",
+        "id": "table_2",
+        "label": "Table 2"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "faq",
+        "name": "FAQ",
+        "settings": [
+          {
+            "type": "article",
+            "id": "faq_article",
+            "label": "FAQ article"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

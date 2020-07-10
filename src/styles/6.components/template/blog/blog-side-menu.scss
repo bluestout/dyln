@@ -1,0 +1,200 @@
+.blog-side-menu {
+  position: relative;
+  margin-top: 10px;
+  font-size: 20px;
+  top: 140px;
+
+  @include media-query($xl-down) {
+    position: relative;
+    text-align: center;
+    top: 0;
+  }
+
+  &__btn {
+    display: flex;
+    align-items: baseline;
+    color: $color-theme-7;
+    border-top: 1px solid $color-black;
+    border-bottom: 1px solid $color-black;
+    padding: 8px 0;
+
+    &:hover {
+      color: $color-theme-1;
+      cursor: pointer;
+    }
+
+    &:focus {
+      color: $color-black;
+    }
+
+    i {
+      padding-left: 5px;
+      font-size: 12px;
+      color: $color-black;
+      top: -2px;
+      position: relative;
+      left: 10px;
+    }
+  }
+
+  &.template-article {
+    .blog-side-menu__btn {
+      @include media-query($large-down) {
+        h3 {
+          @include text(20px, 1.2, $color-theme-7, 1px);
+        }
+      }
+    }
+  }
+
+  &__list {
+    margin-top: 15px;
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      margin: 0 0 10px;
+      margin-bottom: 10px;
+      padding: 15px 10px;
+      padding-left: 0;
+      text-align: left;
+      font-size: 14px;
+      display: block;
+      position: relative;
+
+      &::after {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        width: 100%;
+        height: 10px;
+        bottom: -5px;
+        background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='57px' height='7px' viewBox='0 0 57 7' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3C!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch --%3E%3Ctitle%3EMask Copy 3%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='Blog-Desktop-Post-Page' transform='translate(-1262.000000, -665.000000)' stroke='%23D6D6D6' stroke-width='2.5'%3E%3Cg id='Group-18' transform='translate(1262.000000, 559.000000)'%3E%3Cpath d='M1,111 C7.0316321,108.162035 19.4269189,107.192565 29.8106918,108.719661 C40.1944647,110.246758 48.5881444,111 56,108.719661' id='Mask-Copy-3'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+      }
+    }
+
+    .category-link {
+      @include text(12px, 1.2, $color-theme-1, 1px);
+      text-transform: uppercase;
+      padding-bottom: 5px;
+      display: none;
+
+      &:first-child {
+        display: inline-block;
+      }
+    }
+
+    h3 {
+      @include text(16px, 1.3, $color-black, 0.8px);
+    }
+  }
+
+  &.template-article {
+    width: 200px;
+
+    svg {
+      position: absolute;
+      right: 0;
+      top: 18px;
+
+      g {
+        fill: $color-theme-7;
+      }
+    }
+  }
+
+  &.article-side-menu {
+    .blog-side-menu {
+      display: none;
+
+      @include media-query($medium-down) {
+        display: inline-block;
+      }
+    }
+  }
+
+  &.article-side-menu,
+  &.template-article {
+    @include media-query($medium-down) {
+      z-index: $z-blog-sidemenu;
+      top: auto;
+      width: 100%;
+      margin-bottom: 70px;
+
+      h3 {
+        @include text(20px, 1.2, $color-theme-7, 1px);
+      }
+    }
+  }
+}
+
+.blog-search,
+.blog-topics {
+  .justify-content-center {
+    position: relative;
+  }
+
+  .blog-side-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+
+    @include media-query($xl-down) {
+      width: 160px;
+    }
+
+    @include media-query($large-down) {
+      position: relative;
+      width: 250px;
+
+      &__btn {
+        justify-content: center;
+      }
+    }
+
+    @include media-query($small) {
+      width: 100%;
+    }
+
+    h3 {
+      text-align: left;
+
+      @include media-query($small) {
+        text-align: center;
+      }
+    }
+
+    li {
+      padding: 5px;
+      margin-bottom: 0;
+      @include text(20px, 1.2, $color-theme-7, 1.2px);
+
+      @include media-query($large-down) {
+        text-align: center;
+      }
+
+      &::after {
+        display: none;
+      }
+
+      &:hover {
+        background-color: $color-theme-13;
+      }
+
+      &:active {
+        a {
+          @include font-body(bold);
+        }
+      }
+    }
+
+    a {
+      @include text(20px, 1.2, $color-theme-7, 1.2px);
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{% if section.settings.show %}
+  <div class="container">
+    <h2>{{ 'blogs.general.popular_article_title' | t }}</h2>
+
+    <div class="row justify-content-md-center">
+      {% for block in section.blocks %}
+        <div class="col-md-6 col-lg-4">
+          {% assign pop_article = articles[block.settings.popular_article] %}
+          {% render 'blog-article-card-horisontal' with
+            article: pop_article
+          %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name":"Blog Popular",
+  "class":"blog-popular",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show",
+      "label": "Show this section?",
+      "default": true
+    }
+  ],
+  "blocks":[
+   {
+    "type":"article",
+    "name":"Popular Article",
+    "limit":2,
+    "settings":[
+     {
+        "type":"article",
+        "id":"popular_article",
+        "label":"Select a Popular Article"
+     }
+    ]
+   }
+  ]
+ }
+{% endschema %}
+

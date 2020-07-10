@@ -1,7 +1,7 @@
-<div class="index-usps__wave-top"></div>
+<div class="index-usps__wave-top" data-transition-wave data-transition></div>
 
-<div class="container-fluid">
-  <div class="row">
+<div class="container">
+  <div class="row align-items-center">
 
     <div class="col-lg-6 order-2 order-lg-1">
       <div class="index-usps__content">
@@ -31,7 +31,7 @@
                   <span class="index-usps__usp-closed">+</span>
                   <span class="index-usps__usp-open">-</span>
                 </button>
-                <div class="index-usps__usp-content" data-accordion-content="{{ forloop.index }}">{{ usp.settings.content }}</div>
+                <div class="index-usps__usp-content" style="display:none;" data-accordion-content="{{ forloop.index }}">{{ usp.settings.content }}</div>
               </div>
             {% endfor %}
           </div>
@@ -51,6 +51,7 @@
             max_height: 576,
             wrapper_class: "index-usps__bg-wrap d-sm-none",
             image_class: "index-usps__bg",
+            snippet_index: 30
           %}
         {% endif %}
 
@@ -60,16 +61,17 @@
           max_height: 700,
           wrapper_class: wrapper_class,
           image_class: "index-usps__bg",
+            snippet_index: 31
         %}
 
-        <div class="index-usps__wave-middle d-md-none"></div>
+        <div class="index-usps__wave-middle d-md-none" data-transition-wave data-transition></div>
       {% endif %}
     </div>
 
   </div>
 </div>
 
-<div class="index-usps__wave-btm"></div>
+<div class="index-usps__wave-btm" data-transition-wave data-transition></div>
 
 {% schema %}
   {

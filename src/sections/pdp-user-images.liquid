@@ -1,6 +1,6 @@
 {% if section.settings.show %}
   <div class="container">
-    {% if section.settings.title != empty %}
+    {% if section.settings.title != blank %}
       <h4 class="pdp-user-img__header">
         <span class="pdp-user-img__title">{{ section.settings.title }}</span>
         {% if section.blocks.size > 0 %}
@@ -10,7 +10,7 @@
     {% endif %}
 
     {% if section.blocks.size > 0 %}
-      <div class="pdp-user-img__images" pdp-user-images>
+      <div class="pdp-user-img__images" data-pdp-user-images>
         {% for block in section.blocks %}
           {% if block.settings.image %}
             <div class="pdp-user-img__item">
@@ -19,7 +19,8 @@
                 max_width: 200,
                 max_height: 200,
                 wrapper_class: "pdp-user-img__img-wrap",
-                image_class: "pdp-user-img__img"
+                image_class: "pdp-user-img__img",
+                snippet_index: 47
               -%}
             </div>
           {% endif %}

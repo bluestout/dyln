@@ -1,0 +1,21 @@
+<div class="default-page">
+
+  {% section 'page-header' %}
+
+  <div class="container">
+
+    {% comment %} because h1 is being added more than once into the content on some pages {% endcomment %}
+    {% assign page_content = page.content %}
+    {% assign page_content = page_content | replace_first: '<h1', '<TEMP' %}
+    {% assign page_content = page_content | replace_first: '</h1', '</TEMP' %}
+    {% assign page_content = page_content | replace: '<h1', '<h2' %}
+    {% assign page_content = page_content | replace: '</h1>', '</h2' %}
+    {% assign page_content = page_content | replace_first: '<TEMP', '<h1' %}
+    {% assign page_content = page_content | replace_first: '</TEMP', '</h1' %}
+
+    <div class="rte">
+      {{ page_content }}
+    </div>
+
+  </div>
+</div>

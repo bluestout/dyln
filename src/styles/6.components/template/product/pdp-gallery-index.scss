@@ -16,6 +16,7 @@
 
   &__dot-link {
     @include no-font-size;
+    @include no-browser-styling;
     text-align: center;
     margin: auto;
   }
@@ -23,7 +24,7 @@
   &__dot-wrap {
     position: relative;
     padding: 0 0 5px;
-    border-bottom: 2px solid transparent;
+    border-bottom: 2px solid $color-transparent;
 
     &.video {
       position: relative;
@@ -39,9 +40,9 @@
         display: block;
 
         border-left: 17px solid $color-theme-2;
-        border-right: 17px solid transparent;
-        border-bottom: 13px solid transparent;
-        border-top: 13px solid transparent;
+        border-right: 17px solid $color-transparent;
+        border-bottom: 13px solid $color-transparent;
+        border-top: 13px solid $color-transparent;
       }
     }
   }

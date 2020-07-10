@@ -52,28 +52,39 @@ $breakpoints: (
   $large-max "(min-width: #{$grid-widescreen}) and (max-width: #{$grid-max})"
 );
 
+// Font Variables
 $font-heading: var(--font-heading);
 $font-body: var(--font-body);
 $font-body-weight: var(--font-body-weight);
 $font-body-style: var(--font-body-style);
 $font-body-bold-weight: var(--font-body-bold-weight);
 
-$color-body-text: var(--color-body-text);
-$color-title: var(--color-title);
-$color-title-light: var(--color-title-light);
-$color-background: var(--color-main-background);
-$color-main: var(--color-main);
-$color-main-1: var(--color-main);
-$color-main-2: var(--color-main-2);
-$color-main-3: var(--color-main-3);
-$color-accent-1: var(--color-accent);
-$color-accent-2: var(--color-accent-2);
-$color-accent-3: var(--color-accent-3);
-
+// z-index values
 $z-base: 1;
 $z-header-blocks: 2;
-$z-header: 2;
 $z-contact-modal: 2;
-$z-cart: 3;
+$z-contact-select: 2;
+$z-modal-close: 2;
+$z-atc: 3;
+$z-header: 4;
 $z-header-rsp: 4;
+$z-cart: 4;
+$z-diffuser-info: 5;
+$z-blog-sidemenu: 5;
+$z-social-sharing: 10;
 $z-top: 10;
+$z-overlay-content: 11;
+
+// default font sizes
+$font-size-d-h1: var(--font-size-h1-default);
+$font-size-d-h2: var(--font-size-h2-default);
+$font-size-d-h3: var(--font-size-h3-default);
+$font-size-d-h4: var(--font-size-h4-default);
+$font-size-d-h5: var(--font-size-h5-default);
+$font-size-d-h6: var(--font-size-h6-default);
+$font-size-d-p: var(--font-size-p-default);
+$font-size-d-body: var(--font-size-body-default);
+
+// grid & global variables
+$grid-gap: var(--grid-gap);
+$grid-container-max: var(--max-container-width);

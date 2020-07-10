@@ -1,0 +1,69 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="lp-referal__container inactive-step" data-step>
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <span class="lp-referal__step-num">{{ section.settings.step_number }}</span>
+          <h3>{{ section.settings.step_title }}</h3>
+          <div class="col-md-2">
+            {% render 'responsive-image' with
+              image: section.settings.step_image,
+              max_width: 700,
+              max_height: 800,
+              wrapper_class: "lp-referal__step-image",
+              snippet_index: 37
+            %}
+          </div>
+          <div class="col-md-2">
+            <a href="{{ section.settings.referal_btn_link }}" class="lp-referal__refer-btn">
+              {{ section.settings.referal_btn_text }}
+              {% if section.settings.referal_points != blank %}
+              <span>{{ section.settings.referal_points }}</span> {% render 'icon-points-white' %}
+              {% endif %}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+  "name":"Landing Page Referal",
+  "class":"lp-referal",
+  "settings":[
+    {
+      "type":"text",
+      "id":"step_number",
+      "label":"Step Number",
+      "default":"5"
+    },
+    {
+      "type":"text",
+      "id":"step_title",
+      "label":"Step Title"
+    },
+    {
+      "type":"image_picker",
+      "id":"step_image",
+      "label":"Referal Product Image"
+    },
+    {
+      "type":"text",
+      "id":"referal_btn_text",
+      "label":"Refer a Friend Button Text"
+    },
+    {
+      "type":"text",
+      "id":"referal_btn_link",
+      "label":"Refer a Friend Link"
+    },
+    {
+      "type":"text",
+      "id":"referal_points",
+      "label":"Refer a Friend Points"
+    }
+  ]
+  }
+{% endschema %}

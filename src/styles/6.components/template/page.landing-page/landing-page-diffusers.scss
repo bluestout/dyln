@@ -1,0 +1,324 @@
+.lp-diffusers {
+  background: linear-gradient(0deg, $color-theme-13 0%, $color-white 35%);
+
+  &__title-header {
+    position: relative;
+    margin: 0 0 5px;
+
+    @include media-query($medium-down) {
+      margin-top: 20px !important;
+    }
+  }
+
+  &__title {
+    @include font-header(700);
+    @include text(40px, 33px, $color-theme-7, 2.3px);
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__description {
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      right: -130px;
+      top: 0;
+      display: inline-block;
+      width: 100px;
+      height: 200px;
+      transform: rotate(-25deg);
+      background-repeat: no-repeat;
+      background-image: url("data:image/svg+xml,%3Csvg width='64' height='105' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%2300AEDB' stroke-width='2' fill='none' fill-rule='evenodd'%3E%3Cpath d='M57.5.452C72.5 63.376 54.333 95.892 3 98'/%3E%3Cpath stroke-linecap='round' d='M12.5 92l-10 6 10 6'/%3E%3C/g%3E%3C/svg%3E%0A");
+
+      @include media-query($medium-down) {
+        right: 30px;
+        top: -15px;
+        width: 50px;
+        height: 120px;
+        transform: rotate(-40deg);
+      }
+    }
+  }
+
+  form {
+    margin-bottom: 30px;
+  }
+
+  &__recomm {
+    display: flex;
+
+    @include media-query($medium-down) {
+      flex-direction: column;
+    }
+  }
+
+  &__recomm-item {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    margin-right: 20px;
+
+    @include media-query($small) {
+      flex: 0 0 90%;
+      max-width: 90%;
+      margin: 0 20px;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      margin-top: 0;
+      border-bottom: 1px solid $color-theme-22;
+      @include text(12px, 1.2, $color-theme-7, 0.5px);
+    }
+
+    &-icon {
+      margin-right: 10px;
+    }
+
+    &-content {
+      h4 {
+        margin-bottom: 5px;
+        text-align: left;
+        @include font-header(bold);
+        @include text(16px, 1.2, $color-theme-24, 1.45px);
+      }
+
+      p {
+        text-align: left;
+        padding-right: 15px;
+      }
+    }
+  }
+
+  &__variants {
+    margin: 0 0 20px;
+  }
+
+  &__variant {
+    display: inline-block;
+
+    &:last-of-type {
+      margin: 0 0 5px;
+    }
+
+    &:not(:last-of-type) {
+      margin: 0 20px 5px 0;
+    }
+  }
+
+  &__featured-image {
+    @include media-query($medium-down) {
+      width: 30%;
+      float: left;
+      margin: 0;
+      margin-right: 20px;
+    }
+
+    img {
+      width: 100%;
+      height: 80%;
+      object-fit: contain;
+
+      @include media-query($medium-down) {
+        height: 100%;
+      }
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    h3 {
+      float: left;
+      display: none;
+
+      @include media-query($medium-down) {
+        display: inline-block;
+      }
+    }
+  }
+
+  &__label {
+    @include font-header(500);
+    @include text(17px, 24px, $color-body-text, 1px);
+    @include underline($color-main-1, false);
+  }
+
+  &__input {
+    display: none;
+
+    &:checked {
+      + .pdp-diffusers__label {
+        color: $color-main-1;
+
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &__btn-wrap {
+    @include clearfix;
+  }
+
+  &__regular-btn {
+    @include button(solid, square, 1);
+    float: left;
+    width: 50%;
+    padding: 0;
+    height: 65px;
+  }
+
+  &__regular-price {
+    @include font-header(500);
+    @include text(16px, 20px, $color-white, 0.95px);
+  }
+
+  &__regular-text {
+    @include font-header(700);
+    @include text(16px, 20px, $color-white, 0.95px);
+    text-transform: uppercase;
+  }
+
+  &__sub-button {
+    @include button(wire, square, 1);
+    float: right;
+    width: 50%;
+    padding: 0;
+    height: 65px;
+  }
+
+  &__sub-price {
+    @include font-header(500);
+    @include text(16px, 20px, $color-theme-8, 0.95px);
+  }
+
+  &__sub-btn-text {
+    @include font-header(700);
+    @include text(16px, 20px, $color-theme-8, 0.95px);
+    text-transform: uppercase;
+  }
+
+  &__sub-btn-freq {
+    @include font-header(700);
+    @include text(10px, 15px, $color-theme-8, 0.59px);
+    position: absolute;
+    left: 50%;
+    bottom: 5px;
+    transform: translate(-50%);
+  }
+
+  @include media-query($medium-down) {
+    &__title-header {
+      margin: 0 auto 5px;
+      text-align: center;
+    }
+
+    &__title {
+      font-size: 20px;
+      line-height: 28px;
+      letter-spacing: 1.18px;
+      display: none;
+    }
+
+    &__note-wrap {
+      left: initial;
+      right: calc(50% - 31px);
+
+      &::before {
+        left: initial;
+        right: 20px;
+      }
+
+      &::after {
+        left: initial;
+        right: 20px;
+      }
+
+      &:hover,
+      &:active {
+        opacity: 1;
+        pointer-events: auto;
+        bottom: calc(100% + 5px);
+      }
+    }
+
+    &__note {
+      font-size: 10px;
+      line-height: 15px;
+      letter-spacing: 0.5px;
+    }
+
+    &__variants {
+      margin: 0 0 10px;
+    }
+
+    &__variant {
+      &:last-of-type {
+        margin: 0 5px 5px;
+      }
+
+      &:not(:last-of-type) {
+        margin: 0 5px 5px 0;
+      }
+    }
+
+    &__label {
+      font-size: 12px;
+      line-height: 17px;
+      letter-spacing: 0.71px;
+    }
+
+    &__regular-btn {
+      height: 44px;
+      display: flex;
+      flex-flow: column wrap;
+      align-content: center;
+      justify-content: center;
+    }
+
+    &__regular-price {
+      font-size: 14px;
+      line-height: 14px;
+      letter-spacing: 1.2px;
+      order: 2;
+    }
+
+    &__regular-text {
+      font-size: 14px;
+      line-height: 14px;
+      letter-spacing: 1.2px;
+      order: 1;
+    }
+
+    &__sub-button {
+      height: 44px;
+      height: 44px;
+      display: flex;
+      flex-flow: column wrap;
+      align-content: center;
+      justify-content: center;
+    }
+
+    &__sub-price {
+      font-size: 14px;
+      line-height: 14px;
+      letter-spacing: 1.2px;
+      order: 2;
+    }
+
+    &__sub-btn-text {
+      font-size: 14px;
+      line-height: 14px;
+      letter-spacing: 1.2px;
+      order: 1;
+    }
+
+    &__sub-btn-freq {
+      display: none;
+    }
+  }
+}

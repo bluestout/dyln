@@ -1,6 +1,6 @@
 {% if section.settings.show %}
   <div class="container" data-accordion-parent=true>
-    {% if section.settings.title != empty %}
+    {% if section.settings.title != blank %}
       <div class="pdp-faqs__title">{{ section.settings.title }}</div>
     {% endif %}
 
@@ -17,7 +17,7 @@
                 <span class="pdp-faqs__faq-closed">+</span>
                 <span class="pdp-faqs__faq-open">-</span>
               </button>
-              <div class="pdp-faqs__faq-a" data-accordion-content="{{ forloop.index }}">{{ pdp_faq_article.content | strip_html }}</div>
+              <div class="pdp-faqs__faq-a" data-accordion-content="{{ forloop.index }}" style="display: none;">{{ pdp_faq_article.content | strip_html }}</div>
             </div>
           </div>
         {% endif %}

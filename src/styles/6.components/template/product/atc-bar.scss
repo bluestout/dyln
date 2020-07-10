@@ -1,12 +1,13 @@
 .atc-bar {
   @include transition(opacity);
   position: fixed;
-  z-index: $z-top;
+  z-index: $z-atc;
   left: 0;
   bottom: 0;
   margin: 0;
   width: 100vw;
   height: 230px;
+  pointer-events: none;
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0) 0%,
@@ -14,15 +15,18 @@
   );
 
   &:not(.active) {
-    pointer-events: none;
     opacity: 0;
+
+    .atc-bar__inner {
+      pointer-events: none;
+    }
   }
 
   &.active {
-    pointer-events: auto;
     opacity: 1;
 
     .atc-bar__inner {
+      pointer-events: auto;
       bottom: 20px;
     }
   }
@@ -60,30 +64,27 @@
     @include no-browser-styling;
     width: 44px;
     height: 44px;
-    padding: 4px;
+    border: 4px solid $color-white;
     background-color: $color-white;
     border-radius: 50%;
-    cursor: pointer;
-
-    &:checked {
-      box-shadow: 0 0 7px 0 rgba($color-black, 0.5);
-    }
-
-    &:not(:checked) {
-      box-shadow: none;
-    }
-  }
-
-  &__color-label {
-    position: absolute;
-    left: 4px;
-    top: 4px;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
     background-position: center;
-    background-size: contain;
-    pointer-events: none;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &:not(:disabled) {
+      cursor: pointer;
+
+      &:checked {
+        box-shadow: 0 0 7px 0 rgba($color-black, 0.5);
+      }
+
+      &:not(:checked) {
+        box-shadow: none;
+      }
+    }
   }
 
   &__current {
@@ -92,9 +93,10 @@
   }
 
   &__current-swatch {
+    position: relative;
     align-self: center;
 
-    span {
+    [data-atc-swatch] {
       @include no-font-size;
       width: 44px;
       height: 44px;
@@ -104,6 +106,29 @@
       display: inline-block;
       vertical-align: middle;
     }
+
+    &.unavailable {
+      [data-atc-swatch] {
+        opacity: 0.5;
+      }
+      .atc-bar__exclamation-variant {
+        display: block;
+      }
+    }
+  }
+
+  &__exclamation-variant {
+    font-size: 20px;
+    position: absolute;
+    top: 0;
+    font-weight: 700;
+    color: $color-theme-28;
+    pointer-events: none;
+    display: none;
+    width: 100%;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
   }
 
   &__current-content {
@@ -118,13 +143,13 @@
   }
 
   &__current-text {
-    @include poppins(500);
+    @include font-header(500);
     @include text(17px, 23px, $color-theme-8, 1.34px);
   }
 
   &__show-more {
     @include no-browser-styling;
-    @include poppins(500);
+    @include font-header(500);
     @include text(17px, 23px, $color-theme-1, 1.34px);
     padding: 0;
     margin: 0;
@@ -139,12 +164,12 @@
   }
 
   &__title {
-    @include poppins(700);
+    @include font-header(700);
     @include text(24px, 26px, $color-title, 1.89px);
   }
 
   &__price {
-    @include poppins(500);
+    @include font-header(500);
     @include text(18px, 26px, $color-title, 1.42px);
   }
 
@@ -161,6 +186,15 @@
     text-transform: uppercase;
     padding: 10px 33px;
     margin: 0 10px 0 0;
+
+    &:disabled {
+      background-color: $color-theme-8;
+      background-image: none;
+    }
+
+    &.unavailable {
+      padding: 10px 20px;
+    }
   }
 
   @include media-query($large-up) {

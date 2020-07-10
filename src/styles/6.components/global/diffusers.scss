@@ -1,0 +1,559 @@
+.diffusers {
+  background-color: $color-theme-27;
+  padding: 55px 0;
+  margin: 60px 0 70px;
+
+  &__img-wrap {
+    margin: auto 60px auto auto;
+  }
+
+  &__img {
+    object-fit: cover;
+  }
+
+  &__section-title {
+    @include text-title($color-main-1);
+  }
+
+  &__section-note {
+    @include font-header(500);
+    @include text(16px, 24px, $color-theme-8, 0.95px);
+    margin: 0 0 15px;
+  }
+
+  &__title-header {
+    position: relative;
+    margin: 0 0 5px;
+  }
+
+  &__title {
+    @include font-header(700);
+    @include text(24px, 33px, $color-title, 1.42px);
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__note-button {
+    @include no-browser-styling;
+    @include no-font-size;
+    position: relative;
+    padding: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  &__variants {
+    margin: 0 0 20px;
+
+    &.standalone {
+      margin: 0 0 5px;
+    }
+  }
+
+  &__variant {
+    position: relative;
+    display: inline-block;
+
+    &:last-of-type {
+      margin: 0 0 5px;
+    }
+
+    &:not(:last-of-type) {
+      margin: 0 20px 5px 0;
+    }
+  }
+
+  &__label {
+    @include font-header(500);
+    @include text(17px, 24px, $color-body-text, 1px);
+    @include underline($color-main-1, false);
+    pointer-events: none;
+    margin: 0 0 5px;
+
+    &.standalone {
+      color: $color-theme-8;
+    }
+  }
+
+  &__input {
+    @include no-browser-styling;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+
+    &:checked {
+      + .diffusers__label {
+        color: $color-main-1;
+
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+
+    &:focus {
+      outline: 5px auto rgba($color-main-1, 0.5);
+    }
+  }
+
+  &__btn-wrap {
+    @include clearfix;
+    position: relative;
+
+    @include media-query($medium-down) {
+      max-width: 425px;
+    }
+
+    &.hide {
+      .diffusers__sub-btn {
+        @include media-query($small) {
+          height: 65px;
+        }
+      }
+    }
+  }
+
+  &__regular-btn {
+    @include button(solid, square, 1);
+    float: left;
+    width: 50%;
+    padding: 0;
+    height: 65px;
+    border-width: 2px;
+
+    &:not(:disabled) {
+      &:hover {
+        bottom: 0;
+      }
+    }
+  }
+
+  &__regular-price {
+    @include font-header(500);
+    @include text(16px, 20px, $color-white, 0.95px);
+    flex: 1 0 51%;
+
+    @include media-query($small) {
+      width: 100%;
+      flex: 1 0 100%;
+    }
+  }
+
+  &__regular-text {
+    @include font-header(700);
+    @include text(16px, 20px, $color-white, 0.95px);
+    text-transform: uppercase;
+    flex: 1 0 51%;
+
+    @include media-query($small) {
+      width: 100%;
+      flex: 1 0 100%;
+    }
+  }
+
+  &__sub-btn {
+    @include button(wire, square, 1);
+    border-width: 2px;
+    float: right;
+    width: 50%;
+    padding: 0;
+    height: 65px;
+    background-color: $color-background;
+
+    &:focus {
+      outline: 5px auto rgba($color-main-1, 0.5);
+    }
+
+    &:not(:disabled) {
+      &:hover {
+        bottom: 0;
+      }
+    }
+
+    label {
+      position: relative;
+      display: inline-block;
+      min-width: 51%;
+      pointer-events: none;
+    }
+
+    label::after {
+      content: "";
+      width: 100%;
+      height: 2px;
+      background-color: $color-main-1;
+      display: block;
+    }
+
+    .custom-select-hidden {
+      display: none;
+      visibility: hidden;
+      padding-right: 10px;
+    }
+
+    .custom-select {
+      position: relative;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 16px;
+      color: $color-body-text;
+      width: 100%;
+      height: 30px;
+      vertical-align: middle;
+      line-height: 30px;
+      text-align: center;
+    }
+
+    .custom-select-styled {
+      background-color: $color-background;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      height: 61px;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: auto;
+        width: auto;
+        height: auto;
+        display: block;
+        cursor: pointer;
+      }
+
+      &::before {
+        content: none;
+      }
+    }
+
+    .custom-select-options {
+      left: -2px;
+      top: -2px;
+      background-color: $color-background;
+      text-align: center;
+      width: calc(100% + 4px);
+      border: 2px solid $color-main-1;
+    }
+
+    .custom-select-option {
+      padding: 5px;
+      background-color: $color-background;
+      text-align: center;
+      letter-spacing: 0.83px;
+
+      &:hover,
+      &:focus {
+        background-color: $color-theme-13;
+      }
+    }
+
+    &.standalone {
+      .custom-select {
+        color: $color-theme-8;
+      }
+    }
+  }
+
+  &__sub-price {
+    @include font-header(500);
+    @include text(16px, 20px, $color-theme-8, 0.95px);
+    flex: 1 0 51%;
+
+    @include media-query($small) {
+      width: 100%;
+      padding-top: 3px;
+      flex: 1 0 100%;
+    }
+  }
+
+  &__sub-btn-text {
+    @include font-header(700);
+    @include text(16px, 20px, $color-theme-8, 0.95px);
+    text-transform: uppercase;
+    flex: 1 0 51%;
+
+    @include media-query($small) {
+      width: 100%;
+      flex: 1 0 100%;
+    }
+  }
+
+  &__sub-btn-freq {
+    @include font-header(700);
+    @include text(10px, 15px, $color-theme-8, 0.59px);
+    position: absolute;
+    left: 50%;
+    bottom: 5px;
+    transform: translate(-50%);
+  }
+
+  &__usps {
+    clear: both;
+    padding: 20px 0 0;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    max-width: 500px;
+  }
+
+  &__usps-separator {
+    min-height: 20px;
+  }
+
+  &__usp {
+    flex: 0 0 auto;
+
+    span {
+      @include font-header(500);
+      @include text(13px, 16px, $color-theme-8, 0.77px);
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 0 0 5px;
+    }
+
+    svg {
+      display: inline-block;
+      vertical-align: middle;
+      width: 28px;
+      height: 28px;
+    }
+
+    &.large {
+      span {
+        font-size: 14px;
+        line-height: 20px;
+        margin: 0 0 0 15px;
+      }
+
+      svg {
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
+
+  &__sub-back {
+    @include font-header(500);
+    @include text(12px, 15px, $color-body-text, 0.71px);
+    @include no-browser-styling;
+    padding: 0;
+    margin: 0 0 10px;
+  }
+
+  @include media-query($medium-down) {
+    padding: 0;
+    margin: 100px 0 0;
+    background-image: linear-gradient(
+      to bottom,
+      $color-theme-27 0%,
+      $color-background 100%
+    );
+
+    &__col-bottom {
+      position: relative;
+      top: -50px;
+    }
+
+    &__col-top {
+      position: relative;
+      top: -75px;
+    }
+
+    &__img-wrap {
+      margin: auto;
+      max-width: 145px !important;
+      max-height: 145px !important;
+
+      &::before {
+        padding-top: 145px;
+      }
+    }
+
+    &__img {
+      margin: auto;
+      max-width: 145px !important;
+      max-height: 145px !important;
+    }
+
+    &__section-title {
+      text-align: center;
+    }
+
+    &__section-note {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.83px;
+      text-align: center;
+      margin: 0 0 30px;
+    }
+
+    &__title-header {
+      margin: 0 auto 5px;
+      text-align: center;
+    }
+
+    &__title {
+      font-size: 20px;
+      line-height: 28px;
+      letter-spacing: 1.18px;
+    }
+
+    &__note-wrap {
+      left: initial;
+      right: calc(50% - 31px);
+
+      &::before {
+        left: initial;
+        right: 20px;
+      }
+
+      &::after {
+        left: initial;
+        right: 20px;
+      }
+
+      &:hover,
+      &:active {
+        opacity: 1;
+        pointer-events: auto;
+        bottom: calc(100% + 5px);
+      }
+    }
+
+    &__note {
+      font-size: 10px;
+      line-height: 15px;
+      letter-spacing: 0.5px;
+    }
+
+    &__variants {
+      margin: 0 0 10px;
+      text-align: center;
+
+      &.standalone {
+        margin: 0 0 10px;
+      }
+    }
+
+    &__variant {
+      &:last-of-type {
+        margin: 0 5px 5px;
+      }
+
+      &:not(:last-of-type) {
+        margin: 0 5px 5px 0;
+      }
+    }
+
+    &__label {
+      font-size: 12px;
+      line-height: 17px;
+      letter-spacing: 0.71px;
+    }
+
+    &__btn-wrap {
+      margin: 0 auto;
+    }
+
+    &__regular-btn {
+      height: 45px;
+      display: flex;
+      flex-flow: row wrap;
+      align-content: center;
+      justify-content: center;
+    }
+
+    &__regular-price {
+      font-size: 14px;
+      line-height: 14px;
+      letter-spacing: 1.2px;
+      order: 2;
+    }
+
+    &__regular-text {
+      font-size: 14px;
+      line-height: 14px;
+      letter-spacing: 1.2px;
+      order: 1;
+    }
+
+    &__sub-btn {
+      height: 45px;
+      display: flex;
+      flex-flow: row wrap;
+      align-content: center;
+      justify-content: center;
+
+      .custom-select {
+        font-size: 16px;
+        height: 20px;
+        line-height: 20px;
+      }
+
+      .custom-select-styled {
+        height: 41px;
+      }
+
+      .custom-select-option {
+        padding: 4px;
+      }
+
+      label {
+        font-size: 10px;
+        line-height: 14px;
+      }
+    }
+
+    &__sub-price {
+      font-size: 14px;
+      line-height: 14px;
+      letter-spacing: 1.2px;
+      order: 2;
+    }
+
+    &__sub-btn-text {
+      font-size: 14px;
+      line-height: 14px;
+      letter-spacing: 1.2px;
+      order: 1;
+      display: block;
+    }
+
+    &__sub-btn-freq {
+      display: none;
+    }
+
+    &__usps.large {
+      justify-content: space-around;
+    }
+
+    &__usp.large {
+      text-align: center;
+      span {
+        font-size: 10px;
+        line-height: 12px;
+        margin: 10px auto 0;
+        display: block;
+        text-align: center;
+      }
+
+      svg {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+
+  @include media-query($small) {
+    &__usps {
+      display: none;
+    }
+  }
+}

@@ -9,10 +9,10 @@
 <div class="container index-shop__prod-container" data-slick-pi-mobile>
   <div class="row justify-content-center index-shop__prod-row">
     {% for block in section.blocks %}
-      {% if block.type == "product" and block.settings.product != empty %}
+      {% if block.type == "product" and block.settings.product != blank %}
         <div class="col-lg-3 index-shop__prod-col">
           {% assign p_item = all_products[block.settings.product] %}
-          {% render 'product-item' with p_item %}
+          {% render 'product-item' with p_item, hide_title_mobile: true %}
         </div>
       {% endif %}
     {% endfor %}
@@ -39,10 +39,11 @@
                 max_height: 300,
                 wrapper_class: "index-shop__c-img-wrap",
                 image_class: "index-shop__c-img",
+                snippet_index: 29
               %}
 
               {% assign block_title = "Shop " | append: block_coll.title %}
-              {% if block.settings.title != empty %}
+              {% if block.settings.title != blank %}
                 {% assign block_title = block.settings.title %}
               {% endif %}
               <a class="index-shop__c-title" href="{{ block_coll.url }}">

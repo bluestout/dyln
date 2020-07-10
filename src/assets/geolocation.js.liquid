@@ -1,0 +1,289 @@
+window.onload = function() {
+  //make container changeable through the code in order to make the whole code work for product-item, not just for the pdp page
+  var container = `[data-section-type="product"]`;
+  var selectors = {
+    unavailableVariants: "#unavailable-variant",
+    unavailableNotices: "#unavailable-notify",
+    country: "#country-hidden",
+    geoInfo: "#geo-location-info",
+    submitButton: `${container} [data-submit-button]`,
+    submitButtonText: `${container} [data-submit-button-text]`,
+    soldOutForm: `${container} [data-sold-out-mail]`,
+    idSelect: `${container} select[name="id"]`,
+    currentOption: `${container} select[name="id"] option:selected`,
+    optionByVariant: (variant) =>
+      `${container} select[name="id"] option[value="${variant}"]`,
+    pdpInputByVariantId: (id) => `[data-geo-specific-variant="${id}"]`,
+    shippingNote: `${container} [data-pdp-shipping-note]`,
+    productId: `${container} [data-current-product-id]`,
+    atcAdd: "[data-atc-add]",
+    atcCurrent: "[data-atc-current]",
+    notifyMe: {
+      notice: `${container} [data-sold-out-notice]`,
+      submit: `${container} [data-submit-sold-out-btn]`,
+      form: `${container} [data-sold-out-form]`,
+      input: `${container} [data-sold-out-input]`,
+      message: `${container} [data-sold-out-message]`,
+    },
+  };
+
+  var attributes = {
+    shipping: "data-ship-message",
+  };
+
+  var geoLocationComplete = new Event("geoLocationComplete");
+
+  function submitButtonLoaded() {
+    $(selectors.submitButton).removeClass("loading");
+  }
+
+  // change the add to cart depending on product availability
+  function renderSubmitButton() {
+    var $submitButton = $(selectors.submitButton);
+    var $submitButtonText = $(selectors.submitButtonText);
+    var uVariants = $(selectors.unavailableVariants).val();
+    var uNotices = $(selectors.unavailableNotices).val();
+    var currentVariant = $(selectors.idSelect).val();
+    var shippingMessage = $(selectors.currentOption).attr(attributes.shipping);
+    var $atcBarButton = $(selectors.atcAdd);
+    var $atcCurrent = $(selectors.atcCurrent);
+    var $soldOutForm = $(selectors.soldOutForm);
+    var $shippingNote = $(selectors.shippingNote);
+
+    if (typeof shippingMessage !== "undefined") {
+      $shippingNote.text(shippingMessage);
+      $shippingNote.removeClass("hide");
+    } else {
+      $shippingNote.addClass("hide");
+    }
+
+    if (uVariants !== "") {
+      var uVariantsSplit = uVariants.split(",");
+      if ($.inArray(currentVariant, uVariantsSplit) !== -1) {
+        //if current variant is unavailable
+        $submitButton.attr("disabled", true);
+        $atcBarButton.attr("disabled", true);
+        $atcBarButton.text(theme.strings.soldOut);
+        $atcBarButton.addClass("unavailable");
+        $atcCurrent.addClass("unavailable");
+        $submitButtonText.text(theme.strings.unavailable);
+      } else {
+        //current variant is available
+        $submitButton.removeAttr("disabled");
+        $atcBarButton.removeAttr("disabled");
+        $atcBarButton.text(theme.strings.add);
+        $atcBarButton.removeClass("unavailable");
+        $atcCurrent.removeClass("unavailable");
+        $submitButtonText.text(theme.strings.addToCart);
+      }
+    }
+
+    if (uNotices !== "") {
+      var uNoticesSplit = uNotices.split(",");
+      if ($.inArray(currentVariant, uNoticesSplit) !== -1) {
+        $soldOutForm.fadeIn();
+      } else {
+        $soldOutForm.fadeOut();
+      }
+    }
+  }
+
+  // get available variant
+  function setUnavailableVariants(country, productId) {
+    var cUrl = "/a/dyl/black-variants";
+    $.ajax({
+      url: cUrl,
+      type: "GET",
+      data: { country: country, product_id: productId },
+      dataType: "json",
+      success: function(response) {
+        submitButtonLoaded();
+        $(selectors.unavailableVariants).val(response.out_of_stock);
+        $(selectors.unavailableNotices).val(response.nofify_order);
+        var $variantMessages = response.black_order;
+
+        for (let i = 0; i < response.out_of_stock.length; i++) {
+          const oosVariant = response.out_of_stock[i];
+          $(selectors.pdpInputByVariantId(oosVariant)).addClass("unavailable");
+        }
+        // set variant selector option attribute
+        if ($variantMessages.length > 0) {
+          $.each($variantMessages, function(i, variantMessage) {
+            var variantMessageSegment = variantMessage.split(":");
+            // set ship message attribute
+            var variant = variantMessageSegment[0];
+            var message = variantMessageSegment[1];
+            var $selectorOption = $(selectors.optionByVariant(variant));
+            $selectorOption.attr(attributes.shipping, message);
+          });
+        }
+        renderSubmitButton();
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        submitButtonLoaded();
+        console.log(textStatus, errorThrown);
+      },
+    });
+
+    return $(selectors.unavailableVariants).val();
+  }
+
+  function IsEmail(email) {
+    var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(email);
+  }
+
+  // Store Data Notify Me Subscribe
+  $(selectors.notifyMe.submit).click(function() {
+    theme.strings.sold_out_email_invalid;
+    theme.strings.sold_out_email_confirm;
+    var notifyMessage = $(selectors.notifyMe.message);
+    notifyMessage.text("");
+    var $customerEmail = $(selectors.notifyMe.input);
+    if ($customerEmail.val() == "") {
+      $customerEmail.focus();
+      return false;
+    } else {
+      var customerEmail = $customerEmail.val();
+      if (IsEmail(customerEmail)) {
+        // send data
+        var cUrl = "/a/dyl/notify-me-data";
+        var country = $(selectors.country).val();
+        var productId = $(selectors.productId).val();
+        var variantId = $(selectors.idSelect).val();
+        var geoInfo = $(selectors.geoInfo).val();
+        $.ajax({
+          url: cUrl,
+          type: "GET",
+          data: {
+            email: customerEmail,
+            country: country,
+            product_id: productId,
+            variant_id: variantId,
+            geo_info: geoInfo,
+          },
+          dataType: "json",
+          success: function(response) {
+            $(selectors.notifyMe.notice).fadeOut(200);
+            $(selectors.notifyMe.form).fadeOut(200);
+            setTimeout(function() {
+              notifyMessage.text(response.message);
+              notifyMessage.fadeIn();
+            }, 100);
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+          },
+        });
+      } else {
+        $customerEmail.focus();
+        notifyMessage.text(theme.strings.sold_out_email_invalid);
+        notifyMessage.fadeIn();
+      }
+    }
+  });
+
+  //Check visitor IP Location Function
+  jQuery.ajax({
+    url:
+      "https://api.ipstack.com/check?access_key=c9ac55ecdf7513abc5581dd4c89b042b",
+    dataType: "jsonp",
+    success: function(location) {
+      // If the visitor is browsing from US.
+      var userGeo = `${location.ip}|${location.country_name}|${
+        location.region_name
+      }|${location.city}|${location.time_zone.id}|${location.country_code}|${
+        location.region_code
+      }`;
+      $(selectors.geoInfo).val(userGeo);
+
+      // country inventory
+      var country4px = [
+        "AU",
+        "AT",
+        "BE",
+        "BN",
+        "BG",
+        "KH",
+        "CY",
+        "CZ",
+        "DK",
+        "EE",
+        "FI",
+        "FR",
+        "DE",
+        "GR",
+        "HK",
+        "HU",
+        "IE",
+        "IT",
+        "JP",
+        "LA",
+        "LV",
+        "LI",
+        "LT",
+        "LU",
+        "MO",
+        "MY",
+        "MT",
+        "MC",
+        "NL",
+        "NZ",
+        "NO",
+        "PH",
+        "PL",
+        "PT",
+        "RO",
+        "SG",
+        "SK",
+        "SI",
+        "KR",
+        "ES",
+        "SE",
+        "CH",
+        "TW",
+        "TH",
+        "GB",
+        "VN",
+      ];
+
+      if (location.country_code === "US") {
+        $("body").addClass("location-us");
+      } else if (location.country_code === "CA") {
+        $("body").addClass("location-ca");
+      } else {
+        $("body").addClass("location-other");
+      }
+
+      // product page
+      var sUrl = window.location.href;
+      var productPage = false;
+
+      // checking if we are on the product page
+      if (sUrl.indexOf("/products/") != -1) {
+        var productId = $("[data-pdp-product-id]").data("pdp-product-id");
+        productPage = true;
+      }
+
+      if (productPage) {
+        // Function country inventory according to country
+        if (location.country_code === "CA") {
+          // 4PX - CA Country region
+          $(selectors.country).val("ca");
+          setUnavailableVariants("ca", productId);
+        } else if ($.inArray(location.country_code, country4px) != -1) {
+          // 4PX - HK Country region
+          $(selectors.country).val("px");
+          setUnavailableVariants("px", productId);
+        } else {
+          // Senyx USA Country region
+          $(selectors.country).val("other");
+          setUnavailableVariants("other", productId);
+        }
+      }
+      document.dispatchEvent(geoLocationComplete);
+    },
+  });
+
+  document.addEventListener("productFormOptionChange", renderSubmitButton);
+};

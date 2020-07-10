@@ -1,0 +1,45 @@
+.article {
+  &__header {
+    margin-bottom: 20px;
+
+    &-category {
+      a {
+        @include font-header(medium);
+        @include text(20px, 1.2, $color-theme-1, 1px);
+        display: none;
+        width: 100%;
+        font-size: 20px;
+        text-transform: uppercase;
+
+        &:first-child {
+          display: inline-block;
+        }
+
+        @include media-query($large-down) {
+          font-size: 9px;
+        }
+      }
+    }
+
+    &-title {
+      @include text-title(bold);
+
+      @include media-query($large-down) {
+        font-size: 20px;
+        line-height: 1.2;
+      }
+    }
+
+    &-detail {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      .article__date {
+        @include text(14px, 1.2, $color-theme-8, 0.5px);
+      }
+    }
+  }
+}

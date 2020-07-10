@@ -66,6 +66,11 @@
   transition: none;
 }
 
+.shown-on-focus:focus {
+  @include visually-shown(absolute);
+  z-index: $z-top;
+}
+
 // Hide outline on focus for elements which are given focus by JS
 [tabindex="-1"]:focus {
   outline: none;
@@ -109,18 +114,6 @@
   flex: 1;
 }
 
-.text-right {
-  text-align: right;
-}
-
-.text-left {
-  text-align: left;
-}
-
-.text-center {
-  text-align: center;
-}
-
 .semibold,
 .fw-500 {
   font-weight: 500;
@@ -140,4 +133,8 @@
   li {
     font-weight: 400;
   }
+}
+
+.no-pointer {
+  pointer-events: none;
 }

@@ -1,34 +1,81 @@
+/**
+ * Basic use:
+ * <div data-tabs-container>
+ * <button data-tab-link=index></button>
+ * <div data-tab=index></div>
+ * </div>
+ */
+
 import $ from "jquery";
+import { getUrlParams, getUrlHashParams } from "./helpers";
+
+const datasets = {
+  tab: "tab",
+  link: "tab-link",
+};
+
+const selectors = {
+  container: "[data-tabs-container]",
+  tab: `[data-${datasets.tab}]`,
+  link: `[data-${datasets.link}]`,
+  tabByIndex: (index) => `[data-${datasets.tab}="${index}"]`,
+  linkByIndex: (index) => `[data-${datasets.link}="${index}"]`,
+};
+
+const classes = {
+  active: "active",
+};
+
+const variables = {
+  timing: "fast",
+  contactParam: "contact-tab",
+  posted: "contact_posted",
+};
 
 function tabs(event) {
   event.preventDefault ? event.preventDefault() : (event.returnValue = false);
   const $this = $(event.currentTarget);
-  if (!$this.hasClass("active")) {
-    const $container = $this.closest("[data-tabs-container]");
-    const index = $this.data("tab-link");
-    const $target = $container.find(`[data-tab="${index}"]`);
+  if (!$this.hasClass(classes.active)) {
+    const $container = $this.closest(selectors.container);
+    const index = $this.data(datasets.link);
+    const $target = $container.find(selectors.tabByIndex(index));
     $container
-      .find("[data-tab-link]")
+      .find(selectors.link)
       .not($this)
-      .removeClass("active");
-    $this.addClass("active");
+      .removeClass(classes.active);
+    $this.addClass(classes.active);
     $container
-      .find(".active[data-tab]")
-      .removeClass("active")
-      .fadeOut("fast", () => {
-        $target.fadeIn("fast").addClass("active");
+      .find(`.${classes.active}${selectors.tab}`)
+      .removeClass(classes.active)
+      .fadeOut(variables.timing, () => {
+        $target.fadeIn(variables.timing).addClass(classes.active);
       });
 
     // reset all tabbed embedded iframes on tab change
-    $("[data-tab]:not(.active) iframe").each(function() {
+    $(`${selectors.tab}:not(.${classes.active}) iframe`).each(function() {
       $(this).attr("src", $(this).attr("src"));
     });
 
     // pause all non-looping tabbed videos on tab change
-    $("[data-tab]:not(.active) video:not([loop])").each(function() {
-      this.pause();
-    });
+    $(`${selectors.tab}:not(.${classes.active}) video:not([loop])`).each(
+      function() {
+        this.pause();
+      }
+    );
   }
 }
 
-$(document).on("click", "[data-tab-link]", tabs);
+function checkTabHash() {
+  const urlParams = getUrlParams();
+  const urlHashParams = getUrlHashParams();
+  const index = urlHashParams[variables.contactParam];
+
+  if (urlParams[variables.posted]) {
+    $(selectors.linkByIndex(5)).click();
+  } else if (urlHashParams[variables.contactParam]) {
+    $(selectors.linkByIndex(index)).click();
+  }
+}
+
+$(document).on("click", selectors.link, tabs);
+$(document).ready(checkTabHash);

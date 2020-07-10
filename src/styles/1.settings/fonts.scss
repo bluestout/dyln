@@ -7,7 +7,7 @@
 }
 
 @mixin poppins($weight: 400, $style: normal) {
-  font-family: "Poppins", sans-serif;
+  font-family: Poppins, sans-serif;
   font-weight: $weight;
   font-style: $style;
   -webkit-font-smoothing: antialiased;

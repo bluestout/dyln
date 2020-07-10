@@ -1,0 +1,78 @@
+{% if section.settings.show %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12 col-lg-8">
+      <div class="mid-banner" style="background-image:url('{{ section.settings.background.src | image_url }}'); background-color: {{ section.settings.background_color  }}">
+        {%- if section.settings.title != blank -%}
+          <div class="mid-banner__text" style="color:{{section.settings.title_color }}">
+            <h2>{{- section.settings.title -}}</h2>
+          </div>
+        {% endif %}
+        {% if section.settings.product_image.src != blank %}
+          {%- render 'responsive-image' with
+            image: section.settings.product_image.src,
+            max_width: 100,
+            max_height: 100,
+            wrapper_class: "mid-banner__image",
+            snippet_index: 4
+          -%}
+        {% endif %}
+        {%- if section.settings.link_text != blank -%}
+          <div class="mid-banner__link-wrap">
+            <a class="mid-banner__link" href="{{- section.settings.link_url -}}">{{- section.settings.link_text -}}</a>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Blog Mid Banner Lower",
+    "class": "blog-mid-banner",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "checkbox",
+        "id": "show",
+        "label": "Show Section"
+      },
+      {
+        "type": "color",
+        "id": "title_color",
+        "label": "Title Color"
+      },
+      {
+        "type": "image_picker",
+        "id": "background",
+        "label": "Background"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_image",
+        "label": "Product Image"
+      },
+      {
+        "type": "url",
+        "id": "link_url",
+        "label": "Link URL"
+      },
+      {
+        "type": "text",
+        "id": "link_text",
+        "label": "Link Text"
+      }
+    ]
+  }
+{% endschema %}
