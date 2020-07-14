@@ -3,7 +3,7 @@
 
   &__newsletter {
     @include transition(background-position 5000 ease);
-    height: 300px;
+    height: 240px;
     display: flex;
     align-items: center;
     margin-top: -20px;
@@ -21,16 +21,16 @@
     }
 
     &-title {
-      @include font-header(bold);
-      @include text(30px, 1.2, $color-white, 1px);
-
-      @include media-query($large-down) {
-        @include font-header(bold);
-        @include text(20px, 1.2, $color-white, 1px);
-        text-align: left;
-      }
-
       h2 {
+        @include font-header(bold);
+        @include text(30px, 1.2, $color-white, 1px);
+
+        @include media-query($large-down) {
+          @include font-header(bold);
+          @include text(20px, 1.2, $color-white, 1px);
+          text-align: left;
+        }
+
         @include media-query($small) {
           @include text(20px, 1.2, $color-white, 1px);
           padding: 0 30px;
@@ -153,6 +153,15 @@
         padding-left: 20px;
         padding-bottom: 6.5px;
 
+        @include media-query($small) {
+          width: 270px;
+          margin-left: 25px;
+        }
+
+        @media screen and (width: 320px) {
+          margin-left: 0;
+        }
+
         &::-webkit-input-placeholder {
           color: $color-theme-29;
         }
@@ -180,6 +189,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
+
+        @include media-query($xl-up) {
+          top: 1.5px;
+        }
       }
 
       svg {
@@ -196,6 +209,25 @@
       left: -52px;
       top: 1px;
       line-height: 0;
+
+      @include media-query($xl-up) {
+        top: 0;
+      }
+
+      @media screen and (width: 320px) {
+        left: 220px;
+        top: 2px;
+        position: absolute;
+      }
+    }
+
+    @include media-query($small) {
+      left: 20px;
+      position: relative;
+    }
+
+    @media screen and (width: 320px) {
+      left: 0;
     }
   }
 
@@ -480,12 +512,8 @@
       text-align: center;
 
       @include media-query($medium-down) {
-        width: 50%;
-        margin: 0 auto;
-      }
-
-      @include media-query($small) {
         width: 70%;
+        margin: 0 auto;
       }
 
       &.open {
@@ -553,6 +581,10 @@
     display: flex;
     flex-direction: column;
 
+    @include media-query($xl-up) {
+      padding-top: 5px;
+    }
+
     @include media-query($large-down) {
       flex-direction: column;
       margin-bottom: 20px;
@@ -573,11 +605,16 @@
       @include font-body;
       @include text(14px, 24px, $color-white, 0.16px);
       padding: 5px 0;
+
+      @include media-query($xl-up) {
+        padding: 2px 0;
+      }
     }
 
     &-title {
       @include font-header(700);
       @include text(15px, 26px, $color-white, 1.18px);
+      margin-top: 6px;
 
       @include media-query($large-down) {
         text-align: center;
