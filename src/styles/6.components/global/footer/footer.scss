@@ -702,6 +702,12 @@
   top: 3px;
 }
 
+.iti__country-list {
+  @include media-query($medium-down) {
+    width: 250px;
+  }
+}
+
 @import "./footer-copyright";
 @import "./footer-newsletter";
 @import "./footer-payment";
