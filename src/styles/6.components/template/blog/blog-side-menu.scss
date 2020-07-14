@@ -37,6 +37,16 @@
     }
   }
 
+  &.template-article {
+    .blog-side-menu__btn {
+      @include media-query($large-down) {
+        h3 {
+          @include text(20px, 1.2, $color-theme-7, 1px);
+        }
+      }
+    }
+  }
+
   &__list {
     margin-top: 15px;
 
@@ -85,6 +95,10 @@
 
   &.template-article {
     width: 200px;
+
+    @media screen and (min-width: 1620px) {
+      width: 350px;
+    }
 
     svg {
       position: absolute;

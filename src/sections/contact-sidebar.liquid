@@ -1,8 +1,8 @@
-{% if section.settings.title != empty %}
+{% if section.settings.title != blank %}
   <h3 class="d-none d-sm-block">{{ section.settings.title }}</h3>
 {% endif %}
 
-{% if section.settings.help_link_1_text != empty %}
+{% if section.settings.help_link_1_text != blank %}
   {% assign help_1 = section.settings.help_link_1 %}
   {% if section.settings.help_1_is_modal %}
     {% assign help_1 = "#contact-modal-1" %}
@@ -46,7 +46,7 @@
   {% endif %}
 {% endif %}
 
-{% if section.settings.help_link_2_text != empty %}
+{% if section.settings.help_link_2_text != blank %}
   {% assign help_2 = section.settings.help_link_2 %}
   {% if section.settings.help_2_is_modal %}
     {% assign help_2 = "#contact-modal-2" %}
@@ -90,7 +90,7 @@
   {% endif %}
 {% endif %}
 
-{% if section.settings.help_link_3_text != empty %}
+{% if section.settings.help_link_3_text != blank %}
   <button type="button" onclick="Smooch.open();" class="contact-sidebar__link">
     <span class="contact-sidebar__link-i">{% render 'icon-chat' %}</span>
     <span class="contact-sidebar__link-t">{{ section.settings.help_link_3_text }}</span>

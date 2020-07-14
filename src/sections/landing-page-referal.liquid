@@ -17,7 +17,7 @@
           <div class="col-md-2">
             <a href="{{ section.settings.referal_btn_link }}" class="lp-referal__refer-btn">
               {{ section.settings.referal_btn_text }}
-              {% if section.settings.referal_points != empty %}
+              {% if section.settings.referal_points != blank %}
               <span>{{ section.settings.referal_points }}</span> {% render 'icon-points-white' %}
               {% endif %}
             </a>

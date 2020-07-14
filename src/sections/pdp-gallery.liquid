@@ -31,7 +31,20 @@
     {% endunless %}
   {% endfor %}
 
-  {% if product.metafields.info.video != blank %}
+  {% if product.metafields.info.video_mp4 != blank %}
+    <div class="pdp-gallery__image-item video">
+      <div class="pdp-gallery__video-wrap">
+        <video
+          playsinline
+          controls
+          width="620"
+          height="465">
+          <source src="{{- section.settings.video -}}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  {% elsif product.metafields.info.video != blank %}
     <div class="pdp-gallery__image-item video">
       <div class="pdp-gallery__video-wrap">
         {{ product.metafields.info.video }}

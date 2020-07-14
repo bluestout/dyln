@@ -29,7 +29,7 @@
 
         {% if section.settings.s_pop_manual %}
           <div class="header-search__popular">
-            {% if section.settings.s_pop_title != empty %}
+            {% if section.settings.s_pop_title != blank %}
               <h6 class="header-search__pop-title">{{ section.settings.s_pop_title }}</h6>
             {% endif %}
             <div class="header-search__pop-terms">

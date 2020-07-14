@@ -1178,7 +1178,6 @@
         ],
         "settings": {
           "title": "FAQS",
-          "see_all_text": "See All FAQs",
           "jump_to": "Jump to",
           "top_title": "Top Questions",
           "bottle_title": "Bottle Registration",
@@ -1406,7 +1405,7 @@
         ],
         "settings": {
           "title": "International Shipping",
-          "description": "<strong>After your payment is verified, it may take up to 24 hours to process and ship your order. This does not include weekends or holidays. Purchases made after 11 am PT will not be shipped out until the next business day. If you order after 11 am PT on a Friday, your order will likely be shipped out on the following Monday. Please refer to the chart below for rates/times.</strong><br><br>\nWe offer free shipping for orders to Canada over $150. For all other international shipping destinations, we offer free shipping for orders over $175 *excluding Russia.",
+          "description": "After your payment is verified, it may take up to 24 hours to process and ship your order. This does not include weekends or holidays. Purchases made after 11 am PT will not be shipped out until the next business day. If you order after 11 am PT on a Friday, your order will likely be shipped out on the following Monday. Please refer to the chart below for rates/times.<br><br>\nWe offer free shipping for orders to Canada over $150. For all other international shipping destinations, we offer free shipping for orders over $175 *excluding Russia.",
           "select_title": "Delivery Rates & Times",
           "select_placeholder": "Select country to know more",
           "show_country_name": true
@@ -1431,7 +1430,7 @@
         "block_order": ["1589748448157", "1589748455174"],
         "settings": {
           "title": "Returns",
-          "description": "<strong>After your payment is verified, it may take up to 24 hours to process and ship your order. This does not include weekends or holidays. Purchases made after 11 am PT will not be shipped out until the next business day. If you order after 11 am PT on a Friday, your order will likely be shipped out on the following Monday. Please refer to the chart below for rates/times.</strong>",
+          "description": "After your payment is verified, it may take up to 24 hours to process and ship your order. This does not include weekends or holidays. Purchases made after 11 am PT will not be shipped out until the next business day. If you order after 11 am PT on a Friday, your order will likely be shipped out on the following Monday. Please refer to the chart below for rates/times.",
           "link": "shopify://blogs/faqs/returns-and-refund-policy",
           "link_text": "Start Return Process"
         }

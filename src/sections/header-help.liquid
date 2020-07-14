@@ -39,21 +39,21 @@
 
           <div class="col-lg-7 order-lg-3 order-3">
             <div class="header-help__big-links">
-              {% if section.settings.help_link_1_text != empty %}
+              {% if section.settings.help_link_1_text != blank %}
                 <a class="header-help__big-link" href="{{ section.settings.help_link_1 }}" tabindex="-1">
                   <span class="header-help__big-link-i">{% render 'icon-phone' %}</span>
                   <span class="header-help__big-link-t">{{ section.settings.help_link_1_text }}</span>
                 </a>
               {% endif %}
 
-              {% if section.settings.help_link_2_text != empty %}
+              {% if section.settings.help_link_2_text != blank %}
                 <a class="header-help__big-link" href="{{ section.settings.help_link_2 }}" tabindex="-1">
                   <span class="header-help__big-link-i">{% render 'icon-mail' %}</span>
                   <span class="header-help__big-link-t">{{ section.settings.help_link_2_text }}</span>
                 </a>
               {% endif %}
 
-              {% if section.settings.help_link_3_text != empty %}
+              {% if section.settings.help_link_3_text != blank %}
                 <a class="header-help__big-link" onclick="Smooch.open();" tabindex="-1">
                   <span class="header-help__big-link-i">{% render 'icon-chat' %}</span>
                   <span class="header-help__big-link-t">{{ section.settings.help_link_3_text }}</span>
@@ -62,18 +62,18 @@
             </div>
 
             <div class="header-help__faq-header">
-              {% if section.settings.faq_title != empty %}
-                <a {% if section.settings.faq_link != empty %} href="{{ section.settings.faq_link }}"{% endif %} class="header-help__faq-title" tabindex="-1">{{ section.settings.faq_title }}</a>
+              {% if section.settings.faq_title != blank %}
+                <a {% if section.settings.faq_link != blank %} href="{{ section.settings.faq_link }}"{% endif %} class="header-help__faq-title" tabindex="-1">{{ section.settings.faq_title }}</a>
               {% endif %}
 
-              {% if section.settings.faq_link_text != empty %}
+              {% if section.settings.faq_link_text != blank %}
                 <a href="{{ section.settings.faq_link }}" class="header-help__faq-link" tabindex="-1">{{ section.settings.faq_link_text }}</a>
               {% endif %}
             </div>
 
             <div class="header-help__faqs" data-accordion-parent=true>
               {% comment %} section.settings.faq_article_1 {% endcomment %}
-              {% if section.settings.faq_article_1 != empty %}
+              {% if section.settings.faq_article_1 != blank %}
                 {% assign h_faq_article_1 = articles[section.settings.faq_article_1] %}
                 <div class="header-help__faq">
                   <button class="header-help__faq-btn" data-accordion-button="1" tabindex="-1">
@@ -87,7 +87,7 @@
                 </div>
               {% endif %}
 
-              {% if section.settings.faq_article_2 != empty %}
+              {% if section.settings.faq_article_2 != blank %}
                 {% assign h_faq_article_2 = articles[section.settings.faq_article_2] %}
                 <div class="header-help__faq">
                   <button class="header-help__faq-btn" data-accordion-button="2" tabindex="-1">
@@ -101,7 +101,7 @@
                 </div>
               {% endif %}
 
-              {% if section.settings.faq_article_3 != empty %}
+              {% if section.settings.faq_article_3 != blank %}
                 {% assign h_faq_article_3 = articles[section.settings.faq_article_3] %}
                 <div class="header-help__faq">
                   <button class="header-help__faq-btn" data-accordion-button="3" tabindex="-1">

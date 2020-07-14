@@ -1,8 +1,8 @@
-{% if section.settings.title != empty %}
+{% if section.settings.title != blank %}
   <h2>{{ section.settings.title }}</h2>
 {% endif %}
 
-{% if section.settings.description != empty %}
+{% if section.settings.description != blank %}
   <div class="contact-body__content rte">{{ section.settings.description }}</div>
 {% endif %}
 
@@ -10,7 +10,7 @@
   <ul data-accordion-parent=true>
     {% for block in section.blocks %}
       {% assign contact_faq_article = articles[block.settings.faq_article] %}
-      {% if block.settings.faq_article != empty %}
+      {% if block.settings.faq_article != blank %}
         <li>
           <button class="contact-body__faq-button" data-accordion-button="{{ forloop.index }}">
             <span class="contact-body__question">
@@ -26,7 +26,7 @@
   </ul>
 {% endif %}
 
-{% if section.settings.link_text != empty %}
+{% if section.settings.link_text != blank %}
   <div class="contact-body__button-wrapper">
     <a href="{{ section.settings.link }}" class="contact-body__button-link">{{ section.settings.link_text }}</a>
   </div>
