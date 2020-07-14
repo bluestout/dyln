@@ -32,7 +32,6 @@
   {%- if page_description -%}
     <meta name="description" content="{{ page_description | escape }}">
   {%- endif -%}
-
   {%- render 'social-meta-tags' -%}
   {%- render 'css-variables' -%}
   {%- render 'style-tags', layout: 'theme' -%}
@@ -61,7 +60,10 @@
     crossorigin="anonymous"></script>
 </head>
 
-<body id="{{ page_title | handle }}" class="template-{{ template.name | handle }} {%- if template contains 'blog' -%} {{ template | handleize }}{%- endif -%}">
+<body id="{{ page_title | handle }}" class="template-{{ template.name | handle }} {%- if template contains 'blog' -%} {{ template | handleize }}{%- endif -%}" onload="pageLoading()">
+
+  {% render 'page-transition' %}
+
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K877228"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -134,6 +136,34 @@
       display: none !important;
     }
   </style>
+
+
+  <script>
+    // 10 seconds or the cart is loaded, whichever comes first
+    var loadingStatus = setTimeout(function(){
+      pageTransition();
+    }, 10000);
+    document.addEventListener("ajaxReloaded", function() {
+        clearTimeout(loadingStatus);
+        if (!document.querySelector("[data-icon-y-body]").classlist.contains("active")) {
+        pageTransition();
+        }
+    });
+
+    function pageTransition() {
+      document.querySelector("[data-icon-y-body]").classList.add("active");
+      setTimeout(function(){
+        document.querySelector("[data-icon-y-dot]").classList.add("active");
+      }, 250);
+
+      setTimeout(function() {
+        document.querySelector("[data-page-transition]").classList.add("inactive");
+      }, 2500);
+      setTimeout(function() {
+        document.querySelector("[data-page-transition]").remove();
+      }, 3001);
+    }
+  </script>
 
 </body>
 </html>
