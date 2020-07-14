@@ -45,180 +45,45 @@ icon-curved-arrow-down:
 <svg width="29" height="38" viewBox="0 0 29 38" xmlns="http://www.w3.org/2000/svg"><g stroke="#00AEDB" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M15.968 3.214c3.306 8.855 1.164 17.848-6.424 26.978"/><path stroke-linecap="round" d="M9.878 19.125L8.854 30.742l10.732-4.563"/></g></svg>
 {% endcomment %}
 
-<section class="account-header">
-  <div class="account-header__background-wrap">
-    <img
-      class="account-header__background"
-      src="{{ 'dyln-account-leaf-background.min.png' | asset_url }}"
-      alt="Large image of a green leaf close-up" />
-  </div>
-  <div class="account-header__bar-wrap">
-    <div class="account-header__bar-bg"></div>
-    <div class="account-header__bar">
-      <div class="account-header__points">
-        <span class="account-header__points-text">Complete your Profile</span>
-        <span class="account-header__points-icon" aria-ignore="true">
-          <svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg>
-        </span>
-        <span class="account-header__points-number">100</span>
-      </div>
-      <div class="account-header__squiggle d-none d-lg-block">
-        <svg width="37" height="4" viewBox="0 0 37 4" xmlns="http://www.w3.org/2000/svg"><path d="M1 1c3.838 1.892 11.726 2.538 18.334 1.52C25.942 1.502 31.284 1 36 2.52" stroke="#FFF" stroke-width="1.5" fill="none" fill-rule="evenodd"/></svg>
-      </div>
-      <div class="account-header__points d-none d-lg-block">
-        <span class="account-header__points-text">Refer a Friend</span>
-        <span class="account-header__points-icon" aria-ignore="true">
-          <svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg>
-        </span>
-        <span class="account-header__points-number">150</span>
-      </div>
-      <div class="account-header__squiggle d-none d-lg-block">
-        <svg width="37" height="4" viewBox="0 0 37 4" xmlns="http://www.w3.org/2000/svg"><path d="M1 1c3.838 1.892 11.726 2.538 18.334 1.52C25.942 1.502 31.284 1 36 2.52" stroke="#FFF" stroke-width="1.5" fill="none" fill-rule="evenodd"/></svg>
-      </div>
-      <div class="account-header__points d-none d-lg-block">
-        <span class="account-header__points-text">Like us on Facebook</span>
-        <span class="account-header__points-icon" aria-ignore="true">
-          <svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg>
-        </span>
-        <span class="account-header__points-number">50</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="container account-header__container">
-    <div class="row no-gutters">
-      <div class="col-xl-2 col-lg-1 d-none d-md-block"></div>
-      <div class="col-xl-8 col-lg-10 d-flex">
-        <button type="button" class="account-header__edit">
-          <span class="account-header__edit-icon" aria-ignore="true">
-            <svg width="16" height="24" viewBox="0 0 16 24" xmlns="http://www.w3.org/2000/svg"><g stroke="#FFF" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linejoin="round" d="M11.387.838l3.608 2.083-10 17.32-3.713 2.355.105-4.438z"/><path stroke-linecap="square" d="M9.247 5.376l2.887 1.667"/></g></svg>
-          </span>
-          <span class="visually-hidden">Edit background</span>
-        </button>
-        <div class="account-header__body">
-          <div class="row no-gutters">
-            <div class="col-lg-6 account-header__col-offset">
-              <h1 class="account-header__title">Welcome Jane</h1>
-              {% comment %} Not sure what the account rank colors will be, I assume
-                account-header__badge--gold, account-header__badge--bronze
-                classes for other ranks
-               {% endcomment %}
-              <div class="account-header__badge account-header__badge--silver">Silver Member</div>
-              <p class="account-header__description">Use this page to keep track of your points, orders and Diffusers…</p>
-            </div>
-            <div class="col-lg-6 align-self-center">
-              <div class="account-header__status">
-                <div class="account-header__status-item">
-                  {% comment %}
-                  I added classes for different colors:
-                  account-header__status-badge--primary : dyln blue
-                  account-header__status-badge--secondary : dyln green
-                  account-header__status-badge--alert : theme yellow
-                  account-header__status-badge--warning : theme red
-                  {% endcomment %}
-                  <span class="account-header__status-badge account-header__status-badge--primary">
-                    <span class="account-header__status-icon" aria-ignore="true">
-                      <svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg>
-                    </span>
-                    <span class="account-header__status-number">300</span>
-                  </span>
-                  <span class="account-header__status-txt">DYLN Points earned</span>
-                </div>
-
-                <div class="account-header__status-item">
-                  <span class="account-header__status-badge account-header__status-badge--primary">
-                    <span class="account-header__status-icon" aria-ignore="true">
-                      <svg width="13" height="16" viewBox="0 0 13 16" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0 1)" fill="none" fill-rule="evenodd"><circle stroke="#FFF" stroke-width="1.5" cx="6.429" cy="8.571" r="5.679"/><circle fill="#FFF" cx="6.429" cy="8.571" r="1"/><path stroke="#FFF" stroke-width="1.5" stroke-linecap="square" d="M4.286.536h4.285M6.429.536v2.143"/><path stroke="#FFF" stroke-width="1.5" stroke-linecap="round" d="M4.728 6.429l1.701 2.142"/></g></svg>
-                    </span>
-                    <span class="account-header__status-number">60</span>
-                  </span>
-                  <span class="account-header__status-txt">Days left on your Diffuser</span>
-                </div>
-
-                <div class="account-header__status-item">
-                  <span class="account-header__status-badge account-header__status-badge--primary">
-                    <span class="account-header__status-icon" aria-ignore="true">
-                      <svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg"><g stroke="#FFF" stroke-width="1.5" fill="none" fill-rule="evenodd"><circle cx="7.5" cy="7.5" r="6.75"/><path d="M4.5 7.75l2.474 2.474 4.089-4.974"/></g></svg>
-                    </span>
-                    {% comment %}
-                    the design does not show what icon to use for non-delivered status, so I added the stopwatch icon for "in progress" below if you're gonna add an IF/ELSE statement:
-                    <span class="account-header__status-icon" aria-ignore="true">
-                      <svg width="13" height="16" viewBox="0 0 13 16" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0 1)" fill="none" fill-rule="evenodd"><circle stroke="#FFF" stroke-width="1.5" cx="6.429" cy="8.571" r="5.679"/><circle fill="#FFF" cx="6.429" cy="8.571" r="1"/><path stroke="#FFF" stroke-width="1.5" stroke-linecap="square" d="M4.286.536h4.285M6.429.536v2.143"/><path stroke="#FFF" stroke-width="1.5" stroke-linecap="round" d="M4.728 6.429l1.701 2.142"/></g></svg>
-                    </span>
-                    {% endcomment %}
-                    <span class="account-header__status-num-alt">Delivered</span>
-                  </span>
-                  <span class="account-header__status-txt">Last order Status</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-2 col-lg-1 d-none d-md-block"></div>
-    </div>
-  </div>
-
-  <div class="account-header__wave"></div>
-</section>
+{% section 'customer-account-header' %}
 
 <div class="container account-container">
   <div class="row">
     <div class="col-xl-2 col-lg-3 order-2 order-lg-1">
-      <div class="account-sidebar">
-        <h4 class="account-sidebar__title">Need to talk to a human?</h4>
-        <a href="#" class="account-sidebar__link">
-          <span class="account-sidebar__link-icon" aria-ignore="true">
-            <svg width="19" height="32" viewBox="0 0 19 32" xmlns="http://www.w3.org/2000/svg"><path d="M17.457 28.965l-1.766-6.59a1 1 0 00-1.224-.707l-2.753.738a1 1 0 01-.903-.201c-1.087-.915-1.997-2.744-2.733-5.487-.727-2.714-.824-4.613-.292-5.697a1 1 0 01.64-.525l2.843-.762a1 1 0 00.707-1.225l-1.766-6.59a1 1 0 00-1.225-.707l-1.414.38c-1.168.312-9.248 2.477-5.433 16.717 3.816 14.24 11.894 12.61 13.197 12.26l1.415-.38a1 1 0 00.707-1.224z" stroke="#333C41" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>
-          </span>
-          <span class="account-sidebar__link-txt">Let's talk</span>
-        </a>
-        <a href="#" class="account-sidebar__link">
-          <span class="account-sidebar__link-icon" aria-ignore="true">
-            <svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="translate(1 1)" stroke="#333C41" stroke-width="2" fill="none" fill-rule="evenodd"><rect width="30" height="18" rx="1"/><path stroke-linecap="round" d="M.896.808L15 11.388 29.112.808"/></g></svg>
-          </span>
-          <span class="account-sidebar__link-txt">Email us</span>
-        </a>
-        <a href="#" class="account-sidebar__link">
-          <span class="account-sidebar__link-icon" aria-ignore="true">
-            <svg width="32" height="18" viewBox="0 0 32 18" xmlns="http://www.w3.org/2000/svg"><path d="M7 1h18a6 6 0 110 12h-1.073 0L20.8 16l-3.049-3H7A6 6 0 117 1z" stroke="#333C41" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>
-          </span>
-          <span class="account-sidebar__link-txt">Live Chat</span>
-        </a>
-      </div>
+    {% render 'customer-account-sidebar' %}
     </div>
     <div class="col-xl-8 col-lg-9 order-1 order-lg-2">
       <div class="account-body">
         {% comment %} open class only has an effect on mobile {% endcomment %}
-        <div class="account-body__header-tabs open">
-          <button type="button" class="account-body__header-tab active">
+        <div class="account-body__header-tabs">
+          <button type="button" class="account-body__header-tab active" tab-body="account-dash">
             Dashboard
             <span class="account-body__header-dash"></span>
           </button>
-          <button type="button" class="account-body__header-tab">
-            DYLN Points
+          <button type="button" class="account-body__header-tab" tab-body="account-points">
+            My DYLN Points
             <span class="account-body__header-dash"></span>
           </button>
-          <button type="button" class="account-body__header-tab">
+          <button type="button" class="account-body__header-tab" tab-body="account-orders">
             Orders
             <span class="account-body__header-dash"></span>
           </button>
-          <button type="button" class="account-body__header-tab">
+          <button type="button" class="account-body__header-tab" tab-body="account-bottles">
             My Bottles
             <span class="account-body__header-dash"></span>
           </button>
-          <button type="button" class="account-body__header-tab">
+          <button type="button" class="account-body__header-tab" tab-body="account-subscriptions">
             My Subscriptions
             <span class="account-body__header-dash"></span>
           </button>
-          <button type="button" class="account-body__header-tab">
+          <button type="button" class="account-body__header-tab" tab-body="account-profile">
             Profile
             <span class="account-body__header-dash"></span>
           </button>
         </div>
 
         <div class="account-body__tabs">
-          <div class="account-dash">
+          <div class="body-tab account-dash active-tab">
             <div class="row">
               <div class="col-md-6">
                 {% comment %} Show this in different position on mobile{% endcomment %}
@@ -235,12 +100,14 @@ icon-curved-arrow-down:
                 </div>
 
                 <div class="account-dash__bottles">
+                  <input type="hidden" id="btl-names" >
                   <h3 class="account-dash__title">
                     <span class="account-dash__title-txt">My Bottles</span>
-                    <button type="button" class="account-dash__title-button">See All</button>
+                    <button type="button" class="account-dash__title-button tab-button" tab-body="account-bottles">See All</button>
                   </h3>
-
-                  <div class="account-dash__bottle">
+          <div id="custommer-bottles-short">
+                  
+                  <div class="account-dash__bottle" style="display:none">
                     <div class="account-dash__bottle-wrap" aria-ignore="true">
                       {% comment %} progress must be in percent, so between 0 and 100. It needs to be in steps of 5, so 5, 10, 15, 20,... that is to reduce the size of the css file - each percent has its own class {% endcomment %}
                       <div class="account-dash__bottle-progress progress-circle" data-progress="40">
@@ -255,25 +122,11 @@ icon-curved-arrow-down:
                       <span class="visually-hidden">More options</span>
                     </button>
                   </div>
-
-                  <div class="account-dash__bottle">
-                    <div class="account-dash__bottle-wrap" aria-ignore="true">
-                      <div class="account-dash__bottle-progress progress-circle" data-progress="60">
-                        <img src="{{ 'dyln-account-bottle-royal-purple.png' | asset_url }}" alt="Image of DYLN water Bottle" class="account-dash__bottle-img" />
-                      </div>
-
-                    </div>
-                    <div class="account-dash__bottle-content">
-                      <h4 class="account-dash__bottle-title">Bottle #1</h4>
-                      <p class="account-dash__bottle-timer"><span>80</span> days left on Diffuser</p>
-                    </div>
-                    <button type="button" class="account-dash__bottle-more">
-                      <span class="visually-hidden">More options</span>
-                    </button>
-                  </div>
+          
+                  </div>  
 
                   <div class="account-dash__bottle-btn-wrap">
-                    <button type="button" class="account-dash__bottle-btn">
+                    <button type="button" class="account-dash__bottle-btn btn-action-register-bottle">
                       <span class="account-dash__bottle-btn-icon" aria-ignore="true">
                         <svg width="18" height="17" viewBox="0 0 18 17" xmlns="http://www.w3.org/2000/svg"><g transform="translate(1 1)" stroke="#FFF" stroke-width="2" fill="none" fill-rule="evenodd"><circle cx="8.25" cy="7.5" r="7.5"/><path stroke-linecap="round" d="M8.25 4.5v6M11.25 7.5h-6"/></g></svg>
                       </span>
@@ -285,7 +138,7 @@ icon-curved-arrow-down:
                 <div class="account-dash__subs">
                   <h3 class="account-dash__title">
                     <span class="account-dash__title-txt">My Subscriptions</span>
-                    <button type="button" class="account-dash__title-button">See All</button>
+                    <button type="button" class="account-dash__title-button tab-button" tab-body="account-subscriptions">See All</button>
                   </h3>
 
                   <div class="account-dash__sub">
@@ -358,25 +211,32 @@ icon-curved-arrow-down:
 
                 <h3 class="account-dash__title">
                   <span class="account-dash__title-txt">My Orders</span>
-                  <a href="#" class="account-dash__title-button">Order History</a>
+                  <a href="" class="account-dash__title-button tab-button" tab-body="account-orders">Order History</a>
                 </h3>
-
+        {% if customer.orders_count > 0 %}
+                {% assign count_order = 0 %} 
+                {% for order in customer.orders %}
+                {% assign count_order = count_order | plus: 1 %}
+                {% if count_order <= 3 %}
+                {%- assign created_at = order.created_at | date: "%B %d, %Y %I:%M%p" -%}
                 <div class="account-dash__order">
-                  <a href="#" class="account-dash__order-number">Order No. 00ABC0000</a>
-                  <p class="account-dash__order-date">Placed on Jan 6th, 2020</p>
+                  <a href="#" class="account-dash__order-number">Order No. {{ order.name }}</a>
+                  <p class="account-dash__order-date">Placed on {{ created_at}}</p>
                 </div>
-
+                {% endif %}
+        {% endfor %}
+                {% else %}
                 <div class="account-dash__order">
-                  <a href="#" class="account-dash__order-number">Order No. 00ABC0001</a>
-                  <p class="account-dash__order-date">Placed on Jan 7th, 2020</p>
-                </div>
+                  <a href="#" class="account-dash__order-number">No Order Found</a>
+                </div>                
+                {% endif %}
               </div>
 
             </div>
           </div>
           {% comment %} dashboard end {% endcomment %}
 
-          <div class="account-points">
+          <div class="body-tab account-points">
             {% comment %} Whole section will come from an external source {% endcomment %}
             <div class="row">
               <div class="col-md-6">
@@ -504,657 +364,23 @@ icon-curved-arrow-down:
             </div>
           </div>
           {% comment %} points end {% endcomment %}
-
-          <div class="account-orders">
-            <div class="account-orders__new-wrap">
-              <button type="button" class="account-orders__btn-new">Place new Order</button>
-            </div>
-            <div class="account-orders__order">
-              <div class="row">
-                <div class="col-md-6">
-                  <h4 class="account-orders__title">Order No. 00ABC0000</h4>
-                  <div class="account-orders__info"><strong>Placed on:</strong>&nbsp;<span>00/00/0000</span></div>
-                  <div class="account-orders__info"><strong>Status:</strong>&nbsp;<span>In Progress</span></div>
-                  <div class="account-orders__info"><strong>Delivery Date:</strong>&nbsp;<span>00/00/0000</span></div>
-                  <div class="account-orders__info last"><strong>Total:</strong>&nbsp;<span>$00.00</span></div>
-                  <div>
-                    <h4 class="account-orders__subtitle">Billing Information</h4>
-                    <div class="account-orders__info">Jane Doe</div>
-                    <div class="account-orders__info">VISA ••••1234, Jane Doe</div>
-                    <div class="account-orders__info">Street Name,</div>
-                    <div class="account-orders__info">CA, USA 22000</div>
-                    <div class="account-orders__info">(000) 000-0000</div>
-                    <div class="account-orders__info">janedoe@gmail.com</div>
-                    <h4 class="account-orders__subtitle">Shipping Information</h4>
-                    <div class="account-orders__info">Jane Doe<br>000 Street Name,<br>CA, USA 22000<br>(000) 000-0000</div>
-                    <h4 class="account-orders__subtitle">Shipment Method</h4>
-                    <div class="account-orders__info">Standard Shipping, arrives in 3-5 Business days</div>
-                    <h4 class="account-orders__subtitle">Tracking</h4>
-                    <div class="account-orders__info brand-blue last">FEDEX 8797698698</div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <h4 class="account-orders__item-title last">Order Content</h4>
-                  <div class="account-orders__item">
-                    <div class="account-orders__item-left">
-                      <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water bottle" class="account-orders__item-image" />
-                    </div>
-                    <div class="account-orders__item-right">
-                      <h4 class="account-orders__item-title">32 oz DYLN Bottle</h4>
-                      <div class="account-orders__item-info">Pearl</div>
-                      <div class="account-orders__item-info">SKU DB-32-CHR</div>
-                      <div class="account-orders__item-info last">Qty: 2</div>
-                      <div class="account-orders__item-price">Each: $00.00</div>
-                      <div class="account-orders__item-price">Discount: $00.00</div>
-                      <div class="account-orders__item-price"><strong>Total: $00.00</strong></div>
-                    </div>
-                  </div>
-                  <div class="account-orders__item">
-                    <div class="account-orders__item-left">
-                      <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water bottle" class="account-orders__item-image" />
-                    </div>
-                    <div class="account-orders__item-right">
-                      <h4 class="account-orders__item-title">Extra Diffuser</h4>
-                      <div class="account-orders__item-info">2-Pack</div>
-                      <div class="account-orders__item-info">SKU 00-00-000</div>
-                      <div class="account-orders__item-info last">Qty: 1</div>
-                      <div class="account-orders__item-price">Each: $00.00</div>
-                      <div class="account-orders__item-price">Discount: $00.00</div>
-                      <div class="account-orders__item-price"><strong>Total: $00.00</strong></div>
-                    </div>
-                  </div>
-                  <div class="account-orders__totals">
-                    <div class="account-orders__totals-left text-right">
-                      <div class="account-orders__totals-label"><strong>Subtotal</strong></div>
-                      <div class="account-orders__totals-label">Tax</div>
-                      <div class="account-orders__totals-label">Shipping</div>
-                      <div class="account-orders__totals-label"><strong>Total</strong></div>
-                      <div class="account-orders__totals-label brand-blue">Savings</div>
-                    </div>
-                    <div class="account-orders__totals-right">
-                      <div class="account-orders__totals-label"><strong>$00.00</strong></div>
-                      <div class="account-orders__totals-label">$00.00</div>
-                      <div class="account-orders__totals-label">$00.00</div>
-                      <div class="account-orders__totals-label"><strong>$00.00</strong></div>
-                      <div class="account-orders__totals-label brand-blue">$00.00</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <button type="button" class="account-orders__btn-more">See Less</button>
-              <button type="button" class="account-orders__btn-more" style="display:none;">Order Details</button>
-              <a href="#" class="account-orders__btn-more" style="display:none;">Track</a>
-            </div>
-
-            <div class="account-orders__order">
-              <div class="row">
-                <div class="col-md-6">
-                  <h4 class="account-orders__title">Order No. 80ABCXX00</h4>
-                  <div class="account-orders__info"><strong>Placed on:</strong>&nbsp;<span>00/00/0000</span></div>
-                  <div class="account-orders__info"><strong>Status:</strong>&nbsp;<span>In Progress</span></div>
-                  <div class="account-orders__info"><strong>Delivery Date:</strong>&nbsp;<span>00/00/0000</span></div>
-                  <div class="account-orders__info last"><strong>Total:</strong>&nbsp;<span>$00.00</span></div>
-                  <div style="display:none;">
-                    <h4 class="account-orders__subtitle">Billing Information</h4>
-                    <div class="account-orders__info">Jane Doe</div>
-                    <div class="account-orders__info">VISA ••••1234, Jane Doe</div>
-                    <div class="account-orders__info">Street Name,</div>
-                    <div class="account-orders__info">CA, USA 22000</div>
-                    <div class="account-orders__info">(000) 000-0000</div>
-                    <div class="account-orders__info">janedoe@gmail.com</div>
-                    <h4 class="account-orders__subtitle">Shipping Information</h4>
-                    <div class="account-orders__info">Jane Doe<br>000 Street Name,<br>CA, USA 22000<br>(000) 000-0000</div>
-                    <h4 class="account-orders__subtitle">Shipment Method</h4>
-                    <div class="account-orders__info">Standard Shipping, arrives in 3-5 Business days</div>
-                    <h4 class="account-orders__subtitle">Tracking</h4>
-                    <div class="account-orders__info brand-blue last">FEDEX 8797698698</div>
-                  </div>
-                </div>
-                <div class="col-md-6" style="display:none;">
-                  <h4 class="account-orders__item-title last">Order Content</h4>
-                  <div class="account-orders__item">
-                    <div class="account-orders__item-left">
-                      <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water bottle" class="account-orders__item-image" />
-                    </div>
-                    <div class="account-orders__item-right">
-                      <h4 class="account-orders__item-title">32 oz DYLN Bottle</h4>
-                      <div class="account-orders__item-info">Pearl</div>
-                      <div class="account-orders__item-info">SKU DB-32-CHR</div>
-                      <div class="account-orders__item-info last">Qty: 2</div>
-                      <div class="account-orders__item-price">Each: $00.00</div>
-                      <div class="account-orders__item-price">Discount: $00.00</div>
-                      <div class="account-orders__item-price"><strong>Total: $00.00</strong></div>
-                    </div>
-                  </div>
-                  <div class="account-orders__item">
-                    <div class="account-orders__item-left">
-                      <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water bottle" class="account-orders__item-image" />
-                    </div>
-                    <div class="account-orders__item-right">
-                      <h4 class="account-orders__item-title">Extra Diffuser</h4>
-                      <div class="account-orders__item-info">2-Pack</div>
-                      <div class="account-orders__item-info">SKU 00-00-000</div>
-                      <div class="account-orders__item-info last">Qty: 1</div>
-                      <div class="account-orders__item-price">Each: $00.00</div>
-                      <div class="account-orders__item-price">Discount: $00.00</div>
-                      <div class="account-orders__item-price"><strong>Total: $00.00</strong></div>
-                    </div>
-                  </div>
-                  <div class="account-orders__totals">
-                    <div class="account-orders__totals-left text-right">
-                      <div class="account-orders__totals-label"><strong>Subtotal</strong></div>
-                      <div class="account-orders__totals-label">Tax</div>
-                      <div class="account-orders__totals-label">Shipping</div>
-                      <div class="account-orders__totals-label"><strong>Total</strong></div>
-                      <div class="account-orders__totals-label brand-blue">Savings</div>
-                    </div>
-                    <div class="account-orders__totals-right">
-                      <div class="account-orders__totals-label"><strong>$00.00</strong></div>
-                      <div class="account-orders__totals-label">$00.00</div>
-                      <div class="account-orders__totals-label">$00.00</div>
-                      <div class="account-orders__totals-label"><strong>$00.00</strong></div>
-                      <div class="account-orders__totals-label brand-blue">$00.00</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <button type="button" class="account-orders__btn-more" style="display:none;">See Less</button>
-              <button type="button" class="account-orders__btn-more">Order Details</button>
-              <a href="#" class="account-orders__btn-more">Track</a>
-            </div>
-          </div>
+      {% render 'account-orders-tab' %}
           {% comment %} orders end {% endcomment %}
-
-          <div class="account-bottles">
-            <div class="row no-gutters">
-              <div class="col-md-6">
-                <div class="account-bottles__bottle">
-                  <div class="account-bottles__bottle-progress-wrap">
-                    {% comment %} progress must be in percent, so between 0 and 100. It needs to be in steps of 5, so 5, 10, 15, 20,... that is to reduce the size of the css file - each percent has its own class {% endcomment %}
-                    <div class="account-bottles__bottle-progress progress-circle" data-progress="80">
-                      <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water bottle" class="account-bottles__bottle-image" />
-                    </div>
-                  </div>
-                  <div class="account-bottles__bottle-body">
-                    <h3 class="account-bottles__bottle-title">Bottle #1</h3>
-                    <p class="account-bottles__bottle-timer">60 days left on Diffuser</p>
-                  </div>
-                  <div class="account-bottles__bottle-option">
-                    <button type="button" class="account-bottles__bottle-btn"></button>
-                  </div>
-                </div>
-
-                <div class="account-bottles__bottle">
-                  <div class="account-bottles__bottle-progress-wrap">
-                    {% comment %} progress must be in percent, so between 0 and 100. It needs to be in steps of 5, so 5, 10, 15, 20,... that is to reduce the size of the css file - each percent has its own class {% endcomment %}
-                    <div class="account-bottles__bottle-progress progress-circle" data-progress="40">
-                      <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water bottle" class="account-bottles__bottle-image" />
-                    </div>
-                  </div>
-                  <div class="account-bottles__bottle-body">
-                    <h3 class="account-bottles__bottle-title">Bottle #1</h3>
-                    <p class="account-bottles__bottle-timer">60 days left on Diffuser</p>
-                  </div>
-                  <div class="account-bottles__bottle-option">
-                    <button type="button" class="account-bottles__bottle-btn"></button>
-                  </div>
-                </div>
-                <div class="account-bottles__bottle-new-wrap">
-                  <button class="account-bottles__bottle-new-btw">
-                    <span class="account-bottles__bottle-new-icon"><svg width="18" height="17" viewBox="0 0 18 17" xmlns="http://www.w3.org/2000/svg"><g transform="translate(1 1)" stroke="#FFF" stroke-width="2" fill="none" fill-rule="evenodd"><circle cx="8.25" cy="7.5" r="7.5"/><path stroke-linecap="round" d="M8.25 4.5v6M11.25 7.5h-6"/></g></svg></span>
-                    <span class="account-bottles__bottle-new-text">Register New Bottle</span>
-                  </button>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="account-bottles__sub">
-                  <div class="account-bottles__sub-header">
-                    <img src="{{ 'subscribe-and-save.png' | asset_url }}" alt="Diffuser image with recycle arrows" class="account-bottles__sub-img" />
-                    <h4 class="account-bottles__sub-title">Subscribe & Save!</h4>
-                  </div>
-
-                  <div class="account-bottles__sub-usp">
-                    <div class="account-bottles__sub-usp-left">
-                      <div class="account-bottles__sub-usp-icon">
-                        <svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(-1 0 0 1 31 1)" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M6 4.209V1a1 1 0 011-1h14a1 1 0 011 1v13.667a1 1 0 01-1 1H6h0M27.343 4.384l-5.093.25.25 10.25 7.25-.25v-4.348l-2.407-5.902z" stroke="#00AEDB"/><ellipse stroke="#00AEDB" fill="#FFF" cx="11.667" cy="15.833" rx="2.25" ry="2.205"/><ellipse stroke="#00AEDB" fill="#FFF" cx="23" cy="15.833" rx="2.25" ry="2.205"/><path stroke="#66CCEB" stroke-linecap="square" d="M7.5 13h-4M7.5 11h-7M7.5 9h-5M7.5 7h-2"/></g></svg>
-                      </div>
-                    </div>
-                    <div class="account-bottles__sub-usp-right">
-                      <div class="account-bottles__sub-usp-text">
-                        <strong>Free Shipping!</strong> Plus, add products to your upcoming shippment.
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="account-bottles__sub-usp">
-                    <div class="account-bottles__sub-usp-left">
-                      <div class="account-bottles__sub-usp-icon">
-                        <svg width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg"><g transform="translate(1 1)" fill="none" fill-rule="evenodd"><ellipse stroke="#00AEDB" stroke-width="1.5" cx="9.5" cy="9.183" rx="9.5" ry="9.183"/><text font-family="Poppins-Medium, Poppins" font-size="12" font-weight="400" letter-spacing=".109" fill="#00AEDB"><tspan x="5.863" y="13">$</tspan></text></g></svg>
-                      </div>
-                    </div>
-                    <div class="account-bottles__sub-usp-right">
-                      <div class="account-bottles__sub-usp-text">Savings start at 10% when you add a Subscription</div>
-                    </div>
-                  </div>
-
-                  <div class="account-bottles__sub-usp">
-                    <div class="account-bottles__sub-usp-left">
-                      <div class="account-bottles__sub-usp-icon">
-                        <svg width="23" height="21" viewBox="0 0 23 21" xmlns="http://www.w3.org/2000/svg"><g transform="translate(1 1)" stroke="#00AEDB" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linecap="square" d="M2.5.076v12.737M2.5 17.728v1.292M10.625 6.478v12.669M10.625.152v1.326M18.75 13.353v5.794M18.75.076v8.369"/><circle cx="18.75" cy="10.853" r="2.5"/><circle cx="10.625" cy="3.978" r="2.5"/><circle cx="2.5" cy="15.228" r="2.5"/></g></svg>
-                      </div>
-                    </div>
-                    <div class="account-bottles__sub-usp-right">
-                      <div class="account-bottles__sub-usp-text">Customize your settings anytime</div>
-                    </div>
-                  </div>
-
-                  <div class="account-bottles__sub-usp">
-                    <div class="account-bottles__sub-usp-left">
-                      <div class="account-bottles__sub-usp-icon">
-                        <svg width="21" height="20" viewBox="0 0 21 20" xmlns="http://www.w3.org/2000/svg"><g transform="translate(1 1)" stroke="#00AEDB" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linecap="square" d="M6.076 6.167l6.89 6.89"/><ellipse cx="9.5" cy="9.167" rx="9.5" ry="9"/><path stroke-linecap="square" d="M13 6.167l-7 7"/></g></svg>
-                      </div>
-                    </div>
-                    <div class="account-bottles__sub-usp-right">
-                      <div class="account-bottles__sub-usp-text">Cancel Anytime</div>
-                    </div>
-                  </div>
-
-                  <div class="account-bottles__sub-note">
-                    We recommend replacing your Diffuser every 3 months but go ahead and <strong>customize quantity and frequency.</strong>
-                    <span class="account-bottles__sub-note-arrow"><svg width="29" height="38" viewBox="0 0 29 38" xmlns="http://www.w3.org/2000/svg"><g stroke="#00AEDB" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M15.968 3.214c3.306 8.855 1.164 17.848-6.424 26.978"/><path stroke-linecap="round" d="M9.878 19.125L8.854 30.742l10.732-4.563"/></g></svg></span>
-                  </div>
-
-                  <div class="account-bottles__sub-option-title">Select Amount</div>
-                  <div class="account-bottles__sub-options">
-                    <button class="active" type="button">Single Pack</button>
-                    <button type="button">2-Pack</button>
-                    <button type="button">4-Pack</button>
-                    <button type="button">8-Pack</button>
-                  </div>
-
-                  <div class="account-bottles__sub-btn-wrap">
-                    <button class="account-bottles__regular-btn">
-                      <strong>subscribe</strong><br>$7.99
-                    </button>
-
-                    <span class="account-bottles__alt-button">
-                      <span class="account-bottles__alt-btn-freq">Every 3 <strong>months</strong></span>
-                      <button type="button" class="account-bottles__alt-btn-change">change frequency</button>
-                    </span>
-                  </div>
-
-                  <div class="account-bottles__sub-purchase-title">
-                    <strong>Not ready for a Subscription?</strong><br>
-                    <span>Shop one time purchase:</span>
-                  </div>
-
-                  <div class="row no-gutters justify-content-center">
-                    <div class="col-lg-4 col-5">
-                      <div class="account-bottles__sub-diff">
-                        <p>Extra Diffuser</p>
-                        <h6>Single-Pack</h6>
-                        <button type="button">
-                          <span>$00</span>&nbsp;<strong>ADD</strong>
-                        </button>
-                      </div>
-                    </div>
-                    <div class="col-lg-2 col-1"></div>
-                    <div class="col-lg-4 col-5">
-                      <div class="account-bottles__sub-diff">
-                        <p>Extra Diffuser</p>
-                        <h6>2-Pack</h6>
-                        <button type="button">
-                          <span>$00</span>&nbsp;<strong>ADD</strong>
-                        </button>
-                      </div>
-                    </div>
-                    <div class="col-lg-4 col-5">
-                      <div class="account-bottles__sub-diff">
-                        <p>Extra Diffuser</p>
-                        <h6>4-Pack</h6>
-                        <button type="button">
-                          <span>$00</span>&nbsp;<strong>ADD</strong>
-                        </button>
-                      </div>
-                    </div>
-                    <div class="col-lg-2 col-1"></div>
-                    <div class="col-lg-4 col-5">
-                      <div class="account-bottles__sub-diff">
-                        <p>Extra Diffuser</p>
-                        <h6>8-Pack</h6>
-                        <button type="button">
-                          <span>$00</span>&nbsp;<strong>ADD</strong>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+      {% render 'customer-bottles-tab' %}
           {% comment %} bottles end {% endcomment %}
 
-          <div class="account-subscriptions" style="display:none;"></div>
+          <div class="body-tab account-subscriptions">Account Subscriptions</div>
           {% comment %} subscription end {% endcomment %}
-
-          <div class="account-profile">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="account-profile__header">
-                  <h3 class="account-profile__title">Personal Information</h3>
-                  <button class="account-profile__edit">
-                    <svg width="16" height="24" viewBox="0 0 16 24" xmlns="http://www.w3.org/2000/svg"><g stroke="#FFF" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linejoin="round" d="M11.387.838l3.608 2.083-10 17.32-3.713 2.355.105-4.438z"/><path stroke-linecap="square" d="M9.247 5.376l2.887 1.667"/></g></svg>
-                  </button>
-                </div>
-                <h4 class="account-profile__subtitle">Jane Doe</h4>
-                <p class="account-profile__info">Female</p>
-                <p class="account-profile__info">Location: <span>San Diego, CA</span></p>
-                <p class="account-profile__info">Birthday: <span>00/00/0000</span></p>
-                <p class="account-profile__info">Height: <span>0'0"</span></p>
-                <p class="account-profile__info">Weight: <span>000lb</span></p>
-
-                <div class="account-profile__separator"></div>
-
-                <div class="account-profile__header">
-                  <h3 class="account-profile__title">Contact Information</h3>
-                  <button class="account-profile__edit">
-                    <svg width="16" height="24" viewBox="0 0 16 24" xmlns="http://www.w3.org/2000/svg"><g stroke="#FFF" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linejoin="round" d="M11.387.838l3.608 2.083-10 17.32-3.713 2.355.105-4.438z"/><path stroke-linecap="square" d="M9.247 5.376l2.887 1.667"/></g></svg>
-                  </button>
-                </div>
-                <p class="account-profile__info">
-                  <span class="account-profile__info-icon"><svg width="19" height="32" viewBox="0 0 19 32" xmlns="http://www.w3.org/2000/svg"><path d="M17.457 28.965l-1.766-6.59a1 1 0 00-1.224-.707l-2.753.738a1 1 0 01-.903-.201c-1.087-.915-1.997-2.744-2.733-5.487-.727-2.714-.824-4.613-.292-5.697a1 1 0 01.64-.525l2.843-.762a1 1 0 00.707-1.225l-1.766-6.59a1 1 0 00-1.225-.707l-1.414.38c-1.168.312-9.248 2.477-5.433 16.717 3.816 14.24 11.894 12.61 13.197 12.26l1.415-.38a1 1 0 00.707-1.224z" stroke="#333C41" stroke-width="2" fill="none" fill-rule="evenodd"/></svg></span>
-                  <span class="account-profile__info-flag"><img src="{{ 'flag-circle-usa.png' | asset_url }}" alt="Country Flag image" /></span>
-                  <span>(000) 000-0000</span>
-                </p>
-                <p class="account-profile__info">
-                  <span class="account-profile__info-icon"><svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="translate(1 1)" stroke="#333C41" stroke-width="2" fill="none" fill-rule="evenodd"><rect width="30" height="18" rx="1"/><path stroke-linecap="round" d="M.896.808L15 11.388 29.112.808"/></g></svg></span>
-                  <span>(000) 000-0000</span>
-                </p>
-                <div class="account-profile__update-btn-wrap">
-                  <button type="button" class="account-profile__update-btn">Update Password</button>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="account-profile__header">
-                  <h3 class="account-profile__title">Address Book</h3>
-                  <button class="account-profile__edit">
-                    <svg width="16" height="24" viewBox="0 0 16 24" xmlns="http://www.w3.org/2000/svg"><g stroke="#FFF" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linejoin="round" d="M11.387.838l3.608 2.083-10 17.32-3.713 2.355.105-4.438z"/><path stroke-linecap="square" d="M9.247 5.376l2.887 1.667"/></g></svg>
-                  </button>
-                </div>
-
-                <div class="account-profile__info-left">
-                  <span class="account-profile__info-icon">
-                    <svg width="16" height="21" viewBox="0 0 16 21" xmlns="http://www.w3.org/2000/svg"><g transform="translate(.937)" stroke="#00AEDB" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M7.063.75a6.293 6.293 0 00-4.464 1.849A6.293 6.293 0 00.75 7.063c0 2.412 2.152 6.614 6.313 12.626 4.16-6.012 6.313-10.214 6.313-12.626a6.293 6.293 0 00-1.85-4.464A6.293 6.293 0 007.064.75z"/><circle cx="7.063" cy="7.4" r="2.25"/></g></svg>
-                  </span>
-                </div>
-                <div class="account-profile__info-right">
-                  <span class="account-profile__address">
-                    <strong>Jane Doe</strong><br>
-                    000 Street Name,<br>
-                    City, USA 22000<br>
-                    United States<br>
-                    <span class="account-profile__info-flag"><img src="{{ 'flag-circle-usa.png' | asset_url }}" alt="Country Flag image" /></span> (000) 000-0000
-                  </span>
-                </div>
-                <div class="clearfix"></div>
-
-                <div class="account-profile__info-left">
-                  <span class="account-profile__info-icon">
-                    <svg width="16" height="21" viewBox="0 0 16 21" xmlns="http://www.w3.org/2000/svg"><g transform="translate(.937)" stroke="#00AEDB" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M7.063.75a6.293 6.293 0 00-4.464 1.849A6.293 6.293 0 00.75 7.063c0 2.412 2.152 6.614 6.313 12.626 4.16-6.012 6.313-10.214 6.313-12.626a6.293 6.293 0 00-1.85-4.464A6.293 6.293 0 007.064.75z"/><circle cx="7.063" cy="7.4" r="2.25"/></g></svg>
-                  </span>
-                </div>
-                <div class="account-profile__info-right">
-                  <span class="account-profile__address">
-                    <strong>Jane Doe</strong><br>
-                    000 Street Name,<br>
-                    City, USA 22000<br>
-                    United States<br>
-                    <span class="account-profile__info-flag"><img src="{{ 'flag-circle-usa.png' | asset_url }}" alt="Country Flag image" /></span> (000) 000-0000
-                  </span>
-                </div>
-                <div class="clearfix"></div>
-
-                <div class="text-center">
-                  <button type="button" class="account-profile__button-add">Add New Address</button>
-                </div>
-
-                <div class="account-profile__separator"></div>
-
-                <div class="account-profile__header">
-                  <h3 class="account-profile__title">Email preferences</h3>
-                </div>
-                <form action="#">
-                  <div class="account-profile__checkbox-wrap">
-                    <input type="checkbox"
-                      id="diffuser-replacement"
-                      name="diffuser-replacement"
-                      value="diffuser-replacement" />
-                      <label for="diffuser-replacement">Diffuser replacement notification</label>
-                  </div>
-
-                  <div class="account-profile__checkbox-wrap">
-                    <input type="checkbox"
-                      id="update-notification"
-                      name="update-notification"
-                      value="update-notification" />
-                      <label for="update-notification">Bottle update notification</label>
-                  </div>
-
-                  <div class="account-profile__checkbox-wrap">
-                    <input type="checkbox"
-                      id="newsletter"
-                      name="newsletter"
-                      value="newsletter" />
-                      <label for="newsletter">newsletter</label>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
+      {% render 'customer-profile-tab' %}
           {% comment %} profile end {% endcomment %}
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<div class="registration-modal" style="display:none;">
-  <div class="registration-modal__overlay"></div>
-  <div class="registration-modal__inner">
-    <form action="#" class="registration-modal__form">
-      <button type="button" class="registration-modal__close">
-        <span class="visually-hidden">Close modal</span>
-        <span aria-ignore="true">
-          <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><g stroke="#00AEDB" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M1.333 1.333L11 11M10.667 1.333L1 11"/></g></svg>
-        </span>
-      </button>
-
-      {% comment %} modal header is the same, just the data points change {% endcomment %}
-      <div class="registration-modal__header">
-        <h3 class="registration-modal__title" style="background-image:url('{{ 'dyln-account-mobile-modal-bg-leaf-closeup.min.png' | asset_url }}');">Bottle Registration</h3>
-        <div class="registration-modal__progress">
-          <span class="registration-modal__progress-point active"></span>
-          <span class="registration-modal__progress-point"></span>
-          <span class="registration-modal__progress-point"></span>
-        </div>
-      </div>
-
-      <div class="registration-modal__page" >
-        <h4 class="registration-modal__page-title">Insert the 3-digit or 4-digit code on the bottom of your bottle.</h4>
-        <div class="registration-modal__code-video-wrap">
-          <video class="registration-modal__code-video" width="83" height="83" autoplay muted loop playsinline>
-            <source src="{{ 'small-sample-video.mp4' | asset_url }}" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-          {% comment %} we should use a video rather than a gif, but if we must use gifs, here's the img element for gifs, you can just remove the video and uncomment the img {% endcomment %}
-          {% comment %} <img class="registration-modal__code-gif" alt="" src="{{ 'small-sample-gif-motion-elements.gif' | asset_url }}" width="83" height="83" /> {% endcomment %}
-        </div>
-        <div class="registration-modal__input-wrap code">
-          <label for="bottle-registration-code" class="visually-hidden">Enter Code</label>
-          <input id="bottle-registration-code" name="code" type="text" class="registration-modal__input" placeholder="Enter Code"/>
-        </div>
-
-        <div class="registration-modal__navigation">
-          <button type="button" class="registration-modal__btn">Next</button>
-          <div>
-            <button type="button" class="registration-modal__cancel">Cancel</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="registration-modal__page" style="display:none;">
-        <h4 class="registration-modal__page-title">Give your new bottle a nickname</h4>
-        <div class="registration-modal__page-content">
-          <div class="registration-modal__image-wrap">
-            <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water bottle" class="registration-modal__image" />
-            <span class="registration-modal__image-txt">32 oz</span>
-          </div>
-          <div class="registration-modal__suggestion-wrap">
-            <video class="registration-modal__suggestion-video" width="190" height="40" autoplay muted loop playsinline>
-              <source src="{{ 'small-sample-video.mp4' | asset_url }}" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-
-            {% comment %} we should use a video rather than a gif, but if we must use gifs, here's the img element for gifs: {% endcomment %}
-            {% comment %} <img class="registration-modal__suggestion-gif" alt="" src="{{ 'small-sample-gif-motion-elements.gif' | asset_url }}" width="190" height="40" /> {% endcomment %}
-
-            <label for="bottle-registration-nickname" class="visually-hidden">Enter Bottle Name</label>
-            <input id="bottle-registration-nickname" name="bottle-nickname" type="text" class="registration-modal__input" placeholder="Enter Bottle Name"/>
-            <span class="registration-modal__txt-note">Keep it short & sweet</span>
-          </div>
-        </div>
-        <div class="registration-modal__navigation">
-          <button type="button" class="registration-modal__btn-alt">Back</button>
-          <button type="button" class="registration-modal__btn">Next</button>
-          <div>
-            <button type="button" class="registration-modal__cancel">Cancel</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="registration-modal__page" style="display:none;">
-        <h4 class="registration-modal__page-title">Bottle Usage</h4>
-        <p class="registration-modal__page-txt">When did you start using your bottle?</p>
-        <div class="registration-modal__date-wrap">
-          <span class="registration-modal__select-wrap">
-            <label for="bottle-registration-day" class="visually-hidden">Day</label>
-            <select name="day" id="bottle-registration-day" class="registration-modal__select">
-              <option value="" disabled selected hidden>00</option>
-              {% for n in (1..31) %}
-              <option value="{{ n }}">{% if n < 10 %}0{% endif %}{{ n }}</option>
-              {% endfor %}
-            </select>
-            <svg class="registration-modal__select-icon" width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
-          </span>
-          <span class="registration-modal__select-wrap">
-            <label for="bottle-registration-month" class="visually-hidden">Month</label>
-            <select name="month" id="bottle-registration-month" class="registration-modal__select">
-              <option value="" disabled selected hidden>Month</option>
-              <option value="1">January</option>
-              <option value="2">February</option>
-              <option value="3">March</option>
-              <option value="4">April</option>
-              <option value="5">May</option>
-              <option value="6">June</option>
-              <option value="7">July</option>
-              <option value="8">August</option>
-              <option value="9">September</option>
-              <option value="10">October</option>
-              <option value="11">November</option>
-              <option value="12">December</option>
-            </select>
-            <svg class="registration-modal__select-icon" width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
-          </span>
-          <span class="registration-modal__select-wrap">
-            <label for="bottle-registration-month" class="visually-hidden">Year</label>
-            <select name="year" id="bottle-registration-year" class="registration-modal__select">
-              <option value="" disabled selected hidden>0000</option>
-              {% for n in (2000..2020) %}
-                <option value="n">{{ n }}</option>
-              {% endfor %}
-            </select>
-            <svg class="registration-modal__select-icon" width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
-          </span>
-        </div>
-        <div class="registration-modal__refills">
-          <label class="registration-modal__page-txt" for="bottle-registration-refills">Refills per day</label>
-          <div class="registration-modal__range-scale">
-            <span>1</span>
-            <span>2</span>
-            <span>3</span>
-            <span>4</span>
-            <span>5</span>
-          </div>
-          <input name="refills" id="bottle-registration-refills" class="registration-modal__refills-range" type="range" min="1" max="5" step="1" />
-        </div>
-        <div class="registration-modal__days">
-          <label class="registration-modal__page-txt" for="bottle-registration-days-per-week">Days per week</label>
-          <div class="registration-modal__range-scale">
-            <span>1</span>
-            <span>2</span>
-            <span>3</span>
-            <span>4</span>
-            <span>5</span>
-            <span>6</span>
-            <span>7</span>
-          </div>
-          <input name="days-a-week" id="bottle-registration-days-per-week" class="registration-modal__refills-range warning" type="range" min="1" max="7" step="1" />
-          <span class="registration-modal__input-warning">
-            <span>This is a low Hydration level</span>
-            <span aria-ignore="true">
-              <svg width="11" height="12" viewBox="0 0 11 12" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0 1)" fill="none" fill-rule="evenodd"><circle stroke="#FFB300" cx="5.5" cy="5" r="5"/><path d="M5 2.503c0-.145.046-.266.137-.36A.48.48 0 015.5 2a.48.48 0 01.363.142.498.498 0 01.137.36c0 .142-.046.26-.137.356A.48.48 0 015.5 3a.48.48 0 01-.363-.142A.491.491 0 015 2.503zM6 4v4H5V4h1z" fill="#FFB300" fill-rule="nonzero"/></g></svg>
-            </span>
-          </span>
-        </div>
-        <div class="clearfix"></div>
-        <div class="registration-modal__navigation">
-          <button type="button" class="registration-modal__btn-alt">Back</button>
-          <button type="button" class="registration-modal__btn">Done!</button>
-          <div>
-            <button type="button" class="registration-modal__cancel">Cancel</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="registration-modal__page" style="display:none;">
-        <h4 class="registration-modal__page-title"><i class="brand-blue">Bottle #1</i>&nbsp;<span> is now registered!</span></h4>
-        <div class="registration-modal__page-content-flex">
-          <div class="registration-modal__image-wrap">
-            <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water bottle" class="registration-modal__image" />
-          </div>
-          <div class="registration-modal__suggestion-wrap">
-            <p class="registration-modal__page-txt">We will email you shortly before your Diffuser needs to be replaced on Jan, 6th 2020!</p>
-          </div>
-        </div>
-        <div class="registration-modal__navigation">
-          <div class="registration-modal__phone-wrap">
-            <div class="registration-modal__input-wrap country">
-              <label for="bottle-registration-country" class="visually-hidden">Country</label>
-              <select name="country" id="bottle-registration-country" class="registration-modal__country-select">
-                {% comment %} Not sure which countries will be needed here {% endcomment %}
-                {% comment %} I have a small js script for custom selects, the only way to add images into an input is via a custom select that uses js{% endcomment %}
-                <option value="usa"></option>
-              </select>
-            </div>
-            <div class="registration-modal__input-wrap prefix">
-              <label for="bottle-registration-international-phone-prefix" class="visually-hidden">International Phone Number Prefix</label>
-              <input type="number" name="phone-prefix" id="bottle-registration-international-phone-prefix" class="registration-modal__input" placeholder="(+000)" />
-            </div>
-            <div class="registration-modal__input-wrap phone">
-              <label for="bottle-registration-phone" class="visually-hidden">Phone Number</label>
-              <input type="phone" name="phone" id="bottle-registration--phone" class="registration-modal__input" placeholder="000 000 0000"/>
-            </div>
-          </div>
-          <button type="button" class="registration-modal__btn-final">Notify me via SMS</button>
-          <div>
-            <button type="button" class="registration-modal__cancel">No, thanks</button>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
-
+{% comment %} Register bottle {% endcomment %}
+{% render 'register-bottle-popup' %}
+<!--
 <div class="account-done" style="display:none;">
   <div class="account-done__overlay"></div>
   <div class="account-done__inner">
@@ -1174,288 +400,25 @@ icon-curved-arrow-down:
     </div>
   </div>
 </div>
-
-<div class="account-edit" style="display:none;">
-  <div class="account-edit__overlay"></div>
-  <div class="account-edit__inner">
-    <button type="button" class="account-edit__close">
-      <span class="visually-hidden">Close modal</span>
-      <span aria-ignore="true">
-        <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><g stroke="#00AEDB" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M1.333 1.333L11 11M10.667 1.333L1 11"/></g></svg>
-      </span>
-    </button>
-
-    <div class="account-edit__header">
-      <h3 class="registration-modal__title" style="background-image:url('{{ 'dyln-account-mobile-modal-bg-leaf-closeup.min.png' | asset_url }}');">Enhanced Profile</h3>
-      <button type="button" class="account-edit__edit">
-        <span class="account-edit__edit-icon" aria-ignore="true">
-          <svg width="16" height="24" viewBox="0 0 16 24" xmlns="http://www.w3.org/2000/svg"><g stroke="#FFF" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linejoin="round" d="M11.387.838l3.608 2.083-10 17.32-3.713 2.355.105-4.438z"/><path stroke-linecap="square" d="M9.247 5.376l2.887 1.667"/></g></svg>
-        </span>
-        <span class="visually-hidden">Edit background</span>
-      </button>
-    </div>
-
-    <div class="registration-modal__progress edit">
-      <span class="registration-modal__progress-point active"></span>
-      <span class="registration-modal__progress-point"></span>
-      <span class="registration-modal__progress-point"></span>
-    </div>
-
-    <div class="account-edit__page">
-      <div class="registration-modal__phone-wrap">
-        <h4 class="account-edit__group-label">Phone Number</h4>
-        <div class="registration-modal__input-wrap country">
-          <label for="bottle-registration-country" class="visually-hidden">Country</label>
-          <select name="country" id="bottle-registration-country" class="registration-modal__country-select">
-            {% comment %} Not sure which countries will be needed here {% endcomment %}
-            {% comment %} I have a small js script for custom selects, the only way to add images into an input is via a custom select that uses js{% endcomment %}
-            <option value="usa"></option>
-          </select>
-        </div>
-        <div class="registration-modal__input-wrap prefix">
-          <label for="bottle-registration-international-phone-prefix" class="visually-hidden">International Phone Number Prefix</label>
-          <input type="number" name="phone-prefix" id="bottle-registration-international-phone-prefix" class="registration-modal__input" placeholder="(+000)" />
-        </div>
-        <div class="registration-modal__input-wrap phone">
-          <label for="bottle-registration-phone" class="visually-hidden">Phone Number</label>
-          <input type="phone" name="phone" id="bottle-registration--phone" class="registration-modal__input" placeholder="000 000 0000"/>
-        </div>
-      </div>
-
-
-      <div class="account-edit__input-wrap">
-        <label for="location" class="account-edit__group-label">Default location</label>
-        <input id="location" type="text" class="registration-modal__input text-left" placeholder="City, Country"/>
-      </div>
-
-      <div class="registration-modal__date-wrap">
-        <h4 class="account-edit__group-label">Birthday</h4>
-        <span class="registration-modal__select-wrap">
-          <label for="bottle-registration-day" class="visually-hidden">Day</label>
-          <select name="day" id="bottle-registration-day" class="registration-modal__select">
-            <option value="" disabled selected hidden>00</option>
-            {% for n in (1..31) %}
-            <option value="{{ n }}">{% if n < 10 %}0{% endif %}{{ n }}</option>
-            {% endfor %}
-          </select>
-          <svg class="registration-modal__select-icon" width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
-        </span>
-        <span class="registration-modal__select-wrap">
-          <label for="bottle-registration-month" class="visually-hidden">Month</label>
-          <select name="month" id="bottle-registration-month" class="registration-modal__select">
-            <option value="" disabled selected hidden>Month</option>
-            <option value="1">January</option>
-            <option value="2">February</option>
-            <option value="3">March</option>
-            <option value="4">April</option>
-            <option value="5">May</option>
-            <option value="6">June</option>
-            <option value="7">July</option>
-            <option value="8">August</option>
-            <option value="9">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-          </select>
-          <svg class="registration-modal__select-icon" width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
-        </span>
-        <span class="registration-modal__select-wrap">
-          <label for="bottle-registration-month" class="visually-hidden">Year</label>
-          <select name="year" id="bottle-registration-year" class="registration-modal__select">
-            <option value="" disabled selected hidden>0000</option>
-            {% for n in (2000..2020) %}
-              <option value="n">{{ n }}</option>
-            {% endfor %}
-          </select>
-          <svg class="registration-modal__select-icon" width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
-        </span>
-      </div>
-
-      <div class="account-edit__input-wrap">
-        <h4 class="account-edit__group-label">Biological gender</h4>
-        <input type="radio"
-          id="gender-male"
-          name="gender"
-          value="Male"
-          class="account-edit__radio "/>
-        <label for="gender-male" class="account-edit__label">Male</label>
-        <input type="radio"
-          id="gender-female"
-          name="gender"
-          value="Female"
-          class="account-edit__radio" />
-        <label for="gender-female" class="account-edit__label">Female</label>
-      </div>
-
-      <div class="registration-modal__navigation edit">
-        <button type="button" class="registration-modal__btn-alt">Back</button>
-        <button type="button" class="registration-modal__btn">Next</button>
-        <div>
-          <button type="button" class="registration-modal__cancel">Cancel</button>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="account-edit__page">
-      <div class="account-edit__input-wrap">
-        <h4 class="account-edit__group-label">Body</h4>
-
-        <button type="button" class="account-edit__modal-option-btn">
-          <span>Weight</span>
-          <i aria-hidden="true">
-            <svg width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
-          </i>
-        </button>
-
-        <button type="button" class="account-edit__modal-option-btn">
-          <span>height</span>
-          <i aria-hidden="true">
-            <svg width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
-          </i>
-        </button>
-      </div>
-
-      <div class="account-edit__input-wrap">
-        <h4 class="account-edit__group-label margin">Activity Level</h4>
-        <label class="registration-modal__page-txt" for="bottle-registration-refills">Days you exercise per week</label>
-        <div class="registration-modal__range-scale">
-          <span>1</span>
-          <span>2</span>
-          <span>3</span>
-          <span>4</span>
-          <span>5</span>
-          <span>6</span>
-          <span>7</span>
-        </div>
-        <input name="exercise" id="bottle-registration-exercise" class="registration-modal__refills-range primary" type="range" min="1" max="7" step="1" />
-      </div>
-
-      <div class="registration-modal__navigation edit">
-        <button type="button" class="registration-modal__btn-alt">Back</button>
-        <button type="button" class="registration-modal__btn">Next</button>
-        <div>
-          <button type="button" class="registration-modal__cancel">Cancel</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="account-edit__page">
-      <h4 class="account-edit__group-label margin">Interests</h4>
-      <div class="clearfix">
-        <div class="account-edit__image-checkbox-wrap">
-          <label class="account-edit__image-label" for="interests-workout-routines">Workout Routines</label>
-          <input type="checkbox"
-            id="interests-workout-routines"
-            name="interests"
-            value="workout-routines"
-            class="account-edit__image-checkbox"
-            style="background-image:url({{ 'edit-account-workout-routines.png' | asset_url }})"/>
-        </div>
-
-        <div class="account-edit__image-checkbox-wrap">
-          <label class="account-edit__image-label" for="interests-sustainability">Sustainability</label>
-          <input type="checkbox"
-            id="interests-sustainability"
-            name="interests"
-            value="sustainability"
-            class="account-edit__image-checkbox"
-            style="background-image:url({{ 'edit-account-sustainability.png' | asset_url }})"/>
-        </div>
-
-        <div class="account-edit__image-checkbox-wrap">
-          <label class="account-edit__image-label" for="interests-alkaline-recipes">Alkaline Recipes</label>
-          <input type="checkbox"
-            id="interests-alkaline-recipes"
-            name="interests"
-            value="alkaline-recipes"
-            class="account-edit__image-checkbox"
-            style="background-image:url({{ 'edit-account-alkaline-recipes.png' | asset_url }})"/>
-        </div>
-
-        <div class="account-edit__image-checkbox-wrap">
-          <label class="account-edit__image-label" for="interests-nature">Nature</label>
-          <input type="checkbox"
-            id="interests-nature"
-            name="interests"
-            value="nature"
-            class="account-edit__image-checkbox"
-            style="background-image:url({{ 'edit-account-nature.png' | asset_url }})"/>
-        </div>
-
-        <div class="account-edit__image-checkbox-wrap">
-          <label class="account-edit__image-label" for="interests-workout-routines-2">Workout Routines 2</label>
-          <input type="checkbox"
-            id="interests-workout-routines-2"
-            name="interests"
-            value="workout-routines-2"
-            class="account-edit__image-checkbox"
-            style="background-image:url({{ 'edit-account-workout-routines-2.png' | asset_url }})"/>
-        </div>
-
-        <div class="account-edit__image-checkbox-wrap">
-          <label class="account-edit__image-label" for="interests-sustainability-2">Sustainability 2</label>
-          <input type="checkbox"
-            id="interests-sustainability-2"
-            name="interests"
-            value="sustainability-2"
-            class="account-edit__image-checkbox"
-            style="background-image:url({{ 'edit-account-sustainability-2.png' | asset_url }})"/>
-        </div>
-
-        <div class="account-edit__image-checkbox-wrap">
-          <label class="account-edit__image-label" for="interests-alkaline-recipes-2">Alkaline Recipes 2</label>
-          <input type="checkbox"
-            id="interests-alkaline-recipes-2"
-            name="interests"
-            value="alkaline-recipes-2"
-            class="account-edit__image-checkbox"
-            style="background-image:url({{ 'edit-account-alkaline-recipes-2.png' | asset_url }})"/>
-        </div>
-
-        <div class="account-edit__image-checkbox-wrap">
-          <label class="account-edit__image-label" for="interests-nature-2">Nature2 </label>
-          <input type="checkbox"
-            id="interests-nature-2"
-            name="interests"
-            value="nature-2"
-            class="account-edit__image-checkbox"
-            style="background-image:url({{ 'edit-account-nature-2.png' | asset_url }})"/>
-        </div>
-      </div>
-
-      <div class="registration-modal__navigation edit">
-        <button type="button" class="registration-modal__btn-alt">Back</button>
-        <button type="button" class="registration-modal__btn">Done!</button>
-        <div>
-          <button type="button" class="registration-modal__cancel">Cancel</button>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
+-->
+{% comment %} Edit Customer Profile {% endcomment %}
+{% render 'edit-profile-popup' %}
+{% render 'edit-profile-contact-popup' %}
+{% render 'reset-password-popup' %}
 {% comment %} Custom styling for the profile body input{% endcomment %}
 <div class="account-edit-option" style="display:none;">
   <div class="account-edit-option__overlay"></div>
   <div class="account-edit-option__inner">
     <div class="account-edit-option__body">
-      <div class="account-edit-option__values">
-        <div class="account-edit-option__values-track">
-          <span class="account-edit-option__value">53</span>
-          <span class="account-edit-option__value">54</span>
-          <span class="account-edit-option__value">55</span>
-          <span class="account-edit-option__value">56</span>
-          <span class="account-edit-option__value">57</span>
-          <span class="account-edit-option__value active">58</span>
-          <span class="account-edit-option__value">59</span>
-          <span class="account-edit-option__value">61</span>
-          <span class="account-edit-option__value">62</span>
-          <span class="account-edit-option__value">63</span>
-          <span class="account-edit-option__value">64</span>
+      <div class="account-edit-option_wrap">
+    <div id="body-weight" class="swiper-container">
+          <div class="swiper-wrapper">
+          {% for i in (20..300) %}
+            <div class="swiper-slide">{{i}}</div>
+          {% endfor %}  
+          </div>
         </div>
-        <span class="account-edit-option__label">
+        <span class="account-edit-option__label lab-weight-height">
           <button class="active" type="button">Kg</button>&nbsp;
           <span>|</span>&nbsp;
           <button type="button">Lb</button>
@@ -1467,25 +430,24 @@ icon-curved-arrow-down:
     </div>
   </div>
 </div>
-
 {% comment %} Bottle modal {% endcomment %}
-<div class="account-bottle" style="display:none;">
+<div class="account-bottle popup" style="display:none;">
   <div class="account-bottle__overlay"></div>
   <div class="account-bottle__inner">
-    <button type="button" class="account-bottle__close">
+    <button type="button" class="account-bottle__close pop-close">
       <span class="visually-hidden">Close modal</span>
       <span aria-ignore="true">
         <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><g stroke="#00AEDB" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M1.333 1.333L11 11M10.667 1.333L1 11"/></g></svg>
       </span>
     </button>
 
-    <div class="account-bottle__body" style="display:none;">
+    <div class="account-bottle__body" style="">
       <div class="account-bottle__image-wrap">
-        <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water Bottle" class="account-bottle__image" />
+        <img class="btl-img" src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water Bottle" class="account-bottle__image" />
       </div>
       <div class="account-bottle__content-wrap">
         <h3 class="account-bottle__title">Bottle #1</h3>
-        <p class="account-bottle__code">Bottle code<strong>8a1c</strong></p>
+        <p class="account-bottle__code">BOTTLE CODE <strong>8a1c</strong></p>
         <div class="account-bottle__info-color">
           <p class="account-bottle__info-label">Color</p>
           <p class="account-bottle__info-value">Pearl Grey</p>
@@ -1495,9 +457,12 @@ icon-curved-arrow-down:
           <p class="account-bottle__info-value">32 oz</p>
         </div>
         <div class="clearfix"></div>
+        <div class="dif-update-now">
         <p class="account-bottle__info-label">Diffuser replacement date</p>
         <p class="account-bottle__time-diffuser">00/00/00</p>
-        <button type="button" class="account-bottle__info-update">Update Now</button>
+        <p class="dif-date-select" style="display:none"><input type="text" id="dif-update-date-now" /></p>
+        <button type="button" class="account-bottle__info-update btn-update-now">Update Now</button>
+        </div>  
       </div>
       <div class="clearfix"></div>
 
@@ -1511,20 +476,20 @@ icon-curved-arrow-down:
         <div class="account-bottle__diff-content">
           <p class="account-bottle__diff-info">
             <span class="account-bottle__diff-label">Days left</span>
-            <span class="account-bottle__diff-value">00</span>
+            <span class="account-bottle__diff-value days-left">00</span>
           </p>
           <p class="account-bottle__diff-info">
             <span class="account-bottle__diff-label">Refills left</span>
-            <span class="account-bottle__diff-value">00</span>
+            <span class="account-bottle__diff-value refills-left">00</span>
           </p>
           <p class="account-bottle__diff-info">
             <span class="account-bottle__diff-label">Start Date</span>
-            <span class="account-bottle__diff-value">00/00/0000</span>
+            <span class="account-bottle__diff-value start-date">00/00/0000</span>
           </p>
         </div>
       </div>
 
-      <div class="account-bottle__hydration good" style="display:none;">
+      <div class="account-bottle__hydration">
         <div class="account-bottle__hydro-icon-wrap">
           <div class="account-bottle__hydro-icon good">
             <svg width="49" height="61" viewBox="0 0 49 61" xmlns="http://www.w3.org/2000/svg"><g stroke="#20D480" fill="none" fill-rule="evenodd"><path d="M24.033 2.975C9.191 17.212 1.531 28.485 1.531 36.9a22.43 22.43 0 006.59 15.91 22.43 22.43 0 0015.91 6.59 22.43 22.43 0 0015.91-6.59 22.43 22.43 0 006.59-15.91c0-8.415-7.66-19.687-22.498-33.925z" stroke-width="3"/><path stroke-width="1.5" d="M14.031 36.808l7.184 9.092 13.816-20"/></g></svg>
@@ -1533,17 +498,18 @@ icon-curved-arrow-down:
 
         <div class="account-bottle__hydro-content">
           <p class="account-bottle__hydro-info">
-            <span class="color">3</span>
+            <span class="color refil-per-day">3</span>
             <span>Refills per day</span>
           </p>
           <p class="account-bottle__hydro-info">
-            <span class="color">7</span>
+            <span class="color refil-per-week">7</span>
             <span>Days per week</span>
           </p>
           <div class="account-bottle__hydro-status bg-color">Super Hydration!</div>
         </div>
       </div>
-
+        
+   <!-- 
       <div class="account-bottle__hydration low" style="display:none;">
         <div class="account-bottle__hydro-icon-wrap">
           <div class="account-bottle__hydro-icon">
@@ -1583,9 +549,9 @@ icon-curved-arrow-down:
           <div class="account-bottle__hydro-status bg-color">Poor Hydration!</div>
         </div>
       </div>
-
+  -->
       <div class="account-bottle__footer">
-        <button type="button" class="account-bottle__button-edit">edit</button>
+        <button type="button" class="account-bottle__button-edit edit_pop_bottle">Edit</button>
         <button type="button" class="account-bottle__button-delete">
           <span class="visually-hidden">Remove Bottle</span>
           <svg width="19" height="21" viewBox="0 0 19 21" xmlns="http://www.w3.org/2000/svg"><g stroke="#00AEDB" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linejoin="round" d="M2.335 4.772h13.636l-.909 15.455H3.244z"/><path stroke-linecap="round" stroke-linejoin="round" d="M.971 4.772h16.364"/><path stroke-linejoin="round" d="M5.971 1.136h6.364v3.636H5.971z"/><path stroke-linecap="round" d="M6.198 7.954v9.091M8.926 7.954v9.091M11.653 7.954v9.091"/></g></svg>
@@ -1600,11 +566,11 @@ icon-curved-arrow-down:
       <div class="account-bottle__edit-content-wrap">
         <h3 class="account-bottle__edit-title">Bottle #1</h3>
         <p class="account-bottle__edit-info">
-          Bottle code &nbsp;<span>8a1c</span>
+          Bottle Code &nbsp;&nbsp;<span class="code"> 8a1c</span>
         </p>
         <p class="account-bottle__edit-info">
           Color
-          <span>Pearl Grey</span>
+          <span class="color">Pearl Grey</span>
         </p>
         <p class="account-bottle__edit-info">
           Capacity
@@ -1614,27 +580,27 @@ icon-curved-arrow-down:
         <div class="account-bottle__edit-date">
           <span class="registration-modal__select-wrap">
             <label for="registration-diffuser-date-day-1" class="visually-hidden">Day</label>
-            <select name="day" id="registration-diffuser-date-day-1" class="registration-modal__select">
+            <select name="day" id="registration-diffuser-date-day-1" class="registration-modal__select register-day">
               <option value="" disabled selected hidden>00</option>
               {% for n in (1..31) %}
-              <option value="{{ n }}">{% if n < 10 %}0{% endif %}{{ n }}</option>
+              <option value="{% if n < 10 %}0{% endif %}{{ n }}">{% if n < 10 %}0{% endif %}{{ n }}</option>
               {% endfor %}
             </select>
             <svg class="registration-modal__select-icon" width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
           </span>
           <span class="registration-modal__select-wrap">
             <label for="registration-diffuser-date-month-1" class="visually-hidden">Month</label>
-            <select name="month" id="bottleregistration-diffuser-date-month-1" class="registration-modal__select">
+            <select name="month" id="bottleregistration-diffuser-date-month-1" class="registration-modal__select register-month">
               <option value="" disabled selected hidden>Month</option>
-              <option value="1">January</option>
-              <option value="2">February</option>
-              <option value="3">March</option>
-              <option value="4">April</option>
-              <option value="5">May</option>
-              <option value="6">June</option>
-              <option value="7">July</option>
-              <option value="8">August</option>
-              <option value="9">September</option>
+              <option value="01">January</option>
+              <option value="02">February</option>
+              <option value="03">March</option>
+              <option value="04">April</option>
+              <option value="05">May</option>
+              <option value="06">June</option>
+              <option value="07">July</option>
+              <option value="08">August</option>
+              <option value="09">September</option>
               <option value="10">October</option>
               <option value="11">November</option>
               <option value="12">December</option>
@@ -1643,10 +609,10 @@ icon-curved-arrow-down:
           </span>
           <span class="registration-modal__select-wrap">
             <label for="registration-diffuser-date-year-1" class="visually-hidden">Year</label>
-            <select name="year" id="registration-diffuser-date-year-1" class="registration-modal__select">
+            <select name="year" id="registration-diffuser-date-year-1" class="registration-modal__select register-year">
               <option value="" disabled selected hidden>0000</option>
-              {% for n in (2000..2020) %}
-                <option value="n">{{ n }}</option>
+              {% for n in (2010..2020) %}
+                <option value="{{ n }}">{{ n }}</option>
               {% endfor %}
             </select>
             <svg class="registration-modal__select-icon" width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
@@ -1663,7 +629,7 @@ icon-curved-arrow-down:
         <span>4</span>
         <span>5</span>
       </div>
-      <input name="refills" id="bottle-registration-refills" class="registration-modal__refills-range" type="range" min="1" max="5" step="1" />
+      <input name="refills" id="bottle-registration-refills" class="registration-modal__refills-range refil-per-day" type="range" min="1" max="5" step="1" value="" />
       <label class="registration-modal__page-txt" for="bottle-registration-days-per-week">Days per week</label>
       <div class="registration-modal__range-scale">
         <span>1</span>
@@ -1674,11 +640,13 @@ icon-curved-arrow-down:
         <span>6</span>
         <span>7</span>
       </div>
-      <input name="days-a-week" id="bottle-registration-days-per-week" class="registration-modal__refills-range warning" type="range" min="1" max="7" step="1" />
+      <input name="days-a-week" id="bottle-registration-days-per-week" class="registration-modal__refills-range refil-per-week" type="range" min="1" max="7" step="1" value="" />
       <span class="registration-modal__input-warning">
-        <span>This is a low Hydration level</span>
+        <span id="h-level-wrap">
+        <span class="h-level">This is a low Hydration level</span>
         <span aria-ignore="true">
           <svg width="11" height="12" viewBox="0 0 11 12" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0 1)" fill="none" fill-rule="evenodd"><circle stroke="#FFB300" cx="5.5" cy="5" r="5"/><path d="M5 2.503c0-.145.046-.266.137-.36A.48.48 0 015.5 2a.48.48 0 01.363.142.498.498 0 01.137.36c0 .142-.046.26-.137.356A.48.48 0 015.5 3a.48.48 0 01-.363-.142A.491.491 0 015 2.503zM6 4v4H5V4h1z" fill="#FFB300" fill-rule="nonzero"/></g></svg>
+        </span>
         </span>
       </span>
       <div class="text-center">
@@ -1689,7 +657,7 @@ icon-curved-arrow-down:
     </div>
 
     {% comment %} diffuser replaced {% endcomment %}
-    <div class="account-bottle__body">
+    <div class="account-bottle__thank thank-you" style="display:none">
 
       <h3 class="account-bottle__replace-title">Thank you for updating your Diffuser</h3>
       <h4 class="account-bottle__replace-subtitle">This is your new <br>diffuser replacement date</h4>
@@ -1705,15 +673,15 @@ icon-curved-arrow-down:
         <div class="account-bottle__diff-content">
           <p class="account-bottle__diff-info">
             <span class="account-bottle__diff-label">Days left</span>
-            <span class="account-bottle__diff-value">00</span>
+            <span class="account-bottle__diff-value new-day-left">00</span>
           </p>
           <p class="account-bottle__diff-info">
             <span class="account-bottle__diff-label">Refills left</span>
-            <span class="account-bottle__diff-value">00</span>
+            <span class="account-bottle__diff-value new-refills-left">00</span>
           </p>
           <p class="account-bottle__diff-info">
             <span class="account-bottle__diff-label">Start Date</span>
-            <span class="account-bottle__diff-value">00/00/0000</span>
+            <span class="account-bottle__diff-value new-start-date">00/00/0000</span>
           </p>
         </div>
       </div>
@@ -1725,23 +693,25 @@ icon-curved-arrow-down:
           </div>
         </div>
 
-        <div class="account-bottle__hydro-content">
+        <div class="account-bottle__hydro-content" >
+          <div id="new-h-level-wrap">
           <p class="account-bottle__hydro-info">
-            <span class="color">3</span>
+            <span class="color new-refil-per-day">3</span>
             <span>Refills per day</span>
           </p>
           <p class="account-bottle__hydro-info">
-            <span class="color">7</span>
+            <span class="color new-refil-per-week">7</span>
             <span>Days per week</span>
           </p>
-          <div class="account-bottle__hydro-status bg-color">Super Hydration!</div>
+          <div class="account-bottle__hydro-status bg-color new-h-level">Super Hydration!</div>
+          </div>  
         </div>
       </div>
 
       <div class="account-bottle__replace-question">Need to update your usage or starting date?</div>
       <div class="account-bottle__replace-buttons">
-        <button type="button">Update</button>
-        <button type="button">Thanks, I'm good</button>
+        <button type="button" class="go-update">Update</button>
+        <button type="button" class="reload-exit">Thanks, I'm good</button>
       </div>
 
       <div class="account-bottle__replace-footer">
@@ -1851,3 +821,6 @@ icon-curved-arrow-down:
     </div>
   </div>
 </div>
+{% include 'address-form' %}
+<!-- Script -->  
+{% render 'mydyln-script' %}
