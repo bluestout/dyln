@@ -96,6 +96,10 @@
   &.template-article {
     width: 200px;
 
+    @media screen and (min-width: 1620px) {
+      width: 350px;
+    }
+
     svg {
       position: absolute;
       right: 0;
