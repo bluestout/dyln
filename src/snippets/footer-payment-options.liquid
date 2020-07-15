@@ -9,7 +9,7 @@
                 <li class="footer-payment__google-pay"><img src="{{ 'logo-google-pay-gray.png' | asset_img_url }}" alt="logo google pay"/></li>
             {% endif %}
             {% if apple %}
-                <li><img src="{{ 'logo-apple-pay-gray.png' | asset_img_url }}" alt="logo apple pay"/></li>
+                <li class="footer-payment__apple-pay"><img src="{{ 'logo-apple-pay-gray.png' | asset_img_url }}" alt="logo apple pay"/></li>
             {% endif %}
             {% if shopify %}
                 <li><img src="{{ 'logo-shopify-pay-gray.png' | asset_img_url }}" alt="logo shopify pay"/></li>
@@ -29,10 +29,10 @@
                 <li><img src="{{ 'logo-amex-gray.png' | asset_img_url }}" alt="logo amex" /></li>
             {% endif %}
             {% if discover %}
-                <li><img src="{{ 'logo-discover-gray.png' | asset_img_url }}" alt="logo discover" /></li>
+                <li class="footer-payment__discover"><img src="{{ 'logo-discover-gray.png' | asset_img_url }}" alt="logo discover" /></li>
             {% endif %}
             {% if visa %}
-              <li><img src="{{ 'logo-visa-gray.png' | asset_img_url }}" alt="logo visa" /></li>
+              <li class="footer-payment__visa"><img src="{{ 'logo-visa-gray.png' | asset_img_url }}" alt="logo visa" /></li>
             {% endif %}
         </ul>
     </div>

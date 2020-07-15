@@ -155,6 +155,7 @@
           {% comment %}
             TODO: Add SMS API
           {% endcomment %}
+          <label for="phone" class="visually-hidden">{{ 'layout.footer.telephone_label' | t }}</label>
           <input type="tel" id="phone" placeholder="{{ section.settings.telephone_placeholder }}">
           <button type="submit">{% render 'icon-send' %}</button>
         </div>
@@ -210,6 +211,7 @@
                 paypal: section.settings.show_paypal,
                 google: section.settings.show_google,
                 amazon: section.settings.show_amazon,
+                apple: section.settings.show_apple,
                 shopify: section.settings.show_shopify,
                 mastercard: section.settings.show_mastercard,
                 discover: section.settings.show_discover,

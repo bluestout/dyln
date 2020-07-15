@@ -334,7 +334,8 @@
       "submit": "Subscribe!",
       "payment_options_title": "Express Checkout",
       "payment_methods_title": "Payment Methods",
-      "live_chat": "Live Chat"
+      "live_chat": "Live Chat",
+      "telephone_label": "Telephone"
     }
   },
   "products": {

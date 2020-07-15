@@ -31,7 +31,7 @@ function handleEmailOptInClick() {
 
 $(document).ready(() => {
   $(selectors.smsOptIn).on("click", handleSmsOptInClick);
-  $(selectors.emailOptIn).on("click", handleEmailOptInClick);;
+  $(selectors.emailOptIn).on("click", handleEmailOptInClick);
 
   var input = document.querySelector("#phone");
   var iti = window.intlTelInput(input, {
