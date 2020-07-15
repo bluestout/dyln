@@ -1,11 +1,12 @@
 .footer-payment {
   &__title {
-    @include font-header(700);
-    @include text(20px, 26px, $color-white, 1.18px);
-    margin: 0 0 20px;
+    @include font-header(500);
+    @include text(15px, 26px, $color-white, 1.18px);
+    margin: 0 0 15px;
 
     @include media-query($large-down) {
       text-align: center;
+      margin-bottom: 10px;
     }
   }
 
@@ -14,7 +15,7 @@
     padding-left: 0;
 
     @include media-query($large-down) {
-      width: 70%;
+      width: 100%;
       margin: 0 auto;
       text-align: center;
     }
@@ -28,6 +29,7 @@
   &__options {
     ul {
       display: flex;
+      flex-wrap: wrap;
 
       @include media-query($large-down) {
         justify-content: center;
@@ -40,6 +42,11 @@
           width: 30px;
         }
       }
+
+      &.footer-payment__apple-pay {
+        position: relative;
+        top: -5px;
+      }
     }
 
     img {
@@ -50,5 +57,32 @@
   &__options,
   &__methods {
     margin-bottom: 20px;
+  }
+
+  &__methods {
+    li {
+      width: 40px;
+      padding-right: 3px;
+
+      @include media-query($large-down) {
+        width: 30px;
+      }
+
+      @include media-query($medium-down) {
+        width: 50px;
+      }
+
+      &.footer-payment__discover {
+        position: relative;
+        top: -1px;
+      }
+
+      &.footer-payment__visa {
+        @include media-query($large-down) {
+          position: relative;
+          top: 1px;
+        }
+      }
+    }
   }
 }
