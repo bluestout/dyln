@@ -3,7 +3,7 @@
 
   &__newsletter {
     @include transition(background-position 5000 ease);
-    height: 300px;
+    height: 240px;
     display: flex;
     align-items: center;
     margin-top: -20px;
@@ -21,13 +21,20 @@
     }
 
     &-title {
-      @include font-header(bold);
-      @include text(30px, 1.2, $color-white, 1px);
-
-      @include media-query($large-down) {
+      h2 {
         @include font-header(bold);
-        @include text(20px, 1.2, $color-white, 1px);
-        text-align: left;
+        @include text(30px, 1.2, $color-white, 1px);
+
+        @include media-query($large-down) {
+          @include font-header(bold);
+          @include text(20px, 1.2, $color-white, 1px);
+          text-align: left;
+        }
+
+        @include media-query($small) {
+          @include text(20px, 1.2, $color-white, 1px);
+          padding: 0 30px;
+        }
       }
     }
 
@@ -40,7 +47,9 @@
     p {
       @include font-header(bold);
       @include text(14px, 1.2, $color-white, 0.5px);
+      font-weight: 400;
       padding-bottom: 10px;
+      margin-left: 10px;
 
       @include media-query($large-down) {
         @include text(14px, 1.2, $color-white, 0.5px);
@@ -55,9 +64,9 @@
       top: 5px;
       left: 5px;
       width: 100px;
-      height: 75%;
+      height: 80%;
       border-radius: 50px;
-      background-color: $color-theme-17;
+      background-color: $color-theme-1;
       transition: ease-in-out all 0.3s;
 
       &.right {
@@ -65,12 +74,18 @@
         transition: ease-in-out all 0.3s;
       }
 
+      &-wrapper {
+        width: 200px;
+        display: inline-block;
+        margin-right: 15px;
+      }
+
       &-container {
         position: relative;
         background-color: $color-white;
         border-radius: 50px;
         width: 200px;
-        padding: 10px;
+        padding: 12px;
         margin: 0 20px 0 0;
         display: inline-flex;
         justify-content: space-around;
@@ -85,7 +100,7 @@
 
         button {
           @include font-header(bold);
-          @include text(18px, 1.2, $color-theme-24, 0.15px);
+          @include text(18px, 1.2, $color-theme-29, 0.15px);
           position: relative;
           z-index: $z-base;
           transition: ease-in-out all 0.3s;
@@ -129,31 +144,90 @@
 
       input {
         border: 2px solid $color-white;
-        color: $color-white;
+        border-radius: 30px;
+        background-color: white;
+        color: $color-theme-29;
         padding: 10px;
-        background-color: $color-transparent;
+        width: 250px;
+        height: 47px;
+        padding-left: 20px;
+        padding-bottom: 6.5px;
+
+        @include media-query($small) {
+          width: 270px;
+          margin-left: 25px;
+        }
+
+        @media screen and (width: 320px) {
+          margin-left: 0;
+        }
 
         &::-webkit-input-placeholder {
-          color: $color-white;
+          color: $color-theme-29;
         }
 
         &:-ms-input-placeholder {
-          color: $color-white;
+          color: $color-theme-29;
         }
 
         &::placeholder {
-          color: $color-white;
+          color: $color-theme-29;
         }
       }
 
       button {
-        background-color: $color-transparent;
+        background-color: $color-theme-1;
         border: 2px solid $color-white;
         color: $color-white;
         position: relative;
-        left: -1px;
-        width: 50px;
+        left: -48px;
+        width: 47px;
+        height: 44px;
+        top: 2.5px;
+        color: blue;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @include media-query($xl-up) {
+          top: 1.5px;
+        }
       }
+
+      svg {
+        path {
+          stroke: $color-white;
+        }
+      }
+    }
+  }
+
+  .opt-in-sms {
+    button {
+      display: inline-block;
+      left: -52px;
+      top: 1px;
+      line-height: 0;
+
+      @include media-query($xl-up) {
+        top: 0;
+      }
+
+      @media screen and (width: 320px) {
+        left: 220px;
+        top: 2px;
+        position: absolute;
+      }
+    }
+
+    @include media-query($small) {
+      left: 20px;
+      position: relative;
+    }
+
+    @media screen and (width: 320px) {
+      left: 0;
     }
   }
 
@@ -319,8 +393,8 @@
 
   &__parent-link {
     @include font-header(700);
-    @include text(24px, 33px, $color-white, 0.22px);
-    margin: 0 0 40px;
+    @include text(15px, 33px, $color-white, 0.22px);
+    margin: 0 0 5px;
     display: inline-block;
     min-width: 51%;
 
@@ -342,11 +416,15 @@
   &__menu-item {
     margin: 0;
     padding: 0;
+
+    &:not(:last-of-type) {
+      margin: 0 0 3px;
+    }
   }
 
   &__menu-link {
     @include font-body;
-    @include text(18px, 24px, $color-white, 0.16px);
+    @include text(14px, 24px, $color-white, 0.16px);
     margin: 0;
     text-decoration: none;
 
@@ -434,12 +512,8 @@
       text-align: center;
 
       @include media-query($medium-down) {
-        width: 50%;
-        margin: 0 auto;
-      }
-
-      @include media-query($small) {
         width: 70%;
+        margin: 0 auto;
       }
 
       &.open {
@@ -447,13 +521,13 @@
           display: none;
         }
         .site-footer__open {
-          display: inline-block;
+          display: none;
         }
       }
 
       &:not(.open) {
         .site-footer__closed {
-          display: inline-block;
+          display: none;
         }
         .site-footer__open {
           display: none;
@@ -467,7 +541,7 @@
       letter-spacing: 0.13px;
       margin: 0 auto 10px;
 
-      @include media-query($large-down) {
+      @include media-query($medium-down) {
         display: flex;
         justify-content: space-between;
         border-top: 1px solid $color-theme-17;
@@ -485,21 +559,19 @@
       padding: 0;
 
       @include media-query($large-down) {
-        width: 50%;
-        text-align: left;
+        width: 100%;
+        text-align: center;
       }
 
       @include media-query($medium-down) {
         margin: 0 auto !important;
-      }
-
-      @include media-query($small) {
+        text-align: left;
         width: 70%;
       }
     }
 
     &__menu-link {
-      font-size: 12px;
+      font-size: 14px;
       line-height: 30px;
       letter-spacing: 0.11px;
     }
@@ -507,20 +579,21 @@
 
   &__reach-out {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+
+    @include media-query($xl-up) {
+      padding-top: 5px;
+    }
 
     @include media-query($large-down) {
       flex-direction: column;
       margin-bottom: 20px;
+      text-align: center;
     }
 
     .social-links {
-      margin-left: 20px;
-      margin-top: 5px;
-
-      @include media-query($large-down) {
-        display: none;
-      }
+      margin-left: 0;
+      margin-top: 15px;
     }
 
     .icon-divider svg {
@@ -529,26 +602,41 @@
     }
 
     a {
-      color: $color-white;
+      @include font-body;
+      @include text(14px, 24px, $color-white, 0.16px);
+      padding: 5px 0;
 
-      @include media-query($large-down) {
-        padding: 5px 0;
+      @include media-query($xl-up) {
+        padding: 2px 0;
       }
     }
 
     &-title {
       @include font-header(700);
-      @include text(20px, 26px, $color-white, 1.18px);
+      @include text(15px, 26px, $color-white, 1.18px);
+      margin-top: 6px;
 
       @include media-query($large-down) {
         text-align: center;
       }
     }
+  }
 
-    &-tel {
-      @include media-query($large-up) {
-        margin-left: 10px;
-      }
+  &.open {
+    .site-footer__closed {
+      display: none;
+    }
+    .site-footer__open {
+      display: none;
+    }
+  }
+
+  &:not(.open) {
+    .site-footer__closed {
+      display: none;
+    }
+    .site-footer__open {
+      display: none;
     }
   }
 
@@ -556,6 +644,26 @@
   &__open {
     @include media-query($large-up) {
       display: none;
+    }
+  }
+
+  @include media-query($medium-down) {
+    &.open {
+      .site-footer__closed {
+        display: none;
+      }
+      .site-footer__open {
+        display: inline-block;
+      }
+    }
+
+    &:not(.open) {
+      .site-footer__closed {
+        display: inline-block;
+      }
+      .site-footer__open {
+        display: none;
+      }
     }
   }
 }
@@ -581,6 +689,25 @@
     border-radius: 6px;
     border: 1px solid $color-transparent;
     -webkit-appearance: none;
+  }
+}
+
+.iti__flag {
+  border-radius: 50%;
+  width: 12px !important;
+  height: 12px !important;
+}
+
+.iti--separate-dial-code .iti__selected-flag {
+  background-color: white !important;
+  border-radius: 50%;
+  height: 40px;
+  top: 3px;
+}
+
+.iti__country-list {
+  @include media-query($medium-down) {
+    width: 250px;
   }
 }
 

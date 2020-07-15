@@ -23,6 +23,7 @@ const datasets = {
   buttonRsp: "accordion-button-rsp",
   contentRsp: "accordion-content-rsp",
   parentRsp: "accordion-parent-rsp",
+  rspBreakpoint: "accordion-rsp-breakpoint"
 };
 
 const selectors = {
@@ -34,6 +35,7 @@ const selectors = {
   contentRsp: "[data-accordion-content-rsp]",
   parentRsp: "[data-accordion-parent-rsp]",
   wrapRsp: "[data-accordion-wrap-rsp]",
+  rspBreakpoint: "[data-accordion-rsp-breakpoint]",
   getContentById: (id) => `[data-${datasets.content}="${id}"]`,
   getContentByIdRsp: (id) => `[data-${datasets.contentRsp}="${id}"]`,
 };
@@ -73,7 +75,15 @@ function checkAccordionState() {
 }
 
 function checkAccordionStateRsp() {
-  if ($(window).width() < 992) {
+  let breakpoint;
+
+  if ($(selectors.rspBreakpoint).data(datasets.rspBreakpoint)) {
+    breakpoint = $(selectors.rspBreakpoint).data(datasets.rspBreakpoint);
+  } else {
+    breakpoint = 992;
+  }
+
+  if ($(window).width() < breakpoint) {
     $(selectors.buttonRsp).each(function() {
       const $source = $(this);
       const index = $source.data(datasets.buttonRsp);
@@ -131,7 +141,15 @@ function handleAccordionClick(event) {
 }
 
 function handleAccordionClickRsp(event) {
-  if ($(window).width() < 992) {
+  let breakpoint;
+
+  if ($(selectors.rspBreakpoint).data(datasets.rspBreakpoint)) {
+    breakpoint = $(selectors.rspBreakpoint).data(datasets.rspBreakpoint);
+  } else {
+    breakpoint = 992;
+  }
+
+  if ($(window).width() < breakpoint) {
     event.preventDefault ? event.preventDefault() : (event.returnValue = false);
     const $source = $(event.currentTarget);
 
