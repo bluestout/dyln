@@ -1,4 +1,4 @@
-{%- if section.settings.lf_blog != empty -%}
+{%- if section.settings.lf_blog != blank -%}
   {%- if section.setting.show_lifestyle_on_hp_only == false or template.name == 'index' -%}
     <div class="site-footer__lifestyle">
       <div class="site-footer__wave-top" data-transition-wave data-transition></div>
@@ -13,7 +13,7 @@
               <p class="site-footer__lf-links-header">{{ section.settings.lf_topics_h }}</p>
               {% comment %} for each blog, create a a separate link {% endcomment %}
               <div class="site-footer__lf-links">
-                {% if section.settings.lf_recent != empty %}
+                {% if section.settings.lf_recent != blank %}
                   <a class="site-footer__lf-link active" href="#" data-tab-link="1">{{ section.settings.lf_recent }}</a>
                 {% endif %}
                 {% for lf_tag in lf_tags %}
@@ -33,7 +33,7 @@
               <div class="site-footer__lf-list-wrap" data-slider-wrapper>
                 {% comment %} for each blog, create a new section {% endcomment %}
 
-                {% if section.settings.lf_recent != empty %}
+                {% if section.settings.lf_recent != blank %}
                   <div class="site-footer__lf-list active" data-tab="1">
                     {% for lf_article in lf_blog.articles limit: 10 %}
                       <a href="{{ lf_article.url }}" class="site-footer__lf-article">
@@ -104,7 +104,7 @@
   {%- endif -%}
 {%- endif -%}
 
-{%- if section.settings.lf_blog != empty -%}
+{%- if section.settings.lf_blog != blank -%}
   {%- if section.setting.show_lifestyle_on_hp_only == false or template.name == 'index' or template.name == 'blog' -%}
   <div class="site-footer__separator gray"></div>
   {%- else -%}
@@ -243,13 +243,13 @@
             <span>
               © {{ "now" | date: "%Y" }}, DYLN Inc.
             </span>
-            {% if section.settings.privacy_policy_url != empty %}
+            {% if section.settings.privacy_policy_url != blank %}
               <span class="footer-copyright-delimiter">|</span> <a href="{{ section.settings.privacy_policy_url }}">Privacy Policy</a>
             {% endif %}
-            {% if section.settings.terms_agreements_link != empty %}
+            {% if section.settings.terms_agreements_link != blank %}
               | <a href="{{ section.settings.terms_agreements_link }}">Terms</a>
             {% endif %}
-            {% if section.settings.ip_link != empty %}
+            {% if section.settings.ip_link != blank %}
               | <a href="{{ section.settings.ip_link }}">IP</a>
             {% endif %}
           </div>

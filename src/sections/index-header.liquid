@@ -64,12 +64,12 @@
           </div>
         </div>
       </div>
-      {%- if section.settings.bottom_text != empty -%}
+      {%- if section.settings.bottom_text != blank -%}
         <div class="index-header__btm">
           <a
             class="index-header__btm-link"
             href="{{ section.settings.bottom_url }}"
-            {% if section.settings.bottom_scroll_to != empty %}
+            {% if section.settings.bottom_scroll_to != blank %}
               data-scroll-to="{{ section.settings.bottom_scroll_to }}"
             {% endif %}>
             {{ section.settings.bottom_text }}

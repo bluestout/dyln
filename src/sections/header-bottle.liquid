@@ -11,19 +11,33 @@
     <div class="header-bottle__body">
       <div class="container">
         <div class="row">
-          {% if section.settings.video != empty %}
+          {% if section.settings.video_embed != blank or section.settings.video != blank %}
             <div class="col-lg-6">
               <div class="header-bottle__content-wrap">
                 <h2 class="header-bottle__c-title rsp">{{ section.settings.title }}</h2>
                 <h4 class="header-bottle__c-subtitle rsp">{{ section.settings.subtitle }}{% render 'icon-chevron-down' %}</h4>
               </div>
-              <div class="header-bottle__video" data-header-toggle-element style="display:none;">
-                {{ section.settings.video }}
-              </div>
+              {% if section.settings.video != blank %}
+                <div class="header-bottle__video">
+                  <video
+                    playsinline
+                    controls
+                    width="{{ section.settings.video_width }}"
+                    height="{{ section.settings.video_height }}"
+                    tabindex="-1">
+                    <source src="{{- section.settings.video -}}" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              {% elsif section.settings.video_embed != blank %}
+                <div class="header-bottle__video" data-header-toggle-element style="display:none;">
+                  {{ section.settings.video_embed }}
+                </div>
+              {% endif %}
             </div>
           {% endif %}
 
-          {% if section.settings.video != empty %}
+          {% if section.settings.video_embed != blank or section.settings.video != blank %}
             <div class="col-lg-6">
           {% else %}
             <div class="col-12">
@@ -32,11 +46,11 @@
               <h2 class="header-bottle__c-title desktop">{{ section.settings.title }}</h2>
               <a href="#" class="header-bottle__c-subtitle desktop" data-scroll-to=".index-video">See how</a>
               <div class="header-bottle__c-content">{{ section.settings.content }}</div>
-              {% if section.settings.link_text != empty %}
+              {% if section.settings.link_text != blank %}
                 <a class="header-bottle__c-link" href="{{ section.settings.link }}" tabindex="-1">{{ section.settings.link_text }}</a>
               {% endif %}
             </div>
-          {% if section.settings.video != empty %}
+          {% if section.settings.video_embed != blank or section.settings.video != blank %}
             </div>
           {% else %}
             </div>
@@ -179,8 +193,32 @@
       {
         "type": "textarea",
         "id": "video",
+        "label": "Video",
+        "info": "Upload a video to Shopify files and paste the source url here. Or paste the source url to a video here."
+      },
+      {
+        "type": "range",
+        "id": "video_width",
+        "label": "Video Width",
+        "min": 300,
+        "max": 900,
+        "step": 10,
+        "default": 600
+      },
+      {
+        "type": "range",
+        "id": "video_height",
+        "label": "Video Height",
+        "min": 300,
+        "max": 680,
+        "step": 10,
+        "default": 450
+      },
+      {
+        "type": "textarea",
+        "id": "video_embed",
         "label": "Video Embed",
-        "info": "Paste the youtube video embed code here."
+        "info": "Or use an embed from youtube, vimeo or similar. Copy/paste the embed code here."
       },
       {
         "type": "textarea",

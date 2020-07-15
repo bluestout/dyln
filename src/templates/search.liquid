@@ -119,7 +119,7 @@
                           <span class="search-page__result-tag">
                             {{ item.tags[0] | upcase }}
                           </span>
-                        {% else if item.tags != empty  %}
+                        {% else if item.tags != blank  %}
                           <span class="search-page__result-tag">
                             {{ item.tags[0] }}
                             {% if item.published_at %} &#8212; {{ item.published_at | date: "%b %d, %Y" }}{% endif %}

@@ -54,9 +54,14 @@
       {% render 'icon-close' %}
       <span class="visually-hidden">{{ 'general.accessibility.close' | t }}</span>
     </button>
-    <div class="container" tabindex="-1">
+    <div class="container">
       {%- if section.settings.video != blank -%}
-        <video class="index-video__video" playsinline width="{{ section.settings.video_width }}" height="{{ section.settings.video_height }}">
+        <video
+          class="index-video__video"
+          {% if section.settings.autoplay %}playsinline muted loop{% else %}controls{% endif %}
+          width="{{ section.settings.video_width }}"
+          height="{{ section.settings.video_height }}"
+          tabindex="-1">
           <source src="{{- section.settings.video -}}" type="video/mp4">
           Your browser does not support the video tag.
         </video>
@@ -108,6 +113,13 @@
         "id": "video",
         "label": "Video",
         "info": "Upload a video to Shopify files and paste the source url here. Or paste the source url to a video here."
+      },
+      {
+        "type": "checkbox",
+        "id": "autoplay",
+        "label": "Autoplay video?",
+        "info": "Mutes and loops video, hides controls, autoplays when modal is opened.",
+        "default": true
       },
       {
         "type": "textarea",

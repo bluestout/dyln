@@ -1,6 +1,6 @@
 <style>
 {% for block in section.blocks %}
-  {% if block.settings.title != empty %}
+  {% if block.settings.title != blank %}
     {% assign swatch_name = block.settings.title | strip | strip_html | strip_newlines | handleize %}
     {% assign class_name = ".color-swatch-" | append: swatch_name %}
 
@@ -8,7 +8,7 @@
       {{ class_name }} {
         background-image: url("{{ block.settings.swatch_image | img_url: '44x44' }}") !important;
       }
-    {% elsif block.settings.swatch_color != empty %}
+    {% elsif block.settings.swatch_color != blank %}
       {{ class_name }} {
         background-color: {{ block.settings.swatch_color }} !important;
       }
@@ -22,7 +22,7 @@
     var swatches = [
       {%- for block in section.blocks -%}
         {
-          {% if block.settings.title != empty %}
+          {% if block.settings.title != blank %}
             "swatch_name": {{- block.settings.title | json -}},
             {% if block.settings.swatch_image %}
               "image": {{- block.settings.swatch_image | img_url: '44x44' | json -}},

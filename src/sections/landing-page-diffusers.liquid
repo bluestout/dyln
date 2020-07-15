@@ -14,13 +14,13 @@
           snippet_index: 34
         %}
 
-        {% if section.settings-title != empty %}
+        {% if section.settings-title != blank %}
           <h3>{{ section.settings.title }}</h3>
         {% endif %}
       </div>
     </div>
     <div class="col-md-6 col-lg-5">
-      {% if section.settings.title != empty %}
+      {% if section.settings.title != blank %}
         <div class="lp-diffusers__title-header">
           <h3 class="lp-diffusers__title">{{ section.settings.title }}</h3>
         </div>
