@@ -136,10 +136,11 @@
     class="pdp-form__submit"
     type="submit"
     name="add"
+    data-geo-submit
     data-submit-button
     data-add-to-cart
     {% unless current_variant.available %}disabled="disabled"{% endunless %}>
-      <span data-submit-button-text data-add-to-cart-loaded class="hide">
+      <span data-geo-submit-text data-submit-button-text data-add-to-cart-loaded class="hide">
         {% if current_variant.available %}
           {{ 'products.product.add_to_cart' | t }}
         {% else %}
@@ -149,7 +150,7 @@
       <span data-add-to-cart-loading class="loading-dots"></span>
   </button>
 
-  <p class="product-form__sold-out-notice hide" data-pdp-shipping-note></p>
+  <p class="product-form__sold-out-notice hide" data-geo-shipping-note></p>
 
 {% endform %}
 
