@@ -288,24 +288,6 @@
               "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
             }
           },
-          "1593635998765": {
-            "type": "product",
-            "settings": {
-              "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
-            }
-          },
-          "1593635959842": {
-            "type": "product",
-            "settings": {
-              "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
-            }
-          },
-          "1581526781483": {
-            "type": "product",
-            "settings": {
-              "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
-            }
-          },
           "1581526789016": {
             "type": "collection",
             "settings": {
@@ -325,14 +307,7 @@
             }
           }
         },
-        "block_order": [
-          "1581526771835",
-          "1593635998765",
-          "1593635959842",
-          "1581526781483",
-          "1581526789016",
-          "1581526803448"
-        ],
+        "block_order": ["1581526771835", "1581526789016", "1581526803448"],
         "settings": {
           "title": "Shop Bottles"
         }
