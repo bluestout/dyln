@@ -72,10 +72,7 @@ icon-curved-arrow-down:
             My Bottles
             <span class="account-body__header-dash"></span>
           </button>
-          <button type="button" class="account-body__header-tab" tab-body="account-subscriptions">
-            My Subscriptions
-            <span class="account-body__header-dash"></span>
-          </button>
+          <a class="account-body__header-tab" href="/tools/recurring/login/">My Subscriptions<span class="account-body__header-dash"></span></a>
           <button type="button" class="account-body__header-tab" tab-body="account-profile">
             Profile
             <span class="account-body__header-dash"></span>
@@ -106,7 +103,7 @@ icon-curved-arrow-down:
                     <button type="button" class="account-dash__title-button tab-button" tab-body="account-bottles">See All</button>
                   </h3>
           <div id="custommer-bottles-short">
-                  
+
                   <div class="account-dash__bottle" style="display:none">
                     <div class="account-dash__bottle-wrap" aria-ignore="true">
                       {% comment %} progress must be in percent, so between 0 and 100. It needs to be in steps of 5, so 5, 10, 15, 20,... that is to reduce the size of the css file - each percent has its own class {% endcomment %}
@@ -122,8 +119,8 @@ icon-curved-arrow-down:
                       <span class="visually-hidden">More options</span>
                     </button>
                   </div>
-          
-                  </div>  
+
+                  </div>
 
                   <div class="account-dash__bottle-btn-wrap">
                     <button type="button" class="account-dash__bottle-btn btn-action-register-bottle">
@@ -214,7 +211,7 @@ icon-curved-arrow-down:
                   <a href="" class="account-dash__title-button tab-button" tab-body="account-orders">Order History</a>
                 </h3>
         {% if customer.orders_count > 0 %}
-                {% assign count_order = 0 %} 
+                {% assign count_order = 0 %}
                 {% for order in customer.orders %}
                 {% assign count_order = count_order | plus: 1 %}
                 {% if count_order <= 3 %}
@@ -228,7 +225,7 @@ icon-curved-arrow-down:
                 {% else %}
                 <div class="account-dash__order">
                   <a href="#" class="account-dash__order-number">No Order Found</a>
-                </div>                
+                </div>
                 {% endif %}
               </div>
 
@@ -368,9 +365,6 @@ icon-curved-arrow-down:
           {% comment %} orders end {% endcomment %}
       {% render 'customer-bottles-tab' %}
           {% comment %} bottles end {% endcomment %}
-
-          <div class="body-tab account-subscriptions">Account Subscriptions</div>
-          {% comment %} subscription end {% endcomment %}
       {% render 'customer-profile-tab' %}
           {% comment %} profile end {% endcomment %}
         </div>
@@ -415,7 +409,7 @@ icon-curved-arrow-down:
           <div class="swiper-wrapper">
           {% for i in (20..300) %}
             <div class="swiper-slide">{{i}}</div>
-          {% endfor %}  
+          {% endfor %}
           </div>
         </div>
         <span class="account-edit-option__label lab-weight-height">
@@ -462,7 +456,7 @@ icon-curved-arrow-down:
         <p class="account-bottle__time-diffuser">00/00/00</p>
         <p class="dif-date-select" style="display:none"><input type="text" id="dif-update-date-now" /></p>
         <button type="button" class="account-bottle__info-update btn-update-now">Update Now</button>
-        </div>  
+        </div>
       </div>
       <div class="clearfix"></div>
 
@@ -508,8 +502,8 @@ icon-curved-arrow-down:
           <div class="account-bottle__hydro-status bg-color">Super Hydration!</div>
         </div>
       </div>
-        
-   <!-- 
+
+   <!--
       <div class="account-bottle__hydration low" style="display:none;">
         <div class="account-bottle__hydro-icon-wrap">
           <div class="account-bottle__hydro-icon">
@@ -704,7 +698,7 @@ icon-curved-arrow-down:
             <span>Days per week</span>
           </p>
           <div class="account-bottle__hydro-status bg-color new-h-level">Super Hydration!</div>
-          </div>  
+          </div>
         </div>
       </div>
 
@@ -822,5 +816,5 @@ icon-curved-arrow-down:
   </div>
 </div>
 {% include 'address-form' %}
-<!-- Script -->  
+<!-- Script -->
 {% render 'mydyln-script' %}
