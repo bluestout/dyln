@@ -87,20 +87,20 @@
     "diff_sub_close_text": "Close",
     "collections_all_linklist": "list-collections",
     "accessibility_menu": "",
-    "checkout_header_image": "",
-    "checkout_logo_image": "shopify://shop_images/logo-dyln.png",
+    "checkout_header_image": "shopify://shop_images/Blue-Banner.png",
+    "checkout_logo_image": "shopify://shop_images/DYLN_White_trans.png",
     "checkout_logo_position": "left",
-    "checkout_logo_size": "medium",
+    "checkout_logo_size": "large",
     "checkout_body_background_image": "",
-    "checkout_body_background_color": "#fff",
+    "checkout_body_background_color": "#ffffff",
     "checkout_input_background_color_mode": "white",
     "checkout_sidebar_background_image": "",
-    "checkout_sidebar_background_color": "#fafafa",
-    "checkout_heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
-    "checkout_body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
-    "checkout_accent_color": "#197bbd",
-    "checkout_button_color": "#197bbd",
-    "checkout_error_color": "#e32c2b",
+    "checkout_sidebar_background_color": "#fdfdfd",
+    "checkout_heading_font": "Open Sans",
+    "checkout_body_font": "Open Sans",
+    "checkout_accent_color": "#00aedb",
+    "checkout_button_color": "#14e06e",
+    "checkout_error_color": "#ff3737",
     "canada_inv": true,
     "canada_inv_na": "",
     "canada_default": true,
@@ -225,7 +225,8 @@
           "title": "How does it work?",
           "text": "The DYLN Patented Bottle System was created to enhance water simply.",
           "link_text": "Watch full Video",
-          "video": "",
+          "video": "https://cdn.shopify.com/s/files/1/0511/9421/files/webAutoplay-HowDoesTheDylnBottleWork__480x480.mp4?v=1594059684",
+          "autoplay": false,
           "video_embed": "<iframe src=\"https://www.youtube.com/embed/PHVhV5h7pbA\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\" width=\"560\" height=\"315\" frameborder=\"0\"></iframe>",
           "video_width": 600,
           "video_height": 450
@@ -513,6 +514,14 @@
               "swatch_image": "",
               "swatch_color": "#d034c0"
             }
+          },
+          "1594748155707": {
+            "type": "color",
+            "settings": {
+              "title": "Pearl",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-pearl-grey.png",
+              "swatch_color": "#eceae5"
+            }
           }
         },
         "block_order": [
@@ -527,7 +536,8 @@
           "1585392704087",
           "1585392716036",
           "1585392728341",
-          "1585392739263"
+          "1585392739263",
+          "1594748155707"
         ],
         "settings": {}
       },
@@ -816,7 +826,7 @@
               "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
               "product_1": "extra-vitabead-diffusers",
               "product_2": "diffuser-removal-tool",
-              "product_3": ""
+              "product_3": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
             }
           }
         },
@@ -1600,6 +1610,7 @@
         "settings": {
           "title": "Diffuser Title here",
           "extra_product": "extra-vitabead-diffusers",
+          "diffuser_product_image": "",
           "note": "<p>We recommend replacing your Diffuser every 3 months but go ahead and <strong>customize quantity and frequency.</strong></p>"
         }
       },
@@ -1978,7 +1989,10 @@
           "content": "The DYLN Bottle has an ergonomic design, 32 oz / 950 mL capacity and Its insulated, so it keeps your water cold for up to 24 hrs. Learn more",
           "link": "",
           "link_text": "View Bottles",
-          "video": "<iframe src=\"https://www.youtube.com/embed/NpEaa2P7qZI\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\" width=\"560\" height=\"315\" frameborder=\"0\"></iframe>",
+          "video": "",
+          "video_width": 300,
+          "video_height": 300,
+          "video_embed": "<iframe src=\"https://www.youtube.com/embed/NpEaa2P7qZI\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\" width=\"560\" height=\"315\" frameborder=\"0\"></iframe>",
           "usp_title": "Fill your water bottle and in 15-20 minutes, your water will become:",
           "usp_icon_1": "",
           "usp_title_1": "Alkaline",
