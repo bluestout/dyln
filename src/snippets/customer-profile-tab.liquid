@@ -97,19 +97,19 @@
         <h3 class="account-profile__title">Email preferences</h3>
       </div>
       <form action="#">
+        <input type="hidden" name="id" value="{{ customer.id }}" >
         <div class="account-profile__checkbox-wrap">
           <input type="checkbox"
                  id="diffuser-replacement"
-                 name="diffuser-replacement"
-                 value="diffuser-replacement" />
+                 name="diffuser_replacement" />
           <label for="diffuser-replacement">Diffuser replacement notification</label>
         </div>
 
         <div class="account-profile__checkbox-wrap">
           <input type="checkbox"
                  id="update-notification"
-                 name="update-notification"
-                 value="update-notification" />
+                 name="bottle_update"
+                  />
           <label for="update-notification">Bottle update notification</label>
         </div>
 
@@ -117,7 +117,7 @@
           <input type="checkbox"
                  id="newsletter"
                  name="newsletter"
-                 value="newsletter" />
+                 />
           <label for="newsletter">newsletter</label>
         </div>
       </form>

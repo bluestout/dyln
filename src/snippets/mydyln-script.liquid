@@ -24,7 +24,9 @@ $(function(){
   });
   function scrollBottom(){
     if(Documentwidth < 768){
-      $('html, body').animate({scrollTop: Documentheight - 600}, 'slow');
+      $('.account-body__tabs').delay(300).fadeOut();
+      $('html, body').animate({ scrollTop: 400 });
+      //$('html, body').animate({scrollTop: Documentheight - 600}, 'slow');
     }
   }
   var CustomerShopifyId = '{{ customer.id }}';
@@ -33,6 +35,11 @@ $(function(){
   // tabs
   $('.account-body__header-tabs .account-body__header-tab').click(function(){
     var $this = $(this);
+    $this.parents('.account-body__header-tabs').toggleClass('open');
+    if(Documentwidth < 768){
+    $('.account-body__tabs').fadeIn();
+    $('#popup-continer .popup').delay(300).fadeOut();
+    }
     if($this.hasClass('active')){
       // do nothing
     }else{
@@ -50,16 +57,7 @@ $(function(){
      $('.account-body__header-tabs .account-body__header-tab[tab-body='+tabBody+']').click();
      return false;
   });
-  
-// mobile menu 
-  $('.account-body__header-dash').click(function(){
-   var $this = $(this);
-   var Btn = $this.parents('.account-body__header-tab');
-   var $wrap = $this.parents('.account-body__header-tabs');
-    if(Btn.hasClass('active')){
-      $wrap.toggleClass('open');
-    } 
-  });  
+    
  // change to subscribe option
 $('#subscription-wrap .diffusers__sub-btn').click(); 
 $('#subscription-wrap .diffusers__sub-back').html('<strong>Not ready for a Subscription?</strong><br><span>Shop one time purchase:</span>');
@@ -808,6 +806,7 @@ function getproductAvailabilityData(country, productId){
   // Profile edit button
   $('button.account-profile__edit.profile-edit').click(function(){
     $('.customer-edit-profile').fadeIn();
+    scrollBottom();
   });
   
   //edit-profile--phone
@@ -941,7 +940,7 @@ function getproductAvailabilityData(country, productId){
       type: 'GET',
       dataType: 'json',
       success: function (response) {
-        //console.log(response);
+        console.log(response);
         DisplayCustomerInfo(response);
       },
       error: function(jqXHR, textStatus, errorThrown) {
@@ -1025,7 +1024,52 @@ function getproductAvailabilityData(country, productId){
     $('.step_interest input[name="interests"][value="'+cInterests[i]+'"]').click();
       }
     }
+    
+    // set Notifications
+    if(data.notification.email_diffuser_replacement == 1){
+      $('.account-profile__checkbox-wrap').find('#diffuser-replacement').prop( "checked", true );
+    }
+    if(data.notification.email_bottle_update == 1){
+      $('.account-profile__checkbox-wrap').find('#update-notification').prop( "checked", true );
+    }
+
+    if(data.notification.newsletter == 1){
+      $('.account-profile__checkbox-wrap').find('#newsletter').prop( "checked", true );
+    }     
+    
   }
+  
+  
+  // Update Email settings
+  function UpdateNotify(Data){
+    var urlToRequest = '/a/dyl/'+CustomerShopifyId+'/update-notification';
+    $.ajax({
+      url: urlToRequest,
+      type: 'GET',
+      data: Data,
+      dataType: 'json',
+      success: function (response) {
+       //console.log(response);
+        if(response.success){
+          $('.account-profile__checkbox-wrap input[type="checkbox"]').prop('disabled', false);
+        }else{
+          
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log(textStatus, errorThrown);
+      }
+    });  
+  }
+  $('.account-profile__checkbox-wrap input[type="checkbox"]').on('change', function(){
+    var $this = $(this);
+    var $form = $this.parents('form');
+    var Data = $form.serialize();
+    //console.log(Data);
+    $('.account-profile__checkbox-wrap input[type="checkbox"]').attr('disabled', 'disabled');
+    UpdateNotify(Data);
+    
+  });
   
 /*========================== Reset Password ========================= */
   $('.account-profile__update-password').click(function(){
@@ -1066,6 +1110,7 @@ function getproductAvailabilityData(country, productId){
 // Customer contact info edit
   $('.account-profile__edit.edit-contact').click(function(){
     $('.account-edit.profile-contact-pop').fadeIn();
+    scrollBottom();
   });
   
   //edit-profile--phone
@@ -1131,6 +1176,7 @@ function getproductAvailabilityData(country, productId){
   // address section  
   $('.account-profile__button-add.open-address-pop').click(function(){
     $('.account-edit.address-new-pop').fadeIn();
+    scrollBottom();
   });  
     
   
@@ -1220,6 +1266,7 @@ function getproductAvailabilityData(country, productId){
     $('.customer_address.edit_address').fadeOut();
     $('.address-edit-pop').find('#'+$formWrap).fadeIn();
     $('.address-edit-pop').fadeIn();
+    scrollBottom();
   });
   
 // add address
@@ -1277,6 +1324,7 @@ function getproductAvailabilityData(country, productId){
   }
   
   //subscriptions
+  function getCustomerSubs(){
       var checkUrlSub = '/a/dyl/'+CustomerShopifyId+'/get-subs'; 
       $.ajax({
         url: checkUrlSub,
@@ -1289,7 +1337,8 @@ function getproductAvailabilityData(country, productId){
         error: function(jqXHR, textStatus, errorThrown) {
           console.log(textStatus, errorThrown);
         }
-      });
+      });  
+  }
  // update subscription
   function ReUpdateSubs(Data){
       var checkUrlSub = '/a/dyl/'+CustomerShopifyId+'/update-subs'; 
@@ -1401,4 +1450,4 @@ function getproductAvailabilityData(country, productId){
   
   
 })
-</script>
+</script> 

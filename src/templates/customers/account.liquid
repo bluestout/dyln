@@ -220,7 +220,7 @@ icon-curved-arrow-down:
                 {% if count_order <= 3 %}
                 {%- assign created_at = order.created_at | date: "%B %d, %Y %I:%M%p" -%}
                 <div class="account-dash__order">
-                  <a href="#" class="account-dash__order-number">Order No. {{ order.name }}</a>
+                  <a href="" class="account-dash__order-number tab-button" tab-body="account-orders">Order No. {{ order.name }}</a>
                   <p class="account-dash__order-date">Placed on {{ created_at}}</p>
                 </div>
                 {% endif %}
