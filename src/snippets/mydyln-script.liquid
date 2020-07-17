@@ -15,11 +15,11 @@ $(function(){
     $('.account-body__header-tabs .account-body__header-tab').removeClass('active');
     $('.account-body__header-tabs .account-body__header-tab[tab-body='+tabBody+']').addClass('active');
       $('.account-body__tabs .body-tab').removeClass('active-tab');
-	  $('.account-body__tabs .'+tabBody).addClass('active-tab');    
+    $('.account-body__tabs .'+tabBody).addClass('active-tab');    
     
   }
   $(window).on('resize', function (){
-  		Documentwidth = $(window).width();
+      Documentwidth = $(window).width();
         Documentheight = $(document).height();
   });
   function scrollBottom(){
@@ -40,13 +40,13 @@ $(function(){
       $('.account-body__header-tabs .account-body__header-tab').removeClass('active');
       $this.addClass('active');
       $('.account-body__tabs .body-tab').removeClass('active-tab');
-	  $('.account-body__tabs .'+tabBody).addClass('active-tab');
+    $('.account-body__tabs .'+tabBody).addClass('active-tab');
       window.history.replaceState(null, null, "?tab="+tabBody); 
     }
   });
   // internal tab-button
   $('.tab-button').click(function(){
-  	var tabBody = $(this).attr('tab-body');
+    var tabBody = $(this).attr('tab-body');
      $('.account-body__header-tabs .account-body__header-tab[tab-body='+tabBody+']').click();
      return false;
   });
@@ -57,7 +57,7 @@ $(function(){
    var Btn = $this.parents('.account-body__header-tab');
    var $wrap = $this.parents('.account-body__header-tabs');
     if(Btn.hasClass('active')){
-    	$wrap.toggleClass('open');
+      $wrap.toggleClass('open');
     } 
   });  
  // change to subscribe option
@@ -191,7 +191,7 @@ function getproductAvailabilityData(country, productId){
   
 // Bottle details
   $(document).on('click', '.account-dash__bottle-more', function(){
-  	var btlObj = JSON.parse($(this).parents('.account-dash__bottle').attr('data-bottle'));
+    var btlObj = JSON.parse($(this).parents('.account-dash__bottle').attr('data-bottle'));
     BottleDetails(btlObj);
     //console.log(btlObj);
   });
@@ -294,17 +294,17 @@ function getproductAvailabilityData(country, productId){
   
   // close popup
   $('.pop-close').click(function(){
-  	$(this).parents('.popup').fadeOut();
+    $(this).parents('.popup').fadeOut();
   });
   // edit bottle 
   $('.edit_pop_bottle').click(function(){
-  	// 
+    // 
     $('.account-bottle__body').fadeOut('fast');
     $('.account-bottle__edit').delay(500).fadeIn('slow');
   });
   // edit bottle 
   $('.account-bottle__edit-cancel').click(function(){
-  	// 
+    // 
     $('.account-bottle__edit').fadeOut('fast');
     $('.account-bottle__body').delay(500).fadeIn('slow');
     
@@ -316,7 +316,7 @@ function getproductAvailabilityData(country, productId){
   // Order see more/ see less account-orders__btn-more
   $('.account-orders__btn-more').click(function(){
     var $this = $(this);
-  	var $wrap = $(this).parents('.account-orders__order');
+    var $wrap = $(this).parents('.account-orders__order');
     $wrap.find('.order-billing-info').toggle('display');
     $wrap.find('.order-right-wrap').toggle('display');
     if($(this).text() == 'See Less'){
@@ -354,7 +354,7 @@ function getproductAvailabilityData(country, productId){
           $('#registration-modal__form .registration-modal__message span').text('Invalid Code');
         }else{
           //console.log(response);
-		  setRegisterBottleInfo(response);
+      setRegisterBottleInfo(response);
           regProcessNext($this);
         }
       },
@@ -365,7 +365,7 @@ function getproductAvailabilityData(country, productId){
     }else{
       $('#registration-modal__form .registration-modal__message span').text('Please Add Procuct Code');
     }
-  		
+      
   });
   
   function setRegisterBottleInfo(response){
@@ -415,7 +415,7 @@ function getproductAvailabilityData(country, productId){
   $('.registration-modal__page.step_color .registration-modal__btn-next').click(function(){
     var $this = $(this);
     if($('#registration-modal__form #product_variant').val() == ''){
-    	$('#registration-modal__form .registration-modal__message span').text('Please select color');
+      $('#registration-modal__form .registration-modal__message span').text('Please select color');
     }else{
       $('#registration-modal__form .registration-modal__message span').text('');
       regProcessNext($this);
@@ -471,16 +471,23 @@ function getproductAvailabilityData(country, productId){
   
   // set hydration
   $('.step-usage #bottle-registration-days-per-week').change(function(){
-    if($(this).val() > 6){
+    var $this = $(this);
+    if($this.val() > 6){
+      $this.removeClass('low');
+      $this.removeClass('poor');
       $('.registration-modal__input-warning span.hydration-text').text('Super Hydration level!');
       $('.registration-modal__input-warning span.hydration-text').parents('#reg-hl').removeClass();
       $('.registration-modal__input-warning span.hydration-text').parents('#reg-hl').addClass('good');
-    }else if(($(this).val() > 4) && ($(this).val() < 7)){
+    }else if(($this.val() > 4) && ($this.val() <= 6)){
+      $this.removeClass('poor');
+      $this.addClass('low');
       $('.registration-modal__input-warning span.hydration-text').text('Low Hydration');
       $('.registration-modal__input-warning span.hydration-text').parents('#reg-hl').removeClass();
       $('.registration-modal__input-warning span.hydration-text').parents('#reg-hl').addClass('low');     
     }else{
-    	$('.registration-modal__input-warning span.hydration-text').text('Poor Hydration');
+         $this.removeClass('low');
+         $this.addClass('poor');
+      $('.registration-modal__input-warning span.hydration-text').text('Poor Hydration');
         $('.registration-modal__input-warning span.hydration-text').parents('#reg-hl').removeClass();
         $('.registration-modal__input-warning span.hydration-text').parents('#reg-hl').addClass('poor');      
     }
@@ -499,9 +506,9 @@ function getproductAvailabilityData(country, productId){
     }
     $this.addClass('btn-disable');
     $this.prop('disable', true);
-  	var $registerForm = $('#registration-modal__form');
+    var $registerForm = $('#registration-modal__form');
     $('#registration-modal__form .required').each(function(){
-    	if($(this).val() == ''){
+      if($(this).val() == ''){
           $this.removeClass('btn-disable')
           $registerForm.find('.registration-modal__message span').text('Please Fill All fields');
           processRegister = false;
@@ -578,7 +585,7 @@ function getproductAvailabilityData(country, productId){
         var btlID = $this.attr('data-id');
         AddPhoneToBottle(btlID, phone);
       }else{
-      	$('#registration-modal__form .registration-modal__message span').text('Please Enter Phone Nuimber');
+        $('#registration-modal__form .registration-modal__message span').text('Please Enter Phone Nuimber');
       }      
       
     }
@@ -630,7 +637,7 @@ function getproductAvailabilityData(country, productId){
           if(response.success){
             location.reload(true);
           }else{
-			//console.log('not found');
+      //console.log('not found');
           }
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -646,7 +653,7 @@ function getproductAvailabilityData(country, productId){
     
     }else{
     var btlID = $this.attr('data-id'); 
-  	var $WrapEdit = $('.account-bottle__edit');
+    var $WrapEdit = $('.account-bottle__edit');
     var day = $WrapEdit.find('.register-day').val();
     var month = $WrapEdit.find('.register-month').val();
     var year = $WrapEdit.find('.register-year').val();
@@ -672,7 +679,7 @@ function getproductAvailabilityData(country, productId){
           if(response.success){
             location.reload(true);
           }else{
-			//console.log('not found');
+      //console.log('not found');
           }
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -682,28 +689,62 @@ function getproductAvailabilityData(country, productId){
   }
   
   $('.account-bottle__edit #bottle-registration-days-per-week').on('change', function(){
-  	var $this = $(this);
+    var $this = $(this);
     var $lab = $(this).next('.registration-modal__input-warning').find('.h-level');
     if($this.val() > 6){
+      $this.removeClass('low');
+      $this.removeClass('poor');
       $lab.text('Super Hydration!');
       $lab.parents('#h-level-wrap').removeClass();
       $lab.parents('#h-level-wrap').addClass('good');
     }else if(($this.val() > 4) && ($this.val() <= 6)){
+      $this.removeClass('poor');
+      $this.addClass('low');      
       $lab.text('Low Hydration');
       $lab.parents('#h-level-wrap').removeClass();
       $lab.parents('#h-level-wrap').addClass('low');    
     }else{
+      $this.removeClass('low');
+      $this.addClass('poor');      
       $lab.text('Poor Hydration');
       $lab.parents('#h-level-wrap').removeClass();
       $lab.parents('#h-level-wrap').addClass('poor');      
     }
   });
   
+  $('#bottle-registration-refills, #bottle-registration-refills-edit').on('change', function(){
+    var $this = $(this);
+    if($this.val() >= 3){
+      $this.removeClass('low');
+      $this.removeClass('poor');    
+    }else if($this.val() == 2){
+      $this.removeClass('poor');
+      $this.addClass('low');     
+    }else{
+      $this.removeClass('low');
+      $this.addClass('poor');    
+    }
+  });
+  
+  $('#bottle-registration-exercise').on('change', function(){
+    var $this = $(this);
+    if($this.val() >= 5){
+      $this.removeClass('low');
+      $this.removeClass('poor');    
+    }else if($this.val() > 2 && $this.val() < 5){
+      $this.removeClass('poor');
+      $this.addClass('low');     
+    }else{
+      $this.removeClass('low');
+      $this.addClass('poor');    
+    }  
+  });
+  
  // update deffuser now
   $('.btn-update-now').click(function(){
     var $this = $(this);
     if($this.hasClass('update-dif')){
-    	// process updatae
+      // process updatae
       $this.text('Updating...');
     }else{
       $this.addClass('update-dif');
@@ -723,7 +764,7 @@ function getproductAvailabilityData(country, productId){
   
   // show thank you
   function showThankYou(obj){
-  	console.log(obj);
+    console.log(obj);
     $('.account-bottle.popup .account-bottle__body').fadeOut('fast');
     $('.account-bottle.popup .thank-you').delay(300).fadeIn('slow');
   }
@@ -734,12 +775,12 @@ function getproductAvailabilityData(country, productId){
   });
   // no thanks
   $('.reload-exit').click(function(){
-  	location.reload(true);
+    location.reload(true);
   });
   
   // replace diffuder data
   function ReplaceDiffuser(Data){
-  	console.log(Data);
+    console.log(Data);
       var cUrl = '/a/dyl/'+CustomerShopifyId+'/replace-dif';
       var data = Data;
       $.ajax({
@@ -754,7 +795,7 @@ function getproductAvailabilityData(country, productId){
           }else{
             BottleDetails(response);
             showThankYou(response);
-			
+      
           }
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -766,7 +807,7 @@ function getproductAvailabilityData(country, productId){
   
   // Profile edit button
   $('button.account-profile__edit.profile-edit').click(function(){
-  	$('.customer-edit-profile').fadeIn();
+    $('.customer-edit-profile').fadeIn();
   });
   
   //edit-profile--phone
@@ -794,11 +835,11 @@ function getproductAvailabilityData(country, productId){
   // change gender
   $('.account-edit__input-wrap input[name="gender"]').on('change', function(){
     //console.log($(this).val());
-  	$('#customer-gender').val($(this).val());
+    $('#customer-gender').val($(this).val());
   });
   // profile next
   $('.profile-edti-btn-next').click(function(){
-  	var $this = $(this);
+    var $this = $(this);
     var $parent = $this.parents('.step');
     $('.account-form-message').text('');
     // check all requird fields
@@ -837,29 +878,29 @@ function getproductAvailabilityData(country, productId){
         $('.profile-pg').removeClass('pg50');
         $('.profile-pg .pg2').removeClass('active');     
       }    
-  	$('.account-form-message').text('');
+    $('.account-form-message').text('');
       $this.parents('.step').fadeOut('fast');
       $this.parents('.step').prev('.step').delay(500).fadeIn('slow');    
   });
   
   // profile cancle
   $('.profile-edti-btn-cancle').click(function(){
-  	$(this).parents('.popup').fadeOut();
+    $(this).parents('.popup').fadeOut();
   });
   
   // Profile done
   $('.step_interest .profile-edti-btn-done').click(function(){
-  	var $this = $(this);
+    var $this = $(this);
     $('.account-form-message').text('');
     if($this.hasClass('btn-disable')){
     }else{
       $this.addClass('btn-disable');
-    	// check all intetests
+      // check all intetests
       var interests = [];
       var processSubmit = false;
       $('.step_interest input[name="interests"]').each(function(){
         if($(this).is(':checked')){
-        	interests.push($(this).val());
+          interests.push($(this).val());
         }
       });
       
@@ -870,8 +911,8 @@ function getproductAvailabilityData(country, productId){
         var cPhone = $wrap.find('#customer_phone').val(); 
         var cDob = $wrap.find('select[name="year"]').val()+'-'+$wrap.find('select[name="month"]').val()+'-'+$wrap.find('select[name="day"]').val();
         var cGender = $wrap.find('#customer-gender').val();
-        var cWeight = $wrap.find('#body-weight').val();
-        var cHeight = $wrap.find('#body-height-feet').val() + '-' + $wrap.find('#body-height-inch').val();
+        var cWeight = $wrap.find('#body-weight-lab').val();
+        var cHeight = $wrap.find('#body-height-feet').val();
         var cExercise = $wrap.find('input[name="exercise"]').val();
         var cInterests = interests.toString();
         var cData = {
@@ -887,7 +928,7 @@ function getproductAvailabilityData(country, productId){
         UpdateCustomerProfile(cData);
         
       }else{
-      	$('.account-form-message').text('Please Select 3+ Interests');
+        $('.account-form-message').text('Please Select 3+ Interests');
         $this.removeClass('btn-disable');
       }
     }
@@ -921,13 +962,13 @@ function getproductAvailabilityData(country, productId){
         if(response.success){
           location.reload(true);
         }else{
-        	$('.account-form-message').text('Something Wrong Please refresh and try again');
+          $('.account-form-message').text('Something Wrong Please refresh and try again');
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.log(textStatus, errorThrown);
       }
-    });  	
+    });   
   }
   
   // display profile inforamtions
@@ -952,18 +993,26 @@ function getproductAvailabilityData(country, productId){
       if(data.gender == 'Male'){
         $wrap.find('#gender-male').click();
       }else{
-      	$wrap.find('#gender-female').click();
+        $wrap.find('#gender-female').click();
       }
     }
+    if(!data.weight){
+      
+    }else{
+      var cWeight = data.weight.split('-');
+      $wrap.find('#body-weight-lab').val(data.weight);
+      $wrap.find('.bod-weight span').html('Weight: '+cWeight[0] +' '+cWeight[1]);
+      $wrap.find('.bod-weight').attr('data-val', data.weight);
+      $('.account-profile__info.weight span').html(cWeight[0] +' '+cWeight[1]);    
+    } 
     
-    $wrap.find('#body-weight').val(data.weight);
-    $('.account-profile__info.weight span').html(data.weight + ' lbs');
     if(!data.height){
       $('.account-profile__info.height span').text('');
     }else{
       var cHeight = data.height.split('-'); 
-      $wrap.find('#body-height-feet').val(cHeight[0]);
-      $wrap.find('#body-height-inch').val(cHeight[1]);
+      $wrap.find('#body-height-feet').val(data.height);
+      $wrap.find('.bod-height span').html('Height: '+cHeight[0] +'\''+cHeight[1]+'"');
+      $wrap.find('.bod-height').attr('data-val', data.height);
       $('.account-profile__info.height span').html(cHeight[0]+"'"+cHeight[1]+'"');
     }    
     $wrap.find('input[name="exercise"]').val(data.exercise_per_week);
@@ -973,24 +1022,24 @@ function getproductAvailabilityData(country, productId){
     }else{
       var cInterests = data.interests.split(',');
       for (i = 0; i < cInterests.length; ++i) {
-		$('.step_interest input[name="interests"][value="'+cInterests[i]+'"]').click();
+    $('.step_interest input[name="interests"][value="'+cInterests[i]+'"]').click();
       }
     }
   }
   
 /*========================== Reset Password ========================= */
   $('.account-profile__update-password').click(function(){
-  	$('.reset-password-pop').fadeIn();
+    $('.reset-password-pop').fadeIn();
     $('.account-edit__inner #ResetPassword').val('');
     $('.account-edit__inner #PasswordConfirmation').val('');    
   });
   
   //
   $('#reset-pass-btn').click(function(){
-  	var $this = $(this);
+    var $this = $(this);
     var $Form = $this.parents('form');
     if(($Form.find('#ResetPassword').val() != '') && ($Form.find('#ResetPassword').val() == $Form.find('#PasswordConfirmation').val())){
-    	// process 
+      // process 
       var urlToRequest = '/a/dyl/'+CustomerShopifyId+'/update-pass';
       var Data = $Form.serialize();
       $.ajax({
@@ -1016,7 +1065,7 @@ function getproductAvailabilityData(country, productId){
   
 // Customer contact info edit
   $('.account-profile__edit.edit-contact').click(function(){
-  	$('.account-edit.profile-contact-pop').fadeIn();
+    $('.account-edit.profile-contact-pop').fadeIn();
   });
   
   //edit-profile--phone
@@ -1052,12 +1101,12 @@ function getproductAvailabilityData(country, productId){
     $Form.find('.required').each(function(){
       if($(this).val() == ''){
         submit = false;
-      	return false;
+        return false;
       }
     });
     if(submit){
       var urlToRequest = '/a/dyl/'+CustomerShopifyId+'/update-contact';
-	  var Data = $Form.serialize();
+    var Data = $Form.serialize();
       $.ajax({
         url: urlToRequest,
         type: 'GET',
@@ -1087,14 +1136,14 @@ function getproductAvailabilityData(country, productId){
   
   // address field set
   $('.address-field').each(function(){
-  	var $this = $(this);
+    var $this = $(this);
     if($this.attr('data-default') !=''){
     $this.val($this.attr('data-default')).change();
       //console.log('Country: '+ $this.attr('data-default'));
     }
   });
   
-  $('.address-field').on('change', function(){  		
+  $('.address-field').on('change', function(){      
        var $from= $(this).parents('form');       
        var provinces = JSON.parse($(this).find('option:selected').attr('data-provinces'));
        //console.log(provinces.length);
@@ -1105,7 +1154,7 @@ function getproductAvailabilityData(country, productId){
          var $provinceField = $from.find('.province-field');
          $provinceField.empty();
          jQuery.each(provinces, function(i, v){
-         	$provinceField.append('<option value="'+v[0]+'">'+v[1]+'</option');
+          $provinceField.append('<option value="'+v[0]+'">'+v[1]+'</option');
          });
          $from.find('.province-field').removeClass('vs-hidden');
        }
@@ -1126,9 +1175,9 @@ function getproductAvailabilityData(country, productId){
     var btnText = $this.text();
     $this.text('Updating...');
     if($this.hasClass('btn-disable')){
-    	
+      
     }else{
-    	$this.addClass('btn-disable');
+      $this.addClass('btn-disable');
         var submit = true;
       $this.parents('form').find('.required').each(function(){
         if($(this).val() == ''){
@@ -1137,7 +1186,7 @@ function getproductAvailabilityData(country, productId){
             $this.removeClass('btn-disable');
             $this.text(btnText);
             submit = false;
-        	return false;
+          return false;
         }
       });
       if(submit){
@@ -1166,7 +1215,7 @@ function getproductAvailabilityData(country, productId){
   
   // edit address 
   $('.account-profile__edit.edit-address').click(function(){
-	var $this = $(this);
+  var $this = $(this);
     var $formWrap= 'edit_address_'+$this.attr('data-id');
     $('.customer_address.edit_address').fadeOut();
     $('.address-edit-pop').find('#'+$formWrap).fadeIn();
@@ -1180,9 +1229,9 @@ function getproductAvailabilityData(country, productId){
     var btnText = $this.text();
     $this.text('Adding...');
     if($this.hasClass('btn-disable')){
-    	
+      
     }else{
-    	$this.addClass('btn-disable');
+      $this.addClass('btn-disable');
         var submit = true;
       $this.parents('form').find('.required').each(function(){
         if($(this).val() == ''){
@@ -1191,7 +1240,7 @@ function getproductAvailabilityData(country, productId){
             $this.removeClass('btn-disable');
             $this.text(btnText);
             submit = false;
-        	return false;
+          return false;
         }
       });
       if(submit){
@@ -1235,7 +1284,7 @@ function getproductAvailabilityData(country, productId){
         dataType: 'json',
         success: function (response) {
             console.log('sub-data');
-			console.log(response);
+      console.log(response);
         },
         error: function(jqXHR, textStatus, errorThrown) {
           console.log(textStatus, errorThrown);
@@ -1251,7 +1300,7 @@ function getproductAvailabilityData(country, productId){
         dataType: 'json',
         success: function (response) {
             console.log('Update-data');
-			console.log(response);
+      console.log(response);
         },
         error: function(jqXHR, textStatus, errorThrown) {
           console.log(textStatus, errorThrown);
@@ -1261,26 +1310,95 @@ function getproductAvailabilityData(country, productId){
   
   var Data = { 'subscription_id': '89009279', 'type': 'order_interval_frequency', 'val': '3' };
   //ReUpdateSubs(Data);
+  
+ var mySwiper = undefined;
 
 // profile height weight
   $('.account-edit__modal-option-btn').click(function(){
-  	$('.account-edit-option').fadeIn().delay( 500 );
-    inItSlider();
+    var $this = $(this);
+    $('.account-edit-option').fadeIn().delay( 500 );
+    if($this.hasClass('bod-weight')){
+      $('.account-edit-option #body-weight').fadeIn();
+      $('.account-edit-option .lab-weight').fadeIn();
+      var presentVal = $this.attr('data-val');
+      if(presentVal != ''){
+        var pV = presentVal.split('-');
+        var StartSlide = parseInt(pV[0]) - 20;
+        inItSlider('.account-edit-option #body-weight', 5, StartSlide);
+      }else{
+        inItSlider('.account-edit-option #body-weight', 5, 40);
+      }
+      
+    }else{
+      $('.account-edit-option #body-height').fadeIn();
+      $('.account-edit-option .lab-height').fadeIn();
+      var presentVal = $this.attr('data-val');
+      if(presentVal != ''){
+        var pS = presentVal.split('-');
+        //console.log(pS[0]);
+        var StSl= ((parseInt(pS[0]) * 12) + parseInt(pS[1])) - 36;
+        console.log(StSl);
+        inItSlider('.account-edit-option #body-height', 5, StSl);
+      }else{
+        inItSlider('.account-edit-option #body-height', 5, 44);
+      }
+          
+    }
+    
+    //inItSlider('.swiper-container', 5, 40);
   });
 
-  function inItSlider(){
+  function inItSlider(Class, PerView, StartSlide){
   // selector
-    var sp = new Swiper('.swiper-container', {
-      slidesPerView: 5,
+    mySwiper = new Swiper(Class, {
+      slidesPerView: PerView,
       direction: 'vertical',
       centeredSlides: true,
       spaceBetween: 2,
     });  
-    sp.slideTo(40, 0);  
+    mySwiper.slideTo(StartSlide, 0);  
   }
   
   $('.account-edit-option__cancel').click(function(){
+     mySwiper.destroy();
+     mySwiper = undefined;
     $('.account-edit-option').fadeOut();
-  }); 
+    $('.account-edit-option .swiper-container').fadeOut();
+    $('.account-edit-option .account-edit-option__label').fadeOut();
+  });
+  
+  // done click
+  $('.account-edit-option__body .account-edit-option__btn').click(function(){
+    if($('#body-weight').hasClass('swiper-container-initialized')){
+      //
+      var wVal = $('.swiper-slide-active').attr('data-val');
+      var wLab = $('.lab-weight button.active').text();
+      var wV = wVal+'-'+wLab;
+      //console.log(wVal);
+      $('.bod-weight span').text('Weight: '+wVal+wLab);
+      $('.bod-weight').attr('data-val', wV);
+      $('#body-weight-lab').val(wV);
+      
+    }else{
+      var hV = $('.swiper-slide-active').attr('data-val');
+      var hVal = hV.split('-');
+      //console.log(hV);
+      $('.bod-height span').text('Height: '+hVal[0]+'\''+hVal[1]+'"');
+      $('.bod-height').attr('data-val', hV);
+      $('#body-height-feet').val(hV);           
+    }
+     mySwiper.destroy();
+     mySwiper = undefined;
+    $('.account-edit-option').fadeOut();
+    $('.account-edit-option .swiper-container').fadeOut();
+    $('.account-edit-option .account-edit-option__label').fadeOut();    
+  });
+  
+  $('.lab-weight button').click(function(){
+    $('.lab-weight button').removeClass('active');
+    $(this).addClass('active');    
+  });
+  
+  
 })
-</script> 
+</script>

@@ -411,18 +411,30 @@ icon-curved-arrow-down:
   <div class="account-edit-option__inner">
     <div class="account-edit-option__body">
       <div class="account-edit-option_wrap">
-    <div id="body-weight" class="swiper-container">
+    <div id="body-weight" class="swiper-container" style="display:none">
           <div class="swiper-wrapper">
           {% for i in (20..300) %}
-            <div class="swiper-slide">{{i}}</div>
+            <div class="swiper-slide" data-val="{{i}}">{{i}}</div>
           {% endfor %}  
           </div>
         </div>
-        <span class="account-edit-option__label lab-weight-height">
+        <div class="swiper-container" id="body-height" style="display:none">
+          <div class="swiper-wrapper">
+          {% for i in (3..7) %}
+            {% for j in (0..11) %}
+              <div class="swiper-slide" data-val="{{i}}-{{j}}">{{i}}'{{j}}"</div>
+            {% endfor %}          
+          {% endfor %}
+          </div>
+        </div>  
+        <span class="account-edit-option__label lab-weight" style="display:none">
           <button class="active" type="button">Kg</button>&nbsp;
           <span>|</span>&nbsp;
           <button type="button">Lb</button>
         </span>
+        <span class="account-edit-option__label lab-height" style="display:none">
+          <button class="active" type="button">Feet</button>
+        </span>        
       </div>
       <button type="button" class="account-edit-option__btn">Done</button>
       <div></div>
@@ -629,7 +641,7 @@ icon-curved-arrow-down:
         <span>4</span>
         <span>5</span>
       </div>
-      <input name="refills" id="bottle-registration-refills" class="registration-modal__refills-range refil-per-day" type="range" min="1" max="5" step="1" value="" />
+      <input name="refills" id="bottle-registration-refills-edit" class="registration-modal__refills-range refil-per-day" type="range" min="1" max="5" step="1" value="" />
       <label class="registration-modal__page-txt" for="bottle-registration-days-per-week">Days per week</label>
       <div class="registration-modal__range-scale">
         <span>1</span>
