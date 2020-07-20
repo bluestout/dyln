@@ -14,3 +14,446 @@
 @import "./diffusers";
 @import "./pagination";
 @import "./challenge";
+/* 
+.subscriptions {
+  margin: 0 0 30px;
+}
+
+.subscriptions__title {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 1px;
+  color: var(--color-title);
+  margin: 10px 0;
+}
+
+.subscription {
+  border-radius: 3px;
+}
+
+.subscription fieldset {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.subscription__blocks {
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.subscription__block {
+  padding: 15px;
+}
+
+.subscription__block::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.subscription__block:not(:last-of-type) {
+  border-bottom: 1px solid #d6d6d6;
+}
+
+.subscription__block > div:first-of-type {
+  width: calc(100% - 40px);
+  float: left;
+}
+
+.subscription__block > div:nth-of-type(2) {
+  width: 30px;
+  float: right;
+  font-size: 0;
+  line-height: 0;
+}
+
+.subscription__block h4 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 18px;
+  letter-spacing: 0.6px;
+  color: #848a8d;
+  margin: 0 0 8px;
+  text-transform: uppercase;
+}
+
+.subscription__block p {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.8px;
+  color: var(--color-body-text);
+  margin: 0 0 1px;
+  text-transform: uppercase;
+}
+
+.subscription__block p.plain {
+  text-transform: none;
+}
+
+.subscription__block a:not(.subscription__edit) {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.8px;
+  color: var(--color-main);
+  text-decoration: underline;
+  transition: background 250ms ease-in-out;
+}
+
+.subscription__block a:hover,
+.subscription__block a:focus {
+  color: var(--color-main);
+}
+
+.subscription__block img {
+  float: left;
+}
+
+.subscription__arrival {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 18px;
+  letter-spacing: 0.5px;
+  color: #d83e0e;
+}
+
+.subscription__links {
+  text-align: center;
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.subscription__links a {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.7px;
+  color: var(--color-main);
+  text-decoration: underline;
+  margin: 0 5px;
+}
+
+.subscription__edit {
+  width: 25px;
+  height: 18px;
+  margin: 18px 0;
+  text-align: right;
+  display: block;
+}
+
+.subscription__edit::after {
+  content: "...";
+  position: relative;
+  top: -5px;
+  font-family: var(--font-body);
+  font-size: 30px;
+  line-height: 18px;
+  letter-spacing: -1px;
+  font-weight: 700;
+  color: var(--color-main);
+  text-decoration: none;
+}
+
+.subscriptions__note {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.8px;
+  color: var(--color-body-text);
+  margin: 10px 0;
+}
+
+.subscription__content {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 18px;
+  letter-spacing: 0.7px;
+  color: var(--color-body-text);
+  margin: 3px 0 0;
+}
+
+.account-header__description a {
+  text-decoration: underline;
+}
+
+.data-block {
+  padding: 0 0 20px;
+  margin: 0 0 20px;
+}
+
+.data-block:not(:last-of-type) {
+  border-bottom: 1px solid #bdc5c9;
+}
+
+.data-block::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.data-block > div:nth-of-type(1) {
+  float: left;
+  width: 25px;
+  max-width: 25px;
+}
+
+.data-block > div:nth-of-type(2) {
+  float: right;
+  width: calc(100% - 30px);
+}
+
+.data-block h3 {
+  font-size: 0;
+  line-height: 0;
+  margin: 0 0 8px;
+}
+
+.data-block h3::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.data-block h3 span {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  line-height: 25px;
+  letter-spacing: 1px;
+  color: var(--color-title);
+  float: left;
+  width: calc(100% - 25px);
+  display: block;
+}
+
+.data-block h3 a {
+  float: right;
+  width: 20px;
+  text-align: right;
+  display: block;
+}
+
+.data-block p {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.8px;
+  color: var(--color-body-text);
+  margin: 0 0 2px;
+}
+
+.big-links {
+  text-align: center;
+}
+
+.big-links a:not(.plain),
+.big-links button:not(.plain) {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: auto;
+  height: auto;
+  border: 0;
+  text-align: center;
+  white-space: normal;
+  text-decoration: none;
+  user-select: none;
+  border-radius: 24px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
+  line-height: 20px;
+  color: #ffffff;
+  letter-spacing: 0.83px;
+  transition: background 250ms ease-in-out;
+  background-color: var(--color-main-2);
+  padding: 8px 15px;
+  outline: none;
+  margin: 0 5px;
+}
+
+.big-links a.plain,
+.big-links button.plain {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: auto;
+  height: auto;
+  border: 0;
+  text-align: center;
+  white-space: normal;
+  user-select: none;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-main);
+  letter-spacing: 0.83px;
+  padding: 8px 15px;
+  text-decoration: underline;
+  transition: color 250ms ease-in-out;
+  outline: none;
+  margin: 0 5px;
+}
+
+.big-links a:not(.plain):hover,
+.big-links a:not(.plain):focus,
+.big-links button:not(.plain):hover,
+.big-links button:not(.plain):focus {
+  background-color: var(--color-accent-2);
+}
+
+.big-links a.plain:hover,
+.big-links a.plain:focus,
+.big-links button.plain:hover,
+.big-links button.plain:focus {
+  color: var(--color-accent);
+}
+
+.subscription-form {
+  margin: 0 0 20px;
+}
+
+.subscription-form input {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--color-body-text);
+  letter-spacing: 0.83px;
+  width: 100%;
+  height: 32px;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 0;
+  padding: 4px 10px;
+}
+
+.subscription-form input::placeholder {
+  color: #848a8d;
+}
+
+.subscription-form fieldset {
+  padding: 15px;
+  margin: 0 0 20px;
+  border: none;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.subscription-form select {
+}
+
+.subscription-form label {
+}
+
+.input-wrap {
+  font-size: 0;
+  line-height: 0;
+  margin: 0 0 10px;
+  padding: 0;
+  border-bottom: 1.5px solid #bdc5c9;
+}
+
+.first-half {
+  width: calc(50% - 7px);
+  margin: 0 5px 10px 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.second-half {
+  width: calc(50% - 7px);
+  margin: 0 0 10px 5px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.custom-select-hidden {
+  display: none;
+  visibility: hidden;
+  padding-right: 10px;
+}
+
+.subscription-form .custom-select {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  color: var(--color-body-text);
+  width: 100%;
+  height: 30px;
+  vertical-align: middle;
+  line-height: 30px;
+  text-align: center;
+}
+
+.subscription-form .custom-select-styled {
+  width: 100%;
+  height: 30.5px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--color-body-text);
+  letter-spacing: 0.83px;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 0;
+  padding: 4px 10px;
+}
+
+.subscription-form .custom-select-styled::after {
+  content: "";
+  position: absolute;
+  top: auto;
+  width: auto;
+  height: auto;
+  display: block;
+  cursor: pointer;
+}
+
+.subscription-form .custom-select-styled::before {
+  content: none;
+}
+
+.subscription-form .custom-select-options {
+  top: 0;
+  background-color: #ffffff;
+  text-align: center;
+  width: 100%;
+  padding: 3px;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+  height: 25vh;
+  min-height: 200px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.subscription-form .custom-select-option {
+  padding: 2px 5px;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--color-body-text);
+  letter-spacing: 0.83px;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 0;
+}
+
+.subscription-form .custom-select-option:hover,
+.subscription-form .custom-select-option:focus {
+  background-color: #f7f7f7;
+}
+*/
