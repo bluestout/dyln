@@ -60,7 +60,7 @@
     crossorigin="anonymous"></script>
 </head>
 
-<body id="{{ page_title | handle }}" class="template-{{ template.name | handle }} {%- if template contains 'blog' -%} {{ template | handleize }}{%- endif -%}" onload="pageLoading()">
+<body id="{{ page_title | handle }}" class="template-{{ template.name | handle }} {%- if template contains 'blog' -%} {{ template | handleize }}{%- endif -%}">
 
   {% render 'page-transition' %}
 
@@ -106,6 +106,9 @@
   <script defer nomodule src="https://widgets.quadpay.com/es5/quadpay-widget-2.2.6.js" type="application/javascript"></script>
   <!-- QuadPay: Modern Browsers -->
   <script async src="https://widgets.quadpay.com/quadpay-widget-2.2.6.js" type="application/javascript"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.3/build/css/intlTelInput.css">
+  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.3/build/js/intlTelInput.js"></script>
 
   <script type="text/javascript" src="https://www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
   <script type="text/javascript">

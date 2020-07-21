@@ -1,30 +1,31 @@
 window.onload = function() {
   //make container changeable through the code in order to make the whole code work for product-item, not just for the pdp page
-  var container = `[data-section-type="product"]`;
+
   var selectors = {
     unavailableVariants: "#unavailable-variant",
     unavailableNotices: "#unavailable-notify",
+    availabilityData: "#all-products-availability",
     country: "#country-hidden",
     geoInfo: "#geo-location-info",
-    submitButton: `${container} [data-submit-button]`,
-    submitButtonText: `${container} [data-submit-button-text]`,
-    soldOutForm: `${container} [data-sold-out-mail]`,
-    idSelect: `${container} select[name="id"]`,
-    currentOption: `${container} select[name="id"] option:selected`,
-    optionByVariant: (variant) =>
+    submitButton: (container) => `${container} [data-geo-submit]`,
+    submitButtonText: (container) => `${container} [data-geo-submit-text]`,
+    soldOutForm: (container) => `${container} [data-sold-out-mail]`,
+    idSelect: (container) => `${container} select[name="id"]`,
+    currentOption: (container) =>
+      `${container} select[name="id"] option:selected`,
+    optionByVariant: (container, variant) =>
       `${container} select[name="id"] option[value="${variant}"]`,
-    pdpInputByVariantId: (id) => `[data-geo-specific-variant="${id}"]`,
-    shippingNote: `${container} [data-pdp-shipping-note]`,
-    productId: `${container} [data-current-product-id]`,
+    pdpInputByVariantId: (container, id) =>
+      `${container} [data-geo-specific-variant="${id}"]`,
+    shippingNote: (container) => `${container} [data-geo-shipping-note]`,
+    productId: (container) => `${container} [data-current-product-id]`,
     atcAdd: "[data-atc-add]",
     atcCurrent: "[data-atc-current]",
-    notifyMe: {
-      notice: `${container} [data-sold-out-notice]`,
-      submit: `${container} [data-submit-sold-out-btn]`,
-      form: `${container} [data-sold-out-form]`,
-      input: `${container} [data-sold-out-input]`,
-      message: `${container} [data-sold-out-message]`,
-    },
+    notifyNotice: (container) => `${container} [data-sold-out-notice]`,
+    notifySubmit: `[data-submit-sold-out-btn]`,
+    notifyForm: (container) => `${container} [data-sold-out-form]`,
+    notifyInput: (container) => `${container} [data-sold-out-input]`,
+    notifyMessage: (container) => `${container} [data-sold-out-message]`,
   };
 
   var attributes = {
@@ -38,17 +39,39 @@ window.onload = function() {
   }
 
   // change the add to cart depending on product availability
-  function renderSubmitButton() {
-    var $submitButton = $(selectors.submitButton);
-    var $submitButtonText = $(selectors.submitButtonText);
-    var uVariants = $(selectors.unavailableVariants).val();
-    var uNotices = $(selectors.unavailableNotices).val();
-    var currentVariant = $(selectors.idSelect).val();
-    var shippingMessage = $(selectors.currentOption).attr(attributes.shipping);
+  function renderSubmitButton(id) {
+    var container = "";
+    var pId = 0;
+    var isPdp = id && id.length > 0 ? false : true;
+
+    if (id && id > 0) {
+      container = `[data-single-product="${id}"]`;
+      pId = id;
+    } else {
+      container = `[data-section-type="product"]`;
+      pId = $(`[data-section-type="product"]`).data("pdp-product-id");
+    }
+
+    if (!pId || !container) {
+      return null;
+    }
+    var $submitButton = $(selectors.submitButton(container)).first();
+    var $submitButtonText = $(selectors.submitButtonText(container)).first();
+    var availabilityData = JSON.parse($(selectors.availabilityData).val());
+    var uVariants = availabilityData[pId].out_of_stock;
+    var currentVariant = parseInt(
+      $(selectors.idSelect(container))
+        .first()
+        .val(),
+      10
+    );
+    var shippingMessage = $(selectors.currentOption(container))
+      .first()
+      .attr(attributes.shipping);
     var $atcBarButton = $(selectors.atcAdd);
     var $atcCurrent = $(selectors.atcCurrent);
-    var $soldOutForm = $(selectors.soldOutForm);
-    var $shippingNote = $(selectors.shippingNote);
+    var $soldOutForm = $(selectors.soldOutForm(container)).first();
+    var $shippingNote = $(selectors.shippingNote(container)).first();
 
     if (typeof shippingMessage !== "undefined") {
       $shippingNote.text(shippingMessage);
@@ -58,65 +81,94 @@ window.onload = function() {
     }
 
     if (uVariants !== "") {
-      var uVariantsSplit = uVariants.split(",");
-      if ($.inArray(currentVariant, uVariantsSplit) !== -1) {
+      var currentVariantIsUnavailable = isCurrentVariantUnavailable(
+        uVariants,
+        currentVariant
+      );
+      if (currentVariantIsUnavailable) {
         //if current variant is unavailable
         $submitButton.attr("disabled", true);
-        $atcBarButton.attr("disabled", true);
-        $atcBarButton.text(theme.strings.soldOut);
-        $atcBarButton.addClass("unavailable");
-        $atcCurrent.addClass("unavailable");
         $submitButtonText.text(theme.strings.unavailable);
+        if ($soldOutForm.css("display") == "none") {
+          $soldOutForm.fadeIn();
+        }
+        if (isPdp) {
+          $atcCurrent.addClass("unavailable");
+          $atcBarButton.attr("disabled", true);
+          $atcBarButton.text(theme.strings.soldOut);
+          $atcBarButton.addClass("unavailable");
+        }
       } else {
         //current variant is available
         $submitButton.removeAttr("disabled");
-        $atcBarButton.removeAttr("disabled");
-        $atcBarButton.text(theme.strings.add);
-        $atcBarButton.removeClass("unavailable");
-        $atcCurrent.removeClass("unavailable");
         $submitButtonText.text(theme.strings.addToCart);
-      }
-    }
-
-    if (uNotices !== "") {
-      var uNoticesSplit = uNotices.split(",");
-      if ($.inArray(currentVariant, uNoticesSplit) !== -1) {
-        $soldOutForm.fadeIn();
-      } else {
-        $soldOutForm.fadeOut();
+        if ($soldOutForm.css("display") != "none") {
+          $soldOutForm.fadeOut();
+        }
+        if (isPdp) {
+          $atcCurrent.removeClass("unavailable");
+          $atcBarButton.removeAttr("disabled");
+          $atcBarButton.text(theme.strings.add);
+          $atcBarButton.removeClass("unavailable");
+        }
       }
     }
   }
 
+  function isCurrentVariantUnavailable(variants, currentVariant) {
+    for (var i = 0; i < variants.length; i++) {
+      if (variants[i] === currentVariant) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   // get available variant
-  function setUnavailableVariants(country, productId) {
-    var cUrl = "/a/dyl/black-variants";
+  function setAllUnavailableVariants(country) {
+    if (!country) {
+      return null;
+    }
+    var cUrl = `/a/dyl/products-availability-by-country?country=${country}`;
     $.ajax({
       url: cUrl,
       type: "GET",
-      data: { country: country, product_id: productId },
       dataType: "json",
       success: function(response) {
         submitButtonLoaded();
-        $(selectors.unavailableVariants).val(response.out_of_stock);
-        $(selectors.unavailableNotices).val(response.nofify_order);
-        var $variantMessages = response.black_order;
-
-        for (let i = 0; i < response.out_of_stock.length; i++) {
-          const oosVariant = response.out_of_stock[i];
-          $(selectors.pdpInputByVariantId(oosVariant)).addClass("unavailable");
-        }
-        // set variant selector option attribute
-        if ($variantMessages.length > 0) {
-          $.each($variantMessages, function(i, variantMessage) {
-            var variantMessageSegment = variantMessage.split(":");
-            // set ship message attribute
-            var variant = variantMessageSegment[0];
-            var message = variantMessageSegment[1];
-            var $selectorOption = $(selectors.optionByVariant(variant));
-            $selectorOption.attr(attributes.shipping, message);
-          });
-        }
+        var $products = $("[data-single-product]");
+        $(selectors.availabilityData).val(JSON.stringify(response));
+        $products.each(function() {
+          try {
+            const $product = $(this);
+            const pId = $product.data("single-product");
+            const container = `[data-single-product="${pId}"]`;
+            const productData = response[pId];
+            for (let i = 0; i < productData.out_of_stock.length; i++) {
+              const oosVariant = productData.out_of_stock[i];
+              $(selectors.pdpInputByVariantId(container, oosVariant)).addClass(
+                "unavailable"
+              );
+            }
+            $.each(productData.notify, function(i, variantMessage) {
+              var variantMessageSegment = variantMessage.split(":");
+              // set ship message attribute
+              $(
+                selectors.optionByVariant(container, variantMessageSegment[0])
+              ).attr(attributes.shipping, variantMessageSegment[1]);
+            });
+            $.each(productData.back_order, function(i, variantMessage) {
+              var variantMessageSegment = variantMessage.split(":");
+              // set ship message attribute
+              $(
+                selectors.optionByVariant(container, variantMessageSegment[0])
+              ).attr(attributes.shipping, variantMessageSegment[1]);
+            });
+            renderSubmitButton(pId);
+          } catch (error) {
+            console.log(error);
+          }
+        });
         renderSubmitButton();
       },
       error: function(jqXHR, textStatus, errorThrown) {
@@ -134,12 +186,17 @@ window.onload = function() {
   }
 
   // Store Data Notify Me Subscribe
-  $(selectors.notifyMe.submit).click(function() {
+  $(selectors.notifySubmit).click(function() {
     theme.strings.sold_out_email_invalid;
     theme.strings.sold_out_email_confirm;
-    var notifyMessage = $(selectors.notifyMe.message);
+
+    var pId = $(this)
+      .closest("[data-single-product]")
+      .data("single-product");
+    var container = `[data-single-product="${pId}"]`;
+    var notifyMessage = $(selectors.notifyMessage(container));
     notifyMessage.text("");
-    var $customerEmail = $(selectors.notifyMe.input);
+    var $customerEmail = $(selectors.notifyInput(container));
     if ($customerEmail.val() == "") {
       $customerEmail.focus();
       return false;
@@ -149,8 +206,8 @@ window.onload = function() {
         // send data
         var cUrl = "/a/dyl/notify-me-data";
         var country = $(selectors.country).val();
-        var productId = $(selectors.productId).val();
-        var variantId = $(selectors.idSelect).val();
+        var productId = $(selectors.productId(container)).val();
+        var variantId = $(selectors.idSelect(container)).val();
         var geoInfo = $(selectors.geoInfo).val();
         $.ajax({
           url: cUrl,
@@ -164,8 +221,8 @@ window.onload = function() {
           },
           dataType: "json",
           success: function(response) {
-            $(selectors.notifyMe.notice).fadeOut(200);
-            $(selectors.notifyMe.form).fadeOut(200);
+            $(selectors.notifyNotice(container)).fadeOut(200);
+            $(selectors.notifyForm(container)).fadeOut(200);
             setTimeout(function() {
               notifyMessage.text(response.message);
               notifyMessage.fadeIn();
@@ -255,35 +312,38 @@ window.onload = function() {
         $("body").addClass("location-other");
       }
 
-      // product page
-      var sUrl = window.location.href;
-      var productPage = false;
-
-      // checking if we are on the product page
-      if (sUrl.indexOf("/products/") != -1) {
-        var productId = $("[data-pdp-product-id]").data("pdp-product-id");
-        productPage = true;
-      }
-
-      if (productPage) {
-        // Function country inventory according to country
-        if (location.country_code === "CA") {
-          // 4PX - CA Country region
-          $(selectors.country).val("ca");
-          setUnavailableVariants("ca", productId);
-        } else if ($.inArray(location.country_code, country4px) != -1) {
-          // 4PX - HK Country region
-          $(selectors.country).val("px");
-          setUnavailableVariants("px", productId);
-        } else {
-          // Senyx USA Country region
-          $(selectors.country).val("other");
-          setUnavailableVariants("other", productId);
-        }
+      // Function country inventory according to country
+      if (location.country_code === "CA") {
+        // 4PX - CA Country region
+        $(selectors.country).val("ca");
+        setAllUnavailableVariants("ca");
+      } else if ($.inArray(location.country_code, country4px) != -1) {
+        // 4PX - HK Country region
+        $(selectors.country).val("px");
+        setAllUnavailableVariants("px");
+      } else if ($.inArray("usa") != -1) {
+        // Senyx USA Country region
+        // other is correct for some reason
+        $(selectors.country).val("other");
+        setAllUnavailableVariants("usa");
+      } else {
+        $(selectors.country).val("other");
+        setAllUnavailableVariants("other");
       }
       document.dispatchEvent(geoLocationComplete);
     },
   });
 
+  function handleItemOptionClick(event) {
+    setTimeout(() => {
+      renderSubmitButton(
+        $(event.currentTarget)
+          .closest("[data-single-product]")
+          .data("single-product")
+      );
+    }, 100);
+  }
+
   document.addEventListener("productFormOptionChange", renderSubmitButton);
+  $(document).on("click", "[data-pi-option-value]", handleItemOptionClick);
 };
