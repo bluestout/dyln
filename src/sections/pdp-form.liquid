@@ -158,7 +158,11 @@
 
 {% comment %} <!-- Insert QuadPay Widget --> {% endcomment %}
 <div>
-  <quadpay-widget amount={{ current_variant.price }} ></quadpay-widget>
+  <quadpay-widget amount={{ current_variant.price | divided_by: 100.00 }} ></quadpay-widget>
+  <div id="qd-wrap" style="margin: 0; font-size:13px; font-weight: lighter; color: #00aedb;">
+    <quadpay-widget priceColor="#000" alignment="center" amount={{ current_variant.price | divided_by: 100.00 }} >
+    </quadpay-widget>
+  </div>
   <div class="product-form__sold-out-gradient" style="background-image:url({{ 'out-of-stock-gradient.png' | asset_url }})"></div>
 </div>
 
