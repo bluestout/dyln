@@ -87,6 +87,28 @@
     "diff_sub_close_text": "Close",
     "collections_all_linklist": "list-collections",
     "accessibility_menu": "",
+    "contact_s_title": "Need to talk to a human?",
+    "contact_s_help_link_1": "",
+    "contact_s_help_1_is_modal": true,
+    "contact_s_help_link_1_text": "Lets talk",
+    "contact_s_modal_1_title": "Lets talk",
+    "contact_s_modal_1_button_1": "tel:1-949-209-9401",
+    "contact_s_modal_1_button_1_text": "<strong>Support</strong> 1-949-209-9401",
+    "contact_s_modal_1_button_2": "tel:1-949-209-9401",
+    "contact_s_modal_1_button_2_text": "<strong>Sales</strong> 1-949-209-9401",
+    "contact_s_modal_1_note": "Business hours from 9:00 am to 5:00 pm PST",
+    "contact_s_help_link_2": "",
+    "contact_s_help_2_is_modal": true,
+    "contact_s_help_link_2_text": "Email us",
+    "contact_s_modal_2_title": "Email us",
+    "contact_s_modal_2_button_1": "mailto:support@dyln.co",
+    "contact_s_modal_2_button_1_text": "support@dyln.co",
+    "contact_s_modal_2_button_2": "mailto:support@dyln.co",
+    "contact_s_modal_2_button_2_text": "sales@dyln.co",
+    "contact_s_modal_2_note": "",
+    "contact_s_help_link_3": "",
+    "contact_s_help_link_3_attribute": "onclick=\"Smooch.open();\"",
+    "contact_s_help_link_3_text": "Live chat",
     "checkout_header_image": "shopify://shop_images/Blue-Banner.png",
     "checkout_logo_image": "shopify://shop_images/DYLN_White_trans.png",
     "checkout_logo_position": "left",
@@ -286,7 +308,25 @@
           "1581526771835": {
             "type": "product",
             "settings": {
+              "product": "16-oz-insulated-dyln-water-bottle"
+            }
+          },
+          "1593635998765": {
+            "type": "product",
+            "settings": {
+              "product": "21oz-insulated-dyln-water-bottle"
+            }
+          },
+          "1593635959842": {
+            "type": "product",
+            "settings": {
               "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
+            }
+          },
+          "1581526781483": {
+            "type": "product",
+            "settings": {
+              "product": "40oz-insulated-dyln-water-bottle"
             }
           },
           "1581526789016": {
@@ -306,19 +346,15 @@
               "title_mobile": "Diffusers",
               "image": "shopify://shop_images/shop_bottles2.png"
             }
-          },
-          "1595299484864": {
-            "type": "product",
-            "settings": {
-              "product": ""
-            }
           }
         },
         "block_order": [
           "1581526771835",
+          "1593635998765",
+          "1593635959842",
+          "1581526781483",
           "1581526789016",
-          "1581526803448",
-          "1595299484864"
+          "1581526803448"
         ],
         "settings": {
           "title": "Shop Bottles"
@@ -391,7 +427,7 @@
               "title": "Less fatigue and always on the go",
               "content": "For just these few days, I'm no more constipated.<br>\nTrying to gather more funds to purchase for my mum, sister and aunt.",
               "rating": 4,
-              "author": "Jack"
+              "author": ""
             }
           },
           "1585386440881": {
@@ -526,7 +562,7 @@
               "swatch_color": "#d034c0"
             }
           },
-          "1594748155707": {
+          "1595397608238": {
             "type": "color",
             "settings": {
               "title": "Pearl",
@@ -548,7 +584,7 @@
           "1585392716036",
           "1585392728341",
           "1585392739263",
-          "1594748155707"
+          "1595397608238"
         ],
         "settings": {}
       },
@@ -589,18 +625,65 @@
             "type": "Product",
             "settings": {
               "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
-              "product_1": "dyln-living-alkaline-stainless-steel-water-bottle",
+              "product_1": "16-oz-insulated-dyln-water-bottle",
               "product_title_1": "16 oz",
-              "product_2": "",
-              "product_title_2": "",
-              "product_3": "",
-              "product_title_3": "",
+              "product_2": "21oz-insulated-dyln-water-bottle",
+              "product_title_2": "21 oz",
+              "product_3": "40oz-insulated-dyln-water-bottle",
+              "product_title_3": "40 oz",
+              "product_4": "",
+              "product_title_4": ""
+            }
+          },
+          "1595361494771": {
+            "type": "Product",
+            "settings": {
+              "product": "16-oz-insulated-dyln-water-bottle",
+              "product_1": "21oz-insulated-dyln-water-bottle",
+              "product_title_1": "21 oz",
+              "product_2": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
+              "product_title_2": "32 oz",
+              "product_3": "40oz-insulated-dyln-water-bottle",
+              "product_title_3": "40 oz",
+              "product_4": "",
+              "product_title_4": ""
+            }
+          },
+          "1595361524612": {
+            "type": "Product",
+            "settings": {
+              "product": "21oz-insulated-dyln-water-bottle",
+              "product_1": "16-oz-insulated-dyln-water-bottle",
+              "product_title_1": "16 oz",
+              "product_2": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
+              "product_title_2": "32 oz",
+              "product_3": "40oz-insulated-dyln-water-bottle",
+              "product_title_3": "40 oz",
+              "product_4": "",
+              "product_title_4": ""
+            }
+          },
+          "1595361573518": {
+            "type": "Product",
+            "settings": {
+              "product": "40oz-insulated-dyln-water-bottle",
+              "product_1": "16-oz-insulated-dyln-water-bottle",
+              "product_title_1": "16 oz",
+              "product_2": "21oz-insulated-dyln-water-bottle",
+              "product_title_2": "21 oz",
+              "product_3": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
+              "product_title_3": "32 oz",
               "product_4": "",
               "product_title_4": ""
             }
           }
         },
-        "block_order": ["1587021726467"],
+        "block_order": [
+          "1587021726467",
+          "1595361494771",
+          "1595361524612",
+          "1595361573518"
+        ],
         "settings": {
           "title": "Choose Size"
         }
@@ -837,7 +920,7 @@
               "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
               "product_1": "extra-vitabead-diffusers",
               "product_2": "diffuser-removal-tool",
-              "product_3": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
+              "product_3": ""
             }
           }
         },
@@ -1056,10 +1139,16 @@
               "faq_article": "faqs/does-the-dyln-bottle-filter-water"
             }
           },
-          "1589303734817": {
+          "1589303711149": {
             "type": "faq",
             "settings": {
-              "faq_article": "faqs/how-long-does-each-vitabead-diffuser-last"
+              "faq_article": "faqs/when-should-i-be-drinking-alkaline-water"
+            }
+          },
+          "1589303717652": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/how-long-can-i-keep-water-in-my-dyln-bottle"
             }
           },
           "1589303723052": {
@@ -1068,157 +1157,109 @@
               "faq_article": "faqs/what-are-the-vitabeads"
             }
           },
-          "1595261026114": {
+          "1589303728898": {
             "type": "faq",
             "settings": {
-              "faq_article": "faqs/how-long-it-takes-to-alkalize-the-water"
+              "faq_article": ""
             }
           },
-          "1595261052701": {
+          "1589303734817": {
             "type": "faq",
             "settings": {
-              "faq_article": "faqs/how-long-can-i-keep-water-in-my-dyln-bottle"
+              "faq_article": "faqs/how-long-does-each-vitabead-diffuser-last"
             }
           },
-          "1595261079243": {
+          "1589303740647": {
             "type": "faq",
             "settings": {
               "faq_article": "faqs/how-long-does-the-insulated-dyln-bottle-keep-the-water-hot-or-cold"
             }
           },
-          "1589303711149": {
-            "type": "faq",
-            "settings": {
-              "faq_article": "faqs/when-should-i-be-drinking-alkaline-water"
-            }
-          },
-          "1595261119346": {
-            "type": "faq",
-            "settings": {
-              "faq_article": "faqs/what-is-the-dyln-bottle-made-of"
-            }
-          },
-          "1595261135467": {
-            "type": "faq",
-            "settings": {
-              "faq_article": "faqs/how-much-water-can-the-dyln-bottle-hold"
-            }
-          },
-          "1595261148154": {
+          "1589303746263": {
             "type": "faq",
             "settings": {
               "faq_article": "faqs/what-is-included-with-each-dyln-bottle-order"
             }
           },
-          "1595261167647": {
+          "1589303753423": {
             "type": "faq",
             "settings": {
-              "faq_article": "faqs/no-fruit-in-my-dyln-bottle"
+              "faq_article": "faqs/what-is-the-dyln-bottle-made-of"
             }
           },
-          "1595261208411": {
+          "1589303760815": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/how-much-water-can-the-dyln-bottle-hold"
+            }
+          },
+          "1589303766031": {
+            "type": "faq",
+            "settings": {
+              "faq_article": ""
+            }
+          },
+          "1589824267033": {
             "type": "faq_bottle",
             "settings": {
-              "faq_article": "faqs/dyln-bottle-first-use"
+              "faq_article": "faqs/how-long-does-the-insulated-dyln-bottle-keep-the-water-hot-or-cold"
             }
           },
-          "1595261225672": {
+          "1589824281427": {
             "type": "faq_bottle",
             "settings": {
-              "faq_article": "faqs/how-do-i-register-my-dyln-bottle"
+              "faq_article": "faqs/what-are-the-vitabeads"
             }
           },
-          "1595261299374": {
-            "type": "faq_use",
+          "1589824294407": {
+            "type": "faq_diffuser",
             "settings": {
-              "faq_article": "faqs/activating-the-dyln-diffuser"
+              "faq_article": "faqs/how-long-can-i-keep-water-in-my-dyln-bottle"
             }
           },
-          "1595261336591": {
-            "type": "faq_use",
+          "1589824302989": {
+            "type": "faq_diffuser",
             "settings": {
-              "faq_article": "faqs/water-i-should-use-with-my-dyln"
+              "faq_article": "faqs/does-the-dyln-bottle-filter-water"
             }
           },
-          "1595261350257": {
+          "1589824309340": {
             "type": "faq_use",
             "settings": {
-              "faq_article": "faqs/when-to-replace-diffuser"
+              "faq_article": ""
             }
           },
-          "1595261369996": {
+          "1589824315803": {
             "type": "faq_use",
             "settings": {
-              "faq_article": "faqs/remove-the-vitabead-diffuser"
-            }
-          },
-          "1595261388457": {
-            "type": "faq_use",
-            "settings": {
-              "faq_article": "faqs/how-to-clean-the-dyln-bottle"
-            }
-          },
-          "1595261415317": {
-            "type": "faq_use",
-            "settings": {
-              "faq_article": "faqs/how-to-clean-the-original-dyln-bottle"
-            }
-          },
-          "1595261436975": {
-            "type": "faq_use",
-            "settings": {
-              "faq_article": "faqs/can-i-put-my-dyln-bottle-in-the-freezer"
-            }
-          },
-          "1595261452187": {
-            "type": "faq_use",
-            "settings": {
-              "faq_article": "faqs/how-to-store-my-extra-vitabead-diffuser"
-            }
-          },
-          "1595261471068": {
-            "type": "faq_use",
-            "settings": {
-              "faq_article": "faqs/how-to-clean-my-dyln-vitabead-diffuser"
-            }
-          },
-          "1595261495101": {
-            "type": "faq_use",
-            "settings": {
-              "faq_article": "faqs/how-to-test-the-ph-of-water"
+              "faq_article": "faqs/what-are-the-vitabeads"
             }
           }
         },
         "block_order": [
           "1589303702187",
-          "1589303734817",
-          "1589303723052",
-          "1595261026114",
-          "1595261052701",
-          "1595261079243",
           "1589303711149",
-          "1595261119346",
-          "1595261135467",
-          "1595261148154",
-          "1595261167647",
-          "1595261208411",
-          "1595261225672",
-          "1595261299374",
-          "1595261336591",
-          "1595261350257",
-          "1595261369996",
-          "1595261388457",
-          "1595261415317",
-          "1595261436975",
-          "1595261452187",
-          "1595261471068",
-          "1595261495101"
+          "1589303717652",
+          "1589303723052",
+          "1589303728898",
+          "1589303734817",
+          "1589303740647",
+          "1589303746263",
+          "1589303753423",
+          "1589303760815",
+          "1589303766031",
+          "1589824267033",
+          "1589824281427",
+          "1589824294407",
+          "1589824302989",
+          "1589824309340",
+          "1589824315803"
         ],
         "settings": {
           "title": "FAQS",
           "jump_to": "Jump to",
           "top_title": "Top Questions",
-          "bottle_title": "Getting Started",
+          "bottle_title": "Bottle Registration",
           "diffuser_title": "Diffuser Subscription",
           "use_title": "Use and Care"
         }
@@ -1386,10 +1427,16 @@
       "contact-international": {
         "type": "contact-international",
         "blocks": {
-          "1595259888919": {
+          "1589717404626": {
             "type": "faq",
             "settings": {
-              "faq_article": "faqs/international-shipping"
+              "faq_article": "faqs/what-is-the-dyln-bottle-made-of"
+            }
+          },
+          "1589717414081": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/what-is-included-with-each-dyln-bottle-order"
             }
           },
           "1589710043276": {
@@ -1418,7 +1465,8 @@
           }
         },
         "block_order": [
-          "1595259888919",
+          "1589717404626",
+          "1589717414081",
           "1589710043276",
           "1589710110741",
           "1589717442457"
@@ -1437,13 +1485,13 @@
           "1589748448157": {
             "type": "faq",
             "settings": {
-              "faq_article": "faqs/limited-lifetime-warranty"
+              "faq_article": "faqs/how-long-does-the-insulated-dyln-bottle-keep-the-water-hot-or-cold"
             }
           },
           "1589748455174": {
             "type": "faq",
             "settings": {
-              "faq_article": "faqs/returns-and-refund-policy"
+              "faq_article": "faqs/what-are-the-vitabeads"
             }
           }
         },
@@ -1459,7 +1507,7 @@
         "type": "landing-page-header",
         "settings": {
           "title": "Let's get started!",
-          "background": "shopify://shop_images/GetStartedBanner_Desktop1920x643px_4.jpg",
+          "background": "shopify://shop_images/landing-page-background-image.png",
           "foreground_image": "shopify://shop_images/landing-page-foreground-image.png"
         }
       },
@@ -2024,12 +2072,12 @@
           "content": "The DYLN Bottle has an ergonomic design, 32 oz / 950 mL capacity and Its insulated, so it keeps your water cold for up to 24 hrs. Learn more",
           "link": "",
           "link_text": "View Bottles",
-          "video": "",
-          "video_width": 300,
-          "video_height": 300,
-          "video_embed": "<iframe src=\"https://www.youtube.com/embed/V3WX3SoOULI?rel=0&controls=0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\" width=\"560\" height=\"315\" frameborder=\"0\"></iframe>",
+          "video": "<iframe src=\"https://www.youtube.com/embed/NpEaa2P7qZI\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\" width=\"560\" height=\"315\" frameborder=\"0\"></iframe>",
+          "video_width": 600,
+          "video_height": 450,
+          "video_embed": "",
           "usp_title": "Fill your water bottle and in 15-20 minutes, your water will become:",
-          "usp_icon_1": "alkaline",
+          "usp_icon_1": "",
           "usp_title_1": "Alkaline",
           "usp_content_1": "The pH of your water will increase up to 9+ helping neutralize the acid in your body.",
           "usp_icon_2": "antioxidant",
@@ -2099,7 +2147,7 @@
           "help_link_3": "",
           "help_link_3_text": "Chat Live",
           "faq_title": "FAQs",
-          "faq_article_1": "faqs/what-is-the-dyln-bottle-made-of",
+          "faq_article_1": "faqs/how-long-it-takes-to-alkalize-the-water",
           "faq_article_2": "faqs/activating-the-dyln-diffuser",
           "faq_article_3": "faqs/when-should-i-be-drinking-alkaline-water",
           "faq_link": "shopify://pages/contact-us",
