@@ -4,7 +4,7 @@
  * Import additional stylesheets into this sheet using CSS imports:
  * @import url('./global/form.scss');
  */
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 // defaults
 $color-black: black;
 $color-white: white;
@@ -834,6 +834,7 @@ $z-top: 10;
   background-color: $color-theme-4;
   margin: 0 0 3px;
   text-align: center;
+  border:none;
 }
 
 .account-sidebar__link-icon {
@@ -851,7 +852,7 @@ $z-top: 10;
 }
 
 .account-container {
-  min-height: 1000px;
+  min-height: 500px;
 }
 
 // account body
@@ -2221,8 +2222,8 @@ $half: round($loops / 2);
 .account-bottle__inner {
   position: relative;
   background-color: $color-body;
-  padding: 15px;
-  max-width: 300px;
+  padding: 25px;
+  max-width: 350px;
   min-height: 350px;
   left: 50%;
   top: 50%;
@@ -2264,7 +2265,7 @@ $half: round($loops / 2);
 }
 
 .account-bottle__title {
-  @include font-header(700);
+  @include font-header(800);
   @include text(24px, 33px, $color-title, 0.22px);
   margin: 0;
 }
@@ -2293,7 +2294,7 @@ $half: round($loops / 2);
 }
 
 .account-bottle__info-value {
-  @include font-header(700);
+  @include font-header(800);
   @include text(12px, 16px, $color-body-text, 0.6px);
 }
 
@@ -2413,7 +2414,25 @@ $half: round($loops / 2);
     }
   }
 
+  .good {
+    .color {
+      color: $color-main-2;
+    }
+    .bg-color {
+      background-color: $color-main-2;
+    }
+  }
+
   &.low {
+    .color {
+      color: $color-theme-23;
+    }
+    .bg-color {
+      background-color: $color-theme-23;
+    }
+  }
+
+  .low {
     .color {
       color: $color-theme-23;
     }
@@ -2430,6 +2449,16 @@ $half: round($loops / 2);
       background-color: $color-theme-18;
     }
   }
+
+  .poor {
+    .color {
+      color: $color-theme-18;
+    }
+    .bg-color {
+      background-color: $color-theme-18;
+    }
+  }
+
 }
 
 .account-bottle__hydro-icon-wrap {
@@ -3606,15 +3635,11 @@ $half: round($loops / 2);
   }
 
   .account-header__status-number {
-    font-size: 12px;
-    line-height: 16px;
-    letter-spacing: 0.71px;
+
   }
 
   .account-header__status-num-alt {
-    font-size: 10px;
-    line-height: 16px;
-    letter-spacing: 0.6px;
+
   }
 
   .account-header__status-txt {
@@ -3856,7 +3881,7 @@ $half: round($loops / 2);
 
   .account-edit__inner {
     padding: 0;
-    max-width: 100%;
+    max-width: 100% !important;
     min-height: 1px;
     left: 0;
     top: 0;
@@ -3882,10 +3907,14 @@ $half: round($loops / 2);
     margin: 0 0 10px;
   }
 
-  .account-edit__page {
+  .account-edit__page, #reset-wrap, .address-fm-wrap {
     padding: 15px;
+    max-width: 350px;
+    margin: 0 auto;
   }
-
+  .account-sidebar{
+    display:none;
+  }
   .account-points__btn-refer {
     padding: 8px 20px;
   }
@@ -3939,4 +3968,497 @@ $half: round($loops / 2);
   .account-bottles {
     margin: 0 0 40px;
   }
+}
+
+
+/* ================= My Codes Custom Styles ================= */
+/*! jQuery UI - v1.12.1 - 2016-09-14
+* http://jqueryui.com
+* Includes: core.css, accordion.css, autocomplete.css, menu.css, button.css, controlgroup.css, checkboxradio.css, datepicker.css, dialog.css, draggable.css, resizable.css, progressbar.css, selectable.css, selectmenu.css, slider.css, sortable.css, spinner.css, tabs.css, tooltip.css, theme.css
+* To view and modify this theme, visit http://jqueryui.com/themeroller/?bgShadowXPos=&bgOverlayXPos=&bgErrorXPos=&bgHighlightXPos=&bgContentXPos=&bgHeaderXPos=&bgActiveXPos=&bgHoverXPos=&bgDefaultXPos=&bgShadowYPos=&bgOverlayYPos=&bgErrorYPos=&bgHighlightYPos=&bgContentYPos=&bgHeaderYPos=&bgActiveYPos=&bgHoverYPos=&bgDefaultYPos=&bgShadowRepeat=&bgOverlayRepeat=&bgErrorRepeat=&bgHighlightRepeat=&bgContentRepeat=&bgHeaderRepeat=&bgActiveRepeat=&bgHoverRepeat=&bgDefaultRepeat=&iconsHover=url(%22images%2Fui-icons_555555_256x240.png%22)&iconsHighlight=url(%22images%2Fui-icons_777620_256x240.png%22)&iconsHeader=url(%22images%2Fui-icons_444444_256x240.png%22)&iconsError=url(%22images%2Fui-icons_cc0000_256x240.png%22)&iconsDefault=url(%22images%2Fui-icons_777777_256x240.png%22)&iconsContent=url(%22images%2Fui-icons_444444_256x240.png%22)&iconsActive=url(%22images%2Fui-icons_ffffff_256x240.png%22)&bgImgUrlShadow=&bgImgUrlOverlay=&bgImgUrlHover=&bgImgUrlHighlight=&bgImgUrlHeader=&bgImgUrlError=&bgImgUrlDefault=&bgImgUrlContent=&bgImgUrlActive=&opacityFilterShadow=Alpha(Opacity%3D30)&opacityFilterOverlay=Alpha(Opacity%3D30)&opacityShadowPerc=30&opacityOverlayPerc=30&iconColorHover=%23555555&iconColorHighlight=%23777620&iconColorHeader=%23444444&iconColorError=%23cc0000&iconColorDefault=%23777777&iconColorContent=%23444444&iconColorActive=%23ffffff&bgImgOpacityShadow=0&bgImgOpacityOverlay=0&bgImgOpacityError=95&bgImgOpacityHighlight=55&bgImgOpacityContent=75&bgImgOpacityHeader=75&bgImgOpacityActive=65&bgImgOpacityHover=75&bgImgOpacityDefault=75&bgTextureShadow=flat&bgTextureOverlay=flat&bgTextureError=flat&bgTextureHighlight=flat&bgTextureContent=flat&bgTextureHeader=flat&bgTextureActive=flat&bgTextureHover=flat&bgTextureDefault=flat&cornerRadius=3px&fwDefault=normal&ffDefault=Arial%2CHelvetica%2Csans-serif&fsDefault=1em&cornerRadiusShadow=8px&thicknessShadow=5px&offsetLeftShadow=0px&offsetTopShadow=0px&opacityShadow=.3&bgColorShadow=%23666666&opacityOverlay=.3&bgColorOverlay=%23aaaaaa&fcError=%235f3f3f&borderColorError=%23f1a899&bgColorError=%23fddfdf&fcHighlight=%23777620&borderColorHighlight=%23dad55e&bgColorHighlight=%23fffa90&fcContent=%23333333&borderColorContent=%23dddddd&bgColorContent=%23ffffff&fcHeader=%23333333&borderColorHeader=%23dddddd&bgColorHeader=%23e9e9e9&fcActive=%23ffffff&borderColorActive=%23003eff&bgColorActive=%23007fff&fcHover=%232b2b2b&borderColorHover=%23cccccc&bgColorHover=%23ededed&fcDefault=%23454545&borderColorDefault=%23c5c5c5&bgColorDefault=%23f6f6f6
+* Copyright jQuery Foundation and other contributors; Licensed MIT */
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/css/intlTelInput.min.css');
+
+button:focus {
+    outline: none;
+}
+.account-body__tabs .body-tab{
+  display: none;
+}
+
+.account-body__tabs .body-tab.active-tab{
+  display: block;
+}
+
+.account-bottle__inner .account-bottle__diffuser{
+  margin-top: 15px;
+  padding-top: 10px;
+}
+
+// register bottles
+#product-color-var .f-color{
+    width: 40px;
+    height: 55px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:36px;
+}
+
+#product-color-var li.dyln-blue .f-color{
+  background-image: url("{{ 'color-blue.webp' | asset_url }}");
+}
+
+#product-color-var li.charcoal .f-color{
+  background-image: url("{{ 'color-gray.webp' | asset_url }}");
+}
+
+#product-color-var li.lime-green .f-color{
+  background-image: url("{{ 'color-green.webp' | asset_url }}");
+}
+
+#product-color-var li.tango-orange .f-color{
+ background-image: url("{{ 'color-orange1.webp' | asset_url }}");
+}
+
+#product-color-var li.neon-pink .f-color{
+  background-image: url("{{ 'color-pink.webp' | asset_url }}");
+}
+
+#product-color-var li.royal-purple .f-color{
+  background-image: url("{{ 'royal-purple1.webp' | asset_url }}");
+}
+
+#product-color-var li.crimson-red .f-color{
+  background-image: url("{{ 'crimson-red1.webp' | asset_url }}");
+}
+
+#product-color-var li span.new-sleeve-icon, #nproduct-color-var li span.new-sleeve-icon{
+  position:absolute;
+  right:-8px;
+  top:-15px;
+  width:25px;
+  height:35px;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-size: 25px auto;
+}
+
+#product-color-var li.var-active .f-color, #nproduct-color-var li.var-active .f-color{
+    background-position: center;
+    background-size:40px;
+}
+
+.no-ios #product-color-var li:hover > .ptool-tips, .no-ios #product-type-var li:hover > .ptool-tips{
+  display: inline-block;
+}
+.no-ios #nproduct-color-var li:hover > .ptool-tips{
+  display: inline-block;
+}
+
+// datepicker
+#purchase_date{
+    max-width: 250px;
+    border-bottom: 2px solid #00aedb;
+    text-align: center;
+    padding: 5px 10px;
+}
+
+.registration-modal__page .registration-modal__input-wrap.phone{
+  max-width: 100% !important;
+}
+#product-color-var{
+  list-style:none;
+  display:none;
+}
+#product-color-var.active{
+  display: inline-block;
+}
+#product-color-var li{
+  display: inline-block;
+  margin: 0;
+  cursor: pointer;
+}
+
+#product-color-var li .ptool-tips{
+  display:none;
+}
+.registration-modal__image-wrap.btl-finish-warap{
+  float: none;
+  max-width:120px;
+  margin: 0 auto;
+}
+.registration-modal__phone-wrap{
+  position: relative;
+}
+.phone-error{
+  position: absolute;
+  bottom: -15px;
+  width: 100%;
+  left: 0;
+  font-size: 12px;
+  color: red;
+}
+
+span.input-wrap {
+    display: block;
+}
+span.input-wrap input {
+    width: 50px;
+    text-align: center;
+    margin: 5px;
+    border-bottom: 1px solid #006fbb;
+}
+span.input-wrap label{
+  font-size: 12px;
+  font-style: italic;
+  color: #161d25;
+}
+span.input-wrap label.lab-p{
+  font-weight: bold;
+  font-style: normal;
+  font-size:14px
+}
+
+.reset-password-pop .account-edit__inner {
+    min-height: 150px;
+}
+.reset-password-pop input[type="password"] {
+    max-width: 250px;
+    padding: 5px 10px;
+    text-align: center;
+    margin-top: 10px;
+    border-bottom: 2px solid #00aedb;
+}
+
+.reset-password-pop .input-wrap {
+    padding-bottom: 15px;
+}
+
+.account-bottle__body .account-bottle__image-wrap{
+  position: relative;
+}
+.account-bottle__body .account-bottle__image-wrap img{
+  position: absolute;
+    width: 117px;
+    left: -15px;
+    max-width:none;
+}
+
+.account-bottle__body .account-bottle__hydration{
+  display:none;
+}
+.good .h-level, .good .hydration-text{
+  color: #20d480 !important;
+}
+
+.poor .h-level, .poor .hydration-text{
+  color: #ff3737 !important;
+}
+
+.profile-contact-pop .account-edit__inner {
+    min-height: auto;
+    max-width: 318px;
+}
+.form-input{
+    padding: 8px 10px;
+    text-align: center;
+    border-bottom: 2px solid #00aedb;
+}
+
+button#profile-contact-btn {
+    margin-top: 15px;
+}
+
+.address-form .account-edit__inner{
+    max-width: 600px;
+}
+.address-form .form-block{
+    position: relative;
+    text-align: left;
+}
+.address-form .form-block input,
+.address-form .form-block select {
+    padding: 7px 10px;
+    border-bottom: 2px solid #00aedb;
+}
+.address-form .form-block select {
+    border-left: 0px none;
+    border-right: 0px none;
+    border-top: 0px none;
+    border-bottom: 2px solid #00aedb;
+    width: 100%
+}
+.address-form .form-block label {
+    position: absolute;
+    top: 10px;
+    opacity: 0.5;
+    font-size: 14px;
+    display:none
+}
+.address-form .form-block.checkbox-padded{
+  text-align:center;
+  padding: 15px 0 10px;
+}
+
+button.account-profile__edit.edit-address {
+    float: none;
+    margin-right: 10px;
+}
+
+button.account__button-delete.del-address {
+    background: #fff;
+    border: 0px none;
+    padding: 0;
+}
+span.address-edit-del {
+    position: absolute;
+    right: 0;
+    width: 70px;
+}
+.vs-hidden{
+  visibility: hidden;
+}
+
+span.address-form-message {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    left: 0;
+    bottom: -23px;
+    font-size: 12px;
+    font-weight: 400;
+    color: red;
+}
+
+h3.registration-modal__title {
+    position: relative;
+}
+.account-header__body, .account-header__bar{
+  font-family: 'Poppins', sans-serif;
+}
+.account-header__body .account-header__title {
+    line-height: 45px;
+}
+
+.account-header__status .account-header__status-item .account-header__status-badge{
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.account-header__status .account-header__status-item .account-header__status-badge span{
+  padding: 0 3px
+}
+button.account-profile__button-add.open-address-pop {
+    padding: 11px 39px;
+}
+
+.account-bottle.popup button.account-bottle__edit-update,
+.account-bottle.popup button.account-bottle__button-edit{
+  padding: 7px 32px;
+}
+.body-tab.account-bottles #custommer-bottles{
+  padding-right: 10px
+
+}
+
+#subscription-wrap .pdp-form__price.pdp-form__price--sub {
+    display: none;
+}
+#subscription-wrap .diffusers__label{
+  font-size: 13px;
+}
+
+#subscription-wrap .diffusers__usps{
+ display:none;
+}
+#subscription-wrap .diffusers__sub-back{
+ margin: 0 auto;
+}
+#subscription-wrap .diffusers__sub-back {
+    margin: 0 auto;
+    display: block;
+    padding-top: 15px;
+}
+#subscription-wrap .diffusers__regular-btn,
+#subscription-wrap .diffusers__sub-btn
+{
+    height: 50px;
+}
+#subscription-wrap .diffusers__sub-btn .custom-select-styled{
+  height: 46px;
+  font-size: 13px;
+  line-height: 25px;
+}
+#subscription-wrap .diffusers__regular-text,
+#subscription-wrap .diffusers__regular-price{
+ font-size:14px;
+}
+#subscription-wrap .diffusers__sub-btn label{
+ font-size:11px;
+}
+#subscription-wrap .diffusers__sub-btn .custom-select{
+ height:20px;
+ line-height: 20px;
+}
+.account-bottle.popup .account-bottle__edit-content-wrap{
+ width: calc(100% - 90px);
+}
+.account-bottle.popup .account-bottle__edit-image-wrap{
+  width: 77px;
+  position: relative;
+}
+.account-bottle.popup .account-bottle__edit-image-wrap img.account-bottle__edit-image {
+    position: absolute;
+    left: -19px;
+    width: 105px;
+    max-width: none;
+}
+
+.account-orders .account-orders__btn-new{
+ padding: 11px 35px;
+}
+
+.account-bottles .account-bottles__sub-usp-icon{
+ margin-top: -6px;
+}
+
+p.dif-date-select {
+    max-width: 150px;
+    margin: 0 auto 15px;
+}
+
+p.dif-date-select input{
+  padding: 5px 10px;
+    text-align: center;
+    border-bottom: 2px solid #00aedb;
+    font-size: 20px;
+    color: #00aedb;
+    outline: none !important;
+}
+
+.registration-modal__progress.pg50:after {
+    content: "";
+    position: absolute;
+    height: 3px;
+    width: 50%;
+    background-color: #00aedb;
+    top: 8.5px;
+}
+
+.registration-modal__progress.pg100:after {
+    content: "";
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background-color: #00aedb;
+    top: 8.5px;
+}
+
+// profile height weight selector
+.swiper-container {
+  width: 100px;
+  height: 150px;
+  margin: 20px auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 15px;
+  color: #fff;
+  opacity: 0.6;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition-property: transform;
+}
+
+.swiper-slide.swiper-slide-active {
+    font-weight: bold;
+    text-decoration: underline;
+    opacity: 1;
+}
+.lab-weight-height{
+ margin-top: -1px;
+}
+.account-edit-option_wrap {
+    position: relative;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+input.low[type=range]::range-track{
+  background-color: #ffb300;
+  border-color: #ffb300;
+}
+
+input.low[type=range]::-webkit-slider-runnable-track{
+  background-color: #ffb300;
+  border-color: #ffb300;
+}
+
+input.low[type=range]::-moz-range-track{
+  background-color: #ffb300;
+  border-color: #ffb300;
+}
+
+input.low[type=range]::-ms-track{
+  background-color: #ffb300;
+  border-color: #ffb300;
+}
+
+input.poor[type=range]::range-track{
+  background-color: #ff3737;
+  border-color: #ff3737;
+
+}
+
+input.poor[type=range]::-webkit-slider-runnable-track{
+  background-color: #ff3737;
+  border-color: #ff3737;
+}
+
+input.poor[type=range]::-moz-range-track{
+  background-color: #ff3737;
+  border-color: #ff3737;
+}
+
+input.poor[type=range]::-ms-track{
+  background-color: #ff3737;
+  border-color: #ff3737;
+}
+.all-pop-close{
+  display:none;
+}
+
+@media screen and (max-width: 768px){
+
+}
+@media screen and (max-width: 380px){
+  .account-header__status-badge, .account-header__status-num-alt{
+    padding: 5px 4px;
+    font-size: 10px;
+  }
+.account-header__status .account-header__status-item .account-header__status-badge span {
+    padding: 0 2px;
+}
+
 }
