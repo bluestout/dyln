@@ -1,10 +1,52 @@
-{%- if section.settings.bg -%}
+{% if section.settings.bg %}
+  {% assign c_bg = section.settings.bg %}
+{% elsif collection.image %}
+  {% assign c_bg = collection.image %}
+{% endif %}
+
+{% if section.settings.bg_rsp %}
+  {% assign c_bg_rsp = section.settings.bg_rsp %}
+{% elsif collection.image %}
+  {% assign c_bg_rsp = collection.image %}
+{% endif %}
+
+{% if section.settings.title %}
+  {% assign c_title = section.settings.title %}
+{% elsif collection.title %}
+  {% assign c_title = collection.title %}
+{% endif %}
+
+{%- for block in section.blocks -%}
+
+  {%- assign block_coll = collections[block.settings.collection] -%}
+  {%- if block_coll.id == collection.id -%}
+
+    {% if block.settings.title != blank %}
+      {% assign c_title = block.settings.title %}
+    {% endif %}
+
+    {% if block.settings.bg %}
+      {% assign c_bg = block.settings.bg %}
+    {% endif %}
+
+    {% if block.settings.bg_rsp %}
+      {% assign c_bg_rsp = block.settings.bg_rsp %}
+    {% else %}
+      {% assign c_bg_rsp = block.settings.bg %}
+    {% endif %}
+
+    {% break %}
+  {%- endif -%}
+{%- endfor -%}
+
+
+{%- if bg -%}
   {%- assign wrapper_class = "c-header__bg-wrap" -%}
 
-  {%- if section.settings.bg_rsp -%}
+  {%- if bg_rsp -%}
     {%- assign wrapper_class = "c-header__bg-wrap d-none d-sm-block" -%}
     {%- render 'responsive-image' with
-      image: section.settings.bg_rsp,
+      image: bg_rsp,
       max_width: 768,
       max_height: 768,
       wrapper_class: "c-header__bg-wrap d-sm-none",
@@ -14,7 +56,7 @@
   {%- endif -%}
 
   {%- render 'responsive-image' with
-    image: section.settings.bg,
+    image: bg,
     max_width: 1600,
     max_height: 540,
     wrapper_class: wrapper_class,
@@ -34,20 +76,50 @@
           {% endif %}
           <h2 class="c-header__subtitle">{{ section.settings.title }}</h2>
           <div class="c-header__usps">
-            {% for block in section.blocks %}
+            {% if section.settings.usp_title_1 != blank %}
               <div class="c-header__usp">
                 <div class="c-header__icon">
-                  {%- if block.settings.icon == "acid-reflux" -%}
+                  {%- if section.settings.usp_icon_1 == "acid-reflux" -%}
                     {%- render 'icon-acid-reflux' -%}
-                  {%- elsif block.settings.icon == "detoxifying" -%}
+                  {%- elsif section.settings.usp_icon_1 == "detoxifying" -%}
                     {%- render 'icon-detoxifying' -%}
-                  {%- elsif block.settings.icon == "hydration" -%}
+                  {%- elsif section.settings.usp_icon_1 == "hydration" -%}
                     {%- render 'icon-hydration' -%}
                   {%- endif -%}
                 </div>
-                <div class="c-header__usp-title">{{ block.settings.title }}</div>
+                <div class="c-header__usp-title">{{ section.settings.usp_title_1 }}</div>
               </div>
-            {% endfor %}
+            {% endif %}
+
+            {% if section.settings.usp_title_2 != blank %}
+              <div class="c-header__usp">
+                <div class="c-header__icon">
+                  {%- if section.settings.usp_icon_2 == "acid-reflux" -%}
+                    {%- render 'icon-acid-reflux' -%}
+                  {%- elsif section.settings.usp_icon_2 == "detoxifying" -%}
+                    {%- render 'icon-detoxifying' -%}
+                  {%- elsif section.settings.usp_icon_2 == "hydration" -%}
+                    {%- render 'icon-hydration' -%}
+                  {%- endif -%}
+                </div>
+                <div class="c-header__usp-title">{{ section.settings.usp_title_2 }}</div>
+              </div>
+            {% endif %}
+
+            {% if section.settings.usp_title_3 != blank %}
+              <div class="c-header__usp">
+                <div class="c-header__icon">
+                  {%- if section.settings.usp_icon_3 == "acid-reflux" -%}
+                    {%- render 'icon-acid-reflux' -%}
+                  {%- elsif section.settings.usp_icon_3 == "detoxifying" -%}
+                    {%- render 'icon-detoxifying' -%}
+                  {%- elsif section.settings.usp_icon_3 == "hydration" -%}
+                    {%- render 'icon-hydration' -%}
+                  {%- endif -%}
+                </div>
+                <div class="c-header__usp-title">{{ section.settings.usp_title_3 }}</div>
+              </div>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -76,23 +148,107 @@
         "type": "image_picker",
         "id": "bg_rsp",
         "label": "Background Mobile"
+      },
+      {
+        "type": "textarea",
+        "id": "usp_title_1",
+        "label": "USP Title 1"
+      },
+      {
+        "type": "select",
+        "id": "usp_icon_1",
+        "label": "USP Icon 1",
+        "options": [
+          {
+            "value": "acid-reflux",
+            "label": "Acid Reflux"
+          },
+          {
+            "value": "detoxifying",
+            "label": "Detoxifying"
+          },
+          {
+            "value": "hydration",
+            "label": "Hydration"
+          }
+        ],
+        "info": "Icon to be used."
+      },
+      {
+        "type": "textarea",
+        "id": "usp_title_2",
+        "label": "USP Title 2"
+      },
+      {
+        "type": "select",
+        "id": "usp_icon_2",
+        "label": "USP Icon 2",
+        "options": [
+          {
+            "value": "acid-reflux",
+            "label": "Acid Reflux"
+          },
+          {
+            "value": "detoxifying",
+            "label": "Detoxifying"
+          },
+          {
+            "value": "hydration",
+            "label": "Hydration"
+          }
+        ],
+        "info": "Icon to be used."
+      },
+      {
+        "type": "textarea",
+        "id": "usp_title_3",
+        "label": "USP Title 3"
+      },
+      {
+        "type": "select",
+        "id": "usp_icon_3",
+        "label": "USP Icon 3",
+        "options": [
+          {
+            "value": "acid-reflux",
+            "label": "Acid Reflux"
+          },
+          {
+            "value": "detoxifying",
+            "label": "Detoxifying"
+          },
+          {
+            "value": "hydration",
+            "label": "Hydration"
+          }
+        ],
+        "info": "Icon to be used."
       }
     ],
     "blocks": [
       {
-        "type": "usp",
-        "name": "Usp",
+        "type": "collection",
+        "name": "Collection",
         "settings": [
           {
-            "type": "textarea",
-            "id": "title",
-            "label": "Title"
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
           },
           {
             "type": "text",
-            "id": "icon",
-            "label": "Icon",
-            "info": "Icon name to be used. Icons available: acid-reflux, detoxifying, hydration. Copy one of these and paste it in the text field."
+            "id": "title",
+            "label": "Heading"
+          },
+          {
+            "type": "image_picker",
+            "id": "bg",
+            "label": "Background"
+          },
+          {
+            "type": "image_picker",
+            "id": "bg_rsp",
+            "label": "Background Mobile"
           }
         ]
       }
