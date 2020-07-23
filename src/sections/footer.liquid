@@ -120,14 +120,15 @@
   data-transition>
   <div class="container">
     <div class="row">
+      <div></div>
       <div class="col-md-12 col-lg-6">
         <div class="site-footer__newsletter-title">
           <h2>{{ section.settings.footer_newsletter_title }}</h2>
         </div>
       </div>
       <div class="col-md-12 col-lg-6">
+        <p>{{ section.settings.footer_newsletter_opt_in_text }}</p>
         <div class="site-footer__newsletter-button-wrapper">
-          <p>{{ section.settings.footer_newsletter_opt_in_text }}</p>
           <div class="site-footer__newsletter-button-container">
             <div class="site-footer__newsletter-button" data-button-slider></div>
             <button id="email" class="active" data-email-opt-in>{{ 'layout.footer.email' | t }}</button>
