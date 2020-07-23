@@ -1,0 +1,60 @@
+<div class="po-bottle-sizes__wrapper">
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="po-bottle-sizes__title">
+            <h2>New bottle sizes and accessories!</h2>
+          </div>
+        </div>
+       <div class="col-md-6">
+         <div class="po-bottle-sizes__sizes">
+           <div class="po-bottle-sizes__sizes-item">
+             <strong>16 oz</strong>
+             <em>480 mL</em>
+           </div>
+           <div class="po-bottle-sizes__sizes-item">
+             <strong>21 oz</strong>
+             <em>620 mL</em>
+           </div>
+           <div class="po-bottle-sizes__sizes-item">
+             <strong>40 oz</strong>
+             <em>1.2 l</em>
+           </div>
+         </div>
+       </div>
+        <div class="col-md-12">
+          <div class="po-bottle-sizes__link">
+            <a href="#">Find my bottle</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="po-bottle-sizes__bottom-wave"></div>
+
+{% schema %}
+  {
+  "name": "Pre-Order Bottle Sizes",
+  "class": "po-bottle-sizes",
+  "settings": [
+  {
+  "type": "text",
+  "id": "title",
+  "label": "Title"
+  },
+  {
+  "type": "text",
+  "id": "btn_text",
+  "label": "Button Text"
+  },
+  {
+  "type": "url",
+  "id": "btn_link",
+  "label": "Button Link"
+  }
+  ]
+  }
+{% endschema %}

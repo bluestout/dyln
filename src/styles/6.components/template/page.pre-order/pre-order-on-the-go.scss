@@ -1,0 +1,31 @@
+.po-on-the-go {
+  background-color: $color-theme-17;
+
+  h2 {
+    @include font-header(bold);
+    @include text(46px, 1.2, $color-white, 0.3px);
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 400px;
+
+    img {
+      text-align: center;
+    }
+
+    h3 {
+      @include font-body(bold);
+      @include text(18px, 1.2, $color-theme-31, 0.3px);
+      text-align: center;
+    }
+
+    p {
+      @include font-body(bold);
+      @include text(16px, 1.4, $color-white, 0.3px);
+      text-align: center;
+    }
+  }
+}

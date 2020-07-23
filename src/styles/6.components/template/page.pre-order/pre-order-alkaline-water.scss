@@ -1,0 +1,42 @@
+.po-alkaline-water {
+  &__wrapper {
+    background: rgb(102,204,235);
+    background: linear-gradient(274deg, rgba(102,204,235,1) 0%, rgba(103,227,169,1) 100%);
+
+    &-inner {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 50px 0;
+    }
+  }
+
+  &__title {
+    h2 {
+      @include text(42px, 1.2, $color-white, 0.3px);
+    }
+  }
+
+  &__item {
+    display: inline-block;
+    width: 48%;
+    text-align: center;
+    padding-bottom: 30px;
+
+    p {
+      color: $color-white;
+      font-size: 16px;
+      padding-top: 10px;
+    }
+  }
+
+  &__content-link {
+    text-align: center;
+    color: $color-white;
+    text-decoration: underline;
+
+    a {
+      color: $color-white;
+    }
+  }
+}

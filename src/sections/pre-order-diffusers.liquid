@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="po-diffusers__container">
+        <div class="col-md-4">
+          <span>Technology</span>
+          <h2>VitaBead Difusers</h2>
+          <p>Placed at the bottom of every DYLN Bottle, your Diffuser will enhance your water with minerals and elevate it’s pH to up to 9+.</p>
+        </div>
+        <div class="col-md-8 d-flex justify-content-center">
+          <img src="https://unsplash.it/300/200" />
+          <img src="https://unsplash.it/300/200" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="po-diffusers__wave-bottom"></div>
+
+{% schema %}
+  {
+  "name": "Pre-Order Diffusers",
+  "class": "po-diffusers",
+  "settings": [
+  {
+  "type": "text",
+  "id": "text_above_title",
+  "label": "Text above title"
+  },
+  {
+  "type": "text",
+  "id": "title",
+  "label": "Title"
+  },
+  {
+  "type": "image_picker",
+  "id": "left_images",
+  "label": "Left Image"
+  },
+  {
+  "type": "image_picker",
+  "id": "right_image",
+  "label": "Right Image"
+  }
+  ]
+  }
+{% endschema %}

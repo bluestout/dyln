@@ -1,0 +1,37 @@
+.po-why-alkaline-water__container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.po-last-bottle {
+  min-height: 700px;
+  margin-top: 400px;
+
+  &__content {
+    position: relative;
+    z-index: 10;
+
+    h2 {
+      @include font-header(bold);
+      @include text(46px, 1.2, $color-black, 0.3px);
+    }
+
+    p {
+      @include font-body(normal)
+      @include text(18px, 1.2, $color-black, 0px);
+    }
+  }
+
+  &__right-image-wrapper {
+    width: 800px;
+    position: absolute;
+    left: 0;
+  }
+
+  &__left-image-wrapper {
+    position: absolute;
+    right: 50px;
+    margin-top: 400px;
+  }
+}

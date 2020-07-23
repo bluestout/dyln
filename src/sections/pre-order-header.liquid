@@ -1,0 +1,46 @@
+<div class="container-fluid d-flex" style="background-image:url('{{ section.settings.background.src | image_url }}')"​​​​​​>
+  <div class="container">
+    <div class="pre-order-header__container d-flex">
+      <div class="col-md-2 d-none d-md-block"></div>
+
+      <div class="landing-page-header__content-wrapper">
+        <div class="landing-page-header__content">
+          {%- if section.settings.title != blank -%}
+            <h1>{{ section.settings.title }}</h1>
+          {% endif %}
+
+          <a href="#">{{- section.settings.btn_text -}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+  "name": "Pre-Order Header",
+  "class": "pre-order-header",
+  "settings": [
+  {
+    "type": "richtext",
+    "id": "title",
+    "label": "Title"
+  },
+  {
+    "type": "image_picker",
+    "id": "background",
+    "label": "Background"
+  },
+  {
+    "type": "text",
+    "id": "btn_text",
+    "label": "Button Text"
+  },
+  {
+    "type": "url",
+    "id": "btn_link",
+    "label": "Button Link"
+  }
+  ]
+  }
+{% endschema %}

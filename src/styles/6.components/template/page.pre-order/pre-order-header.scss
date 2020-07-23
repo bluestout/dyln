@@ -1,0 +1,30 @@
+.pre-order-header {
+  overflow: hidden;
+  height: 750px;
+
+  &__container {
+    height: 750px;
+    align-items: center;
+
+    h1 {
+      font-size: 46px;
+      color: $color-white;
+      font-weight: 400;
+      width: 380px;
+
+      strong {
+        font-weight: 800;
+      }
+    }
+
+    a {
+      @include font-body(600);
+      @include text(16px, 1.25, $color-white, 0.3px);
+      padding: 8px 25px;
+      border: 2px solid $color-white;
+      border-radius: 30px;
+      display: inline-block;
+      margin-top: 20px;
+    }
+  }
+}

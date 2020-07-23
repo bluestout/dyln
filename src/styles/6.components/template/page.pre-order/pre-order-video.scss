@@ -1,0 +1,37 @@
+.po-video {
+  h2 {
+    @include font-header(bold);
+    @include text(42px, 1.2, $color-black, 0.3px);
+    display: inline-block;
+    margin-bottom: 40px;
+  }
+
+  &__link {
+    @include no-browser-styling;
+    display: block;
+    padding-left: 0;
+
+    &:hover,
+    &:focus {
+      .index-video__link-text {
+        color: $color-main-1;
+        border-color: $color-main-1;
+      }
+    }
+  }
+
+  &__link-text {
+    @include font-header(500);
+    @include text(18px, 25px, $color-title, 1.06px);
+    @include transition(color, border);
+    border-bottom: 2px solid $color-title;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__link-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0 0 5px;
+  }
+}

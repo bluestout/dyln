@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="po-why-alkaline-water__container">
+        <div class="col-md-6">
+          <div class="po-why-alkaline-water__content">
+            <h2>{{ section.settings.title }}</h2>
+            <p>{{ section.settings.content }}</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          {%- render 'responsive-image' with
+            image: section.settings.image.src,
+            max_width: 1024,
+            max_height: 1024,
+            wrapper_class: "po-why-alkaline-water__image--container",
+            image_class: "po-why-alkaline-water__image",
+            snippet_index: 35
+          -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+  {
+  "name": "Pre-Order Why Alkaline",
+  "class": "po-why-alkaline",
+  "settings": [
+  {
+    "type": "text",
+    "id": "title",
+    "label": "Title"
+  },
+  {
+    "type": "richtext",
+    "id": "content",
+    "label": "Content"
+  },
+  {
+    "type": "image_picker",
+    "id": "image",
+    "label": "Foreground Image"
+  }
+  ]
+  }
+{% endschema %}

@@ -1,0 +1,41 @@
+<div class="container-fluid">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-6">
+        <div class="po-testimonials__item">
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <p>"I have no more acid reflux and my blood pressure is normal now, I feel great."</p>
+          <span>- Juanta W.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+  "name": "Pre-Order Testimonials",
+  "class": "po-testimonials",
+  "settings": [
+  {
+  "type": "text",
+  "id": "title",
+  "label": "Title"
+  },
+  {
+  "type": "text",
+  "id": "btn_text",
+  "label": "Button Text"
+  },
+  {
+  "type": "url",
+  "id": "btn_link",
+  "label": "Button Link"
+  }
+  ]
+  }
+{% endschema %}
