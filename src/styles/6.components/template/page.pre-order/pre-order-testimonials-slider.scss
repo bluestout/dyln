@@ -1,0 +1,60 @@
+.po-testimonials-slider {
+  background-color: $color-theme-13;
+  padding: 80px 0;
+
+  &__item {
+    text-align: center;
+
+    .fa-star {
+      margin-bottom: 15px;
+      padding: 0 4px;
+    }
+
+    strong {
+      @include font-body(bold);
+      @include text(20px, 1.5, $color-theme-17, 0.3px);
+      display: block;
+      padding-bottom: 5px;
+    }
+
+    p {
+      @include font-body(normal);
+      @include text(16px, 1.5, $color-theme-7, 0.3px);
+      margin-bottom: 10px;
+    }
+
+    span {
+      @include font-body(bold);
+      @include text(14px, 1.5, $color-black, 0.3px);
+    }
+  }
+
+  .slick-prev {
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='36' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18.113 35.244L1.21 18.34 19.285 1.06' stroke='%23333C41' stroke-width='1.5' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 25px;
+    height: 23px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -40px;
+  }
+
+  .slick-next {
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='36' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18.113 35.244L1.21 18.34 19.285 1.06' stroke='%23333C41' stroke-width='1.5' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 25px;
+    height: 23px;
+    transform: translateY(-50%) rotate(180deg);
+    position: absolute;
+    top: 50%;
+    right: -40px;
+  }
+
+  &__bottom-wave {
+    background-image: url("data:image/svg+xml,%3Csvg width='1600' height='33' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 .46h1599.88v13.987L0 33z' fill='%23E7F0F2' fill-rule='evenodd'/%3E%3C/svg%3E");
+    height: 30px;
+  }
+}

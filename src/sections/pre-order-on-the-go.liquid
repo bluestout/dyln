@@ -3,24 +3,23 @@
     <div class="row">
       <div class="po-on-the-go__container">
         <div class="col-md-4">
-          <h2>Creating Alkaline water on the go is as easy as:</h2>
+          <h2>{{ section.settings.title }}</h2>
         </div>
-        <div class="col-md-8 d-flex justify-content-center">
-          <div class="col-md-3 text-center">
-            <img src="https://unsplash.it/100/100" />
-            <h3>1. Fill</h3>
-            <p>Fill your DYLN Bottle with filtered water</p>
-          </div>
-          <div class="col-md-3 text-center">
-            <img src="https://unsplash.it/100/100" />
-            <h3>2. Alkalize</h3>
-            <p>The VitaBead Diffuser alkalizes your water</p>
-          </div>
-          <div class="col-md-3 text-center">
-            <img src="https://unsplash.it/100/100" />
-            <h3>3. Hydrate</h3>
-            <p>Enjoy Alkaline Antioxidant Water</p>
-          </div>
+        <div class="col-md-8 d-flex justify-content-center align-items-center">
+          {% for block in section.blocks %}
+            <div class="col-md-3 text-center">
+              {%- render 'responsive-image' with
+                image: block.settings.featured_step_icon.src,
+                max_width: 1024,
+                max_height: 1024,
+                wrapper_class: "po-on-the-go__image-container",
+                image_class: "po-on-the-go__image",
+                snippet_index: 35
+              -%}
+              <h3>{{ block.settings.featured_step_title }}</h3>
+              <p>{{ block.settings.featured_step_content }}</p>
+            </div>
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -37,6 +36,29 @@
   "id": "title",
   "label": "Title"
   }
-  ]
+  ],
+    "blocks":[
+      {
+        "type":"text",
+        "name":"Featured Steps",
+        "settings":[
+        {
+          "type":"image_picker",
+          "id":"featured_step_icon",
+          "label":"Featured Step Image"
+        },
+        {
+          "type":"text",
+          "id":"featured_step_title",
+          "label":"Featured Step Title"
+        },
+        {
+          "type":"textarea",
+          "id":"featured_step_content",
+          "label":"Featured Item Content"
+        }
+      ]
+    }
+    ]
   }
 {% endschema %}

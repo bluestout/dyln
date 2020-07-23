@@ -20,24 +20,21 @@
             </div>
           </div>
           <div class="po-hydro-optim__perks">
-            <div class="po-hydro-optim__perks-item">
-              <img src="https://unsplash.it/100/100" />
-              <div class="po-hydro-optim__perks-item-content">
-                <p><strong>Free Shipping!</strong> Add other items to your shipments and take advantage of this perk!</p>
+            {% for block in section.blocks %}
+              <div class="po-hydro-optim__perks-item">
+                {%- render 'responsive-image' with
+                  image: block.settings.icon.src,
+                  max_width: 1024,
+                  max_height: 1024,
+                  wrapper_class: "po-hydro-optim__image-container",
+                  image_class: "po-hydro-optim__image",
+                  snippet_index: 35
+                -%}
+                <div class="po-hydro-optim__perks-item-content">
+                  <p><strong style="color: {{ block.settings.title_color }}">{{ block.settings.recommendation_title }}</strong> {{ block.settings.recommendation_content }}</p>
+                </div>
               </div>
-            </div>
-            <div class="po-hydro-optim__perks-item">
-              <img src="https://unsplash.it/100/100" />
-              <div class="po-hydro-optim__perks-item-content">
-                <p><strong>Free Shipping!</strong> Add other items to your shipments and take advantage of this perk!</p>
-              </div>
-            </div>
-            <div class="po-hydro-optim__perks-item">
-              <img src="https://unsplash.it/100/100" />
-              <div class="po-hydro-optim__perks-item-content">
-                <p><strong>Free Shipping!</strong> Add other items to your shipments and take advantage of this perk!</p>
-              </div>
-            </div>
+            {% endfor  %}
           </div>
           <a href="#" class="po-hydro-optim__subscribe-btn">{{ section.settings.btn_text }}</a>
         </div>
@@ -85,6 +82,35 @@
     "type": "url",
     "id": "btn_link",
     "label": "Button Link"
+  }
+  ],
+  "blocks":[
+    {
+      "type":"text",
+      "name":"Featured Items",
+      "settings":[
+      {
+        "type":"image_picker",
+        "id":"icon",
+        "label":"Featured Item Image"
+      },
+      {
+        "type":"text",
+        "id":"recommendation_title",
+        "label":"Featured Item Title"
+      },
+      {
+        "type":"textarea",
+        "id":"recommendation_content",
+        "label":"Featured Item Content"
+      },
+      {
+        "type": "color",
+        "id": "title_color",
+        "label": "Title Color",
+        "default": "#000"
+      }
+    ]
   }
   ]
   }

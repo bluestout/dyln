@@ -20,6 +20,7 @@
       @include font-body(bold);
       @include text(18px, 1.2, $color-theme-31, 0.3px);
       text-align: center;
+      padding: 5px 0;
     }
 
     p {
@@ -27,5 +28,9 @@
       @include text(16px, 1.4, $color-white, 0.3px);
       text-align: center;
     }
+  }
+
+  &__image-container {
+    min-height: 150px;
   }
 }

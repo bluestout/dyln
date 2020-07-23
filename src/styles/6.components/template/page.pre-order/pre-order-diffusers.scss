@@ -3,6 +3,7 @@
 
   &__container {
     display: flex;
+    align-items: center;
     width: 100%;
 
     span {
@@ -24,6 +25,10 @@
     img {
       margin: 0 15px;
     }
+  }
+
+  &__image-container {
+    max-width: 400px !important;
   }
 
   &__wave-bottom {

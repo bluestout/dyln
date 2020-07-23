@@ -5,30 +5,27 @@
         <div class="po-alkaline-water__wrapper-inner">
           <div class="col-md-6">
             <div class="po-alkaline-water__title">
-              <h2>Drinking Alkaline Water feels just right!</h2>
+              <h2>{{ section.settings.title }}</h2>
             </div>
           </div>
           <div class="col-md-6">
             <div class="po-alkaline-water__content">
+              {% for block in section.blocks %}
               <div class="po-alkaline-water__item">
-                <img src="https://unsplash.it/50/50" />
-                <p>Helps with acid reflux</p>
+                {%- render 'responsive-image' with
+                  image: block.settings.featured_item_icon.src,
+                  max_width: 52,
+                  max_height: 52,
+                  wrapper_class: "po-alkaline-water__image-container",
+                  image_class: "po-alkaline-water__image",
+                  snippet_index: 35
+                -%}
+                <p>{{ block.settings.featured_item_title }}</p>
               </div>
-              <div class="po-alkaline-water__item">
-                <img src="https://unsplash.it/50/50" />
-                <p>Helps with acid reflux</p>
-              </div>
-              <div class="po-alkaline-water__item">
-                <img src="https://unsplash.it/50/50" />
-                <p>Helps with acid reflux</p>
-              </div>
-              <div class="po-alkaline-water__item">
-                <img src="https://unsplash.it/50/50" />
-                <p>Helps with acid reflux</p>
-              </div>
-              <div class="po-alkaline-water__content-link">
-                <a href="#">Why is pH so important?</a>
-              </div>
+              {% endfor %}
+            </div>
+            <div class="po-alkaline-water__content-link">
+              <a href="#">{{ section.settings.btn_text }}</a>
             </div>
           </div>
         </div>
@@ -57,6 +54,24 @@
       "id": "btn_link",
       "label": "Button Link"
     }
+  ],
+  "blocks":[
+    {
+      "type":"text",
+      "name":"Featured Items",
+      "settings":[
+      {
+        "type":"image_picker",
+        "id":"featured_item_icon",
+        "label":"Featured Item Icon"
+      },
+      {
+        "type":"text",
+        "id":"featured_item_title",
+        "label":"Featured Item Title"
+      }
+    ]
+  }
   ]
   }
 {% endschema %}

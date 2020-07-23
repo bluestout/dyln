@@ -1,0 +1,45 @@
+.po-cap {
+  background: rgb(231,240,242);
+  background: linear-gradient(180deg, rgba(231,240,242,1) 0%, rgba(255,255,255,1) 100%);
+  position: relative;
+
+  &__container {
+    display: flex;
+    align-items: center;
+
+    h2 {
+      @include font-header(bold);
+      @include text(46px, 1.2, $color-black, 0.3px);
+    }
+
+    span {
+      @include font-body(thin);
+      @include text(32px, 1.2, $color-black, 0.3px);
+      text-transform: uppercase;
+      display: block;
+    }
+  }
+
+  &__item {
+    width: 50%;
+    text-align: center;
+    margin-bottom: 25px;
+
+    p {
+      margin-top: 15px;
+    }
+  }
+
+  &__image-container {
+    margin-bottom: 40px;
+  }
+
+  &__wave-bottom {
+    background-image: url("data:image/svg+xml,%3Csvg width='1600' height='65' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h1600.154v64.848c-398.397-10.15-661.734-19.187-790.012-27.113C681.865 29.808 411.818 21.872 0 13.925V0z' fill='%23FFF' fill-rule='evenodd'/%3E%3C/svg%3E");
+    background-size: cover;
+    height: 70px;
+    position: absolute;
+    bottom: -70px;
+    width: 100%;
+  }
+}
