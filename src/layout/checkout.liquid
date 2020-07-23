@@ -66,6 +66,12 @@
 
     {{ checkout_stylesheets }}
     {{ checkout_scripts }}
+
+    <style>
+        .logo.logo--left {
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
 {{ skip_to_content_link }}
@@ -110,5 +116,15 @@
 </div>
 
 {{ tracking_code }}
+
+<script>
+    let cartLinks = document.querySelectorAll(".breadcrumb__link");
+    for (let cartLinksIndex = 0; cartLinksIndex < cartLinks.length; cartLinksIndex++) {
+        cartLinks[cartLinksIndex].addEventListener("click", function(event) {
+            event.preventDefault();
+            window.history.back();
+        });
+    }
+</script>
 </body>
 </html>
