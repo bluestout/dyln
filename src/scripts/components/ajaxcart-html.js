@@ -547,6 +547,15 @@ function emptyCartHtml() {
 }
 
 function productImageHtml(product, format, className) {
+  if (!product) {
+    return "";
+  }
+  let alt = "";
+  if (product.title) {
+    alt = product.title;
+  } else if (product.product_title) {
+    alt = product.product_title;
+  }
   let image = "";
   let domClass = "";
   if (className) {
@@ -554,21 +563,17 @@ function productImageHtml(product, format, className) {
   }
   const size = format || "240x240";
 
-  if (product.image) {
-    image = resizeImage(product.image, size);
-    image = `<img
-      src="${image}"
-      ${domClass}
-      alt="${product.product_title}"/>`;
-  } else if (product.featured_image) {
+  if (product.featured_image) {
+    image = resizeImage(product.featured_image.url, size);
+    if (product.featured_image.alt) {
+      alt = product.featured_image.alt;
+    }
+  } else if (product.image) {
     image = resizeImage(product.featured_image, size);
-    image = `<img
-      src="${image}"
-      ${domClass}
-      alt="${product.title}"/>`;
   }
-
-  return image;
+  if (image.length > 0) {
+    return `<img src="${image}" ${domClass} alt="${alt}" />`;
+  }
 }
 
 export {

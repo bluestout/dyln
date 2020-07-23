@@ -1,10 +1,14 @@
 import $ from "jquery";
 import { toggleTabindexInChildren } from "./helpers";
+import { productImageHtml } from "./ajaxcart-html";
+
 
 const datasets = {
   link: "header-link",
   block: "header-block",
   close: "header-block-close",
+  focusIn: "header-focus-in",
+  popTerm: "popular-term"
 };
 
 const selectors = {
@@ -16,6 +20,7 @@ const selectors = {
   block: `[data-${datasets.block}]`,
   linkById: (id) => `[data-${datasets.link}="${id}"]`,
   blockById: (id) => `[data-${datasets.block}="${id}"]`,
+  focusById: (id) => `[data-${datasets.focusIn}="${id}"]`,
   close: `[data-${datasets.close}]`,
   button: "[data-mobile-menu-button]",
   menu: "[data-menu-mobile]",
@@ -33,6 +38,10 @@ const selectors = {
   registerBlock: "[data-header-register-block]",
   accountButton: "[data-mobile-account-button]",
   gorgiasChat: "#gorgias-web-messenger-container",
+  searchInput: "[data-header-search-input]",
+  results: "[data-header-search-results]",
+  options: "[data-search-options]",
+  popTerm: `[data-${datasets.popTerm}]`,
 };
 
 const classes = {
@@ -122,6 +131,10 @@ function headerSublinkOpen(id) {
   $link.toggleClass(classes.active);
 
   $iframe.show();
+  const $focusIn = $(selectors.focusById(id));
+  if ($focusIn.length > 0) {
+    $focusIn.focus();
+  }
 
   if ($(window).width() < 992) {
     $blocks.not($block).slideUp();
@@ -241,9 +254,111 @@ function handleAccountMobileBtnClick() {
   }, 50);
 }
 
-$(document).ready(() => {
-  setHeaderBodyOffset();
-});
+let currentAjaxRequest = null;
+function handleSearchInput() {
+  const term = $(this).val();
+  let resources = "";
+  try {
+    resources = JSON.parse($(selectors.options).text());
+  } catch (error) {
+    resources = {
+      "type": "product,page,article,collection"
+    }
+  }
+  const searchObject = {};
+  searchObject["q"] = $(this).val();
+  searchObject["resources"] = resources;
+  const searchURL = "/search/suggest.json";
+  const $resultsList = $(selectors.results);
+
+  $resultsList.show();
+
+  if ($resultsList.length > 0) {
+    if (
+      $resultsList.length > 0 &&
+      term.length > 2 &&
+      term !== $(this).attr("data-old-term")
+    ) {
+      $(this).attr("data-old-term", term);
+      if (currentAjaxRequest !== null) {
+        currentAjaxRequest.abort();
+      }
+      currentAjaxRequest = $.getJSON(searchURL, searchObject).done((data) => {
+        let results = "";
+        let products = "";
+        let collections = "";
+        let articles = "";
+        let pages = "";
+        for (let i = 0; i < data.resources.results.products.length; i++) {
+          products += productHtml(data.resources.results.products[i]);
+        }
+        if (data.resources.results.products.length > 0) {
+          results = `<div class="ajax-search__block">${products}</div>`;
+        }
+        for (let i = 0; i < data.resources.results.collections.length; i++) {
+          collections += collectionHtml(data.resources.results.collections[i]);
+        }
+        if (data.resources.results.products.length > 0) {
+          results += `<div class="ajax-search__block">${collections}</div>`;
+        }
+        $resultsList.html(results);
+      });
+    }
+  }
+}
+
+function handlePopLinkClick(event) {
+  const $this = $(event.currentTarget);
+  const $input = $(selectors.searchInput);
+  $input.val($this);
+  return $input.change();
+}
+
+function closeSearch(event) {
+  let $container = $(".blog-search form");
+  let $resultsList = $(selectors.results);
+
+  if (
+    !$container.is(event.target) &&
+    $container.has(event.target).length === 0
+  ) {
+    return $resultsList.hide();
+  }
+  return null;
+}
+
+function productHtml(product) {
+  if (!product || product.length === 0) {
+    return "";
+  }
+  theme.strings.regular_price
+  let price = `<span class="visually-hidden">${theme.strings.regular_price}</span>${product.price}`;
+  if (product.compare_at_price_max > product.price_min) {
+    price = `<s><span class="visually-hidden">${theme.strings.on_sale}</span>${product.compare_at_price_max}</s>${price}`;
+  }
+
+  const template =
+    `<div class="ajax-search__item-wrap">
+    <a href="${product.url}" class="ajax-search__item">
+      <span class="ajax-search__img-wrap">${productImageHtml(product, "200x200")}</span>
+      <span class="ajax-search__content-wrap">
+        <h4 class="ajax-search__item-link">${product.title}</h4>
+        <span class="ajax-search__price">
+          ${price}
+        </span>
+      </span>
+    </a>
+  </div>`;
+  return template;
+}
+
+function collectionHtml(collection) {
+
+}
+
+//$(document).on("keyup change", selectors.searchInput, handleSearchInput);
+// $(document).on("mouseup", () => { closeSearch(event) });
+$(document).ready(() => { setHeaderBodyOffset() });
 
 $(document).on("click", selectors.link, handleHeaderLinkClick);
 $(document).on("click", selectors.close, handleHeaderLinkClose);
@@ -251,6 +366,7 @@ $(document).on("click", selectors.button, handleHeaderButtonClick);
 $(document).on("click", selectors.openLoginBlock, handleLoginOpenClick);
 $(document).on("click", selectors.openRegisterBlock, handleRegisterOpenClick);
 $(document).on("click", selectors.accountButton, handleAccountMobileBtnClick);
+$(document).on("click", selectors.popTerm, handlePopLinkClick);
 
 document.addEventListener("ajaxReloaded", togglesInit);
 document.addEventListener("windowScrolledRedux", onScroll);

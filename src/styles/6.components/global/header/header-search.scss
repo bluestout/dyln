@@ -12,6 +12,8 @@
     &__main-link {
       display: inline-block;
       vertical-align: middle;
+      background: none;
+      border: none;
 
       g {
         @include transition(stroke);
@@ -73,7 +75,6 @@
       border-radius: 0;
       padding: 0;
       margin: 0;
-      align-self: flex-end;
 
       svg {
         width: 45px;
