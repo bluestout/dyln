@@ -1,0 +1,95 @@
+<div class="body-tab account-orders"> 
+  <div class="account-orders__new-wrap">
+    <a href="https://www.dyln.co/products/dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth">
+    <button type="button" class="account-orders__btn-new">Place new Order</button>
+    </a>  
+  </div>
+  
+  {% if customer.orders_count > 0 %}
+  {%- assign order_count = 0 %}
+  {% for order in customer.orders %}
+  {%- assign order_count = order_count | plus: 1 -%}
+  {%- assign created_at = order.created_at | date: "%d/%m/%Y" -%}
+  <div class="account-orders__order order-list-{{ order_count }}">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="order-left-wrap">
+        <h4 class="account-orders__title">Order No. {{ order.name }}</h4>
+        <div class="account-orders__info"><strong>Placed on:</strong>&nbsp;<span>{{ created_at }}</span></div>
+        <div class="account-orders__info"><strong>Status:</strong>&nbsp;<span class="dev-need">{%- if order.fulfillment_status != 'fulfilled' && order.financial_status == 'paid' -%} Waiting for shipment {%- endif -%}{%- if order.fulfillment_status == 'fulfilled'  && order.financial_status == 'paid' && order.fulfillment_status.status == 'success' -%} Delivered {%- endif -%}</span></div>
+        <!--<div class="account-orders__info"><strong>Delivery Date:</strong>&nbsp;<span class="dev-need">How I get That</span></div> -->
+        <div class="account-orders__info last"><strong>Total:</strong>&nbsp;<span>{{ order.total_price | money }}</span></div>
+        <div class="order-billing-info" {% if order_count > 0 %} style="display:none" {% endif %}>
+          <h4 class="account-orders__subtitle">Billing Information</h4>
+          <div class="account-orders__info">{{order.billing_address.name}}</div>
+          <div class="account-orders__info">{{ order.gateway}}</div>
+          <div class="account-orders__info">{{ order.billing_address.address1 }}</div>
+          <div class="account-orders__info">{{ order.billing_address.city }}, {% if order.billing_address.province_code != blank %}{{ order.billing_address.province_code }},{% endif %} {{ order.billing_address.country_code }} {{ order.billing_address.zip }}</div>
+          <div class="account-orders__info">{{ order.billing_address.phone }}</div>
+          <div class="account-orders__info">{{ order.email }}</div>
+          <h4 class="account-orders__subtitle">Shipping Information</h4>
+          <div class="account-orders__info">{{order.shipping_address.name}}<br>{{order.shipping_address.address1}},<br>{{ order.shipping_address.city }}, {% if order.shipping_address.province_code != blank %}{{ order.shipping_address.province_code }},{% endif %} {{ order.shipping_address.country_code }} {{ order.shipping_address.zip }}<br>{{ order.shipping_address.phone }}</div>
+          <h4 class="account-orders__subtitle">Shipment Method</h4>
+          {% for shipping_method in order.shipping_methods %}
+          <div class="account-orders__info">{{ shipping_line.title }}</div>
+          {% endfor %}
+          {% if order.fulfillment_status == 'fulfilled' && order.financial_status == 'paid' %}
+          <h4 class="account-orders__subtitle">Tracking</h4>
+          <div class="account-orders__info brand-blue last"><a href="{{ fulfillments.tracking_url }}" target="_blank">{{ fulfillments.tracking_company}} #{{ fulfillments.tracking_number }}</a></div>
+          {% else %}
+          <h4 class="account-orders__subtitle">Tracking</h4>
+          <div class="account-orders__info brand-blue last">Wating For Shipping</div>          
+          {% endif %}
+        </div>
+        </div>  
+      </div>
+      <div class="col-md-6">
+        <div class="order-right-wrap" {% if order_count > 0 %} style="display:none" {% endif %}>
+        <h4 class="account-orders__item-title last">Order Content</h4>
+         {% for line_item in order.line_items %} 
+        <div class="account-orders__item">
+          <div class="account-orders__item-left">
+            <img src="{{ line_item.image | img_url: '220x' }}" alt="Image of DYLN water bottle" class="account-orders__item-image" />
+          </div>
+          <div class="account-orders__item-right">
+            <h4 class="account-orders__item-title">{{ line_item.product.title }}</h4>
+            <div class="account-orders__item-info">{{ line_item.variant.title }}</div>
+            <div class="account-orders__item-info">SKU {{ line_item.sku }}</div>
+            <div class="account-orders__item-info last">Qty: {{ line_item.quantity }}</div>
+            <div class="account-orders__item-price">Each: {{ line_item.original_price | money }} </div>
+            <div class="account-orders__item-price">Discount: {{ line_item.line_level_total_discount | money }}</div>
+            <div class="account-orders__item-price"><strong>Total: {{ line_item.final_price | money }}</strong></div>
+          </div>
+        </div>
+          {% endfor %}
+        <div class="account-orders__totals">
+          <div class="account-orders__totals-left text-right">
+            <div class="account-orders__totals-label"><strong>Subtotal</strong></div>
+            <div class="account-orders__totals-label">Tax</div>
+            <div class="account-orders__totals-label">Shipping</div>
+            <div class="account-orders__totals-label"><strong>Total</strong></div>
+            <div class="account-orders__totals-label brand-blue">Savings</div>
+          </div>
+          <div class="account-orders__totals-right">
+            <div class="account-orders__totals-label"><strong>{{ order.subtotal_price | money }}</strong></div>
+            <div class="account-orders__totals-label">{{ order.tax_price | money }}</div>
+            <div class="account-orders__totals-label">{{ order.shipping_price | money }}</div>
+            
+            <div class="account-orders__totals-label"><strong>{{ order.total_price | money }}</strong></div>
+            <div class="account-orders__totals-label brand-blue">{{ order.total_discounts | money }}</div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="account-orders__btn-more">{% if order_count > 0 %}Order Details{% else %}See Less{% endif %}</button>
+    <button type="button" class="account-orders__btn-more" style="display:none;">Order Details</button>
+    <a href="#" class="account-orders__btn-more" style="display:none;">Track</a>
+  </div>
+  {% endfor %}
+  {% else %}
+  <div class="account-orders__order">
+    <h4 class="account-orders__item-title last">No Order Found</h4>
+  </div>
+  {% endif %}
+</div>

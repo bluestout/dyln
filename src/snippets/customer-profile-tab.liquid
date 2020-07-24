@@ -1,0 +1,126 @@
+<div class="body-tab account-profile">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="account-profile__header">
+        <h3 class="account-profile__title">Personal Information</h3>
+        <button class="account-profile__edit profile-edit">
+          <svg width="16" height="24" viewBox="0 0 16 24" xmlns="http://www.w3.org/2000/svg"><g stroke="#FFF" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linejoin="round" d="M11.387.838l3.608 2.083-10 17.32-3.713 2.355.105-4.438z"/><path stroke-linecap="square" d="M9.247 5.376l2.887 1.667"/></g></svg>
+        </button>
+      </div>
+      <h4 class="account-profile__subtitle">{{ customer.name }}</h4>
+      <p class="account-profile__info gender">Female</p>
+      <p class="account-profile__info">Location: <span>{{ customer.default_address.address1 }}, {{ customer.default_address.city }}{% if customer.default_address.province_code %}, {{ customer.default_address.province_code }} {% endif %} {{ customer.default_address.country_code }}</span></p>
+      <p class="account-profile__info birth-day">Birthday: <span>00/00/0000</span></p>
+      <p class="account-profile__info height">Height: <span>0'0"</span></p>
+      <p class="account-profile__info weight">Weight: <span>000lb</span></p>
+
+      <div class="account-profile__separator"></div>
+
+      <div class="account-profile__header">
+        <h3 class="account-profile__title">Contact Information</h3>
+        <button class="account-profile__edit edit-contact">
+          <svg width="16" height="24" viewBox="0 0 16 24" xmlns="http://www.w3.org/2000/svg"><g stroke="#FFF" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linejoin="round" d="M11.387.838l3.608 2.083-10 17.32-3.713 2.355.105-4.438z"/><path stroke-linecap="square" d="M9.247 5.376l2.887 1.667"/></g></svg>
+        </button>
+      </div>
+      <p class="account-profile__info">
+        <span class="account-profile__info-icon"><svg width="19" height="32" viewBox="0 0 19 32" xmlns="http://www.w3.org/2000/svg"><path d="M17.457 28.965l-1.766-6.59a1 1 0 00-1.224-.707l-2.753.738a1 1 0 01-.903-.201c-1.087-.915-1.997-2.744-2.733-5.487-.727-2.714-.824-4.613-.292-5.697a1 1 0 01.64-.525l2.843-.762a1 1 0 00.707-1.225l-1.766-6.59a1 1 0 00-1.225-.707l-1.414.38c-1.168.312-9.248 2.477-5.433 16.717 3.816 14.24 11.894 12.61 13.197 12.26l1.415-.38a1 1 0 00.707-1.224z" stroke="#333C41" stroke-width="2" fill="none" fill-rule="evenodd"/></svg></span>
+        <span class="account-profile__info-flag"><img src="{{ 'flag-circle-usa.png' | asset_url }}" alt="Country Flag image" /></span>
+        <span>{{ customer.phone }}</span>
+      </p>
+      <p class="account-profile__info">
+        <span class="account-profile__info-icon"><svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="translate(1 1)" stroke="#333C41" stroke-width="2" fill="none" fill-rule="evenodd"><rect width="30" height="18" rx="1"/><path stroke-linecap="round" d="M.896.808L15 11.388 29.112.808"/></g></svg></span>
+        <span>{{ customer.email }}</span>
+      </p>
+      <div class="account-profile__update-btn-wrap">
+        <button type="button" class="account-profile__update-btn account-profile__update-password">Update Password</button>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="account-profile__header">
+        <h3 class="account-profile__title">Address Book</h3>
+      </div>
+      {% for address in customer.addresses %}
+      <div class="address-wrap" style="position:relative" id="address-{{ address.id }}">
+      <div class="account-profile__info-left">
+        <span class="account-profile__info-icon">
+          <svg width="16" height="21" viewBox="0 0 16 21" xmlns="http://www.w3.org/2000/svg"><g transform="translate(.937)" stroke="#00AEDB" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M7.063.75a6.293 6.293 0 00-4.464 1.849A6.293 6.293 0 00.75 7.063c0 2.412 2.152 6.614 6.313 12.626 4.16-6.012 6.313-10.214 6.313-12.626a6.293 6.293 0 00-1.85-4.464A6.293 6.293 0 007.064.75z"/><circle cx="7.063" cy="7.4" r="2.25"/></g></svg>
+        </span>
+      </div>
+      <div class="account-profile__info-right">
+        <p class="account-profile__address address-{{ address.id }}" data-default="{%- if address.default -%}yes{%-endif-%}">
+          <span class="address-edit-del">
+          <button class="account-profile__edit edit-address" data-id="{{ address.id }}">
+              <svg width="16" height="24" viewBox="0 0 16 24" xmlns="http://www.w3.org/2000/svg"><g stroke="#FFF" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linejoin="round" d="M11.387.838l3.608 2.083-10 17.32-3.713 2.355.105-4.438z"/><path stroke-linecap="square" d="M9.247 5.376l2.887 1.667"/></g></svg>
+           </button>
+          
+          <button type="button" class="account__button-delete del-address" data-id="{{ address.id }}">
+            <span class="visually-hidden"></span>
+            <svg width="19" height="21" viewBox="0 0 19 21" xmlns="http://www.w3.org/2000/svg"><g stroke="#00AEDB" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linejoin="round" d="M2.335 4.772h13.636l-.909 15.455H3.244z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M.971 4.772h16.364"></path><path stroke-linejoin="round" d="M5.971 1.136h6.364v3.636H5.971z"></path><path stroke-linecap="round" d="M6.198 7.954v9.091M8.926 7.954v9.091M11.653 7.954v9.091"></path></g></svg>
+          </button>
+         
+          </span>
+          <strong>{{ address.first_name }} {{ address.last_name }}</strong><br>
+          <span>{{ address.address1 }}, {{ address.address2 }}</span><br>
+          <span>{{ address.city }}, {{ address.province_code }} {{ address.zip }}</span><br>
+          <span>{{ address.country }}</span><br>
+          <!--<span class="account-profile__info-flag"><img src="{{ 'flag-circle-usa.png' | asset_url }}" alt="Country Flag image" /></span> --> 
+          <span>{{ address.phone }}</span>
+        </p>
+      </div>  
+      <div class="clearfix"></div>
+      </div>  
+      {% endfor %}
+      <!--
+      <div class="account-profile__info-left">
+      <span class="account-profile__info-icon">
+      <svg width="16" height="21" viewBox="0 0 16 21" xmlns="http://www.w3.org/2000/svg"><g transform="translate(.937)" stroke="#00AEDB" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M7.063.75a6.293 6.293 0 00-4.464 1.849A6.293 6.293 0 00.75 7.063c0 2.412 2.152 6.614 6.313 12.626 4.16-6.012 6.313-10.214 6.313-12.626a6.293 6.293 0 00-1.85-4.464A6.293 6.293 0 007.064.75z"/><circle cx="7.063" cy="7.4" r="2.25"/></g></svg>
+      </span>
+      </div>
+      <div class="account-profile__info-right">
+      <span class="account-profile__address">
+      <strong>Jane Doe</strong><br>
+      000 Street Name,<br>
+      City, USA 22000<br>
+      United States<br>
+      <span class="account-profile__info-flag"><img src="{{ 'flag-circle-usa.png' | asset_url }}" alt="Country Flag image" /></span> (000) 000-0000
+      </span>
+      </div>
+      <div class="clearfix"></div>
+      -->
+      <div class="text-center">
+        <button type="button" class="account-profile__button-add open-address-pop">Add New Address</button>
+      </div>
+
+      <div class="account-profile__separator"></div>
+
+      <div class="account-profile__header">
+        <h3 class="account-profile__title">Email preferences</h3>
+      </div>
+      <form action="#">
+        <input type="hidden" name="id" value="{{ customer.id }}" >
+        <div class="account-profile__checkbox-wrap">
+          <input type="checkbox"
+                 id="diffuser-replacement"
+                 name="diffuser_replacement" />
+          <label for="diffuser-replacement">Diffuser replacement notification</label>
+        </div>
+
+        <div class="account-profile__checkbox-wrap">
+          <input type="checkbox"
+                 id="update-notification"
+                 name="bottle_update"
+                  />
+          <label for="update-notification">Bottle update notification</label>
+        </div>
+
+        <div class="account-profile__checkbox-wrap">
+          <input type="checkbox"
+                 id="newsletter"
+                 name="newsletter"
+                 />
+          <label for="newsletter">newsletter</label>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
