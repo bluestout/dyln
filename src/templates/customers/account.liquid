@@ -407,6 +407,7 @@ icon-curved-arrow-down:
           id="profile-image-1"
           name="profile_image"
           value="image-1"
+          checked="checked"
           class="account-edit__image-radio"
           style="background-image:url({{ 'proiflie-image-1.jpg' | asset_img_url: '200x' }})"/>
       </div>
@@ -483,7 +484,7 @@ icon-curved-arrow-down:
     </div>
 
     <div class="registration-modal__navigation">
-      <button type="button" class="registration-modal__btn-wire-alt">Update</button>
+      <button type="button" id="update-profile-pic" class="registration-modal__btn-wire-alt">Update</button>
     </div>
     </form>
   </div>
