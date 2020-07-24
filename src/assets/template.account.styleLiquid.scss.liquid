@@ -4440,8 +4440,17 @@ input.poor[type=range]::-ms-track{
 .all-pop-close{
   display:none;
 }
-
-@media screen and (max-width: 768px){
+.profile-bg .account-header__wave{
+ display:none;
+}
+@media screen and (max-width: 767px){
+  .account-header__wave{
+    bottom: 30px;
+  }
+  .profile-bg .account-header__wave {
+      display: block;
+      bottom: -42px;
+  }    
 }
 @media screen and (max-width: 380px){
   .account-header__status-badge, .account-header__status-num-alt{
