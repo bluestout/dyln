@@ -80,7 +80,6 @@ icon-curved-arrow-down:
         </div>
 
         <div class="account-body__tabs">
-
           <div class="body-tab account-dash active-tab">
             <div class="row">
               <div class="col-md-6">
@@ -103,24 +102,22 @@ icon-curved-arrow-down:
                     <span class="account-dash__title-txt">My Bottles</span>
                     <button type="button" class="account-dash__title-button tab-button" tab-body="account-bottles">See All</button>
                   </h3>
-          <div id="custommer-bottles-short">
-
-                  <div class="account-dash__bottle" style="display:none">
-                    <div class="account-dash__bottle-wrap" aria-ignore="true">
-                      {% comment %} progress must be in percent, so between 0 and 100. It needs to be in steps of 5, so 5, 10, 15, 20,... that is to reduce the size of the css file - each percent has its own class {% endcomment %}
-                      <div class="account-dash__bottle-progress progress-circle" data-progress="40">
-                        <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water Bottle" class="account-dash__bottle-img" />
+                  <div id="custommer-bottles-short">
+                    <div class="account-dash__bottle" style="display:none">
+                      <div class="account-dash__bottle-wrap" aria-ignore="true">
+                        {% comment %} progress must be in percent, so between 0 and 100. It needs to be in steps of 5, so 5, 10, 15, 20,... that is to reduce the size of the css file - each percent has its own class {% endcomment %}
+                        <div class="account-dash__bottle-progress progress-circle" data-progress="40">
+                          <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water Bottle" class="account-dash__bottle-img" />
+                        </div>
                       </div>
+                      <div class="account-dash__bottle-content">
+                        <h4 class="account-dash__bottle-title">Bottle #1</h4>
+                        <p class="account-dash__bottle-timer"><span>60</span> days left on Diffuser</p>
+                      </div>
+                      <button type="button" class="account-dash__bottle-more">
+                        <span class="visually-hidden">More options</span>
+                      </button>
                     </div>
-                    <div class="account-dash__bottle-content">
-                      <h4 class="account-dash__bottle-title">Bottle #1</h4>
-                      <p class="account-dash__bottle-timer"><span>60</span> days left on Diffuser</p>
-                    </div>
-                    <button type="button" class="account-dash__bottle-more">
-                      <span class="visually-hidden">More options</span>
-                    </button>
-                  </div>
-
                   </div>
 
                   <div class="account-dash__bottle-btn-wrap">

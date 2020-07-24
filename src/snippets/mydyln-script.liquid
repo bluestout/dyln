@@ -203,7 +203,6 @@ $(function(){
     $Wrap.find('.account-bottle__title').text(nickName);
     $Wrap.find('.account-bottle__code strong').text(obj.code);
     $Wrap.find('.btn-update-now').attr('data-id', obj.id);
-
     if(obj.color === null){
       var btlColor = obj.finish;
     }else{
@@ -214,7 +213,6 @@ $(function(){
     $Wrap.find('.account-bottle__info-color .account-bottle__info-value').text(btlColor);
     $Wrap.find('.account-bottle__time-diffuser').text(def_rep_day[2]+'/'+def_rep_day[1]+'/'+def_rep_day[0]);
     $WrapT.find('.account-bottle__replace-date').text(def_rep_day[2]+'/'+def_rep_day[1]+'/'+def_rep_day[0]);
-
     $Wrap.find('.days-left').text(obj.days_remaining);
     $WrapT.find('.new-days-left').text(obj.days_remaining);
     $Wrap.find('.refills-left').text(obj.refills_remaining);
@@ -284,9 +282,6 @@ $(function(){
     $WrapEdit.find('.refil-per-week').val(obj.days_used);
     $WrapEdit.find('.account-bottle__edit-update').attr('data-id', obj.id);
     $WrapEdit.find('.account-bottle__edit-image-wrap img').attr('src', bottleImg);
-
-
-
   }
 
   // close popup
@@ -307,9 +302,6 @@ $(function(){
 
   });
 
-
-
-
   // Order see more/ see less account-orders__btn-more
   $('.account-orders__btn-more').click(function(){
     var $this = $(this);
@@ -322,7 +314,6 @@ $(function(){
       $this.text('See Less');
     }
   });
-
   // register bottles popup
   $('.btn-action-register-bottle').click(function(){
     $('.registration-modal').fadeIn();
@@ -332,7 +323,6 @@ $(function(){
    $('.registration-modal__page #bottle-registration-code').keyup(function(){
         $(this).val($(this).val().toUpperCase());
     });
-
   // get bottle information with bottle code
   $('.registration-modal__page.step_code .registration-modal__btn-next').click(function(){
     $('#registration-modal__form .registration-modal__message span').text('');
@@ -362,7 +352,6 @@ $(function(){
     }else{
       $('#registration-modal__form .registration-modal__message span').text('Please Add Procuct Code');
     }
-
   });
 
   function setRegisterBottleInfo(response){
@@ -391,8 +380,6 @@ $(function(){
       var imgfull = imgBtl.split('.png');
       var imgSm = imgfull[0] + '_300x.png';
       $registerForm.find('.reg-btl-img').not('.btl-finish').attr('src', imgSm);
-
-
     }
   }
 
@@ -407,7 +394,6 @@ $(function(){
       $('#registration-modal__form #product_variant').val($this.attr('data-id'));
     }
   });
-
   //color next
   $('.registration-modal__page.step_color .registration-modal__btn-next').click(function(){
     var $this = $(this);
@@ -417,7 +403,6 @@ $(function(){
       $('#registration-modal__form .registration-modal__message span').text('');
       regProcessNext($this);
     }
-
   });
 
   // register bottle nickname
@@ -435,7 +420,6 @@ $(function(){
         $('#registration-modal__form .registration-modal__message span').text('Dublicate bottle name');
       }
     }
-
   });
 
     // back button register bottle
@@ -567,7 +551,6 @@ $(function(){
     Type: true,
     initialCountry: CustomerCountry
   });
-
   // register thanks
   $('.registration-modal__page.step-thanks .registration-modal__btn-final').click(function(){
     $('#registration-modal__form .registration-modal__message span').text('');
@@ -584,7 +567,6 @@ $(function(){
       }else{
         $('#registration-modal__form .registration-modal__message span').text('Please Enter Phone Nuimber');
       }
-
     }
   });
 
@@ -647,7 +629,6 @@ $(function(){
   $('.account-bottle__edit-update').click(function(){
     var $this = $(this);
     if($this.hasClass('btn-disable')){
-
     }else{
     var btlID = $this.attr('data-id');
     var $WrapEdit = $('.account-bottle__edit');
@@ -662,7 +643,6 @@ $(function(){
     }
     //console.log("New date: "+sDate+" refil_per_day: "+refil_per_day+ " refil_per_week: "+refil_per_week );
   });
-
   function UpdateBottle(data){
       var cUrl = '/a/dyl/'+CustomerShopifyId+'/update-bottle';
       var data = data;
@@ -807,7 +787,6 @@ $(function(){
     $('.customer-edit-profile').fadeIn();
     scrollBottom();
   });
-
   //edit-profile--phone
   var inputE = document.querySelector("#edit-profile--phone");
   var iti = window.intlTelInput(inputE, {
@@ -862,7 +841,6 @@ $(function(){
       $this.parents('.step').fadeOut('fast');
       $this.parents('.step').next('.step').delay(500).fadeIn('slow');
     }
-
   });
   // profile back
   $('.profile-edti-btn-back').click(function(){
@@ -885,7 +863,6 @@ $(function(){
   $('.profile-edti-btn-cancle').click(function(){
     $(this).parents('.popup').fadeOut();
   });
-
   // Profile done
   $('.step_interest .profile-edti-btn-done').click(function(){
     var $this = $(this);
@@ -931,7 +908,6 @@ $(function(){
       }
     }
   });
-
   // Customer Info
     var urlToRequest = '/a/dyl/'+CustomerShopifyId+'/all-info';
     $.ajax({
@@ -995,7 +971,6 @@ $(function(){
       }
     }
     if(!data.weight){
-
     }else{
       var cWeight = data.weight.split('-');
       $wrap.find('#body-weight-lab').val(data.weight);
@@ -1023,7 +998,6 @@ $(function(){
     $('.step_interest input[name="interests"][value="'+cInterests[i]+'"]').click();
       }
     }
-
     // set Notifications
     if(data.notification.email_diffuser_replacement == 1){
       $('.account-profile__checkbox-wrap').find('#diffuser-replacement').prop( "checked", true );
@@ -1093,7 +1067,6 @@ $(function(){
         success: function (response) {
           //console.log(response);
           if(response.success){
-
           }else{
 
           }
@@ -1111,7 +1084,6 @@ $(function(){
     $('.account-edit.profile-contact-pop').fadeIn();
     scrollBottom();
   });
-
   //edit-profile--phone
   var inputCE = document.querySelector("#profile-contact-phone");
   var iti = window.intlTelInput(inputCE, {
@@ -1158,7 +1130,6 @@ $(function(){
         dataType: 'json',
         success: function (response) {
           if(!response){
-
              }else{
              location.reload(true);
              }
@@ -1220,7 +1191,6 @@ $(function(){
     var btnText = $this.text();
     $this.text('Updating...');
     if($this.hasClass('btn-disable')){
-
     }else{
       $this.addClass('btn-disable');
         var submit = true;
@@ -1275,7 +1245,6 @@ $(function(){
     var btnText = $this.text();
     $this.text('Adding...');
     if($this.hasClass('btn-disable')){
-
     }else{
       $this.addClass('btn-disable');
         var submit = true;
@@ -1421,7 +1390,6 @@ $(function(){
       }else{
         inItSlider('.account-edit-option #body-weight', 5, 40);
       }
-
     }else{
       $('.account-edit-option #body-height').fadeIn();
       $('.account-edit-option .lab-height').fadeIn();
@@ -1459,7 +1427,6 @@ $(function(){
     $('.account-edit-option .swiper-container').fadeOut();
     $('.account-edit-option .account-edit-option__label').fadeOut();
   });
-
   // done click
   $('.account-edit-option__body .account-edit-option__btn').click(function(){
     if($('#body-weight').hasClass('swiper-container-initialized')){
@@ -1471,7 +1438,6 @@ $(function(){
       $('.bod-weight span').text('Weight: '+wVal+wLab);
       $('.bod-weight').attr('data-val', wV);
       $('#body-weight-lab').val(wV);
-
     }else{
       var hV = $('.swiper-slide-active').attr('data-val');
       var hVal = hV.split('-');
