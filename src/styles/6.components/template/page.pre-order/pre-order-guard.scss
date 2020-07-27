@@ -27,6 +27,11 @@
     left: 50%;
     bottom: -15px;
     transform: translateX(-50%);
+
+    @include media-query($medium-down) {
+      min-width: 200px;
+      bottom: -15px;
+    }
   }
 
   &__title-tag {
@@ -45,6 +50,22 @@
     display: flex;
     align-items: center;
     width: 100%;
+
+    @include media-query($medium-down) {
+      flex-direction: column;
+
+      > div:nth-of-type(3) {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 30px;
+        text-align: center;
+
+        .po-guard__title-tag {
+          order: 3;
+          margin-top: 15px;
+        }
+      }
+    }
 
     h2 {
       @include font-header(bold);
@@ -75,6 +96,12 @@
     top: -60px;
     max-width: 450px;
     height: auto;
+
+    @include media-query($medium-down) {
+      position: relative;
+      order: 3;
+      margin-top: 60px;
+    }
   }
 
   &__wave-bottom {

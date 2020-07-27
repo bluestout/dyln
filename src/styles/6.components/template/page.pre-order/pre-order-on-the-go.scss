@@ -4,6 +4,12 @@
   h2 {
     @include font-header(bold);
     @include text(46px, 1.2, $color-white, 0.3px);
+
+    @include media-query($medium-down) {
+      @include text(30px, 1.2, $color-theme-31, 0.3px);
+      margin: 40px 0;
+      text-align: center;
+    }
   }
 
   &__container {
@@ -11,6 +17,10 @@
     align-items: center;
     width: 100%;
     min-height: 400px;
+
+    @include media-query($medium-down) {
+      flex-direction: column;
+    }
 
     img {
       text-align: center;
@@ -27,6 +37,10 @@
       @include font-body(bold);
       @include text(16px, 1.4, $color-white, 0.3px);
       text-align: center;
+
+      @include media-query($medium-down) {
+        margin-bottom: 30px;
+      }
     }
   }
 

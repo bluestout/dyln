@@ -12,6 +12,11 @@
       font-weight: 400;
       width: 380px;
 
+      @include media-query($medium-down) {
+        font-size: 30px;
+        text-align: center;
+      }
+
       strong {
         font-weight: 800;
       }

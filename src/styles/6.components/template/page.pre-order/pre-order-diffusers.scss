@@ -6,6 +6,10 @@
     align-items: center;
     width: 100%;
 
+    @include media-query($medium-down) {
+      flex-direction: column;
+    }
+
     span {
       @include font-body(thin);
       @include text(32px, 1.2, $color-black, 0.3px);

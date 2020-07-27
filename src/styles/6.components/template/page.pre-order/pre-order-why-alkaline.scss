@@ -3,11 +3,21 @@
     h2 {
       @include font-header(bold);
       @include text(46px, 1.2, $color-black, 0.3px);
+
+      @include media-query($medium-down) {
+        @include text(40px, 1.2, $color-black, 0.3px);
+        text-align: center;
+        margin-bottom: 30px;
+      }
     }
 
     p {
       @include font-body(normal)
       @include text(18px, 1.2, $color-black, 0px);
+
+      @include media-query($medium-down) {
+        @include text(14px, 1.5, $color-black, 0px);
+      }
     }
   }
 
@@ -15,5 +25,9 @@
     display: flex;
     align-items: center;
     margin-top: 80px;
+
+    @include media-query($medium-down) {
+      flex-direction: column;
+    }
   }
 }

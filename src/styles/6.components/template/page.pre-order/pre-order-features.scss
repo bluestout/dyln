@@ -7,6 +7,10 @@
     display: flex;
     align-items: center;
 
+    @include media-query($medium-down) {
+      flex-direction: column;
+    }
+
     h2 {
       @include font-header(bold);
       @include text(46px, 1.2, $color-black, 0.3px);

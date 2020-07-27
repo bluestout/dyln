@@ -5,6 +5,11 @@
   padding-top: 130px;
   min-height: 500px;
 
+  @include media-query($medium-down) {
+    padding-top: 40px;
+    text-align: center;
+  }
+
   &__wave-top {
     background-image: url("data:image/svg+xml,%3Csvg width='1600' height='65' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h1600.154v64.848c-398.397-10.15-661.734-19.187-790.012-27.113C681.865 29.808 411.818 21.872 0 13.925V0z' fill='%23FFF' fill-rule='evenodd'/%3E%3C/svg%3E");
     background-size: cover;
@@ -28,6 +33,11 @@
     bottom: 0;
     transform: translateX(-50%);
     z-index: 10;
+
+    @include media-query($medium-down) {
+      min-width: 200px;
+      bottom: -15px;
+    }
   }
 
   &__title-tag {
@@ -46,6 +56,21 @@
     display: flex;
     align-items: center;
     width: 100%;
+
+    @include media-query($medium-down) {
+      flex-direction: column;
+
+      > div:first-of-type {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 30px;
+
+        .po-cap__title-tag {
+          order: 3;
+          margin-top: 15px;
+        }
+      }
+    }
 
     h2 {
       @include font-header(bold);
@@ -76,6 +101,11 @@
     right: 0;
     max-width: 380px;
     height: auto;
+
+    @include media-query($medium-down) {
+      position: relative;
+      margin-bottom: 0;
+    }
   }
 
   &__wave-bottom {
