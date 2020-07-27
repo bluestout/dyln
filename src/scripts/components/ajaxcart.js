@@ -319,10 +319,10 @@ function updateQuickCart(cart) {
           <span class="cart-drawer__payment cart-drawer__payment--amazon">
             <img src="${theme.imageUrls.logoAmazon}" alt="Amazon Pay" />
           </span>
-          <span class="cart-drawer__payment">
+          <span class="cart-drawer__payment cart-drawer__payment--googlepay">
             <img src="${theme.imageUrls.logoGooglePay}" alt="Google Pay" />
           </span>
-          <span class="cart-drawer__payment">
+          <span class="cart-drawer__payment cart-drawer__payment--paypal">
             <img src="${theme.imageUrls.logoPayPal}" alt="PayPal" />
           </span>
         </div>

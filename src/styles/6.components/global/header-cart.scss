@@ -68,6 +68,7 @@
     position: relative;
     padding: 0;
     display: block;
+    align-self: center;
 
     &:hover {
       .site-header__cart-icon {
@@ -89,6 +90,7 @@
   }
 
   &__cart-icon {
+    @include no-font-size;
     display: block;
     g {
       @include transition(stroke);
@@ -178,6 +180,7 @@
     &__cart-icon {
       svg {
         width: 23px;
+        height: 20px;
       }
     }
 
