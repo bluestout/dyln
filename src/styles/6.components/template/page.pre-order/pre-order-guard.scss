@@ -1,9 +1,9 @@
-.po-cap {
+.po-guard {
   background: rgb(231,240,242);
   background: linear-gradient(0deg, rgba(231,240,242,1) 0%, rgba(255,255,255,1) 100%);
   position: relative;
   padding-top: 130px;
-  min-height: 500px;
+  min-height: 450px;
 
   &__wave-top {
     background-image: url("data:image/svg+xml,%3Csvg width='1600' height='65' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h1600.154v64.848c-398.397-10.15-661.734-19.187-790.012-27.113C681.865 29.808 411.818 21.872 0 13.925V0z' fill='%23FFF' fill-rule='evenodd'/%3E%3C/svg%3E");
@@ -25,9 +25,8 @@
     display: inline-block;
     position: absolute;
     left: 50%;
-    bottom: 0;
+    bottom: -15px;
     transform: translateX(-50%);
-    z-index: 10;
   }
 
   &__title-tag {
@@ -71,10 +70,10 @@
   }
 
   &__image-container {
-    margin-bottom: 40px;
     position: absolute;
-    right: 0;
-    max-width: 380px;
+    left: 0;
+    top: -60px;
+    max-width: 450px;
     height: auto;
   }
 
@@ -83,7 +82,7 @@
     background-size: cover;
     height: 70px;
     position: absolute;
-    bottom: -70px;
+    bottom: -50px;
     width: 100%;
   }
 }

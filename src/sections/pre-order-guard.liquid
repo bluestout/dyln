@@ -1,0 +1,98 @@
+<div class="po-guard__wave-top"></div>
+
+
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="po-guard__container">
+        {%- render 'responsive-image' with
+          image: section.settings.right_image.src,
+          max_width: 870,
+          max_height: 680,
+          wrapper_class: "po-guard__image-container",
+          image_class: "po-guard__image",
+          snippet_index: 35
+        -%}
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <span class="po-guard__title-tag">{{ section.settings.subtitle }}</span>
+          <span id="title">{{ section.settings.text_above_title }}</span>
+          <h2>{{ section.settings.title }}</h2>
+        </div>
+        <div class="col-md-5 d-flex justify-content-center align-items-center flex-wrap">
+          {% for block in section.blocks %}
+            <div class="po-guard__item">
+              {%- render 'responsive-image' with
+                image: block.settings.featured_item_icon.src,
+                max_width: 52,
+                max_height: 52,
+                wrapper_class: "po-guard__featured-image-container",
+                image_class: "po-guard__featured-image",
+                snippet_index: 35
+              -%}
+              <p>{{ block.settings.featured_item_title }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      <a href="{{ section.settings.cta_link }}" class="po-guard__btn">{{ section.settings.cta_text }}</a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Pre-Order Bottom Guard",
+    "class": "po-guard",
+    "settings": [
+      {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Subtitle"
+      },
+      {
+        "type": "text",
+        "id": "text_above_title",
+        "label": "Text above Title"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "image_picker",
+        "id": "right_image",
+        "label": "Right Image"
+      },
+      {
+        "type": "text",
+        "id": "cta_text",
+        "label": "CTA Text"
+      },
+      {
+        "type": "url",
+        "id": "cta_link",
+        "label": "CTA Link"
+      }
+    ],
+    "blocks":[
+      {
+        "type":"text",
+        "name":"Featured Item",
+        "settings":[
+        {
+          "type":"image_picker",
+          "id":"featured_item_icon",
+          "label":"Featured Item Icon"
+        },
+        {
+          "type":"text",
+          "id":"featured_item_title",
+          "label":"Featured Item Title"
+        }
+      ]
+    }
+  ]
+  }
+{% endschema %}

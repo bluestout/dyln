@@ -1,4 +1,6 @@
 .po-hydro-optim {
+  margin-top: 120px;
+
   &__main {
     display: flex;
     align-items: center;
@@ -43,6 +45,10 @@
       display: flex;
       padding: 0;
       padding-right: 40px;
+
+      p {
+        @include text(15px, 1.5, $color-black, 0.3px);
+      }
 
       &:last-of-type {
         padding-right: 0;
