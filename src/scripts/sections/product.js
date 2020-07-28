@@ -220,7 +220,7 @@ register("product", {
   },
 
   renderGalleryByColor(color) {
-    if (!color || color.length === 0) {
+    if (!color || color.length === 0 || !selectors.galleryByColor(color)) {
       return null;
     }
 
