@@ -133,7 +133,7 @@
     {% if show_extras %}
       {% comment %} <!-- Insert QuadPay Widget --> {% endcomment %}
       <div style="margin: 0 0 10px 0; min-height:20px;">
-        <quadpay-widget amount={{ current_variant.price }} ></quadpay-widget>
+        <quadpay-widget amount={{ current_variant.price | divided_by: 100 }} ></quadpay-widget>
       </div>
     {% endif %}
   {% endform %}
