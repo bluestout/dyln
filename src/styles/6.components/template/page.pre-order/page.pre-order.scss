@@ -12,7 +12,7 @@
 @import "./pre-order-features";
 @import "./pre-order-cap";
 @import "./pre-order-guard";
-@import "../page.landing-page/landing-page-diffusers";
+@import "./pre-order-subscription";
 
 
 &#pre-order {
@@ -80,4 +80,8 @@
       stroke: black;
     }
   }
+}
+
+.po-subscription {
+  box-shadow: 0px 10px 100px #EEE;
 }
