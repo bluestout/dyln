@@ -1004,38 +1004,6 @@
           "title": "Customer Pictures"
         }
       },
-      "collection-header": {
-        "type": "collection-header",
-        "blocks": {
-          "1592503371886": {
-            "type": "usp",
-            "settings": {
-              "title": "Faster Hydration",
-              "icon": "hydration"
-            }
-          },
-          "1592503387499": {
-            "type": "usp",
-            "settings": {
-              "title": "Detoxifying",
-              "icon": "detoxifying"
-            }
-          },
-          "1592503405764": {
-            "type": "usp",
-            "settings": {
-              "title": "Combats Acid Reflux",
-              "icon": "acid-reflux"
-            }
-          }
-        },
-        "block_order": ["1592503371886", "1592503387499", "1592503405764"],
-        "settings": {
-          "title": "Alkaline Water equals enhanced hydration, create it on the go.",
-          "bg": "shopify://shop_images/dyln-collection-header-man-with-bottle-in-rucksack.min.png",
-          "bg_rsp": "shopify://shop_images/dyln-collection-header-mobile-man-with-bottle-in-rucksack.min.png"
-        }
-      },
       "collection-filter": {
         "type": "collection-filter",
         "settings": {}
