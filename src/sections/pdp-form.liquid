@@ -158,7 +158,7 @@
 
 {% comment %} <!-- Insert QuadPay Widget --> {% endcomment %}
 <div>
-  <quadpay-widget amount={{ current_variant.price }} ></quadpay-widget>
+  <quadpay-widget amount={{ current_variant.price | divided_by: 100 }} ></quadpay-widget>
   <div class="product-form__sold-out-gradient" style="background-image:url({{ 'out-of-stock-gradient.png' | asset_url }})"></div>
 </div>
 
