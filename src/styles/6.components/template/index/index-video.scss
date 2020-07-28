@@ -177,6 +177,9 @@
   }
 
   @include media-query($medium-down) {
+    padding-top: 120px;
+    margin-top: -120px;
+
     &__outer {
       background: radial-gradient(
         ellipse at top,
