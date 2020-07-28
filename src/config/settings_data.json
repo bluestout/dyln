@@ -87,6 +87,22 @@
     "diff_sub_close_text": "Close",
     "collections_all_linklist": "list-collections",
     "accessibility_menu": "",
+    "search_q_products": true,
+    "search_q_page": true,
+    "search_q_collection": true,
+    "search_q_article": true,
+    "search_limit": 5,
+    "search_unavailable": "last",
+    "search_field_author": false,
+    "search_field_body": false,
+    "search_field_product_type": true,
+    "search_field_tag": false,
+    "search_field_title": true,
+    "search_field_barcode": false,
+    "search_field_sku": false,
+    "search_field_variant_title": true,
+    "search_field_vendor": true,
+    "character_limit": 120,
     "checkout_header_image": "shopify://shop_images/Blue-Banner.png",
     "checkout_logo_image": "shopify://shop_images/DYLN_White_trans.png",
     "checkout_logo_position": "left",
@@ -289,6 +305,24 @@
               "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
             }
           },
+          "1593635998765": {
+            "type": "product",
+            "settings": {
+              "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
+            }
+          },
+          "1593635959842": {
+            "type": "product",
+            "settings": {
+              "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
+            }
+          },
+          "1581526781483": {
+            "type": "product",
+            "settings": {
+              "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
+            }
+          },
           "1581526789016": {
             "type": "collection",
             "settings": {
@@ -306,19 +340,15 @@
               "title_mobile": "Diffusers",
               "image": "shopify://shop_images/shop_bottles2.png"
             }
-          },
-          "1595299484864": {
-            "type": "product",
-            "settings": {
-              "product": ""
-            }
           }
         },
         "block_order": [
           "1581526771835",
+          "1593635998765",
+          "1593635959842",
+          "1581526781483",
           "1581526789016",
-          "1581526803448",
-          "1595299484864"
+          "1581526803448"
         ],
         "settings": {
           "title": "Shop Bottles"
@@ -1343,6 +1373,17 @@
         ],
         "settings": {}
       },
+      "contact-dom-ship": {
+        "type": "contact-dom-ship",
+        "settings": {
+          "title": "",
+          "description": ""
+        }
+      },
+      "contact-intl-ship": {
+        "type": "contact-intl-ship",
+        "settings": {}
+      },
       "contact-form": {
         "type": "contact-form",
         "settings": {
@@ -2071,6 +2112,7 @@
           "login_title": "Account",
           "form_title": "LOGIN",
           "open_register_text": "Create Account",
+          "open_register_points_text": "Get 150",
           "register_link_url": "/account",
           "register_link_text": "Register your new bottle",
           "login_benefit_title": "Your Benefits Await!",
