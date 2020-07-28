@@ -39,6 +39,10 @@
     top: 50%;
     transform: translateY(-50%);
     left: -40px;
+
+    @include media-query($medium-down) {
+      left: 0;
+    }
   }
 
   .slick-next {
@@ -51,6 +55,10 @@
     position: absolute;
     top: 50%;
     right: -40px;
+
+    @include media-query($medium-down) {
+      right: 0;
+    }
   }
 
   &__bottom-wave {

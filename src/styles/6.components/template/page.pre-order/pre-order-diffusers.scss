@@ -8,6 +8,14 @@
 
     @include media-query($medium-down) {
       flex-direction: column;
+
+      > div:first-of-type {
+        text-align: center;
+      }
+
+      > div:last-of-type {
+        flex-direction: column;
+      }
     }
 
     span {
@@ -33,6 +41,10 @@
 
   &__image-container {
     max-width: 400px !important;
+
+    @include media-query($medium-down) {
+      margin: 25px auto;
+    }
   }
 
   &__wave-bottom {

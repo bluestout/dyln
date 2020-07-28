@@ -14,7 +14,7 @@
 
   &__content {
     position: relative;
-    z-index: 10;
+    z-index: 1;
 
     h2 {
       @include font-header(bold);

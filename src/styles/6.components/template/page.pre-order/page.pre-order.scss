@@ -24,16 +24,29 @@
     min-height: auto !important;
   }
 
+  .site-header [data-site-header-container] {
+    @include media-query($medium-down) {
+      padding: 15px;
+    }
+  }
+
   .header-about__main-text,
   .header-shop__main-text,
   .header-bottle__main-text,
   .header-login__main-text,
   .header-help__main-text {
-    color: white;
+    @include media-query($medium-up) {
+      color: white;
+    }
   }
 
   .icon-plus-vert path,
-  .icon-plus-hor path,
+  .icon-plus-hor path {
+    @include media-query($medium-up) {
+      stroke: white;
+    }
+  }
+
   .site-header__utils-cart-icon svg g path,
   .header-search__main-link svg g,
   .site-header__utils-cart-icon svg g,
