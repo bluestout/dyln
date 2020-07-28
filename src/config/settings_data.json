@@ -35,9 +35,9 @@
     "share_facebook": true,
     "share_twitter": true,
     "share_pinterest": true,
-    "social_twitter_link": "https://twitter.com/dylninspired?lang=en",
-    "social_facebook_link": "https://www.facebook.com/DYLNinspired",
-    "social_pinterest_link": "https://www.pinterest.com/dylninspired/",
+    "social_twitter_link": "https://twitter.com/dylnbottle?lang=en",
+    "social_facebook_link": "https://www.facebook.com/dylnbottle",
+    "social_pinterest_link": "https://www.pinterest.com/dylnbottle/",
     "social_instagram_link": "https://www.instagram.com/dylnbottle/?hl=en",
     "social_snapchat_link": "",
     "social_tumblr_link": "",
@@ -103,6 +103,28 @@
     "search_field_variant_title": true,
     "search_field_vendor": true,
     "character_limit": 120,
+    "contact_s_title": "Need to talk to a human?",
+    "contact_s_help_link_1": "",
+    "contact_s_help_1_is_modal": true,
+    "contact_s_help_link_1_text": "Lets talk",
+    "contact_s_modal_1_title": "Lets talk",
+    "contact_s_modal_1_button_1": "tel:1-949-209-9401",
+    "contact_s_modal_1_button_1_text": "<strong>Support</strong> 1-949-209-9401",
+    "contact_s_modal_1_button_2": "tel:1-949-209-9401",
+    "contact_s_modal_1_button_2_text": "<strong>Sales</strong> 1-949-209-9401",
+    "contact_s_modal_1_note": "Business hours from 9:00 am to 5:00 pm PST",
+    "contact_s_help_link_2": "",
+    "contact_s_help_2_is_modal": true,
+    "contact_s_help_link_2_text": "Email us",
+    "contact_s_modal_2_title": "Email us",
+    "contact_s_modal_2_button_1": "mailto:support@dyln.co",
+    "contact_s_modal_2_button_1_text": "support@dyln.co",
+    "contact_s_modal_2_button_2": "mailto:support@dyln.co",
+    "contact_s_modal_2_button_2_text": "sales@dyln.co",
+    "contact_s_modal_2_note": "",
+    "contact_s_help_link_3": "",
+    "contact_s_help_link_3_attribute": "onclick=\"Smooch.open();\"",
+    "contact_s_help_link_3_text": "Live chat",
     "checkout_header_image": "shopify://shop_images/Blue-Banner.png",
     "checkout_logo_image": "shopify://shop_images/DYLN_White_trans.png",
     "checkout_logo_position": "left",
@@ -224,9 +246,9 @@
         },
         "block_order": ["1581511352400", "1581511373641", "1581511386435"],
         "settings": {
-          "background": "shopify://shop_images/dyln-homepage-hiking.jpg",
-          "background_rsp": "shopify://shop_images/dyln-homepage-hiking-mobile.jpg",
-          "title": "Alkaline Water equals enhanced hydration, create it on the go.",
+          "background": "shopify://shop_images/DYLN-HomepageBanner-Product.jpg",
+          "background_rsp": "shopify://shop_images/HomeBanner-Product-Mobile.jpg",
+          "title": "Bottled water just became obsolete, create alkaline water on the go.",
           "link_url": "shopify://products/dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
           "link_text": "Shop",
           "bottom_url": "#",
@@ -237,13 +259,14 @@
       "1581513413625": {
         "type": "index-video",
         "settings": {
-          "background": "shopify://shop_images/dyln-homepage-hand-bottle.png",
+          "background": "shopify://shop_images/white.jpg",
+          "video_loop": "<style>video::-webkit-media-controls-panel {\n     background-image: linear-gradient(transparent, transparent); !important;\n     float:right!important;\n }\n\n</style>\n\n <video width=\"400\" height=\"400\" autoplay=\"\" loop=\"\" plasyinline=\"\" muted=\"\">\n <source src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/webAutoplay-HowDoesTheDylnBottleWork__480x480.mp4\" type=\"video/mp4\">\n    <source src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/webAutoplay-HowDoesTheDylnBottleWork.ogv\" type=\"video/ogg\">\n    <source src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/webAutoplay-HowDoesTheDylnBottleWork.webm\" type=\"video/webm\">\n <p>Fallback text.</p>\n </source></source></source></video>",
           "title": "How does it work?",
-          "text": "The DYLN Patented Bottle System was created to enhance water simply.",
+          "text": "The magnesium, tourmaline, silica and zinc inside your bottle’s VitaBead Diffuser is what alkalizes your water.",
           "link_text": "Watch full Video",
           "video": "",
-          "autoplay": true,
-          "video_embed": "<iframe src=\"https://www.youtube.com/embed/PHVhV5h7pbA\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\" width=\"560\" height=\"315\" frameborder=\"0\"></iframe>",
+          "autoplay": false,
+          "video_embed": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/V3WX3SoOULI?controls=0&rel=0\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\"></iframe>",
           "video_width": 600,
           "video_height": 450
         }
@@ -255,8 +278,8 @@
             "type": "usp",
             "settings": {
               "icon": "hydration",
-              "title": "Quicker hydration",
-              "content": "Alkaline water Absorbs more quickly into your cells and hydrates you faster than any other form of water."
+              "title": "Hydrate more efficiently",
+              "content": "Alkaline water is more easily absorbed by the body. So, you can drink less water. (But you won’t want to.)"
             }
           },
           "1581516610001": {
@@ -264,7 +287,7 @@
             "settings": {
               "icon": "detoxifying-spin",
               "title": "Detoxify your body",
-              "content": "Alkaline water Absorbs more quickly into your cells and hydrates you faster than any other form of water."
+              "content": "Detoxifies the body to improve blood circulation and boost the immune system."
             }
           },
           "1581516655817": {
@@ -272,7 +295,7 @@
             "settings": {
               "icon": "acid-reflux",
               "title": "Combats conditions",
-              "content": "Alkaline water Absorbs more quickly into your cells and hydrates you faster than any other form of water."
+              "content": "Combats conditions like acid reflux and high blood pressure when drinking enough."
             }
           },
           "1581516658165": {
@@ -280,7 +303,7 @@
             "settings": {
               "icon": "scale",
               "title": "Helps control your habits",
-              "content": "Alkaline water Absorbs more quickly into your cells and hydrates you faster than any other form of water."
+              "content": "Helps to manage a healthy weight and correct body hydration."
             }
           }
         },
@@ -291,9 +314,9 @@
           "1581516658165"
         ],
         "settings": {
-          "background": "shopify://shop_images/dyln-homepage-joggers.png",
+          "background": "shopify://shop_images/AlkalineWaterBenefits.jpg",
           "background_rsp": "",
-          "title": "Not all water is <strong>created</strong> equal, here is a bit of what <strong class=\"brand-blue\">Alkaline Water</strong>does for you:"
+          "title": "Not all water is <strong>created</strong> equal, here is a bit of what <span class=\"brand-blue\"><strong>Alkaline Water</strong></span> does for you:"
         }
       },
       "1581513439176": {
@@ -302,13 +325,13 @@
           "1581526771835": {
             "type": "product",
             "settings": {
-              "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
+              "product": ""
             }
           },
           "1593635998765": {
             "type": "product",
             "settings": {
-              "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
+              "product": ""
             }
           },
           "1593635959842": {
@@ -320,7 +343,7 @@
           "1581526781483": {
             "type": "product",
             "settings": {
-              "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
+              "product": "40oz-insulated-dyln-water-bottle"
             }
           },
           "1581526789016": {
@@ -329,7 +352,7 @@
               "collection": "dyln-water-bottle-accessories",
               "title": "SHOP ACCESORIES",
               "title_mobile": "Accessories",
-              "image": "shopify://shop_images/accessories_bottles6.png"
+              "image": "shopify://shop_images/ShopAccessories_B.jpg"
             }
           },
           "1581526803448": {
@@ -338,7 +361,7 @@
               "collection": "extra-diffusers",
               "title": "SHOP DIFFUSERS",
               "title_mobile": "Diffusers",
-              "image": "shopify://shop_images/shop_bottles2.png"
+              "image": "shopify://shop_images/ShopDiffusers.jpg"
             }
           }
         },
@@ -361,8 +384,8 @@
             "type": "block",
             "settings": {
               "image": "shopify://shop_images/dyln-homepage-woman-kitchen.jpg",
-              "title": "Transforming Powers",
-              "content": "<p><span class=\"brand-blue\"><strong>Alkalizing</strong></span> your water is the Diffusers Job</p>\n<p><span class=\"brand-blue\"><strong>1 x Diffuser</strong></span> included with each DYLN Bottle.</p>\n<p><span class=\"brand-blue\"><strong>300 L or 3 months</strong></span> until you have to replace your Diffuser</p>",
+              "title": "Superior water.",
+              "content": "<p><span class=\"brand-blue\"><strong>VitaBeads </strong></span>in the replaceable Diffuser quickly deliver alkaline & antioxidant water within minutes.</p>\n<p><span class=\"brand-blue\"><strong>1 x VitaBead Diffuser and 1 x Removal Tool </strong></span> included with each DYLN Bottle.</p>\n<p><span class=\"brand-blue\"><strong>300 L or 3 months</strong></span> of average use until you have to replace your Diffuser.</p>",
               "bottom": "<p>Diffuser Subscription available <a href=\"/collections/extra-diffusers\">here.</a></p>"
             }
           },
@@ -370,8 +393,8 @@
             "type": "block",
             "settings": {
               "image": "shopify://shop_images/dyln-homepage-woman-market.jpg",
-              "title": "Quality + Design",
-              "content": "<p><span class=\"brand-green\"><strong>Ergonomic design</strong></span> makes it a perfect fit for your hand</p>\n<p><span class=\"brand-green\"><strong>Durable</strong></span> 316 Stainless Steel exterior.</p>\n<p><span class=\"brand-green\"><strong>3 layered insulation</strong></span> to keep your water cold for up to 24 hrs.</p>",
+              "title": "Superior design.",
+              "content": "<p><span class=\"brand-green\"><strong>Ergonomic design</strong></span> made to fit perfectly in your hand</p>\n<p><span class=\"brand-green\"><strong>316 Surgical-grade</strong></span> stainless steel interior.</p>\n<p><span class=\"brand-green\"><strong>3 layered insulation</strong></span> to keep your water cold for up to 24 hrs.</p>",
               "bottom": "<p>Check out the bottle’s <a href=\"/products/dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth\">Tech Specs.</a></p>"
             }
           }
@@ -388,10 +411,10 @@
             "type": "story",
             "settings": {
               "image": "shopify://shop_images/dyln-homepage-woman-showing-bottle.jpg",
-              "title": "Less fatigue and always on the go",
-              "content": "For just these few days, I'm no more constipated.<br>\nTrying to gather more funds to purchase for my mum, sister and aunt.",
+              "title": "Alkaline water is good for you:heart:",
+              "content": "The water tastes clean and crispy. It makes me drink 8 glasses of water a day and keeps me hydrated all day long :heart:.",
               "rating": 5,
-              "author": "Anne"
+              "author": "Malou A."
             }
           },
           "1585386392629": {
@@ -421,7 +444,7 @@
               "title": "Less fatigue and always on the go",
               "content": "For just these few days, I'm no more constipated.<br>\nTrying to gather more funds to purchase for my mum, sister and aunt.",
               "rating": 4,
-              "author": "Jack"
+              "author": "Michael"
             }
           },
           "1585386440881": {
@@ -431,7 +454,7 @@
               "title": "I get so hydrated and satisfied",
               "content": "For just these few days, I'm no more constipated.<br>\nTrying to gather more funds to purchase for my mum, sister and aunt.",
               "rating": 2,
-              "author": ""
+              "author": "Vanessa"
             }
           },
           "1585386457219": {
@@ -441,7 +464,7 @@
               "title": "Wonderful product in the market",
               "content": "Trying to gather more funds to purchase for my mum, sister and aunt.<br>\nGod bless you for inventing this wonderful product onto the market.",
               "rating": 4,
-              "author": ""
+              "author": "Linda"
             }
           }
         },
@@ -524,6 +547,30 @@
               "swatch_color": "#eceae5"
             }
           },
+          "1595397608238": {
+            "type": "color",
+            "settings": {
+              "title": "Pearl",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-pearl-grey.png",
+              "swatch_color": "#eceae5"
+            }
+          },
+          "1595524725489": {
+            "type": "color",
+            "settings": {
+              "title": "Aqua Teal",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-teal.png",
+              "swatch_color": "#39bcb5"
+            }
+          },
+          "1595524783693": {
+            "type": "color",
+            "settings": {
+              "title": "Living Coral",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-coral.png",
+              "swatch_color": "#fbb7a3"
+            }
+          },
           "1585392704087": {
             "type": "color",
             "settings": {
@@ -568,17 +615,20 @@
         "block_order": [
           "1585392310530",
           "1585392334868",
-          "1585392346556",
-          "1585392358307",
           "1585392374960",
           "1585392387819",
           "1585392398359",
           "1585392410557",
+          "1595397608238",
+          "1595524725489",
+          "1595524783693",
           "1585392704087",
           "1585392716036",
           "1585392728341",
           "1585392739263",
-          "1594748155707"
+          "1594748155707",
+          "1585392346556",
+          "1585392358307"
         ],
         "settings": {}
       },
@@ -590,12 +640,44 @@
             "settings": {
               "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
               "product_upsell": "extra-vitabead-diffusers",
-              "product_upsell_2": "diffuser-removal-tool",
-              "product_upsell_3": ""
+              "product_upsell_2": "wide-mouth-sports-cap",
+              "product_upsell_3": "medium-bottom-guard"
+            }
+          },
+          "1595670667598": {
+            "type": "product",
+            "settings": {
+              "product": "",
+              "product_upsell": "standard-mouth-sports-cap-with-straw",
+              "product_upsell_2": "extra-vitabead-diffusers",
+              "product_upsell_3": "small-bottom-guard"
+            }
+          },
+          "1595670741174": {
+            "type": "product",
+            "settings": {
+              "product": "",
+              "product_upsell": "extra-vitabead-diffusers",
+              "product_upsell_2": "medium-bottom-guard",
+              "product_upsell_3": "standard-mouth-sports-cap-with-straw"
+            }
+          },
+          "1595670777023": {
+            "type": "product",
+            "settings": {
+              "product": "40oz-insulated-dyln-water-bottle",
+              "product_upsell": "wide-mouth-sports-cap",
+              "product_upsell_2": "large-bottom-guard",
+              "product_upsell_3": "extra-vitabead-diffusers"
             }
           }
         },
-        "block_order": ["1585673839467"],
+        "block_order": [
+          "1585673839467",
+          "1595670667598",
+          "1595670741174",
+          "1595670777023"
+        ],
         "settings": {
           "title": "Add ons"
         }
@@ -619,18 +701,65 @@
             "type": "Product",
             "settings": {
               "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
-              "product_1": "dyln-living-alkaline-stainless-steel-water-bottle",
+              "product_1": "",
               "product_title_1": "16 oz",
               "product_2": "",
-              "product_title_2": "",
-              "product_3": "",
-              "product_title_3": "",
-              "product_4": "",
-              "product_title_4": ""
+              "product_title_2": "21 oz",
+              "product_3": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
+              "product_title_3": "32 oz",
+              "product_4": "40oz-insulated-dyln-water-bottle",
+              "product_title_4": "40 oz"
+            }
+          },
+          "1595361494771": {
+            "type": "Product",
+            "settings": {
+              "product": "",
+              "product_1": "",
+              "product_title_1": "16 oz",
+              "product_2": "",
+              "product_title_2": "21 oz",
+              "product_3": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
+              "product_title_3": "32 oz",
+              "product_4": "40oz-insulated-dyln-water-bottle",
+              "product_title_4": "40 oz"
+            }
+          },
+          "1595361524612": {
+            "type": "Product",
+            "settings": {
+              "product": "",
+              "product_1": "",
+              "product_title_1": "16 oz",
+              "product_2": "",
+              "product_title_2": "21 oz",
+              "product_3": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
+              "product_title_3": "32 oz",
+              "product_4": "40oz-insulated-dyln-water-bottle",
+              "product_title_4": "40 oz"
+            }
+          },
+          "1595361573518": {
+            "type": "Product",
+            "settings": {
+              "product": "40oz-insulated-dyln-water-bottle",
+              "product_1": "",
+              "product_title_1": "16 oz",
+              "product_2": "",
+              "product_title_2": "21 oz",
+              "product_3": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
+              "product_title_3": "32 oz",
+              "product_4": "40oz-insulated-dyln-water-bottle",
+              "product_title_4": "40 oz"
             }
           }
         },
-        "block_order": ["1587021726467"],
+        "block_order": [
+          "1587021726467",
+          "1595361494771",
+          "1595361524612",
+          "1595361573518"
+        ],
         "settings": {
           "title": "Choose Size"
         }
@@ -695,12 +824,12 @@
         "type": "pdp-video",
         "settings": {
           "show": true,
-          "background": "shopify://shop_images/dyln-homepage-hand-bottle.png",
+          "video_loop": "<style>video::-webkit-media-controls-panel {\n     background-image: linear-gradient(transparent, transparent); !important;\n     float:right!important;\n }\n\n</style>\n\n <video width=\"400\" height=\"400\" autoplay=\"\" loop=\"\" plasyinline=\"\" muted=\"\">\n <source src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/webAutoplay-HowDoesTheDylnBottleWork__480x480.mp4\" type=\"video/mp4\">\n    <source src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/webAutoplay-HowDoesTheDylnBottleWork.ogv\" type=\"video/ogg\">\n    <source src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/webAutoplay-HowDoesTheDylnBottleWork.webm\" type=\"video/webm\">\n <p>Fallback text.</p>\n </source></source></source></video>",
           "title": "How does it work?",
           "text": "The DYLN Patented Bottle System was created to enhance water simply.",
           "link_text": "Watch full Video",
-          "video": "https://cdn.shopify.com/s/files/1/1959/4045/files/Ramdom_Lines_x264.mp4?v=1582148193",
-          "video_embed": ""
+          "video": "",
+          "video_embed": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/V3WX3SoOULI?controls=0&rel=0\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\"></iframe>"
         }
       },
       "pdp-tabs-header": {
@@ -729,9 +858,64 @@
               "tab_3": false,
               "title_3": ""
             }
+          },
+          "1595677067722": {
+            "type": "block",
+            "settings": {
+              "product": "",
+              "tab_1": true,
+              "title_1": "Bottle Features",
+              "tab_2": true,
+              "title_2": "What's  Included",
+              "tab_3": true,
+              "title_3": "Product Specs"
+            }
+          },
+          "1595677100534": {
+            "type": "block",
+            "settings": {
+              "product": "",
+              "tab_1": true,
+              "title_1": "Bottle Features",
+              "tab_2": true,
+              "title_2": "What's  Included",
+              "tab_3": true,
+              "title_3": "Product Specs"
+            }
+          },
+          "1595677164941": {
+            "type": "block",
+            "settings": {
+              "product": "40oz-insulated-dyln-water-bottle",
+              "tab_1": true,
+              "title_1": "Bottle Features",
+              "tab_2": true,
+              "title_2": "What's  Included",
+              "tab_3": true,
+              "title_3": "Product Specs"
+            }
+          },
+          "1595677276068": {
+            "type": "block",
+            "settings": {
+              "product": "",
+              "tab_1": false,
+              "title_1": "",
+              "tab_2": false,
+              "title_2": "",
+              "tab_3": false,
+              "title_3": ""
+            }
           }
         },
-        "block_order": ["1585675966927", "1592675641339"],
+        "block_order": [
+          "1585675966927",
+          "1592675641339",
+          "1595677067722",
+          "1595677100534",
+          "1595677164941",
+          "1595677276068"
+        ],
         "settings": {}
       },
       "pdp-tab-features": {
@@ -745,22 +929,22 @@
               "title_1": "<span>Detail oriented design</span><br>\n<span class=\"brand-blue\">+</span> <span>High quality materials</span>",
               "block_title_1": "Plastic-free water",
               "block_content_1": "Cap interior made ouf of Stainless Steel so your water never touches plastic.<br><br>Super-easy to clean Silicone Gasket.",
-              "image_2": "shopify://shop_images/dyln-homepage-woman-kitchen.jpg",
+              "image_2": "shopify://shop_images/BottleFeatures-ErgonomicDesign1.png",
               "title_2": "<span>Detail oriented design</span><br>\n<span class=\"brand-blue\">+</span> <span>High quality materials</span>",
-              "block_title_2": "Plastic-free water",
-              "block_content_2": "Cap interior made ouf of Stainless Steel so your water never touches plastic.",
-              "image_3": "shopify://shop_images/dyln-header-help-woman-holding-bottle.jpg",
+              "block_title_2": "Ergonomic Design",
+              "block_content_2": "The bottle's shape and powder coated finish make it super easy to grip and comfortable to hold.",
+              "image_3": "shopify://shop_images/BottleFeatures-Insulation_8c34e9f2-30f7-4833-988d-ad779070ebb5.png",
               "title_3": "<span>Detail oriented design</span><br>\n<span class=\"brand-blue\">+</span> <span>High quality materials</span>",
-              "block_title_3": "Plastic-free water",
-              "block_content_3": "Cap interior made ouf of Stainless Steel so your water never touches plastic.",
-              "image_4": "",
-              "title_4": "",
-              "block_title_4": "",
-              "block_content_4": "",
-              "image_5": "",
-              "title_5": "",
-              "block_title_5": "",
-              "block_content_5": "",
+              "block_title_3": "Insulated",
+              "block_content_3": "Double-walled,<br>Triple-layer vacuum insulation: 304<br>\nFood-Grade stainless steel exterior+<br>Surgical-Grade 316 stainless steel interior with a Copper liner.",
+              "image_4": "shopify://shop_images/BottleFeatures-Portability.png",
+              "title_4": "<span>Detail oriented design</span><br>\n<span class=\"brand-blue\">+</span> <span>High quality materials</span>",
+              "block_title_4": "Portability",
+              "block_content_4": "Flexible and easy-to-carry handle.",
+              "image_5": "shopify://shop_images/BottleFeatures-WideMouth.png",
+              "title_5": "<span>Detail oriented design</span><br>\n<span class=\"brand-blue\">+</span> <span>High quality materials</span>",
+              "block_title_5": "Wide mouth",
+              "block_content_5": "For easy drinking and adding ice cubes.",
               "image_6": "",
               "title_6": "",
               "block_title_6": "",
@@ -796,9 +980,105 @@
               "block_title_6": "",
               "block_content_6": ""
             }
+          },
+          "1595584278827": {
+            "type": "block",
+            "settings": {
+              "product": "",
+              "image_1": "shopify://shop_images/BottleFeatures-PlasticFree.png",
+              "title_1": "<span>Detail oriented design</span><br>\n<span class=\"brand-blue\">+</span> <span>High quality materials</span>",
+              "block_title_1": "Plastic-free water",
+              "block_content_1": "Cap interior made ouf of Stainless Steel so your water never touches plastic.<br><br>Super-easy to clean Silicone Gasket.",
+              "image_2": "shopify://shop_images/BottleFeatures-ErgonomicDesign1.png",
+              "title_2": "<span>Detail oriented design</span><br>\n<span class=\"brand-blue\">+</span> <span>High quality materials</span>",
+              "block_title_2": "Ergonomic Design",
+              "block_content_2": "The bottle's shape and powder coated finish make it super easy to grip and comfortable to hold.",
+              "image_3": "shopify://shop_images/BottleFeatures-Insulation_8c34e9f2-30f7-4833-988d-ad779070ebb5.png",
+              "title_3": "<span>Detail oriented design</span><br>\n<span class=\"brand-blue\">+</span> <span>High quality materials</span>",
+              "block_title_3": "Insulated",
+              "block_content_3": "Double-walled,<br>Triple-layer vacuum insulation: 304<br>\nFood-Grade stainless steel exterior+<br>Surgical-Grade 316 stainless steel interior with a Copper liner.",
+              "image_4": "shopify://shop_images/BottleFeatures-Portability.png",
+              "title_4": "<span>Detail oriented design</span><br>\n<span class=\"brand-blue\">+</span> <span>High quality materials</span>",
+              "block_title_4": "Portability",
+              "block_content_4": "Flexible and easy-to-carry handle.",
+              "image_5": "shopify://shop_images/BottleFeatures-WideMouth.png",
+              "title_5": "<span>Detail oriented design</span><br>\n<span class=\"brand-blue\">+</span> <span>High quality materials</span>",
+              "block_title_5": "Wide mouth",
+              "block_content_5": "For easy drinking and adding ice cubes.",
+              "image_6": "",
+              "title_6": "",
+              "block_title_6": "",
+              "block_content_6": ""
+            }
+          },
+          "1595588721870": {
+            "type": "block",
+            "settings": {
+              "product": "",
+              "image_1": "shopify://shop_images/BottleFeatures-PlasticFree.png",
+              "title_1": "<span>Detail oriented design</span><br>\n<span class=\"brand-blue\">+</span> <span>High quality materials</span>",
+              "block_title_1": "Plastic-free water",
+              "block_content_1": "Cap interior made ouf of Stainless Steel so your water never touches plastic.<br><br>Super-easy to clean Silicone Gasket.",
+              "image_2": "shopify://shop_images/BottleFeatures-ErgonomicDesign1.png",
+              "title_2": "<span>Detail oriented design</span><br>\n<span class=\"brand-blue\">+</span> <span>High quality materials</span>",
+              "block_title_2": "Ergonomic Design",
+              "block_content_2": "The bottle's shape and powder coated finish make it super easy to grip and comfortable to hold.",
+              "image_3": "shopify://shop_images/BottleFeatures-Insulation_8c34e9f2-30f7-4833-988d-ad779070ebb5.png",
+              "title_3": "<span>Detail oriented design</span><br>\n<span class=\"brand-blue\">+</span> <span>High quality materials</span>",
+              "block_title_3": "Insulated",
+              "block_content_3": "Double-walled,<br>Triple-layer vacuum insulation: 304<br>\nFood-Grade stainless steel exterior+<br>Surgical-Grade 316 stainless steel interior with a Copper liner.",
+              "image_4": "shopify://shop_images/BottleFeatures-Portability.png",
+              "title_4": "<span>Detail oriented design</span><br>\n<span class=\"brand-blue\">+</span> <span>High quality materials</span>",
+              "block_title_4": "Portability",
+              "block_content_4": "Flexible and easy-to-carry handle.",
+              "image_5": "shopify://shop_images/BottleFeatures-WideMouth.png",
+              "title_5": "<span>Detail oriented design</span><br>\n<span class=\"brand-blue\">+</span> <span>High quality materials</span>",
+              "block_title_5": "Wide mouth",
+              "block_content_5": "For easy drinking and adding ice cubes.",
+              "image_6": "",
+              "title_6": "",
+              "block_title_6": "",
+              "block_content_6": ""
+            }
+          },
+          "1595588959888": {
+            "type": "block",
+            "settings": {
+              "product": "40oz-insulated-dyln-water-bottle",
+              "image_1": "shopify://shop_images/BottleFeatures-PlasticFree.png",
+              "title_1": "<span>Detail oriented design</span><br>\n<span class=\"brand-blue\">+</span> <span>High quality materials</span>",
+              "block_title_1": "Plastic-free water",
+              "block_content_1": "Cap interior made ouf of Stainless Steel so your water never touches plastic.<br><br>Super-easy to clean Silicone Gasket.",
+              "image_2": "shopify://shop_images/BottleFeatures-ErgonomicDesign1.png",
+              "title_2": "<span>Detail oriented design</span><br>\n<span class=\"brand-blue\">+</span> <span>High quality materials</span>",
+              "block_title_2": "Ergonomic Design",
+              "block_content_2": "The bottle's shape and powder coated finish make it super easy to grip and comfortable to hold.",
+              "image_3": "shopify://shop_images/BottleFeatures-Insulation_8c34e9f2-30f7-4833-988d-ad779070ebb5.png",
+              "title_3": "<span>Detail oriented design</span><br>\n<span class=\"brand-blue\">+</span> <span>High quality materials</span>",
+              "block_title_3": "Insulated",
+              "block_content_3": "Double-walled,<br>Triple-layer vacuum insulation: 304<br>\nFood-Grade stainless steel exterior+<br>Surgical-Grade 316 stainless steel interior with a Copper liner.",
+              "image_4": "shopify://shop_images/BottleFeatures-Portability.png",
+              "title_4": "<span>Detail oriented design</span><br>\n<span class=\"brand-blue\">+</span> <span>High quality materials</span>",
+              "block_title_4": "Portability",
+              "block_content_4": "Flexible and easy-to-carry handle.",
+              "image_5": "shopify://shop_images/BottleFeatures-WideMouth.png",
+              "title_5": "<span>Detail oriented design</span><br>\n<span class=\"brand-blue\">+</span> <span>High quality materials</span>",
+              "block_title_5": "Wide mouth",
+              "block_content_5": "For easy drinking and adding ice cubes.",
+              "image_6": "",
+              "title_6": "",
+              "block_title_6": "",
+              "block_content_6": ""
+            }
           }
         },
-        "block_order": ["1585675993400", "1592676156939"],
+        "block_order": [
+          "1585675993400",
+          "1592676156939",
+          "1595584278827",
+          "1595588721870",
+          "1595588959888"
+        ],
         "settings": {}
       },
       "pdp-tab-included": {
@@ -818,9 +1098,59 @@
               "text_r_w": "Diffuser Removal Tool",
               "switch_layout": true
             }
+          },
+          "1595589314527": {
+            "type": "block",
+            "settings": {
+              "product": "",
+              "image_l": "shopify://shop_images/dyln-bottle-included-bottle_d50b9b7a-7054-4a58-aa11-67e49229c5f8.png",
+              "text_l": "DYLN Bottle",
+              "image_r_1": "shopify://shop_images/dyln-bottle-included-diffuser_ab5b8e6d-89e7-49c8-9284-42b2e9f1a0e8.png",
+              "text_r_1": "VitaBead Diffuser",
+              "image_r_2": "shopify://shop_images/dyln-bottle-included-instructions_ed8ed607-92d8-4179-b06a-96e3a16c68c1.png",
+              "text_r_2": "Instructions",
+              "image_r_w": "shopify://shop_images/dyln-bottle-included-diffuser-remover.png",
+              "text_r_w": "Diffuser Removal Tool",
+              "switch_layout": true
+            }
+          },
+          "1595613501411": {
+            "type": "block",
+            "settings": {
+              "product": "40oz-insulated-dyln-water-bottle",
+              "image_l": "shopify://shop_images/dyln-bottle-included-bottle_d50b9b7a-7054-4a58-aa11-67e49229c5f8.png",
+              "text_l": "DYLN Bottle",
+              "image_r_1": "shopify://shop_images/dyln-bottle-included-diffuser_ab5b8e6d-89e7-49c8-9284-42b2e9f1a0e8.png",
+              "text_r_1": "VitaBead Diffuser",
+              "image_r_2": "shopify://shop_images/dyln-bottle-included-instructions_ed8ed607-92d8-4179-b06a-96e3a16c68c1.png",
+              "text_r_2": "Instructions",
+              "image_r_w": "shopify://shop_images/dyln-bottle-included-diffuser-remover_550x_22484c52-eded-4045-a903-57d7c84b1258.png",
+              "text_r_w": "Diffuser Removal Tool",
+              "switch_layout": true
+            }
+          },
+          "1595613553470": {
+            "type": "block",
+            "settings": {
+              "product": "",
+              "image_l": "shopify://shop_images/dyln-bottle-included-bottle_d50b9b7a-7054-4a58-aa11-67e49229c5f8.png",
+              "text_l": "DYLN Bottle",
+              "image_r_1": "shopify://shop_images/dyln-bottle-included-diffuser_ab5b8e6d-89e7-49c8-9284-42b2e9f1a0e8.png",
+              "text_r_1": "VitaBead Diffuser",
+              "image_r_2": "shopify://shop_images/dyln-bottle-included-instructions_ed8ed607-92d8-4179-b06a-96e3a16c68c1.png",
+              "text_r_2": "Instructions",
+              "image_r_w": "shopify://shop_images/dyln-bottle-included-diffuser-remover_550x_22484c52-eded-4045-a903-57d7c84b1258.png",
+              "text_r_w": "Diffuser Removal Tool",
+              "switch_layout": true
+            }
           }
         },
-        "block_order": ["1585676102465"],
+        "block_order": [
+          "1585676102465",
+          "1595589314527",
+          "1595613501411",
+          "1595613553470"
+        ],
         "settings": {}
       },
       "pdp-tab-specs": {
@@ -832,21 +1162,105 @@
               "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
               "title": "Select the element you wish to explore",
               "back": "Back to other Product Specs",
-              "element_image_1": "",
+              "element_image_1": "shopify://shop_images/BottleMeassures-ProductSpecs.jpg",
               "element_illustration_1": "bottle",
               "element_text_1": "DYLN Bottle",
-              "element_video_1": "https://cdn.shopify.com/s/files/1/1959/4045/files/Ramdom_Lines_x264.mp4?v=1582148193",
-              "element_embed_1": "",
-              "element_image_2": "",
+              "element_video_1": "",
+              "element_embed_1": "<img src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/BottleFeatures-Insulation-32oz.gif?v=1595585080\" width=\"50%\" height=\"auto\" alt=\"DYLN Bottle Specs\">",
+              "element_image_2": "shopify://shop_images/DiffuserMeassures-ProductSpecs.jpg",
               "element_illustration_2": "diffuser",
               "element_text_2": "VitaBead Diffuser",
-              "element_video_2": "https://cdn.shopify.com/s/files/1/1959/4045/files/Ramdom_Lines_x264.mp4?v=1582148193",
-              "element_embed_2": "",
-              "element_image_3": "",
+              "element_video_2": "",
+              "element_embed_2": "<img src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/Diffuser.gif?v=1595585146\" width=\"50%\" height=\"auto\" alt=\"VitaBead Diffuser\">",
+              "element_image_3": "shopify://shop_images/WmCapMeassures-ProductSpecs.jpg",
               "element_illustration_3": "bottle-cap",
               "element_text_3": "DYLN Bottle Cap",
-              "element_video_3": "https://cdn.shopify.com/s/files/1/1959/4045/files/Ramdom_Lines_x264.mp4?v=1582148193",
-              "element_embed_3": "",
+              "element_video_3": "",
+              "element_embed_3": "<img src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/Cap-features.gif?v=1595585193\" width=\"50%\" height=\"auto\" alt=\"DYLN Bottle Cap\">",
+              "element_image_4": "",
+              "element_illustration_4": "",
+              "element_text_4": "",
+              "element_video_4": "",
+              "element_embed_4": ""
+            }
+          },
+          "1595584424300": {
+            "type": "block",
+            "settings": {
+              "product": "40oz-insulated-dyln-water-bottle",
+              "title": "Select the element you wish to explore",
+              "back": "Back to other Product Specs",
+              "element_image_1": "shopify://shop_images/40ozBottleMeassures-ProductSpecs.jpg",
+              "element_illustration_1": "bottle",
+              "element_text_1": "DYLN Bottle",
+              "element_video_1": "",
+              "element_embed_1": "<img src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/BottleFeatures-Insulation-32oz.gif?v=1595585080\" width=\"50%\" height=\"auto\" alt=\"DYLN Bottle Specs\">",
+              "element_image_2": "shopify://shop_images/DiffuserMeassures-ProductSpecs.jpg",
+              "element_illustration_2": "diffuser",
+              "element_text_2": "VitaBead Diffuser",
+              "element_video_2": "",
+              "element_embed_2": "<img src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/Diffuser.gif?v=1595585146\" width=\"50%\" height=\"auto\" alt=\"VitaBead Diffuser\">",
+              "element_image_3": "shopify://shop_images/WmCapMeassures-ProductSpecs_c9fe2184-36da-4ac9-81e9-0379827fa8e1.jpg",
+              "element_illustration_3": "bottle-cap",
+              "element_text_3": "DYLN Bottle Cap",
+              "element_video_3": "",
+              "element_embed_3": "<img src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/Cap-features.gif?v=1595585193\" width=\"50%\" height=\"auto\" alt=\"DYLN Bottle Cap\">",
+              "element_image_4": "",
+              "element_illustration_4": "",
+              "element_text_4": "",
+              "element_video_4": "",
+              "element_embed_4": ""
+            }
+          },
+          "1595586559416": {
+            "type": "block",
+            "settings": {
+              "product": "",
+              "title": "Select the element you wish to explore",
+              "back": "Back to other Product Specs",
+              "element_image_1": "shopify://shop_images/21ozBottleMeassures-ProductSpecs.jpg",
+              "element_illustration_1": "bottle",
+              "element_text_1": "DYLN Bottle",
+              "element_video_1": "",
+              "element_embed_1": "<img src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/BottleFeatures-Insulation-32oz.gif?v=1595585080\" width=\"50%\" height=\"auto\" alt=\"DYLN Bottle Specs\">",
+              "element_image_2": "shopify://shop_images/DiffuserMeassures-ProductSpecs.jpg",
+              "element_illustration_2": "diffuser",
+              "element_text_2": "VitaBead Diffuser",
+              "element_video_2": "",
+              "element_embed_2": "<img src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/Diffuser.gif?v=1595585146\" width=\"50%\" height=\"auto\" alt=\"VitaBead Diffuser\">",
+              "element_image_3": "shopify://shop_images/SMCapMeassures-ProductSpecs.jpg",
+              "element_illustration_3": "bottle-cap",
+              "element_text_3": "DYLN Bottle Cap",
+              "element_video_3": "",
+              "element_embed_3": "<img src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/Cap-features.gif?v=1595585193\" width=\"50%\" height=\"auto\" alt=\"DYLN Bottle Cap\">",
+              "element_image_4": "",
+              "element_illustration_4": "",
+              "element_text_4": "",
+              "element_video_4": "",
+              "element_embed_4": ""
+            }
+          },
+          "1595586745029": {
+            "type": "block",
+            "settings": {
+              "product": "",
+              "title": "Select the element you wish to explore",
+              "back": "Back to other Product Specs",
+              "element_image_1": "shopify://shop_images/16ozBottleMeassures-ProductSpecs.jpg",
+              "element_illustration_1": "bottle",
+              "element_text_1": "DYLN Bottle",
+              "element_video_1": "",
+              "element_embed_1": "<img src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/BottleFeatures-Insulation-32oz.gif?v=1595585080\" width=\"50%\" height=\"auto\" alt=\"DYLN Bottle Specs\">",
+              "element_image_2": "shopify://shop_images/DiffuserMeassures-ProductSpecs.jpg",
+              "element_illustration_2": "diffuser",
+              "element_text_2": "VitaBead Diffuser",
+              "element_video_2": "",
+              "element_embed_2": "<img src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/Diffuser.gif?v=1595585146\" width=\"50%\" height=\"auto\" alt=\"VitaBead Diffuser\">",
+              "element_image_3": "shopify://shop_images/SMCapMeassures-ProductSpecs_7957b9d5-2a17-4916-898e-bf04fbb64fde.jpg",
+              "element_illustration_3": "bottle-cap",
+              "element_text_3": "DYLN Bottle Cap",
+              "element_video_3": "",
+              "element_embed_3": "<img src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/Cap-features.gif?v=1595585193\" width=\"50%\" height=\"auto\" alt=\"DYLN Bottle Cap\">",
               "element_image_4": "",
               "element_illustration_4": "",
               "element_text_4": "",
@@ -855,7 +1269,12 @@
             }
           }
         },
-        "block_order": ["1585676931016"],
+        "block_order": [
+          "1585676931016",
+          "1595584424300",
+          "1595586559416",
+          "1595586745029"
+        ],
         "settings": {}
       },
       "pdp-related": {
@@ -865,13 +1284,95 @@
             "type": "Product",
             "settings": {
               "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
+              "product_1": "medium-bottom-guard",
+              "product_2": "extra-vitabead-diffusers",
+              "product_3": "wide-mouth-sports-cap"
+            }
+          },
+          "1595671775876": {
+            "type": "Product",
+            "settings": {
+              "product": "",
+              "product_1": "small-bottom-guard",
+              "product_2": "standard-mouth-sports-cap-with-straw",
+              "product_3": "extra-vitabead-diffusers"
+            }
+          },
+          "1595671856312": {
+            "type": "Product",
+            "settings": {
+              "product": "",
               "product_1": "extra-vitabead-diffusers",
-              "product_2": "diffuser-removal-tool",
-              "product_3": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
+              "product_2": "small-bottom-guard",
+              "product_3": "standard-mouth-sports-cap-with-straw"
+            }
+          },
+          "1595671888875": {
+            "type": "Product",
+            "settings": {
+              "product": "40oz-insulated-dyln-water-bottle",
+              "product_1": "large-bottom-guard",
+              "product_2": "wide-mouth-sports-cap",
+              "product_3": "extra-vitabead-diffusers"
+            }
+          },
+          "1595671795985": {
+            "type": "Product",
+            "settings": {
+              "product": "standard-mouth-sports-cap-with-straw",
+              "product_1": "",
+              "product_2": "",
+              "product_3": "silicone-gasket"
+            }
+          },
+          "1595671954528": {
+            "type": "Product",
+            "settings": {
+              "product": "wide-mouth-sports-cap",
+              "product_1": "40oz-insulated-dyln-water-bottle",
+              "product_2": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
+              "product_3": "silicone-gasket"
+            }
+          },
+          "1595671917046": {
+            "type": "Product",
+            "settings": {
+              "product": "small-bottom-guard",
+              "product_1": "",
+              "product_2": "",
+              "product_3": "standard-mouth-sports-cap-with-straw"
+            }
+          },
+          "1595671989914": {
+            "type": "Product",
+            "settings": {
+              "product": "large-bottom-guard",
+              "product_1": "40oz-insulated-dyln-water-bottle",
+              "product_2": "wide-mouth-sports-cap",
+              "product_3": "extra-vitabead-diffusers"
+            }
+          },
+          "1595672031559": {
+            "type": "Product",
+            "settings": {
+              "product": "medium-bottom-guard",
+              "product_1": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
+              "product_2": "wide-mouth-sports-cap",
+              "product_3": ""
             }
           }
         },
-        "block_order": ["1585677071036"],
+        "block_order": [
+          "1585677071036",
+          "1595671775876",
+          "1595671856312",
+          "1595671888875",
+          "1595671795985",
+          "1595671954528",
+          "1595671917046",
+          "1595671989914",
+          "1595672031559"
+        ],
         "settings": {
           "title": "Related Products",
           "type": "custom",
@@ -881,50 +1382,36 @@
       "pdp-faqs": {
         "type": "pdp-faqs",
         "blocks": {
-          "1587381575461": {
-            "type": "faq",
-            "settings": {
-              "faq_article": "faqs/what-are-the-vitabeads"
-            }
-          },
-          "1587381513943": {
-            "type": "faq",
-            "settings": {
-              "faq_article": ""
-            }
-          },
-          "1587381586500": {
-            "type": "faq",
-            "settings": {
-              "faq_article": "faqs/what-is-included-with-each-dyln-bottle-order"
-            }
-          },
-          "1587381600547": {
-            "type": "faq",
-            "settings": {
-              "faq_article": "faqs/when-should-i-be-drinking-alkaline-water"
-            }
-          },
           "1587381618363": {
             "type": "faq",
             "settings": {
               "faq_article": "faqs/does-the-dyln-bottle-filter-water"
             }
           },
-          "1587381631998": {
+          "1587381575461": {
             "type": "faq",
             "settings": {
-              "faq_article": "faqs/how-much-water-can-the-dyln-bottle-hold"
+              "faq_article": "faqs/what-are-the-vitabeads"
+            }
+          },
+          "1587381586500": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/how-long-does-the-insulated-dyln-bottle-keep-the-water-hot-or-cold"
+            }
+          },
+          "1595671280558": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/how-to-store-my-extra-vitabead-diffuser"
             }
           }
         },
         "block_order": [
-          "1587381575461",
-          "1587381513943",
-          "1587381586500",
-          "1587381600547",
           "1587381618363",
-          "1587381631998"
+          "1587381575461",
+          "1587381586500",
+          "1595671280558"
         ],
         "settings": {
           "show": true,
@@ -949,13 +1436,13 @@
           "1587137328816": {
             "type": "block",
             "settings": {
-              "image": "shopify://shop_images/dyln-bottle-on-kitchen-table-small-2.png"
+              "image": "shopify://shop_images/Man-running-pearl-grey-bottle_d033cd3f-51ce-461c-b299-1603e0dc7fd5.jpg"
             }
           },
           "1587137333928": {
             "type": "block",
             "settings": {
-              "image": "shopify://shop_images/dyln-bottle-on-kitchen-table-small-2.png"
+              "image": "shopify://shop_images/Pearl-Grey-Insulated-Bottle-vegetables-bg.jpg"
             }
           },
           "1587137339623": {
@@ -975,18 +1462,6 @@
             "settings": {
               "image": "shopify://shop_images/dyln-bottle-on-kitchen-table-small-2.png"
             }
-          },
-          "1587137352144": {
-            "type": "block",
-            "settings": {
-              "image": "shopify://shop_images/dyln-bottle-on-kitchen-table-small-2.png"
-            }
-          },
-          "1587137355779": {
-            "type": "block",
-            "settings": {
-              "image": "shopify://shop_images/dyln-bottle-on-kitchen-table-small-2.png"
-            }
           }
         },
         "block_order": [
@@ -995,13 +1470,43 @@
           "1587137333928",
           "1587137339623",
           "1587137343859",
-          "1587137347908",
-          "1587137352144",
-          "1587137355779"
+          "1587137347908"
         ],
         "settings": {
-          "show": true,
+          "show": false,
           "title": "Customer Pictures"
+        }
+      },
+      "collection-header": {
+        "type": "collection-header",
+        "blocks": {
+          "1592503371886": {
+            "type": "usp",
+            "settings": {
+              "title": "Faster Hydration",
+              "icon": "hydration"
+            }
+          },
+          "1592503387499": {
+            "type": "usp",
+            "settings": {
+              "title": "Detoxifying",
+              "icon": "detoxifying"
+            }
+          },
+          "1592503405764": {
+            "type": "usp",
+            "settings": {
+              "title": "Combats Acid Reflux",
+              "icon": "acid-reflux"
+            }
+          }
+        },
+        "block_order": ["1592503371886", "1592503387499", "1592503405764"],
+        "settings": {
+          "title": "Alkaline Water equals enhanced hydration, create it on the go.",
+          "bg": "shopify://shop_images/BotttlesBanner_Desktop1920x643px.jpg",
+          "bg_rsp": "shopify://shop_images/BottlesBanner_Mobile1024x710px.jpg"
         }
       },
       "collection-filter": {
@@ -1013,8 +1518,8 @@
         "settings": {
           "title": "How can we help?",
           "content": "We’re just a button away. Feel free to contact us anytime.",
-          "bg": "shopify://shop_images/dyln-contact-page-desktop-header-background_26c01632-5130-4555-9cae-754b404aff34.png",
-          "bg_rsp": "shopify://shop_images/dyln-contact-page-mobile-header-background_ca452d73-9f0d-4875-94ff-bbd405b2e86c.png"
+          "bg": "shopify://shop_images/ContactPageBanner_Desktop1920x643px_5.jpg",
+          "bg_rsp": "shopify://shop_images/ContactPageBanner_Mobile1024x710px_5.jpg"
         }
       },
       "contact-body": {
@@ -1066,19 +1571,19 @@
               "faq_article": "faqs/what-are-the-vitabeads"
             }
           },
-          "1595261026114": {
+          "1595434643078": {
             "type": "faq",
             "settings": {
               "faq_article": "faqs/how-long-it-takes-to-alkalize-the-water"
             }
           },
-          "1595261052701": {
+          "1589303717652": {
             "type": "faq",
             "settings": {
               "faq_article": "faqs/how-long-can-i-keep-water-in-my-dyln-bottle"
             }
           },
-          "1595261079243": {
+          "1589303740647": {
             "type": "faq",
             "settings": {
               "faq_article": "faqs/how-long-does-the-insulated-dyln-bottle-keep-the-water-hot-or-cold"
@@ -1090,97 +1595,115 @@
               "faq_article": "faqs/when-should-i-be-drinking-alkaline-water"
             }
           },
-          "1595261119346": {
+          "1589303753423": {
             "type": "faq",
             "settings": {
               "faq_article": "faqs/what-is-the-dyln-bottle-made-of"
             }
           },
-          "1595261135467": {
+          "1589303760815": {
             "type": "faq",
             "settings": {
               "faq_article": "faqs/how-much-water-can-the-dyln-bottle-hold"
             }
           },
-          "1595261148154": {
+          "1589303766031": {
             "type": "faq",
             "settings": {
               "faq_article": "faqs/what-is-included-with-each-dyln-bottle-order"
             }
           },
-          "1595261167647": {
+          "1595434896654": {
             "type": "faq",
             "settings": {
               "faq_article": "faqs/no-fruit-in-my-dyln-bottle"
             }
           },
-          "1595261208411": {
+          "1589824267033": {
             "type": "faq_bottle",
             "settings": {
               "faq_article": "faqs/dyln-bottle-first-use"
             }
           },
-          "1595261225672": {
+          "1589824281427": {
             "type": "faq_bottle",
             "settings": {
               "faq_article": "faqs/how-do-i-register-my-dyln-bottle"
             }
           },
-          "1595261299374": {
+          "1589824294407": {
+            "type": "faq_diffuser",
+            "settings": {
+              "faq_article": ""
+            }
+          },
+          "1589824302989": {
+            "type": "faq_diffuser",
+            "settings": {
+              "faq_article": ""
+            }
+          },
+          "1589824309340": {
+            "type": "faq_use",
+            "settings": {
+              "faq_article": ""
+            }
+          },
+          "1589824315803": {
             "type": "faq_use",
             "settings": {
               "faq_article": "faqs/activating-the-dyln-diffuser"
             }
           },
-          "1595261336591": {
+          "1595435141874": {
             "type": "faq_use",
             "settings": {
               "faq_article": "faqs/water-i-should-use-with-my-dyln"
             }
           },
-          "1595261350257": {
+          "1595435152380": {
             "type": "faq_use",
             "settings": {
               "faq_article": "faqs/when-to-replace-diffuser"
             }
           },
-          "1595261369996": {
+          "1595435169233": {
             "type": "faq_use",
             "settings": {
               "faq_article": "faqs/remove-the-vitabead-diffuser"
             }
           },
-          "1595261388457": {
+          "1595435181932": {
             "type": "faq_use",
             "settings": {
               "faq_article": "faqs/how-to-clean-the-dyln-bottle"
             }
           },
-          "1595261415317": {
+          "1595435202478": {
             "type": "faq_use",
             "settings": {
               "faq_article": "faqs/how-to-clean-the-original-dyln-bottle"
             }
           },
-          "1595261436975": {
+          "1595435218718": {
             "type": "faq_use",
             "settings": {
               "faq_article": "faqs/can-i-put-my-dyln-bottle-in-the-freezer"
             }
           },
-          "1595261452187": {
+          "1595435247494": {
             "type": "faq_use",
             "settings": {
               "faq_article": "faqs/how-to-store-my-extra-vitabead-diffuser"
             }
           },
-          "1595261471068": {
+          "1595435259565": {
             "type": "faq_use",
             "settings": {
               "faq_article": "faqs/how-to-clean-my-dyln-vitabead-diffuser"
             }
           },
-          "1595261495101": {
+          "1595435278238": {
             "type": "faq_use",
             "settings": {
               "faq_article": "faqs/how-to-test-the-ph-of-water"
@@ -1191,26 +1714,29 @@
           "1589303702187",
           "1589303734817",
           "1589303723052",
-          "1595261026114",
-          "1595261052701",
-          "1595261079243",
+          "1595434643078",
+          "1589303717652",
+          "1589303740647",
           "1589303711149",
-          "1595261119346",
-          "1595261135467",
-          "1595261148154",
-          "1595261167647",
-          "1595261208411",
-          "1595261225672",
-          "1595261299374",
-          "1595261336591",
-          "1595261350257",
-          "1595261369996",
-          "1595261388457",
-          "1595261415317",
-          "1595261436975",
-          "1595261452187",
-          "1595261471068",
-          "1595261495101"
+          "1589303753423",
+          "1589303760815",
+          "1589303766031",
+          "1595434896654",
+          "1589824267033",
+          "1589824281427",
+          "1589824294407",
+          "1589824302989",
+          "1589824309340",
+          "1589824315803",
+          "1595435141874",
+          "1595435152380",
+          "1595435169233",
+          "1595435181932",
+          "1595435202478",
+          "1595435218718",
+          "1595435247494",
+          "1595435259565",
+          "1595435278238"
         ],
         "settings": {
           "title": "FAQS",
@@ -1341,17 +1867,6 @@
         ],
         "settings": {}
       },
-      "contact-dom-ship": {
-        "type": "contact-dom-ship",
-        "settings": {
-          "title": "",
-          "description": ""
-        }
-      },
-      "contact-intl-ship": {
-        "type": "contact-intl-ship",
-        "settings": {}
-      },
       "contact-form": {
         "type": "contact-form",
         "settings": {
@@ -1363,42 +1878,42 @@
       "contact-domestic": {
         "type": "contact-domestic",
         "blocks": {
+          "1595435354482": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/domestic-shipping"
+            }
+          },
           "1589705057441": {
             "type": "faq",
             "settings": {
               "faq_article": "faqs/what-is-included-with-each-dyln-bottle-order"
             }
-          },
-          "1589705066694": {
-            "type": "faq",
-            "settings": {
-              "faq_article": ""
-            }
-          },
-          "1589705072131": {
-            "type": "faq",
-            "settings": {
-              "faq_article": "faqs/when-should-i-be-drinking-alkaline-water"
-            }
           }
         },
-        "block_order": ["1589705057441", "1589705066694", "1589705072131"],
+        "block_order": ["1595435354482", "1589705057441"],
         "settings": {
           "title": "Domestic Shipping",
           "description": "After your payment is verified, it may take up to 24 hours to process and ship your order. This does not include weekends or holidays. Purchases made after 11 am PT will not be shipped out until the next business day. If you order after 11 am PT on a Friday, your order will likely be shipped out on the following Monday. Please refer to the chart below for rates/times.",
           "table_title_1": "Delivery Times",
           "table_1": "<table>\n      <thead>\n        <tr>\n          <th>Service</th>\n          <th>Delivery times</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>USPS First Class</td>\n          <td>5-7 Business Days</td>\n        </tr>\n        <tr>\n          <td>USPS First Class</td>\n          <td>5-7 Business Days</td>\n        </tr>\n        <tr>\n          <td>USPS First Class</td>\n          <td>5-7 Business Days</td>\n        </tr>\n      </tbody>\n    </table>",
           "table_title_2": "Delivery Rates",
-          "table_2": "<table>\n      <thead>\n        <tr>\n          <th>Order Type</th>\n          <th>Delivery times</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>Subsscriptions</td>\n          <td>Free Shipping</td>\n        </tr>\n        <tr>\n          <td>Orders Above $75.00 USD</td>\n          <td>Free Shipping</td>\n        </tr>\n        <tr>\n          <td>Orders Below $75.00 USD</td>\n          <td>Calculated at checkout</td>\n        </tr>\n      </tbody>\n    </table>"
+          "table_2": "<table>\n      <thead>\n        <tr>\n          <th>Order Type</th>\n          <th>Delivery rates</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>Subsscriptions</td>\n          <td>Free Shipping</td>\n        </tr>\n        <tr>\n          <td>Orders Above $75.00 USD</td>\n          <td>Free Shipping</td>\n        </tr>\n        <tr>\n          <td>Orders Below $75.00 USD</td>\n          <td>Calculated at checkout</td>\n        </tr>\n      </tbody>\n    </table>"
         }
       },
       "contact-international": {
         "type": "contact-international",
         "blocks": {
-          "1595259888919": {
+          "1589717404626": {
             "type": "faq",
             "settings": {
               "faq_article": "faqs/international-shipping"
+            }
+          },
+          "1589717414081": {
+            "type": "faq",
+            "settings": {
+              "faq_article": "faqs/what-is-included-with-each-dyln-bottle-order"
             }
           },
           "1589710043276": {
@@ -1427,7 +1942,8 @@
           }
         },
         "block_order": [
-          "1595259888919",
+          "1589717404626",
+          "1589717414081",
           "1589710043276",
           "1589710110741",
           "1589717442457"
@@ -1468,7 +1984,7 @@
         "type": "landing-page-header",
         "settings": {
           "title": "Let's get started!",
-          "background": "shopify://shop_images/GetStartedBanner_Desktop1920x643px_4.jpg",
+          "background": "shopify://shop_images/GetStartedBanner_Desktop1920x643px_4_fc408994-1400-47db-be3c-7e6ec060e3ab.jpg",
           "foreground_image": "shopify://shop_images/landing-page-foreground-image.png"
         }
       },
@@ -1479,7 +1995,62 @@
             "type": "step",
             "settings": {
               "step_num": "1",
-              "step_title": ""
+              "step_title": "Inside the Diffuser Removal Tool travel pouch, you can find the Diffuser already attached to the end of the tool."
+            }
+          },
+          "1589817112017": {
+            "type": "video",
+            "settings": {
+              "step_num": "1",
+              "video_id": "ar7_Nv9a6sA"
+            }
+          },
+          "1595531133528": {
+            "type": "illustration",
+            "settings": {
+              "step_num": "1",
+              "illustrations_gif": "<img src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/Activate_Step0.gif?v=1595531235\" alt=\"Activate your Diffuser\">",
+              "illustration_content": "Detach the Diffuser from the tool, then rinse it under warm water for about 20 seconds."
+            }
+          },
+          "1595532017264": {
+            "type": "illustration",
+            "settings": {
+              "step_num": "1",
+              "illustrations_gif": "<img src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/Activate_Step1.gif?v=1595531249\" alt=\"Activate Diffuser Step 2\">",
+              "illustration_content": "Soak the Diffuser completely submerged in a glass of warm water for about 20 minutes."
+            }
+          },
+          "1595532158539": {
+            "type": "illustration",
+            "settings": {
+              "step_num": "1",
+              "illustrations_gif": "<img src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/Activate_Step2.gif?v=1595531216\">",
+              "illustration_content": "Removing the Diffuser from the glass, repeat Step 2 and shake any excess water out."
+            }
+          },
+          "1595532218268": {
+            "type": "illustration",
+            "settings": {
+              "step_num": "1",
+              "illustrations_gif": "<img src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/Activate_Step3.gif?v=1595531245\" alt=\"\">",
+              "illustration_content": "Let the Diffuser sit out overnight (or at least 8 hours) so the VitaBeads can air-dry completely."
+            }
+          },
+          "1595532783478": {
+            "type": "illustration",
+            "settings": {
+              "step_num": "1",
+              "illustrations_gif": "<img src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/Activate_Step4.gif?v=1595531198\" alt=\"\">",
+              "illustration_content": "While the Diffuser is soaking and air-drying, wash out your bottle and cap with water and soap. Be sure to rinse out all of the soap. *Not dishwasher safe."
+            }
+          },
+          "1595532865179": {
+            "type": "illustration",
+            "settings": {
+              "step_num": "1",
+              "illustrations_gif": "<img src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/Activate-Step5.jpg?v=1595532854\" alt=\"\">",
+              "illustration_content": ""
             }
           },
           "1589817109050": {
@@ -1489,15 +2060,71 @@
               "step_title": ""
             }
           },
-          "1589817112017": {
+          "1595565719481": {
             "type": "video",
             "settings": {
-              "step_num": "1",
+              "step_num": "2",
               "video_id": "ar7_Nv9a6sA"
+            }
+          },
+          "1595565487105": {
+            "type": "illustration",
+            "settings": {
+              "step_num": "2",
+              "illustrations_gif": "<img src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/Attach_Step0.gif?v=1595565557\" alt=\"attach diffuser\">",
+              "illustration_content": "Attach the middle piece of your tool so the tool can reach the bottom of the bottle."
+            }
+          },
+          "1595565771858": {
+            "type": "illustration",
+            "settings": {
+              "step_num": "2",
+              "illustrations_gif": "<img src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/Attach_Step1.gif?v=1595565575\" alt=\"attach diffuser\">",
+              "illustration_content": "Attach the Diffuser to the tool by fitting the upside down L-shaped grooves on the tool over the two bumps on the top side of the Diffuser, then twist slightly to lock together.\n*Be sure the Diffuser is the right way up. The top side has two bumps near the edge, and the bottom side has four tabs near the edge."
+            }
+          },
+          "1595565813834": {
+            "type": "illustration",
+            "settings": {
+              "step_num": "2",
+              "illustrations_gif": "<img src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/Attach_Step2.gif?v=1595565598\" alt=\"attach diffuser\">",
+              "illustration_content": "Using the Tool, insert the Diffuser into the bottle to align with the Diffuser holder at the bottom of the bottle. Push down to click the Diffuser into the holder."
+            }
+          },
+          "1595565866740": {
+            "type": "illustration",
+            "settings": {
+              "step_num": "2",
+              "illustrations_gif": "<img src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/Attach_Step3.gif?v=1595565607\" alt=\"attach diffuser\">",
+              "illustration_content": "Unlock the Tool by lightly twisting counterclockwise, and pull straight up to release the Tool from the Diffuser."
+            }
+          },
+          "1595565933344": {
+            "type": "illustration",
+            "settings": {
+              "step_num": "2",
+              "illustrations_gif": "<img src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/Attach_Step4.gif?v=1595565610\" alt=\"attach diffuser\">",
+              "illustration_content": ""
             }
           }
         },
-        "block_order": ["1589817105930", "1589817109050", "1589817112017"],
+        "block_order": [
+          "1589817105930",
+          "1589817112017",
+          "1595531133528",
+          "1595532017264",
+          "1595532158539",
+          "1595532218268",
+          "1595532783478",
+          "1595532865179",
+          "1589817109050",
+          "1595565719481",
+          "1595565487105",
+          "1595565771858",
+          "1595565813834",
+          "1595565866740",
+          "1595565933344"
+        ],
         "settings": {
           "title": "Follow these easy steps to start…",
           "video_tab": true,
@@ -1561,7 +2188,7 @@
         "settings": {
           "step_number": "5",
           "step_title": "Enjoy & Share!",
-          "step_image": "shopify://shop_images/bottles-referal.png",
+          "step_image": "shopify://shop_images/dyln-bottle-included-bottle_d50b9b7a-7054-4a58-aa11-67e49229c5f8.png",
           "referal_btn_text": "Refer a Friend",
           "referal_btn_link": "",
           "referal_points": "150"
@@ -1611,18 +2238,18 @@
         ],
         "settings": {
           "title": "Testing your water’s pH",
-          "gif": "",
+          "gif": "<div class=\"text-center\">\n<img src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/PhChart.gif?v=1595566428\" alt=\"Testing the PH of your water\" width=\"50%\" height=\"auto\">\n</div>",
           "content": "Here are some recommendations on how to correctly test the pH of your water:"
         }
       },
       "landing-page-banner": {
         "type": "landing-page-banner",
         "settings": {
-          "show": false,
-          "banner_title": "",
-          "banner_image": "",
-          "cta_text": "",
-          "cta_link": ""
+          "show": true,
+          "banner_title": "Sports Caps & Bottom Guards",
+          "banner_image": "shopify://shop_images/ShopAccessories-Desktop.jpg",
+          "cta_text": "Shop Accessories",
+          "cta_link": "shopify://collections/accessories"
         }
       },
       "landing-page-diffusers": {
@@ -1707,21 +2334,21 @@
       "landing-page-modal": {
         "type": "landing-page-modal",
         "settings": {
-          "show": true,
+          "show": false,
           "title": "Don't have a DYLN Bottle yet?",
           "background": "shopify://shop_images/Pearl-Grey-Insulated-Bottle-vegetables-bg.jpg",
           "cta_btn_url": "shopify://collections/all",
           "cta_btn_text": "Shop Bottles",
           "secondary_btn_url": "",
           "secondary_btn_text": "I already have one, let's get started!",
-          "time_interval": "3000"
+          "time_interval": "5000"
         }
       },
       "template-page-header": {
         "type": "template-page-header",
         "settings": {
           "show": true,
-          "title": "DYLN Affiliate Program",
+          "title": "Patents and Trademarks",
           "header_background": "shopify://shop_images/template-page-background.png"
         }
       },
@@ -1729,7 +2356,7 @@
         "type": "template-page-content",
         "settings": {
           "show": true,
-          "content": "<p><strong>Become a DYLN Affiliate</strong></p>\n<p><strong>DYLN</strong>&nbsp;is bridging the gap between wellness and convenience with our eco-friendly alkaline water bottles. We believe that living water is the foundation for healthy bodies, conscious minds, and inspired lives&mdash;and that you should be able to make it everywhere you go.</p>\n<p>What is an Affiliate Program?</p>\n<p>The Affiliate Program is a service for our participating websites to earn commission on the sales they refer to DYLN using specially tracked links. We provide you with custom links and banners that you can post on your website. When a visitor you've referred to our website visits us and makes a purchase, we'll keep track and give you a commission on the sale.</p>\n<p>Now you might be thinking&nbsp;<strong>how does it work</strong>?</p>\n<p>Sign up as an affiliate in the network. It is totally<strong>&nbsp;f</strong><strong>ree</strong>.Apply to the DYLN Affiliate program.</p>\n<p>Add the creative assets to your website and start earning commissions!</p>\n<p>It's Easy, Free &ndash; Get Started Now!</p>\n<p>It's simple and&nbsp;<strong>FREE</strong>&nbsp;to join our affiliate program. Join now by signing up as an affiliate&nbsp;<a href=\"https://shareasale.com/join/DylnInfluencer\">here</a>&nbsp;so you can start earning a commission on all customer orders you send to DYLN.co. Please contact us with any questions about the program at affiliates@dyln.co.</p>\n<p><strong>Benefits of our Affiliate Program:</strong></p>\n<p>Commission on sale &ndash;&nbsp;<strong>10%</strong>.<strong>30 days</strong>&nbsp;cookies.<strong>Text links, banners</strong>&nbsp;and opportunities for&nbsp;<strong>c</strong><strong>ustom creatives.</strong>Monthly newsletters&nbsp;to inform you about new offers and products.Professional affiliate management (to answer any questions or concerns).&nbsp;</p>\n<p>&nbsp;</p>\n<p>So what are you waiting for&nbsp;<strong><a href=\"https://shareasale.com/join/DylnInfluencer\" title=\"DYLN Affiliate Program\">GET STARTED TODAY</a></strong>&nbsp;&nbsp;</p>\n<p></p>",
+          "content": "<p><strong>Patents</strong></p>\n<p>Various products, as noted below, are covered by one or more United States patents. This webpage has been provided to facilitate notice of these patents to the public pursuant to Title 35 United States Code Section 287(a).</p>\n<p></p>\n<p>The listing below is provided in good faith and is believed to be accurate. However, only a few of our patents are noted below and the failure of a product to appear on this webpage does not mean that it is not covered by a patent we own or control.</p>\n<p></p>\n<p>DYLN Living Water Bottle</p>\n<p>U.S. Patent No. D740,609. Additional patents may be pending in the U.S. and elsewhere.</p>\n<p></p>\n<p><strong>Trademarks</strong></p>\n<p>DYLN, DYLN Inspired, VitaBeads, VitaPearl, and the mark which consists of a design in the shape of a letter \"Y\" with a solid circle located within the \"Y\" are registered trademarks of Dyln Lifestyle, LLC.</p>",
           "show_sidebar": true,
           "title": "Need to talk to a human?",
           "telephone_title": "Let's talk",
@@ -1753,7 +2380,7 @@
         "settings": {
           "title": "DYLN Blog",
           "content": "Having a balanced life means taking care of yourself inside and out…",
-          "background": "shopify://shop_images/blog-header-background-dyln.png"
+          "background": "shopify://shop_images/BlogBanner_Desktop1920x643px_1.jpg"
         }
       },
       "blog-search": {
@@ -1778,7 +2405,7 @@
       "blog-featured": {
         "type": "blog-featured",
         "settings": {
-          "featured_article": "y-blog/easy-meal-prep-for-healthy-alkaline-lunches"
+          "featured_article": "y-blog/how-to-make-alkaline-water-at-home-1"
         }
       },
       "blog-vlog": {
@@ -1816,7 +2443,7 @@
           "1591464030251"
         ],
         "settings": {
-          "show": true,
+          "show": false,
           "title": "Vlog"
         }
       },
@@ -1879,13 +2506,13 @@
           "1591464809523": {
             "type": "text",
             "settings": {
-              "tag": "Alkaline Living"
+              "tag": "Health"
             }
           },
           "1591464816357": {
             "type": "text",
             "settings": {
-              "tag": "Health Hacks"
+              "tag": "Recipes"
             }
           }
         },
@@ -2031,14 +2658,14 @@
           "title": "The DYLN Bottle creates Alkaline Water on the go!",
           "subtitle": "<a href=\"#\" data-scroll-to=\".index-video\">See how</a>",
           "content": "The DYLN Bottle has an ergonomic design, 32 oz / 950 mL capacity and Its insulated, so it keeps your water cold for up to 24 hrs. Learn more",
-          "link": "",
+          "link": "shopify://collections/dyln-bottles",
           "link_text": "View Bottles",
           "video": "",
-          "video_width": 300,
-          "video_height": 300,
-          "video_embed": "<iframe src=\"https://www.youtube.com/embed/V3WX3SoOULI?rel=0&controls=0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\" width=\"560\" height=\"315\" frameborder=\"0\"></iframe>",
+          "video_width": 600,
+          "video_height": 450,
+          "video_embed": "<style>video::-webkit-media-controls-panel {\n     background-image: linear-gradient(transparent, transparent); !important;\n     float:right!important;\n }\n\n</style>\n\n <video width=\"400\" height=\"400\" autoplay=\"\" loop=\"\" plasyinline=\"\" muted=\"\">\n <source src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/webAutoplay-HowDoesTheDylnBottleWork__480x480.mp4\" type=\"video/mp4\">\n    <source src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/webAutoplay-HowDoesTheDylnBottleWork.ogv\" type=\"video/ogg\">\n    <source src=\"https://cdn.shopify.com/s/files/1/0511/9421/files/webAutoplay-HowDoesTheDylnBottleWork.webm\" type=\"video/webm\">\n <p>Fallback text.</p>\n </source></source></source></video>",
           "usp_title": "Fill your water bottle and in 15-20 minutes, your water will become:",
-          "usp_icon_1": "alkaline",
+          "usp_icon_1": "",
           "usp_title_1": "Alkaline",
           "usp_content_1": "The pH of your water will increase up to 9+ helping neutralize the acid in your body.",
           "usp_icon_2": "antioxidant",
@@ -2057,11 +2684,11 @@
           "title": "Shop",
           "prominent_links": "DYLN Bottles",
           "show_featured": true,
-          "featured_content": "<p>There is a new kid in town!</p>\n<p><strong>New 16 oz size</strong></p>",
-          "featured_image": "shopify://shop_images/blog-banner-bottles.png",
-          "featured_link": "shopify://products/dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
+          "featured_content": "<p>There are new cool kids in town!</p>\n<p><strong>New Bottle Sizes</strong></p>",
+          "featured_image": "shopify://shop_images/NewBottleSizes.png",
+          "featured_link": "shopify://collections/dyln-bottles",
           "featured_link_text": "Shop",
-          "all_link": "shopify://collections",
+          "all_link": "shopify://collections/shop-all",
           "all_link_text": "Shop All"
         }
       },
@@ -2123,385 +2750,6 @@
           "s_pop_title": "Most Popular Topics",
           "s_pop_manual": true,
           "s_pop_terms": "Replacements, Diffusers Subscription, Returns"
-        }
-      },
-      "pre-order-header": {
-        "type": "pre-order-header",
-        "settings": {
-          "title": "<p><strong>Drinking Alkaline water<br></strong>just got so much easier<strong>.</strong></p>",
-          "background": "shopify://shop_images/preorder-background.png",
-          "btn_text": "Build my perfect bottle.",
-          "btn_link": ""
-        }
-      },
-      "pre-order-bottle-sizes": {
-        "type": "pre-order-bottle-sizes",
-        "blocks": {
-          "1595878508605": {
-            "type": "text",
-            "settings": {
-              "bottle_sizes_imperial": "16 oz",
-              "bottle_sizes_metric": "480 mL"
-            }
-          },
-          "1595878529053": {
-            "type": "text",
-            "settings": {
-              "bottle_sizes_imperial": "21 oz",
-              "bottle_sizes_metric": "620 mL"
-            }
-          },
-          "1595878537354": {
-            "type": "text",
-            "settings": {
-              "bottle_sizes_imperial": "40 oz",
-              "bottle_sizes_metric": "1.2 L"
-            }
-          }
-        },
-        "block_order": ["1595878508605", "1595878529053", "1595878537354"],
-        "settings": {
-          "title": "New bottle sizes and accessories!",
-          "btn_text": "Find my bottle",
-          "btn_link": ""
-        }
-      },
-      "pre-order-alkaline-water": {
-        "type": "pre-order-alkaline-water",
-        "blocks": {
-          "1595519469281": {
-            "type": "text",
-            "settings": {
-              "featured_item_icon": "shopify://shop_images/pre-order-placeholder-image.png",
-              "featured_item_title": "Helps with acid reflux"
-            }
-          },
-          "1595519492633": {
-            "type": "text",
-            "settings": {
-              "featured_item_icon": "shopify://shop_images/pre-order-placeholder-image.png",
-              "featured_item_title": "Better, faster hydration"
-            }
-          },
-          "1595519502339": {
-            "type": "text",
-            "settings": {
-              "featured_item_icon": "shopify://shop_images/pre-order-placeholder-image.png",
-              "featured_item_title": "Great taste you will actually crave"
-            }
-          },
-          "1595519512882": {
-            "type": "text",
-            "settings": {
-              "featured_item_icon": "shopify://shop_images/pre-order-placeholder-image.png",
-              "featured_item_title": "Helps with metabolism"
-            }
-          }
-        },
-        "block_order": [
-          "1595519469281",
-          "1595519492633",
-          "1595519502339",
-          "1595519512882"
-        ],
-        "settings": {
-          "title": "Drinking Alkaline Water just feels right!",
-          "btn_text": "Why is pH so important?",
-          "btn_link": ""
-        }
-      },
-      "pre-order-why-alkaline": {
-        "type": "pre-order-why-alkaline",
-        "settings": {
-          "title": "Why is alkaline water so important?",
-          "content": "<p>Alkaline water helps you have a balanced pH level (7.4 or so) in your body and that is key to a healthy life. It prevents disease 1, disease 2 and condition 3.</p>\n<p></p>\n<p>Give your health a boost by creating alkaline water with your DYLN Bottle and learn what other foods can help you reach an optimal pH level:</p>",
-          "image": "shopify://shop_images/why-alkaline-ph.png"
-        }
-      },
-      "pre-order-last-bottle": {
-        "type": "pre-order-last-bottle",
-        "settings": {
-          "title": "The last bottle you will ever need!",
-          "content": "<p>Increases pH up to 9+Double-walled vacuum insulation</p>\n<p>316 surgical-grade stainless steel interior + fod-grade 304 stainless steel exterior</p>\n<p>Includes VitaBead Diffuser &amp;&nbsp; Removal Tool</p>",
-          "right_image": "shopify://shop_images/last-bottle-left-image.png",
-          "left_image": "shopify://shop_images/last-bottle-right-image.png"
-        }
-      },
-      "pre-order-video": {
-        "type": "pre-order-video",
-        "settings": {
-          "title": "How does the DYLN Bottle alkalize water?",
-          "video_link_text": "Watch full video",
-          "image": "shopify://shop_images/video-image.png",
-          "video": "",
-          "autoplay": true,
-          "video_embed": "<iframe src=\"https://www.youtube.com/embed/PHVhV5h7pbA\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\" width=\"560\" height=\"315\" frameborder=\"0\"></iframe>",
-          "video_width": 600,
-          "video_height": 450
-        }
-      },
-      "pre-order-on-the-go": {
-        "type": "pre-order-on-the-go",
-        "blocks": {
-          "1595511066119": {
-            "type": "text",
-            "settings": {
-              "featured_step_icon": "shopify://shop_images/alkaline-fill.png",
-              "featured_step_title": "1. Fill",
-              "featured_step_content": "Fill your DYLN Bottle with filtered water"
-            }
-          },
-          "1595511202434": {
-            "type": "text",
-            "settings": {
-              "featured_step_icon": "shopify://shop_images/alkaline-alkalize.png",
-              "featured_step_title": "2. Alkalize",
-              "featured_step_content": "The VitaBead Diffuser alkalizes your water"
-            }
-          },
-          "1595511224006": {
-            "type": "text",
-            "settings": {
-              "featured_step_icon": "shopify://shop_images/alkaline-hydrate.png",
-              "featured_step_title": "3. Hydrate",
-              "featured_step_content": "Enjoy Alkaline Antioxidant Water"
-            }
-          }
-        },
-        "block_order": ["1595511066119", "1595511202434", "1595511224006"],
-        "settings": {
-          "title": "Creating Alkaline water on the go is easy as:"
-        }
-      },
-      "pre-order-diffusers": {
-        "type": "pre-order-diffusers",
-        "settings": {
-          "text_above_title": "Technology",
-          "title": "VitaBead Diffusers",
-          "content": "Placed at the bottom of every DYLN Bottle, your Diffuser will enhance your water with minerals and elevate it’s pH to up to 9+.",
-          "left_image": "shopify://shop_images/diffusers-left-image_f0b1cbc2-85ce-4058-beb4-81f7fce083d5.png",
-          "right_image": "shopify://shop_images/diffusers-right-image.png"
-        }
-      },
-      "pre-order-hydro-optim": {
-        "type": "pre-order-hydro-optim",
-        "blocks": {
-          "1595508407947": {
-            "type": "text",
-            "settings": {
-              "icon": "shopify://shop_images/shipping-icon.png",
-              "recommendation_title": "Free Shipping!",
-              "recommendation_content": "Add other items to your shipments and take advantage of this perk!",
-              "title_color": "#0080b7"
-            }
-          },
-          "1595508455335": {
-            "type": "text",
-            "settings": {
-              "icon": "shopify://shop_images/savings-icon.png",
-              "recommendation_title": "Savings!",
-              "recommendation_content": "The more you buy the more you save. Savings start at $1 per Diffuser.",
-              "title_color": "#20d480"
-            }
-          },
-          "1595508483435": {
-            "type": "text",
-            "settings": {
-              "icon": "shopify://shop_images/settings-icon.png",
-              "recommendation_title": "Customize!",
-              "recommendation_content": "Choose the frequency of your shipment, change it, pause it. Anytime!",
-              "title_color": "#00aedb"
-            }
-          }
-        },
-        "block_order": ["1595508407947", "1595508455335", "1595508483435"],
-        "settings": {
-          "title_tag": "NEW SOMETHING",
-          "subtitle": "Hydration Optimization",
-          "title": "Diffusers Subscription",
-          "image": "shopify://shop_images/hydration-optim-image.png",
-          "content": "Receive automatically your extra Diffusers and continue enjoying the Ultimate Hydration Experience.",
-          "btn_text": "I'm ready to Subscribe!",
-          "btn_link": ""
-        }
-      },
-      "pre-order-testimonials": {
-        "type": "pre-order-testimonials",
-        "settings": {
-          "title": "",
-          "btn_text": "",
-          "btn_link": ""
-        }
-      },
-      "pre-order-testimonials-slider": {
-        "type": "pre-order-testimonials-slider",
-        "blocks": {
-          "1595514073216": {
-            "type": "text",
-            "settings": {
-              "testimonial_title": "GREAT TASTE",
-              "testimonial_content": "\"Love the feeling after using this water for the first few weeks.\"",
-              "testimonial_author": "Michael S.",
-              "testimonial_rating": 5
-            }
-          },
-          "1595514105737": {
-            "type": "text",
-            "settings": {
-              "testimonial_title": "Superb Quality",
-              "testimonial_content": "\"Love the feeling after using this water for the first few weeks.\"",
-              "testimonial_author": "John Doe",
-              "testimonial_rating": 3
-            }
-          }
-        },
-        "block_order": ["1595514073216", "1595514105737"],
-        "settings": {
-          "title": ""
-        }
-      },
-      "pre-order-features": {
-        "type": "pre-order-features",
-        "blocks": {
-          "1595520433164": {
-            "type": "text",
-            "settings": {
-              "featured_item_icon": "shopify://shop_images/pre-order-placeholder-image-1.png",
-              "featured_item_title": "2 walls, 3 layers of insulation"
-            }
-          },
-          "1595520468027": {
-            "type": "text",
-            "settings": {
-              "featured_item_icon": "shopify://shop_images/pre-order-placeholder-image-1.png",
-              "featured_item_title": "Keeps water cold for up to 2 hrs"
-            }
-          },
-          "1595520478579": {
-            "type": "text",
-            "settings": {
-              "featured_item_icon": "shopify://shop_images/pre-order-placeholder-image-1.png",
-              "featured_item_title": "Sweat free bottle"
-            }
-          },
-          "1595520489306": {
-            "type": "text",
-            "settings": {
-              "featured_item_icon": "shopify://shop_images/pre-order-placeholder-image-1.png",
-              "featured_item_title": "Surgical-grade 316 Stainless steel interior"
-            }
-          }
-        },
-        "block_order": [
-          "1595520433164",
-          "1595520468027",
-          "1595520478579",
-          "1595520489306"
-        ],
-        "settings": {
-          "text_above_title": "Three-Layered",
-          "title": "Insulation",
-          "left_image": "shopify://shop_images/insulation-image.png"
-        }
-      },
-      "pre-order-cap": {
-        "type": "pre-order-cap",
-        "blocks": {
-          "1595862382488": {
-            "type": "text",
-            "settings": {
-              "featured_item_icon": "shopify://shop_images/pre-order-placeholder-image-1_5a30de86-3238-4f8e-9b61-4b88c0dc7a3a.png",
-              "featured_item_title": "No more spills while on the go"
-            }
-          },
-          "1595862417513": {
-            "type": "text",
-            "settings": {
-              "featured_item_icon": "shopify://shop_images/pre-order-placeholder-image-1_5a30de86-3238-4f8e-9b61-4b88c0dc7a3a.png",
-              "featured_item_title": "Flexible, silicone straw included"
-            }
-          },
-          "1595862429012": {
-            "type": "text",
-            "settings": {
-              "featured_item_icon": "shopify://shop_images/pre-order-placeholder-image-1_5a30de86-3238-4f8e-9b61-4b88c0dc7a3a.png",
-              "featured_item_title": "Flexible handle"
-            }
-          },
-          "1595862439559": {
-            "type": "text",
-            "settings": {
-              "featured_item_icon": "shopify://shop_images/pre-order-placeholder-image-1_5a30de86-3238-4f8e-9b61-4b88c0dc7a3a.png",
-              "featured_item_title": "Movable spout"
-            }
-          }
-        },
-        "block_order": [
-          "1595862382488",
-          "1595862417513",
-          "1595862429012",
-          "1595862439559"
-        ],
-        "settings": {
-          "subtitle": "NEW ADD-ON",
-          "text_above_title": "NON-SPILL",
-          "title": "Sports Cap",
-          "right_image": "shopify://shop_images/sports-cap-preorder.png",
-          "cta_text": "Shop Sports Caps",
-          "cta_link": "shopify://collections/sports-caps"
-        }
-      },
-      "pre-order-guard": {
-        "type": "pre-order-guard",
-        "blocks": {
-          "1595865797962": {
-            "type": "text",
-            "settings": {
-              "featured_item_icon": "shopify://shop_images/pre-order-placeholder-image-1_5a30de86-3238-4f8e-9b61-4b88c0dc7a3a.png",
-              "featured_item_title": "Protect from dents and scratches"
-            }
-          },
-          "1595865808608": {
-            "type": "text",
-            "settings": {
-              "featured_item_icon": "shopify://shop_images/pre-order-placeholder-image-1_5a30de86-3238-4f8e-9b61-4b88c0dc7a3a.png",
-              "featured_item_title": "Plastic and BPA free"
-            }
-          },
-          "1595865817722": {
-            "type": "text",
-            "settings": {
-              "featured_item_icon": "shopify://shop_images/pre-order-placeholder-image-1_5a30de86-3238-4f8e-9b61-4b88c0dc7a3a.png",
-              "featured_item_title": "Doubles as a doggy bowl"
-            }
-          },
-          "1595865828636": {
-            "type": "text",
-            "settings": {
-              "featured_item_icon": "shopify://shop_images/pre-order-placeholder-image-1_5a30de86-3238-4f8e-9b61-4b88c0dc7a3a.png",
-              "featured_item_title": "Plastic and BPA free"
-            }
-          }
-        },
-        "block_order": [
-          "1595865797962",
-          "1595865808608",
-          "1595865817722",
-          "1595865828636"
-        ],
-        "settings": {
-          "subtitle": "NEW ADD-ON",
-          "text_above_title": "Flexible Silicone",
-          "title": "Bottom Guard",
-          "right_image": "shopify://shop_images/bottom-guard-preorder.png",
-          "cta_text": "Shop Bottom Guards",
-          "cta_link": "shopify://collections/bottom-guards"
-        }
-      },
-      "pre-order-customize": {
-        "type": "pre-order-customize",
-        "settings": {
-          "featured_product": "dyln-insulated-alkaline-water-bottle-21-oz"
         }
       }
     },
