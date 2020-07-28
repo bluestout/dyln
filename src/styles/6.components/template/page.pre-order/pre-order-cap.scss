@@ -50,6 +50,13 @@
     color: $color-white;
     margin-bottom: 10px;
     text-transform: uppercase;
+
+    @include media-query($medium-down) {
+      width: 170px;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 
   &__container {

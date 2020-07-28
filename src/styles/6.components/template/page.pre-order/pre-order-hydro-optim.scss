@@ -49,6 +49,10 @@
     color: $color-white;
     margin-bottom: 10px;
     text-transform: uppercase;
+
+    @include media-query($medium-down) {
+      width: 160px;
+    }
   }
 
   &__perks {
@@ -63,6 +67,10 @@
       display: flex;
       padding: 0;
       padding-right: 40px;
+
+      @include media-query($medium-down) {
+        padding-right: 0;
+      }
 
       p {
         @include text(15px, 1.5, $color-black, 0.3px);
@@ -95,12 +103,16 @@
 
     @include media-query($medium-down) {
       order: 2;
-      margin-top: 20px;
+      margin-top: 0;
     }
 
     &-container {
       margin-right: 15px;
       min-height: 150px;
+
+      @include media-query($medium-down) {
+        min-height: 100px;
+      }
     }
   }
 

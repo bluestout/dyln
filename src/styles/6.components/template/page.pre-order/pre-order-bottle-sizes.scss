@@ -1,4 +1,7 @@
 .po-bottle-sizes {
+  position: relative;
+  top: -1px;
+
   > .container-fluid {
     background-size: cover;
   }

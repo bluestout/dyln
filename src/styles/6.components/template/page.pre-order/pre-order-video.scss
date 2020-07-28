@@ -14,7 +14,6 @@
 
   &__link {
     @include no-browser-styling;
-    display: none;
     padding-left: 0;
 
     &:hover,
@@ -142,10 +141,16 @@
 
   &__content {
     align-self: center;
-    text-align: center;
+    text-align: left;
 
     a {
       position: relative;
+    }
+
+    @include media-query($medium-down) {
+      button {
+        display: none;
+      }
     }
   }
 
@@ -212,6 +217,12 @@
 
   &__video {
     margin: auto;
+  }
+
+  &__link-responsive {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   @include media-query($large-down) {
