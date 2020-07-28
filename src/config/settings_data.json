@@ -241,8 +241,8 @@
           "title": "How does it work?",
           "text": "The DYLN Patented Bottle System was created to enhance water simply.",
           "link_text": "Watch full Video",
-          "video": "https://cdn.shopify.com/s/files/1/0511/9421/files/webAutoplay-HowDoesTheDylnBottleWork__480x480.mp4?v=1594059684",
-          "autoplay": false,
+          "video": "",
+          "autoplay": true,
           "video_embed": "<iframe src=\"https://www.youtube.com/embed/PHVhV5h7pbA\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\" width=\"560\" height=\"315\" frameborder=\"0\"></iframe>",
           "video_width": 600,
           "video_height": 450
@@ -293,7 +293,7 @@
         "settings": {
           "background": "shopify://shop_images/dyln-homepage-joggers.png",
           "background_rsp": "",
-          "title": "Not all water is <strong>created</strong> equal, here is a bit of what <span class=\"brand-blue\"><strong>Alkaline Water</strong></span> does for you:"
+          "title": "Not all water is <strong>created</strong> equal, here is a bit of what <strong class=\"brand-blue\">Alkaline Water</strong>does for you:"
         }
       },
       "1581513439176": {
@@ -1045,8 +1045,8 @@
         "settings": {
           "title": "How can we help?",
           "content": "We’re just a button away. Feel free to contact us anytime.",
-          "bg": "shopify://shop_images/blog-header-background-dyln.png",
-          "bg_rsp": "shopify://shop_images/dyln-contact-page-desktop-header-background_26c01632-5130-4555-9cae-754b404aff34.png"
+          "bg": "shopify://shop_images/dyln-contact-page-desktop-header-background_26c01632-5130-4555-9cae-754b404aff34.png",
+          "bg_rsp": "shopify://shop_images/dyln-contact-page-mobile-header-background_ca452d73-9f0d-4875-94ff-bbd405b2e86c.png"
         }
       },
       "contact-body": {
@@ -1421,7 +1421,7 @@
           "table_title_1": "Delivery Times",
           "table_1": "<table>\n      <thead>\n        <tr>\n          <th>Service</th>\n          <th>Delivery times</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>USPS First Class</td>\n          <td>5-7 Business Days</td>\n        </tr>\n        <tr>\n          <td>USPS First Class</td>\n          <td>5-7 Business Days</td>\n        </tr>\n        <tr>\n          <td>USPS First Class</td>\n          <td>5-7 Business Days</td>\n        </tr>\n      </tbody>\n    </table>",
           "table_title_2": "Delivery Rates",
-          "table_2": "<table>\n      <thead>\n        <tr>\n          <th>Order Type</th>\n          <th>Delivery rates</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>Subsscriptions</td>\n          <td>Free Shipping</td>\n        </tr>\n        <tr>\n          <td>Orders Above $75.00 USD</td>\n          <td>Free Shipping</td>\n        </tr>\n        <tr>\n          <td>Orders Below $75.00 USD</td>\n          <td>Calculated at checkout</td>\n        </tr>\n      </tbody>\n    </table>"
+          "table_2": "<table>\n      <thead>\n        <tr>\n          <th>Order Type</th>\n          <th>Delivery times</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>Subsscriptions</td>\n          <td>Free Shipping</td>\n        </tr>\n        <tr>\n          <td>Orders Above $75.00 USD</td>\n          <td>Free Shipping</td>\n        </tr>\n        <tr>\n          <td>Orders Below $75.00 USD</td>\n          <td>Calculated at checkout</td>\n        </tr>\n      </tbody>\n    </table>"
         }
       },
       "contact-international": {
@@ -1535,7 +1535,7 @@
           "video_tab": true,
           "video_tab_title": "Video Instructions",
           "illustrations_tab": true,
-          "illustrations_tab_title": "Ilustrated instructions",
+          "illustrations_tab_title": "Illustrated Instructions",
           "num_of_steps": "2"
         }
       },
@@ -1593,7 +1593,7 @@
         "settings": {
           "step_number": "5",
           "step_title": "Enjoy & Share!",
-          "step_image": "shopify://shop_images/dyln-accessories.png",
+          "step_image": "shopify://shop_images/bottles-referal.png",
           "referal_btn_text": "Refer a Friend",
           "referal_btn_link": "",
           "referal_points": "150"
@@ -1684,9 +1684,9 @@
         },
         "block_order": ["1589818113237", "1589818128062", "1589818142898"],
         "settings": {
-          "title": "Diffuser Title here",
+          "title": "Subscribe & Save!",
           "extra_product": "extra-vitabead-diffusers",
-          "diffuser_product_image": "",
+          "diffuser_product_image": "shopify://shop_images/diffuser-get-started.png",
           "note": "<p>We recommend replacing your Diffuser every 3 months but go ahead and <strong>customize quantity and frequency.</strong></p>"
         }
       },
@@ -1753,7 +1753,7 @@
         "type": "template-page-header",
         "settings": {
           "show": true,
-          "title": "Patents and Trademarks",
+          "title": "DYLN Affiliate Program",
           "header_background": "shopify://shop_images/template-page-background.png"
         }
       },
@@ -1761,7 +1761,7 @@
         "type": "template-page-content",
         "settings": {
           "show": true,
-          "content": "<p><strong>Patents</strong></p>\n<p>Various products, as noted below, are covered by one or more United States patents. This webpage has been provided to facilitate notice of these patents to the public pursuant to Title 35 United States Code Section 287(a).</p>\n<p></p>\n<p>The listing below is provided in good faith and is believed to be accurate. However, only a few of our patents are noted below and the failure of a product to appear on this webpage does not mean that it is not covered by a patent we own or control.</p>\n<p></p>\n<p>DYLN Living Water Bottle</p>\n<p>U.S. Patent No. D740,609. Additional patents may be pending in the U.S. and elsewhere.</p>\n<p></p>\n<p><strong>Trademarks</strong></p>\n<p>DYLN, DYLN Inspired, VitaBeads, VitaPearl, and the mark which consists of a design in the shape of a letter \"Y\" with a solid circle located within the \"Y\" are registered trademarks of Dyln Lifestyle, LLC.</p>",
+          "content": "<p><strong>Become a DYLN Affiliate</strong></p>\n<p><strong>DYLN</strong>&nbsp;is bridging the gap between wellness and convenience with our eco-friendly alkaline water bottles. We believe that living water is the foundation for healthy bodies, conscious minds, and inspired lives&mdash;and that you should be able to make it everywhere you go.</p>\n<p>What is an Affiliate Program?</p>\n<p>The Affiliate Program is a service for our participating websites to earn commission on the sales they refer to DYLN using specially tracked links. We provide you with custom links and banners that you can post on your website. When a visitor you've referred to our website visits us and makes a purchase, we'll keep track and give you a commission on the sale.</p>\n<p>Now you might be thinking&nbsp;<strong>how does it work</strong>?</p>\n<p>Sign up as an affiliate in the network. It is totally<strong>&nbsp;f</strong><strong>ree</strong>.Apply to the DYLN Affiliate program.</p>\n<p>Add the creative assets to your website and start earning commissions!</p>\n<p>It's Easy, Free &ndash; Get Started Now!</p>\n<p>It's simple and&nbsp;<strong>FREE</strong>&nbsp;to join our affiliate program. Join now by signing up as an affiliate&nbsp;<a href=\"https://shareasale.com/join/DylnInfluencer\">here</a>&nbsp;so you can start earning a commission on all customer orders you send to DYLN.co. Please contact us with any questions about the program at affiliates@dyln.co.</p>\n<p><strong>Benefits of our Affiliate Program:</strong></p>\n<p>Commission on sale &ndash;&nbsp;<strong>10%</strong>.<strong>30 days</strong>&nbsp;cookies.<strong>Text links, banners</strong>&nbsp;and opportunities for&nbsp;<strong>c</strong><strong>ustom creatives.</strong>Monthly newsletters&nbsp;to inform you about new offers and products.Professional affiliate management (to answer any questions or concerns).&nbsp;</p>\n<p>&nbsp;</p>\n<p>So what are you waiting for&nbsp;<strong><a href=\"https://shareasale.com/join/DylnInfluencer\" title=\"DYLN Affiliate Program\">GET STARTED TODAY</a></strong>&nbsp;&nbsp;</p>\n<p></p>",
           "show_sidebar": true,
           "title": "Need to talk to a human?",
           "telephone_title": "Let's talk",
