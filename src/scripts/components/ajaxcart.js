@@ -23,7 +23,7 @@ const datasets = {
 const selectors = {
   header: "[data-section-type='header']",
   add: "[data-add-to-cart]",
-  addText: "[data-add-to-cart-loaded]",
+  addLoaded: "[data-add-to-cart-loaded]",
   addLoading: "[data-add-to-cart-loading]",
   remove: "[data-remove-item]",
   changeAjax: "[data-qty-change-ajax]",
@@ -335,11 +335,11 @@ function updateQuickCart(cart) {
 }
 
 function toggleAddingToCartAnimation($source, state) {
-  if (state && $source.length > 0) {
-    $source.find(selectors.addText).addClass(classes.hide);
+  if (state && $source.length > 0 && !$source.hasClass("geo")) {
+    $source.find(selectors.addLoaded).addClass(classes.hide);
     $source.find(selectors.addLoading).removeClass(classes.hide);
   } else {
-    $(selectors.addText).removeClass(classes.hide);
+    $(selectors.addLoaded).removeClass(classes.hide);
     $(selectors.addLoading).addClass(classes.hide);
   }
 }

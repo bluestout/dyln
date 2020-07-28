@@ -133,13 +133,13 @@
   </div>
 
   <button
-    class="pdp-form__submit"
+    class="pdp-form__submit geo"
     type="submit"
     name="add"
     data-geo-submit
     data-submit-button
     data-add-to-cart
-    {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+    disabled="disabled">
       <span data-geo-submit-text data-submit-button-text data-add-to-cart-loaded class="hide">
         {% if current_variant.available %}
           {{ 'products.product.add_to_cart' | t }}

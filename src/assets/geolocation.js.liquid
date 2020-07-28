@@ -27,6 +27,9 @@ window.onload = function () {
     notifyForm: (container) => `${container} [data-sold-out-form]`,
     notifyInput: (container) => `${container} [data-sold-out-input]`,
     notifyMessage: (container) => `${container} [data-sold-out-message]`,
+    addLoaded: (container) => `${container} [data-add-to-cart-loaded]`,
+    addLoading: (container) => `${container} [data-add-to-cart-loading]`,
+    atcBar: "[data-atc-bar]",
   };
 
   var attributes = {
@@ -56,9 +59,18 @@ window.onload = function () {
     if (!pId || !container) {
       return null;
     }
+
+    $(selectors.addLoaded(container)).removeClass("hide");
+    $(selectors.addLoading(container)).addClass("hide");
     var $submitButton = $(selectors.submitButton(container)).first();
     var $submitButtonText = $(selectors.submitButtonText(container)).first();
-    var availabilityData = JSON.parse($(selectors.availabilityData).val());
+    var availabilityData = [];
+    $submitButton.removeClass("geo");
+    try {
+      availabilityData = JSON.parse($(selectors.availabilityData).val());
+    } catch (error) {
+      return null;
+    }
     var uVariants = availabilityData[pId].out_of_stock;
     var currentVariant = parseInt(
       $(selectors.idSelect(container))
@@ -167,6 +179,7 @@ window.onload = function () {
           }
         });
         renderSubmitButton();
+        $(selectors.atcBar).removeClass("hide");
       },
       error: function (jqXHR, textStatus, errorThrown) {
         submitButtonLoaded();
