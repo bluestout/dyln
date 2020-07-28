@@ -13,7 +13,9 @@
 {% if section.settings.title %}
   {% assign c_title = section.settings.title %}
 {% elsif collection.title %}
-  {% assign c_title = collection.title %}
+  {% unless template == "collection" %}
+    {% assign c_title = collection.title %}
+  {% endunless %}
 {% endif %}
 
 {%- for block in section.blocks -%}
@@ -39,14 +41,13 @@
   {%- endif -%}
 {%- endfor -%}
 
-
-{%- if bg -%}
+{%- if c_bg -%}
   {%- assign wrapper_class = "c-header__bg-wrap" -%}
 
-  {%- if bg_rsp -%}
+  {%- if c_bg_rsp -%}
     {%- assign wrapper_class = "c-header__bg-wrap d-none d-sm-block" -%}
     {%- render 'responsive-image' with
-      image: bg_rsp,
+      image: c_bg_rsp,
       max_width: 768,
       max_height: 768,
       wrapper_class: "c-header__bg-wrap d-sm-none",
@@ -56,7 +57,7 @@
   {%- endif -%}
 
   {%- render 'responsive-image' with
-    image: bg,
+    image: c_bg,
     max_width: 1600,
     max_height: 540,
     wrapper_class: wrapper_class,
@@ -74,7 +75,7 @@
           {% if template == "collection" %}
             <h1 class="c-header__title">{{ collection.title }}</h1>
           {% endif %}
-          <h2 class="c-header__subtitle">{{ section.settings.title }}</h2>
+          <h2 class="c-header__subtitle">{{ c_title }}</h2>
           <div class="c-header__usps">
             {% if section.settings.usp_title_1 != blank %}
               <div class="c-header__usp">
