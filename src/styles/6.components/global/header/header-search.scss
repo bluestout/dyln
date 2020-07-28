@@ -38,7 +38,7 @@
       position: relative;
       z-index: $z-base;
       background-color: $color-background;
-      padding: 65px 0 20px;
+      padding: 40px 0 20px;
     }
 
     &__form {
@@ -95,14 +95,14 @@
     }
 
     &__popular {
-      margin: 55px 0 0;
+      margin: 30px 0 0;
     }
 
     &__pop-title {
       @include font-header(700);
       @include text(30px, 43px, $color-main-1, 1.77px);
       text-align: center;
-      margin: 0 0 20px;
+      margin: 0 0 15px;
     }
 
     &__pop-terms {
@@ -146,6 +146,262 @@
   }
 
   @include media-query($large-down) {
+    @include transition(background-color);
+    position: relative;
     display: none;
+    padding: 15px 0;
+
+    &__main-link {
+      @include transition(background-color);
+      display: block;
+      width: 100%;
+      padding: 10px 15px;
+      background: none;
+      border: none;
+      text-align: left;
+
+      &.active {
+        background-color: $color-theme-4;
+
+        .icon-plus-vert {
+          top: 3px;
+          height: 2px;
+        }
+
+        + .header-search {
+          background-color: $color-theme-4;
+        }
+      }
+    }
+
+    &__body {
+      position: relative;
+      background-color: $color-transparent;
+      padding: 30px 0 10px;
+    }
+
+    &__form {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+    }
+
+    &__input {
+      @include font-header(500);
+      font-size: 16px !important;
+      line-height: 24px !important;
+      color: $color-title;
+      letter-spacing: 0.8px;
+      padding: 4px 0;
+      border: none;
+      border-bottom: 1px solid $color-main-1;
+      max-width: calc(100% - 15px);
+      flex: 0 0 calc(100% - 15px);
+
+      &::placeholder {
+        font-size: 18px !important;
+        letter-spacing: 0.8px;
+        opacity: 0.75;
+      }
+    }
+
+    &__submit {
+      @include no-font-size;
+      border: none;
+      background: $color-transparent;
+      border-radius: 0;
+      padding: 0;
+      margin: 0 0 3px;
+      align-self: flex-end;
+
+      svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      g {
+        @include transition(stroke);
+        stroke: $color-body-text;
+      }
+
+      &:hover {
+        background: $color-transparent;
+        g {
+          stroke: $color-main-1;
+        }
+      }
+    }
+
+    &__popular {
+      margin: 20px 0 0;
+    }
+
+    &__pop-title {
+      @include font-header(700);
+      @include text(16px, 24px, $color-main-1, 1px);
+      text-align: center;
+      margin: 0 0 10px;
+    }
+
+    &__pop-terms {
+      text-align: center;
+    }
+
+    &__pop-term {
+      @include font-header(700);
+      @include text(12px, 20px, $color-body-text, 0.7px);
+      display: block;
+      border: none;
+      background: $color-transparent;
+      padding: 0;
+      margin: 0 auto 8px;
+    }
+
+    &__close {
+      @include no-font-size;
+      text-align: center;
+      margin: 30px auto 0;
+    }
+
+    &__close-btn {
+      border: none;
+      box-shadow: none;
+      background: $color-transparent;
+      border-radius: 0;
+      margin: 0;
+      padding: 1px 3px;
+      display: inline-block;
+    }
+
+    &__overlay {
+      display: none;
+    }
+  }
+
+  @include media-query($small) {
+    padding: 10px 0;
+
+    &__main-link {
+      padding: 10px 15px 20px;
+
+      &.active {
+        background-color: $color-theme-4;
+
+        .icon-plus-vert {
+          top: 3px;
+          height: 2px;
+        }
+
+        + .header-search {
+          background-color: $color-theme-4;
+        }
+      }
+    }
+
+    &__body {
+      position: relative;
+      background-color: $color-transparent;
+      padding: 40px 0 10px;
+    }
+
+    &__form {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+    }
+
+    &__input {
+      @include font-header(500);
+      font-size: 16px !important;
+      line-height: 24px !important;
+      color: $color-title;
+      letter-spacing: 0.8px;
+      padding: 4px 0;
+      border: none;
+      border-bottom: 1px solid $color-main-1;
+      max-width: calc(100% - 85px);
+      flex: 0 0 calc(100% - 85px);
+
+      &::placeholder {
+        font-size: 18px !important;
+        letter-spacing: 0.8px;
+        opacity: 0.75;
+      }
+    }
+
+    &__submit {
+      @include no-font-size;
+      border: none;
+      background: $color-transparent;
+      border-radius: 0;
+      padding: 0;
+      margin: 0;
+
+      svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      g {
+        @include transition(stroke);
+        stroke: $color-body-text;
+      }
+
+      &:hover {
+        background: $color-transparent;
+        g {
+          stroke: $color-main-1;
+        }
+      }
+    }
+
+    &__popular {
+      margin: 40px 0 0;
+    }
+
+    &__pop-title {
+      @include font-header(700);
+      @include text(16px, 24px, $color-main-1, 1px);
+      text-align: center;
+      margin: 0 0 20px;
+    }
+
+    &__pop-terms {
+      text-align: center;
+    }
+
+    &__pop-term {
+      @include font-header(700);
+      @include text(12px, 20px, $color-body-text, 0.7px);
+      display: block;
+      border: none;
+      background: $color-transparent;
+      padding: 0;
+      margin: 0 auto 8px;
+    }
+
+    &__close {
+      @include no-font-size;
+      text-align: center;
+      margin: 30px auto 0;
+    }
+
+    &__close-btn {
+      border: none;
+      box-shadow: none;
+      background: $color-transparent;
+      border-radius: 0;
+      margin: 0;
+      padding: 1px 3px;
+      display: inline-block;
+    }
+
+    &__overlay {
+      display: none;
+    }
   }
 }

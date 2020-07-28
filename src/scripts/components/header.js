@@ -40,7 +40,8 @@ const selectors = {
   gorgiasChat: "#gorgias-web-messenger-container",
   searchInput: "[data-header-search-input]",
   results: "[data-header-search-results]",
-  options: "[data-search-options]",
+  searchOptions: "[data-search-options]",
+  schemaSettings: "[data-search-schema-settings]",
   popTerm: `[data-${datasets.popTerm}]`,
 };
 
@@ -259,7 +260,7 @@ function handleSearchInput() {
   const term = $(this).val();
   let resources = "";
   try {
-    resources = JSON.parse($(selectors.options).text());
+    resources = JSON.parse($(selectors.searchOptions).text());
   } catch (error) {
     resources = {
       "type": "product,page,article,collection"
@@ -289,17 +290,47 @@ function handleSearchInput() {
         let collections = "";
         let articles = "";
         let pages = "";
-        for (let i = 0; i < data.resources.results.products.length; i++) {
-          products += productHtml(data.resources.results.products[i]);
-        }
+        console.log("results", data.resources.results);
+
         if (data.resources.results.products.length > 0) {
-          results = `<div class="ajax-search__block">${products}</div>`;
+          for (let i = 0; i < data.resources.results.products.length; i++) {
+            products += productHtml(data.resources.results.products[i]);
+          }
+          results =
+            `<div class="main-search__block">
+            <h4 class="main-search__title">${theme.strings.search_products}</h4>
+            ${products}
+          </div>`;
         }
-        for (let i = 0; i < data.resources.results.collections.length; i++) {
-          collections += collectionHtml(data.resources.results.collections[i]);
-        }
+
         if (data.resources.results.products.length > 0) {
-          results += `<div class="ajax-search__block">${collections}</div>`;
+          for (let i = 0; i < data.resources.results.collections.length; i++) {
+            collections += collectionHtml(data.resources.results.collections[i]);
+          }
+          results += `<div class="main-search__block">
+          <h4 class="main-search__title">${theme.strings.search_collections}</h4>
+          ${collections}
+        </div>`;
+        }
+
+        if (data.resources.results.articles.length > 0) {
+          for (let i = 0; i < data.resources.results.articles.length; i++) {
+            articles += articleHtml(data.resources.results.articles[i]);
+          }
+          results += `<div class="main-search__block">
+          <h4 class="main-search__title">${theme.strings.search_articles}</h4>
+          ${articles}
+        </div>`;
+        }
+
+        if (data.resources.results.pages.length > 0) {
+          for (let i = 0; i < data.resources.results.pages.length; i++) {
+            pages += pageHtml(data.resources.results.pages[i]);
+          }
+          results += `<div class="main-search__block">
+          <h4 class="main-search__title">${theme.strings.search_pages}</h4>
+          ${pages}
+        </div>`;
         }
         $resultsList.html(results);
       });
@@ -331,19 +362,18 @@ function productHtml(product) {
   if (!product || product.length === 0) {
     return "";
   }
-  theme.strings.regular_price
-  let price = `<span class="visually-hidden">${theme.strings.regular_price}</span>${product.price}`;
+  let price = `<span class="visually-hidden">${theme.strings.regular_price}</span>${theme.currency.symbol}${product.price}`;
   if (product.compare_at_price_max > product.price_min) {
-    price = `<s><span class="visually-hidden">${theme.strings.on_sale}</span>${product.compare_at_price_max}</s>${price}`;
+    price = `<s><span class="visually-hidden">${theme.strings.on_sale}</span>${theme.currency.symbol}${product.compare_at_price_max}</s>${price}`;
   }
 
   const template =
-    `<div class="ajax-search__item-wrap">
-    <a href="${product.url}" class="ajax-search__item">
-      <span class="ajax-search__img-wrap">${productImageHtml(product, "200x200")}</span>
-      <span class="ajax-search__content-wrap">
-        <h4 class="ajax-search__item-link">${product.title}</h4>
-        <span class="ajax-search__price">
+    `<div class="main-search__item-wrap">
+    <a href="${product.url}" class="main-search__item d-flex">
+      <span class="main-search__img-wrap">${productImageHtml(product, "200x200")}</span>
+      <span class="main-search__content-wrap">
+        <h4 class="main-search__item-link">${product.title}</h4>
+        <span class="main-search__price">
           ${price}
         </span>
       </span>
@@ -353,10 +383,60 @@ function productHtml(product) {
 }
 
 function collectionHtml(collection) {
+  if (!collection || collection.length === 0) {
+    return "";
+  }
 
+  const template =
+    `<div class="main-search__item-wrap">
+    <a href="${collection.url}" class="main-search__item">
+      <h4 class="main-search__item-link">${collection.title}</h4>
+    </a>
+  </div>`;
+  return template;
 }
 
-//$(document).on("keyup change", selectors.searchInput, handleSearchInput);
+function articleHtml(article) {
+  if (!article || article.length === 0) {
+    return "";
+  }
+  let image = "";
+  let flexClass = "";
+  let closeWrap = "";
+  let openWrap = "";
+
+  if (article.featured_image.url) {
+    image = `<span class="main-search__img-wrap">${productImageHtml(article, "200x200")}</span>`
+    flexClass = " d-flex";
+    openWrap = `<span class="main-search__content-wrap">`;
+  }
+
+  const template =
+    `<div class="main-search__item-wrap">
+      <a href="${article.url}" class="main-search__item${flexClass}">
+        ${image}
+        ${openWrap}
+        <h4 class="main-search__item-link">${article.title}</h4>
+        ${closeWrap}
+      </a>
+    </div>`;
+  return template;
+}
+
+function pageHtml(page) {
+  if (!page || page.length === 0) {
+    return "";
+  }
+  const template =
+    `<div class="main-search__item-wrap">
+    <a href="${page.url}" class="main-search__item">
+      <h4 class="main-search__item-link">${page.title}</h4>
+    </a>
+  </div>`;
+  return template;
+}
+
+$(document).on("keyup change", selectors.searchInput, handleSearchInput);
 // $(document).on("mouseup", () => { closeSearch(event) });
 $(document).ready(() => { setHeaderBodyOffset() });
 

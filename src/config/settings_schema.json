@@ -701,7 +701,8 @@
         "type": "checkbox",
         "id": "search_field_product_type",
         "label": "Search product type?",
-        "default": true
+        "default": true,
+        "info": "default"
       },
       {
         "type": "checkbox",
@@ -713,7 +714,8 @@
         "type": "checkbox",
         "id": "search_field_title",
         "label": "Search title?",
-        "default": true
+        "default": true,
+        "info": "default"
       },
       {
         "type": "checkbox",
@@ -731,13 +733,24 @@
         "type": "checkbox",
         "id": "search_field_variant_title",
         "label": "Search variant title?",
-        "default": true
+        "default": true,
+        "info": "default"
       },
       {
         "type": "checkbox",
         "id": "search_field_vendor",
         "label": "Search vendor?",
-        "default": true
+        "default": true,
+        "info": "default"
+      },
+      {
+        "type": "range",
+        "id": "character_limit",
+        "label": "Character Limit",
+        "min": 30,
+        "max": 300,
+        "step": 10,
+        "default": 120
       }
     ]
   }
