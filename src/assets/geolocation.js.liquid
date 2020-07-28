@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = function () {
   //make container changeable through the code in order to make the whole code work for product-item, not just for the pdp page
 
   var selectors = {
@@ -7,6 +7,7 @@ window.onload = function() {
     availabilityData: "#all-products-availability",
     country: "#country-hidden",
     geoInfo: "#geo-location-info",
+    pdpContainer: `[data-section-type="product"]`,
     submitButton: (container) => `${container} [data-geo-submit]`,
     submitButtonText: (container) => `${container} [data-geo-submit-text]`,
     soldOutForm: (container) => `${container} [data-sold-out-mail]`,
@@ -42,14 +43,14 @@ window.onload = function() {
   function renderSubmitButton(id) {
     var container = "";
     var pId = 0;
-    var isPdp = id && id.length > 0 ? false : true;
+    var isPdp = $(selectors.pdpContainer).length > 0 ? true : false;
 
     if (id && id > 0) {
       container = `[data-single-product="${id}"]`;
       pId = id;
     } else {
-      container = `[data-section-type="product"]`;
-      pId = $(`[data-section-type="product"]`).data("pdp-product-id");
+      container = selectors.pdpContainer;
+      pId = $(selectors.pdpContainer).data("pdp-product-id");
     }
 
     if (!pId || !container) {
@@ -80,7 +81,7 @@ window.onload = function() {
       $shippingNote.addClass("hide");
     }
 
-    if (uVariants !== "") {
+    if (uVariants) {
       var currentVariantIsUnavailable = isCurrentVariantUnavailable(
         uVariants,
         currentVariant
@@ -89,9 +90,7 @@ window.onload = function() {
         //if current variant is unavailable
         $submitButton.attr("disabled", true);
         $submitButtonText.text(theme.strings.unavailable);
-        if ($soldOutForm.css("display") == "none") {
-          $soldOutForm.fadeIn();
-        }
+        $soldOutForm.fadeIn();
         if (isPdp) {
           $atcCurrent.addClass("unavailable");
           $atcBarButton.attr("disabled", true);
@@ -102,9 +101,7 @@ window.onload = function() {
         //current variant is available
         $submitButton.removeAttr("disabled");
         $submitButtonText.text(theme.strings.addToCart);
-        if ($soldOutForm.css("display") != "none") {
-          $soldOutForm.fadeOut();
-        }
+        $soldOutForm.fadeOut();
         if (isPdp) {
           $atcCurrent.removeClass("unavailable");
           $atcBarButton.removeAttr("disabled");
@@ -134,11 +131,11 @@ window.onload = function() {
       url: cUrl,
       type: "GET",
       dataType: "json",
-      success: function(response) {
+      success: function (response) {
         submitButtonLoaded();
         var $products = $("[data-single-product]");
         $(selectors.availabilityData).val(JSON.stringify(response));
-        $products.each(function() {
+        $products.each(function () {
           try {
             const $product = $(this);
             const pId = $product.data("single-product");
@@ -150,14 +147,14 @@ window.onload = function() {
                 "unavailable"
               );
             }
-            $.each(productData.notify, function(i, variantMessage) {
+            $.each(productData.notify, function (i, variantMessage) {
               var variantMessageSegment = variantMessage.split(":");
               // set ship message attribute
               $(
                 selectors.optionByVariant(container, variantMessageSegment[0])
               ).attr(attributes.shipping, variantMessageSegment[1]);
             });
-            $.each(productData.back_order, function(i, variantMessage) {
+            $.each(productData.back_order, function (i, variantMessage) {
               var variantMessageSegment = variantMessage.split(":");
               // set ship message attribute
               $(
@@ -171,7 +168,7 @@ window.onload = function() {
         });
         renderSubmitButton();
       },
-      error: function(jqXHR, textStatus, errorThrown) {
+      error: function (jqXHR, textStatus, errorThrown) {
         submitButtonLoaded();
         console.log(textStatus, errorThrown);
       },
@@ -186,7 +183,7 @@ window.onload = function() {
   }
 
   // Store Data Notify Me Subscribe
-  $(selectors.notifySubmit).click(function() {
+  $(selectors.notifySubmit).click(function () {
     theme.strings.sold_out_email_invalid;
     theme.strings.sold_out_email_confirm;
 
@@ -220,15 +217,15 @@ window.onload = function() {
             geo_info: geoInfo,
           },
           dataType: "json",
-          success: function(response) {
+          success: function (response) {
             $(selectors.notifyNotice(container)).fadeOut(200);
             $(selectors.notifyForm(container)).fadeOut(200);
-            setTimeout(function() {
+            setTimeout(function () {
               notifyMessage.text(response.message);
               notifyMessage.fadeIn();
             }, 100);
           },
-          error: function(jqXHR, textStatus, errorThrown) {
+          error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
           },
         });
@@ -245,13 +242,13 @@ window.onload = function() {
     url:
       "https://api.ipstack.com/check?access_key=c9ac55ecdf7513abc5581dd4c89b042b",
     dataType: "jsonp",
-    success: function(location) {
+    success: function (location) {
       // If the visitor is browsing from US.
       var userGeo = `${location.ip}|${location.country_name}|${
         location.region_name
-      }|${location.city}|${location.time_zone.id}|${location.country_code}|${
+        }|${location.city}|${location.time_zone.id}|${location.country_code}|${
         location.region_code
-      }`;
+        }`;
       $(selectors.geoInfo).val(userGeo);
 
       // country inventory

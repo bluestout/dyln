@@ -162,10 +162,10 @@
       pageTransition();
     }, 10000);
     document.addEventListener("ajaxReloaded", function() {
-        clearTimeout(loadingStatus);
-        if (!document.querySelector("[data-icon-y-body]").classList.contains("active")) {
+      clearTimeout(loadingStatus);
+      if (document.querySelector("[data-icon-y-body]") && !document.querySelector("[data-icon-y-body]").classList.contains("active")) {
         pageTransition();
-        }
+      }
     });
 
     function pageTransition() {

@@ -34,14 +34,14 @@ const selectors = {
   submitText: "[data-pi-submit-text]",
   price: "[data-pi-price]",
   compare: "[data-pi-compare]",
-  shopMobileSlick: "[data-slick-pi-mobile]",
+  shopMobileSlick: ".slick-slider",
   slick: `[data-${datasets.slick}]`,
   slideById: (id) => `[data-slick-index=${id}]`,
 };
 
 function handleOptionClick(event) {
   const $source = $(event.currentTarget);
-  const $slick = $source.closest(selectors.shopMobileSlick);
+  const $slick = $source.closest(selectors.item).find(selectors.shopMobileSlick);
   const opName = $source.data(datasets.opName);
 
   if ($source.length === 0 || !opName) {
@@ -49,7 +49,7 @@ function handleOptionClick(event) {
   }
 
   if (opName === "color" || opName === "sleeve") {
-    if ($slick.length > 0) {
+    if ($slick.length > 0 && $(window).width() < 768) {
       handleSlickChange($source);
     } else {
       handleColorChange($source);
@@ -65,7 +65,7 @@ function handleColorChange($source) {
   const $newImage = $parent.find(`[data-${datasets.image}="${color}"]`);
   const $currentImage = $parent.find(selectors.current);
 
-  if (!$newImage.hasClass(classes.active)) {
+  if ($newImage.length > 0 && !$newImage.hasClass(classes.active)) {
     if ($currentImage.length === 0) {
       $newImage.fadeIn("fast");
       $newImage.addClass(classes.active);
@@ -241,7 +241,7 @@ function onItemHoverOut() {
 
 function init() {
   if ($(window).width() < 768) {
-    const $gallery = $(`${selectors.shopMobileSlick} ${selectors.gallery}`);
+    const $gallery = $(`${selectors.gallery}`);
     const $images = $gallery.find(selectors.image);
     $images.each((index, option) => {
       $(option).css("display", "block");
