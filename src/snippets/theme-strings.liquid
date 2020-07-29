@@ -29,13 +29,24 @@
       no_results_for: {{ 'general.search.no_results_for' | t | json }},
       subscribe: {{ 'products.subscription.subscribe' | t | json }},
       select_frequency: {{ 'products.subscription.select_frequency' | t | json }},
-      select_frequency_prompt: {{ 'products.subscription.select_frequency_prompt' | t | json }}
+      select_frequency_prompt: {{ 'products.subscription.select_frequency_prompt' | t | json }},
+      on_sale: {{ 'products.product.on_sale' | t | json }},
+      regular_price: {{ 'products.product.regular_price' | t | json }},
+      search_products: {{ 'general.search.products' | t | json }},
+      search_collections: {{ 'general.search.collections' | t | json }},
+      search_articles: {{ 'general.search.articles' | t | json }},
+      search_pages: {{ 'general.search.pages' | t | json }}
     },
     moneyFormat: {{ shop.money_format | json }},
     imageUrls: {
-      logoAmazon: {{ 'logo-amazon-pay.png' | asset_url | json }},
-      logoGooglePay: {{ 'logo-google-pay.png' | asset_url | json }},
-      logoPayPal: {{ 'logo-paypal.png' | asset_url | json }}
+      logoAmazon: {{ 'logo-amazon-pay-big.png' | asset_url | json }},
+      logoGooglePay: {{ 'logo-google-pay-big.png' | asset_url | json }},
+      logoPayPal: {{ 'logo-paypal-big.png' | asset_url | json }}
+    },
+    currency: {
+      name: {{ cart.currency.name | json }},
+      code: {{ cart.currency.iso_code | json }},
+      symbol: {{ cart.currency.symbol | json }}
     }
   };
 </script>

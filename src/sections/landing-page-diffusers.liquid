@@ -19,48 +19,18 @@
           {% endif %}
         </div>
       </div>
-      <div class="col-md-6 col-lg-5">
-        {% if section.settings.title != blank %}
-          <div class="lp-diffusers__title-header">
-            <h3 class="lp-diffusers__title">{{ section.settings.title }}</h3>
-          </div>
-        {% endif %}
 
-        <div class="lp-diffusers__recomm">
-          {% for block in section.blocks %}
-            {%- if block.settings.icon != blank -%}
-              <div class="lp-diffusers__recomm-item">
-                <div class="lp-diffusers__recomm-item-icon">
-                  {%- if block.settings.icon == "icon-dolar-circle" -%}
-                    {%- render 'icon-dolar-circle' -%}
+      <div class="lp-diffusers__description">
+        <p>{{ section.settings.note }}</p>
+      </div>
 
-                    {%- elsif block.settings.icon == "icon-close-circle-blue" -%}
-                    {%- render 'icon-close-circle-blue' -%}
-
-                    {%- elsif block.settings.icon == "icon-settings" -%}
-                    {%- render 'icon-settings' -%}
-                  {%- endif -%}
-                </div>
-                <div class="lp-diffusers__recomm-content">
-                  <p>{{ block.settings.recommendation_title }}</p>
-                </div>
-              </div>
-            {%- endif -%}
-          {% endfor %}
-        </div>
-
-        <div class="lp-diffusers__description">
-          <p>{{ section.settings.note }}</p>
-        </div>
-
-        {% unless section.settings.extra_product == product.handle %}
+      {% unless section.settings.extra_product == product.handle %}
         {% render 'subscription-form' with section.settings.extra_product
           current_product_id: product.id
           show_extras: false,
           hide_price: true
         %}
-        {% endunless %}
-      </div>
+      {% endunless %}
     </div>
   </div>
 {% endif %}

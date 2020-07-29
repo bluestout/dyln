@@ -1,0 +1,4463 @@
+/**
+ * Insert your styles with Liquid below.
+ *
+ * Import additional stylesheets into this sheet using CSS imports:
+ * @import url('./global/form.scss');
+ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+// defaults
+$color-black: black;
+$color-white: white;
+$color-red: #d21e1e;
+$color-blue: #0000ff;
+
+// theme main
+$color-theme-1: #00aedb;
+$color-theme-2: #20d480;
+$color-theme-4: #f4f4f4;
+$color-theme-5: #f6fbfc;
+$color-theme-6: #bdc5c9;
+$color-theme-7: #333c41;
+$color-theme-8: #848a8d;
+$color-theme-9: #00d7ef;
+$color-theme-10: #dbdbdb;
+$color-theme-11: #ce3e19;
+$color-theme-12: #747e84;
+$color-theme-13: #e7f0f2;
+$color-theme-14: #ededed;
+$color-theme-15: #d6d6d6;
+$color-theme-16: #f3f7f8;
+$color-theme-17: #66cceb;
+$color-theme-18: #ff3737;
+$color-theme-19: #cacaca;
+$color-theme-20: #f6f6f6;
+$color-theme-21: #ffd200;
+$color-theme-22: #d8d8d8;
+$color-theme-23: #ffb300;
+$color-theme-24: #979797;
+$color-theme-25: #bbd3da;
+
+$color-sup-1: #73c8e2;
+$color-sup-2: #73c8e2;
+$color-sup-3: #73c8e2;
+
+// theme complementary
+
+// theme background & type
+
+// slate variables
+$color-disabled: $color-black;
+$color-disabled-border: $color-black;
+$color-error: $color-red;
+$color-error-bg: rgba($color-red, 0.3);
+$color-success: $color-blue;
+$color-success-bg: rgba($color-blue, 0.3);
+
+$placeholder-color-foreground: rgba($color-black, 0.8);
+$placeholder-color-background: rgba($color-black, 0.05);
+
+// Text colors
+$color-body-text: $color-black;
+
+// Background colors
+$color-body: $color-white;
+
+// Other colors
+$color-border: $color-black;
+
+// Transitions
+$animation-duration: 250ms;
+$animation-timing: ease-in-out;
+
+// added for specific breakpoints
+$grid-xxs: 375px;
+$grid-xs: 425px;
+
+// Grid
+$grid-small: 576px;
+$grid-medium: 768px;
+$grid-large: 992px;
+$grid-widescreen: 1200px;
+$grid-xl: 1441px;
+$grid-max-width: 1170px;
+$grid-gutter: 30px;
+$grid-max: 1920px;
+$container-max: 1330px;
+
+// Breakpoints used with the media-query mixin
+$small: "v-small";
+$small-up: "v-small-up";
+$medium: "small";
+$medium-down: "small-down";
+$medium-up: "small-up";
+$large: "medium";
+$large-down: "medium-down";
+$large-up: "medium-up";
+$xl: "large";
+$xl-down: "large-down";
+$xl-up: "large-up";
+$xxl: "xl";
+$xxl-down: "xl-down";
+$xxl-up: "xl-up";
+$large-max: "large-max";
+
+$breakpoints: (
+  $small "(max-width: #{$grid-small - 1})",
+  $small-up "(min-width: #{$grid-small})",
+  $medium "(min-width: #{$grid-small}) and (max-width: #{$grid-medium - 1})",
+  $medium-down "(max-width: #{$grid-medium - 1})",
+  $medium-up "(min-width: #{$grid-medium})",
+  $large "(min-width: #{$grid-medium}) and (max-width: #{$grid-large - 1})",
+  $large-down "(max-width: #{$grid-large - 1})",
+  $large-up "(min-width: #{$grid-large})",
+  $xl "(min-width: #{$grid-large}) and (max-width: #{$grid-widescreen - 1})",
+  $xl-down "(max-width: #{$grid-widescreen - 1})",
+  $xl-up "(min-width: #{$grid-widescreen})",
+  $xxl "(min-width: #{$grid-widescreen}) and (max-width: #{$grid-xl - 1})",
+  $xxl-down "(max-width: #{$grid-xl - 1})",
+  $xxl-up "(min-width: #{$grid-xl})",
+  $large-max "(min-width: #{$grid-widescreen}) and (max-width: #{$grid-max})"
+);
+
+$font-heading: var(--font-heading);
+$font-body: var(--font-body);
+$font-body-weight: var(--font-body-weight);
+$font-body-style: var(--font-body-style);
+$font-body-bold-weight: var(--font-body-bold-weight);
+
+$color-body-text: var(--color-body-text);
+$color-title: var(--color-title);
+$color-title-light: var(--color-title-light);
+$color-background: var(--color-main-background);
+$color-main: var(--color-main);
+$color-main-1: var(--color-main);
+$color-main-2: var(--color-main-2);
+$color-main-3: var(--color-main-3);
+$color-accent-1: var(--color-accent);
+$color-accent-2: var(--color-accent-2);
+$color-accent-3: var(--color-accent-3);
+
+$z-base: 1;
+$z-header-blocks: 2;
+$z-header: 2;
+$z-contact-modal: 2;
+$z-cart: 3;
+$z-header-rsp: 4;
+$z-top: 10;
+
+@mixin open-sans($weight: 400, $style: normal) {
+  font-family: "Open Sans", sans-serif;
+  font-weight: $weight;
+  font-style: $style;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin poppins($weight: 400, $style: normal) {
+  font-family: "Poppins", sans-serif;
+  font-weight: $weight;
+  font-style: $style;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@function get-transition-properties($transition) {
+  $property: all;
+  $duration: $animation-duration;
+  $easing: $animation-timing;
+  $delay: null;
+
+  $defaultProperties: ($property, $duration, $easing, $delay);
+
+  $properties: ();
+
+  @for $i from 1 through length($defaultProperties) {
+    $p: null;
+
+    @if $i <= length($transition) {
+      $p: nth($transition, $i);
+    } @else {
+      $p: nth($defaultProperties, $i);
+    }
+
+    $properties: append($properties, $p);
+  }
+
+  @return $properties;
+}
+
+@mixin media-query($media-query) {
+  $breakpoint-found: false;
+
+  @each $breakpoint in $breakpoints {
+    $name: nth($breakpoint, 1);
+    $declaration: nth($breakpoint, 2);
+
+    @if $media-query == $name and $declaration {
+      $breakpoint-found: true;
+
+      @media only screen and #{$declaration} {
+        @content;
+      }
+    }
+  }
+}
+
+/**
+ * Outputs list of transition properties
+ *
+ * Accepts:
+ * - $transitions: {String} List of transition properties to set
+ *
+ * Usage:
+ * .selector {
+ *   @include transition(width, height 0.5s ease-in);
+ * }
+ */
+@mixin transition($transitions...) {
+  $output: ();
+
+  @each $transition in $transitions {
+    $output: append($output, get-transition-properties($transition), comma);
+  }
+  transition: $output;
+}
+
+/**
+ * Forces an element to self-clear its children
+ *
+ * Usage:
+ * .selector {
+ *   @include clearfix;
+ * }
+ */
+@mixin clearfix() {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  // stylelint-disable-next-line
+  *zoom: 1;
+}
+
+/**
+ * Hide element but make it accessible to screen readers
+ *
+ * Usage:
+ * .selector {
+ *   @include visually-hidden;
+ * }
+ */
+@mixin visually-hidden() {
+  // stylelint-disable-next-line
+  position: absolute !important;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+}
+
+/**
+ * Reverse the properties applied by @mixin visually-hidden
+ *
+ * Accepts:
+ * - $position: {String} Positioning method for element
+ *
+ * Usage:
+ * .selector {
+ *   @include visually-shown(relative);
+ * }
+ */
+@mixin visually-shown($position: inherit) {
+  // stylelint-disable-next-line
+  position: $position !important;
+  overflow: auto;
+  width: auto;
+  height: auto;
+  margin: 0;
+  clip: auto;
+}
+
+@mixin bg-image() {
+  background-color: #f3f4f5;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+@mixin bg-image-only() {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+@mixin text($size: 15px, $line: 1.25, $color: initial, $spacing: normal) {
+  font-size: $size;
+  line-height: $line;
+  color: $color;
+  letter-spacing: $spacing;
+}
+
+@mixin font-header($weight: 400, $style: normal) {
+  font-family: $font-heading;
+  font-weight: $weight;
+  font-style: $style;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin font-body($weight: $font-body-weight, $style: $font-body-style) {
+  font-family: $font-body;
+  font-style: $style;
+  font-weight: $weight;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin text-title($color: $color-title) {
+  @include font-header(700);
+  @include text(40px, 56px, $color, 2.36px);
+
+  @include media-query($medium-down) {
+    font-size: 30px;
+    line-height: 43px;
+    letter-spacing: 1.77px;
+  }
+}
+
+@mixin no-font-size {
+  font-size: 0;
+  line-height: 0;
+}
+
+// usage: @include button(type, size);
+// types: solid, wire, none
+// sizes: normal(any), big, small, tiny
+// defaults go to button framework
+
+@mixin button($type: none, $borders: square, $color: 1) {
+  display: inline-block;
+  vertical-align: middle;
+  width: auto;
+  height: auto;
+  border: 0;
+  text-align: center;
+  white-space: normal;
+  text-decoration: none;
+  user-select: none;
+
+  $btn-text-c: $color-white;
+  $btn-text-c-alt: $color-white;
+  $btn-def-c: $color-main-1;
+  $btn-acc-c: $color-accent-1;
+  $btn-sup-c: $color-sup-1;
+
+  @if $borders == round {
+    border-radius: 24px;
+  } @else if $borders == r {
+    border-radius: 24px;
+  } @else {
+    border-radius: 0;
+  }
+
+  @if $type == wire {
+    $btn-text-c: $color-main-1;
+    $btn-text-c-alt: $color-accent-1;
+  }
+
+  @if $color == 2 {
+    $btn-def-c: $color-main-2;
+    $btn-acc-c: $color-accent-2;
+    $btn-sup-c: $color-sup-2;
+
+    @if $type == wire {
+      $btn-text-c: $color-main-2;
+      $btn-text-c-alt: $color-accent-2;
+    }
+  } @else if $color == 3 {
+    $btn-def-c: $color-main-3;
+    $btn-acc-c: $color-accent-3;
+    $btn-sup-c: $color-sup-3;
+
+    @if $type == wire {
+      $btn-text-c: $color-main-3;
+      $btn-text-c-alt: $color-accent-3;
+    }
+  } @else if $color == white {
+    $btn-def-c: $color-white;
+    $btn-acc-c: $color-white;
+    $btn-sup-c: transparent;
+    $btn-text-c: $color-body-text;
+
+    @if $type == wire {
+      $btn-text-c: $color-white;
+      $btn-text-c-alt: $color-white;
+    }
+  }
+
+  @if $type == solid {
+    @include font-header(700);
+    @include text(14px, 18px, $btn-text-c, 0.83px);
+    @include transition(background, bottom, box-shadow);
+    position: relative;
+    bottom: 0;
+    box-shadow: none;
+    text-decoration: none;
+    padding: 13px 39px;
+    background-color: $btn-acc-c;
+    background-image: linear-gradient(
+      to right,
+      $btn-def-c 0%,
+      $btn-def-c 33.33%,
+      $btn-acc-c 66.66%,
+      $btn-acc-c 100%
+    );
+    background-repeat: repeat-x;
+    background-size: 300% 100%;
+    background-position: 0 100%;
+    outline: none;
+
+    &:not(:disabled) {
+      &:focus {
+        background-position: 50% 100%;
+      }
+
+      &:hover,
+      &:focus {
+        bottom: 5px;
+        background-position: 50% 100%;
+        box-shadow: 0 2px 2px $btn-sup-c;
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          display: block;
+          width: 100%;
+          height: 5px;
+        }
+      }
+
+      &:active {
+        background-position: 100% 100%;
+        box-shadow: none;
+        bottom: 0;
+        &::after {
+          bottom: 0;
+        }
+      }
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  } @else if $type == wire {
+    @include font-header(700);
+    @include text(14px, 18px, $btn-text-c, 0.83px);
+    @include transition(bottom, box-shadow, border, color);
+    position: relative;
+    bottom: 0;
+    box-shadow: none;
+    text-decoration: none;
+    padding: 10px 36px;
+    background-color: transparent;
+    border: 3px solid $btn-def-c;
+    outline: none;
+
+    &:not(:disabled) {
+      &:focus {
+        border-color: $btn-acc-c;
+        color: $btn-text-c-alt;
+      }
+
+      &:hover,
+      &:focus {
+        bottom: 5px;
+        box-shadow: 0 2px 2px $btn-sup-c;
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          display: block;
+          width: 100%;
+          height: 5px;
+        }
+      }
+
+      &:active {
+        bottom: 0;
+        border-color: $btn-acc-c;
+        box-shadow: none;
+        color: $btn-text-c-alt;
+        &::after {
+          bottom: 0;
+        }
+      }
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+}
+
+@mixin button-width {
+  @include media-query($medium-up) {
+    max-width: 260px;
+    width: 100%;
+    display: block;
+  }
+}
+
+@mixin underline($color: $color-main-1, $is_active: true) {
+  position: relative;
+
+  &::after {
+    @include transition(width);
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: $color;
+  }
+
+  @if $is_active {
+    &:hover {
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@mixin underline-b($color: $color-main-1, $thickness: 2px, $is_active: true) {
+  position: relative;
+
+  &::before {
+    @include transition(width);
+    content: "";
+    position: absolute;
+    bottom: -#{$thickness};
+    left: 0;
+    width: 0;
+    height: $thickness;
+    background-color: $color;
+  }
+
+  @if $is_active {
+    &:hover {
+      &::before {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@mixin animated-wave($time: 1000ms, $z-index: $z-base) {
+  @include transition(background-position $time);
+  position: absolute;
+  left: 0;
+  @if $z-index != 0 {
+    z-index: $z-index;
+  }
+  background-position: 0;
+  background-repeat: repeat-x;
+  width: 100%;
+}
+
+@mixin no-browser-styling {
+  border: none;
+  background: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  appearance: none;
+}
+
+@mixin no-input-spinner {
+  -moz-appearance: textfield;
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+.visually-hidden {
+  @include visually-hidden;
+}
+
+.clearfix {
+  @include clearfix;
+}
+
+.brand-blue {
+  color: $color-main-1 !important;
+}
+
+.brand-green {
+  color: $color-main-2 !important;
+}
+
+// header
+.account-header {
+  position: relative;
+  height: 490px;
+}
+
+.account-header__background-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.account-header__background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.account-header__bar-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #20d480;
+}
+
+.account-header__bar-bg {
+  background-image: url("data:image/svg+xml,%3Csvg width='1600' height='51' viewBox='0 0 1600 51' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1600 43c-175.575 6.828-535.39 9.943-837.653 6.269-302.262-3.675-546.595-5.487-762.347 0V0h1600v43z' fill='%2320D480' fill-rule='evenodd'/%3E%3C/svg%3E");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 51px;
+  position: absolute;
+  top: 6px;
+  left: 0;
+}
+
+.account-header__bar {
+  position: relative;
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row nowrap;
+}
+.account-header__points {
+  flex: auto;
+  align-self: center;
+  text-align: center;
+}
+
+.account-header__points-text {
+  @include font-header(700);
+  @include text(13px, 19px, $color-white, 1.3px);
+  display: inline-block;
+  vertical-align: middle;
+}
+.account-header__points-icon {
+  margin: 0 3px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.account-header__points-number {
+  @include font-header(500);
+  @include text(13px, 19px, $color-white, 1.3px);
+  display: inline-block;
+  vertical-align: middle;
+}
+.account-header__squiggle {
+  @include no-font-size;
+  flex: auto;
+  align-self: center;
+  text-align: center;
+}
+
+.account-header__container {
+  height: 100%;
+  padding-top: 60px;
+  padding-bottom: 60px;
+
+  > .row {
+    height: 100%;
+  }
+}
+
+.account-header__edit {
+  @include no-browser-styling;
+  @include no-font-size;
+  position: absolute;
+  z-index: 1;
+  top: 15px;
+  right: 15px;
+  padding: 5px;
+}
+
+.account-header__edit-icon {
+  display: block;
+}
+
+.account-header__body {
+  align-self: center;
+}
+
+.account-header__col-offset {
+  top: -30px;
+}
+
+.account-header__title {
+  @include font-header(700);
+  @include text(40px, 56px, $color-title-light, 2.36px);
+  margin: 0 0 5px;
+}
+
+.account-header__badge {
+  @include font-header(500);
+  @include text(16px, 22px, $color-white, 1px);
+  padding: 2px 15px;
+  border-radius: 20px;
+  display: inline-block;
+  margin: 0 0 10px;
+}
+
+.account-header__badge--silver {
+  background-color: #333c41;
+}
+
+.account-header__badge--gold {
+  background-color: #d4af37;
+}
+
+.account-header__badge--bronze {
+  background-color: #b08d57;
+}
+
+.account-header__description {
+  @include font-header(500);
+  @include text(24px, 35px, $color-title-light, auto);
+}
+
+.account-header__status {
+  display: flex;
+}
+
+.account-header__status-item {
+  flex: 0 0 calc(33.33% - 20px);
+  margin: 0 10px;
+}
+
+.account-header__status-badge {
+  width: 100%;
+  padding: 6px;
+  border-radius: 30px;
+  text-align: center;
+  margin: 0 0 5px;
+  display: block;
+}
+
+.account-header__status-badge--primary {
+  background-color: $color-theme-1;
+}
+
+.account-header__status-badge--secondary {
+  background-color: $color-theme-2;
+}
+
+.account-header__status-badge--alert {
+  background-color: $color-theme-21;
+}
+
+.account-header__status-badge--warning {
+  background-color: $color-theme-18;
+}
+
+.account-header__status-icon {
+  @include no-font-size;
+  display: inline-block;
+}
+
+.account-header__status-number {
+  @include font-header(700);
+  @include text(15px, 15px, $color-title-light, 0.89px);
+}
+
+.account-header__status-num-alt {
+  @include font-header(500);
+  @include text(15px, 15px, $color-title-light, 0.89px);
+}
+
+.account-header__status-txt {
+  @include font-header(700);
+  @include text(14px, 20px, $color-title-light, 0.83px);
+  text-align: center;
+  display: block;
+}
+
+.account-header__wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 58px;
+  background-image: url("data:image/svg+xml,%3Csvg width='1439' height='58' viewBox='0 0 1439 58' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 58V0c151.486 0 327.46 3.71 505 12 88.898 4.151 176.922 11.075 265 16 71.854 4.018 142.584 10.122 211 14 68.357 3.875 134 7 196 10 72.136 3.49 159.803 5.49 263 6H0z' fill='%23FFF' fill-rule='evenodd'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+}
+
+//sidebar
+.account-sidebar {
+  margin: 40px 0 0;
+}
+
+.account-sidebar__title {
+  @include font-header(700);
+  @include text(20px, 28px, $color-title, 1.11px);
+  margin: 0 0 10px;
+  text-align: center;
+}
+
+.account-sidebar__link {
+  display: block;
+  padding: 10px 5px;
+  width: 100%;
+  background-color: $color-theme-4;
+  margin: 0 0 3px;
+  text-align: center;
+}
+
+.account-sidebar__link-icon {
+  @include no-font-size;
+  margin: 0 10px 0 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.account-sidebar__link-txt {
+  @include font-header(700);
+  @include text(18px, 25px, $color-title, 1.06px);
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.account-container {
+  min-height: 500px;
+}
+
+// account body
+.account-body {
+  margin: 0 0 100px;
+}
+
+.account-body__header-tabs {
+  display: flex;
+  border-bottom: 1px solid $color-theme-7;
+  margin: 0 0 25px;
+  min-height: 40px;
+}
+
+.account-body__header-tab {
+  @include font-header(700);
+  @include text(18px, 25px, $color-title, 1px);
+  @include no-browser-styling;
+  position: relative;
+  flex: auto;
+  text-align: center;
+  padding: 7px 0;
+  align-self: flex-end;
+}
+
+.account-body__header-tab.active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: $color-main-1;
+}
+
+// account dashboard
+.account-dash {
+  margin: 0 0 100px;
+}
+
+.account-dash__bottles {
+  margin: 0 0 30px;
+}
+
+.account-dash__title {
+  @include clearfix;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 0 20px;
+}
+
+.account-dash__title-txt {
+  @include font-header(700);
+  @include text(20px, 28px, $color-title, 1.18px);
+  align-self: center;
+}
+
+.account-dash__title-button {
+  @include font-header(500);
+  @include text(14px, 18px, $color-main-1, 0.83px);
+  @include no-browser-styling;
+  align-self: center;
+  margin: 0 0 0 auto;
+}
+
+.account-dash__bottle {
+  margin: 0 0 15px;
+  width: 100%;
+  display: flex;
+}
+
+.account-dash__bottle-wrap {
+  position: relative;
+}
+
+.account-dash__bottle-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 40px;
+  max-height: 40px;
+}
+
+$theme-color: $color-theme-2;
+$back-color: $color-theme-13;
+
+.account-dash__bottle-progress {
+  position: relative;
+  background-color: $back-color;
+  border-radius: 50%;
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+}
+
+.account-dash__bottle-progress:hover::before,
+.account-dash__bottle-progress:focus::before {
+  transform: scale(0.9);
+}
+
+.account-dash__bottle-progress::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  right: 3px;
+  top: 3px;
+  bottom: 3px;
+  background-color: $color-background;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.account-dash__bottle-progress::after {
+  background-color: $theme-color;
+  border-radius: 50%;
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+
+$step: 5;
+$loops: round(100 / $step);
+$increment: 360 / $loops;
+$half: round($loops / 2);
+
+// start from middle top, progress clockwise settings
+/*
+@for $i from 0 to $loops {
+  .progress-circle[data-progress="#{$i * $step}"]:after {
+    visibility: visible;
+    @if $i < $half {
+      $next-deg: 90deg + $increment * $i;
+      background-image: linear-gradient(
+          90deg,
+          $back-color 50%,
+          transparent 50%,
+          transparent
+        ),
+        linear-gradient(
+          $next-deg,
+          $theme-color 50%,
+          $back-color 50%,
+          $back-color
+        );
+    } @else {
+      $next-deg: -90deg + $increment * ($i - $half);
+      background-image: linear-gradient(
+          $next-deg,
+          $theme-color 50%,
+          transparent 50%,
+          transparent
+        ),
+        linear-gradient(270deg, $theme-color 50%, $back-color 50%, $back-color);
+    }
+  }
+}
+*/
+
+// start from middle bottom, progress counterclockwise settings
+@for $i from 0 to $loops {
+  .progress-circle[data-progress="#{$i * $step}"]:after {
+    visibility: visible;
+    @if $i < $half {
+      $next-deg: 90deg - $increment * $i;
+      background-image: linear-gradient(
+          90deg,
+          $back-color 50%,
+          transparent 50%,
+          transparent
+        ),
+        linear-gradient(
+          $next-deg,
+          $theme-color 50%,
+          $back-color 50%,
+          $back-color
+        );
+    } @else {
+      $next-deg: 270deg - $increment * $i;
+      background-image: linear-gradient(
+          270deg,
+          $theme-color 50%,
+          transparent 50%,
+          transparent
+        ),
+        linear-gradient(
+          $next-deg,
+          $back-color 50%,
+          $theme-color 50%,
+          $theme-color
+        );
+    }
+  }
+}
+
+.account-dash__bottle-content {
+  margin: auto 10px auto 20px;
+}
+
+.account-dash__bottle-title {
+  @include font-header(700);
+  @include text(16px, 23px, $color-title, 1px);
+}
+
+.account-dash__bottle-timer {
+  @include font-header(500);
+  @include text(14px, 23px, $color-main-1, 1.17px);
+}
+
+.account-dash__bottle-more {
+  @include font-body;
+  @include no-browser-styling;
+  position: relative;
+  top: -10px;
+  padding: 0;
+  font-size: 26px;
+  line-height: 20px;
+  letter-spacing: -1px;
+  color: $color-main-1;
+  margin: auto 0 auto auto;
+  align-self: center;
+}
+
+.account-dash__bottle-more::after {
+  content: "...";
+}
+
+.account-dash__bottle-btn-wrap {
+  text-align: center;
+}
+
+.account-dash__bottle-btn {
+  @include button(solid, round, 1);
+  padding: 10px 25px;
+}
+
+.account-dash__bottle-btn-icon {
+  @include no-browser-styling;
+  @include no-font-size;
+  margin: 0 10px 0 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.account-dash__bottle-btn-text {
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 1.06px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.account-dash__sub {
+  margin: 0 0 20px;
+  width: 100%;
+  display: flex;
+}
+
+.account-dash__sub-wrap {
+  position: relative;
+}
+
+.account-dash__sub-progress {
+  position: relative;
+  background-color: $back-color;
+  border-radius: 50%;
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+}
+
+.account-dash__sub-progress::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  right: 3px;
+  top: 3px;
+  bottom: 3px;
+  background-color: $color-background;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.account-dash__sub-progress::after {
+  background-color: $theme-color;
+  border-radius: 50%;
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+
+.account-dash__sub-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 40px;
+  max-height: 40px;
+}
+
+.account-dash__sub-content {
+  margin: auto 10px auto 20px;
+}
+
+.account-dash__sub-title {
+  @include font-header(700);
+  @include text(16px, 23px, $color-title, 1px);
+}
+
+.account-dash__sub-timer {
+  @include font-header(500);
+  @include text(14px, 23px, $color-title, 1.17px);
+}
+
+.account-dash__sub-more {
+  @include font-body;
+  @include no-browser-styling;
+  position: relative;
+  top: -5px;
+  padding: 0;
+  font-size: 26px;
+  line-height: 20px;
+  letter-spacing: -1px;
+  color: $color-main-1;
+  margin: auto 0 auto auto;
+  align-self: center;
+}
+
+.account-dash__sub-icon {
+  @include no-browser-styling;
+  @include no-font-size;
+  margin: 0 0 0 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.account-dash__sub-btn-wrap {
+  text-align: center;
+}
+
+.account-dash__sub-btn {
+  @include button(solid, round, 2);
+  padding: 10px 25px;
+}
+
+.account-dash__sub-btn-text {
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 1.06px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.account-dash__refer-wrap {
+  text-align: center;
+  margin: 10px 0 40px;
+}
+
+.account-dash__refer-btn {
+  @include button(solid, round, 2);
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 1.06px;
+  margin: 0 0 5px;
+}
+
+.account-dash__refer-btn-text {
+  font-weight: 700;
+}
+
+.account-dash__refer-btn-icon {
+  @include no-font-size;
+  margin: 0 0 0 5px;
+  display: inline-block;
+}
+
+.account-dash__refer-btn-num {
+  font-weight: 400;
+}
+
+.account-dash__refer-link {
+  @include font-header(500);
+  @include text(12px, 17px, $color-main-1, 0.71px);
+}
+
+.account-dash__order {
+  margin: 0 0 30px;
+}
+
+.account-dash__order-number {
+  @include font-header(700);
+  @include text(16px, 22px, $color-main-1, 0.95px);
+  display: inline-block;
+  margin: 0 0 5px;
+}
+
+.account-dash__order-date {
+  @include font-header(500);
+  @include text(16px, 22px, $color-body-text, 0.95px);
+}
+
+// registration modal
+.registration-modal {
+  z-index: $z-top;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.registration-modal__overlay {
+  background-color: rgba($color-black, 0.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.registration-modal__inner {
+  position: relative;
+  background-color: $color-body;
+  padding: 25px;
+  max-width: 650px;
+  min-height: 400px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.registration-modal__close {
+  @include no-font-size;
+  @include no-browser-styling;
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  padding: 3px;
+
+  svg,
+  g {
+    stroke: $color-body-text;
+  }
+}
+
+.registration-modal__header {
+  margin: 0 0 20px;
+  text-align: center;
+}
+
+.registration-modal__title {
+  @include font-header(700);
+  @include text(20px, 30px, $color-title, 1px);
+  margin: 0 0 20px;
+}
+
+.registration-modal__progress {
+  position: relative;
+  height: 20px;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 8.5px;
+    height: 3px;
+    width: calc(100% - 4px);
+    background-color: $color-theme-22;
+  }
+
+  &.edit {
+    margin: 10px auto 20px;
+  }
+}
+
+.registration-modal__progress-point {
+  @include transition(background-color);
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  border: 3px solid $color-main-1;
+  background-color: $color-body;
+}
+
+.registration-modal__progress-point.active {
+  background-color: $color-main-1;
+}
+
+.registration-modal__page {
+  text-align: center;
+}
+
+.registration-modal__page-title {
+  @include font-header(700);
+  @include text(16px, 24px, $color-title, 0.15px);
+  margin: 0 0 15px;
+}
+
+.registration-modal__code-video-wrap {
+  margin: 0 auto 12px;
+}
+
+.registration-modal__code-video {
+  max-width: 85px;
+  max-height: 85px;
+  object-fit: cover;
+  display: inline-block;
+}
+
+.registration-modal__code-gif {
+  max-width: 85px;
+  max-height: 85px;
+  object-fit: cover;
+  display: inline-block;
+}
+
+.registration-modal__input-wrap {
+  display: block;
+  margin: 0 auto 20px;
+  width: 100%;
+  text-align: center;
+
+  &.code {
+    max-width: 125px;
+  }
+
+  &.prefix {
+    max-width: 65px;
+    margin: 0 6px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &.country {
+    max-width: 30px;
+    margin: 0 6px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &.phone {
+    max-width: 140px;
+    margin: 0 6px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.registration-modal__input {
+  @include font-body;
+  @include text(16px, 20px, $color-body-text, 0.83px);
+  @include no-input-spinner;
+  border-bottom: 1px solid $color-theme-17;
+  text-align: center;
+  padding: 7px 0;
+
+  &::placeholder {
+    color: $color-theme-8;
+  }
+}
+
+.registration-modal__navigation {
+  text-align: center;
+
+  &.edit {
+    margin-top: 25px;
+  }
+}
+
+.registration-modal__btn {
+  @include button(solid, round, 2);
+  font-size: 18px;
+  margin: 0 10px 8px;
+}
+
+.registration-modal__cancel {
+  @include font-header(500);
+  @include text(14px, 16px, $color-theme-8, 1px);
+  @include no-browser-styling;
+  padding: 0;
+}
+
+.registration-modal__page-content {
+  @include clearfix;
+  max-width: 300px;
+  margin: 0 auto 10px;
+}
+
+.registration-modal__page-content-flex {
+  max-width: 370px;
+  margin: 0 auto 15px;
+  padding: 0 20px 30px;
+  display: flex;
+  flex-flow: row wrap;
+  border-bottom: 1px solid $color-theme-22;
+
+  .registration-modal__image-wrap {
+    align-self: center;
+  }
+
+  .registration-modal__suggestion-wrap {
+    align-self: center;
+  }
+}
+
+.registration-modal__image-wrap {
+  width: 70px;
+  float: left;
+  margin: 0 10px 0 0;
+}
+
+.registration-modal__image {
+  max-height: 115px;
+  object-fit: scale-down;
+  display: inline-block;
+  margin: 0 0 5px;
+}
+
+.registration-modal__image-txt {
+  @include font-header(500);
+  @include text(12px, 17px, $color-body-text, 0.71px);
+  display: block;
+}
+
+.registration-modal__suggestion-wrap {
+  width: calc(100% - 91px);
+  float: right;
+  margin: 0 0 0 10px;
+}
+
+.registration-modal__suggestion-video {
+  max-height: 40px;
+  max-width: 100%;
+  object-fit: scale-down;
+  display: inline-block;
+  margin: 0 0 8px;
+}
+
+.registration-modal__suggestion-gif {
+  max-height: 40px;
+  max-width: 100%;
+  object-fit: scale-down;
+  display: inline-block;
+  margin: 0 0 10px;
+}
+
+.registration-modal__txt-note {
+  @include font-body;
+  @include text(12px, 17px, $color-body-text, 0.11px);
+}
+
+.registration-modal__btn-alt {
+  @include button;
+  @include font-header(700);
+  @include text(18px, 24px, $color-body-text, 1.29px);
+  @include transition(bottom, box-shadow, border, color, opacity);
+  position: relative;
+  bottom: 0;
+  box-shadow: none;
+  text-decoration: none;
+  padding: 8px 29px;
+  border-radius: 30px;
+  background-color: transparent;
+  border: 2px solid $color-body-text;
+  outline: none;
+  margin: 0 10px 8px;
+}
+
+.registration-modal__btn-wire-alt {
+  @include button(wire, round, 2);
+  padding: 7px 29px;
+  border-width: 2px;
+}
+
+// because Shopify can't handle compiling the ampersand nested selector
+.registration-modal__btn-alt:not(:disabled):focus {
+  opacity: 0.9;
+}
+
+.registration-modal__btn-alt:not(:disabled):hover {
+  bottom: 5px;
+  box-shadow: 0 2px 2px $color-body-text;
+}
+
+.registration-modal__btn-alt:not(:disabled):hover::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 5px;
+}
+
+.registration-modal__btn-alt:not(:disabled):active {
+  bottom: 0;
+  box-shadow: none;
+  opacity: 0.9;
+}
+
+.registration-modal__btn-alt:not(:disabled):active::after {
+  bottom: 0;
+}
+
+.registration-modal__btn-alt:disabled {
+  cursor: not-allowed;
+}
+
+.registration-modal__page-txt {
+  @include font-header(500);
+  @include text(14px, 20px, $color-body-text, 0.7px);
+  margin: 0 0 3px;
+}
+
+.registration-modal__date-wrap {
+  margin: 0 0 20px;
+}
+
+.registration-modal__select {
+  @include no-browser-styling;
+  @include font-body;
+  @include text(16px, 20px, $color-theme-22, 0.83px);
+  border-bottom: 1px solid $color-theme-17;
+  text-align: center;
+  padding: 7px 12px 7px 5px;
+
+  &::placeholder {
+    color: $color-theme-8;
+  }
+}
+
+.registration-modal__select-wrap {
+  position: relative;
+  display: inline-block;
+  margin: 0 4px;
+}
+
+.registration-modal__select-icon {
+  position: absolute;
+  right: 2px;
+  top: 15px;
+  height: 7px;
+
+  path {
+    stroke: $color-black;
+  }
+}
+
+.registration-modal__refills {
+  float: left;
+  width: calc(50% - 15.5px);
+  padding: 5px 20px;
+  margin: 0 15px 20px 0;
+}
+
+.registration-modal__refills-range {
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 100%;
+}
+
+// range styling for various browser compatibility
+.registration-modal__refills-range:focus {
+  outline: none;
+}
+
+.registration-modal__refills-range::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 3px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: $color-theme-22;
+  border-radius: 2px;
+}
+
+.registration-modal__refills-range::-webkit-slider-thumb {
+  border: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: $color-main-2;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -10px;
+}
+
+.registration-modal__refills-range:focus::-webkit-slider-runnable-track {
+  background: $color-main-2;
+}
+
+.registration-modal__refills-range.warning:focus::-webkit-slider-runnable-track {
+  background: $color-theme-23;
+}
+
+.registration-modal__refills-range::-moz-range-track {
+  width: 100%;
+  height: 3px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: $color-theme-22;
+  border-radius: 2px;
+}
+
+.registration-modal__refills-range::-moz-range-thumb {
+  border: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: $color-main-2;
+  cursor: pointer;
+}
+
+.registration-modal__refills-range::-moz-range-progress {
+  background-color: $color-main-2;
+}
+
+.registration-modal__refills-range::-ms-track {
+  width: 100%;
+  height: 3px;
+  cursor: pointer;
+  animate: 0.2s;
+  border-color: transparent;
+  color: transparent;
+}
+
+.registration-modal__refills-range::-ms-fill-upper {
+  background: $color-theme-22;
+  border-radius: 2px;
+}
+
+.registration-modal__refills-range::-ms-fill-lower {
+  background: $color-main-2;
+  border-radius: 2px;
+}
+
+.registration-modal__refills-range::-ms-thumb {
+  border: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: $color-main-2;
+  cursor: pointer;
+}
+
+.registration-modal__refills-range:focus::-ms-fill-lower {
+  background: $color-main-2;
+}
+
+.registration-modal__refills-range:focus::-ms-fill-upper {
+  background: $color-theme-22;
+}
+
+.registration-modal__refills-range.primary::-moz-range-thumb {
+  background: $color-theme-1;
+}
+
+.registration-modal__refills-range.primary::-moz-range-progress {
+  background: $color-theme-1;
+}
+
+.registration-modal__refills-range.primary::-ms-fill-lower {
+  background: $color-theme-1;
+}
+
+.registration-modal__refills-range.primary:focus::-ms-fill-lower {
+  background: $color-theme-1;
+}
+
+.registration-modal__refills-range.primary::-ms-thumb {
+  background: $color-theme-1;
+}
+
+.registration-modal__refills-range.warning::-moz-range-thumb {
+  background: $color-theme-23;
+}
+
+.registration-modal__refills-range.warning::-moz-range-progress {
+  background: $color-theme-23;
+}
+
+.registration-modal__refills-range.warning::-ms-fill-lower {
+  background: $color-theme-23;
+}
+
+.registration-modal__refills-range.warning:focus::-ms-fill-lower {
+  background: $color-theme-23;
+}
+
+.registration-modal__refills-range.warning::-ms-thumb {
+  background: $color-theme-23;
+}
+
+.registration-modal__range-scale {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin: 10px 0 0;
+  padding: 0 8px;
+}
+
+.registration-modal__range-scale span {
+  @include font-header(600);
+  @include text(12px, 17px, $color-theme-8, 0.6px);
+  display: inline-block;
+  width: 5px;
+}
+
+.registration-modal__days {
+  float: right;
+  width: calc(50% - 15.5px);
+  padding: 5px 20px;
+  margin: 0 0 20px 15px;
+}
+
+.registration-modal__input-warning {
+  @include font-header(700);
+  @include text(10px, 16px, $color-theme-23, 0.83px);
+  display: block;
+  text-align: center;
+}
+
+.registration-modal__input-warning span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.registration-modal__phone-wrap {
+  margin: 0 auto 15px;
+}
+
+.registration-modal__btn-final {
+  @include button(wire, round, 1);
+}
+
+.container {
+  @media screen and (min-width: 1360px) {
+    max-width: 1350px;
+  }
+}
+
+// account done modal
+.account-done {
+  z-index: $z-top;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.account-done__overlay {
+  background-color: rgba($color-black, 0.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.account-done__inner {
+  position: relative;
+  background-color: $color-body;
+  padding: 25px;
+  max-width: 300px;
+  min-height: 350px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  text-align: center;
+}
+
+.account-done__close {
+  @include no-font-size;
+  @include no-browser-styling;
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  padding: 3px;
+
+  svg,
+  g {
+    stroke: $color-body-text;
+  }
+}
+
+.account-done__body {
+  align-self: center;
+  width: 100%;
+}
+
+.account-done__title {
+  @include font-header(700);
+  @include text(20px, 30px, $color-title, 1px);
+  margin: 0 0 20px;
+}
+
+.account-done__subtitle {
+  @include font-header(700);
+  @include text(14px, 16px, $color-main-1, 1px);
+  margin: 0;
+}
+
+.account-done__content {
+  @include font-body;
+  @include text(14px, 16px, $color-body-text, 1px);
+  margin: 0 0 30px;
+}
+
+.account-done__confirm {
+  @include button(solid, r, 2);
+  padding: 8px 20px;
+}
+
+.account-done__cancel {
+  @include no-browser-styling;
+  @include font-header(500);
+  @include text(14px, 16px, $color-theme-22, 1px);
+  padding: 0;
+  margin: 10px 0 0;
+}
+
+.image-edit {
+  z-index: $z-top;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.image-edit__overlay {
+  background-color: rgba($color-black, 0.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.image-edit__inner {
+  position: relative;
+  background-color: $color-body;
+  padding: 25px;
+  max-width: 360px;
+  min-height: 350px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.image-edit__close {
+  @include no-font-size;
+  @include no-browser-styling;
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  padding: 3px;
+
+  svg,
+  g {
+    stroke: $color-body-text;
+  }
+}
+
+// account edit modal
+.account-edit {
+  z-index: $z-top;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.account-edit__header {
+  position: relative;
+}
+
+.account-edit__edit {
+  @include no-browser-styling;
+  @include no-font-size;
+  position: absolute;
+  z-index: 1;
+  top: 5px;
+  right: 5px;
+  padding: 5px;
+}
+
+.account-edit__edit-icon {
+  display: block;
+}
+
+.account-edit__overlay {
+  background-color: rgba($color-black, 0.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.account-edit__inner {
+  position: relative;
+  background-color: $color-body;
+  padding: 25px;
+  max-width: 360px;
+  min-height: 350px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.account-edit__close {
+  @include no-font-size;
+  @include no-browser-styling;
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  padding: 3px;
+
+  svg,
+  g {
+    stroke: $color-body-text;
+  }
+}
+
+.account-edit__group-label {
+  @include font-header(600);
+  @include text(16px, 20px, $color-main-1, 1px);
+  margin: 0 0 5px;
+  text-transform: uppercase;
+
+  &.margin {
+    margin: 0 0 15px;
+  }
+}
+
+.account-edit__input-wrap {
+  margin: 0 0 15px;
+}
+
+.account-edit__radio {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.account-edit__label {
+  @include font-body;
+  @include text(14px, 20px, $color-body-text, 0.83px);
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 20px 0 10px;
+}
+
+.account-edit__modal-option-btn {
+  @include no-browser-styling;
+
+  padding: 0;
+
+  &:not(:first-of-type) {
+    margin: 0 0 0 10px;
+  }
+
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  i {
+    @include no-font-size;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  path {
+    stroke: $color-body-text;
+  }
+}
+
+.account-edit-option {
+  z-index: $z-top;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.account-edit-option__overlay {
+  background-color: rgba($color-theme-1, 0.95);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.account-edit-option__inner {
+  position: relative;
+  max-width: 240px;
+  min-height: 200px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.account-edit-option__body {
+  text-align: center;
+}
+
+.account-edit-option__values {
+  position: relative;
+  overflow: hidden;
+  max-height: 150px;
+  max-width: 170px;
+  margin: 0 auto;
+  // 5 * account-edit-option__value height
+}
+
+.account-edit-option__value {
+  @include font-header(500);
+  @include text(14px, 30px, $color-white, 0.7px);
+  display: block;
+  text-align: center;
+  width: 100%;
+
+  &.active {
+    font-weight: 700;
+    text-decoration: underline;
+  }
+}
+
+.account-edit-option__label {
+  @include font-header(500);
+  @include text(14px, 16px, $color-white, 1px);
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+
+  button {
+    @include font-header(500);
+    @include text(14px, 16px, $color-white, 1px);
+    @include no-browser-styling;
+    padding: 0;
+  }
+
+  button.active {
+    font-weight: 700;
+  }
+}
+
+.account-edit-option__values-track {
+  @include transition(transform);
+  transform: translate(0, -90px);
+}
+
+.account-edit-option__btn {
+  @include button(wire, round, white);
+  margin: 15px 0 0;
+  border-width: 2px;
+  padding: 6px 26px;
+}
+
+.account-edit-option__cancel {
+  @include no-browser-styling;
+  @include font-header(500);
+  @include text(14px, 16px, $color-white, 1px);
+  margin: 10px 0 0;
+}
+
+.account-edit__image-checkbox-wrap {
+  position: relative;
+
+  &:nth-of-type(2n + 1) {
+    float: left;
+    width: calc(50% - 10.5px);
+    margin: 0 10px 20px 0;
+  }
+
+  &:nth-of-type(2n) {
+    float: right;
+    width: calc(50% - 10.5px);
+    margin: 0 0 20px 10px;
+  }
+}
+
+.account-edit__image-checkbox {
+  @include no-browser-styling;
+  @include bg-image-only;
+  @include transition(border-color);
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  height: 36px;
+  width: 100%;
+  border: 2px solid $color-white;
+  border-radius: 30px;
+
+  &:checked {
+    border-color: $color-main-1;
+  }
+}
+
+.account-edit__image-radio {
+  @include no-browser-styling;
+  @include bg-image-only;
+  @include transition(border-color);
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  height: 80px;
+  width: 100%;
+  border: 2px solid $color-white;
+
+  &:checked {
+    border-color: $color-main-1;
+  }
+}
+
+.account-edit__image-label {
+  @include font-header(700);
+  @include text(10px, 16px, $color-white, 0.59px);
+  position: absolute;
+  top: calc(50% - 8px);
+  left: 0;
+  width: 100%;
+  height: 16px;
+  pointer-events: none;
+  text-align: center;
+}
+
+.account-bottle {
+  z-index: $z-top;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.account-bottle__overlay {
+  background-color: rgba($color-black, 0.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.account-bottle__inner {
+  position: relative;
+  background-color: $color-body;
+  padding: 25px;
+  max-width: 350px;
+  min-height: 350px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.account-bottle__close {
+  @include no-font-size;
+  @include no-browser-styling;
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  padding: 3px;
+
+  svg,
+  g {
+    stroke: $color-body-text;
+  }
+}
+
+.account-bottle__image-wrap {
+  float: left;
+  width: 75px;
+  margin: 0 8px 0 0;
+  text-align: center;
+}
+
+.account-bottle__image {
+  max-height: 240px;
+  object-fit: scale-down;
+  display: inline-block;
+}
+
+.account-bottle__content-wrap {
+  float: right;
+  width: calc(100% - 92px);
+  margin: 0 0 0 8px;
+  text-align: center;
+}
+
+.account-bottle__title {
+  @include font-header(800);
+  @include text(24px, 33px, $color-title, 0.22px);
+  margin: 0;
+}
+
+.account-bottle__code {
+  @include font-header(500);
+  @include text(12px, 18px, $color-theme-8, 0.6px);
+  margin: 0 0 25px;
+}
+
+.account-bottle__info-color {
+  border-bottom: 1px solid $color-theme-6;
+  float: left;
+  width: 50%;
+  padding: 0 5px 10px;
+  margin: 0 0 15px;
+}
+
+.account-bottle__info-label {
+  @include font-header(500);
+  @include text(12px, 16px, $color-theme-8, 0.6px);
+  text-transform: uppercase;
+  &:not(:last-of-type) {
+    margin: 0;
+  }
+}
+
+.account-bottle__info-value {
+  @include font-header(800);
+  @include text(12px, 16px, $color-body-text, 0.6px);
+}
+
+.account-bottle__info-capacity {
+  border-bottom: 1px solid $color-theme-6;
+  float: right;
+  width: 50%;
+  padding: 0 5px 10px;
+  margin: 0 0 15px;
+}
+
+.account-bottle__time-diffuser {
+  @include font-header;
+  @include text(20px, 24px, $color-main-1, 1px);
+  margin: 0 0 15px;
+}
+
+.account-bottle__info-update {
+  @include button(solid, round, 1);
+  padding: 9px 30px;
+  display: inline-block;
+}
+
+.account-bottle__diffuser {
+  @include clearfix;
+  padding: 20px 0 0;
+  border-top: 1px solid $color-theme-6;
+  margin: 20px 0 0;
+}
+
+.account-bottle__diff-progress {
+  position: relative;
+  background-color: $back-color;
+  border-radius: 50%;
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+}
+
+.account-bottle__diff-progress:hover::before,
+.account-bottle__diff-progress:focus::before {
+  transform: scale(0.9);
+}
+
+.account-bottle__diff-progress::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  right: 3px;
+  top: 3px;
+  bottom: 3px;
+  background-color: $color-background;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.account-bottle__diff-progress::after {
+  background-color: $theme-color;
+  border-radius: 50%;
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+
+.account-bottle__diff-progress-wrap {
+  width: 56px;
+  float: left;
+}
+
+.account-bottle__diff-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 40px;
+  max-height: 40px;
+}
+
+.account-bottle__diff-content {
+  width: calc(100% - 73px);
+  float: right;
+}
+
+.account-bottle__diff-info {
+  &:not(:last-of-type) {
+    margin: 0 0 1px;
+  }
+}
+
+.account-bottle__diff-label {
+  @include font-header(500);
+  @include text(14px, 20px, $color-theme-8, 0.7px);
+}
+
+.account-bottle__diff-value {
+  @include font-header(700);
+  @include text(14px, 20px, $color-main-1, 0.7px);
+  margin: 0 0 0 3px;
+}
+
+.account-bottle__hydration {
+  @include clearfix;
+  padding: 20px 0 0;
+  border-top: 1px solid $color-theme-6;
+  margin: 10px 0 0;
+
+  &.good {
+    .color {
+      color: $color-main-2;
+    }
+    .bg-color {
+      background-color: $color-main-2;
+    }
+  }
+  
+  .good {
+    .color {
+      color: $color-main-2;
+    }
+    .bg-color {
+      background-color: $color-main-2;
+    }
+  }  
+
+  &.low {
+    .color {
+      color: $color-theme-23;
+    }
+    .bg-color {
+      background-color: $color-theme-23;
+    }
+  }
+  
+  .low {
+    .color {
+      color: $color-theme-23;
+    }
+    .bg-color {
+      background-color: $color-theme-23;
+    }
+  }  
+
+  &.poor {
+    .color {
+      color: $color-theme-18;
+    }
+    .bg-color {
+      background-color: $color-theme-18;
+    }
+  }
+  
+  .poor {
+    .color {
+      color: $color-theme-18;
+    }
+    .bg-color {
+      background-color: $color-theme-18;
+    }
+  }  
+  
+}
+
+.account-bottle__hydro-icon-wrap {
+  width: 56px;
+  float: left;
+}
+
+.account-bottle__hydro-content {
+  width: calc(100% - 73px);
+  float: right;
+}
+
+.account-bottle__hydro-info {
+  @include font-header(500);
+  @include text(14px, 20px, $color-body-text, 0.7px);
+
+  &:not(:last-of-type) {
+    margin: 0 0 1px;
+  }
+}
+
+.account-bottle__hydro-status {
+  @include font-header(500);
+  @include text(10px, 16px, $color-white, 0.83px);
+  padding: 2px 10px;
+  display: inline-block;
+  border-radius: 20px;
+}
+
+.account-bottle__footer {
+  position: relative;
+  margin: 20px 0 0;
+  text-align: center;
+}
+
+.account-bottle__button-edit {
+  @include button(wire, round, 1);
+}
+
+.account-bottle__button-delete {
+  @include no-browser-styling;
+  position: absolute;
+  bottom: 5px;
+  right: 3px;
+  padding: 3px;
+}
+
+.account-bottle__edit-image-wrap {
+  width: 50px;
+  float: left;
+  margin: 0 5px 0 0;
+}
+
+.account-bottle__edit-image {
+  object-fit: scale-down;
+}
+
+.account-bottle__edit-content-wrap {
+  width: calc(100% - 65px);
+  float: right;
+  margin: 20px 0 0 5px;
+}
+
+.account-bottle__edit-title {
+  @include font-header(700);
+  @include text(18px, 24px, $color-theme-8, 0.16px);
+  border-bottom: 1px solid $color-main-1;
+  margin: 0 0 10px;
+}
+
+.account-bottle__edit-info {
+  @include font-header(500);
+  @include text(12px, 18px, $color-theme-8, 0.6px);
+
+  span {
+    color: $color-body-text;
+    font-weight: 700;
+  }
+
+  &:not(:last-of-type) {
+    margin: 0 0 1px;
+  }
+}
+
+.account-bottle__edit-date {
+  select {
+    font-size: 14px;
+    padding: 5px 10px 5px 1px;
+  }
+
+  .registration-modal__select-wrap {
+    margin: 0 1px;
+  }
+
+  .registration-modal__select-icon {
+    right: 0;
+  }
+}
+
+.account-bottle__edit-subtitle {
+  @include font-header(700);
+  @include text(14px, 20px, $color-main-1, 0.7px);
+  margin: 30px 0 5px;
+  border-top: 1px solid $color-theme-8;
+  padding: 10px 0 0;
+}
+
+.account-bottle__edit-update {
+  @include button(wire, round, 2);
+  margin: 25px 0 0;
+}
+
+.account-bottle__edit-cancel {
+  @include no-browser-styling;
+  @include font-header(500);
+  @include text(14px, 16px, $color-theme-8, 1px);
+  margin: 10px 0 0;
+}
+
+.account-bottle__replace-title {
+  @include font-header(700);
+  @include text(20px, 28px, $color-title, 0.2px);
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+.account-bottle__replace-subtitle {
+  @include font-header(500);
+  @include text(12px, 16px, $color-theme-8, 0.6px);
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0 0 20px;
+}
+
+.account-bottle__replace-date {
+  @include font-header;
+  @include text(20px, 24px, $color-main-1, 1px);
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+.account-bottle__replace-question {
+  @include font-header(700);
+  @include text(14px, 20px, $color-body-text, 0.13px);
+  text-align: center;
+  margin: 15px 0;
+}
+
+.account-bottle__replace-buttons {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  padding: 0 0 10px;
+  border-bottom: 1px solid $color-theme-6;
+  margin: 0 0 20px;
+
+  button {
+    @include no-browser-styling;
+    @include font-header(500);
+    @include text(14px, 20px, $color-theme-8, 0.13px);
+    @include transition(color);
+    padding: 0;
+
+    &:hover {
+      color: $color-main-1;
+    }
+  }
+}
+
+.account-bottle__replace-footer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.account-bottle__replace-shop-txt {
+  @include font-header(700);
+  @include text(14px, 20px, $color-body-text, 0.13px);
+  align-self: center;
+}
+
+.account-bottle__replace-shop-btn {
+  @include button(solid, round, 1);
+  align-self: center;
+  padding: 8px 20px;
+}
+
+.account-profile {
+  margin: 0 0 100px;
+}
+
+.account-profile__header {
+  @include clearfix;
+  margin: 0 0 10px;
+}
+
+.account-profile__title {
+  @include font-header(700);
+  @include text(16px, 24px, $color-body-text, 1px);
+  float: left;
+}
+
+.account-profile__edit {
+  @include no-browser-styling;
+  padding: 0;
+  float: right;
+
+  svg,
+  g {
+    @include transition(stroke);
+    stroke: $color-theme-8;
+  }
+
+  &:hover {
+    stroke: $color-main-1;
+  }
+}
+
+.account-profile__subtitle {
+  @include font-header(700);
+  @include text(16px, 20px, $color-main-1, 1px);
+  margin: 0 0 10px;
+}
+
+.account-profile__info {
+  @include font-header(500);
+  @include text(14px, 20px, $color-body-text, 0.83px);
+
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &:not(:last-of-type) {
+    margin: 0 0 10px;
+  }
+
+  &:last-of-type {
+    margin: 0 0 10px;
+  }
+}
+
+.account-profile__separator {
+  border-bottom: 1px solid $color-theme-6;
+  min-height: 1px;
+  margin: 20px 0;
+}
+
+.account-profile__info-icon {
+  margin: 0 5px 0 0;
+
+  svg {
+    max-width: 20px;
+    max-height: 20px;
+  }
+
+  g {
+    stroke: $color-main-1;
+  }
+}
+
+.account-profile__info-flag {
+  margin: 0 5px 0 0;
+}
+
+.account-profile__update-btn-wrap {
+  text-align: right;
+  margin: 10px 0 0;
+}
+
+.account-profile__update-btn {
+  @include no-browser-styling;
+  @include font-header(500);
+  @include text(12px, 16px, $color-main-1, 0.71px);
+}
+
+.account-profile__info-left {
+  float: left;
+  width: 20px;
+  margin: 0 5px 20px 0;
+}
+
+.account-profile__info-right {
+  float: right;
+  width: calc(100% - 30px);
+  margin: 0 0 20px 0;
+}
+
+.account-profile__address {
+  @include font-header(500);
+  @include text(14px, 18px, $color-body-text, 0.83px);
+}
+
+.account-profile__button-add {
+  @include button(solid, round, 2);
+}
+
+.account-profile__checkbox-wrap {
+  label {
+    @include font-header(500);
+    @include text(14px, 18px, $color-body-text, 0.83px);
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  input {
+    @include no-browser-styling;
+    @include transition(background-color, border-color);
+    position: relative;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border: 1px solid $color-theme-24;
+    border-radius: 1px;
+    background-color: $color-white;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 10px 0 0;
+    padding: 2px;
+    cursor: pointer;
+
+    &::after {
+      @include transition(color);
+      content: "\2713";
+      color: transparent;
+      position: absolute;
+      font-size: 10px;
+      line-height: 10px;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    &:checked {
+      border-color: $color-main-1;
+      background-color: $color-main-1;
+
+      &::after {
+        content: "\2713";
+        color: $color-white;
+      }
+    }
+  }
+}
+
+.account-orders {
+  margin: 0 0 100px;
+}
+
+.account-orders__new-wrap {
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+.account-orders__btn-new {
+  @include button(solid, round, 1);
+}
+
+.account-orders__order {
+  margin: 0 0 20px;
+
+  &:not(:last-of-type) {
+    padding: 0 0 10px;
+    border-bottom: 1px solid $color-theme-22;
+  }
+}
+
+.account-orders__title {
+  @include font-header(700);
+  @include text(16px, 20px, $color-main-1, 0.95px);
+  margin: 0 0 10px;
+}
+
+.account-orders__info {
+  @include font-header(500);
+  @include text(14px, 20px, $color-body-text, 0.83px);
+  margin: 0;
+
+  &.last {
+    margin: 0 0 20px;
+  }
+}
+
+.account-orders__subtitle {
+  @include font-header(700);
+  @include text(14px, 20px, $color-body-text, 0.83px);
+  margin: 20px 0 0;
+}
+
+.account-orders__item {
+  @include clearfix;
+  margin: 0 0 20px;
+}
+
+.account-orders__item-left {
+  width: 35%;
+  float: left;
+  text-align: center;
+  padding: 0 15px;
+  margin: 0 0 10px;
+}
+
+.account-orders__item-image {
+  max-height: 200px;
+  max-width: 50px;
+  object-fit: scale-down;
+}
+
+.account-orders__item-right {
+  width: 65%;
+  float: right;
+  padding: 0 5px 20px;
+  border-bottom: 1px solid $color-main-1;
+  margin: 0 0 10px;
+}
+
+.account-orders__item-title {
+  @include font-header(700);
+  @include text(14px, 20px, $color-body-text, 0.83px);
+
+  &.last {
+    margin: 0 0 20px;
+  }
+}
+
+.account-orders__item-info {
+  @include font-header(500);
+  @include text(14px, 20px, $color-body-text, 0.83px);
+
+  &.last {
+    margin: 0 0 20px;
+  }
+}
+
+.account-orders__item-price {
+  @include font-header(500);
+  @include text(12px, 16px, $color-body-text, 0.71px);
+}
+
+.account-orders__totals {
+  @include clearfix;
+  margin: 0 0 20px;
+}
+
+.account-orders__totals-left {
+  width: 35%;
+  float: left;
+  text-align: center;
+  padding: 0 15px;
+  margin: 0 0 10px;
+}
+
+.account-orders__totals-label {
+  @include font-header(500);
+  @include text(14px, 20px, $color-body-text, 0.83px);
+}
+
+.account-orders__totals-right {
+  width: 65%;
+  float: right;
+  margin: 0 0 10px;
+}
+
+.account-orders__btn-more {
+  @include no-browser-styling;
+  @include font-header(500);
+  @include text(12px, 16px, $color-main-1, 0.71px);
+  padding: 0;
+  display: inline-block;
+  margin: 0 20px 0 0;
+}
+
+// Whole section will come from an external source
+.account-points {
+  margin: 0 0 100px;
+}
+
+.account-points__earned-amount {
+  @include font-header(700);
+  @include text(20px, 24px, $color-main-1, 1.18px);
+  text-align: center;
+  margin: 0 auto 10px;
+}
+
+.account-points__earned-header {
+  @include font-header(700);
+  @include text(12px, 16px, $color-title, 0.71px);
+  text-align: center;
+  margin: 0 auto 10px;
+}
+
+.account-points__description {
+  @include font-header(700);
+  @include text(12px, 18px, $color-body-text, 0.71px);
+  margin: 0 auto 25px;
+  text-align: center;
+}
+
+.account-points__shadow {
+  box-shadow: 0 0 8px 0 rgba($color-black, 0.1);
+}
+
+.account-points__banner-wrap {
+  background-color: $color-theme-25;
+  padding: 20px 15px 10px;
+  margin: 0 0 20px;
+}
+
+.account-points__banner-title {
+  @include font-header(700);
+  @include text(16px, 24px, $color-white, 0.95px);
+  text-align: center;
+}
+
+.account-points__banner-line {
+  @include clearfix;
+  padding: 10px 0 0;
+}
+
+.account-points__banner-icon {
+  width: 65px;
+  float: left;
+
+  g,
+  path,
+  ellipse {
+    stroke: $color-white;
+  }
+}
+
+.account-points__banner-text {
+  @include font-header(500);
+  @include text(12px, 20px, $color-white, 0.71px);
+  width: calc(100% - 66px);
+  float: right;
+  padding: 0 0 10px;
+  border-bottom: 1px solid $color-white;
+}
+
+.account-points__memberships-wrap {
+  padding: 20px 15px;
+}
+
+.account-points__gold-member-gap {
+  @include font-header(500);
+  @include text(12px, 20px, $color-main-2, 0.71px);
+  margin: 0 0 10px;
+}
+
+.account-points__btn-refer-wrap {
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+.account-points__btn-refer {
+  @include button(solid, round, 2);
+}
+
+.account-points__member-type {
+  &:not(:last-of-type) {
+    margin: 0 0 30px;
+  }
+  &:last-of-type {
+    .account-points__member-text:last-of-type {
+      border-bottom: none;
+    }
+  }
+}
+
+.account-points__member-title {
+  @include font-header(500);
+  @include text(16px, 24px, $color-title, 0.95px);
+  margin: 0 0 10px;
+}
+
+.account-points__member-line {
+  @include clearfix;
+  padding: 10px 0 0;
+}
+
+.account-points__member-icon {
+  width: 65px;
+  float: left;
+
+  g,
+  path,
+  ellipse {
+    stroke: $color-main-1;
+  }
+}
+
+.account-points__member-text {
+  @include font-header(500);
+  @include text(12px, 20px, $color-body-text, 0.71px);
+  width: calc(100% - 66px);
+  float: right;
+  padding: 0 0 10px;
+  border-bottom: 1px solid $color-theme-6;
+}
+
+.account-points__earn-title {
+  @include font-header(700);
+  @include text(16px, 24px, $color-title, 0.95px);
+  margin: 30px 0;
+}
+
+.account-points__earn-block {
+  @include clearfix;
+  margin: 30px 0;
+}
+
+.account-points__earn-left {
+  @include font-header(500);
+  @include text(18px, 24px, $color-main-1, 1.06px);
+  width: 65px;
+  float: left;
+  padding: 10px 0;
+
+  g,
+  path,
+  ellipse {
+    stroke: $color-main-1;
+  }
+}
+
+.account-points__earn-right {
+  width: calc(100% - 66px);
+  float: right;
+}
+
+.account-points__earn-line {
+  @include font-header(500);
+  @include text(14px, 20px, $color-body-text, 0.83px);
+  padding: 10px 0;
+  border-bottom: 1px solid $color-theme-6;
+}
+
+.account-points__rewards-note {
+  @include font-header(500);
+  @include text(16px, 24px, $color-body-text, 0.95px);
+  margin: 0 0 10px;
+}
+
+.account-points__status {
+  display: flex;
+  padding: 15px;
+}
+
+.account-points__status-left {
+  width: 40%;
+  flex: 0 0 40%;
+  text-align: center;
+  align-self: center;
+}
+
+.account-points__status-number {
+  @include font-header(500);
+  @include text(20px, 24px, $color-main-1, 1.18px);
+
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  g,
+  path,
+  ellipse {
+    stroke: $color-main-1;
+  }
+}
+
+.account-points__status-text {
+  @include font-header(500);
+  @include text(12px, 15px, $color-body-text, 0.71px);
+}
+
+.account-points__status-right {
+  width: 60%;
+  flex: 0 0 60%;
+  text-align: center;
+  align-self: center;
+}
+
+.account-points__status-btn {
+  @include font-header(500);
+  @include text(16px, 20px, $color-body-text, 0.95px);
+  @include no-browser-styling;
+  padding: 0;
+}
+
+.account-bottles {
+  margin: 0 0 100px;
+}
+
+.account-bottles__bottle {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 0 0 20px;
+  padding: 0 15px;
+}
+
+.account-bottles__bottle-progress-wrap {
+  flex: 0 0 60px;
+  margin: 0 20px 0 0;
+}
+
+.account-bottles__bottle-progress {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  position: relative;
+  background-color: $back-color;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.account-bottles__bottle-progress:hover::before,
+.account-bottles__bottle-progress:focus::before {
+  transform: scale(0.9);
+}
+
+.account-bottles__bottle-progress::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  right: 3px;
+  top: 3px;
+  bottom: 3px;
+  background-color: $color-background;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.account-bottles__bottle-progress::after {
+  background-color: $theme-color;
+  border-radius: 50%;
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+
+.account-bottles__bottle-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 40px;
+  max-height: 40px;
+}
+
+.account-bottles__bottle-body {
+  flex: 0 0 calc(100% - 121px);
+  align-self: center;
+}
+
+.account-bottles__bottle-title {
+  @include font-header(700);
+  @include text(16px, 23px, $color-title, 1px);
+  margin: 0 0 2px;
+}
+
+.account-bottles__bottle-timer {
+  @include font-header(500);
+  @include text(12px, 24px, $color-main-1, 1px);
+  margin: 0;
+}
+
+.account-bottles__bottle-option {
+  margin: auto 0 auto 20px;
+  align-self: center;
+  flex: 0 0 20px;
+}
+
+.account-bottles__bottle-btn {
+  @include font-body;
+  @include no-browser-styling;
+  position: relative;
+  top: -5px;
+  padding: 0;
+  font-size: 26px;
+  line-height: 20px;
+  letter-spacing: -1px;
+  color: $color-main-1;
+}
+
+.account-bottles__bottle-btn::after {
+  content: "...";
+}
+
+.account-bottles__bottle-new-wrap {
+  text-align: center;
+  margin: 0 0 40px;
+  padding: 0 15px;
+}
+
+.account-bottles__bottle-new-btw {
+  @include button(solid, round, 1);
+  padding: 8px 20px;
+}
+
+.account-bottles__bottle-new-icon {
+  @include no-font-size;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 3px 0 0;
+}
+
+.account-bottles__bottle-new-text {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  letter-spacing: 0.83px;
+}
+
+.account-bottles__sub {
+  padding: 20px 15px;
+
+  background-image: linear-gradient(
+    to bottom,
+    rgba($color-theme-13, 0.5) 0%,
+    $color-white 100%
+  );
+}
+
+.account-bottles__sub-header {
+  display: flex;
+  padding: 0 30px;
+  margin: 0 0 30px;
+}
+
+.account-bottles__sub-img {
+  width: 80px;
+  max-height: 80px;
+  object-fit: scale-down;
+  flex: 0 0 80px;
+  align-self: center;
+}
+
+.account-bottles__sub-title {
+  @include font-header(700);
+  @include text(20px, 28px, $color-title, 1.2px);
+  padding: 0 0 0 20px;
+  flex: 0 0 calc(100% - 80px);
+  align-self: center;
+}
+
+.account-bottles__sub-usp {
+  margin: 0 0 15px;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.account-bottles__sub-usp-left {
+  flex: 0 0 30px;
+  align-self: center;
+}
+
+.account-bottles__sub-usp-icon {
+  @include no-font-size;
+
+  svg {
+    max-width: 30px;
+    max-height: 30px;
+  }
+}
+
+.account-bottles__sub-usp-right {
+  flex: 0 0 calc(100% - 46px);
+  margin: 0 0 0 15px;
+  padding: 0 0 10px;
+  border-bottom: 1px solid $color-theme-6;
+}
+
+.account-bottles__sub-usp-text {
+  @include font-header(500);
+  @include text(12px, 18px, $color-body-text, 0.5px);
+  margin: 0;
+}
+
+.account-bottles__sub-note {
+  @include font-header(500);
+  @include text(12px, 18px, $color-body-text, 0.5px);
+  position: relative;
+  text-align: center;
+  margin: 0 auto 30px;
+  max-width: 290px;
+}
+
+.account-bottles__sub-note-arrow {
+  @include no-font-size;
+  position: absolute;
+  right: 0;
+  bottom: -30px;
+  max-height: 32px;
+}
+
+.account-bottles__sub-option-title {
+  @include font-header(700);
+  @include text(12px, 18px, $color-body-text, 0.5px);
+  text-align: center;
+  margin: 0;
+}
+
+.account-bottles__sub-options {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 20px;
+
+  button {
+    @include no-browser-styling;
+    @include font-header(700);
+    @include text(12px, 18px, $color-body-text, 0.5px);
+    @include underline($color-main-1, false);
+    @include transition(color);
+    padding: 0;
+
+    &:hover,
+    &:focus {
+      color: $color-main-1;
+    }
+
+    &.active {
+      color: $color-main-1;
+    }
+
+    &.active::after {
+      width: 100%;
+    }
+  }
+}
+.account-bottles__sub-btn-wrap {
+  @include clearfix;
+  margin: 0 0 20px;
+  width: 100%;
+}
+
+.account-bottles__regular-btn {
+  @include font-header(500);
+  @include text(14px, 14px, $color-white, 0.83px);
+  float: left;
+  width: 50%;
+  height: 44px;
+  background-color: $color-main-1;
+  padding: 5px;
+  text-align: center;
+  text-transform: uppercase;
+  border: none;
+}
+
+.account-bottles__alt-button {
+  float: right;
+  width: 50%;
+  height: 44px;
+  border: 2px solid $color-main-1;
+  text-align: center;
+}
+
+.account-bottles__alt-btn-freq {
+  @include font-header(500);
+  @include text(10px, 14px, $color-body-text, 0.59px);
+  min-width: 51%;
+  display: inline-block;
+}
+
+.account-bottles__alt-btn-change {
+  @include no-browser-styling;
+  @include font-header(500);
+  @include text(9px, 14px, $color-main-1, 1px);
+  padding: 0;
+  text-transform: uppercase;
+  text-decoration: underline;
+  min-width: 51%;
+  display: inline-block;
+}
+
+.account-bottles__sub-purchase-title {
+  @include font-header(500);
+  @include text(16px, 24px, $color-title, 1px);
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+.account-bottles__sub-diff {
+  text-align: center;
+  margin: 0 0 15px;
+
+  p {
+    @include font-header(500);
+    @include text(12px, 18px, $color-title, 0.71px);
+  }
+
+  h6 {
+    @include font-header(700);
+    @include text(10px, 18px, $color-title, 0.59px);
+  }
+
+  button {
+    @include button(solid, square, 1);
+    font-weight: 500;
+    display: block;
+    padding: 9px 20px;
+    width: 100%;
+  }
+
+  button > span,
+  button > strong {
+    display: inline-block;
+  }
+}
+
+@include media-query($large-down) {
+  .account-body__header-tabs {
+    display: block;
+    border-bottom: 2px solid $color-theme-7;
+    border-top: 2px solid $color-theme-7;
+    margin: 0 0 25px;
+    min-height: 40px;
+
+    &:not(.open) {
+      > :not(.active) {
+        display: none;
+      }
+
+      .active .account-body__header-dash::after {
+        content: "+";
+      }
+    }
+
+    &.open {
+      > :not(.active) {
+        display: block;
+      }
+    }
+  }
+
+  .account-body__header-tab {
+    position: relative;
+    padding: 6px 40px 6px 0;
+    width: 100%;
+    border-top: 1px solid $color-theme-15;
+    text-align: left;
+  }
+
+  .account-body__header-tab:not(.active) {
+    font-weight: 500;
+  }
+
+  .account-body__header-tab.active {
+    .account-body__header-dash::after {
+      content: "-";
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-size: 20px;
+      line-height: 20px;
+      font-weight: 400;
+      color: $color-body-text;
+    }
+  }
+
+  .account-body__header-tab.active::after {
+    content: none;
+  }
+}
+
+@include media-query($medium-up) {
+  .registration-modal__title {
+    background: none !important;
+  }
+
+  .account-edit__edit {
+    display: none;
+  }
+}
+
+@include media-query($medium-down) {
+  // header
+  .account-header {
+    height: 310px;
+  }
+
+  .account-header__bar-wrap {
+    height: 30px;
+  }
+
+  .account-header__bar-bg {
+    background-image: url("data:image/svg+xml,%3Csvg width='320' height='31' viewBox='0 0 320 31' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M320 26.5c-35.093 3.829-107.211 5.136-167.626 3.077C91.96 27.517 43.124 26.5 0 29.577V0h319.953c.031 11.319.047 20.152.047 26.5z' fill='%2320D480' fill-rule='evenodd'/%3E%3C/svg%3E");
+    height: 31px;
+    top: 8px;
+  }
+
+  .account-header__background-wrap {
+    height: 80%;
+  }
+
+  .account-header__points-text {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.71px;
+  }
+  .account-header__points-number {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.71px;
+  }
+
+  .account-header__container {
+    padding-bottom: 0;
+  }
+
+  .account-header__body {
+    height: 100%;
+
+    > .row {
+      height: 100%;
+    }
+  }
+
+  .account-header__edit {
+    top: 0;
+  }
+
+  .account-header__col-offset {
+    top: 0;
+    align-self: center;
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+
+  .account-header__title {
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 1.2px;
+  }
+
+  .account-header__badge {
+    font-size: 10px;
+    line-height: 16px;
+    letter-spacing: 0.75px;
+  }
+
+  .account-header__description {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 1px;
+    max-width: 185px;
+  }
+
+  .account-header__status {
+    position: relative;
+    z-index: 1;
+    margin: 0 -5px;
+  }
+
+  .account-header__status-item {
+    flex: 0 0 calc(33.33% - 10px);
+    margin: 0 5px;
+  }
+
+  .account-header__status-badge {
+    width: 100%;
+    padding: 6px;
+    border-radius: 30px;
+    text-align: center;
+    margin: 0 0 5px;
+    display: block;
+  }
+
+  .account-header__status-number {
+
+  }
+
+  .account-header__status-num-alt {
+
+  }
+
+  .account-header__status-txt {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.71px;
+    color: $color-body-text;
+  }
+
+  // dashboard
+  .account-dash {
+    margin: 0 0 40px;
+  }
+
+  .account-dash__bottles {
+    margin: 0 0 20px;
+    padding: 10px 0 0;
+    border-top: 1px solid $color-theme-6;
+  }
+
+  .account-dash__title {
+    margin: 0 0 15px;
+  }
+
+  .account-dash__title-txt {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.95px;
+  }
+
+  .account-dash__title-button {
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.7px;
+  }
+
+  .account-dash__bottle {
+    margin: 0 0 15px;
+  }
+
+  .account-dash__bottle-timer {
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 1px;
+  }
+
+  .account-dash__bottle-btn {
+    padding: 8px 20px;
+  }
+
+  .account-dash__bottle-btn-icon {
+    svg {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  .account-dash__bottle-btn-text {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.83px;
+  }
+
+  .account-dash__subs {
+    padding: 10px 0 0;
+    border-top: 1px solid $color-theme-6;
+  }
+
+  .account-dash__sub {
+    margin: 0 0 15px;
+  }
+
+  .account-dash__sub-timer {
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 1px;
+  }
+
+  .account-dash__sub-btn {
+    padding: 8px 20px;
+  }
+
+  .account-dash__sub-btn-text {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.83px;
+  }
+
+  .account-dash__refer-wrap {
+    margin: 20px 0;
+  }
+
+  .account-dash__refer-btn {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.83px;
+  }
+
+  .account-dash__order {
+    margin: 0 0 20px;
+  }
+
+  .account-dash__order-number {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.83px;
+  }
+
+  .account-dash__order-date {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.83px;
+  }
+
+  // registration modal
+  .registration-modal {
+    z-index: 1;
+    position: static;
+  }
+
+  .registration-modal__overlay {
+    display: none;
+  }
+
+  .registration-modal__inner {
+    padding: 0;
+    max-width: 100%;
+    min-height: 1px;
+    left: 0;
+    top: 0;
+    transform: none;
+  }
+
+  .registration-modal__close {
+    display: none;
+  }
+
+  .registration-modal__header {
+    margin: 0 0 20px;
+    text-align: center;
+  }
+
+  .registration-modal__title {
+    color: $color-white;
+    padding: 20px 0;
+    margin: 0 0 10px;
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+  }
+
+  .registration-modal__progress {
+    max-width: calc(100% - 30px);
+    margin: 0 15px;
+  }
+
+  .registration-modal__page {
+    padding: 15px;
+  }
+
+  .registration-modal__code-video-wrap {
+    margin: 0 auto 40px;
+  }
+
+  .registration-modal__input-wrap {
+    &.code {
+      margin: 0 auto 40px;
+    }
+  }
+
+  .registration-modal__input {
+    padding: 5px 0;
+  }
+
+  .registration-modal__navigation {
+    margin: 0 0 15px;
+  }
+
+  .registration-modal__btn {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 6px 20px;
+  }
+
+  .registration-modal__page-content-flex {
+    padding: 0;
+  }
+
+  .registration-modal__btn-alt {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 6px 20px;
+  }
+
+  .registration-modal__refills {
+    float: none;
+    width: 100%;
+    padding: 0 15px;
+    margin: 0 0 15px 0;
+  }
+
+  .registration-modal__refills-range {
+    margin: 5px 0;
+  }
+
+  .registration-modal__range-scale {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    margin: 10px 0 0;
+    padding: 0 8px;
+  }
+
+  .registration-modal__days {
+    float: none;
+    width: 100%;
+    padding: 0 15px;
+    margin: 0 0 15px 0;
+  }
+
+  .registration-modal__phone-wrap {
+    margin: 0 auto 10px;
+  }
+
+  .registration-modal__btn-final {
+    padding: 6px 20px;
+    margin: 0 0 5px;
+  }
+
+  // account edit modal
+  .account-edit {
+    z-index: 1;
+    position: static;
+  }
+
+  .account-edit__overlay {
+    display: none;
+  }
+
+  .account-edit__inner {
+    padding: 0;
+    max-width: 100% !important;
+    min-height: 1px;
+    left: 0;
+    top: 0;
+    transform: none;
+  }
+
+  .account-edit__close {
+    display: none;
+  }
+
+  .account-edit__group-label {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.71px;
+    margin: 0 0 3px;
+
+    &.margin {
+      margin: 0 0 10px;
+    }
+  }
+
+  .account-edit__input-wrap {
+    margin: 0 0 10px;
+  }
+
+  .account-edit__page, #reset-wrap, .address-fm-wrap {
+    padding: 15px;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+  .account-sidebar{
+    display:none;
+  }
+  .account-points__btn-refer {
+    padding: 8px 20px;
+  }
+
+  .account-bottles__sub-header {
+    padding: 0;
+  }
+
+  .account-sidebar {
+    margin: 0;
+  }
+
+  .account-sidebar__link {
+    display: block;
+    padding: 10px 5px;
+    width: 100%;
+    background-color: $color-theme-4;
+    margin: 0 0 3px;
+    text-align: center;
+  }
+
+  .account-sidebar__link-icon {
+    svg {
+      max-height: 20px;
+      max-width: 25px;
+    }
+  }
+
+  .account-sidebar__link-txt {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.71px;
+  }
+
+  .account-body {
+    margin: 0 0 40px;
+  }
+
+  .account-profile {
+    margin: 0 0 40px;
+  }
+
+  .account-orders {
+    margin: 0 0 40px;
+  }
+
+  .account-points {
+    margin: 0 0 40px;
+  }
+
+  .account-bottles {
+    margin: 0 0 40px;
+  }
+}
+
+
+/* ================= My Codes Custom Styles ================= */
+/*! jQuery UI - v1.12.1 - 2016-09-14
+* http://jqueryui.com
+* Includes: core.css, accordion.css, autocomplete.css, menu.css, button.css, controlgroup.css, checkboxradio.css, datepicker.css, dialog.css, draggable.css, resizable.css, progressbar.css, selectable.css, selectmenu.css, slider.css, sortable.css, spinner.css, tabs.css, tooltip.css, theme.css
+* To view and modify this theme, visit http://jqueryui.com/themeroller/?bgShadowXPos=&bgOverlayXPos=&bgErrorXPos=&bgHighlightXPos=&bgContentXPos=&bgHeaderXPos=&bgActiveXPos=&bgHoverXPos=&bgDefaultXPos=&bgShadowYPos=&bgOverlayYPos=&bgErrorYPos=&bgHighlightYPos=&bgContentYPos=&bgHeaderYPos=&bgActiveYPos=&bgHoverYPos=&bgDefaultYPos=&bgShadowRepeat=&bgOverlayRepeat=&bgErrorRepeat=&bgHighlightRepeat=&bgContentRepeat=&bgHeaderRepeat=&bgActiveRepeat=&bgHoverRepeat=&bgDefaultRepeat=&iconsHover=url(%22images%2Fui-icons_555555_256x240.png%22)&iconsHighlight=url(%22images%2Fui-icons_777620_256x240.png%22)&iconsHeader=url(%22images%2Fui-icons_444444_256x240.png%22)&iconsError=url(%22images%2Fui-icons_cc0000_256x240.png%22)&iconsDefault=url(%22images%2Fui-icons_777777_256x240.png%22)&iconsContent=url(%22images%2Fui-icons_444444_256x240.png%22)&iconsActive=url(%22images%2Fui-icons_ffffff_256x240.png%22)&bgImgUrlShadow=&bgImgUrlOverlay=&bgImgUrlHover=&bgImgUrlHighlight=&bgImgUrlHeader=&bgImgUrlError=&bgImgUrlDefault=&bgImgUrlContent=&bgImgUrlActive=&opacityFilterShadow=Alpha(Opacity%3D30)&opacityFilterOverlay=Alpha(Opacity%3D30)&opacityShadowPerc=30&opacityOverlayPerc=30&iconColorHover=%23555555&iconColorHighlight=%23777620&iconColorHeader=%23444444&iconColorError=%23cc0000&iconColorDefault=%23777777&iconColorContent=%23444444&iconColorActive=%23ffffff&bgImgOpacityShadow=0&bgImgOpacityOverlay=0&bgImgOpacityError=95&bgImgOpacityHighlight=55&bgImgOpacityContent=75&bgImgOpacityHeader=75&bgImgOpacityActive=65&bgImgOpacityHover=75&bgImgOpacityDefault=75&bgTextureShadow=flat&bgTextureOverlay=flat&bgTextureError=flat&bgTextureHighlight=flat&bgTextureContent=flat&bgTextureHeader=flat&bgTextureActive=flat&bgTextureHover=flat&bgTextureDefault=flat&cornerRadius=3px&fwDefault=normal&ffDefault=Arial%2CHelvetica%2Csans-serif&fsDefault=1em&cornerRadiusShadow=8px&thicknessShadow=5px&offsetLeftShadow=0px&offsetTopShadow=0px&opacityShadow=.3&bgColorShadow=%23666666&opacityOverlay=.3&bgColorOverlay=%23aaaaaa&fcError=%235f3f3f&borderColorError=%23f1a899&bgColorError=%23fddfdf&fcHighlight=%23777620&borderColorHighlight=%23dad55e&bgColorHighlight=%23fffa90&fcContent=%23333333&borderColorContent=%23dddddd&bgColorContent=%23ffffff&fcHeader=%23333333&borderColorHeader=%23dddddd&bgColorHeader=%23e9e9e9&fcActive=%23ffffff&borderColorActive=%23003eff&bgColorActive=%23007fff&fcHover=%232b2b2b&borderColorHover=%23cccccc&bgColorHover=%23ededed&fcDefault=%23454545&borderColorDefault=%23c5c5c5&bgColorDefault=%23f6f6f6
+* Copyright jQuery Foundation and other contributors; Licensed MIT */
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/css/intlTelInput.min.css');
+  
+button:focus {
+    outline: none;
+}
+.account-body__tabs .body-tab{
+  display: none;
+} 
+
+.account-body__tabs .body-tab.active-tab{
+  display: block;
+}
+
+.account-bottle__inner .account-bottle__diffuser{
+  margin-top: 15px;
+  padding-top: 10px;
+}
+
+// register bottles
+#product-color-var .f-color{
+    width: 40px;
+    height: 55px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:36px;
+}
+  
+#product-color-var li.dyln-blue .f-color{
+  background-image: url("{{ 'color-blue.webp' | asset_url }}");
+}
+  
+#product-color-var li.charcoal .f-color{
+  background-image: url("{{ 'color-gray.webp' | asset_url }}");
+}
+  
+#product-color-var li.lime-green .f-color{
+  background-image: url("{{ 'color-green.webp' | asset_url }}");
+}
+
+#product-color-var li.tango-orange .f-color{
+ background-image: url("{{ 'color-orange1.webp' | asset_url }}"); 
+}
+  
+#product-color-var li.neon-pink .f-color{
+  background-image: url("{{ 'color-pink.webp' | asset_url }}");
+}
+
+#product-color-var li.royal-purple .f-color{
+  background-image: url("{{ 'royal-purple1.webp' | asset_url }}");
+}
+
+#product-color-var li.crimson-red .f-color{
+  background-image: url("{{ 'crimson-red1.webp' | asset_url }}");
+}  
+
+#product-color-var li span.new-sleeve-icon, #nproduct-color-var li span.new-sleeve-icon{
+  position:absolute;
+  right:-8px;
+  top:-15px;
+  width:25px;
+  height:35px;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-size: 25px auto;
+}  
+ 
+#product-color-var li.var-active .f-color, #nproduct-color-var li.var-active .f-color{
+    background-position: center;
+    background-size:40px;
+} 
+
+.no-ios #product-color-var li:hover > .ptool-tips, .no-ios #product-type-var li:hover > .ptool-tips{
+  display: inline-block;
+}
+.no-ios #nproduct-color-var li:hover > .ptool-tips{
+  display: inline-block;
+}
+
+// datepicker 
+#purchase_date{
+    max-width: 250px;
+    border-bottom: 2px solid #00aedb;
+    text-align: center;
+    padding: 5px 10px;
+}
+
+.registration-modal__page .registration-modal__input-wrap.phone{
+  max-width: 100% !important;
+}
+#product-color-var{
+  list-style:none;
+  display:none;
+}
+#product-color-var.active{
+  display: inline-block;
+}
+#product-color-var li{
+  display: inline-block;
+  margin: 0;
+  cursor: pointer;
+}
+
+#product-color-var li .ptool-tips{
+  display:none;
+}
+.registration-modal__image-wrap.btl-finish-warap{
+  float: none;
+  max-width:120px;
+  margin: 0 auto;
+}
+.registration-modal__phone-wrap{
+  position: relative;
+}
+.phone-error{
+  position: absolute;
+  bottom: -15px;
+  width: 100%;
+  left: 0;
+  font-size: 12px;
+  color: red;  
+}
+
+span.input-wrap {
+    display: block;
+}
+span.input-wrap input {
+    width: 50px;
+    text-align: center;
+    margin: 5px;
+    border-bottom: 1px solid #006fbb;
+}
+span.input-wrap label{
+  font-size: 12px;
+  font-style: italic;
+  color: #161d25;
+}
+span.input-wrap label.lab-p{
+  font-weight: bold;
+  font-style: normal;
+  font-size:14px
+}
+
+.reset-password-pop .account-edit__inner {
+    min-height: 150px;
+}
+.reset-password-pop input[type="password"] {
+    max-width: 250px;
+    padding: 5px 10px;
+    text-align: center;
+    margin-top: 10px;
+    border-bottom: 2px solid #00aedb;
+}
+
+.reset-password-pop .input-wrap {
+    padding-bottom: 15px;
+}
+
+.account-bottle__body .account-bottle__image-wrap{
+  position: relative;
+}
+.account-bottle__body .account-bottle__image-wrap img{
+  position: absolute;
+    width: 117px;
+    left: -15px;
+    max-width:none;
+}
+
+.account-bottle__body .account-bottle__hydration{
+  display:none;
+}
+.good .h-level, .good .hydration-text{
+  color: #20d480 !important;
+}
+
+.poor .h-level, .poor .hydration-text{
+  color: #ff3737 !important;
+}
+
+.profile-contact-pop .account-edit__inner {
+    min-height: auto;
+    max-width: 318px;
+}
+.form-input{
+    padding: 8px 10px;
+    text-align: center;
+    border-bottom: 2px solid #00aedb;
+}
+
+button#profile-contact-btn {
+    margin-top: 15px;
+}
+
+.address-form .account-edit__inner{
+    max-width: 600px;
+}
+.address-form .form-block{
+    position: relative;
+    text-align: left;
+}
+.address-form .form-block input, 
+.address-form .form-block select {
+    padding: 7px 10px;
+    border-bottom: 2px solid #00aedb;
+}
+.address-form .form-block select {
+    border-left: 0px none;
+    border-right: 0px none;
+    border-top: 0px none;
+    border-bottom: 2px solid #00aedb;
+    width: 100%
+}
+.address-form .form-block label {
+    position: absolute;
+    top: 10px;
+    opacity: 0.5;
+    font-size: 14px;
+    display:none
+}
+.address-form .form-block.checkbox-padded{
+  text-align:center;
+  padding: 15px 0 10px;
+}
+
+button.account-profile__edit.edit-address {
+    float: none;
+    margin-right: 10px;
+}
+
+button.account__button-delete.del-address {
+    background: #fff;
+    border: 0px none;
+    padding: 0;
+}
+span.address-edit-del {
+    position: absolute;
+    right: 0;
+    width: 70px;
+}
+.vs-hidden{
+  visibility: hidden;
+}
+
+span.address-form-message {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    left: 0;
+    bottom: -23px;
+    font-size: 12px;
+    font-weight: 400;
+    color: red;
+}
+
+h3.registration-modal__title {
+    position: relative;
+}
+.account-header__body, .account-header__bar{
+  font-family: 'Poppins', sans-serif;
+}
+.account-header__body .account-header__title {
+    line-height: 45px;
+}
+
+.account-header__status .account-header__status-item .account-header__status-badge{
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.account-header__status .account-header__status-item .account-header__status-badge span{
+  padding: 0 3px
+}
+button.account-profile__button-add.open-address-pop {
+    padding: 11px 39px;
+}
+
+.account-bottle.popup button.account-bottle__edit-update,
+.account-bottle.popup button.account-bottle__button-edit{
+  padding: 7px 32px;
+}
+.body-tab.account-bottles #custommer-bottles{
+  padding-right: 10px
+  
+}
+
+#subscription-wrap .pdp-form__price.pdp-form__price--sub {
+    display: none;
+}
+#subscription-wrap .diffusers__label{
+  font-size: 13px;
+}
+
+#subscription-wrap .diffusers__usps{
+ display:none;
+}
+#subscription-wrap .diffusers__sub-back{
+ margin: 0 auto;
+}
+#subscription-wrap .diffusers__sub-back {
+    margin: 0 auto;
+    display: block;
+    padding-top: 15px;
+}
+#subscription-wrap .diffusers__regular-btn,
+#subscription-wrap .diffusers__sub-btn
+{
+    height: 50px;
+}
+#subscription-wrap .diffusers__sub-btn .custom-select-styled{
+  height: 46px;
+  font-size: 13px;
+  line-height: 25px;
+}
+#subscription-wrap .diffusers__regular-text, 
+#subscription-wrap .diffusers__regular-price{
+ font-size:14px;
+}
+#subscription-wrap .diffusers__sub-btn label{
+ font-size:11px;
+}
+#subscription-wrap .diffusers__sub-btn .custom-select{
+ height:20px;
+ line-height: 20px;
+}
+.account-bottle.popup .account-bottle__edit-content-wrap{
+ width: calc(100% - 90px);
+}
+.account-bottle.popup .account-bottle__edit-image-wrap{
+  width: 77px;
+  position: relative;
+}
+.account-bottle.popup .account-bottle__edit-image-wrap img.account-bottle__edit-image {
+    position: absolute;
+    left: -19px;
+    width: 105px;
+    max-width: none;
+}
+
+.account-orders .account-orders__btn-new{
+ padding: 11px 35px;
+}
+
+.account-bottles .account-bottles__sub-usp-icon{
+ margin-top: -6px;
+}
+
+p.dif-date-select {
+    max-width: 150px;
+    margin: 0 auto 15px;
+}
+
+p.dif-date-select input{
+  padding: 5px 10px;
+    text-align: center;
+    border-bottom: 2px solid #00aedb;
+    font-size: 20px;
+    color: #00aedb;
+    outline: none !important;
+}
+
+.registration-modal__progress.pg50:after {
+    content: "";
+    position: absolute;
+    height: 3px;
+    width: 50%;
+    background-color: #00aedb;
+    top: 8.5px;
+}
+
+.registration-modal__progress.pg100:after {
+    content: "";
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background-color: #00aedb;
+    top: 8.5px;
+}
+
+// profile height weight selector
+.swiper-container {
+  width: 100px;
+  height: 150px;
+  margin: 20px auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 15px;
+  color: #fff;
+  opacity: 0.6;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition-property: transform;
+}
+
+.swiper-slide.swiper-slide-active {
+    font-weight: bold;
+    text-decoration: underline;
+    opacity: 1;
+}
+.lab-weight-height{
+ margin-top: -1px;
+}
+.account-edit-option_wrap {
+    position: relative;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+input.low[type=range]::range-track{
+  background-color: #ffb300;
+  border-color: #ffb300;
+}
+
+input.low[type=range]::-webkit-slider-runnable-track{
+  background-color: #ffb300;
+  border-color: #ffb300;  
+}
+
+input.low[type=range]::-moz-range-track{
+  background-color: #ffb300;
+  border-color: #ffb300;  
+}
+
+input.low[type=range]::-ms-track{
+  background-color: #ffb300;
+  border-color: #ffb300;  
+}
+
+input.poor[type=range]::range-track{
+  background-color: #ff3737;
+  border-color: #ff3737;
+  
+}
+
+input.poor[type=range]::-webkit-slider-runnable-track{
+  background-color: #ff3737;
+  border-color: #ff3737;  
+}
+
+input.poor[type=range]::-moz-range-track{
+  background-color: #ff3737;
+  border-color: #ff3737;  
+}
+
+input.poor[type=range]::-ms-track{
+  background-color: #ff3737;
+  border-color: #ff3737;  
+}
+.all-pop-close{
+  display:none;
+}
+
+@media screen and (max-width: 768px){
+  
+}
+@media screen and (max-width: 380px){
+  .account-header__status-badge, .account-header__status-num-alt{
+    padding: 5px 4px;
+    font-size: 10px;
+  }
+.account-header__status .account-header__status-item .account-header__status-badge span {
+    padding: 0 2px;
+}  
+
+}

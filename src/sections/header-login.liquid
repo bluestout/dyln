@@ -103,7 +103,12 @@
     </div>
 
     <div class="text-center">
-      <button class="header-login__button-wire" data-header-open-register-block>{{ section.settings.open_register_text }}</button>
+      <button class="header-login__button-wire" data-header-open-register-block>
+        <span>{{ section.settings.open_register_text }}</span>
+        {% if section.settings.open_register_points_text != blank %}
+        <span>{{ section.settings.open_register_points_text }}</span>{% render 'icon-points-stardrop' %}
+        {% endif %}
+      </button>
     </div>
 
     {% if section.settings.register_link_text != blank %}
@@ -252,6 +257,12 @@
         "id": "open_register_text",
         "label": "Create Account Button",
         "default": "Create Account"
+      },
+      {
+        "type": "text",
+        "id": "open_register_points_text",
+        "label": "Create Account Points",
+        "default": "Get 150"
       },
       {
         "type": "url",

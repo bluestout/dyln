@@ -1,0 +1,278 @@
+<div class="registration-modal popup" style="display:none;">
+  <div class="registration-modal__overlay"></div>
+  <div class="registration-modal__inner">
+    <form action="#" id="registration-modal__form">
+      <button type="button" class="registration-modal__close pop-close">
+        <span class="visually-hidden">Close modal</span>
+        <span aria-ignore="true">
+          <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><g stroke="#00AEDB" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M1.333 1.333L11 11M10.667 1.333L1 11"/></g></svg>
+        </span>
+      </button>
+
+      {% comment %} modal header is the same, just the data points change {% endcomment %}
+      <div class="registration-modal__header">
+        <h3 class="registration-modal__title" style="background-image:url('{{ 'dyln-account-mobile-modal-bg-leaf-closeup.min.png' | asset_url }}');">Bottle Registration</h3>
+        <div class="registration-modal__progress">
+          <span class="registration-modal__progress-point active"></span>
+          <span class="registration-modal__progress-point process-2"></span>
+          <span class="registration-modal__progress-point process-3"></span>
+        </div>
+      </div>
+        <input type="hidden" class="required"  name="shopify_customerid" value="{{ customer.id }}" >
+        <input type="hidden" class="required" id="product_id" name="product_id" value="" >
+        <input type="hidden" class="required" id="code_id" name="code_id" value="" >
+        <input type="hidden" class="required" id="product_variant" name="product_variant" value="" >
+      <div class="registration-modal__page step_code" data-step="1">
+        <h4 class="registration-modal__page-title">Insert the 3-digit or 4-digit code on the bottom of your bottle.</h4>
+        <div class="registration-modal__code-video-wrap">
+          {% comment %} 
+          <video class="registration-modal__code-video"  height="110" autoplay muted loop playsinline>
+            <source src="{{ 'small-sample-video.mp4' | asset_url }}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          {% endcomment %}
+          {% comment %} we should use a video rather than a gif, but if we must use gifs, here's the img element for gifs, you can just remove the video and uncomment the img {% endcomment %}
+          
+         <img class="registration-modal__code-gif" alt="" src="//cdn.shopify.com/s/files/1/0511/9421/t/222/assets/bottle_code_250x250.png"  height="110" /> 
+        </div>
+        <div class="registration-modal__input-wrap code">
+          <label for="bottle-registration-code" class="visually-hidden">Enter Code</label>
+          <input id="bottle-registration-code" name="code" type="text" class="registration-modal__input required" placeholder="Enter Code"/>
+        </div>
+
+        <div class="registration-modal__navigation">
+          <button type="button" class="registration-modal__btn registration-modal__btn-next">Next</button>
+          <div>
+            <button type="button" class="registration-modal__cancel pop-close">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <div class="registration-modal__page step_color" style="display:none;" data-step="2">
+        <h4 class="registration-modal__page-title">Select Your Bottle Color</h4>
+        <div class="registration-modal__page-content">
+          <div class="registration-modal__image-wrap btl-finish-warap text-center">
+            <img class="btl-finish reg-btl-img" mt-src="//cdn.shopify.com/s/files/1/0511/9421/t/222/assets/bottle_matte_200x200.png" cm-src="//cdn.shopify.com/s/files/1/0511/9421/t/222/assets/bottle_chrome_200x200.png" alt="" src=""  height="110" />
+          </div>
+          <!--
+          <div class="registration-modal__suggestion-wrap">
+            <img class="btl-finish registration-modal__suggestion-gif reg-btl-img" mt-src="//cdn.shopify.com/s/files/1/0511/9421/t/222/assets/bottle_matte_200x200.png" cm-src="//cdn.shopify.com/s/files/1/0511/9421/t/222/assets/bottle_chrome_200x200.png" alt="" src=""  height="110" />
+          </div>
+		  -->
+        </div>
+        <div class="vr-slave-color">
+          <ul id="product-color-var" class="mattes">
+            <li title="DYLN BLUE" image="https://cdn.shopify.com/s/files/1/0511/9421/products/2015-12-07_DYLN_Brushed_Blue_1_F_300x.png" class="dyln-blue" data-id="9378529219">
+              <span class="ptool-tips">DYLN BLUE</span><div class="f-color"></div>
+            </li>
+            <li title="CHARCOAL" image="https://cdn.shopify.com/s/files/1/0511/9421/products/2015-12-07_DYLN_Brushed_Charcoal_1_F_300x.png" class="charcoal" data-id="9378529283">
+              <span class="ptool-tips">CHARCOAL</span><div class="f-color"></div>
+            </li>
+            <li title="LIME GREEN" image="https://cdn.shopify.com/s/files/1/0511/9421/products/2015-12-07_DYLN_Brushed_Green_1_F_300x.png" class="lime-green" data-id="9378529347">
+              <span class="ptool-tips">LIME GREEN</span><div class="f-color"></div>
+            </li>
+            <li title="TANGO ORANGE" image="https://cdn.shopify.com/s/files/1/0511/9421/products/2015-12-07_DYLN_Brushed_Orange_1_F_300x.png" class="tango-orange" data-id="9378529411">
+              <span class="ptool-tips">TANGO ORANGE</span><div class="f-color"></div>
+            </li>
+            <li title="NEON PINK" image="https://cdn.shopify.com/s/files/1/0511/9421/products/2015-12-07_DYLN_Brushed_Pink_1_F_300x.png" class="neon-pink" data-id="9378529475">
+              <span class="ptool-tips">NEON PINK</span><div class="f-color"></div>
+            </li>
+            <li title="ROYAL PURPLE" image="https://cdn.shopify.com/s/files/1/0511/9421/products/2017-09-12_DYLN_Brushed_Purple_1_F_300x.png" class="royal-purple" data-id="44653725315">
+              <span class="ptool-tips">ROYAL PURPLE</span><div class="f-color"></div>
+            </li>
+            <li title="CRIMSON RED" image="https://cdn.shopify.com/s/files/1/0511/9421/products/2018-03-08_DYLN_Brushed_red_300x.png" class="crimson-red" data-id="5184161808416">
+              <span class="ptool-tips">CRIMSON RED</span><div class="f-color"></div>
+            </li>
+          </ul>
+          <ul id="product-color-var" class="chromes">
+            <li title="DYLN BLUE" image="https://cdn.shopify.com/s/files/1/0511/9421/products/2015-12-07_DYLN_Chrome_Blue_1_F_300x.png" class="dyln-blue" data-id="9378529539">
+              <span class="ptool-tips">DYLN BLUE</span><div class="f-color"></div>
+            </li>
+            <li title="CHARCOAL" image="https://cdn.shopify.com/s/files/1/0511/9421/products/2015-12-07_DYLN_Chrome_Charcoal_1_F_300x.png" class="charcoal" data-id="9378529603">
+              <span class="ptool-tips">CHARCOAL</span><div class="f-color"></div>
+            </li>
+            <li title="LIME GREEN" image="https://cdn.shopify.com/s/files/1/0511/9421/products/2015-12-07_DYLN_Chrome_Green_1_F_300x.png" class="lime-green" data-id="9378529667">
+              <span class="ptool-tips">LIME GREEN</span><div class="f-color"></div>
+            </li>
+            <li title="TANGO ORANGE" image="https://cdn.shopify.com/s/files/1/0511/9421/products/2015-12-07_DYLN_Chrome_Orange_1_F_300x.png" class="tango-orange" data-id="9378529731">
+              <span class="ptool-tips">TANGO ORANGE</span><div class="f-color"></div>
+            </li>
+            <li title="NEON PINK" image="https://cdn.shopify.com/s/files/1/0511/9421/products/2015-12-07_DYLN_Chrome_Pink_1_F_300x.png" class="neon-pink" data-id="9378529795">
+              <span class="ptool-tips">NEON PINK</span><div class="f-color"></div>
+            </li>
+            <li title="ROYAL PURPLE" image="https://cdn.shopify.com/s/files/1/0511/9421/products/2018-03-08_DYLN_Chrome_Purple_300x.png" class="royal-purple" data-id="44653725379">
+              <span class="ptool-tips">ROYAL PURPLE</span><div class="f-color"></div>
+            </li>
+            <li title="CRIMSON RED" image="https://cdn.shopify.com/s/files/1/0511/9421/products/2015-12-07_DYLN_Chrome_Red_1_F_300x.png" class="crimson-red" data-id="5184161841184">
+              <span class="ptool-tips">CRIMSON RED</span><div class="f-color"></div>
+            </li>
+          </ul>
+        </div>
+        <div class="registration-modal__navigation">
+          <button type="button" class="registration-modal__btn-alt">Back</button>
+          <button type="button" class="registration-modal__btn registration-modal__btn-next">Next</button>
+          <div>
+            <button type="button" class="registration-modal__cancel">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <div class="registration-modal__page step-nickname" style="display:none;" data-step="3">
+        <h4 class="registration-modal__page-title">Give your new bottle a nickname</h4>
+        <div class="registration-modal__page-content">
+          <div class="registration-modal__image-wrap">
+            <img src="" class="reg-btl-img" alt="Image of DYLN water bottle" class="registration-modal__image" />
+            <!-- <span class="registration-modal__image-txt">32 oz</span> -->
+          </div>
+          <div class="registration-modal__suggestion-wrap">
+            {% comment %}
+            <video class="registration-modal__suggestion-video" width="190" height="40" autoplay muted loop playsinline>
+              <source src="{{ 'small-sample-video.mp4' | asset_url }}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+			{% endcomment %}
+            
+            {% comment %} we should use a video rather than a gif, but if we must use gifs, here's the img element for gifs: {% endcomment %}
+            <img class="registration-modal__suggestion-gif" alt="" src="{{ 'small-sample-gif-motion-elements.gif' | asset_url }}"  height="110" />
+
+            <label for="bottle-registration-nickname" class="visually-hidden">Enter Bottle Name</label>
+            <input id="bottle-registration-nickname" name="bottle_nickname" type="text" class="required registration-modal__input" placeholder="Enter Bottle Name"/>
+            <span class="registration-modal__txt-note">Keep it short & sweet</span>
+          </div>
+        </div>
+        <div class="registration-modal__navigation">
+          <button type="button" class="registration-modal__btn-alt">Back</button>
+          <button type="button" class="registration-modal__btn registration-modal__btn-next">Next</button>
+          <div>
+            <button type="button" class="registration-modal__cancel">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="registration-modal__page step-usage" style="display:none;" data-step="4">
+        <h4 class="registration-modal__page-title">Bottle Usage</h4>
+        <p class="registration-modal__page-txt">When did you start using your bottle?</p>
+        <div class="registration-modal__date-wrap text-center">
+          <input type="text" class="required" id="purchase_date" name="register_date" placeholder="Select Date">
+        </div>
+        <!--
+        <div class="registration-modal__date-wrap">
+          
+          <span class="registration-modal__select-wrap">
+            <label for="bottle-registration-day" class="visually-hidden">Day</label>
+            <select name="day" id="bottle-registration-day" class="registration-modal__select">
+              <option value="" disabled selected hidden>00</option>
+              {% for n in (1..31) %}
+              <option value="{{ n }}">{% if n < 10 %}0{% endif %}{{ n }}</option>
+              {% endfor %}
+            </select>
+            <svg class="registration-modal__select-icon" width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
+          </span>
+          <span class="registration-modal__select-wrap">
+            <label for="bottle-registration-month" class="visually-hidden">Month</label>
+            <select name="month" id="bottle-registration-month" class="registration-modal__select">
+              <option value="" disabled selected hidden>Month</option>
+              <option value="1">January</option>
+              <option value="2">February</option>
+              <option value="3">March</option>
+              <option value="4">April</option>
+              <option value="5">May</option>
+              <option value="6">June</option>
+              <option value="7">July</option>
+              <option value="8">August</option>
+              <option value="9">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select>
+            <svg class="registration-modal__select-icon" width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
+          </span>
+          <span class="registration-modal__select-wrap">
+            <label for="bottle-registration-month" class="visually-hidden">Year</label>
+            <select name="year" id="bottle-registration-year" class="registration-modal__select">
+              <option value="" disabled selected hidden>0000</option>
+              {% for n in (2016..2020) %}
+                <option value="n">{{ n }}</option>
+              {% endfor %}
+            </select>
+            <svg class="registration-modal__select-icon" width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
+          </span>
+
+        </div>
+        -->
+        <div class="registration-modal__refills">
+          <label class="registration-modal__page-txt" for="bottle-registration-refills">Refills per day</label>
+          <div class="registration-modal__range-scale">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+          </div>
+          <input name="refills" id="bottle-registration-refills" class="registration-modal__refills-range required" type="range" min="1" max="5" step="1" />
+        </div>
+        <div class="registration-modal__days">
+          <div id="reg-hl">
+          <label class="registration-modal__page-txt" for="bottle-registration-days-per-week">Days per week</label>
+          <div class="registration-modal__range-scale">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+            <span>6</span>
+            <span>7</span>
+          </div>
+          <input name="days_a_week" id="bottle-registration-days-per-week" class="registration-modal__refills-range required" type="range" min="1" max="7" step="1" />
+          <span class="registration-modal__input-warning">
+            <span class="hydration-text">Low Hydration</span>
+            <span aria-ignore="true">
+              <svg width="11" height="12" viewBox="0 0 11 12" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0 1)" fill="none" fill-rule="evenodd"><circle stroke="#FFB300" cx="5.5" cy="5" r="5"/><path d="M5 2.503c0-.145.046-.266.137-.36A.48.48 0 015.5 2a.48.48 0 01.363.142.498.498 0 01.137.36c0 .142-.046.26-.137.356A.48.48 0 015.5 3a.48.48 0 01-.363-.142A.491.491 0 015 2.503zM6 4v4H5V4h1z" fill="#FFB300" fill-rule="nonzero"/></g></svg>
+            </span>
+          </span>
+        </div>
+        </div>  
+        <div class="clearfix"></div>
+        <div class="registration-modal__navigation">
+          <button type="button" class="registration-modal__btn-alt">Back</button>
+          <button type="button" class="registration-modal__btn registration-modal__done">Done!</button>
+          <div>
+            <button type="button" class="registration-modal__cancel">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <div class="registration-modal__page step-thanks" style="display:none;">
+        <h4 class="registration-modal__page-title"><i class="brand-blue">Bottle #1</i>&nbsp;<span> is now registered!</span></h4>
+        <div class="registration-modal__page-content-flex">
+          <div class="registration-modal__image-wrap">
+            <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water bottle" class="registration-modal__image reg-btl-img" />
+          </div>
+          <div class="registration-modal__suggestion-wrap">
+            <p class="registration-modal__page-txt replace-date">We will email you shortly before your Diffuser needs to be replaced on <span>Jan, 6th 2020!</span></p>
+          </div>
+        </div>
+        <div class="registration-modal__navigation">
+          <div class="registration-modal__phone-wrap">
+            <!--
+            <div class="registration-modal__input-wrap country">
+              <label for="bottle-registration-country" class="visually-hidden">Country</label>
+              <select name="country" id="bottle-registration-country" class="registration-modal__country-select">
+                {% comment %} Not sure which countries will be needed here {% endcomment %}
+                {% comment %} I have a small js script for custom selects, the only way to add images into an input is via a custom select that uses js{% endcomment %}
+                <option value="usa"></option>
+              </select>
+            </div>
+			-->
+            <div class="registration-modal__input-wrap phone">
+              <label for="bottle-registration-phone" class="visually-hidden">Phone Number</label>
+              <input type="phone" name="bottle_phone" id="bottle-registration--phone" class="registration-modal__input" placeholder="000 000 0000"/>
+            </div>
+          </div>
+          <button type="button" class="registration-modal__btn-final">Notify me via SMS</button>
+          <div>
+            <button type="button" class="registration-modal__cancel">No, thanks</button>
+          </div>
+        </div>
+      </div>
+      <div class="text-center registration-modal__message"><span></span></div>
+    </form>
+  </div>
+</div>

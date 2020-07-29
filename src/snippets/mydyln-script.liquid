@@ -1,0 +1,1455 @@
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js" integrity="sha256-QQRUO4QtEKgzJoMMdtkBecbAQkssGCNGBnniwoShRCQ=" crossorigin="anonymous"></script>
+<script type="text/javascript">  
+  // Custom JS
+$(function(){
+  var Documentwidth = $(window).width();
+  var Documentheight = $(document).height();
+  var CustomerCountry = '{{ customer.default_address.country_code }}';
+  var Url = $(location).attr('href');
+  if((Url.indexOf('tab=') != -1) && (Url.indexOf('/account') != -1)){
+    var Tab = Url.split('tab=');
+    var tabBody = Tab[1];
+    $('.account-body__header-tabs .account-body__header-tab').removeClass('active');
+    $('.account-body__header-tabs .account-body__header-tab[tab-body='+tabBody+']').addClass('active');
+      $('.account-body__tabs .body-tab').removeClass('active-tab');
+    $('.account-body__tabs .'+tabBody).addClass('active-tab');    
+    
+  }
+  $(window).on('resize', function (){
+      Documentwidth = $(window).width();
+        Documentheight = $(document).height();
+  });
+  function scrollBottom(){
+    if(Documentwidth < 768){
+      $('.account-body__tabs').delay(300).fadeOut();
+      $('html, body').animate({ scrollTop: 400 });
+      //$('html, body').animate({scrollTop: Documentheight - 600}, 'slow');
+    }
+  }
+  var CustomerShopifyId = '{{ customer.id }}';
+  var ProxyPath = '/a/dyl/';
+  $('body').attr('customerId', CustomerShopifyId);
+  // tabs
+  $('.account-body__header-tabs .account-body__header-tab').click(function(){
+    var $this = $(this);
+    $this.parents('.account-body__header-tabs').toggleClass('open');
+    if(Documentwidth < 768){
+    $('.account-body__tabs').fadeIn();
+    $('#popup-continer .popup').delay(300).fadeOut();
+    }
+    if($this.hasClass('active')){
+      // do nothing
+    }else{
+      var tabBody = $this.attr('tab-body');
+      $('.account-body__header-tabs .account-body__header-tab').removeClass('active');
+      $this.addClass('active');
+      $('.account-body__tabs .body-tab').removeClass('active-tab');
+    $('.account-body__tabs .'+tabBody).addClass('active-tab');
+      window.history.replaceState(null, null, "?tab="+tabBody); 
+    }
+  });
+  // internal tab-button
+  $('.tab-button').click(function(){
+    var tabBody = $(this).attr('tab-body');
+     $('.account-body__header-tabs .account-body__header-tab[tab-body='+tabBody+']').click();
+     return false;
+  });
+    
+ // change to subscribe option
+$('#subscription-wrap .diffusers__sub-btn').click(); 
+$('#subscription-wrap .diffusers__sub-back').html('<strong>Not ready for a Subscription?</strong><br><span>Shop one time purchase:</span>');
+//  console.log('Button Text:'+ $('#subscription-wrap .custom-select-styled').text());  
+//$('#subscription-wrap .custom-select-styled').click();  
+//$('#subscription-wrap .custom-select-option').find('button[rel="3"]').click();
+//console.log('selected '+$('#subscription-wrap .custom-select-option').find('button[rel="3"]').attr('rel'));
+  
+  // check Customer
+  
+    var cUrl = '/a/dyl/'+CustomerShopifyId+'/check';
+    $.ajax({
+      url: cUrl,
+      type: 'GET',
+      dataType: 'json',
+      success: function (response) {
+        //console.log(response);
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log(textStatus, errorThrown);
+      }
+    });
+  
+// List Customer bottles  
+    var customerId = $('input[name="customer_id"]').val();
+    var delUrl = '/a/dyl/'+CustomerShopifyId+'/bottles';
+    $.ajax({
+      url: delUrl,
+      type: 'GET',
+      dataType: 'json',
+      success: function (response) {
+        // you will get response from your php page (what you echo or print)
+        //console.log(response);
+        if(response.no_bottle){
+          $('#custommer-bottles-short, #custommer-bottles').append('<div class="account-dash__bottle no-bottles"><h4>No Bottle Registered yet</h4></div>')
+        }else{
+          //console.log(response.bottles.length);
+          var number_of_bottles = response.bottles.length - 1;
+          var btl_names = '';
+        $.each(response.bottles, function(key, val) {
+          var nickName = val.nickname.replace('"', '');
+          if(key == number_of_bottles){
+            btl_names += nickName;
+          }else{
+            btl_names += nickName + ',';
+          }
+          // Dashboard 2 bottles
+          var dataHtml = BottleTemplate(2, key, val);                    
+          $('#custommer-bottles-short').append(dataHtml);
+          // Bottles Page 
+          var dataHtml = BottleTemplate(50, key, val);                    
+          $('#custommer-bottles').append(dataHtml);          
+        });
+          $('#btl-names').val(btl_names);
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log(textStatus, errorThrown);
+
+      }
+
+
+    }); 
+  
+  function BottleTemplate(count, key, val){
+      var obj = JSON.stringify(val);
+      var refillsRemaining = val.refills_remaining;
+      var radialColor = 'blue';
+      if(val.product_id == 1){
+        var percentProgress = Math.round(((refillsRemaining / 400) * 100));
+      }else{
+        percentProgress = Math.round(((refillsRemaining / 325) * 100));
+      }
+      
+      var progressT = round5(percentProgress); 
+    
+      var progressClass ='progress-'+percentProgress;
+      var bottleImgFull = val.bottle_img.split(".png");
+      var bottleImg = bottleImgFull[0]+'_300x.png';
+      var nickName = val.nickname.replace('"', '');
+      if (refillsRemaining > 100 && refillsRemaining <= 200){
+        radialColor = 'yellow';
+      }
+      if (refillsRemaining <= 100){
+        radialColor = 'red';
+      }
+      var dataHtml = '';
+      if(key < count){
+        dataHtml += '<div class="account-dash__bottle" data-bottle=\''+JSON.stringify(val).replace(/'/g, "\\'")+'\'><div class="account-dash__bottle-wrap" aria-ignore="true">';
+        dataHtml += '<div class="account-dash__bottle-progress progress-circle '+radialColor+'" data-progress="'+progressT+'">';
+        dataHtml += '<img src="'+bottleImg+'" alt="Image of DYLN water Bottle" class="account-dash__bottle-img" /></div></div>';
+        dataHtml += '<div class="account-dash__bottle-content"><h4 class="account-dash__bottle-title">'+nickName+'</h4>';
+        if(val.days_remaining > 0){
+        dataHtml += '<p class="account-dash__bottle-timer"><span>'+val.days_remaining+'</span> days left on Diffuser</p></div>';
+        }else{
+        dataHtml += '<p class="account-dash__bottle-timer bottle-expired"><span>'+val.expired+'</span> days Expired on Diffuser</p></div>';  
+        }
+        dataHtml += '<button type="button" class="account-dash__bottle-more"><span class="visually-hidden">More options</span></button></div>';
+      }
+    
+    return dataHtml;
+    
+  }
+  
+function round5(x)
+{
+    return Math.ceil(x/5)*5;
+}  
+  
+  // get avilable variant  
+function getproductAvailabilityData(country, productId){
+    var cUrl = '/a/dyl/get-product-availability';
+    $.ajax({
+      url: cUrl,
+      type: 'GET',
+      data: {'country': country, 'product_id': productId },
+      dataType: 'json',
+      success: function (response) {
+        //console.log(response); 
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        //console.log(textStatus, errorThrown);
+      }
+    });
+}
+  // test product 
+  // Country-region Senyx USA('other') | 4PX - HK('px') | 4PX - CA('ca')
+  //getproductAvailabilityData('other', '1920834338904');
+  
+// Bottle details
+  $(document).on('click', '.account-dash__bottle-more', function(){
+    var btlObj = JSON.parse($(this).parents('.account-dash__bottle').attr('data-bottle'));
+    BottleDetails(btlObj);
+    //console.log(btlObj);
+  });
+  function BottleDetails(obj){
+    var bottleImgFull = obj.bottle_img.split(".png");
+    var bottleImg = bottleImgFull[0]+'_500x.png';
+    var nickName = obj.nickname.replace('"', '');
+    var $Wrap = $('.account-bottle__body');
+    var $WrapT = $('.account-bottle__thank');
+    var $WrapEdit = $('.account-bottle__edit');
+    $Wrap.find('.btl-img').attr('src', bottleImg);
+    $Wrap.find('.account-bottle__title').text(nickName);
+    $Wrap.find('.account-bottle__code strong').text(obj.code);
+    $Wrap.find('.btn-update-now').attr('data-id', obj.id);
+    
+    if(obj.color === null){
+      var btlColor = obj.finish;
+    }else{
+      var btlColor = obj.color;
+    }
+    var ref_start_day = obj.refill_start_date.split('-');
+    var def_rep_day = obj.diffuser_replacement_date.split('-');
+    $Wrap.find('.account-bottle__info-color .account-bottle__info-value').text(btlColor);
+    $Wrap.find('.account-bottle__time-diffuser').text(def_rep_day[2]+'/'+def_rep_day[1]+'/'+def_rep_day[0]);
+    $WrapT.find('.account-bottle__replace-date').text(def_rep_day[2]+'/'+def_rep_day[1]+'/'+def_rep_day[0]);
+ 
+    $Wrap.find('.days-left').text(obj.days_remaining);
+    $WrapT.find('.new-days-left').text(obj.days_remaining);
+    $Wrap.find('.refills-left').text(obj.refills_remaining);
+    $WrapT.find('.new-refills-left').text(obj.refills_remaining);
+    $Wrap.find('.start-date').text(ref_start_day[2]+'/'+ref_start_day[1]+'/'+ref_start_day[0]);
+    $WrapT.find('.new-start-date').text(ref_start_day[2]+'/'+ref_start_day[1]+'/'+ref_start_day[0]);
+    $Wrap.find('.refil-per-day').text(obj.refill_frequency);
+    $WrapT.find('.new-refil-per-day').text(obj.refill_frequency);
+    $Wrap.find('.refil-per-week').text(obj.days_used);
+    $WrapT.find('.new-refil-per-week').text(obj.days_used);
+    var refStatus = obj.refill_frequency * obj.days_used; 
+    if(obj.days_used > 6){
+      $Wrap.find('.account-bottle__hydro-status').text('Super Hydration!');
+      $WrapEdit.find('.h-level').text('Super Hydration!');
+      $WrapT.find('.new-h-level').text('Super Hydration!');
+      $WrapT.find('#new-h-level-wrap').removeClass();
+      $WrapT.find('#new-h-level-wrap').addClass('good');      
+      $WrapEdit.find('#h-level-wrap').removeClass();
+      $WrapEdit.find('#h-level-wrap').addClass('good');
+      $Wrap.find('.account-bottle__hydration').removeClass('low');
+      $Wrap.find('.account-bottle__hydration').removeClass('poor');
+      $Wrap.find('.account-bottle__hydration').addClass('good');
+    }else if((obj.days_used >= 4 ) && (refStatus <= 6 )){
+      $Wrap.find('.account-bottle__hydro-status').text('Low Hydration');
+      $WrapEdit.find('.h-level').text('Low Hydration');
+      $WrapT.find('.new-h-level').text('Low Hydration');
+      $WrapT.find('#new-h-level-wrap').removeClass();
+      $WrapT.find('#new-h-level-wrap').addClass('low');       
+      $WrapEdit.find('#h-level-wrap').removeClass();
+      $WrapEdit.find('#h-level-wrap').addClass('low');      
+      $Wrap.find('.account-bottle__hydration').removeClass('good');
+      $Wrap.find('.account-bottle__hydration').removeClass('poor');
+      $Wrap.find('.account-bottle__hydration').addClass('low');      
+    }else{
+      $Wrap.find('.account-bottle__hydro-status').text('Poor Hydration!');
+      $WrapEdit.find('.h-level').text('Poor Hydration!');
+      $WrapT.find('.new-h-level').text('Low Hydration');
+      $WrapT.find('#new-h-level-wrap').removeClass();
+      $WrapT.find('#new-h-level-wrap').addClass('poor');      
+      $WrapEdit.find('#h-level-wrap').removeClass();
+      $WrapEdit.find('#h-level-wrap').addClass('poor');         
+      $Wrap.find('.account-bottle__hydration').removeClass('good');
+      $Wrap.find('.account-bottle__hydration').removeClass('low');
+      $Wrap.find('.account-bottle__hydration').addClass('poor');        
+    }
+    var refillsRemaining = obj.refills_remaining;
+    if(obj.product_id == 1){
+      var percentProgress = Math.round(((refillsRemaining / 400) * 100));
+    }else{
+      var percentProgress = Math.round(((refillsRemaining / 325) * 100));
+    }
+    var progressT = round5(percentProgress); 
+    $Wrap.find('.account-bottle__diff-progress').attr('data-progress', progressT);
+    $Wrap.find('.account-bottle__button-delete').attr('data-id', obj.id);
+    $('.account-bottle.popup').fadeIn();
+    
+    //scrollBottom();
+    //console.log(obj.id);
+    
+    $WrapEdit.find('.account-bottle__edit-title').text(nickName);
+    $WrapEdit.find('.code').text(obj.code);
+    $WrapEdit.find('.color').text(btlColor);
+    $WrapEdit.find('.register-day').val(ref_start_day[2]).change();
+    $WrapEdit.find('.register-month').val(ref_start_day[1]).change();
+    $WrapEdit.find('.register-year').val(ref_start_day[0]).change();
+    $WrapEdit.find('.refil-per-day').val(obj.refill_frequency);
+    $WrapEdit.find('.refil-per-week').val(obj.days_used);
+    $WrapEdit.find('.account-bottle__edit-update').attr('data-id', obj.id);
+    $WrapEdit.find('.account-bottle__edit-image-wrap img').attr('src', bottleImg);
+    
+    
+    
+  }
+  
+  // close popup
+  $('.pop-close').click(function(){
+    $(this).parents('.popup').fadeOut();
+  });
+  // edit bottle 
+  $('.edit_pop_bottle').click(function(){
+    // 
+    $('.account-bottle__body').fadeOut('fast');
+    $('.account-bottle__edit').delay(500).fadeIn('slow');
+  });
+  // edit bottle 
+  $('.account-bottle__edit-cancel').click(function(){
+    // 
+    $('.account-bottle__edit').fadeOut('fast');
+    $('.account-bottle__body').delay(500).fadeIn('slow');
+    
+  });
+  
+
+
+    
+  // Order see more/ see less account-orders__btn-more
+  $('.account-orders__btn-more').click(function(){
+    var $this = $(this);
+    var $wrap = $(this).parents('.account-orders__order');
+    $wrap.find('.order-billing-info').toggle('display');
+    $wrap.find('.order-right-wrap').toggle('display');
+    if($(this).text() == 'See Less'){
+      $this.text('Order Details');
+    }else{
+      $this.text('See Less');
+    }
+  });
+  
+  // register bottles popup
+  $('.btn-action-register-bottle').click(function(){
+    $('.registration-modal').fadeIn();
+    scrollBottom();
+  });
+  // UpperCase
+   $('.registration-modal__page #bottle-registration-code').keyup(function(){
+        $(this).val($(this).val().toUpperCase());
+    });
+  
+  // get bottle information with bottle code
+  $('.registration-modal__page.step_code .registration-modal__btn-next').click(function(){
+    $('#registration-modal__form .registration-modal__message span').text('');
+    var $this = $(this);
+    var cUrl = '/a/dyl/get-product-by-code';
+    var code = $('#bottle-registration-code').val().trim();
+    if(code != ''){
+    $.ajax({
+      url: cUrl,
+      type: 'GET',
+      data: {'code': code},
+      dataType: 'json',
+      success: function (response) {
+        if(!response){
+          //console.log('not found');
+          $('#registration-modal__form .registration-modal__message span').text('Invalid Code');
+        }else{
+          //console.log(response);
+      setRegisterBottleInfo(response);
+          regProcessNext($this);
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log(textStatus, errorThrown);
+      }
+    });
+    }else{
+      $('#registration-modal__form .registration-modal__message span').text('Please Add Procuct Code');
+    }
+      
+  });
+  
+  function setRegisterBottleInfo(response){
+    var $registerForm = $('#registration-modal__form');
+    var code = response.code;
+    $registerForm.find('#product_id').val(response.product_id);
+    $registerForm.find('#code_id').val(response.id);
+    $registerForm.find('#product_variant').val(response.variant_id);
+    if(response.product_id == 1){
+      if(code.lenght == 3 || (code.substr(-1) === 'M')){
+        var finishImg = $registerForm.find('.btl-finish').attr('mt-src');
+        $registerForm.find('.btl-finish').attr('src', finishImg );
+        $registerForm.find('#product-color-var.mattes').addClass('active');
+        $registerForm.find('#product-color-var.chromes').removeClass('active');
+      }else{
+        var finishImg = $registerForm.find('.btl-finish').attr('cm-src');
+        $registerForm.find('.btl-finish').attr('src', finishImg );
+        $registerForm.find('#product-color-var.chromes').addClass('active');
+        $registerForm.find('#product-color-var.mattes').removeClass('active');
+      }
+    }
+    if(response.product_id == 2){
+      $registerForm.find('.step_color').remove();
+      // color image
+      var imgBtl = response.variant.image;
+      var imgfull = imgBtl.split('.png');
+      var imgSm = imgfull[0] + '_300x.png';
+      $registerForm.find('.reg-btl-img').not('.btl-finish').attr('src', imgSm);
+      
+      
+    }
+  }
+  
+ // chose Color
+  $('#registration-modal__form #product-color-var li').click(function(){
+    var $this = $(this);
+    if($this.hasClass('var-active')){
+    }else{
+      $('#poduct-color-var li').removeClass('var-active');
+      $this.addClass('var-active');
+      $('#registration-modal__form .reg-btl-img').attr('src', $this.attr('image'));
+      $('#registration-modal__form #product_variant').val($this.attr('data-id'));
+    }
+  });
+  
+  //color next
+  $('.registration-modal__page.step_color .registration-modal__btn-next').click(function(){
+    var $this = $(this);
+    if($('#registration-modal__form #product_variant').val() == ''){
+      $('#registration-modal__form .registration-modal__message span').text('Please select color');
+    }else{
+      $('#registration-modal__form .registration-modal__message span').text('');
+      regProcessNext($this);
+    }
+  
+  });
+  
+  // register bottle nickname
+  $('.registration-modal__page.step-nickname .registration-modal__btn-next').click(function(){
+    $('#registration-modal__form .registration-modal__message span').text('');
+    var $this = $(this);
+    var nickName = $('#bottle-registration-nickname').val().toUpperCase();
+    if(nickName == ''){
+      return false;
+    }else{
+      var names = $('#btl-names').val().toUpperCase().split(','); 
+      if(names.indexOf(nickName) == -1) {
+        regProcessNext($this);
+      }else{
+        $('#registration-modal__form .registration-modal__message span').text('Dublicate bottle name');
+      }
+    }
+    
+  });
+  
+    // back button register bottle
+  $('.registration-modal__page .registration-modal__btn-alt').click(function(){
+    var $this = $(this);
+     var step = $this.parents('.registration-modal__page').attr('data-step');
+      if(step == 4){
+        $('.registration-modal__progress .process-3').removeClass('active');
+        $('.registration-modal__progress').removeClass('pg100');
+      }else{
+       $('.registration-modal__progress .process-2').removeClass('active');
+        $('.registration-modal__progress').removeClass('pg50');
+      }    
+      $(this).parents('.registration-modal__page').fadeOut('fast');
+      $(this).parents('.registration-modal__page').prev('.registration-modal__page').slideUp( 300 ).delay( 300 ).fadeIn('slow');  
+  });
+ // register btl process nextnext
+  function regProcessNext($this){
+     var step = $this.parents('.registration-modal__page').attr('data-step');
+      if(step <= 2){
+          $('.registration-modal__progress').addClass('pg50');
+          $('.registration-modal__progress .process-2').addClass('active');
+      }else{
+       $('.registration-modal__progress').addClass('pg100'); 
+       $('.registration-modal__progress .process-3').addClass('active');
+      }
+     $this.parents('.registration-modal__page').fadeOut('fast');
+     $this.parents('.registration-modal__page').next('.registration-modal__page').slideUp( 300 ).delay( 300 ).fadeIn('slow');    
+  }
+  
+  // set hydration
+  $('.step-usage #bottle-registration-days-per-week').change(function(){
+    var $this = $(this);
+    if($this.val() > 6){
+      $this.removeClass('low');
+      $this.removeClass('poor');
+      $('.registration-modal__input-warning span.hydration-text').text('Super Hydration level!');
+      $('.registration-modal__input-warning span.hydration-text').parents('#reg-hl').removeClass();
+      $('.registration-modal__input-warning span.hydration-text').parents('#reg-hl').addClass('good');
+    }else if(($this.val() > 4) && ($this.val() <= 6)){
+      $this.removeClass('poor');
+      $this.addClass('low');
+      $('.registration-modal__input-warning span.hydration-text').text('Low Hydration');
+      $('.registration-modal__input-warning span.hydration-text').parents('#reg-hl').removeClass();
+      $('.registration-modal__input-warning span.hydration-text').parents('#reg-hl').addClass('low');     
+    }else{
+         $this.removeClass('low');
+         $this.addClass('poor');
+      $('.registration-modal__input-warning span.hydration-text').text('Poor Hydration');
+        $('.registration-modal__input-warning span.hydration-text').parents('#reg-hl').removeClass();
+        $('.registration-modal__input-warning span.hydration-text').parents('#reg-hl').addClass('poor');      
+    }
+  });
+  
+  // register bottle
+  $('.registration-modal__done').click(function(){
+    $('#registration-modal__form .registration-modal__message span').text('');
+    var $this = $(this);
+    var processRegister = true;
+    var onProcess = true;
+    if($this.hasClass('btn-disable'))
+    {
+      onProcess = false;
+      return false;
+    }
+    $this.addClass('btn-disable');
+    $this.prop('disable', true);
+    var $registerForm = $('#registration-modal__form');
+    $('#registration-modal__form .required').each(function(){
+      if($(this).val() == ''){
+          $this.removeClass('btn-disable')
+          $registerForm.find('.registration-modal__message span').text('Please Fill All fields');
+          processRegister = false;
+          return false;
+        }
+    });
+    if(processRegister && onProcess){
+      var data = $registerForm.serialize();
+      var cUrl = '/a/dyl/'+CustomerShopifyId+'/regi-my-bottle';
+      $.ajax({
+        url: cUrl,
+        type: 'GET',
+        data: data,
+        dataType: 'json',
+        success: function (response) {
+          if(!response){
+            //console.log('not found');
+          }else{
+            //console.log(response);
+            $('.registration-modal__page-title i').text(response.nickname);
+            $('registration-modal__page-txt.replace-date span').text(response.replace_date);
+            $('.registration-modal__page.step-thanks .registration-modal__btn-final').attr('data-id', response.id);
+            regProcessNext($this);
+          }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log(textStatus, errorThrown);
+        }
+      });      
+    }
+  });
+  
+  function getTwoDigitDateFormat(monthOrDate) {
+  return (monthOrDate < 10) ? '0' + monthOrDate : '' + monthOrDate;
+  }
+
+  // date picket
+  var todayDateTime = new Date();
+  var twoDigitDate = getTwoDigitDateFormat(todayDateTime.getDate());
+  var twoDigitMonth = getTwoDigitDateFormat(todayDateTime.getMonth() + 1);
+
+  var currentDate = todayDateTime.getFullYear() + "-" + twoDigitMonth + "-" + twoDigitDate;
+  var currentDateD = twoDigitDate + "/" + twoDigitMonth + "/" + todayDateTime.getFullYear();
+  $('#purchase_date').datepicker({ 
+    maxDate: currentDate,
+    dateFormat: 'yy-mm-dd'
+  });
+  
+  $('#dif-update-date-now').val(currentDateD); 
+  $('#dif-update-date-now').datepicker({
+    maxDate: currentDateD,
+    dateFormat: 'dd/mm/yy'
+  });
+  
+  // Phone number 
+  var inputP = document.querySelector("#bottle-registration--phone");
+  window.intlTelInput(inputP, {
+    // any initialisation options go here
+    Type: true,
+    initialCountry: CustomerCountry
+  });
+  
+  // register thanks
+  $('.registration-modal__page.step-thanks .registration-modal__btn-final').click(function(){
+    $('#registration-modal__form .registration-modal__message span').text('');
+    var $this = $(this);
+    if($this.hasClass('btn-disable')){
+      location.reload(true);
+    }else{
+      // Save Phone
+      $this.removeClass('btn-disable');
+      if($('#bottle-registration--phone').val() !=''){
+        var phone = $('#bottle-registration--phone').val();
+        var btlID = $this.attr('data-id');
+        AddPhoneToBottle(btlID, phone);
+      }else{
+        $('#registration-modal__form .registration-modal__message span').text('Please Enter Phone Nuimber');
+      }      
+      
+    }
+  });
+  
+  $('.registration-modal__page .registration-modal__cancel').click(function(){
+    location.reload(true);
+  });
+  // function add phone to bottle
+  function AddPhoneToBottle(id, phone){
+      var cUrl = '/a/dyl/'+CustomerShopifyId+'/regi-my-bottle-phone';
+      var data = {'id': id, 'bottle_phone': phone };
+      $.ajax({
+        url: cUrl,
+        type: 'GET',
+        data: data,
+        dataType: 'json',
+        success: function (response) {
+          if(!response){
+            //console.log('not found');
+          }else{
+            //console.log(response);
+            location.reload(true);
+          }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log(textStatus, errorThrown);
+        }
+      });
+  }
+  
+  // Delete Bottle
+  $('.account-bottle__button-delete').click(function(){
+    var $this = $(this); 
+    if (confirm('Are you sure ? You Like to Delete')) {
+      var btlID = $this.attr('data-id');
+      DeleteBottle(btlID);
+    }
+  });  
+  function DeleteBottle(id){
+      var cUrl = '/a/dyl/'+CustomerShopifyId+'/delete-bottle';
+      var data = {'btl_id': id };
+      $.ajax({
+        url: cUrl,
+        type: 'GET',
+        data: data,
+        dataType: 'json',
+        success: function (response) {
+          if(response.success){
+            location.reload(true);
+          }else{
+      //console.log('not found');
+          }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log(textStatus, errorThrown);
+        }
+      });    
+  }
+  
+  // Update Bottle
+  $('.account-bottle__edit-update').click(function(){
+    var $this = $(this);
+    if($this.hasClass('btn-disable')){
+    
+    }else{
+    var btlID = $this.attr('data-id'); 
+    var $WrapEdit = $('.account-bottle__edit');
+    var day = $WrapEdit.find('.register-day').val();
+    var month = $WrapEdit.find('.register-month').val();
+    var year = $WrapEdit.find('.register-year').val();
+    var sDate = year +'-'+month+'-'+day;
+    var refil_per_day = $WrapEdit.find('.refil-per-day').val();
+    var refil_per_week = $WrapEdit.find('.refil-per-week').val();
+      var data = {'btl_customer': CustomerShopifyId, 'btl_id': btlID,'refill_start_date': sDate, 'days_used': refil_per_week, 'refill_frequency': refil_per_day};
+      UpdateBottle(data);
+    }
+    //console.log("New date: "+sDate+" refil_per_day: "+refil_per_day+ " refil_per_week: "+refil_per_week );
+  });
+    
+  function UpdateBottle(data){
+      var cUrl = '/a/dyl/'+CustomerShopifyId+'/update-bottle';
+      var data = data;
+      $.ajax({
+        url: cUrl,
+        type: 'GET',
+        data: data,
+        dataType: 'json',
+        success: function (response) {
+          //console.log(response);
+          if(response.success){
+            location.reload(true);
+          }else{
+      //console.log('not found');
+          }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log(textStatus, errorThrown);
+        }
+      });  
+  }
+  
+  $('.account-bottle__edit #bottle-registration-days-per-week').on('change', function(){
+    var $this = $(this);
+    var $lab = $(this).next('.registration-modal__input-warning').find('.h-level');
+    if($this.val() > 6){
+      $this.removeClass('low');
+      $this.removeClass('poor');
+      $lab.text('Super Hydration!');
+      $lab.parents('#h-level-wrap').removeClass();
+      $lab.parents('#h-level-wrap').addClass('good');
+    }else if(($this.val() > 4) && ($this.val() <= 6)){
+      $this.removeClass('poor');
+      $this.addClass('low');      
+      $lab.text('Low Hydration');
+      $lab.parents('#h-level-wrap').removeClass();
+      $lab.parents('#h-level-wrap').addClass('low');    
+    }else{
+      $this.removeClass('low');
+      $this.addClass('poor');      
+      $lab.text('Poor Hydration');
+      $lab.parents('#h-level-wrap').removeClass();
+      $lab.parents('#h-level-wrap').addClass('poor');      
+    }
+  });
+  
+  $('#bottle-registration-refills, #bottle-registration-refills-edit').on('change', function(){
+    var $this = $(this);
+    if($this.val() >= 3){
+      $this.removeClass('low');
+      $this.removeClass('poor');    
+    }else if($this.val() == 2){
+      $this.removeClass('poor');
+      $this.addClass('low');     
+    }else{
+      $this.removeClass('low');
+      $this.addClass('poor');    
+    }
+  });
+  
+  $('#bottle-registration-exercise').on('change', function(){
+    var $this = $(this);
+    if($this.val() >= 5){
+      $this.removeClass('low');
+      $this.removeClass('poor');    
+    }else if($this.val() > 2 && $this.val() < 5){
+      $this.removeClass('poor');
+      $this.addClass('low');     
+    }else{
+      $this.removeClass('low');
+      $this.addClass('poor');    
+    }  
+  });
+  
+ // update deffuser now
+  $('.btn-update-now').click(function(){
+    var $this = $(this);
+    if($this.hasClass('update-dif')){
+      // process updatae
+      $this.text('Updating...');
+    }else{
+      $this.addClass('update-dif');
+      $this.parents('.dif-update-now').find('.account-bottle__time-diffuser').fadeOut('fast');
+      $this.parents('.dif-update-now').find('.dif-date-select').fadeIn('slow');
+      $this.parents('.dif-update-now').find('.dif-date-select input').focus();
+      $this.text('Update');
+    }
+  });
+  $('#dif-update-date-now').on('change', function(){
+    var $this = $(this);
+    var $Btn = $this.parents('.dif-update-now').find('.btn-update-now');
+    $Btn.text('Updating...');
+    var data = { 'id': $Btn.attr('data-id'), 'date': $this.val() };
+    ReplaceDiffuser(data);
+  });
+  
+  // show thank you
+  function showThankYou(obj){
+    console.log(obj);
+    $('.account-bottle.popup .account-bottle__body').fadeOut('fast');
+    $('.account-bottle.popup .thank-you').delay(300).fadeIn('slow');
+  }
+  // go to update
+  $('.go-update').click(function(){
+    $('.account-bottle.popup .thank-you').fadeOut('fast');
+    $('.account-bottle.popup .account-bottle__edit').delay(300).fadeIn('slow');
+  });
+  // no thanks
+  $('.reload-exit').click(function(){
+    location.reload(true);
+  });
+  
+  // replace diffuder data
+  function ReplaceDiffuser(Data){
+    console.log(Data);
+      var cUrl = '/a/dyl/'+CustomerShopifyId+'/replace-dif';
+      var data = Data;
+      $.ajax({
+        url: cUrl,
+        type: 'GET',
+        data: data,
+        dataType: 'json',
+        success: function (response) {
+          //console.log(response);
+          if(!response){
+            
+          }else{
+            BottleDetails(response);
+            showThankYou(response);
+      
+          }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log(textStatus, errorThrown);
+        }
+      });    
+  }
+  
+  
+  // Profile edit button
+  $('button.account-profile__edit.profile-edit').click(function(){
+    $('.customer-edit-profile').fadeIn();
+    scrollBottom();
+  });
+  
+  //edit-profile--phone
+  var inputE = document.querySelector("#edit-profile--phone");
+  var iti = window.intlTelInput(inputE, {
+    // any initialisation options go here
+    separateDialCode: true,
+    initialCountry: CustomerCountry,
+    formatOnDisplay: true,
+    utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.min.js'
+  });
+  $("#edit-profile--phone").on('focusout', function(){
+    var $this = $(this);
+    if(iti.isValidNumber()){
+      //console.log('Valid Number: ' + iti.getNumber());
+      $this.next('span').remove();
+      $('#customer_phone').val(iti.getNumber());
+    }else{
+      //console.log('InValid Number: ' + iti.getNumber());
+      $this.after('<span class="phone-error">Invalid Number</span>');
+      $('#customer_phone').val('');
+      $this.focus();
+    }
+  });
+  // change gender
+  $('.account-edit__input-wrap input[name="gender"]').on('change', function(){
+    //console.log($(this).val());
+    $('#customer-gender').val($(this).val());
+  });
+  // profile next
+  $('.profile-edti-btn-next').click(function(){
+    var $this = $(this);
+    var $parent = $this.parents('.step');
+    $('.account-form-message').text('');
+    // check all requird fields
+    var next = true;
+    $parent.find('.required').each(function(){
+      if($(this).val() == ''){
+        //console.log($(this));
+        next = false;
+        $('.account-form-message').text('Please fill' + $(this).attr('id'));
+        return false;
+      }
+    });
+    if(next){
+      var step = $this.parents('.step').attr('data-step');
+      if(step == 1){
+        $('.profile-pg').addClass('pg50');
+        $('.profile-pg .pg2').addClass('active');        
+      }else{
+        $('.profile-pg').addClass('pg100');
+        $('.profile-pg .pg3').addClass('active');      
+      }
+      $this.parents('.step').fadeOut('fast');
+      $this.parents('.step').next('.step').delay(500).fadeIn('slow');
+    }
+    
+  });
+  // profile back
+  $('.profile-edti-btn-back').click(function(){
+    var $this = $(this);
+      var step = $this.parents('.step').attr('data-step');
+      if(step == 3){
+        $('.profile-pg').removeClass('pg100');
+        $('.profile-pg').addClass('pg50');
+        $('.profile-pg .pg3').removeClass('active');        
+      }else{
+        $('.profile-pg').removeClass('pg50');
+        $('.profile-pg .pg2').removeClass('active');     
+      }    
+    $('.account-form-message').text('');
+      $this.parents('.step').fadeOut('fast');
+      $this.parents('.step').prev('.step').delay(500).fadeIn('slow');    
+  });
+  
+  // profile cancle
+  $('.profile-edti-btn-cancle').click(function(){
+    $(this).parents('.popup').fadeOut();
+  });
+  
+  // Profile done
+  $('.step_interest .profile-edti-btn-done').click(function(){
+    var $this = $(this);
+    $('.account-form-message').text('');
+    if($this.hasClass('btn-disable')){
+    }else{
+      $this.addClass('btn-disable');
+      // check all intetests
+      var interests = [];
+      var processSubmit = false;
+      $('.step_interest input[name="interests"]').each(function(){
+        if($(this).is(':checked')){
+          interests.push($(this).val());
+        }
+      });
+      
+      //console.log(interests); 
+      if(interests.length >= 3){
+      // process submit
+        var $wrap = $('.customer-edit-profile.popup');
+        var cPhone = $wrap.find('#customer_phone').val(); 
+        var cDob = $wrap.find('select[name="year"]').val()+'-'+$wrap.find('select[name="month"]').val()+'-'+$wrap.find('select[name="day"]').val();
+        var cGender = $wrap.find('#customer-gender').val();
+        var cWeight = $wrap.find('#body-weight-lab').val();
+        var cHeight = $wrap.find('#body-height-feet').val();
+        var cExercise = $wrap.find('input[name="exercise"]').val();
+        var cInterests = interests.toString();
+        var cData = {
+          'phone': cPhone, 
+          'birth_day': cDob, 
+          'gender': cGender, 
+          'weight': cWeight, 
+          'height': cHeight, 
+          'exercise_per_week': cExercise, 
+          'interests': cInterests
+        };
+        
+        UpdateCustomerProfile(cData);
+        
+      }else{
+        $('.account-form-message').text('Please Select 3+ Interests');
+        $this.removeClass('btn-disable');
+      }
+    }
+  });
+  
+  // Customer Info
+    var urlToRequest = '/a/dyl/'+CustomerShopifyId+'/all-info';
+    $.ajax({
+      url: urlToRequest,
+      type: 'GET',
+      dataType: 'json',
+      success: function (response) {
+        console.log(response);
+        DisplayCustomerInfo(response);
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log(textStatus, errorThrown);
+      }
+    });
+  
+  // function update customer info
+  function UpdateCustomerProfile(Data){
+    var urlToRequest = '/a/dyl/'+CustomerShopifyId+'/customer-profile-update';
+    $.ajax({
+      url: urlToRequest,
+      type: 'GET',
+      data: Data,
+      dataType: 'json',
+      success: function (response) {
+       // console.log(response);
+        if(response.success){
+          location.reload(true);
+        }else{
+          $('.account-form-message').text('Something Wrong Please refresh and try again');
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log(textStatus, errorThrown);
+      }
+    });   
+  }
+  
+  // display profile inforamtions
+  function DisplayCustomerInfo(data){
+   
+    var $wrap = $('.customer-edit-profile.popup');
+    if(!data.birthday){
+      $('.account-profile__info.birth-day span').text('');
+    }else{
+      var Dob = data.birthday.split('-');  
+      $wrap.find('select[name="year"]').val(Dob[0]).change();
+      $wrap.find('select[name="month"]').val(Dob[1]).change();
+      $wrap.find('select[name="day"]').val(Dob[2]).change();
+      $('.account-profile__info.birth-day span').html(Dob[2]+'/'+Dob[1]+'/'+Dob[0]);
+    }
+    $wrap.find('#customer_phone').val(data.phone);
+    if(!data.gender){
+      $('.account-profile__info.gender').text('');
+    }else{
+     $('.account-profile__info.gender').text(data.gender); 
+     $wrap.find('#customer-gender').val(data.gender);
+      if(data.gender == 'Male'){
+        $wrap.find('#gender-male').click();
+      }else{
+        $wrap.find('#gender-female').click();
+      }
+    }
+    if(!data.weight){
+      
+    }else{
+      var cWeight = data.weight.split('-');
+      $wrap.find('#body-weight-lab').val(data.weight);
+      $wrap.find('.bod-weight span').html('Weight: '+cWeight[0] +' '+cWeight[1]);
+      $wrap.find('.bod-weight').attr('data-val', data.weight);
+      $('.account-profile__info.weight span').html(cWeight[0] +' '+cWeight[1]);    
+    } 
+    
+    if(!data.height){
+      $('.account-profile__info.height span').text('');
+    }else{
+      var cHeight = data.height.split('-'); 
+      $wrap.find('#body-height-feet').val(data.height);
+      $wrap.find('.bod-height span').html('Height: '+cHeight[0] +'\''+cHeight[1]+'"');
+      $wrap.find('.bod-height').attr('data-val', data.height);
+      $('.account-profile__info.height span').html(cHeight[0]+"'"+cHeight[1]+'"');
+    }    
+    $wrap.find('input[name="exercise"]').val(data.exercise_per_week);
+    
+    // set all interests
+    if(!data.interests){
+    }else{
+      var cInterests = data.interests.split(',');
+      for (i = 0; i < cInterests.length; ++i) {
+    $('.step_interest input[name="interests"][value="'+cInterests[i]+'"]').click();
+      }
+    }
+    
+    // set Notifications
+    if(data.notification.email_diffuser_replacement == 1){
+      $('.account-profile__checkbox-wrap').find('#diffuser-replacement').prop( "checked", true );
+    }
+    if(data.notification.email_bottle_update == 1){
+      $('.account-profile__checkbox-wrap').find('#update-notification').prop( "checked", true );
+    }
+
+    if(data.notification.newsletter == 1){
+      $('.account-profile__checkbox-wrap').find('#newsletter').prop( "checked", true );
+    }     
+    
+  }
+  
+  
+  // Update Email settings
+  function UpdateNotify(Data){
+    var urlToRequest = '/a/dyl/'+CustomerShopifyId+'/update-notification';
+    $.ajax({
+      url: urlToRequest,
+      type: 'GET',
+      data: Data,
+      dataType: 'json',
+      success: function (response) {
+       //console.log(response);
+        if(response.success){
+          $('.account-profile__checkbox-wrap input[type="checkbox"]').prop('disabled', false);
+        }else{
+          
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log(textStatus, errorThrown);
+      }
+    });  
+  }
+  $('.account-profile__checkbox-wrap input[type="checkbox"]').on('change', function(){
+    var $this = $(this);
+    var $form = $this.parents('form');
+    var Data = $form.serialize();
+    //console.log(Data);
+    $('.account-profile__checkbox-wrap input[type="checkbox"]').attr('disabled', 'disabled');
+    UpdateNotify(Data);
+    
+  });
+  
+/*========================== Reset Password ========================= */
+  $('.account-profile__update-password').click(function(){
+    $('.reset-password-pop').fadeIn();
+    $('.account-edit__inner #ResetPassword').val('');
+    $('.account-edit__inner #PasswordConfirmation').val('');    
+  });
+  
+  //
+  $('#reset-pass-btn').click(function(){
+    var $this = $(this);
+    var $Form = $this.parents('form');
+    if(($Form.find('#ResetPassword').val() != '') && ($Form.find('#ResetPassword').val() == $Form.find('#PasswordConfirmation').val())){
+      // process 
+      var urlToRequest = '/a/dyl/'+CustomerShopifyId+'/update-pass';
+      var Data = $Form.serialize();
+      $.ajax({
+        url: urlToRequest,
+        type: 'GET',
+        data: Data,
+        dataType: 'json',
+        success: function (response) {
+          //console.log(response);
+          if(response.success){
+            
+          }else{
+
+          }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log(textStatus, errorThrown);
+        }
+      });      
+      return false;
+    }
+  });
+  
+// Customer contact info edit
+  $('.account-profile__edit.edit-contact').click(function(){
+    $('.account-edit.profile-contact-pop').fadeIn();
+    scrollBottom();
+  });
+  
+  //edit-profile--phone
+  var inputCE = document.querySelector("#profile-contact-phone");
+  var iti = window.intlTelInput(inputCE, {
+    // any initialisation options go here
+    separateDialCode: true,
+    initialCountry: CustomerCountry,
+    formatOnDisplay: true,
+    utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.min.js'
+  });  
+
+  $("#profile-contact-phone").on('focusout', function(){
+    var $this = $(this);
+    if(iti.isValidNumber()){
+      //console.log('Valid Number: ' + iti.getNumber());
+      $this.next('span').remove();
+      $('#customer_phone_contact').val(iti.getNumber());
+    }else{
+      //console.log('InValid Number: ' + iti.getNumber());
+      $('#customer_phone_contact').val('');
+      $this.focus();
+    }
+  });
+  
+// edit profile update
+  $('#profile-contact-btn').click(function(){ 
+   var $this = $(this);
+    if($this.hasClass('btn-disable')){
+    }else{
+    var $Form = $this.parents('form');
+    var submit = true;
+    $Form.find('.required').each(function(){
+      if($(this).val() == ''){
+        submit = false;
+        return false;
+      }
+    });
+    if(submit){
+      var urlToRequest = '/a/dyl/'+CustomerShopifyId+'/update-contact';
+    var Data = $Form.serialize();
+      $.ajax({
+        url: urlToRequest,
+        type: 'GET',
+        data: Data,
+        dataType: 'json',
+        success: function (response) {
+          if(!response){
+            
+             }else{
+             location.reload(true);
+             }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log(textStatus, errorThrown);
+        }
+      });    
+    }
+    }
+    
+  });
+  
+  // address section  
+  $('.account-profile__button-add.open-address-pop').click(function(){
+    $('.account-edit.address-new-pop').fadeIn();
+    scrollBottom();
+  });  
+    
+  
+  // address field set
+  $('.address-field').each(function(){
+    var $this = $(this);
+    if($this.attr('data-default') !=''){
+    $this.val($this.attr('data-default')).change();
+      //console.log('Country: '+ $this.attr('data-default'));
+    }
+  });
+  
+  $('.address-field').on('change', function(){      
+       var $from= $(this).parents('form');       
+       var provinces = JSON.parse($(this).find('option:selected').attr('data-provinces'));
+       //console.log(provinces.length);
+       if(provinces.length == 0){
+        $from.find('.province-field').addClass('vs-hidden'); 
+       }else{
+         //console.log(provinces);
+         var $provinceField = $from.find('.province-field');
+         $provinceField.empty();
+         jQuery.each(provinces, function(i, v){
+          $provinceField.append('<option value="'+v[0]+'">'+v[1]+'</option');
+         });
+         $from.find('.province-field').removeClass('vs-hidden');
+       }
+  });
+  // set province field
+  $('.province-field').each(function(){
+    if($(this).attr('data-default') !=''){
+      $(this).val($(this).attr('data-default')).change();
+      $(this).removeClass('vs-hidden');
+    }else{
+      $(this).addClass('vs-hidden');
+    }
+  });
+// update uddress
+  $('.update-address').click(function(){
+    $('.address-edit-pop span.address-form-message').text('');
+    var $this = $(this);
+    var btnText = $this.text();
+    $this.text('Updating...');
+    if($this.hasClass('btn-disable')){
+      
+    }else{
+      $this.addClass('btn-disable');
+        var submit = true;
+      $this.parents('form').find('.required').each(function(){
+        if($(this).val() == ''){
+            $('.address-edit-pop span.address-form-message').text('Please Fill required Fields');
+            $(this).focus();
+            $this.removeClass('btn-disable');
+            $this.text(btnText);
+            submit = false;
+          return false;
+        }
+      });
+      if(submit){
+        var Data = $this.parents('form').serialize();
+        var url = $this.parents('form').attr('action');
+        addEditAddress(Data, url);
+      }
+    }
+    
+  });
+// edit Address
+  function addEditAddress(Data, url){
+    var urlToRequest = url;
+      $.ajax({
+        url: urlToRequest,
+        type: 'POST',
+        data: Data,
+        success: function (response) {
+          location.reload(true);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log(textStatus, errorThrown);
+        }
+      });     
+  }
+  
+  // edit address 
+  $('.account-profile__edit.edit-address').click(function(){
+  var $this = $(this);
+    var $formWrap= 'edit_address_'+$this.attr('data-id');
+    $('.customer_address.edit_address').fadeOut();
+    $('.address-edit-pop').find('#'+$formWrap).fadeIn();
+    $('.address-edit-pop').fadeIn();
+    scrollBottom();
+  });
+  
+// add address
+  $('.add-new-address').click(function(){
+    $('.address-new-pop span.address-form-message').text('');
+    var $this = $(this);
+    var btnText = $this.text();
+    $this.text('Adding...');
+    if($this.hasClass('btn-disable')){
+      
+    }else{
+      $this.addClass('btn-disable');
+        var submit = true;
+      $this.parents('form').find('.required').each(function(){
+        if($(this).val() == ''){
+            $('.address-new-pop span.address-form-message').text('Please Fill required Fields');
+            $(this).focus();
+            $this.removeClass('btn-disable');
+            $this.text(btnText);
+            submit = false;
+          return false;
+        }
+      });
+      if(submit){
+        var Data = $this.parents('form').serialize();
+        var url = $this.parents('form').attr('action');
+        addEditAddress(Data, url);
+      }
+    }
+    
+  });
+  
+// delete address
+  $('.account__button-delete.del-address').click(function(){
+    var $this = $(this);
+    if (confirm('Are you sure ? You Like to Delete')) {
+      var btlID = $this.attr('data-id');
+      DeleteAddress(btlID);
+    }  
+  });
+  
+  function DeleteAddress(ID){
+    var urlToRequest = '/account/addresses/'+ID;
+      $.ajax({
+        url: urlToRequest,
+        type: 'POST',
+        data: {'_method' : 'delete'},
+        success: function (response) {
+          location.reload(true);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log(textStatus, errorThrown);
+        }
+      });    
+  }
+  
+  //subscriptions
+  function getCustomerSubs(){
+      var checkUrlSub = '/a/dyl/'+CustomerShopifyId+'/get-subs'; 
+      $.ajax({
+        url: checkUrlSub,
+        type: 'GET',
+        dataType: 'json',
+        success: function (response) {
+            console.log('sub-data');
+      console.log(response);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log(textStatus, errorThrown);
+        }
+      });  
+  }
+ // update subscription
+  function ReUpdateSubs(Data){
+      var checkUrlSub = '/a/dyl/'+CustomerShopifyId+'/update-subs'; 
+      $.ajax({
+        url: checkUrlSub,
+        type: 'GET',
+        data: Data,
+        dataType: 'json',
+        success: function (response) {
+            console.log('Update-data');
+      console.log(response);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log(textStatus, errorThrown);
+        }
+      });    
+  }
+  
+  var Data = { 'subscription_id': '89009279', 'type': 'order_interval_frequency', 'val': '3' };
+  //ReUpdateSubs(Data);
+  
+ var mySwiper = undefined;
+
+// profile height weight
+  $('.account-edit__modal-option-btn').click(function(){
+    var $this = $(this);
+    $('.account-edit-option').fadeIn().delay( 500 );
+    if($this.hasClass('bod-weight')){
+      $('.account-edit-option #body-weight').fadeIn();
+      $('.account-edit-option .lab-weight').fadeIn();
+      var presentVal = $this.attr('data-val');
+      if(presentVal != ''){
+        var pV = presentVal.split('-');
+        var StartSlide = parseInt(pV[0]) - 20;
+        inItSlider('.account-edit-option #body-weight', 5, StartSlide);
+      }else{
+        inItSlider('.account-edit-option #body-weight', 5, 40);
+      }
+      
+    }else{
+      $('.account-edit-option #body-height').fadeIn();
+      $('.account-edit-option .lab-height').fadeIn();
+      var presentVal = $this.attr('data-val');
+      if(presentVal != ''){
+        var pS = presentVal.split('-');
+        //console.log(pS[0]);
+        var StSl= ((parseInt(pS[0]) * 12) + parseInt(pS[1])) - 36;
+        console.log(StSl);
+        inItSlider('.account-edit-option #body-height', 5, StSl);
+      }else{
+        inItSlider('.account-edit-option #body-height', 5, 44);
+      }
+          
+    }
+    
+    //inItSlider('.swiper-container', 5, 40);
+  });
+
+  function inItSlider(Class, PerView, StartSlide){
+  // selector
+    mySwiper = new Swiper(Class, {
+      slidesPerView: PerView,
+      direction: 'vertical',
+      centeredSlides: true,
+      spaceBetween: 2,
+    });  
+    mySwiper.slideTo(StartSlide, 0);  
+  }
+  
+  $('.account-edit-option__cancel').click(function(){
+     mySwiper.destroy();
+     mySwiper = undefined;
+    $('.account-edit-option').fadeOut();
+    $('.account-edit-option .swiper-container').fadeOut();
+    $('.account-edit-option .account-edit-option__label').fadeOut();
+  });
+  
+  // done click
+  $('.account-edit-option__body .account-edit-option__btn').click(function(){
+    if($('#body-weight').hasClass('swiper-container-initialized')){
+      //
+      var wVal = $('.swiper-slide-active').attr('data-val');
+      var wLab = $('.lab-weight button.active').text();
+      var wV = wVal+'-'+wLab;
+      //console.log(wVal);
+      $('.bod-weight span').text('Weight: '+wVal+wLab);
+      $('.bod-weight').attr('data-val', wV);
+      $('#body-weight-lab').val(wV);
+      
+    }else{
+      var hV = $('.swiper-slide-active').attr('data-val');
+      var hVal = hV.split('-');
+      //console.log(hV);
+      $('.bod-height span').text('Height: '+hVal[0]+'\''+hVal[1]+'"');
+      $('.bod-height').attr('data-val', hV);
+      $('#body-height-feet').val(hV);           
+    }
+     mySwiper.destroy();
+     mySwiper = undefined;
+    $('.account-edit-option').fadeOut();
+    $('.account-edit-option .swiper-container').fadeOut();
+    $('.account-edit-option .account-edit-option__label').fadeOut();    
+  });
+  
+  $('.lab-weight button').click(function(){
+    $('.lab-weight button').removeClass('active');
+    $(this).addClass('active');    
+  });
+  
+  $('.account-header__edit').click(function(){
+    $('.image-edit').fadeIn();
+  });  
+})
+</script>

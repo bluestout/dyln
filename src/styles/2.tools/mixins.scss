@@ -397,8 +397,8 @@
   }
 }
 
-@mixin animated-wave($time: 5000ms, $z-index: $z-base) {
-  @include transition(background-position $time ease);
+@mixin animated-wave($time: 6000ms, $z-index: $z-base) {
+  @include transition(background-position $time ease-out);
   position: absolute;
   left: 0;
   @if $z-index != 0 {

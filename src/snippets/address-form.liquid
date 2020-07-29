@@ -1,0 +1,157 @@
+<div class="account-edit address-new-pop address-form popup" style="display:none;">
+  <div class="account-edit__overlay"></div>
+  <div class="account-edit__inner">
+    <button type="button" class="account-bottle__close pop-close">
+      <span class="visually-hidden">Close modal</span>
+      <span aria-ignore="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><g stroke="#00AEDB" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M1.333 1.333L11 11M10.667 1.333L1 11"/></g></svg>
+      </span>
+    </button>
+    
+    <div class="account-edit-option__body reset-form-wrap">
+      <h3 class="registration-modal__title address-form-title" style="background-image:url('//cdn.shopify.com/s/files/1/0511/9421/t/224/assets/dyln-account-mobile-modal-bg-leaf-closeup.min.png?v=4898268988018323649');">{{ 'customer.addresses.add_new' | t }}<span class="address-form-message"></span></h3>      
+<div id="add_address" class="customer_address add_address col-md-12 col-sm-12">
+  <div class="address-fm-wrap">
+    {% form 'customer_address', customer.new_address %}
+    <div class="row" style="padding-bottom: 0px;">
+      <div class="col-md-6 col-sm-12 form-block">
+        <label for="address_first_name_new">{{ 'customer.addresses.first_name' | t }}</label>
+        <input type="text" id="address_first_name_new" class="address_form form-control required" name="address[first_name]" value="{{form.first_name}}" autocapitalize="words" placeholder="{{ 'customer.addresses.first_name' | t }}">
+      </div>
+
+      <div class="col-md-6 col-sm-12 form-block">
+        <label for="address_last_name_new">{{ 'customer.addresses.last_name' | t }}</label>
+        <input type="text" id="address_last_name_new" class="address_form form-control required" name="address[last_name]" value="{{form.last_name}}" autocapitalize="words" placeholder="{{ 'customer.addresses.last_name' | t }}">
+      </div>
+
+      <div class="col-md-6 form-block">
+        <label for="address_company_new">{{ 'customer.addresses.company' | t }}</label>
+        <input type="text" id="address_company_new" class="address_form form-control" name="address[company]" value="{{form.company}}" placeholder="Company" autocapitalize="words">
+      </div>
+      <div  class="col-md-6 col-sm-12 form-block" >
+        <label for="address_phone_new">{{ 'customer.addresses.phone' | t }}</label>
+        <input type="tel" id="address_phone_new" class="address_form form-control required" name="address[phone]" value="{{form.phone}}" placeholder="555-555-1234">
+      </div>
+      <div class="col-md-6 col-sm-12 form-block">
+        <label for="address_address1_new">{{ 'customer.addresses.address1' | t }}</label>
+        <input type="text" id="address_address1_new" class="address_form form-control required" name="address[address1]" value="{{form.address1}}" placeholder="{{ 'customer.addresses.address1' | t }}" autocapitalize="words">
+      </div>
+
+      <div class="col-md-6 col-sm-12 form-block">
+        <label for="address_address2_new">{{ 'customer.addresses.address2' | t }}</label>
+        <input type="text" id="address_address2_new" class="address_form form-control" name="address[address2]" value="{{form.address2}}" placeholder="{{ 'customer.addresses.address2' | t }}" autocapitalize="words">
+      </div>
+      <div class="col-md-6 col-sm-12 form-block">
+        <label for="address_country_new">{{ 'customer.addresses.country' | t }}</label>
+        <select class="form-control address-field" id="address_country_new" name="address[country]" data-default="{{customer.default_address.country}}">{{ country_option_tags }}</select>
+      </div>
+
+      <div id="address_province_container_new"  class="col-md-6 col-sm-12 form-block" style="">
+        <label for="address_province_new">{{ 'customer.addresses.province' | t }}</label>
+        <select id="address_province_new" class="address_form form-control province-field" name="address[province]" data-default="{{form.province}}"></select>
+      </div>
+      <div class="col-md-6 col-sm-12 form-block">
+        <label for="address_city_new">{{ 'customer.addresses.city' | t }}</label>
+        <input type="text" id="address_city_new" class="address_form form-control required" name="address[city]" value="{{form.city}}" placeholder="{{ 'customer.addresses.city' | t }}" autocapitalize="words">
+      </div>
+      <div  class="col-md-6 col-sm-12 form-block" >
+        <label for="address_zip_new">{{ 'customer.addresses.zip' | t }}</label>
+        <input type="text" id="address_zip_new" class="address_form form-control required" name="address[zip]" value="{{form.zip}}" placeholder="{{ 'customer.addresses.zip' | t }}" autocapitalize="characters">
+      </div>
+
+      <div  class="col-md-12 col-sm-12 form-block checkbox-padded" >
+        {{ form.set_as_default_checkbox }}
+        <span for="address_default_address_new" class="inline">{{ 'customer.addresses.set_default' | t }}</span>
+      </div>
+
+      <div class="col-md-12 col-sm-12 action_bottom" style="padding: 10px 0 0px">
+        <button class="btn btn-default action_button account-profile__button-add add-new-address" type="button">{{ 'customer.addresses.add' | t }}</button>
+      </div>
+    </div>
+    {% endform %}
+  </div>
+</div>      
+
+    </div>
+</div>
+</div>
+
+<div class="account-edit address-form address-edit-pop popup" style="display:none;">
+  <div class="account-edit__overlay"></div>
+  <div class="account-edit__inner">
+    <button type="button" class="account-bottle__close pop-close">
+      <span class="visually-hidden">Close modal</span>
+      <span aria-ignore="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><g stroke="#00AEDB" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M1.333 1.333L11 11M10.667 1.333L1 11"/></g></svg>
+      </span>
+    </button>
+    
+    <div class="account-edit-option__body reset-form-wrap">
+      <h3 class="registration-modal__title" style="background-image:url('//cdn.shopify.com/s/files/1/0511/9421/t/224/assets/dyln-account-mobile-modal-bg-leaf-closeup.min.png?v=4898268988018323649');">Edit Address <span class="address-form-message"></span></h3>
+{% for address in customer.addresses %}      
+<div id="edit_address_{{ address.id}}" class="customer_address edit_address col-md-12 col-sm-12" style="display:none">
+  <div class="address-fm-wrap">
+    {% form 'customer_address', address %}
+
+    <div class="row" style="padding-bottom: 0px;">
+      <div class="col-md-6 col-sm-12 form-block">
+        <label for="address_first_name_new">{{ 'customer.addresses.first_name' | t }}</label>
+        <input type="text" id="address_first_name_edit_{{ address.id}}" class="address_form form-control required" name="address[first_name]" value="{{form.first_name}}" autocapitalize="words" placeholder="{{ 'customer.addresses.first_name' | t }}">
+      </div>
+
+      <div class="col-md-6 col-sm-12 form-block">
+        <label for="address_last_name_new">{{ 'customer.addresses.last_name' | t }}</label>
+        <input type="text" id="address_last_name_{{ address.id}}" class="address_form form-control required" name="address[last_name]" value="{{form.last_name}}" autocapitalize="words" placeholder="{{ 'customer.addresses.last_name' | t }}">
+      </div>
+
+      <div class="col-md-6 form-block">
+        <label for="address_company_new">{{ 'customer.addresses.company' | t }}</label>
+        <input type="text" id="address_company_{{ address.id}}" class="address_form form-control" name="address[company]" value="{{form.company}}" placeholder="{{ 'customer.addresses.company | t }}" autocapitalize="words">
+      </div>
+      <div  class="col-md-6 col-sm-12 form-block" >
+        <label for="address_phone_new">{{ 'customer.addresses.phone' | t }}</label>
+        <input type="tel" id="address_phone_{{ address.id}}" class="address_form form-control required" name="address[phone]" value="{{form.phone}}" placeholder="555-555-1234">
+      </div>
+      <div class="col-md-6 col-sm-12 form-block">
+        <label for="address_address1_new">{{ 'customer.addresses.address1' | t }}</label>
+        <input type="text" id="address_address1_{{ address.id}}" class="address_form form-control required" name="address[address1]" value="{{form.address1}}" placeholder="{{ 'customer.addresses.address1' | t }}" autocapitalize="words">
+      </div>
+
+      <div class="col-md-6 col-sm-12 form-block">
+        <label for="address_address2_new">{{ 'customer.addresses.address2' | t }}</label>
+        <input type="text" id="address_address2_{{ address.id}}" class="address_form form-control" name="address[address2]" value="{{form.address2}}" placeholder="{{ 'customer.addresses.address2' | t }}" autocapitalize="words">
+      </div>
+      <div class="col-md-6 col-sm-12 form-block">
+        <label for="address_country_new">{{ 'customer.addresses.country' | t }}</label>
+        <select class="form-control address-field" id="address_country_{{ address.id}}" name="address[country]" data-default="{{form.country}}">{{ country_option_tags }}</select>
+      </div>
+
+      <div id="address_province_container_{{ customer.id }}"  class="col-md-6 col-sm-12 form-block" style="">
+        <label for="address_province_new">{{ 'customer.addresses.province' | t }}</label>
+        <select id="address_province_{{ customer.id }}" class="address_form form-control province-field" name="address[province]" data-default="{{form.province}}"></select>
+      </div>
+      <div class="col-md-6 col-sm-12 form-block">
+        <label for="address_city_new">{{ 'customer.addresses.city' | t }}</label>
+        <input type="text" id="address_city_{{ address.id}}" class="required address_form form-control" name="address[city]" value="{{form.city}}" placeholder="{{ 'customer.addresses.city' | t }}" autocapitalize="words">
+      </div>
+      <div  class="col-md-6 col-sm-12 form-block" >
+        <label for="address_zip_new">{{ 'customer.addresses.zip' | t }}</label>
+        <input type="text" id="address_zip_{{ address.id}}" class="required address_form form-control" name="address[zip]" value="{{form.zip}}" placeholder="{{ 'customer.addresses.zip' | t }}" autocapitalize="characters">
+      </div>
+
+      <div  class="col-md-12 col-sm-12 form-block" >
+        {{ form.set_as_default_checkbox }}
+        <span for="address_default_address_{{ address.id}}" class="inline">{{ 'customer.addresses.set_default' | t }}</span>
+      </div>
+
+      <div class="col-md-12 col-sm-12 action_bottom" style="padding: 10px 0 0px">
+        <button class="btn btn-default action_button account-profile__button-add update-address" type="button">Update</button>
+      </div>
+    </div>
+    {% endform %}
+  </div>
+</div>      
+{% endfor %}
+    </div>
+</div>
+</div>

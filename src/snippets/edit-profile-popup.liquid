@@ -1,0 +1,254 @@
+<div class="account-edit customer-edit-profile popup" style="display:none;">
+  <div class="account-edit__overlay"></div>
+  <div class="account-edit__inner">
+    <button type="button" class="account-edit__close pop-close">
+      <span class="visually-hidden">Close modal</span>
+      <span aria-ignore="true">
+        <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><g stroke="#00AEDB" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M1.333 1.333L11 11M10.667 1.333L1 11"/></g></svg>
+      </span>
+    </button>
+
+    <div class="account-edit__header">
+      <h3 class="registration-modal__title text-center" style="background-image:url('{{ 'dyln-account-mobile-modal-bg-leaf-closeup.min.png' | asset_url }}');">Enhanced Profile</h3>
+      <button type="button" class="account-edit__edit">
+        <span class="account-edit__edit-icon" aria-ignore="true">
+          <svg width="16" height="24" viewBox="0 0 16 24" xmlns="http://www.w3.org/2000/svg"><g stroke="#FFF" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linejoin="round" d="M11.387.838l3.608 2.083-10 17.32-3.713 2.355.105-4.438z"/><path stroke-linecap="square" d="M9.247 5.376l2.887 1.667"/></g></svg>
+        </span>
+        <span class="visually-hidden">Edit background</span>
+      </button>
+    </div>
+
+    <div class="registration-modal__progress edit profile-pg">
+      <span class="registration-modal__progress-point active"></span>
+      <span class="registration-modal__progress-point pg2"></span>
+      <span class="registration-modal__progress-point pg3"></span>
+    </div>
+	<div id="pof-wrap">
+    <div class="account-edit__page step_profile step" data-step="1">
+      <div class="registration-modal__phone-wrap">
+        <h4 class="account-edit__group-label">Phone Number</h4>
+        <input type="hidden" id="customer_phone" name="customer_phone" class="required" value="{{ customer.phone }}">
+        <div class="registration-modal__input-wrap phone">
+          <label for="profile-phone" class="visually-hidden">Phone Number</label>
+          <input type="phone" id="edit-profile--phone" class="registration-modal__input" value="{{ customer.phone }}"/>
+        </div>
+      </div>
+      <div class="registration-modal__date-wrap">
+        <h4 class="account-edit__group-label">Birthday</h4>
+        <span class="registration-modal__select-wrap">
+          <label for="bottle-registration-day" class="visually-hidden">Day</label>
+          <select name="day" id="bottle-registration-day" class="registration-modal__select required">
+            <option value="" disabled selected hidden>00</option>
+            {% for n in (1..31) %}
+            <option value="{% if n < 10 %}0{% endif %}{{ n }}">{% if n < 10 %}0{% endif %}{{ n }}</option>
+            {% endfor %}
+          </select>
+          <svg class="registration-modal__select-icon" width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
+        </span>
+        <span class="registration-modal__select-wrap">
+          <label for="bottle-registration-month" class="visually-hidden">Month</label>
+          <select name="month" id="bottle-registration-month" class="registration-modal__select required">
+            <option value="" disabled selected hidden>Month</option>
+            <option value="01">January</option>
+            <option value="02">February</option>
+            <option value="03">March</option>
+            <option value="04">April</option>
+            <option value="05">May</option>
+            <option value="06">June</option>
+            <option value="07">July</option>
+            <option value="08">August</option>
+            <option value="09">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+          </select>
+          <svg class="registration-modal__select-icon" width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
+        </span>
+        <span class="registration-modal__select-wrap">
+          <label for="bottle-registration-month" class="visually-hidden">Year</label>
+          <select name="year" id="bottle-registration-year" class="registration-modal__select required">
+            <option value="" disabled selected hidden>0000</option>
+            {% for n in (1940..2015) %}
+              <option value="{{ n }}">{{ n }}</option>
+            {% endfor %}
+          </select>
+          <svg class="registration-modal__select-icon" width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
+        </span>
+      </div>
+
+      <div class="account-edit__input-wrap">
+        <h4 class="account-edit__group-label">Biological gender</h4>
+        <input type="hidden" name="customer_genger" id="customer-gender" class="required" >
+        <input type="radio"
+          id="gender-male"
+          name="gender"
+          value="Male"
+          class="account-edit__radio "/>
+        <label for="gender-male" class="account-edit__label">Male</label>
+        <input type="radio"
+          id="gender-female"
+          name="gender"
+          value="Female"
+          class="account-edit__radio" />
+        <label for="gender-female" class="account-edit__label">Female</label>
+      </div>
+
+      <div class="registration-modal__navigation edit">
+        <button type="button" class="registration-modal__cancel profile-edti-btn-cancle">Cancel</button>
+        <button type="button" class="registration-modal__btn profile-edti-btn-next">Next</button>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+
+    <div class="account-edit__page step_body step" style="display:none" data-step="2">
+      <div class="account-edit__input-wrap">
+        <h4 class="account-edit__group-label">Body</h4>
+        <input class="required" type="hidden" name="body_weight" id="body-weight">
+        <input class="required" type="hidden" name="body_height_feet" id="body-height-feet">
+        <input type="hidden" name="body_height_inch" id="body-height-inch">
+        <button type="button" class="account-edit__modal-option-btn bod-weight">
+          <span>Weight</span>
+          <i aria-hidden="true">
+            <svg width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"></path></svg>
+          </i>
+        </button>
+		<button type="button" class="account-edit__modal-option-btn bod-height">
+          <span>height</span>
+          <i aria-hidden="true">
+            <svg width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"></path></svg>
+          </i>
+        </button>        
+      </div>
+
+      <div class="account-edit__input-wrap">
+        <h4 class="account-edit__group-label margin">Activity Level</h4>
+        <label class="registration-modal__page-txt" for="bottle-registration-refills">Days you exercise per week</label>
+        <div class="registration-modal__range-scale">
+          <span>1</span>
+          <span>2</span>
+          <span>3</span>
+          <span>4</span>
+          <span>5</span>
+          <span>6</span>
+          <span>7</span>
+        </div>
+        <input name="exercise" id="bottle-registration-exercise" class="registration-modal__refills-range primary required" type="range" min="1" max="7" step="1" />
+      </div>
+
+      <div class="registration-modal__navigation edit">
+        <button type="button" class="registration-modal__btn-alt profile-edti-btn-back">Back</button>
+        <button type="button" class="registration-modal__btn profile-edti-btn-next">Next</button>
+        <div>
+          <button type="button" class="registration-modal__cancel profile-edti-btn-cancle">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="account-edit__page step_interest step" style="display:none" data-step="3">
+      <h4 class="account-edit__group-label margin">Interests</h4>
+      <input type="hidden" name="customer_interests" class="required">
+      <div class="clearfix">
+        <div class="account-edit__image-checkbox-wrap">
+          <label class="account-edit__image-label" for="interests-workout-routines">Workout Routines</label>
+          <input type="checkbox"
+            id="interests-workout-routines"
+            name="interests"
+            value="1"
+            title="workout-routines"
+            class="account-edit__image-checkbox"
+            style="background-image:url({{ 'edit-account-workout-routines.png' | asset_url }})"/>
+        </div>
+
+        <div class="account-edit__image-checkbox-wrap">
+          <label class="account-edit__image-label" for="interests-sustainability">Sustainability</label>
+          <input type="checkbox"
+            id="interests-sustainability"
+            name="interests"
+            value="2"
+            title="sustainability"
+            class="account-edit__image-checkbox"
+            style="background-image:url({{ 'edit-account-sustainability.png' | asset_url }})"/>
+        </div>
+
+        <div class="account-edit__image-checkbox-wrap">
+          <label class="account-edit__image-label" for="interests-alkaline-recipes">Alkaline Recipes</label>
+          <input type="checkbox"
+            id="interests-alkaline-recipes"
+            name="interests"
+            value="3"
+            title="alkaline-recipes"
+            class="account-edit__image-checkbox"
+            style="background-image:url({{ 'edit-account-alkaline-recipes.png' | asset_url }})"/>
+        </div>
+
+        <div class="account-edit__image-checkbox-wrap">
+          <label class="account-edit__image-label" for="interests-nature">Nature</label>
+          <input type="checkbox"
+            id="interests-nature"
+            name="interests"
+            value="4"
+            title="nature"
+            class="account-edit__image-checkbox"
+            style="background-image:url({{ 'edit-account-nature.png' | asset_url }})"/>
+        </div>
+
+        <div class="account-edit__image-checkbox-wrap">
+          <label class="account-edit__image-label" for="interests-workout-routines-2">Workout Routines 2</label>
+          <input type="checkbox"
+            id="interests-workout-routines-2"
+            name="interests"
+            value="5"     
+            title="workout-routines-2"
+            class="account-edit__image-checkbox"
+            style="background-image:url({{ 'edit-account-workout-routines-2.png' | asset_url }})"/>
+        </div>
+
+        <div class="account-edit__image-checkbox-wrap">
+          <label class="account-edit__image-label" for="interests-sustainability-2">Sustainability 2</label>
+          <input type="checkbox"
+            id="interests-sustainability-2"
+            name="interests"
+            value="6"
+            title="sustainability-2"
+            class="account-edit__image-checkbox"
+            style="background-image:url({{ 'edit-account-sustainability-2.png' | asset_url }})"/>
+        </div>
+
+        <div class="account-edit__image-checkbox-wrap">
+          <label class="account-edit__image-label" for="interests-alkaline-recipes-2">Alkaline Recipes 2</label>
+          <input type="checkbox"
+            id="interests-alkaline-recipes-2"
+            name="interests"
+            value="7"     
+            title="alkaline-recipes-2"
+            class="account-edit__image-checkbox"
+            style="background-image:url({{ 'edit-account-alkaline-recipes-2.png' | asset_url }})"/>
+        </div>
+
+        <div class="account-edit__image-checkbox-wrap">
+          <label class="account-edit__image-label" for="interests-nature-2">Nature2 </label>
+          <input type="checkbox"
+            id="interests-nature-2"
+            name="interests"
+            title="8"     
+            value="nature-2"
+            class="account-edit__image-checkbox"
+            style="background-image:url({{ 'edit-account-nature-2.png' | asset_url }})"/>
+        </div>
+      </div>
+
+      <div class="registration-modal__navigation edit">
+        <button type="button" class="registration-modal__btn-alt profile-edti-btn-back">Back</button>
+        <button type="button" class="registration-modal__btn profile-edti-btn-done">Done!</button>
+        <div>
+          <button type="button" class="registration-modal__cancel profile-edti-btn-cancle">Cancel</button>
+        </div>
+      </div>
+    </div>
+    <div class="account-form-message"></div>
+    </div>
+  </div>
+</div>

@@ -23,7 +23,7 @@ const datasets = {
 const selectors = {
   header: "[data-section-type='header']",
   add: "[data-add-to-cart]",
-  addText: "[data-add-to-cart-loaded]",
+  addLoaded: "[data-add-to-cart-loaded]",
   addLoading: "[data-add-to-cart-loading]",
   remove: "[data-remove-item]",
   changeAjax: "[data-qty-change-ajax]",
@@ -319,10 +319,10 @@ function updateQuickCart(cart) {
           <span class="cart-drawer__payment cart-drawer__payment--amazon">
             <img src="${theme.imageUrls.logoAmazon}" alt="Amazon Pay" />
           </span>
-          <span class="cart-drawer__payment">
+          <span class="cart-drawer__payment cart-drawer__payment--googlepay">
             <img src="${theme.imageUrls.logoGooglePay}" alt="Google Pay" />
           </span>
-          <span class="cart-drawer__payment">
+          <span class="cart-drawer__payment cart-drawer__payment--paypal">
             <img src="${theme.imageUrls.logoPayPal}" alt="PayPal" />
           </span>
         </div>
@@ -335,11 +335,11 @@ function updateQuickCart(cart) {
 }
 
 function toggleAddingToCartAnimation($source, state) {
-  if (state && $source.length > 0) {
-    $source.find(selectors.addText).addClass(classes.hide);
+  if (state && $source.length > 0 && !$source.hasClass("geo")) {
+    $source.find(selectors.addLoaded).addClass(classes.hide);
     $source.find(selectors.addLoading).removeClass(classes.hide);
   } else {
-    $(selectors.addText).removeClass(classes.hide);
+    $(selectors.addLoaded).removeClass(classes.hide);
     $(selectors.addLoading).addClass(classes.hide);
   }
 }
@@ -473,6 +473,7 @@ function addToCartComplete(jqXHR, textStatus) {
   if (textStatus === "success") {
     $.getJSON("/cart.js", (json) => {
       returnCartIfNotEmpty(json);
+      toggleChatBubble(2);
       quickCartOpen(true);
     });
   } else if (
