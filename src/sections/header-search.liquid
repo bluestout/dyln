@@ -1,24 +1,24 @@
 {% if section.settings.search_enabled %}
-  <a class="header-search__main-link" href="#" data-header-link="6">
+  <button type="button" class="header-search__main-link" data-header-link="6">
     {% render 'icon-search' %}
-  </a>
+  </button>
 
   <div class="header-search" data-header-block="6">
     <div class="header-search__body">
       <div class="container">
         <form action="/search" method="get" role="search" class="header-search__form">
-          <label for="Search-{{ section_id }}" class="label-hidden">
+          <label for="Search-header-search" class="label-hidden">
             {{ 'general.search.placeholder' | t }}
           </label>
 
           <input type="search"
             class="header-search__input"
             name="q"
-            id="Search-{{ section_id }}"
-            value="{{ search.terms | escape }}"
+            id="Search-header-search"
             placeholder="{{ 'general.search.placeholder' | t }}"
             data-header-search-input
             tabindex="-1"
+            data-header-focus-in="6"
           />
 
           <button type="submit" class="header-search__submit" tabindex="-1">
@@ -26,6 +26,8 @@
             {% render 'icon-search' %}
           </button>
         </form>
+
+        <div class="main-search" data-header-search-results></div>
 
         {% if section.settings.s_pop_manual %}
           <div class="header-search__popular">
@@ -36,7 +38,7 @@
               {%- assign pop_terms = section.settings.s_pop_terms | split: ',' -%}
               {% for pop_term in pop_terms %}
                 {% assign s_term = pop_term | strip | strip_newlines | strip_html | replace: ' ', '+' | replace: '_', '+' | replace: '-', '+' %}
-                <a href='/search?q={{ s_term }}' class="header-search__pop-term">{{ pop_term }}</a>
+                <button type="button" class="header-search__pop-term" data-popular-term="{{ pop_term }}">{{ pop_term }}</button>
               {% endfor %}
             </div>
           </div>

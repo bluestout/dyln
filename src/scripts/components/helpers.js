@@ -14,6 +14,9 @@ const classes = {
 };
 
 function resizeImage(src, size) {
+  if (!src || !size) {
+    return "";
+  }
   // remove any current image size then add the new image size
   return src
     .replace(

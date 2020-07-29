@@ -49,7 +49,9 @@
                       {% if block.type == "illustration" and block_step_num == i %}
                         {% assign illustration_step = illustration_step | plus: 1 %}
                         {{ block.settings.illustrations_gif }}
-                        <p><span>{{ illustration_step }}.</span> {{ block.settings.illustration_content }}</p>
+                        {% if block.settings.illustration_content !== "" %}
+                          <p><span>{{ illustration_step }}.</span> {{ block.settings.illustration_content }}</p>
+                        {% endif %}
                       {% endif %}
 
                       {% if block.type == "illustration_footer" %}

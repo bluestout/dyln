@@ -747,5 +747,130 @@
         "label": "Chat Link Text"
       }
     ]
+  },
+  {
+    "name": "Search",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "search_q_products",
+        "label": "Show products?",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "search_q_page",
+        "label": "Show pages?",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "search_q_collection",
+        "label": "Show Collections?",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "search_q_article",
+        "label": "Show articles?",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "search_limit",
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "default": 5,
+        "label": "Result Limit"
+      },
+      {
+        "type": "select",
+        "id": "search_unavailable",
+        "label": "Show unavailable Products?",
+        "default": "last",
+        "options": [
+          {
+            "value": "show",
+            "label": "Show"
+          },
+          {
+            "value": "hide",
+            "label": "Hide"
+          },
+          {
+            "value": "last",
+            "label": "After other products"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "search_field_author",
+        "label": "Search the Author field?",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "search_field_body",
+        "label": "Search the content?",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "search_field_product_type",
+        "label": "Search product type?",
+        "default": true,
+        "info": "default"
+      },
+      {
+        "type": "checkbox",
+        "id": "search_field_tag",
+        "label": "Search tags?",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "search_field_title",
+        "label": "Search title?",
+        "default": true,
+        "info": "default"
+      },
+      {
+        "type": "checkbox",
+        "id": "search_field_barcode",
+        "label": "Search barcodes?",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "search_field_sku",
+        "label": "Search sku?",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "search_field_variant_title",
+        "label": "Search variant title?",
+        "default": true,
+        "info": "default"
+      },
+      {
+        "type": "checkbox",
+        "id": "search_field_vendor",
+        "label": "Search vendor?",
+        "default": true,
+        "info": "default"
+      },
+      {
+        "type": "range",
+        "id": "character_limit",
+        "label": "Character Limit",
+        "min": 30,
+        "max": 300,
+        "step": 10,
+        "default": 120
+      }
+    ]
   }
 ]

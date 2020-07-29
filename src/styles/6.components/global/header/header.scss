@@ -128,7 +128,7 @@
       position: absolute;
       top: 0;
       left: calc(-1 * (100% + 20px));
-      height: calc(100% - 80px);
+      height: calc(100% - 40px);
       width: 100%;
       background-color: $color-white;
       padding: 0;
@@ -215,3 +215,4 @@
 @import "./header-bottom";
 @import "./header-offset";
 @import "./cart-drawer";
+@import "./main-search";

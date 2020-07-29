@@ -2,10 +2,10 @@
 {%- capture mouth_title -%}{{ 'collections.filters.mouth' | t }}{%- endcapture -%}
 {%- capture color_title -%}{{ 'collections.filters.color' | t }}{%- endcapture -%}
 {%- capture guard_title -%}{{ 'collections.filters.guard' | t }}{%- endcapture -%}
-{%- assign collection_has_colors = true -%}
+{%- assign collection_has_colors = false -%}
 
-{%- for product in collection -%}
-  {%- for option in product.options_with_values -%}
+{%- for c_f_product in collection.products -%}
+  {%- for option in c_f_product.options_with_values -%}
     {%- if option.name == "Color" or option.name == "Sleeve Color" or option.name == "Sleeve" -%}
       {%- assign collection_has_colors = true -%}
       {%- break -%}

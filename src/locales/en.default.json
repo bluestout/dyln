@@ -58,7 +58,11 @@
         "other": "{{ count }} results for \"{{ terms }}\""
       },
       "no_results_html": "Please try a different search term or go back to the <a href=\"/\">homepage</a>.",
-      "no_results_for": "No results for "
+      "no_results_for": "No results for ",
+      "products": "Products:",
+      "collections": "Collections:",
+      "articles": "Articles:",
+      "pages": "Pages:"
     },
     "newsletter_form": {
       "newsletter_email": "Join our mailing list",

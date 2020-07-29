@@ -20,7 +20,7 @@ function nextArrow() {
     }
 
     sliderItemsWidth = sliderItemsWidth + $sliderItems.outerWidth();
-    $sliderWrapper.animate({scrollLeft: sliderItemsWidth}, 500);
+    $sliderWrapper.animate({ scrollLeft: sliderItemsWidth }, 500);
 }
 
 function prevArrow() {
@@ -30,7 +30,7 @@ function prevArrow() {
     }
 
     sliderItemsWidth = sliderItemsWidth - $sliderItems.outerWidth();
-    $sliderWrapper.animate({scrollLeft: sliderItemsWidth}, 500);
+    $sliderWrapper.animate({ scrollLeft: sliderItemsWidth }, 500);
 }
 
 function calculateMaxScroll() {
@@ -42,7 +42,7 @@ function calculateMaxScroll() {
 
 $(elements.nextArrow).on("click", nextArrow);
 $(elements.prevArrow).on("click", prevArrow);
-$(elements.sliderWrapper).swipeend(function(e, touch) {
+$(elements.sliderWrapper).swipeend(function (e, touch) {
 
     if ($(window).width() < 1024) {
         return false;
@@ -56,7 +56,7 @@ $(elements.sliderWrapper).swipeend(function(e, touch) {
         }
 
         sliderItemsWidth = sliderItemsWidth + 480;
-        $sliderWrapper.animate({scrollLeft: sliderItemsWidth}, 300);
+        $sliderWrapper.animate({ scrollLeft: sliderItemsWidth }, 300);
     }
 
     if (touch.direction === "right") {
@@ -65,7 +65,7 @@ $(elements.sliderWrapper).swipeend(function(e, touch) {
         }
 
         sliderItemsWidth = sliderItemsWidth - 480;
-        $sliderWrapper.animate({scrollLeft: sliderItemsWidth}, 300);
+        $sliderWrapper.animate({ scrollLeft: sliderItemsWidth }, 300);
     }
 });
 

@@ -20,6 +20,8 @@ import "../components/footer";
 import "../components/diffuser-modal";
 import "../components/custom-select";
 import "../components/contact-sidebar";
+import "../components/jquery.mobile-events";
+import "../components/custom-slider";
 
 import { focusHash, bindInPageLinks } from "@shopify/theme-a11y";
 
