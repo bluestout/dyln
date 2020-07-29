@@ -5,6 +5,11 @@
     @include font-header(bold);
     @include text(46px, 1.2, $color-white, 0.3px);
 
+    @include media-query($xl-down) {
+      @include text(30px, 1.2, $color-white, 0.3px);
+
+    }
+
     @include media-query($medium-down) {
       @include text(30px, 1.2, $color-theme-31, 0.3px);
       margin: 40px 0;

@@ -2,10 +2,10 @@
   <div class="container">
     <div class="row">
       <div class="po-on-the-go__container">
-        <div class="col-md-4">
+        <div class="col-md-3 col-lg-4">
           <h2>{{ section.settings.title }}</h2>
         </div>
-        <div class="col-md-8 d-flex justify-content-center align-items-center flex-wrap">
+        <div class="col-md-9 col-md-8 d-flex justify-content-center align-items-center flex-wrap">
           {% for block in section.blocks %}
             <div class="col-xs-12 col-md-3 text-center">
               {%- render 'responsive-image' with
