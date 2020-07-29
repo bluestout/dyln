@@ -30,6 +30,17 @@
 
   &__button-wire {
     @include button(wire, r, 2);
+
+    > span {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    > svg {
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 0 0 2px;
+    }
   }
 
   &__button-wire-alt {

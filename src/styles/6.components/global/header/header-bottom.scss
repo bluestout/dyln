@@ -3,9 +3,9 @@
   transition-delay: 200ms;
   position: fixed;
   left: 0;
-  bottom: -80px;
+  bottom: -40px;
   width: 100%;
-  height: 80px;
+  height: 40px;
   background-color: $color-theme-13;
   padding: 10px 15px;
 
@@ -39,10 +39,10 @@
   }
 
   &__links {
-    margin: 10px 0 0;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    margin: 0;
   }
 
   &__link-separator {

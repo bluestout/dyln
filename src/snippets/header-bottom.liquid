@@ -1,23 +1,4 @@
 <div class="header-bottom">
-  <form action="/search" method="get" role="search">
-    <label for="header-btm-search" class="visually-hidden">
-      {{ 'general.search.placeholder_long' | t }}
-    </label>
-
-    <input type="search"
-      class="header-bottom__input"
-      name="q"
-      id="header-btm-search"
-      value="{{ search.terms | escape }}"
-      placeholder="{{ 'general.search.placeholder_long' | t }}"
-    />
-
-    <button type="submit" class="header-bottom__button">
-      <span class="visually-hidden">{{ 'general.search.submit' | t }}</span>
-      <span aria-hidden="true">{% render 'icon-search' %}</span>
-    </button>
-  </form>
-
   <div class="header-bottom__links">
     <a href="/account/login" class="header-bottom__link" data-header-bottom-login>
       <span class="header-bottom__link-i">{% render 'icon-semicircle-login' %}</span>

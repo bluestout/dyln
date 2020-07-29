@@ -142,10 +142,14 @@ function quickCartUpsellHtml(product, url, index) {
       </span>
       </p>
     </a>
+    <button type="button" class="cart-drawer__upsell-add d-sm-none" data-upsell-submit tabindex="-1">
+      <span data-upsell-loading class="loading-dots hide"></span>
+      <span data-upsell-text><span aria-hidden="true">+</span><span class="visually-hidden">${theme.strings.addToCart}</span></span>
+    </button>
     <div class="cart-drawer__upsell-form">
       ${optionsWrap}
       ${select}
-      <button type="button" class="cart-drawer__upsell-add" data-upsell-submit tabindex="-1">
+      <button type="button" class="cart-drawer__upsell-add d-none d-sm-block" data-upsell-submit tabindex="-1">
         <span data-upsell-loading class="loading-dots hide"></span>
         <span data-upsell-text>${theme.strings.addToCart}</span>
       </button>
@@ -547,6 +551,15 @@ function emptyCartHtml() {
 }
 
 function productImageHtml(product, format, className) {
+  if (!product) {
+    return "";
+  }
+  let alt = "";
+  if (product.title) {
+    alt = product.title;
+  } else if (product.product_title) {
+    alt = product.product_title;
+  }
   let image = "";
   let domClass = "";
   if (className) {
@@ -554,21 +567,21 @@ function productImageHtml(product, format, className) {
   }
   const size = format || "240x240";
 
-  if (product.image) {
-    image = resizeImage(product.image, size);
-    image = `<img
-      src="${image}"
-      ${domClass}
-      alt="${product.product_title}"/>`;
-  } else if (product.featured_image) {
+  if (product.featured_image) {
+    if (!product.featured_image.url) {
+      image = resizeImage(product.featured_image, size);
+    } else {
+      image = resizeImage(product.featured_image.url, size);
+      if (product.featured_image.alt) {
+        alt = product.featured_image.alt;
+      }
+    }
+  } else if (product.image) {
     image = resizeImage(product.featured_image, size);
-    image = `<img
-      src="${image}"
-      ${domClass}
-      alt="${product.title}"/>`;
   }
-
-  return image;
+  if (image.length > 0) {
+    return `<img src="${image}" ${domClass} alt="${alt}" />`;
+  }
 }
 
 export {

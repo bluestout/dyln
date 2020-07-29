@@ -103,9 +103,12 @@
 
   {%- render 'subscriptions-metadata' -%}
 
+  {% render 'search-options' %}
+
   {%- include 'subscription-theme-footer' -%}
 
   {%- include 'subscription-checkout-redirect' -%}
+
 
   {% unless page.handle == "wholesale" or page.handle == "bulk-order" %}
     <!--Gorgias Chat Widget Start--><div id="gorgias-chat">{% if customer %}<script>window.gorgiasChatParameters = {"smooch": {"givenName": "{{ customer.name }}","email": "{{ customer.email }}","properties": {"shopify__cart__total_price": "{{ cart.total_price | money | strip_html | default: null }}","shopify__cart__nb_of_items": {{ cart.items | size | default: 0 }},{% for item in cart.items %}"shopify__cart__items-{{ forloop.index }}-[]":"{\"line_price\":\"{{item.line_price|money|strip_html|default:null}}\",\"price\":\"{{item.price|money|strip_html|default:null}}\",\"product_id\":\"{{item.product_id|default:null}}\",\"quantity\":{{item.quantity|default:null}},\"sku\":\"{{item.sku|default:null}}\",\"title\":\"{{item.title}}\",\"variant_id\":{{item.variant_id|default:null}},\"vendor\":\"{{item.vendor|default:null}}\",\"id\":{{item.id|default:null}}}"{% if forloop.last != true %},{% endif %}{% endfor %}}}}</script>{% else %}<script>window.gorgiasChatParameters = {"smooch": {"properties": {"shopify__cart__total_price": "{{ cart.total_price | money | strip_html | default: null }}","shopify__cart__nb_of_items": {{ cart.items | size | default: 0 }},{% for item in cart.items %}"shopify__cart__items-{{ forloop.index }}-[]":"{\"line_price\":\"{{item.line_price|money|strip_html|default:null}}\",\"price\":\"{{item.price|money|strip_html|default:null}}\",\"product_id\":\"{{item.product_id|default:null}}\",\"quantity\":{{item.quantity|default:null}},\"sku\":\"{{item.sku|default:null}}\",\"title\":\"{{item.title}}\",\"variant_id\":{{item.variant_id|default:null}},\"vendor\":\"{{item.vendor|default:null}}\",\"id\":{{item.id|default:null}}}"{% if forloop.last != true %},{% endif %}{% endfor %}}}}</script>{% endif %}<script src="https://config.gorgias.io/production/B9Zby7ZmY52eNk3R/chat/0l9dY2VjjKW2rZkL.js" defer></script></div><!--Gorgias Chat Widget End--></body>
@@ -159,10 +162,10 @@
       pageTransition();
     }, 10000);
     document.addEventListener("ajaxReloaded", function() {
-        clearTimeout(loadingStatus);
-        if (!document.querySelector("[data-icon-y-body]").classList.contains("active")) {
+      clearTimeout(loadingStatus);
+      if (document.querySelector("[data-icon-y-body]") && !document.querySelector("[data-icon-y-body]").classList.contains("active")) {
         pageTransition();
-        }
+      }
     });
 
     function pageTransition() {
@@ -179,6 +182,12 @@
       }, 3001);
     }
   </script>
+
+  <style>
+    #preview-bar-iframe {
+      display: none !important;
+    }
+  </style>
 
 </body>
 </html>

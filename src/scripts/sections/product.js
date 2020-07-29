@@ -173,7 +173,7 @@ register("product", {
         event.preventDefault();
         this.handleSmoothScrollClick(source);
       }
-    } catch (error) {}
+    } catch (error) { }
 
     if (thumbnail) {
       event.preventDefault();
@@ -220,13 +220,17 @@ register("product", {
   },
 
   renderGalleryByColor(color) {
-    if (!color || color.length === 0) {
+    if (!color || color.length === 0 || !selectors.galleryByColor(color)) {
       return null;
     }
 
     const colorElement = this.container.querySelector(
       selectors.galleryByColor(color)
     );
+
+    if (!colorElement) {
+      return null;
+    }
     const slickElement = colorElement.closest(selectors.slick);
     const index = slickElement.dataset.slickIndex;
     const gallerySlick = this.container.querySelector(selectors.gallery);
