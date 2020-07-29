@@ -2,20 +2,16 @@
   <div class="container-fluid">
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
-          <div class="po-bottle-sizes__title">
-            <h2>{{ section.settings.title }}</h2>
-          </div>
+        <div class="po-bottle-sizes__title">
+          <h2>{{ section.settings.title }}</h2>
         </div>
-       <div class="col-md-6">
-         <div class="po-bottle-sizes__sizes">
-           {% for block in section.blocks %}
-             <div class="po-bottle-sizes__sizes-item">
-               <strong>{{ block.settings.bottle_sizes_imperial }}</strong>
-               <em>{{ block.settings.bottle_sizes_metric }}</em>
-             </div>
-           {% endfor %}
-         </div>
+       <div class="po-bottle-sizes__sizes">
+         {% for block in section.blocks %}
+           <div class="po-bottle-sizes__sizes-item">
+             <strong>{{ block.settings.bottle_sizes_imperial }}</strong>
+             <em>{{ block.settings.bottle_sizes_metric }}</em>
+           </div>
+         {% endfor %}
        </div>
         <div class="col-md-12">
           <div class="po-bottle-sizes__link">

@@ -12,4 +12,76 @@
 @import "./pre-order-features";
 @import "./pre-order-cap";
 @import "./pre-order-guard";
-@import "../page.landing-page/landing-page-diffusers";
+@import "./pre-order-subscription";
+
+
+&#pre-order {
+  .site-header__main {
+    background-color: transparent;
+  }
+
+  .header-offset {
+    min-height: auto !important;
+  }
+
+  .site-header [data-site-header-container] {
+    @include media-query($medium-down) {
+      padding: 15px;
+    }
+  }
+
+  .header-about__main-text,
+  .header-shop__main-text,
+  .header-bottle__main-text,
+  .header-login__main-text,
+  .header-help__main-text {
+    @include media-query($medium-up) {
+      color: white;
+    }
+  }
+
+  .icon-plus-vert path,
+  .icon-plus-hor path {
+    @include media-query($medium-up) {
+      stroke: white;
+    }
+  }
+
+  .site-header__utils-cart-icon svg g path,
+  .header-search__main-link svg g,
+  .site-header__utils-cart-icon svg g,
+  .header-button__bottom svg path,
+  .header-button__middle svg path,
+  .header-button__top svg path {
+    stroke: white;
+  }
+
+  .site-header.fixed {
+    .site-header__main {
+      background-color: rgba(255, 255, 255, 0.95);
+    }
+
+    .header-about__main-text,
+    .header-shop__main-text,
+    .header-bottle__main-text,
+    .header-login__main-text,
+    .header-help__main-text {
+      color: black;
+    }
+
+    .icon-plus-vert path,
+    .icon-plus-hor path,
+    .site-header__utils-cart-icon svg g path,
+    .header-search__main-link svg g,
+    .site-header__utils-cart-icon svg g,
+    .header-button__bottom svg path,
+    .header-button__middle svg path,
+    .header-button__top svg path {
+      stroke: black;
+    }
+  }
+}
+
+.po-subscription {
+  box-shadow: 0px 10px 100px #EEE;
+}
