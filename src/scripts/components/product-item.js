@@ -21,10 +21,10 @@ const datasets = {
 const selectors = {
   value: `[data-${datasets.value}]`,
   gallery: `[data-${datasets.gallery}]`,
+  galleryAlways: `[data-${datasets.gallery}="always"]`,
   current: `.${classes.active}[data-${datasets.image}]`,
   image: `[data-${datasets.image}]`,
   item: "[data-pi-item]",
-  itemLink: "[data-pi-item-link]",
   opName: `[data-${datasets.opName}]`,
   json: "[data-product-json]",
   select: "[data-pi-variant-select]",
@@ -36,12 +36,15 @@ const selectors = {
   compare: "[data-pi-compare]",
   slick: `[data-${datasets.slick}]`,
   slideById: (id) => `[data-slick-index=${id}]`,
-  slickSlider: ".slick-slider"
+  slickSlider: ".slick-slider",
+  colorLabel: "[data-color-label]"
 };
 
 function handleOptionClick(event) {
+  console.log("handleOptionClick");
   const $source = $(event.currentTarget);
   const $slick = $source.closest(selectors.item).find(selectors.slickSlider);
+  const $slickAlways = $source.closest(selectors.item).find(selectors.galleryAlways);
   const opName = $source.data(datasets.opName);
 
   if ($source.length === 0 || !opName) {
@@ -49,14 +52,26 @@ function handleOptionClick(event) {
   }
 
   if (opName === "color" || opName === "sleeve") {
-    if ($slick.length > 0 && $(window).width() < 768) {
+    if (($slick.length > 0 && $(window).width() < 768) || $slickAlways.length > 0) {
       handleSlickChange($source);
+      console.log("handleSlickChange");
     } else {
       handleColorChange($source);
+      console.log("handleColorChange");
     }
   }
 
+  renderColorLabel($source);
   return handleVariantChange($source);
+}
+
+function renderColorLabel($source) {
+  const $colorLabel = $source.closest(selectors.item).find(selectors.colorLabel);
+  if ($colorLabel.length === 0) {
+    return null;
+  } else {
+    return $colorLabel.text($source.data(datasets.value));
+  }
 }
 
 function handleColorChange($source) {
@@ -64,6 +79,12 @@ function handleColorChange($source) {
   const $parent = $source.closest(selectors.item);
   const $newImage = $parent.find(`[data-${datasets.image}="${color}"]`);
   const $currentImage = $parent.find(selectors.current);
+
+  console.log("color", color);
+  console.log("$parent", $parent);
+  console.log("$newImage", $newImage);
+  console.log("$currentImage", $currentImage);
+
 
   if ($newImage.length > 0 && !$newImage.hasClass(classes.active)) {
     if ($currentImage.length === 0) {
@@ -270,6 +291,34 @@ function init() {
       }
     });
   }
+
+  const $galleryAlways = $(`${selectors.galleryAlways}`);
+  const $images = $galleryAlways.find(selectors.image);
+  $images.each((index, option) => {
+    $(option).css("display", "block");
+  });
+
+  $galleryAlways.slick({
+    swipeToSlide: true,
+    arrows: true,
+    dots: false,
+    slidesToShow: 1,
+    centerMode: false,
+    infinite: true,
+    speed: 300
+  });
+
+  $($galleryAlways).on("afterChange", (event, slick, nextSlide) => {
+    const $slider = $(event.currentTarget);
+    const $slide = $slider.find(`[data-slick-index="${nextSlide}"]`);
+    const color = $slide.find(selectors.image).data(datasets.image);
+    const $parent = $slide.closest(selectors.item);
+    const $input = $parent.find(`[data-${datasets.value}="${color}"]`);
+    if ($input.length > 0) {
+      $input.click();
+    }
+  });
+
 }
 
 $(document).ready(init);
