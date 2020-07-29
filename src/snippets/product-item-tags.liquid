@@ -1,4 +1,4 @@
-{% for tag in block_p.tags %}
+{% for tag in product-item-tags %}
   {% if tag contains "size-" %}
     <span class="hide" data-pi-option-size="{{ tag }}">
       {{ tag | remove: 'size-' }}
@@ -7,7 +7,7 @@
   {% endif %}
 {% endfor %}
 
-{% for tag in block_p.tags %}
+{% for tag in product-item-tags %}
   {% if tag contains "mouth-" %}
     <span class="hide" data-pi-option-mouth="{{ tag }}">
       {{ tag | remove: 'mouth-' }}
@@ -16,7 +16,7 @@
   {% endif %}
 {% endfor %}
 
-{% for tag in block_p.tags %}
+{% for tag in product-item-tags %}
   {% if tag contains "guard-" %}
     <span class="hide" data-pi-option-guard="{{ tag }}">
       {{ tag | remove: 'guard-' }}
