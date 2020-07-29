@@ -1,6 +1,8 @@
 import $ from "jquery";
 import "slick-carousel";
 import { formatMoney } from "@shopify/theme-currency";
+import { ajaxAddToCart } from "./ajaxcart";
+
 
 const classes = {
   active: "active",
@@ -37,11 +39,16 @@ const selectors = {
   slick: `[data-${datasets.slick}]`,
   slideById: (id) => `[data-slick-index=${id}]`,
   slickSlider: ".slick-slider",
-  colorLabel: "[data-color-label]"
+  colorLabel: "[data-color-label]",
+  preOrders: "[data-pre-order-products]",
+  preOrdersTabLink: "[data-pre-order-products] [data-tab-link]",
+  preOrderButton: "[data-pre-order-button]",
+  preOrderAddOns: "[data-pop-add-on]",
+  tabByIndex: (index) => `[data-tab="${index}"]`,
+  preOrderCheckbox: "[data-pi-add-this]",
 };
 
 function handleOptionClick(event) {
-  console.log("handleOptionClick");
   const $source = $(event.currentTarget);
   const $slick = $source.closest(selectors.item).find(selectors.slickSlider);
   const $slickAlways = $source.closest(selectors.item).find(selectors.galleryAlways);
@@ -54,10 +61,8 @@ function handleOptionClick(event) {
   if (opName === "color" || opName === "sleeve") {
     if (($slick.length > 0 && $(window).width() < 768) || $slickAlways.length > 0) {
       handleSlickChange($source);
-      console.log("handleSlickChange");
     } else {
       handleColorChange($source);
-      console.log("handleColorChange");
     }
   }
 
@@ -79,12 +84,6 @@ function handleColorChange($source) {
   const $parent = $source.closest(selectors.item);
   const $newImage = $parent.find(`[data-${datasets.image}="${color}"]`);
   const $currentImage = $parent.find(selectors.current);
-
-  console.log("color", color);
-  console.log("$parent", $parent);
-  console.log("$newImage", $newImage);
-  console.log("$currentImage", $currentImage);
-
 
   if ($newImage.length > 0 && !$newImage.hasClass(classes.active)) {
     if ($currentImage.length === 0) {
@@ -183,8 +182,8 @@ function renderVariant(variant, $parent) {
 
   renderProductOptions(variant, $parent);
   renderProductPrice(variant, $parent);
-  // renderProductSubmit(variant, $parent);
   // now handled in geolocation.js
+  // renderProductSubmit(variant, $parent);
   return null;
 }
 
@@ -244,8 +243,7 @@ function renderProductOptions(variant, $parent) {
 }
 
 function onFocusChange() {
-  const $src = $(document.activeElement);
-  const $item = $src.closest(selectors.item);
+  const $item = $(document.activeElement).closest(selectors.item);
   const $allOtherItems = $(selectors.item).not($item);
   $allOtherItems.removeClass("active");
 
@@ -281,14 +279,9 @@ function init() {
     });
 
     $($gallery).on("afterChange", (event, slick, nextSlide) => {
-      const $slider = $(event.currentTarget);
-      const $slide = $slider.find(`[data-slick-index="${nextSlide}"]`);
+      const $slide = $(event.currentTarget).find(`[data-slick-index="${nextSlide}"]`);
       const color = $slide.find(selectors.image).data(datasets.image);
-      const $parent = $slide.closest(selectors.item);
-      const $input = $parent.find(`[data-${datasets.value}="${color}"]`);
-      if ($input.length > 0) {
-        $input.click();
-      }
+      return $slide.closest(selectors.item).find(`[data-${datasets.value}="${color}"]`).click();
     });
   }
 
@@ -309,19 +302,43 @@ function init() {
   });
 
   $($galleryAlways).on("afterChange", (event, slick, nextSlide) => {
-    const $slider = $(event.currentTarget);
-    const $slide = $slider.find(`[data-slick-index="${nextSlide}"]`);
+    const $slide = $(event.currentTarget).find(`[data-slick-index="${nextSlide}"]`);
     const color = $slide.find(selectors.image).data(datasets.image);
-    const $parent = $slide.closest(selectors.item);
-    const $input = $parent.find(`[data-${datasets.value}="${color}"]`);
-    if ($input.length > 0) {
-      $input.click();
+    return $slide.closest(selectors.item).find(`[data-${datasets.value}="${color}"]`).click();
+  });
+}
+
+function handlePreOrderTabClick(event) {
+  const $source = $(event.currentTarget);
+  const index = $source.data("tab-link");
+  const $tab = $source.closest(selectors.preOrders).find(selectors.tabByIndex(index));
+  if ($tab.length > 0) {
+    $tab.find(`${selectors.value}`).first().click();
+  }
+}
+
+function handlePreOrderButtonClick() {
+  console.log("handlePreOrderButtonClick");
+  const $parent = $(event.currentTarget).closest(selectors.preOrders);
+  console.log("$parent", $parent);
+  const $addOns = $parent.find(selectors.preOrderAddOns);
+  console.log("$addOns", $addOns);
+  $addOns.each((index, $addon) => {
+    const data = $addon.find("form").serialize();
+    console.log("data", data);
+    const checked = $addon.find(selectors.preOrderCheckbox).prop("checked");
+    console.log("checked", checked);
+    if (checked) {
+      console.log("data: ", data);
+      // ajaxAddToCart(data);
     }
   });
-
 }
 
 $(document).ready(init);
 $(document).on("click", selectors.value, handleOptionClick);
+$(document).on("click", selectors.preOrdersTabLink, handlePreOrderTabClick);
+$(document).on("click", selectors.preOrderButton, handlePreOrderButtonClick);
+
 $(document).on("focusin", onFocusChange);
 $(document).on("mouseleave", selectors.item, onItemHoverOut);

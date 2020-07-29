@@ -384,7 +384,7 @@ function handleAjaxAddButtonClick(event) {
   ajaxAddToCart($form.serialize());
 }
 
-function ajaxAddToCart(data) {
+function ajaxAddToCart(data, noReload) {
   if (!data) {
     return null;
   }
@@ -396,7 +396,9 @@ function ajaxAddToCart(data) {
     dataType: "json",
     cache: false,
     complete: (jqXHR, textStatus) => {
-      addToCartComplete(jqXHR, textStatus);
+      if (!noReload) {
+        addToCartComplete(jqXHR, textStatus);
+      }
     },
   });
 }
@@ -735,6 +737,7 @@ export {
   quickCartOpen,
   reloadAjax,
   handleAjaxAddButtonClick,
+  ajaxAddToCart
 };
 
 document.addEventListener("windowWidthChanged", handleCartDrawerCheckoutHeight);
