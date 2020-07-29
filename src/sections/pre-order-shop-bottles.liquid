@@ -1,5 +1,4 @@
-<div class="container" data-tab-container data-pre-order-products>
-  <h2 class="pop__title">{{ section.settings.title }}</h2>
+<div data-tab-container>
   {% for block in section.blocks %}
 
   {% assign pop_p = all_products[block.settings.product] %}
@@ -23,7 +22,7 @@
   {% for color in b_p_colors_array %}
     {% assign color_class = value %}
   {% endfor %}
-  <div data-tab="{{ forloop.index }}" {% if forloop.index == 1 %}class="active" {% else %}style="display:none;"{% endif %} data-add-on-parent>
+  <div data-tab="1{{ forloop.index }}" {% if forloop.index == 1 %}class="active" {% else %}style="display:none;"{% endif %} data-add-on-parent>
     <div
       class="pop{% if pop_p.has_only_default_variant %} single{% endif %}"
       data-pi-item
@@ -58,7 +57,7 @@
                           wrapper_class: gallery_wrapper,
                           image_class: "pop__gallery-img",
                           wrapper_attributes: gallery_attribute,
-                          snippet_index: 57,
+                          snippet_index: 61,
                         %}
                       </div>
 
@@ -79,17 +78,13 @@
                     wrapper_class: "pop__g-img-wrap",
                     image_class: "pop__gallery-img"
                     span: true,
-                    snippet_index: 58,
+                    snippet_index: 62,
                   %}
                 </div>
               {% endunless %}
             </div>
           </div>
           <div class="col-lg-5">
-
-            <p class="pop__content">
-              {{ section.settings.content }}
-            </p>
 
             {% if pop_p.has_only_default_variant %}
               <input type="hidden" name="id" value="{{ pop_p_def_v.id }}" data-productid="{{ product.id }}"/>
@@ -105,11 +100,16 @@
               </select>
             {% endif %}
 
+            <h3 class="pop__title">{{ pop_p.title }}</h3>
+
+            <div class="pop__contene">{{ section.settings.content }}</div>
+
             <div class="pop__sizes">
-              <h5 class="pop__sizes-title">{{ section.settings.size_label }}</h5>
+              <h5 class="pop__sizes-title">{{ section.settings.product_label }}</h5>
               {% for block in section.blocks %}
-                <button type="button" class="pop__sizes-link{% if forloop.index == 1 %} active{% endif %}" data-tab-link="{{ forloop.index }}">{{ block.settings.title }}</button>
+                <button type="button" class="pop__sizes-link{% if forloop.index == 1 %} active{% endif %}" data-tab-link="1{{ forloop.index }}">{{ block.settings.title }}</button>
               {% endfor %}
+              <div class="pop__note">{{ section.settings.note }}</div>
             </div>
 
             {% unless pop_p.has_only_default_variant %}
@@ -210,26 +210,15 @@
               </div>
             </div>
 
-            {% comment %} hide visually, but this is still the main button {% endcomment %}
-            {% comment %} Because the design needs forms inside forms to work on Shopify, but that's impossible {% endcomment %}
             <div class="pop__submit-wrap">
               <button
                 type="submit"
-                class="pop__submit-btn visually-hidden"
+                class="pop__submit-btn"
                 data-pi-submit
                 data-geo-submit
                 data-add-to-cart
-                {% unless pop_p_def_v.available %}disabled="disabled"{% endunless %}
-              >
-                <span data-add-to-cart-loaded>
-                  <span class="pop__submit-text" data-pi-submit-text data-geo-submit-text>
-                    {% if pop_p_def_v.available %}
-                      {{ 'products.product.add_to_cart' | t }}
-                    {% else %}
-                      {{ 'products.product.sold_out' | t }}
-                    {% endif %}
-                  </span>
-                </span>
+                {% unless pop_p_def_v.available %}disabled="disabled"{% endunless %}>
+                <span data-add-to-cart-loaded class="pop__submit-text">{{ section.settings.submit_text }}</span>
                 <span data-add-to-cart-loading class="loading-dots hide">{{ 'general.accessibility.loading' | t }}</span>
               </button>
             </div>
@@ -259,37 +248,13 @@
         </div>
       {% endform %}
     </div>
-
-    {% if block.settings.add_on_1 != blank or block.settings.add_on_2 != blank %}
-    <div class="pop__add-ons">
-      <h4 class="pop__add-ons-title">{{ section.settings.add_ons_title }}</h4>
-      {% if block.settings.add_on_1 != blank %}
-        {% render 'add-on' with block.settings.add_on_1 %}
-      {% endif %}
-      {% if block.settings.add_on_2 != blank %}
-        {% render 'add-on' with block.settings.add_on_2 %}
-      {% endif %}
-    </div>
-    {% endif %}
-
-    <div class="pop__fake-btn-wrap">
-      <button type="button" class="pop__fake-btn" data-pre-order-button>
-        {% comment %} TODO: remove {% endcomment %}
-        fake Button
-        <span data-pre-order-loaded>{{ section.settings.submit_text }}</span>
-        <span data-pre-order-loaded data-pre-order-count></span>
-        <span data-pre-order-loading class="loading-dots hide"></span>
-      </button>
-    </div>
-
-    <div class="pop__shipping-note">{{ section.settings.shipping_note }}</div>
   </div>
   {% endfor %}
 </div>
 
 {% schema %}
   {
-    "name": "Pre Order Product",
+    "name": "Pre Order Shop Bottles",
     "class": "pop",
     "settings": [
       {
@@ -298,26 +263,9 @@
         "label": "Section Title"
       },
       {
-        "type": "textarea",
-        "id": "content",
-        "label": "content"
-      },
-      {
         "type": "text",
-        "id": "size_label",
-        "label": "Size Label",
-        "default": "Choose Size"
-      },
-      {
-        "type": "text",
-        "id": "add_ons_title",
-        "label": "Add ons Title",
-        "default": "Add ons"
-      },
-      {
-        "type": "textarea",
-        "id": "shipping_note",
-        "label": "Shipping Note"
+        "id": "product_label",
+        "label": "Product Label"
       },
       {
         "type": "text",
@@ -336,19 +284,14 @@
             "label": "Product"
           },
           {
-            "type": "text",
-            "id": "title",
-            "label": "Size Label"
+            "type": "textarea",
+            "id": "content",
+            "label": "content"
           },
           {
-            "type": "product",
-            "id": "add_on_1",
-            "label": "Add on 1"
-          },
-          {
-            "type": "product",
-            "id": "add_on_2",
-            "label": "Add on 2"
+            "type": "textarea",
+            "id": "note",
+            "label": "Note"
           }
         ]
       }

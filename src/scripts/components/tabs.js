@@ -1,6 +1,6 @@
 /**
  * Basic use:
- * <div data-tabs-container>
+ * <div data-tab-container>
  * <button data-tab-link=index></button>
  * <div data-tab=index></div>
  * </div>
@@ -15,7 +15,7 @@ const datasets = {
 };
 
 const selectors = {
-  container: "[data-tabs-container]",
+  container: "[data-tab-container]",
   tab: `[data-${datasets.tab}]`,
   link: `[data-${datasets.link}]`,
   tabByIndex: (index) => `[data-${datasets.tab}="${index}"]`,
@@ -52,13 +52,13 @@ function tabs(event) {
       });
 
     // reset all tabbed embedded iframes on tab change
-    $(`${selectors.tab}:not(.${classes.active}) iframe`).each(function() {
+    $(`${selectors.tab}:not(.${classes.active}) iframe`).each(function () {
       $(this).attr("src", $(this).attr("src"));
     });
 
     // pause all non-looping tabbed videos on tab change
     $(`${selectors.tab}:not(.${classes.active}) video:not([loop])`).each(
-      function() {
+      function () {
         this.pause();
       }
     );
