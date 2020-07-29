@@ -53,61 +53,13 @@
         <p>{{ section.settings.note }}</p>
       </div>
 
-      {%- assign e_current_variant = e_product.selected_or_first_available_variant -%}
-      {% form 'product', e_product, data-product-form: '', data-product-handle: e_product.handle, data-enable-history-state: 'true', class: "lp-diffusers__form" %}
-
-        {% unless e_product.has_only_default_variant %}
-          <div class="lp-diffusers__variants">
-            {% for e_var in e_product.variants %}
-              <div class="lp-diffusers__variant">
-                <input class="lp-diffusers__input" id="option-extra-{{ forloop.index }}" type="radio" name="id" value="{{ e_var.title }}" />
-                <label class="lp-diffusers__label" for="option-extra-{{ forloop.index }}">{{ e_var.title }}</label>
-              </div>
-            {% endfor %}
-          </div>
-        {% endunless %}
-
-        <input type="hidden" id="Quantity" name="quantity" value="1" min="1" />
-
-        <div class="lp-diffusers__btn-wrap">
-          <button
-                  class="lp-diffusers__regular-btn"
-                  type="submit"
-                  name="add"
-                  data-pdp-extra-submit
-                  {% unless e_current_variant.available %}disabled="disabled"{% endunless %}>
-        <span class="lp-diffusers__regular-price">
-          <span>
-            {{ e_current_variant.price | money }}
-          </span>
-
-          {% if e_product.compare_at_price_max > e_product.price %}
-            <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
-            <s>
-              {% if e_current_variant.compare_at_price > e_current_variant.price %}
-                {{ e_current_variant.compare_at_price | money }}
-              {% endif %}
-            </s>
-          {% endif %}
-        </span>
-            <span class="lp-diffusers__regular-text">
-          {% if e_current_variant.available %}
-            {{ 'products.product.add_to_cart' | t }}
-          {% else %}
-            {{ 'products.product.sold_out' | t }}
-          {% endif %}
-        </span>
-          </button>
-
-          {% comment %} This is just a placeholder button {% endcomment %}
-          <button type="button" class="lp-diffusers__sub-button">
-            <span class="lp-diffusers__sub-price">$ 7.99</span>
-            <span class="lp-diffusers__sub-btn-text">Subscribe</span>
-            <span class="lp-diffusers__sub-btn-freq">Every Month</span>
-          </button>
-        </div>
-
-      {% endform %}
+      {% unless section.settings.extra_product == product.handle %}
+        {% render 'subscription-form' with section.settings.extra_product
+          current_product_id: product.id
+          show_extras: false,
+          hide_price: true
+        %}
+      {% endunless %}
     </div>
   </div>
 </div>
