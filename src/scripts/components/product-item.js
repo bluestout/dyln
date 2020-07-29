@@ -308,9 +308,13 @@ function init() {
 }
 
 function handlePreOrderTabClick(event) {
+  console.log("handlePreOrderTabClick", handlePreOrderTabClick);
   const $source = $(event.currentTarget);
+  console.log("$source", $source);
   const index = $source.data("tab-link");
+  console.log("index", index);
   const $tab = $source.closest(selectors.preOrders).find(selectors.tabByIndex(index));
+  console.log("$tab", $tab);
   if ($tab.length > 0) {
     $tab.find(`${selectors.value}`).first().click();
   }

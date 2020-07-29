@@ -1,4 +1,4 @@
-<div data-tab-container>
+<div data-tab-container-inner>
   {% for block in section.blocks %}
 
   {% assign pop_p = all_products[block.settings.product] %}
@@ -102,14 +102,14 @@
 
             <h3 class="pop__title">{{ pop_p.title }}</h3>
 
-            <div class="pop__contene">{{ section.settings.content }}</div>
+            <div class="pop__content">{{ block.settings.content }}</div>
 
             <div class="pop__sizes">
               <h5 class="pop__sizes-title">{{ section.settings.product_label }}</h5>
               {% for block in section.blocks %}
                 <button type="button" class="pop__sizes-link{% if forloop.index == 1 %} active{% endif %}" data-tab-link="1{{ forloop.index }}">{{ block.settings.title }}</button>
               {% endfor %}
-              <div class="pop__note">{{ section.settings.note }}</div>
+              <div class="pop__note">{{ block.settings.note }}</div>
             </div>
 
             {% unless pop_p.has_only_default_variant %}
@@ -258,11 +258,6 @@
     "class": "pop",
     "settings": [
       {
-        "type": "textarea",
-        "id": "title",
-        "label": "Section Title"
-      },
-      {
         "type": "text",
         "id": "product_label",
         "label": "Product Label"
@@ -282,6 +277,11 @@
             "type": "product",
             "id": "product",
             "label": "Product"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Short Label"
           },
           {
             "type": "textarea",

@@ -16,6 +16,7 @@ const datasets = {
 
 const selectors = {
   container: "[data-tab-container]",
+  containerInner: "[data-tab-container-inner]",
   tab: `[data-${datasets.tab}]`,
   link: `[data-${datasets.link}]`,
   tabByIndex: (index) => `[data-${datasets.tab}="${index}"]`,
@@ -36,20 +37,38 @@ function tabs(event) {
   event.preventDefault ? event.preventDefault() : (event.returnValue = false);
   const $this = $(event.currentTarget);
   if (!$this.hasClass(classes.active)) {
-    const $container = $this.closest(selectors.container);
     const index = $this.data(datasets.link);
-    const $target = $container.find(selectors.tabByIndex(index));
-    $container
-      .find(selectors.link)
-      .not($this)
-      .removeClass(classes.active);
-    $this.addClass(classes.active);
-    $container
-      .find(`.${classes.active}${selectors.tab}`)
-      .removeClass(classes.active)
-      .fadeOut(variables.timing, () => {
-        $target.fadeIn(variables.timing).addClass(classes.active);
+    if ($this.closest(selectors.containerInner) > 0) {
+      const $container = $this.closest(selectors.containerInner);
+      const $target = $container.find(selectors.tabByIndex(index));
+      $container.find(selectors.link).not($this).each((i, item) => {
+        $(item).removeClass(classes.active);
       });
+      $this.addClass(classes.active);
+      $container.find(`.${classes.active}${selectors.tab}`).each((i, item) => {
+        $(item).removeClass(classes.active)
+          .fadeOut(variables.timing, () => {
+            $target.fadeIn(variables.timing).addClass(classes.active);
+          });
+      });
+    } else {
+      const $container = $this.closest(selectors.container);
+      const $target = $container.find(selectors.tabByIndex(index));
+      $container.find(selectors.link).not($this).each((i, item) => {
+        if ($(item).closest(selectors.containerInner).length === 0) {
+          $(item).removeClass(classes.active);
+        }
+      });
+      $this.addClass(classes.active);
+      $container.find(`.${classes.active}${selectors.tab}`).each((i, item) => {
+        if ($(item).closest(selectors.containerInner).length === 0) {
+          $(item).removeClass(classes.active)
+            .fadeOut(variables.timing, () => {
+              $target.fadeIn(variables.timing).addClass(classes.active);
+            });
+        }
+      });
+    }
 
     // reset all tabbed embedded iframes on tab change
     $(`${selectors.tab}:not(.${classes.active}) iframe`).each(function () {
