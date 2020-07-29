@@ -1,8 +1,6 @@
 import $ from "jquery";
 import "slick-carousel";
 import { formatMoney } from "@shopify/theme-currency";
-import { ajaxAddToCart } from "./ajaxcart";
-
 
 const classes = {
   active: "active",
@@ -46,6 +44,7 @@ const selectors = {
   preOrderAddOns: "[data-pop-add-on]",
   tabByIndex: (index) => `[data-tab="${index}"]`,
   preOrderCheckbox: "[data-pi-add-this]",
+  addOnParent: "[data-add-on-parent]",
 };
 
 function handleOptionClick(event) {
@@ -317,22 +316,24 @@ function handlePreOrderTabClick(event) {
   }
 }
 
-function handlePreOrderButtonClick() {
-  console.log("handlePreOrderButtonClick");
-  const $parent = $(event.currentTarget).closest(selectors.preOrders);
-  console.log("$parent", $parent);
+function handlePreOrderButtonClick(event) {
+  const $parent = $(event.currentTarget).closest(selectors.addOnParent);
   const $addOns = $parent.find(selectors.preOrderAddOns);
-  console.log("$addOns", $addOns);
-  $addOns.each((index, $addon) => {
-    const data = $addon.find("form").serialize();
-    console.log("data", data);
-    const checked = $addon.find(selectors.preOrderCheckbox).prop("checked");
-    console.log("checked", checked);
-    if (checked) {
-      console.log("data: ", data);
-      // ajaxAddToCart(data);
+  $addOns.each((index, addon) => {
+    const data = $(addon).find("form").serialize();
+    const checked = $(addon).find(selectors.preOrderCheckbox).prop("checked");
+    if (checked && data) {
+      $.ajax({
+        type: "POST",
+        url: "/cart/add.js",
+        async: false,
+        data: data,
+        dataType: "json",
+        cache: false,
+      });
     }
   });
+  $parent.find(selectors.submit).click();
 }
 
 $(document).ready(init);
