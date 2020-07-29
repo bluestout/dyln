@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
 
-    @include media-query($medium-down) {
+    @include media-query($large-down) {
       flex-direction: column;
 
       > div:first-of-type {
@@ -50,7 +50,7 @@
     margin-bottom: 10px;
     text-transform: uppercase;
 
-    @include media-query($medium-down) {
+    @include media-query($large-down) {
       width: 160px;
     }
   }
@@ -59,7 +59,7 @@
     display: flex;
     margin: 40px 0;
 
-    @include media-query($medium-down) {
+    @include media-query($large-down) {
       flex-wrap: wrap;
     }
 
@@ -68,7 +68,7 @@
       padding: 0;
       padding-right: 40px;
 
-      @include media-query($medium-down) {
+      @include media-query($large-down) {
         padding-right: 0;
       }
 
@@ -101,7 +101,7 @@
   &__image {
     margin-right: 30px;
 
-    @include media-query($medium-down) {
+    @include media-query($large-down) {
       order: 2;
       margin-top: 0;
     }
@@ -110,7 +110,7 @@
       margin-right: 15px;
       min-height: 150px;
 
-      @include media-query($medium-down) {
+      @include media-query($large-down) {
         min-height: 100px;
       }
     }

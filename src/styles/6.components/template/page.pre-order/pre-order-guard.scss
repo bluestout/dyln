@@ -104,10 +104,16 @@
     max-width: 450px;
     height: auto;
 
+    @include media-query($xl-down) {
+      max-width: 220px;
+      top: 50px;
+    }
+
     @include media-query($medium-down) {
       position: relative;
       order: 3;
       margin-top: 60px;
+      top: -50px;
     }
   }
 

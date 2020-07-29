@@ -16,6 +16,8 @@
 
 
 &#pre-order {
+  overflow-x: hidden;
+
   .site-header__main {
     background-color: transparent;
   }
@@ -25,7 +27,7 @@
   }
 
   .site-header [data-site-header-container] {
-    @include media-query($medium-down) {
+    @include media-query($large-down) {
       padding: 15px;
     }
   }
@@ -35,15 +37,19 @@
   .header-bottle__main-text,
   .header-login__main-text,
   .header-help__main-text {
-    @include media-query($medium-up) {
+    @include media-query($large-up) {
       color: white;
     }
   }
 
   .icon-plus-vert path,
   .icon-plus-hor path {
-    @include media-query($medium-up) {
-      stroke: white;
+    stroke: white;
+    fill: white;
+
+    @include media-query($large-down) {
+      stroke: black;
+      fill: black;
     }
   }
 
@@ -54,6 +60,10 @@
   .header-button__middle svg path,
   .header-button__top svg path {
     stroke: white;
+  }
+
+  .header-logo__link svg g {
+    fill: white;
   }
 
   .site-header.fixed {
@@ -78,6 +88,10 @@
     .header-button__middle svg path,
     .header-button__top svg path {
       stroke: black;
+    }
+
+    .header-logo__link svg g {
+      fill: $color-theme-1;
     }
   }
 }

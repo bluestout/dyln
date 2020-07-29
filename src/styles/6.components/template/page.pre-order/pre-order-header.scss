@@ -11,7 +11,7 @@
     height: 750px;
     align-items: center;
 
-    @include media-query($medium-down) {
+    @include media-query($large-down) {
       align-items: flex-start;
       margin-top: 130px;
     }
@@ -22,7 +22,7 @@
       font-weight: 400;
       width: 380px;
 
-      @include media-query($medium-down) {
+      @include media-query($large-down) {
         font-size: 30px;
         text-align: center;
         width: 100%;
@@ -42,7 +42,7 @@
       display: inline-block;
       margin-top: 20px;
 
-      @include media-query($medium-down) {
+      @include media-query($large-down) {
         position: relative;
         left: 50%;
         transform: translateX(-50%);
