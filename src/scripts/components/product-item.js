@@ -37,11 +37,12 @@ const selectors = {
   shopMobileSlick: "[data-slick-pi-mobile]",
   slick: `[data-${datasets.slick}]`,
   slideById: (id) => `[data-slick-index=${id}]`,
+  slickSlider: ".slick-slider"
 };
 
 function handleOptionClick(event) {
   const $source = $(event.currentTarget);
-  const $slick = $source.closest(selectors.shopMobileSlick);
+  const $slick = $source.closest(selectors.item).find(selectors.slickSlider);
   const opName = $source.data(datasets.opName);
 
   if ($source.length === 0 || !opName) {
@@ -95,7 +96,7 @@ function handleSlickChange($source) {
   }
 
   if (index > -1) {
-    $parent.find(".slick-slider").slick("slickGoTo", index);
+    $parent.find(selectors.slickSlider).slick("slickGoTo", index);
   }
 }
 
