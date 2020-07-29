@@ -1,0 +1,73 @@
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="po-footer__content">
+        <h2>{{ section.settings.title }}</h2>
+        <a href="{{ section.settings.customize_link_url }}">{{ section.settings.customize_link_text }}</a>
+      </div>
+
+      <div class="po-footer__submit-wrap">
+        <button
+                type="submit"
+                class="product-item__submit-btn"
+                data-pi-submit
+                data-geo-submit
+                data-add-to-cart
+                {% unless block_p_def_v.available %}disabled="disabled"{% endunless %}
+        >{{ section.settings.footer_cta_text }}</button>
+      </div>
+
+      <div class="po-footer__shipping-notice">
+        <p>{{ section.settings.shipping_notice_text }}
+          <a href="{{ section.settings.shipping_notice_btn_link }}">
+            {{ section.settings.shipping_notice_btn_text }}
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+  "name": "Pre-Order Footer",
+  "class": "po-footer",
+  "settings": [
+    {
+    "type": "text",
+    "id": "title",
+    "label": "Title"
+    },
+    {
+    "type": "text",
+    "id": "customize_link_text",
+    "label": "Customize Link Text"
+    },
+    {
+    "type": "url",
+    "id": "customize_link_url",
+    "label": "Customize Link URL"
+    },
+    {
+    "type": "text",
+    "id": "shipping_notice_text",
+    "label": "Shipping Notice Text"
+    },
+    {
+    "type": "text",
+    "id": "shipping_notice_btn_text",
+    "label": "Shipping Notice Btn Text"
+    },
+    {
+    "type": "url",
+    "id": "shipping_notice_btn_link",
+    "label": "Shipping Notice Btn URL"
+    },
+    {
+    "type": "text",
+    "id": "footer_cta_text",
+    "label": "Footer CTA Text"
+    }
+  ]
+  }
+{% endschema %}

@@ -13,10 +13,15 @@
 @import "./pre-order-cap";
 @import "./pre-order-guard";
 @import "./pre-order-subscription";
+@import "./pre-order-footer";
 
 
 &#pre-order {
   overflow-x: hidden;
+
+  .site-footer {
+    display: none;
+  }
 
   .site-header__main {
     background-color: transparent;
@@ -68,7 +73,7 @@
 
   .site-header.fixed {
     .site-header__main {
-      background-color: rgba(255, 255, 255, 0.95);
+      background-color: rgba(255, 255, 255, 0.90);
     }
 
     .header-about__main-text,
