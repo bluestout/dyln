@@ -30,7 +30,10 @@
       data-single-product="{{ pop_p.id }}">
       {% form 'product', pop_p, data-product-form: '', data-product-handle: pop_p.handle, class: "pop__form" %}
         <div class="row">
-          <div class="col-lg-7">
+          <div class="col-lg-2"></div>
+          <div class="col-lg-5">
+            <h3 class="pop__title pop__title--upper">{{ pop_p.title }}</h3>
+
             <div class="pop__gallery" data-pi-image-gallery="always">
               {% assign first = true %}
               {% assign any_image = false %}
@@ -100,14 +103,14 @@
               </select>
             {% endif %}
 
-            <h3 class="pop__title">{{ pop_p.title }}</h3>
+            <h3 class="pop__title pop__title--lower">{{ pop_p.title }}</h3>
 
             <div class="pop__content">{{ block.settings.content }}</div>
 
             <div class="pop__sizes">
               <h5 class="pop__sizes-title">{{ section.settings.product_label }}</h5>
               {% for block in section.blocks %}
-                <button type="button" class="pop__sizes-link{% if forloop.index == 1 %} active{% endif %}" data-tab-link="1{{ forloop.index }}">{{ block.settings.title }}</button>
+                <a href="#" class="pop__sizes-link{% if forloop.index == 1 %} active{% endif %}" data-tab-link="1{{ forloop.index }}">{{ block.settings.title }}</a>
               {% endfor %}
               <div class="pop__note">{{ block.settings.note }}</div>
             </div>
@@ -255,7 +258,7 @@
 {% schema %}
   {
     "name": "Pre Order Shop Bottles",
-    "class": "pop",
+    "class": "pop po-shop",
     "settings": [
       {
         "type": "text",

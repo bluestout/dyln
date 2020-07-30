@@ -8,6 +8,12 @@
   background-color: $color-white;
   margin-bottom: 120px;
 
+  > .container > .pop__content {
+    @include media-query($large-up) {
+      display: none;
+    }
+  }
+
   &__wrapper {
     position: relative;
   }
@@ -46,6 +52,7 @@
     width: 400px;
     border-radius: 20px;
     overflow: hidden;
+    margin: 0 auto;
 
     @include media-query($medium-down) {
       width: 100%;
@@ -117,7 +124,7 @@
 
   &__title {
     @include font-header(bold);
-    @include text(42px, 1.2, $color-black, 0.3px);
+    @include text(32px, 1.2, $color-black, 0.3px);
     @include underline($color-main-1, false);
     @include transition(color);
     margin: 0 0 1px;
@@ -352,7 +359,8 @@
     margin-top: 40px;
   }
 
-  &__fake-btn {
+  &__fake-btn,
+  &__submit-btn {
     @include button(solid, square, 2);
     @include font-header(700);
     @include text(24px, 30px, $color-white, 1.2px);
@@ -710,7 +718,7 @@
   border-bottom: 1px solid #EEE;
 
   > form {
-    @include media-query($medium-down) {
+    @include media-query($large-down) {
       display: flex;
     }
   }
@@ -732,7 +740,7 @@
     display: block;
     margin: 0 0 10px;
 
-    @include media-query($medium-down) {
+    @include media-query($large-down) {
       width: 50%;
     }
   }
@@ -742,7 +750,7 @@
     position: relative;
     top: -20px;
 
-    @include media-query($medium-down) {
+    @include media-query($large-down) {
       top: 50px;
       margin-left: 10px;
       margin-right: 10px;

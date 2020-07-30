@@ -15,6 +15,7 @@
 @import "./pre-order-subscription";
 @import "./pre-order-footer";
 @import "./pre-order-product";
+@import "./pre-order-shop";
 
 
 &#pre-order {
@@ -104,4 +105,42 @@
 
 .po-subscription {
   box-shadow: 0px 10px 100px #EEE;
+}
+
+.pre-order-shop {
+  h2 {
+    @include text(40px, 1.2, $color-black, 0.3px);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  &__banner {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+
+    button {
+      background-color: $color-theme-7;
+      color: $color-white;
+      outline: none;
+      border: none;
+      padding: 15px;
+
+      &.active {
+        font-weight: bold;
+        color: $color-white;
+        text-decoration: underline;
+      }
+
+      &:first-of-type {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+      }
+
+      &:last-of-type {
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
+    }
+  }
 }
