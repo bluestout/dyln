@@ -1035,7 +1035,7 @@ $(function(){
     if(data.notification.newsletter == 1){
       $('.account-profile__checkbox-wrap').find('#newsletter').prop( "checked", true );
     }
-    
+
     // Profile image
     if(data.profile_img == 'image-9' || data.profile_img == 'image-1'){
       var Selector = 'proiflie-image-1';
@@ -1046,7 +1046,7 @@ $(function(){
     }
 
   }
-  
+
   // set profile Image
   function SetProfileImage(Selector, Img){
     $('#profile-image-update').find('#'+Selector).click();
@@ -1055,15 +1055,15 @@ $(function(){
     $('.profile-bg').each(function(){
      $(this).css('background-image','url('+FullImg+')');
     })
-    
+
   }
-  
+
   // update Profile image
   $('#update-profile-pic').click(function(){
     var $this = $(this);
     $this.text('Updating...');
     var $form = $this.parents('form');
-    var Data = $form.serialize();    
+    var Data = $form.serialize();
     var urlToRequest = '/a/dyl/'+CustomerShopifyId+'/update-profile-image';
     console.log(Data);
     $.ajax({
@@ -1082,8 +1082,8 @@ $(function(){
       error: function(jqXHR, textStatus, errorThrown) {
         // console.log(textStatus, errorThrown);
       }
-    });    
-    
+    });
+
   });
 
 
@@ -1545,5 +1545,51 @@ $(function(){
   });
 
   getCustomerSubs();
+
+  // check user vip tier, add badge color and vip tier name
+  function StampedRewards() {
+    try {
+      let rewards = StampedFn.getDataRewards();
+      let tierId = rewards.customer.vipTierId;
+      let vipTiers = rewards.campaigns.vip_tiers;
+      let vipTitle = "";
+      let vipTier = -1;
+      for (let i = 0; i < vipTiers.length; i++) {
+        if (vipTiers[i].id === tierId) {
+          vipTitle = vipTiers[i].title;
+          vipTier = vipTiers[i].id;
+          break;
+        }
+      }
+      let tierElements = document.querySelectorAll("[data-account-tier-badge]");
+      if (vipTier > -1) {
+        for (let i = 0; i < tierElements.length; i++) {
+          tierElements[i].textContent = vipTitle + " Member";
+          if (vipTier === 129) {
+            tierElements[i].classList.add("account-header__badge--silver");
+          } else if (vipTier === 130) {
+            tierElements[i].classList.add("account-header__badge--gold");
+          }
+        }
+      }
+    } catch (error) {
+      const tierElements = document.querySelectorAll("[data-account-tier-badge]");
+      for (let i = 0; i < tierElements.length; i++) {
+        tierElements[i].remove();
+      }
+    }
+  }
+
+  // Stamped rewards, trim "Points" text from widget
+  $(document).on("DOMNodeInserted", function (event) {
+    if (event.target.id === "stamped-rewards-points-placeholder") {
+      const textElement = document.getElementById("stamped-rewards-points-placeholder");
+      if (textElement.textContent.indexOf("Points") > -1) {
+        textElement.textContent = textElement.textContent.replace("Points", "").trim();
+      }
+      StampedRewards();
+    }
+  });
 })
+
 </script>

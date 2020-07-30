@@ -197,5 +197,32 @@
 
   <script src="https://cdn.attn.tv/dyln/dtag.js"></script>
 
+  <script>
+    // check user vip tier, add badge color and vip tier name
+    function StampedRewards() {
+      try {
+        const rewards = StampedFn.getDataRewards();
+        const tierId = rewards.customer.vipTierId;
+        const vipTier = rewards.campaigns[tierId].title;
+        const tierElements = document.querySelectorAll("[data-account-tier-badge]");
+        for (let i = 0; i < tierElements.length; i++) {
+          const element = tierElements[i];
+          tierElements[i].textContent = vipTier;
+          if (vipTier === 129) {
+            tierElements[i].classList.add("account-header__badge--silver");
+          } else if (vipTier === 130) {
+            tierElements[i].classList.add("account-header__badge--gold");
+          }
+        }
+      } catch (error) {
+        const tierElements = document.querySelectorAll("[data-account-tier-badge]");
+        for (let i = 0; i < tierElements.length; i++) {
+          tierElements[i].remove();
+        }
+      }
+    }
+    StampedRewards();
+  </script>
+
 </body>
 </html>
