@@ -19,7 +19,7 @@
                 {% for lf_tag in lf_tags %}
                   {% assign index = forloop.index | plus: 1 %}
                   <a
-                    {% if section.settings.lf_recent == empty and forloop.first %}
+                    {% if section.settings.lf_recent == blank and forloop.first %}
                     class="site-footer__lf-link active"
                     {% else %}
                     class="site-footer__lf-link"
@@ -62,7 +62,7 @@
                   {% assign count = 0 %}
                   {% assign index = forloop.index | plus: 1 %}
                   <div
-                    {% if section.settings.lf_recent == empty and forloop.first %}
+                    {% if section.settings.lf_recent == blank and forloop.first %}
                     class="site-footer__lf-list active"
                     {% else %}
                     class="site-footer__lf-list" style="display:none;"
