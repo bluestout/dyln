@@ -1,0 +1,117 @@
+<div class="po-hydro-optim__wrapper">
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-9">
+          <div class="po-hydro-optim__main">
+            {% render 'responsive-image' with
+              image: section.settings.image.src,
+              max_width: 270,
+              max_height: 270,
+              wrapper_class: "po-hydro-optim__image",
+              image_class: "po-hydro-optim__image"
+              span: true,
+            %}
+            <div class="po-hydro-optim__main-content">
+              <span class="po-hydro-optim__title-tag">{{ section.settings.title_tag }}</span>
+              <span id="title">{{ section.settings.subtitle }}</span>
+              <h2>{{ section.settings.title }}</h2>
+              <p>{{ section.settings.content }}</p>
+            </div>
+          </div>
+          <div class="po-hydro-optim__perks">
+            {% for block in section.blocks %}
+              <div class="po-hydro-optim__perks-item">
+                {%- render 'responsive-image' with
+                  image: block.settings.icon.src,
+                  max_width: 1024,
+                  max_height: 1024,
+                  wrapper_class: "po-hydro-optim__image-container",
+                  image_class: "po-hydro-optim__image",
+                  snippet_index: 35
+                -%}
+                <div class="po-hydro-optim__perks-item-content">
+                  <p><strong style="color: {{ block.settings.title_color }}">{{ block.settings.recommendation_title }}</strong> {{ block.settings.recommendation_content }}</p>
+                </div>
+              </div>
+            {% endfor  %}
+          </div>
+          <a href="#" class="po-hydro-optim__subscribe-btn">{{ section.settings.btn_text }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+  "name": "Pre-Order Hydro Optim",
+  "class": "po-hydro-optim",
+  "settings": [
+  {
+    "type": "text",
+    "id": "title_tag",
+    "label": "Text in tag"
+  },
+  {
+    "type": "text",
+    "id": "subtitle",
+    "label": "Subtitle"
+  },
+  {
+    "type": "text",
+    "id": "title",
+    "label": "Title"
+  },
+  {
+    "type": "image_picker",
+    "id": "image",
+    "label": "Image"
+  },
+  {
+    "type": "textarea",
+    "id": "content",
+    "label": "Content"
+  },
+  {
+    "type": "text",
+    "id": "btn_text",
+    "label": "Button Text"
+  },
+  {
+    "type": "url",
+    "id": "btn_link",
+    "label": "Button Link"
+  }
+  ],
+  "blocks":[
+    {
+      "type":"text",
+      "name":"Featured Items",
+      "settings":[
+      {
+        "type":"image_picker",
+        "id":"icon",
+        "label":"Featured Item Image"
+      },
+      {
+        "type":"text",
+        "id":"recommendation_title",
+        "label":"Featured Item Title"
+      },
+      {
+        "type":"textarea",
+        "id":"recommendation_content",
+        "label":"Featured Item Content"
+      },
+      {
+        "type": "color",
+        "id": "title_color",
+        "label": "Title Color",
+        "default": "#000"
+      }
+    ]
+  }
+  ]
+  }
+{% endschema %}

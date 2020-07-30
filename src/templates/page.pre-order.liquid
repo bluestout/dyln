@@ -1,0 +1,63 @@
+{% section 'pre-order-header' %}
+
+{% section 'pre-order-bottle-sizes' %}
+
+{% section 'pre-order-video' %}
+
+{% section 'pre-order-alkaline-water' %}
+
+{% section 'pre-order-product' %}
+
+{% section 'pre-order-subscription' %}
+
+{% section 'pre-order-why-alkaline' %}
+
+{% section 'pre-order-last-bottle' %}
+
+{% section 'pre-order-on-the-go' %}
+
+{% section 'pre-order-testimonials-slider' %}
+
+{% section 'pre-order-diffusers' %}
+
+{% section 'pre-order-features' %}
+
+{% section 'pre-order-testimonials' %}
+
+{% section 'pre-order-cap' %}
+
+{% section 'pre-order-guard' %}
+
+{% section 'pre-order-hydro-optim' %}
+
+<section class="pre-order-shop" data-tab-container data-pre-order-products>
+  <div class="container">
+    <h2>Shop All</h2>
+    <div class="pre-order-shop__banner">
+      <button type="button" class="active" data-tab-link="1">Dyln Bottles</button>
+      <button type="button" data-tab-link="2">Extra Diffusers</button>
+      <button type="button" data-tab-link="3">Sports Caps</button>
+      <button type="button" data-tab-link="4">Bottom Guards</button>
+    </div>
+    <div class="pre-order-shop__products">
+      <div class="pre-order-shop__block active" data-tab="1">
+        {% section 'pre-order-shop-bottles' %}
+      </div>
+      <div class="pre-order-shop__block" data-tab="2" style="display:none;">
+        {% render 'subscription-form' with settings.extra_diffusers_product
+          current_product_id: product.id
+          show_extras: true,
+          note: settings.extra_diffusers_note,
+        %}
+      </div>
+      <div class="pre-order-shop__block" data-tab="3" style="display:none;">
+        {% section 'pre-order-shop-caps' %}
+      </div>
+      <div class="pre-order-shop__block" data-tab="4" style="display:none;">
+        {% section 'pre-order-shop-guards' %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% section 'pre-order-footer' %}

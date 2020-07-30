@@ -360,6 +360,7 @@
       "see_features": "See Features",
       "choose": "Choose",
       "watch_video": "Watch Video",
+      "choose_html": "Choose {{ option }}",
       "select_html": "Select {{ option }}",
       "select_html_mobile": "Swipe to select {{ option }}",
       "view_details": "View Details",

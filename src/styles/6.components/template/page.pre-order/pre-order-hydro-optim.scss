@@ -1,0 +1,132 @@
+.po-hydro-optim {
+  margin-top: 120px;
+
+  &__main {
+    display: flex;
+    align-items: center;
+
+    @include media-query($large-down) {
+      flex-direction: column;
+
+      > div:first-of-type {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 30px;
+
+        .po-hydro-optim__title-tag {
+          margin-top: 15px;
+        }
+      }
+    }
+
+    &-content {
+      #title {
+        @include font-body(thin);
+        @include text(32px, 1.2, $color-black, 0.3px);
+        text-transform: uppercase;
+        display: block;
+      }
+
+      h2 {
+        @include font-header(bold);
+        @include text(42px, 1.2, $color-black, 0.3px);
+      }
+
+      p {
+        @include text(16px, 1.5, $color-black, 0.3px);
+        margin-top: 20px;
+      }
+    }
+  }
+
+  &__title-tag {
+    @include font-body(bold);
+    @include text(15px, 1.2, $color-white, 0.3px);
+    display: inline-block;
+    padding: 2px 10px;
+    background-color: $color-theme-2;
+    border-radius: 15px;
+    color: $color-white;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+
+    @include media-query($large-down) {
+      width: 160px;
+    }
+  }
+
+  &__perks {
+    display: flex;
+    margin: 40px 0;
+
+    @include media-query($large-down) {
+      flex-wrap: wrap;
+    }
+
+    &-item {
+      display: flex;
+      padding: 0;
+      padding-right: 40px;
+
+      @include media-query($large-down) {
+        padding-right: 0;
+      }
+
+      p {
+        @include text(15px, 1.5, $color-black, 0.3px);
+      }
+
+      &:last-of-type {
+        padding-right: 0;
+      }
+
+      img {
+        margin-right: 10px;
+      }
+
+      &:first-of-type strong {
+        color: $color-theme-31;
+      }
+
+      &:nth-of-type(2n) strong {
+        color: $color-theme-2;
+      }
+
+      &:last-of-type strong {
+        color: $color-theme-1;
+      }
+    }
+  }
+
+  &__image {
+    margin-right: 30px;
+
+    @include media-query($large-down) {
+      order: 2;
+      margin-top: 0;
+    }
+
+    &-container {
+      margin-right: 15px;
+      min-height: 150px;
+
+      @include media-query($large-down) {
+        min-height: 100px;
+      }
+    }
+  }
+
+  &__subscribe-btn {
+    @include font-body(bold);
+    @include text(16px, 1.2, $color-white, 0.3px);
+    padding: 8px 25px;
+    border-radius: 25px;
+    background-color: $color-theme-17;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 60px;
+  }
+}

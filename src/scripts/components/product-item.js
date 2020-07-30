@@ -21,10 +21,10 @@ const datasets = {
 const selectors = {
   value: `[data-${datasets.value}]`,
   gallery: `[data-${datasets.gallery}]`,
+  galleryAlways: `[data-${datasets.gallery}="always"]`,
   current: `.${classes.active}[data-${datasets.image}]`,
   image: `[data-${datasets.image}]`,
   item: "[data-pi-item]",
-  itemLink: "[data-pi-item-link]",
   opName: `[data-${datasets.opName}]`,
   json: "[data-product-json]",
   select: "[data-pi-variant-select]",
@@ -34,14 +34,23 @@ const selectors = {
   submitText: "[data-pi-submit-text]",
   price: "[data-pi-price]",
   compare: "[data-pi-compare]",
-  shopMobileSlick: ".slick-slider",
   slick: `[data-${datasets.slick}]`,
   slideById: (id) => `[data-slick-index=${id}]`,
+  slickSlider: ".slick-slider",
+  colorLabel: "[data-color-label]",
+  preOrders: "[data-pre-order-products]",
+  preOrdersTabLink: "[data-pre-order-products] [data-tab-link]",
+  preOrderButton: "[data-pre-order-button]",
+  preOrderAddOns: "[data-pop-add-on]",
+  tabByIndex: (index) => `[data-tab="${index}"]`,
+  preOrderCheckbox: "[data-pi-add-this]",
+  addOnParent: "[data-add-on-parent]",
 };
 
 function handleOptionClick(event) {
   const $source = $(event.currentTarget);
-  const $slick = $source.closest(selectors.item).find(selectors.shopMobileSlick);
+  const $slick = $source.closest(selectors.item).find(selectors.slickSlider);
+  const $slickAlways = $source.closest(selectors.item).find(selectors.galleryAlways);
   const opName = $source.data(datasets.opName);
 
   if ($source.length === 0 || !opName) {
@@ -49,14 +58,24 @@ function handleOptionClick(event) {
   }
 
   if (opName === "color" || opName === "sleeve") {
-    if ($slick.length > 0 && $(window).width() < 768) {
+    if (($slick.length > 0 && $(window).width() < 768) || $slickAlways.length > 0) {
       handleSlickChange($source);
     } else {
       handleColorChange($source);
     }
   }
 
+  renderColorLabel($source);
   return handleVariantChange($source);
+}
+
+function renderColorLabel($source) {
+  const $colorLabel = $source.closest(selectors.item).find(selectors.colorLabel);
+  if ($colorLabel.length === 0) {
+    return null;
+  } else {
+    return $colorLabel.text($source.data(datasets.value));
+  }
 }
 
 function handleColorChange($source) {
@@ -95,7 +114,7 @@ function handleSlickChange($source) {
   }
 
   if (index > -1) {
-    $parent.find(".slick-slider").slick("slickGoTo", index);
+    $parent.find(selectors.slickSlider).slick("slickGoTo", index);
   }
 }
 
@@ -162,8 +181,8 @@ function renderVariant(variant, $parent) {
 
   renderProductOptions(variant, $parent);
   renderProductPrice(variant, $parent);
-  // renderProductSubmit(variant, $parent);
   // now handled in geolocation.js
+  // renderProductSubmit(variant, $parent);
   return null;
 }
 
@@ -223,8 +242,7 @@ function renderProductOptions(variant, $parent) {
 }
 
 function onFocusChange() {
-  const $src = $(document.activeElement);
-  const $item = $src.closest(selectors.item);
+  const $item = $(document.activeElement).closest(selectors.item);
   const $allOtherItems = $(selectors.item).not($item);
   $allOtherItems.removeClass("active");
 
@@ -260,19 +278,72 @@ function init() {
     });
 
     $($gallery).on("afterChange", (event, slick, nextSlide) => {
-      const $slider = $(event.currentTarget);
-      const $slide = $slider.find(`[data-slick-index="${nextSlide}"]`);
+      const $slide = $(event.currentTarget).find(`[data-slick-index="${nextSlide}"]`);
       const color = $slide.find(selectors.image).data(datasets.image);
-      const $parent = $slide.closest(selectors.item);
-      const $input = $parent.find(`[data-${datasets.value}="${color}"]`);
-      if ($input.length > 0) {
-        $input.click();
-      }
+      return $slide.closest(selectors.item).find(`[data-${datasets.value}="${color}"]`).click();
     });
   }
+
+  const $galleryAlways = $(`${selectors.galleryAlways}`);
+  const $images = $galleryAlways.find(selectors.image);
+  $images.each((index, option) => {
+    $(option).css("display", "block");
+  });
+
+  $galleryAlways.slick({
+    swipeToSlide: true,
+    arrows: true,
+    dots: false,
+    slidesToShow: 1,
+    centerMode: false,
+    infinite: true,
+    speed: 300
+  });
+
+  $($galleryAlways).on("afterChange", (event, slick, nextSlide) => {
+    const $slide = $(event.currentTarget).find(`[data-slick-index="${nextSlide}"]`);
+    const color = $slide.find(selectors.image).data(datasets.image);
+    return $slide.closest(selectors.item).find(`[data-${datasets.value}="${color}"]`).click();
+  });
+}
+
+function handlePreOrderTabClick(event) {
+  console.log("handlePreOrderTabClick", handlePreOrderTabClick);
+  const $source = $(event.currentTarget);
+  console.log("$source", $source);
+  const index = $source.data("tab-link");
+  console.log("index", index);
+  const $tab = $source.closest(selectors.preOrders).find(selectors.tabByIndex(index));
+  console.log("$tab", $tab);
+  if ($tab.length > 0) {
+    $tab.find(`${selectors.value}`).first().click();
+  }
+}
+
+function handlePreOrderButtonClick(event) {
+  const $parent = $(event.currentTarget).closest(selectors.addOnParent);
+  const $addOns = $parent.find(selectors.preOrderAddOns);
+  $addOns.each((index, addon) => {
+    const data = $(addon).find("form").serialize();
+    const checked = $(addon).find(selectors.preOrderCheckbox).prop("checked");
+    if (checked && data) {
+      $.ajax({
+        type: "POST",
+        url: "/cart/add.js",
+        async: false,
+        data: data,
+        dataType: "json",
+        cache: false,
+      });
+    }
+  });
+  $parent.find(selectors.submit).click();
 }
 
 $(document).ready(init);
 $(document).on("click", selectors.value, handleOptionClick);
+$(document).on("click", selectors.preOrdersTabLink, handlePreOrderTabClick);
+$(document).on("click", selectors.preOrderButton, handlePreOrderButtonClick);
+
 $(document).on("focusin", onFocusChange);
 $(document).on("mouseleave", selectors.item, onItemHoverOut);

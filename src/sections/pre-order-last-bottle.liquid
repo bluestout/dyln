@@ -1,0 +1,60 @@
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="po-why-alkaline-water__container">
+        {%- render 'responsive-image' with
+          image: section.settings.right_image.src,
+          max_width: 1024,
+          max_height: 1024,
+          wrapper_class: "po-last-bottle__right-image-wrapper",
+          image_class: "po-last-bottle__right-image",
+          snippet_index: 35
+        -%}
+        <div class="col-md-7">
+          <div class="po-last-bottle__content">
+            <h2>{{ section.settings.title }}</h2>
+            <p>{{ section.settings.content }}</p>
+          </div>
+        </div>
+        {%- render 'responsive-image' with
+          image: section.settings.left_image.src,
+          max_width: 1024,
+          max_height: 1024,
+          wrapper_class: "po-last-bottle__left-image-wrapper",
+          image_class: "po-last-bottle__left-image",
+          snippet_index: 35
+        -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+  {
+  "name": "Pre-Order Last Bottle",
+  "class": "po-last-bottle",
+  "settings": [
+  {
+  "type": "text",
+  "id": "title",
+  "label": "Title"
+  },
+  {
+  "type": "html",
+  "id": "content",
+  "label": "Content"
+  },
+  {
+  "type": "image_picker",
+  "id": "right_image",
+  "label": "Right Image"
+  },
+  {
+  "type": "image_picker",
+  "id": "left_image",
+  "label": "Left Image"
+  }
+  ]
+  }
+{% endschema %}

@@ -290,7 +290,6 @@ function handleSearchInput() {
         let collections = "";
         let articles = "";
         let pages = "";
-        console.log("results", data.resources.results);
 
         if (data.resources.results.products.length > 0) {
           for (let i = 0; i < data.resources.results.products.length; i++) {
