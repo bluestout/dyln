@@ -145,18 +145,24 @@ function headerSublinkOpen(id) {
 
 function handleHeaderLinkClose(event) {
   event.preventDefault();
-  const $source = $(event.currentTarget);
-  const id = $source.data(datasets.close);
+  const id = $(event.currentTarget).data(datasets.close);
+  closeHeaderById(id);
+}
+
+function closeHeaderById(id) {
+  if (!id) {
+    return null;
+  }
   const $link = $(selectors.linkById(id));
   const $block = $(selectors.blockById(id));
   $block.find(selectors.iframe).toggle();
   if ($link.length > 0) {
     $link.removeClass(classes.active);
   }
-
   if ($block.length > 0) {
     toggleTabindexInChildren($block, 2);
   }
+  return null;
 }
 
 function closeAllHeaderLinks() {
@@ -435,8 +441,20 @@ function pageHtml(page) {
   return template;
 }
 
+function mouseUpEvent(event) {
+  closeLoginOnClickOut(event);
+}
+
+function closeLoginOnClickOut(event) {
+  const $clickBlock = $(event.target).closest(selectors.loginBlock);
+  const $clickLink = $(event.target).closest(selectors.linkById(4));
+  const $loginLink = $(selectors.linkById(4));
+  if ($clickBlock.length === 0 && $clickLink.length === 0 && $loginLink.hasClass(classes.active)) {
+    closeHeaderById(4);
+  }
+}
+
 $(document).on("keyup change", selectors.searchInput, handleSearchInput);
-// $(document).on("mouseup", () => { closeSearch(event) });
 $(document).ready(() => { setHeaderBodyOffset() });
 
 $(document).on("click", selectors.link, handleHeaderLinkClick);
@@ -446,6 +464,7 @@ $(document).on("click", selectors.openLoginBlock, handleLoginOpenClick);
 $(document).on("click", selectors.openRegisterBlock, handleRegisterOpenClick);
 $(document).on("click", selectors.accountButton, handleAccountMobileBtnClick);
 $(document).on("click", selectors.popTerm, handlePopLinkClick);
+$(document).on("mouseup", mouseUpEvent);
 
 document.addEventListener("ajaxReloaded", togglesInit);
 document.addEventListener("windowScrolledRedux", onScroll);
