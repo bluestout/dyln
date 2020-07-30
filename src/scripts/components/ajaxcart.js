@@ -607,6 +607,7 @@ function handleUpsell(cart) {
       cartProductsWithUpsell.push(cart.items[i]);
     }
   }
+  let validUpsell = false;
 
   for (let i = 0; i < cartProductsWithUpsell.length; i++) {
     loop = true;
@@ -623,13 +624,13 @@ function handleUpsell(cart) {
       const upsoldProduct3 = uspellItem.upsell_product_3;
 
       if (item.product_id === uspellItem.active_id) {
-        pattern += `<h5 class="cart-drawer__upsell-title">${json.header}</h5>`;
         if (upsoldProduct && !cartProductIds.includes(upsoldProduct.id)) {
           pattern += quickCartUpsellHtml(
             upsoldProduct,
             uspellItem.upsell_url,
             1
           );
+          validUpsell = true;
         }
         if (upsoldProduct2 && !cartProductIds.includes(upsoldProduct2.id)) {
           pattern += quickCartUpsellHtml(
@@ -637,6 +638,7 @@ function handleUpsell(cart) {
             uspellItem.upsell_url_2,
             2
           );
+          validUpsell = true;
         }
         if (upsoldProduct3 && !cartProductIds.includes(upsoldProduct3.id)) {
           pattern += quickCartUpsellHtml(
@@ -644,10 +646,15 @@ function handleUpsell(cart) {
             uspellItem.upsell_url_3,
             3
           );
+          validUpsell = true;
         }
         loop = false;
       }
     }
+  }
+
+  if (validUpsell) {
+    pattern = `<h5 class="cart-drawer__upsell-title">${json.header}</h5>` + pattern;
   }
   return pattern;
 }
