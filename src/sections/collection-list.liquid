@@ -25,7 +25,7 @@
             snippet_index: 13
           %}
         </div>
-      {% elsif collection == empty %}
+      {% elsif collection == blank %}
         {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
         {{ 'collection-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
       {% endif %}
