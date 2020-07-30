@@ -270,7 +270,7 @@ function init() {
       arrows: false,
       dots: false,
       slidesToShow: 1,
-      centerMode: true,
+      centerMode: false,
       centerPadding: "25%",
       infinite: true,
       speed: 300,
@@ -293,11 +293,38 @@ function init() {
   $galleryAlways.slick({
     swipeToSlide: true,
     arrows: true,
+    prevArrow: "<div class='slick-prev'></div>",
+    nextArrow: "<div class='slick-next'></div>",
     dots: false,
     slidesToShow: 1,
+    centerPadding: "0%",
     centerMode: false,
     infinite: true,
-    speed: 300
+    speed: 300,
+    responsive: [
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerMode: false,
+          infinite: true,
+          dots: false,
+          variableWidth: false
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerMode: false,
+          infinite: true,
+          dots: false,
+          variableWidth: false
+        }
+      }
+    ]
   });
 
   $($galleryAlways).on("afterChange", (event, slick, nextSlide) => {
