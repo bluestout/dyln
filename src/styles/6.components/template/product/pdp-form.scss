@@ -114,13 +114,21 @@
     @include text(17px, 24px, $color-body-text, 1px);
     @include underline($color-main-1);
     @include transition(color);
-
-    &:hover {
-      color: $color-main-1;
-    }
+    user-select: none;
 
     &:not(:first-of-type) {
       margin: 0 0 5px 30px;
+    }
+
+    &:not(.active):hover {
+      color: $color-main-1;
+    }
+
+    &.active {
+      color: $color-main-1;
+      &::after {
+        width: 0;
+      }
     }
   }
 

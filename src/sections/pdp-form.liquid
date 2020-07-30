@@ -79,16 +79,17 @@
       <div class="pdp-form__sizes">
         <h5 class="pdp-form__sizes-title">{{ section.settings.title }}</h5>
         {% for n in (1..4) %}
-          {% assign size_product_name = "product_" | append: n %}
-          {% assign size_title_name = "product_title_" | append: n %}
-
-          {% assign size_product = all_products[block.settings[size_product_name]] %}
-          {% assign size_title = block.settings[size_title_name] %}
-          {% if size_title != blank %}
-            {% unless size_product.id == product.id %}
-              <a href="{{ size_product.url }}" class="pdp-form__sizes-link">{{ size_title }}</a>
-            {% endunless %}
-          {% endif %}
+        {% assign size_product_name = "product_" | append: n %}
+        {% assign size_title_name = "product_title_" | append: n %}
+        {% assign size_product = all_products[block.settings[size_product_name]] %}
+        {% assign size_title = block.settings[size_title_name] %}
+        {% if size_title != blank %}
+        {% if size_product.id == product.id %}
+          <a class="pdp-form__sizes-link active">{{ size_title }}</a>
+        {% else %}
+          <a href="{{ size_product.url }}" class="pdp-form__sizes-link">{{ size_title }}</a>
+        {% endif %}
+        {% endif %}
         {% endfor %}
       </div>
       {% break %}
