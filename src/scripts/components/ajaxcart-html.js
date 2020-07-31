@@ -63,14 +63,14 @@ function quickCartUpsellHtml(product, url, index) {
             }
             colorInputs += `<label
                 class="visually-hidden"
-                for="cu-${k}-${option}-${j}"
+                for="cu-${option}-${index}"
                 tabindex="-1">
                 ${variant.title}
               </label>`;
             colorInputs += `<input type="radio"
               tabindex="-1"
-              id="cu-${k}-${option}-${j}"
-              name="cu-${k}-${option}"
+              id="cu-${option}-${index}"
+              name="cu-${option}-${index}"
               value="${variant[optionlabel]}"
               class="cart-drawer__upsell-radio-color ${swatch}"
               data-price="${formatAndTrimPrice(variant.price)}"
@@ -95,8 +95,8 @@ function quickCartUpsellHtml(product, url, index) {
             }
             amountInputs += `<input type="radio"
               tabindex="-1"
-              id="cu-${k}-${option}-${j}"
-              name="cu-${k}-${option}"
+              id="cu-${option}-${index}"
+              name="cu-${option}-${index}"
               value="${adjustDiffuserText(variant[optionlabel])}"
               class="cart-drawer__upsell-radio-input"
               data-price="${formatAndTrimPrice(variant.price)}"
@@ -106,7 +106,7 @@ function quickCartUpsellHtml(product, url, index) {
               ${variant.available ? "" : `disabled="disabled"`} />`;
             amountInputs += `<label
               class="cart-drawer__upsell-label"
-              for="cu-${k}-${option}-${j}"
+              for="cu-${option}-${index}"
               tabindex="-1">
               ${adjustDiffuserText(variant[optionlabel])}
             </label>`;

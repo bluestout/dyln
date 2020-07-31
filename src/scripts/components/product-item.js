@@ -39,7 +39,6 @@ const selectors = {
   slickSlider: ".slick-slider",
   optionLabel: "[data-pi-current-option]",
   optionWrap: "[data-pi-option-wrap]",
-  colorLabel: "[data-color-label]",
   preOrders: "[data-pre-order-products]",
   preOrdersTabLink: "[data-pre-order-products] [data-tab-link]",
   preOrderButton: "[data-pre-order-button]",
@@ -72,17 +71,11 @@ function handleOptionClick(event) {
 }
 
 function renderOptionLabel($source) {
-  const $colorLabel = $source.closest(selectors.optionWrap).find(selectors.optionLabel);
-  renderColorLabel($source);
-  return handleVariantChange($source);
-}
-
-function renderColorLabel($source) {
-  const $colorLabel = $source.closest(selectors.item).find(selectors.colorLabel);
-  if ($colorLabel.length === 0) {
+  const $optionLabel = $source.closest(selectors.optionWrap).find(selectors.optionLabel);
+  if ($optionLabel.length === 0) {
     return null;
   } else {
-    return $colorLabel.text($source.data(datasets.value));
+    return $optionLabel.text($source.data(datasets.value));
   }
 }
 
@@ -407,13 +400,9 @@ function handlePreOrderTabClick(event) {
 }
 
 function handlePreOrderTabClick(event) {
-  console.log("handlePreOrderTabClick", handlePreOrderTabClick);
   const $source = $(event.currentTarget);
-  console.log("$source", $source);
   const index = $source.data("tab-link");
-  console.log("index", index);
   const $tab = $source.closest(selectors.preOrders).find(selectors.tabByIndex(index));
-  console.log("$tab", $tab);
   if ($tab.length > 0) {
     $tab.find(`${selectors.value}`).first().click();
   }

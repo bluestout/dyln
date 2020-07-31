@@ -1651,38 +1651,6 @@
           "title": "Customer Pictures"
         }
       },
-      "collection-header": {
-        "type": "collection-header",
-        "blocks": {
-          "1592503371886": {
-            "type": "usp",
-            "settings": {
-              "title": "Faster Hydration",
-              "icon": "hydration"
-            }
-          },
-          "1592503387499": {
-            "type": "usp",
-            "settings": {
-              "title": "Detoxifying",
-              "icon": "detoxifying"
-            }
-          },
-          "1592503405764": {
-            "type": "usp",
-            "settings": {
-              "title": "Combats Acid Reflux",
-              "icon": "acid-reflux"
-            }
-          }
-        },
-        "block_order": ["1592503371886", "1592503387499", "1592503405764"],
-        "settings": {
-          "title": "Alkaline Water equals enhanced hydration, create it on the go.",
-          "bg": "shopify://shop_images/BotttlesBanner_Desktop1920x643px.jpg",
-          "bg_rsp": "shopify://shop_images/BottlesBanner_Mobile1024x710px.jpg"
-        }
-      },
       "collection-filter": {
         "type": "collection-filter",
         "settings": {}
@@ -3265,12 +3233,6 @@
           "cta_link": "shopify://collections/bottom-guards"
         }
       },
-      "pre-order-customize": {
-        "type": "pre-order-customize",
-        "settings": {
-          "featured_product": "dyln-insulated-alkaline-water-bottle-21-oz"
-        }
-      },
       "pre-order-product": {
         "type": "pre-order-product",
         "blocks": {
@@ -3327,10 +3289,6 @@
           "description": "<strong style=\"color: #00AEDB; display: block;\">Stock up on Diffusers</strong>\nSo you never have to press pause on the ultimate hydration experience",
           "featured_title": "Subscribe & Save!"
         }
-      },
-      "pre-order-shop": {
-        "type": "pre-order-shop",
-        "settings": {}
       },
       "pre-order-footer": {
         "type": "pre-order-footer",
@@ -3389,10 +3347,30 @@
           "submit_text": ""
         }
       },
-      "pre-order-shop-diffusers": {
-        "type": "pre-order-shop-diffusers",
+      "collection-header": {
+        "type": "collection-header",
+        "blocks": {
+          "1596225834441": {
+            "type": "collection",
+            "settings": {
+              "collection": "",
+              "title": "",
+              "bg": "",
+              "bg_rsp": ""
+            }
+          }
+        },
+        "block_order": ["1596225834441"],
         "settings": {
-          "diffuser_product_image": "shopify://shop_images/extra-vitabead-diffuser-pre-order.png"
+          "title": "Alkaline Water equals enhanced hydration, create it on the go.",
+          "bg": "shopify://shop_images/BotttlesBanner_Desktop1920x643px.jpg",
+          "bg_rsp": "shopify://shop_images/BottlesBanner_Mobile1024x710px.jpg",
+          "usp_title_1": "Faster Hydration",
+          "usp_icon_1": "hydration",
+          "usp_title_2": "Detoxifying",
+          "usp_icon_2": "detoxifying",
+          "usp_title_3": "Combats Acid Reflux",
+          "usp_icon_3": "acid-reflux"
         }
       }
     },

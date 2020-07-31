@@ -319,9 +319,15 @@ function updateQuickCart(cart) {
           <span class="cart-drawer__payment cart-drawer__payment--amazon">
             <img src="${theme.imageUrls.logoAmazon}" alt="Amazon Pay" />
           </span>
-          <span class="cart-drawer__payment cart-drawer__payment--googlepay">
-            <img src="${theme.imageUrls.logoGooglePay}" alt="Google Pay" />
+          <span class="cart-drawer__payment-bar"></span>
+          <span class="cart-drawer__payment cart-drawer__payment--paypal">
+            <img src="${theme.imageUrls.logoPayPal}" alt="PayPal" />
           </span>
+          <span class="cart-drawer__payment-bar"></span>
+          <span class="cart-drawer__payment cart-drawer__payment--applepay">
+            <img src="${theme.imageUrls.logoApplePay}" alt="Apple Pay" />
+          </span>
+          <span class="cart-drawer__payment-bar"></span>
           <span class="cart-drawer__payment cart-drawer__payment--paypal">
             <img src="${theme.imageUrls.logoPayPal}" alt="PayPal" />
           </span>
@@ -600,6 +606,9 @@ function handleUpsell(cart) {
   let pattern = "";
   const cartProductIds = [];
   const cartProductsWithUpsell = [];
+  const upsellProductsStatus = {};
+  upsellProductsStatus.itemIds = [];
+  upsellProductsStatus.count = 0;
 
   for (let i = 0; i < cart.items.length; i++) {
     if (!cartProductIds.includes(cart.items[i].product_id)) {
@@ -610,12 +619,15 @@ function handleUpsell(cart) {
   let validUpsell = false;
 
   for (let i = 0; i < cartProductsWithUpsell.length; i++) {
+    if (upsellProductsStatus.count >= 3) {
+      break;
+    }
     loop = true;
 
     const item = cartProductsWithUpsell[i];
 
     for (let j = 0; j < json.products.length; j++) {
-      if (!loop) {
+      if (!loop || upsellProductsStatus.count >= 3) {
         break;
       }
       const uspellItem = json.products[j];
@@ -623,29 +635,37 @@ function handleUpsell(cart) {
       const upsoldProduct2 = uspellItem.upsell_product_2;
       const upsoldProduct3 = uspellItem.upsell_product_3;
 
+      console.log("index? ", `1${i}${j}`);
+
       if (item.product_id === uspellItem.active_id) {
-        if (upsoldProduct && !cartProductIds.includes(upsoldProduct.id)) {
+        if (upsoldProduct && !cartProductIds.includes(upsoldProduct.id) && !upsellProductsStatus.itemIds.includes(upsoldProduct.id)) {
           pattern += quickCartUpsellHtml(
             upsoldProduct,
             uspellItem.upsell_url,
-            1
+            `1${i}${j}`
           );
+          upsellProductsStatus.itemIds.push(upsoldProduct.id);
+          upsellProductsStatus.count++;
           validUpsell = true;
         }
-        if (upsoldProduct2 && !cartProductIds.includes(upsoldProduct2.id)) {
+        if (upsoldProduct2 && !cartProductIds.includes(upsoldProduct2.id) && !upsellProductsStatus.itemIds.includes(upsoldProduct2.id)) {
           pattern += quickCartUpsellHtml(
             upsoldProduct2,
             uspellItem.upsell_url_2,
-            2
+            `2${i}${j}`
           );
+          upsellProductsStatus.itemIds.push(upsoldProduct2.id);
+          upsellProductsStatus.count++;
           validUpsell = true;
         }
-        if (upsoldProduct3 && !cartProductIds.includes(upsoldProduct3.id)) {
+        if (upsoldProduct3 && !cartProductIds.includes(upsoldProduct3.id) && !upsellProductsStatus.itemIds.includes(upsoldProduct3.id)) {
           pattern += quickCartUpsellHtml(
             upsoldProduct3,
             uspellItem.upsell_url_3,
-            3
+            `3${i}${j}`
           );
+          upsellProductsStatus.itemIds.push(upsoldProduct3.id);
+          upsellProductsStatus.count++;
           validUpsell = true;
         }
         loop = false;

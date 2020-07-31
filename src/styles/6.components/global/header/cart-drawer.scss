@@ -221,6 +221,7 @@
   }
 
   &__upsell-input-wrap {
+    position: relative;
     text-align: center;
     width: 48%;
     float: left;
@@ -233,17 +234,20 @@
     @include font-header(500);
     @include text(12px, 20px, $color-body-text, 1px);
     display: inline-block;
+    pointer-events: none;
   }
 
   &__upsell-radio-input {
     @include no-browser-styling;
-    height: 1px;
-    width: 1px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: inline-block;
 
     &:not(:disabled) {
-      + .cart-drawer__upsell-label {
-        cursor: pointer;
-      }
+      cursor: pointer;
 
       &:hover {
         + .cart-drawer__upsell-label {
@@ -263,9 +267,9 @@
     }
 
     &:disabled {
+      cursor: not-allowed;
       + .cart-drawer__upsell-label {
         color: $color-theme-8;
-        cursor: not-allowed;
       }
     }
   }
@@ -352,18 +356,6 @@
       vertical-align: middle;
     }
 
-    &:not(:last-of-type) {
-      &::after {
-        content: "";
-        margin: 0 0 0 35px;
-        width: 1px;
-        height: 30px;
-        background-color: $color-theme-6;
-        display: inline-block;
-        vertical-align: middle;
-      }
-    }
-
     &--amazon {
       img {
         top: 3px;
@@ -383,6 +375,21 @@
         max-width: 68px;
       }
     }
+
+    &--applepay {
+      img {
+        max-width: 50px;
+      }
+    }
+  }
+
+  &__payment-bar {
+    @include no-font-size;
+    height: 30px;
+    width: 1px;
+    background-color: $color-theme-6;
+    display: inline-block;
+    vertical-align: middle;
   }
 
   &__payments-title {
@@ -665,41 +672,6 @@
       margin: 0 10px 0 0;
     }
 
-    &__upsell-radio-input {
-      @include no-browser-styling;
-      height: 1px;
-      width: 1px;
-
-      &:not(:disabled) {
-        + .cart-drawer__upsell-label {
-          cursor: pointer;
-        }
-
-        &:hover {
-          + .cart-drawer__upsell-label {
-            color: $color-main-1;
-          }
-        }
-
-        &:checked {
-          + .cart-drawer__upsell-label {
-            color: $color-main-1;
-
-            &::after {
-              width: 100%;
-            }
-          }
-        }
-      }
-
-      &:disabled {
-        + .cart-drawer__upsell-label {
-          color: $color-theme-8;
-          cursor: not-allowed;
-        }
-      }
-    }
-
     &__upsell-selectbox {
       margin: 0 0 5px;
     }
@@ -785,9 +757,16 @@
           max-width: 54px;
         }
       }
+
+      &--applepay {
+        img {
+          max-width: 40px;
+        }
+      }
     }
 
     &__payments-title {
+      display: none;
       font-size: 10px;
       line-height: 12px;
       letter-spacing: 0.5px;
