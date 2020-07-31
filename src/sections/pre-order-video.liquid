@@ -1,0 +1,123 @@
+<div class="container-fluid">
+  <div class="container">
+    <div class="row d-flex align-items-center">
+      <div class="col-md-7">
+        <div class="po-video__content">
+          <h2>{{ section.settings.title }}</h2>
+          <button type="button" class="po-video__link" data-po-video-open>
+            <span class="po-video__link-text">{{- section.settings.video_link_text -}}</span>
+            <span class="po-video__link-icon">{%- render 'icon-play' -%}</span>
+          </button>
+        </div>
+      </div>
+      <div class="col-md-4">
+        {% render 'responsive-image' with
+          image: section.settings.image.src,
+          max_width: 530,
+          max_height: 530,
+          wrapper_class: "po-video__image-wrapper",
+          image_class: "po-video__image"
+          span: true,
+        %}
+      </div>
+      <button type="button" class="po-video__link po-video__link-responsive d-block d-sm-none" data-po-video-open>
+        <span class="po-video__link-text">{{- section.settings.video_link_text -}}</span>
+        <span class="po-video__link-icon">{%- render 'icon-play' -%}</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="po-video__modal-wrap" style="display:none;" data-po-video-modal>
+  <div class="po-video__modal-outer" data-po-video-close></div>
+  <div class="po-video__modal">
+    <button class="po-video__modal-close" data-po-video-close tabindex="-1" data-po-video-focusin>
+      {% render 'icon-close' %}
+      <span class="visually-hidden">{{ 'general.accessibility.close' | t }}</span>
+    </button>
+    <div class="container">
+      {%- if section.settings.video != blank -%}
+        <video
+                class="po-video__video"
+                {% if section.settings.autoplay %}playsinline muted loop{% else %}controls{% endif %}
+                width="{{ section.settings.video_width }}"
+                height="{{ section.settings.video_height }}"
+                tabindex="-1">
+          <source src="{{- section.settings.video -}}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        {%- elsif section.settings.video_embed != blank -%}
+        <div class="po-video__video">
+          {{- section.settings.video_embed -}}
+        </div>
+      {%- endif -%}
+    </div>
+    <button
+            class="visually-hidden"
+            data-po-video-close
+            tabindex="-1">
+      {{ 'general.accessibility.close' | t }}
+    </button>
+  </div>
+</div>
+
+{% schema %}
+  {
+  "name": "Pre-Order Video",
+  "class": "po-video",
+  "settings": [
+  {
+    "type": "text",
+    "id": "title",
+    "label": "Title"
+  },
+  {
+    "type": "text",
+    "id": "video_link_text",
+    "label": "Video Link Text"
+  },
+  {
+    "type": "image_picker",
+    "id": "image",
+    "label": "Foreground Image"
+  },
+  {
+    "type": "textarea",
+    "id": "video",
+    "label": "Video",
+    "info": "Upload a video to Shopify files and paste the source url here. Or paste the source url to a video here."
+  },
+  {
+    "type": "checkbox",
+    "id": "autoplay",
+    "label": "Autoplay video?",
+    "info": "Mutes and loops video, hides controls, autoplays when modal is opened.",
+    "default": true
+  },
+  {
+    "type": "textarea",
+    "id": "video_embed",
+    "label": "Video Embed",
+    "info": "Or use an embed from youtube, vimeo or similar. Copy/paste the embed code here."
+  },
+  {
+    "type": "range",
+    "id": "video_width",
+    "label": "Video Width",
+    "min": 300,
+    "max": 900,
+    "step": 10,
+    "default": 600
+  },
+  {
+    "type": "range",
+    "id": "video_height",
+    "label": "Video Height",
+    "min": 300,
+    "max": 680,
+    "step": 10,
+    "default": 450
+  }
+  ]
+  }
+{% endschema %}

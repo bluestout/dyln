@@ -1,0 +1,45 @@
+.po-footer {
+  background: rgb(103,227,169);
+  background: linear-gradient(270deg, rgba(103,227,169,1) 0%, rgba(102,204,235,1) 100%);
+  padding: 40px 0;
+  padding-bottom: 20px;
+  color: $color-white;
+
+  &__content {
+    width: 50%;
+
+    a {
+      @include font-header(normal);
+      @include text(16px, 1.2, $color-white, 0.3px);
+      text-decoration: underline;
+      color: white;
+    }
+  }
+
+  &__shipping-notice {
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+    @include font-header(normal);
+    @include text(14px, 1.2, $color-theme-8, 0.3px);
+  }
+
+  &__submit-wrap {
+    text-align: right;
+    width: 50%;
+
+    button {
+      @include font-header(bold);
+      @include text(30px, 1.2, $color-white, 0.3px);
+      background-color: $color-theme-7;
+      padding: 5px 40px;
+      width: 300px;
+
+      @include media-query($medium-down) {
+        @include text(20px, 1.2, $color-white, 0.3px);
+        padding: 10px 25px;
+        width: auto;
+      }
+    }
+  }
+}

@@ -1,0 +1,66 @@
+<div class="container-fluid">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="col-xs-6 col-md-8 col-lg-6" data-testimonials-slider>
+        {% for block in section.blocks %}
+          <div class="po-testimonials-slider__item" data-testimonials-input>
+            {% render 'testimonials-rating' with
+              rating: block.settings.testimonial_rating,
+            %}
+            <strong>{{ block.settings.testimonial_title }}</strong>
+            <p>{{ block.settings.testimonial_content }}</p>
+            <span>- {{ block.settings.testimonial_author }}</span>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="po-testimonials-slider__bottom-wave"></div>
+
+{% schema %}
+  {
+  "name": "PO Testimonials Slider",
+  "class": "po-testimonials-slider",
+  "settings": [
+  {
+  "type": "text",
+  "id": "title",
+  "label": "Title"
+  }
+  ],
+  "blocks":[
+  {
+  "type":"text",
+  "name":"Testimonial Item",
+  "settings":[
+    {
+      "type":"text",
+      "id":"testimonial_title",
+      "label":"Testimonial Title"
+    },
+    {
+      "type":"textarea",
+      "id":"testimonial_content",
+      "label":"Testimonial Content"
+    },
+    {
+      "type":"text",
+      "id":"testimonial_author",
+      "label":"Testimonial Author"
+    },
+    {
+      "type":"range",
+      "id":"testimonial_rating",
+      "min":1,
+      "max":5,
+      "step":1,
+      "label":"Testimonial Rating",
+      "default":5
+    }
+    ]
+  }
+  ]
+  }
+{% endschema %}

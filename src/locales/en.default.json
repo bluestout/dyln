@@ -183,6 +183,18 @@
       "step_navigation_next": "Next step"
     }
   },
+  "pre_order": {
+    "product_item": {
+      "buy_button_text": "Pre-Order"
+    },
+    "shop_all": {
+      "title": "Shop All",
+      "tab_1": "DYLN Bottles",
+      "tab_2": "Extra Diffusers",
+      "tab_3": "Sports Caps",
+      "tab_4": "Bottom Guards"
+    }
+  },
   "customer": {
     "account": {
       "title": "My Account",
@@ -360,6 +372,7 @@
       "see_features": "See Features",
       "choose": "Choose",
       "watch_video": "Watch Video",
+      "choose_html": "Choose {{ option }}",
       "select_html": "Select {{ option }}",
       "select_html_mobile": "Swipe to select {{ option }}",
       "view_details": "View Details",

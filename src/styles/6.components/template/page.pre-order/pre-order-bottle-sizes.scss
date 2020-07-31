@@ -1,0 +1,76 @@
+.po-bottle-sizes {
+  position: relative;
+  top: -1px;
+
+  > .container-fluid {
+    background-size: cover;
+  }
+
+  &__wrapper {
+    background-color: $color-theme-30;
+    color: $color-white;
+    padding: 25px;
+    padding-bottom: 10px;
+
+    @include media-query($medium-down) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  &__title {
+    text-align: right;
+    width: 50%;
+
+    @include media-query($medium-down) {
+      font-size: 12px;
+      width: 40%;
+      text-align: left;
+    }
+  }
+
+  &__sizes {
+    text-align: left;
+    width: 50%;
+
+    @include media-query($medium-down) {
+      width: 60%;
+    }
+
+    &-item {
+      display: inline-block;
+      padding: 0 20px;
+
+      @include media-query($medium-down) {
+        font-size: 14px;
+        padding: 0 10px;
+      }
+
+      strong {
+        display: block;
+      }
+    }
+  }
+
+  &__link {
+    text-align: center;
+    padding-top: 10px;
+
+    a {
+      display: inline-block;
+      text-decoration: underline;
+      @include text(15px, 1.2, $color-white, 0.3px);
+    }
+  }
+
+  &__bottom-wave {
+    background-image: url("data:image/svg+xml,%3Csvg width='1600' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h1599.817v20.843C1531.873 18.948 1391.662 27 1179.187 45 966.71 63 737.543 64.44 491.688 49.323 244.827 27.958 80.931 18.465 0 20.843c-11.588.34.125.621 0 0-.273-1.36 0-3.991 0-6.855 0-.413-.016-1.112 0-1.743.016-.63-.016-2.48 0-4.393C.01 6.577.01 3.96 0 0z' fill='%231E1E1E' fill-rule='evenodd'/%3E%3C/svg%3E");
+    height: 60px;
+    width: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    top: -40px;
+    position: relative;
+    z-index: -10;
+  }
+}

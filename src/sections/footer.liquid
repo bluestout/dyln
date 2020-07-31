@@ -3,7 +3,7 @@
     <div class="site-footer__lifestyle">
       <div class="site-footer__wave-top" data-transition-wave data-transition></div>
       <div class="site-footer__lifestyle-bg">
-        <div class="container" data-tabs-container>
+        <div class="container" data-tab-container>
           {%- assign lf_blog = blogs[section.settings.lf_blog] -%}
           {%- assign lf_tags = lf_blog.all_tags -%}
           <div class="row">
@@ -177,7 +177,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12 order-lg-1 order-1">
-          <div class="row" data-tabs-container data-accordion-rsp-breakpoint="768">
+          <div class="row" data-tab-container data-accordion-rsp-breakpoint="768">
             {% for link in linklists[section.settings.menu].links %}
               <div class="col-lg-2 col-md-4 col-12" data-accordion-parent-rsp=true data-accordion-mobile-only="true">
                 <div class="site-footer__p-link-wrap" data-accordion-button-rsp="{{ forloop.index }}">

@@ -7,7 +7,7 @@
       {% for i in (1..step_num) %}
         <div class="lp-steps__step{% if forloop.first == true %} active-step{% else %} inactive-step{% endif %}" data-step>
           <span class="lp-steps__step-num">{{ i }}</span>
-          <div class="lp-steps__step-tab-container" data-tabs-container>
+          <div class="lp-steps__step-tab-container" data-tab-container>
             <div class="lp-steps__step-tab-nav">
               {% if section.settings.video_tab %}
                 <a class="lp-steps__step-tab active" data-tab-link="0">

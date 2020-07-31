@@ -1,0 +1,25 @@
+.po-testimonials {
+  background: rgb(115,200,226);
+  background: linear-gradient(267deg, rgba(115,200,226,1) 0%, rgba(103,227,169,1) 100%);
+  padding: 80px 0;
+
+  &__item {
+    text-align: center;
+
+    .fa-star {
+      margin-bottom: 15px;
+      padding: 0 4px;
+    }
+
+    p {
+      @include font-body(bold);
+      @include text(16px, 1.5, $color-white, 0.3px);
+      margin-bottom: 10px;
+    }
+
+    span {
+      @include font-body(light);
+      @include text(14px, 1.5, $color-white, 0.3px);
+    }
+  }
+}
