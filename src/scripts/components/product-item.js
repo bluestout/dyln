@@ -37,7 +37,8 @@ const selectors = {
   slick: `[data-${datasets.slick}]`,
   slideById: (id) => `[data-slick-index=${id}]`,
   slickSlider: ".slick-slider",
-  colorLabel: "[data-color-label]",
+  optionLabel: "[data-pi-current-option]",
+  optionWrap: "[data-pi-option-wrap]",
   preOrders: "[data-pre-order-products]",
   preOrdersTabLink: "[data-pre-order-products] [data-tab-link]",
   preOrderButton: "[data-pre-order-button]",
@@ -65,12 +66,12 @@ function handleOptionClick(event) {
     }
   }
 
-  renderColorLabel($source);
+  renderOptionLabel($source);
   return handleVariantChange($source);
 }
 
-function renderColorLabel($source) {
-  const $colorLabel = $source.closest(selectors.item).find(selectors.colorLabel);
+function renderOptionLabel($source) {
+  const $colorLabel = $source.closest(selectors.optionWrap).find(selectors.optionLabel);
   if ($colorLabel.length === 0) {
     return null;
   } else {

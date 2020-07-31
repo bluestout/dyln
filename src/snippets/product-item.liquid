@@ -180,69 +180,79 @@
               {% for option in block_p.options_with_values %}
                 {% assign name_clean = option.name | downcase %}
                 {% if name_clean == "color" or name_clean == "sleeve color" or name_clean == "sleeve" %}
-                  <span class="product-item__options-label">{{ 'products.product.select_html' | t: option: option.name }}</span>
-                  <div class="product-item__colors" data-pi-option="{{ forloop.index }}">
-                    {% for value in option.values %}
-                      {% assign p_i_swatch_name = value | strip | strip_html | strip_newlines | handleize %}
-                      {% assign p_i_class_name = "color-swatch-" | append: p_i_swatch_name %}
-                      {% assign variant_id = "" %}
-                      {% for p_v in block_p.variants %}
-                        {% if p_v.title == value %}
-                          {% assign variant_id = p_v.id %}
-                          {% break %}
-                        {% endif %}
+                  <div data-pi-option-wrap>
+                    <span class="product-item__options-label">
+                      {{ 'products.product.select_html' | t: option: option.name }}
+                      <span class="current" data-pi-current-option>{{ option.values[0] }}</span>
+                    </span>
+                    <div class="product-item__colors" data-pi-option="{{ forloop.index }}">
+                      {% for value in option.values %}
+                        {% assign p_i_swatch_name = value | strip | strip_html | strip_newlines | handleize %}
+                        {% assign p_i_class_name = "color-swatch-" | append: p_i_swatch_name %}
+                        {% assign variant_id = "" %}
+                        {% for p_v in block_p.variants %}
+                          {% if p_v.title == value %}
+                            {% assign variant_id = p_v.id %}
+                            {% break %}
+                          {% endif %}
+                        {% endfor %}
+                        <div class="product-item__color-wrap" data-geo-specific-variant="{{ variant_id }}">
+                          <input
+                            class="product-item__color-input"
+                            type="radio"
+                            id="{{ block_p.id }}-option{{ option.position }}-{{ value | handleize }}"
+                            name="options[{{ option.name }}]"
+                            value="{{ value }}"
+                            data-pi-option-value="{{ value }}"
+                            data-pi-option-name="{{ name_clean }}"
+                            data-pi-option-index="{{ option.position }}"
+                            data-geo-variant-id="{{ variant_id }}"
+                            {% if forloop.first %}checked{% endif %}
+                            title="{{ value | remove: '_' }}" />
+                          <label
+                            class="product-item__color-label {{ p_i_class_name }}"
+                            for="{{ block_p.id }}-option{{ option.position }}-{{ value | handleize }}"
+                            title="{{ value | remove: '_' }}">
+                            <span {% comment %} class="hide" {% endcomment %}>{{ value }}</span>
+                          </label>
+                          <span class="product-item__exclamation" data-pi-option-exclamation>!</span>
+                        </div>
                       {% endfor %}
-                      <div class="product-item__color-wrap" data-geo-specific-variant="{{ variant_id }}">
-                        <input
-                          class="product-item__color-input"
-                          type="radio"
-                          id="{{ block_p.id }}-option{{ option.position }}-{{ value | handleize }}"
-                          name="options[{{ option.name }}]"
-                          value="{{ value }}"
-                          data-pi-option-value="{{ value }}"
-                          data-pi-option-name="{{ name_clean }}"
-                          data-pi-option-index="{{ option.position }}"
-                          data-geo-variant-id="{{ variant_id }}"
-                          {% if forloop.first %}checked{% endif %}
-                          title="{{ value | remove: '_' }}" />
-                        <label
-                          class="product-item__color-label {{ p_i_class_name }}"
-                          for="{{ block_p.id }}-option{{ option.position }}-{{ value | handleize }}"
-                          title="{{ value | remove: '_' }}">
-                          <span {% comment %} class="hide" {% endcomment %}>{{ value }}</span>
-                        </label>
-                        <span class="product-item__exclamation" data-pi-option-exclamation>!</span>
-                      </div>
-                    {% endfor %}
+                    </div>
                   </div>
                 {% else %}
-                  <span class="product-item__options-label">{{ 'products.product.select_html' | t: option: option.name }}</span>
-                  <div class="product-item__option" data-pi-option="{{ forloop.index }}">
-                    {% for value in option.values %}
-                      <span class="product-item__value-wrap">
-                        <input
-                          class="product-item__value-input"
-                          type="radio"
-                          id="{{ block_p.id }}-option{{ option.position }}-{{ value | handleize }}"
-                          name="options[{{ option.name }}]"
-                          value="{{ value }}"
-                          data-pi-option-value="{{ value }}"
-                          data-pi-option-name="{{ name_clean }}"
-                          data-pi-option-index="{{ option.position }}"
-                          {% if forloop.first %}checked{% endif %} />
-                        <label
-                          class="product-item__value-label"
-                          for="{{ block_p.id }}-option{{ option.position }}-{{ value | handleize }}">
-                          {% assign adjusted_diffuser_title = value %}
-                          {% if adjusted_diffuser_title == "1 Diffuser" %}
-                            {% assign adjusted_diffuser_title = "Single Pack" %}
-                          {% elsif adjusted_diffuser_title contains "Diffusers" %}
-                            {% assign adjusted_diffuser_title = value | replace: ' Diffusers', '-Pack'%}
-                          {% endif %}
-                          {{ adjusted_diffuser_title }}
-                        </label>
-                      </span>
-                    {% endfor %}
+                  <div data-pi-option-wrap>
+                    <span class="product-item__options-label">
+                      {{ 'products.product.select_html' | t: option: option.name }}
+                      <span class="current hide" data-pi-current-option>{{ option.values[0] }}</span>
+                    </span>
+                    <div class="product-item__option" data-pi-option="{{ forloop.index }}">
+                      {% for value in option.values %}
+                        <span class="product-item__value-wrap">
+                          <input
+                            class="product-item__value-input"
+                            type="radio"
+                            id="{{ block_p.id }}-option{{ option.position }}-{{ value | handleize }}"
+                            name="options[{{ option.name }}]"
+                            value="{{ value }}"
+                            data-pi-option-value="{{ value }}"
+                            data-pi-option-name="{{ name_clean }}"
+                            data-pi-option-index="{{ option.position }}"
+                            {% if forloop.first %}checked{% endif %} />
+                          <label
+                            class="product-item__value-label"
+                            for="{{ block_p.id }}-option{{ option.position }}-{{ value | handleize }}">
+                            {% assign adjusted_diffuser_title = value %}
+                            {% if adjusted_diffuser_title == "1 Diffuser" %}
+                              {% assign adjusted_diffuser_title = "Single Pack" %}
+                            {% elsif adjusted_diffuser_title contains "Diffusers" %}
+                              {% assign adjusted_diffuser_title = value | replace: ' Diffusers', '-Pack'%}
+                            {% endif %}
+                            {{ adjusted_diffuser_title }}
+                          </label>
+                        </span>
+                      {% endfor %}
+                    </div>
                   </div>
                 {% endif %}
 
