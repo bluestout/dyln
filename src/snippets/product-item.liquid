@@ -28,13 +28,12 @@
   data-pi-static-class="product-item{% if block_p.has_only_default_variant %} single{% endif %}"
   data-single-product="{{ block_p.id }}">
   {% if settings.extra_diffusers_product == block_p.handle %}
-    <a
+    <div
       class="product-item__image-link"
-      href="{{ block_p.url }}"
       title="{{ 'products.product.view_details' | t }}"
       data-pi-item-link>
       <span class="product-item__gallery" data-pi-image-gallery>
-        <span class="product-item__gallery-img">
+        <a href="{{ block_p.url }}" class="product-item__gallery-img">
           {% render 'responsive-image' with
             image: block_p.featured_image,
             max_width: 300,
@@ -43,21 +42,22 @@
             image_class: "product-item__gallery-img"
             span: true,
           %}
-        </span>
+        </a>
       </span>
 
-      {% if hide_title_mobile %}
-        <h3 class="product-item__title d-none d-md-inline-block">
-          {{ block_p.title }}
-        </h3>
-      {% else %}
-        <h3 class="product-item__title">
-          {{ block_p.title }}
-        </h3>
-      {% endif %}
-
-      {% render 'product-item-tags' with block_p %}
-    </a>
+      <a href="{{ block_p.url }}">
+        {% if hide_title_mobile %}
+          <h3 class="product-item__title d-none d-md-inline-block">
+            {{ block_p.title }}
+          </h3>
+        {% else %}
+          <h3 class="product-item__title">
+            {{ block_p.title }}
+          </h3>
+        {% endif %}
+        {% render 'product-item-tags' with block_p %}
+      </a>
+    </div>
 
     <div class="product-item__hover subscription">
       {% render 'subscription-form' with settings.extra_diffusers_product
@@ -86,12 +86,10 @@
         </select>
       {% endif %}
 
-      <a
-        class="product-item__image-link"
-        href="{{ block_p.url }}"
+      <div class="product-item__image-link"
         title="{{ 'products.product.view_details' | t }}"
         data-pi-item-link>
-        <span class="product-item__gallery" data-pi-image-gallery>
+        <div class="product-item__gallery" data-pi-image-gallery>
           {% assign first = true %}
           {% assign any_image = false %}
 
@@ -109,7 +107,7 @@
                     {% assign gallery_wrapper = "product-item__g-img-wrap" %}
                   {% endif %}
 
-                  <span class="product-item__gallery-img">
+                  <a class="product-item__gallery-img" href="{{ block_p.url }}">
                     {% render 'responsive-image' with
                       image: block_p_img,
                       max_width: 300,
@@ -119,7 +117,7 @@
                       wrapper_attributes: gallery_attribute,
                       span: true
                     %}
-                  </span>
+                  </a>
 
                   {% assign first = false %}
                   {% assign color_satisfied = true %}
@@ -130,7 +128,7 @@
           {% endfor %}
 
           {% unless any_image %}
-            <span class="product-item__gallery-img">
+            <a href="{{ block_p.url }}" class="product-item__gallery-img">
               {% render 'responsive-image' with
                 image: block_p.featured_image,
                 max_width: 300,
@@ -139,39 +137,41 @@
                 image_class: "product-item__gallery-img"
                 span: true
               %}
-            </span>
+            </a>
           {% endunless %}
-        </span>
+        </div>
 
-        {% if hide_title_mobile %}
-          <h3 class="product-item__title d-none d-md-inline-block">
-            {{ block_p.title }}
-          </h3>
-        {% else %}
-          <h3 class="product-item__title">
-            {{ block_p.title }}
-          </h3>
-        {% endif %}
+        <a href="{{ block_p.url }}">
+          {% if hide_title_mobile %}
+            <h3 class="product-item__title d-none d-md-inline-block">
+              {{ block_p.title }}
+            </h3>
+          {% else %}
+            <h3 class="product-item__title">
+              {{ block_p.title }}
+            </h3>
+          {% endif %}
 
-        {% render 'product-item-tags' with block_p %}
+          {% render 'product-item-tags' with block_p %}
 
-        {% if imperial_size %}
-          <span class="product-item__size">
-            {{ imperial_size }} {{ 'products.product.imperial_size' | t }}
+          {% if imperial_size %}
+            <span class="product-item__size">
+              {{ imperial_size }} {{ 'products.product.imperial_size' | t }}
+            </span>
+          {% endif %}
+
+          <span class="product-item__price">
+            <span data-pi-price>
+              {{ block_p_def_v.price | money | remove: ".00" | strip }}
+            </span>
+            <s data-pi-compare>
+              {% if block_p_def_v.compare_at_price > block_p_def_v.price %}
+                {{ block_p_def_v.compare_at_price | money | remove: ".00" | strip }}
+              {% endif %}
+            </s>
           </span>
-        {% endif %}
-
-        <span class="product-item__price">
-          <span data-pi-price>
-            {{ block_p_def_v.price | money | remove: ".00" | strip }}
-          </span>
-          <s data-pi-compare>
-            {% if block_p_def_v.compare_at_price > block_p_def_v.price %}
-              {{ block_p_def_v.compare_at_price | money | remove: ".00" | strip }}
-            {% endif %}
-          </s>
-        </span>
-      </a>
+        </a>
+      </div>
 
       <div class="product-item__hover">
         {% unless block_p.has_only_default_variant %}

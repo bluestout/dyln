@@ -59,7 +59,7 @@ function handleOptionClick(event) {
   }
 
   if (opName === "color" || opName === "sleeve") {
-    if (($slick.length > 0 && $(window).width() < 768) || $slickAlways.length > 0) {
+    if ($slick.length > 0 || $slickAlways.length > 0) {
       handleSlickChange($source);
     } else {
       handleColorChange($source);
@@ -259,35 +259,41 @@ function onItemHoverOut() {
 }
 
 function init() {
-  if ($(window).width() < 768) {
-    const $gallery = $(`${selectors.gallery}`);
-    const $images = $gallery.find(selectors.image);
-    $images.each((index, option) => {
-      $(option).css("display", "block");
-    });
+  const $gallery = $(`${selectors.gallery}`);
+  const $images = $gallery.find(selectors.image);
+  $images.each((index, option) => {
+    $(option).css("display", "block");
+  });
 
-    $gallery.slick({
-      swipeToSlide: true,
-      arrows: false,
-      dots: false,
-      slidesToShow: 1,
-      centerMode: true,
-      centerPadding: "25%",
-      infinite: true,
-      speed: 300,
-      initialSlide: 0,
-    });
+  $gallery.slick({
+    swipeToSlide: true,
+    arrows: false,
+    dots: false,
+    slidesToShow: 1,
+    centerMode: false,
+    infinite: true,
+    speed: 300,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          centerMode: true,
+          centerPadding: "10%",
+          initialSlide: 0,
+        },
+      }
+    ],
+  });
 
-    $($gallery).on("afterChange", (event, slick, nextSlide) => {
-      const $slide = $(event.currentTarget).find(`[data-slick-index="${nextSlide}"]`);
-      const color = $slide.find(selectors.image).data(datasets.image);
-      return $slide.closest(selectors.item).find(`[data-${datasets.value}="${color}"]`).click();
-    });
-  }
+  $($gallery).on("afterChange", (event, slick, nextSlide) => {
+    const $slide = $(event.currentTarget).find(`[data-slick-index="${nextSlide}"]`);
+    const color = $slide.find(selectors.image).data(datasets.image);
+    return $slide.closest(selectors.item).find(`[data-${datasets.value}="${color}"]`).click();
+  });
 
   const $galleryAlways = $(`${selectors.galleryAlways}`);
-  const $images = $galleryAlways.find(selectors.image);
-  $images.each((index, option) => {
+  const $imagesAlways = $galleryAlways.find(selectors.image);
+  $imagesAlways.each((index, option) => {
     $(option).css("display", "block");
   });
 
@@ -309,13 +315,9 @@ function init() {
 }
 
 function handlePreOrderTabClick(event) {
-  console.log("handlePreOrderTabClick", handlePreOrderTabClick);
   const $source = $(event.currentTarget);
-  console.log("$source", $source);
   const index = $source.data("tab-link");
-  console.log("index", index);
   const $tab = $source.closest(selectors.preOrders).find(selectors.tabByIndex(index));
-  console.log("$tab", $tab);
   if ($tab.length > 0) {
     $tab.find(`${selectors.value}`).first().click();
   }
