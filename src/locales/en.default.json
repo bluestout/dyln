@@ -29,7 +29,7 @@
       "signup_form_email_placeholder": "Your email",
       "signup_form_submit": "Submit",
       "signup_form_success": "We will send you an email right before we open!",
-      "admin_link_html": "Are you the store owner? <a href=\"\/admin\">Log in here<\/a>",
+      "admin_link_html": "Are you the store owner? <a href=\"/admin\">Log in here</a>",
       "password_link": "Enter using password",
       "powered_by_shopify_html": "This shop will be powered by {{ shopify }}"
     },
@@ -57,8 +57,12 @@
         "one": "{{ count }} result for \"{{ terms }}\"",
         "other": "{{ count }} results for \"{{ terms }}\""
       },
-      "no_results_html": "Please try a different search term or go back to the <a href=\"\/\">homepage<\/a>.",
-      "no_results_for": "No results for "
+      "no_results_html": "Please try a different search term or go back to the <a href=\"/\">homepage</a>.",
+      "no_results_for": "No results for ",
+      "products": "Products:",
+      "collections": "Collections:",
+      "articles": "Articles:",
+      "pages": "Pages:"
     },
     "newsletter_form": {
       "newsletter_email": "Join our mailing list",
@@ -121,7 +125,7 @@
       "checkout": "Checkout",
       "empty": "Your cart is empty.",
       "cookies_required": "Enable cookies to use the shopping cart",
-      "continue_browsing_html": "Continue browsing <a href=\"\/collections\/all\">here<\/a>.",
+      "continue_browsing_html": "Continue browsing <a href=\"/collections/all\">here</a>.",
       "item_quantity": "Item quantity",
       "savings": "You're saving",
       "add_ons": "Add ons",
@@ -136,9 +140,9 @@
       "original_price": "Original price"
     },
     "shipping": {
-      "free_shipping_reached_html": "Yay! your oder gets <strong>Free Shipping!<\/strong>",
-      "free_shipping_unreached_html": "Hey, you are {{ price }} away from <strong>Free Shipping!<\/strong>",
-      "free_shipping_empty_html": "<strong>Get Free Shipping<\/strong> when you spend ${{ price }} or more",
+      "free_shipping_reached_html": "Yay! your oder gets <strong>Free Shipping!</strong>",
+      "free_shipping_unreached_html": "Hey, you are {{ price }} away from <strong>Free Shipping!</strong>",
+      "free_shipping_empty_html": "<strong>Get Free Shipping</strong> when you spend ${{ price }} or more",
       "free": "FREE!",
       "shipping": "Shipping"
     }
@@ -179,6 +183,18 @@
       "step_navigation_next": "Next step"
     }
   },
+  "pre_order": {
+    "product_item": {
+      "buy_button_text": "Pre-Order"
+    },
+    "shop_all": {
+      "title": "Shop All",
+      "tab_1": "DYLN Bottles",
+      "tab_2": "Extra Diffusers",
+      "tab_3": "Sports Caps",
+      "tab_4": "Bottom Guards"
+    }
+  },
   "customer": {
     "account": {
       "title": "My Account",
@@ -207,7 +223,7 @@
       "city": "City",
       "country": "Country",
       "province": "Province",
-      "zip": "Postal\/Zip Code",
+      "zip": "Postal/Zip Code",
       "phone": "Phone",
       "set_default": "Set as default address",
       "add": "Add Address",
@@ -227,7 +243,7 @@
       "cancel": "Return to Store",
       "guest_title": "Continue as a guest",
       "guest_continue": "Continue",
-      "welcome_title": "Welcome Back!\/ Log In",
+      "welcome_title": "Welcome Back!/ Log In",
       "create_account": "Create your DYLN Account"
     },
     "orders": {
@@ -287,7 +303,7 @@
       "password": "Password",
       "submit": "Create Account",
       "cancel": "Return to Store",
-      "already_have_account_html": "Already have an account? <a href='\/account\/login\/'>Log In<\/a>",
+      "already_have_account_html": "Already have an account? <a href='/account/login/'>Log In</a>",
       "already_have_account": "Already have an account?",
       "benefits_await": "Your Benefits Await!"
     }
@@ -356,6 +372,7 @@
       "see_features": "See Features",
       "choose": "Choose",
       "watch_video": "Watch Video",
+      "choose_html": "Choose {{ option }}",
       "select_html": "Select {{ option }}",
       "select_html_mobile": "Swipe to select {{ option }}",
       "view_details": "View Details",
