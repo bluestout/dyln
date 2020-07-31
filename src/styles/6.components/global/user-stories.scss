@@ -63,6 +63,7 @@
     justify-content: center;
     opacity: 0;
     transition: ease-in-out all 0.3s;
+    display: none !important;
 
     @include media-query($medium-down) {
       width: 50px;
@@ -140,6 +141,24 @@
     &:nth-of-type(2n - 1) {
       .user-stories__s-media {
         order: 2 !important;
+      }
+
+      .user-stories__s-c-wrap {
+        border-radius: 5px 5px 0 0;
+      }
+
+      .user-stories__img-wrap {
+        border-radius: 0 0 5px 5px;
+      }
+    }
+
+    &:nth-of-type(2n) {
+      .user-stories__s-c-wrap {
+        border-radius: 0 0 5px 5px;
+      }
+
+      .user-stories__img-wrap {
+        border-radius: 5px 5px 0 0;
       }
     }
 
