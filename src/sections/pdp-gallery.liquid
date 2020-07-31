@@ -8,13 +8,14 @@
       {% assign img_color = "" %}
       {% if image.alt contains "color:" %}
         {% assign img_alt_split_at_color = image.alt | split: 'color:'  %}
-        {% assign img_color = img_alt_split_at_color[1] %}
+        {% assign img_color = img_alt_split_at_color[1] | strip %}
       {% endif %}
-      {% capture wrapper_class %}pdp-gallery__img-wrap{% unless featured_image == image %}{% endunless %}{% endcapture %}
-      {% capture wrapper_attributes %}data-product-image-wrapper{% if img_color.size > 0 %} data-gallery-image-color="{{ img_color }}"{% endif %}{% endcapture %}
+      {%- capture wrapper_class -%}pdp-gallery__img-wrap{%- endcapture -%}
+      {%- capture wrapper_attributes -%}data-product-image-wrapper{% if img_color.size > 0 %} data-gallery-image-color="{{- img_color -}}"{% endif %}{%- endcapture -%}
 
       <div
         class="pdp-gallery__image-item"
+        data-color="{{- img_color -}}"
         >
         {% render 'responsive-image' with
           image: image,

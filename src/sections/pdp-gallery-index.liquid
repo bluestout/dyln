@@ -9,10 +9,10 @@
           {% assign img_color = "" %}
           {% if image.alt contains "color:" %}
             {% assign img_alt_split_at_color = image.alt | split: 'color:'  %}
-            {% assign img_color = img_alt_split_at_color[1] %}
+            {% assign img_color = img_alt_split_at_color[1] | strip %}
           {% endif %}
           {%- capture wrapper_attributes -%}{% if img_color.size > 0 %} data-gallery-index-color="{{ img_color }}"{% endif %}{%- endcapture -%}
-          <button class="pdp-g-index__dot-link" type="button">
+          <button class="pdp-g-index__dot-link" type="button" data-color="{{- img_color -}}">
             {% render 'responsive-image' with
               image: image,
               max_width: 90,
@@ -37,6 +37,7 @@
       {% endif %}
     </div>
   </div>
+  <button class="hide" data-pdp-gal-slick-reset>reset filters</button>
 {% endif %}
 
 {% schema %}

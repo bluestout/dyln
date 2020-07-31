@@ -101,6 +101,8 @@ const timing = {
 
 const productFormOptionChange = new Event("productFormOptionChange");
 
+let isSlickFiltered = false;
+
 register("product", {
   onLoad() {
     const productFormElement = document.querySelector(selectors.productForm);
@@ -224,6 +226,14 @@ register("product", {
       return null;
     }
 
+    const gallerySlick = this.container.querySelector(selectors.gallery);
+    const galleryIndex = this.container.querySelector(selectors.galleryIndex);
+
+    if (gallerySlick && galleryIndex) {
+      $(gallerySlick).slick("slickUnfilter");
+      $(galleryIndex).slick("slickUnfilter");
+    }
+
     const colorElement = this.container.querySelector(
       selectors.galleryByColor(color)
     );
@@ -233,9 +243,11 @@ register("product", {
     }
     const slickElement = colorElement.closest(selectors.slick);
     const index = slickElement.dataset.slickIndex;
-    const gallerySlick = this.container.querySelector(selectors.gallery);
     if (index && gallerySlick) {
       $(gallerySlick).slick("slickGoTo", index, false);
+      $(gallerySlick).slick("slickFilter", `[data-color="${color.trim()}"]`);
+      $(galleryIndex).slick("slickFilter", `[data-color="${color.trim()}"]`);
+      isSlickFiltered = true;
     }
   },
 
@@ -387,6 +399,9 @@ function init() {
         slidesToShow: 1,
         asNavFor: selectors.galleryIndex,
       });
+      $gallery.find("[data-color]").each((i, item) => {
+        $(item).closest(selectors.slick).attr("data-color", $(item).data("color"));
+      })
     }
 
     if ($galleryIndex.length > 0) {
@@ -400,6 +415,9 @@ function init() {
         prevArrow: htmlArrowPrev,
         nextArrow: htmlArrowNext,
       });
+      $galleryIndex.find("[data-color]").each((i, item) => {
+        $(item).closest(selectors.slick).attr("data-color", $(item).data("color"));
+      })
     }
   }
 
@@ -637,8 +655,15 @@ function handleAtcBar() {
   }
 }
 
-$(selectors.tabs.input).on("input propertychange", handleInputChange);
+function slickSLiderUnFilter() {
+  try {
+    $(selectors.gallery).slick("slickUnfilter");
+    $(selectors.galleryIndex).slick("slickUnfilter");
+    isSlickFiltered = false;
+  } catch (error) { }
+}
 
+$(selectors.tabs.input).on("input propertychange", handleInputChange);
 // $(document).on("click", selectors.play, handleGalleryPlayClick);
 $(document).on("click", selectors.video.button, handleVideoPlayClick);
 $(document).on("click", selectors.tabs.element, handleSpecsPlayClick);
@@ -646,6 +671,9 @@ $(document).on("click", selectors.tabs.return, handleSpecsReturnClick);
 $(document).on("click", selectors.atc.more, toggleAtcOptions);
 $(document).on("click", selectors.atc.option, handleAtcOptionClick);
 $(document).on("click", selectors.atc.add, handleAtcSubmit);
+$(document).on("click", "[data-pdp-gal-slick-reset]", slickSLiderUnFilter);
+
+
 
 document.addEventListener("windowScrolledRedux", handleAtcBar);
 
