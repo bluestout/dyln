@@ -39,6 +39,7 @@ const selectors = {
   slickSlider: ".slick-slider",
   optionLabel: "[data-pi-current-option]",
   optionWrap: "[data-pi-option-wrap]",
+  colorLabel: "[data-color-label]",
   preOrders: "[data-pre-order-products]",
   preOrdersTabLink: "[data-pre-order-products] [data-tab-link]",
   preOrderButton: "[data-pre-order-button]",
@@ -72,6 +73,12 @@ function handleOptionClick(event) {
 
 function renderOptionLabel($source) {
   const $colorLabel = $source.closest(selectors.optionWrap).find(selectors.optionLabel);
+  renderColorLabel($source);
+  return handleVariantChange($source);
+}
+
+function renderColorLabel($source) {
+  const $colorLabel = $source.closest(selectors.item).find(selectors.colorLabel);
   if ($colorLabel.length === 0) {
     return null;
   } else {
@@ -348,6 +355,88 @@ function handlePreOrderTabClick(event) {
   if ($tab.length > 0) {
     $tab.find(`${selectors.value}`).first().click();
   }
+
+  const $galleryAlways = $(`${selectors.galleryAlways}`);
+  const $images = $galleryAlways.find(selectors.image);
+  $images.each((index, option) => {
+    $(option).css("display", "block");
+  });
+
+  $galleryAlways.slick({
+    swipeToSlide: true,
+    arrows: true,
+    prevArrow: "<div class='slick-prev'></div>",
+    nextArrow: "<div class='slick-next'></div>",
+    dots: false,
+    slidesToShow: 1,
+    centerPadding: "0%",
+    centerMode: false,
+    infinite: true,
+    speed: 300,
+    responsive: [
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerMode: false,
+          infinite: true,
+          dots: false,
+          variableWidth: false
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerMode: false,
+          infinite: true,
+          dots: false,
+          variableWidth: false
+        }
+      }
+    ]
+  });
+
+  $($galleryAlways).on("afterChange", (event, slick, nextSlide) => {
+    const $slide = $(event.currentTarget).find(`[data-slick-index="${nextSlide}"]`);
+    const color = $slide.find(selectors.image).data(datasets.image);
+    return $slide.closest(selectors.item).find(`[data-${datasets.value}="${color}"]`).click();
+  });
+}
+
+function handlePreOrderTabClick(event) {
+  console.log("handlePreOrderTabClick", handlePreOrderTabClick);
+  const $source = $(event.currentTarget);
+  console.log("$source", $source);
+  const index = $source.data("tab-link");
+  console.log("index", index);
+  const $tab = $source.closest(selectors.preOrders).find(selectors.tabByIndex(index));
+  console.log("$tab", $tab);
+  if ($tab.length > 0) {
+    $tab.find(`${selectors.value}`).first().click();
+  }
+}
+
+function handlePreOrderButtonClick(event) {
+  const $parent = $(event.currentTarget).closest(selectors.addOnParent);
+  const $addOns = $parent.find(selectors.preOrderAddOns);
+  $addOns.each((index, addon) => {
+    const data = $(addon).find("form").serialize();
+    const checked = $(addon).find(selectors.preOrderCheckbox).prop("checked");
+    if (checked && data) {
+      $.ajax({
+        type: "POST",
+        url: "/cart/add.js",
+        async: false,
+        data: data,
+        dataType: "json",
+        cache: false,
+      });
+    }
+  });
+  $parent.find(selectors.submit).click();
 }
 
 function handlePreOrderButtonClick(event) {

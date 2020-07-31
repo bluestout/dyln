@@ -1,6 +1,10 @@
 .po-footer {
-  background: rgb(103,227,169);
-  background: linear-gradient(270deg, rgba(103,227,169,1) 0%, rgba(102,204,235,1) 100%);
+  background: rgb(103, 227, 169);
+  background: linear-gradient(
+    270deg,
+    rgba(103, 227, 169, 1) 0%,
+    rgba(102, 204, 235, 1) 100%
+  );
   padding: 40px 0;
   padding-bottom: 20px;
   color: $color-white;
@@ -20,6 +24,8 @@
     width: 100%;
     text-align: center;
     margin-top: 30px;
+    @include font-header(normal);
+    @include text(14px, 1.2, $color-theme-8, 0.3px);
   }
 
   &__submit-wrap {
