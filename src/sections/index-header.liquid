@@ -29,58 +29,59 @@
     <div class="container index-header__container">
       <div class="row index-header__row">
         <div class="col-xl-2 col-lg-1 d-lg-block d-none"></div>
-        <div class="col-xl-4 col-lg-5 col-8 d-flex static">
+        <div class="col-xl-4 col-lg-5 col-md-8 d-flex static">
           <div class="index-header__content">
             {%- if section.settings.title != blank -%}
               <h2 class="index-header__title">{{- section.settings.title -}}</h2>
             {%- endif -%}
-
-            {%- if section.settings.link_text != blank -%}
-              <div class="index-header__link-wrap">
-                <a class="index-header__link" href="{{- section.settings.link_url -}}">{{- section.settings.link_text -}}</a>
-              </div>
+            {%- if section.settings.sublink_text != blank -%}
             {%- endif -%}
-
-            {%- if section.blocks.size > 0 -%}
-              <div class="index-header__features">
-              {%- for feature in section.blocks -%}
-                <div class="index-header__f">
-                  {%- if feature.settings.icon != blank -%}
-                    <div class="index-header__f-icon">
-                      {%- if feature.settings.icon == "acid-reflux" -%}
-                        {%- render 'icon-acid-reflux' -%}
-                      {%- elsif feature.settings.icon == "detoxifying" -%}
-                        {%- render 'icon-detoxifying' -%}
-                      {%- elsif feature.settings.icon == "hydration" -%}
-                        {%- render 'icon-hydration' -%}
-                      {%- endif -%}
-                    </div>
-                  {%- endif -%}
-                  <div class="index-header__f-text">{{- feature.settings.title -}}</div>
-                </div>
-              {%- endfor -%}
+              <a href="{{ section.settings.sublink }}" class="index-header__inline-link">{{- section.settings.sublink_text -}}Why alkaline?</a>
+            {%- if section.settings.link_text != blank -%}
+              <div class="index-header__link-wrap d-none d-md-block">
+                <a class="index-header__link" href="{{- section.settings.link_url -}}">{{- section.settings.link_text -}}</a>
               </div>
             {%- endif -%}
           </div>
         </div>
       </div>
-      {%- if section.settings.bottom_text != blank -%}
-        <div class="index-header__btm">
-          <a
-            class="index-header__btm-link"
-            href="{{ section.settings.bottom_url }}"
-            {% if section.settings.bottom_scroll_to != blank %}
-              data-scroll-to="{{ section.settings.bottom_scroll_to }}"
-            {% endif %}>
-            {{ section.settings.bottom_text }}
-          </a>
-        </div>
-      {%- endif -%}
     </div>
+  </div>
+  <div class="index-header__wave-wrap"></div>
+  <div class="index-header__link-wrap d-md-none">
+    <a class="index-header__link" href="{{- section.settings.link_url -}}">{{- section.settings.link_text -}}</a>
   </div>
 </div>
 
-<div class="index-header__wave-wrap"></div>
+<div class="container">
+  {%- if section.blocks.size > 0 -%}
+    <div class="index-header__features">
+    {%- for feature in section.blocks -%}
+      <div class="index-header__f">
+        {%- if feature.settings.icon != blank -%}
+          <div class="index-header__f-icon">
+            {% render 'icon' with feature.settings.icon %}
+          </div>
+        {%- endif -%}
+        <div class="index-header__f-text">{{- feature.settings.title -}}</div>
+      </div>
+    {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+  {%- if section.settings.bottom_text != blank -%}
+    <div class="index-header__btm">
+      <a
+        class="index-header__btm-link"
+        href="{{ section.settings.bottom_url }}"
+        {% if section.settings.bottom_scroll_to != blank %}
+          data-scroll-to="{{ section.settings.bottom_scroll_to }}"
+        {% endif %}>
+        <span>{{ section.settings.bottom_text }}</span>{% render 'icon' with 'chevron-down-thick' %}
+      </a>
+    </div>
+  {%- endif -%}
+</div>
 
 {% schema %}
   {
@@ -103,6 +104,16 @@
         "type": "textarea",
         "id": "title",
         "label": "Title"
+      },
+      {
+        "type": "url",
+        "id": "sublink_url",
+        "label": "Subtitle Link"
+      },
+      {
+        "type": "text",
+        "id": "sublink_text",
+        "label": "Subtitle Link Text"
       },
       {
         "type": "url",
