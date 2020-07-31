@@ -1,5 +1,6 @@
 .po-diffusers {
   padding: 50px 0;
+  position: relative;
 
   &__container {
     display: flex;
@@ -52,5 +53,8 @@
     background-repeat: no-repeat;
     height: 40px;
     width: 100%;
+    position: absolute;
+    bottom: -20px;
+    z-index: 1;
   }
 }

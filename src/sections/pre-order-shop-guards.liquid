@@ -30,7 +30,8 @@
       data-single-product="{{ pop_p.id }}">
       {% form 'product', pop_p, data-product-form: '', data-product-handle: pop_p.handle, class: "pop__form" %}
         <div class="row">
-          <div class="col-lg-7">
+          <div class="col-lg-2"></div>
+          <div class="col-lg-5">
             <div class="pop__gallery" data-pi-image-gallery="always">
               {% assign first = true %}
               {% assign any_image = false %}
@@ -84,7 +85,7 @@
               {% endunless %}
             </div>
           </div>
-          <div class="col-lg-5">
+          <div class="col-lg-3">
 
             {% if pop_p.has_only_default_variant %}
               <input type="hidden" name="id" value="{{ pop_p_def_v.id }}" data-productid="{{ product.id }}"/>
@@ -107,7 +108,7 @@
             <div class="pop__sizes">
               <h5 class="pop__sizes-title">{{ section.settings.product_label }}</h5>
               {% for block in section.blocks %}
-                <button type="button" class="pop__sizes-link{% if forloop.index == 1 %} active{% endif %}" data-tab-link="4{{ forloop.index }}">{{ block.settings.title }}</button>
+                <a href="#" class="pop__sizes-link{% if forloop.index == 1 %} active{% endif %}" data-tab-link="4{{ forloop.index }}">{{ block.settings.title }}</a>
               {% endfor %}
               <div class="pop__note">{{ block.settings.note }}</div>
             </div>
@@ -203,9 +204,9 @@
               <div class="pdp-form__qty-wrap">
                 <label class="hide" for="Quantity">{{ 'products.product.quantity' | t }}</label>
                 <div class="pdp-form__qty-box">
-                  <button type="button" class="pdp-form__qty-button" data-qty-change="#PdpQuantity" data-direction="down">-</button>
-                  <input class="pdp-form__qty-input" type="number" id="PdpQuantity" name="quantity" value="1" min="1" data-qty-input>
-                  <button type="button" class="pdp-form__qty-button" data-qty-change="#PdpQuantity" data-direction="up">+</button>
+                  <button type="button" class="pdp-form__qty-button" data-qty-change="#GuardsQuantity" data-direction="down">-</button>
+                  <input class="pdp-form__qty-input" type="number" id="GuardsQuantity" name="quantity" value="1" min="1" data-qty-input>
+                  <button type="button" class="pdp-form__qty-button" data-qty-change="#GuardsQuantity" data-direction="up">+</button>
                 </div>
               </div>
             </div>
@@ -255,7 +256,7 @@
 {% schema %}
   {
     "name": "Pre Order Shop Guards",
-    "class": "pop",
+    "class": "pop po-shop",
     "settings": [
       {
         "type": "text",

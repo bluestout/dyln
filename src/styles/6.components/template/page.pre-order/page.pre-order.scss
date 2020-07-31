@@ -126,6 +126,10 @@
       border: none;
       padding: 15px;
 
+      @include media-query($small) {
+        padding: 12px;
+      }
+
       &.active {
         font-weight: bold;
         color: $color-white;

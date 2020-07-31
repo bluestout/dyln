@@ -186,6 +186,13 @@
   "pre_order": {
     "product_item": {
       "buy_button_text": "Pre-Order"
+    },
+    "shop_all": {
+      "title": "Shop All",
+      "tab_1": "DYLN Bottles",
+      "tab_2": "Extra Diffusers",
+      "tab_3": "Sports Caps",
+      "tab_4": "Bottom Guards"
     }
   },
   "customer": {

@@ -87,7 +87,7 @@
               {% endunless %}
             </div>
           </div>
-          <div class="col-lg-5">
+          <div class="col-lg-3">
 
             {% if pop_p.has_only_default_variant %}
               <input type="hidden" name="id" value="{{ pop_p_def_v.id }}" data-productid="{{ product.id }}"/>
@@ -206,9 +206,9 @@
               <div class="pdp-form__qty-wrap">
                 <label class="hide" for="Quantity">{{ 'products.product.quantity' | t }}</label>
                 <div class="pdp-form__qty-box">
-                  <button type="button" class="pdp-form__qty-button" data-qty-change="#PdpQuantity" data-direction="down">-</button>
-                  <input class="pdp-form__qty-input" type="number" id="PdpQuantity" name="quantity" value="1" min="1" data-qty-input>
-                  <button type="button" class="pdp-form__qty-button" data-qty-change="#PdpQuantity" data-direction="up">+</button>
+                  <button type="button" class="pdp-form__qty-button" data-qty-change="#BottlesQuantity" data-direction="down">-</button>
+                  <input class="pdp-form__qty-input" type="number" id="BottlesQuantity" name="quantity" value="1" min="1" data-qty-input>
+                  <button type="button" class="pdp-form__qty-button" data-qty-change="#BottlesQuantity" data-direction="up">+</button>
                 </div>
               </div>
             </div>

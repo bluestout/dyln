@@ -89,7 +89,7 @@
     left: 40px;
 
     @include media-query($large-down) {
-      left: 0;
+      left: 20px;
     }
   }
 
@@ -105,7 +105,7 @@
     right: 40px;
 
     @include media-query($large-down) {
-      right: 0;
+      right: 20px;
     }
   }
 
@@ -124,7 +124,7 @@
 
   &__title {
     @include font-header(bold);
-    @include text(32px, 1.2, $color-black, 0.3px);
+    @include text(42px, 1.2, $color-black, 0.3px);
     @include underline($color-main-1, false);
     @include transition(color);
     margin: 0 0 1px;

@@ -284,14 +284,14 @@
         <button type="button" class="pop__fake-btn" data-pre-order-button>
           {% comment %} TODO: remove {% endcomment %}
           {{ 'pre_order.product_item.buy_button_text' | t }}
-          <span data-pre-order-loaded>{{ section.settings.submit_text }}</span>
+          <span data-pre-order-loaded></span>
           <span data-pre-order-loaded data-pre-order-count></span>
           <span data-pre-order-loading class="loading-dots hide"></span>
         </button>
       </div>
-    </div>
 
-    <div class="pop__shipping-note">{{ section.settings.shipping_note }}</div>
+      <div class="pop__shipping-notice">{{ section.settings.shipping_note }}</div>
+    </div>
   </div>
   {% endfor %}
 </div>
@@ -327,11 +327,6 @@
         "type": "textarea",
         "id": "shipping_note",
         "label": "Shipping Note"
-      },
-      {
-        "type": "text",
-        "id": "submit_text",
-        "label": "Submit Button"
       }
     ],
     "blocks": [
