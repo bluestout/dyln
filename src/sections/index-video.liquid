@@ -41,6 +41,13 @@
             {%- endif -%}
           </div>
         </div>
+        
+          {% if section.settings.video_loop != blank %}
+        <div class="col-lg-6 col-md-6 d-flex" style="align-self: center;text-align: center;">
+          	{{ section.settings.video_loop }}
+          </div>
+  		{%- endif -%}
+        
       </div>
 
     </div>
@@ -92,7 +99,13 @@
         "label": "Background",
         "info": "700x500"
       },
-      {
+	{
+        "type": "textarea",
+        "id": "video_loop",
+        "label": "Loop Video Embed",
+        "info": "Or use an embed from youtube, vimeo or similar. Copy/paste the embed code here."
+      },
+		{
         "type": "textarea",
         "id": "title",
         "label": "Title"

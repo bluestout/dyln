@@ -7,9 +7,9 @@
         <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><g stroke="#00AEDB" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M1.333 1.333L11 11M10.667 1.333L1 11"/></g></svg>
       </span>
     </button>
-    
+
     <div class="account-edit-option__body reset-form-wrap">
-      <h3 class="registration-modal__title address-form-title text-center profile-bg" style="background-image:url('{{ 'proiflie-image-1.jpg' | asset_url }}');">{{ 'customer.addresses.add_new' | t }} <span class="address-form-message"></span><div class="account-header__wave"></div></h3>    
+      <h3 class="registration-modal__title address-form-title" style="background-image:url('//cdn.shopify.com/s/files/1/0511/9421/t/224/assets/dyln-account-mobile-modal-bg-leaf-closeup.min.png?v=4898268988018323649');">{{ 'customer.addresses.add_new' | t }}<span class="address-form-message"></span></h3>
 <div id="add_address" class="customer_address add_address col-md-12 col-sm-12">
   <div class="address-fm-wrap">
     {% form 'customer_address', customer.new_address %}
@@ -70,7 +70,7 @@
     </div>
     {% endform %}
   </div>
-</div>      
+</div>
 
     </div>
 </div>
@@ -85,10 +85,10 @@
         <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><g stroke="#00AEDB" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M1.333 1.333L11 11M10.667 1.333L1 11"/></g></svg>
       </span>
     </button>
-    
+
     <div class="account-edit-option__body reset-form-wrap">
-      <h3 class="registration-modal__title address-form-title text-center profile-bg" style="background-image:url('{{ 'proiflie-image-1.jpg' | asset_url }}');">Edit Address <span class="address-form-message"></span><div class="account-header__wave"></div></h3>
-{% for address in customer.addresses %}      
+      <h3 class="registration-modal__title" style="background-image:url('//cdn.shopify.com/s/files/1/0511/9421/t/224/assets/dyln-account-mobile-modal-bg-leaf-closeup.min.png?v=4898268988018323649');">Edit Address <span class="address-form-message"></span></h3>
+{% for address in customer.addresses %}
 <div id="edit_address_{{ address.id}}" class="customer_address edit_address col-md-12 col-sm-12" style="display:none">
   <div class="address-fm-wrap">
     {% form 'customer_address', address %}
@@ -150,7 +150,7 @@
     </div>
     {% endform %}
   </div>
-</div>      
+</div>
 {% endfor %}
     </div>
 </div>

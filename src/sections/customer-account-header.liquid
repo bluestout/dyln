@@ -1,8 +1,8 @@
 <section class="account-header">
   <div class="account-header__background-wrap">
     <img
-      class="account-header__background profile-bg"
-      src="{{ 'proiflie-image-1.jpg' | asset_url }}"
+      class="account-header__background"
+      src="{{ 'dyln-account-leaf-background.min.png' | asset_url }}"
       alt="Large image of a green leaf close-up" />
   </div>
   <div class="account-header__bar-wrap">
@@ -56,7 +56,7 @@
                 account-header__badge--gold, account-header__badge--bronze
                 classes for other ranks
                {% endcomment %}
-              <div class="account-header__badge" data-account-tier-badge></div>
+				<div class="account-header__badge" data-account-tier-badge></div>
               <p class="account-header__description">Use this page to keep track of your points, orders and Diffusers…</p>
             </div>
             <div class="col-lg-6 align-self-center">
@@ -123,6 +123,7 @@
 
   <div class="account-header__wave"></div>
 </section>
+
 {% schema %}
   {
     "name": "Customer Account Header",

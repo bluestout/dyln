@@ -11,7 +11,7 @@
 
       {% comment %} modal header is the same, just the data points change {% endcomment %}
       <div class="registration-modal__header">
-        <h3 class="registration-modal__title profile-bg" style="background-image:url('{{ 'proiflie-image-1.jpg' | asset_url }}');">Bottle Registration <div class="account-header__wave"></div></h3>
+        <h3 class="registration-modal__title" style="background-image:url('{{ 'dyln-account-mobile-modal-bg-leaf-closeup.min.png' | asset_url }}');">Bottle Registration</h3>
         <div class="registration-modal__progress">
           <span class="registration-modal__progress-point active"></span>
           <span class="registration-modal__progress-point process-2"></span>
@@ -25,15 +25,15 @@
       <div class="registration-modal__page step_code" data-step="1">
         <h4 class="registration-modal__page-title">Insert the 3-digit or 4-digit code on the bottom of your bottle.</h4>
         <div class="registration-modal__code-video-wrap">
-          {% comment %} 
+          {% comment %}
           <video class="registration-modal__code-video"  height="110" autoplay muted loop playsinline>
             <source src="{{ 'small-sample-video.mp4' | asset_url }}" type="video/mp4">
             Your browser does not support the video tag.
           </video>
           {% endcomment %}
           {% comment %} we should use a video rather than a gif, but if we must use gifs, here's the img element for gifs, you can just remove the video and uncomment the img {% endcomment %}
-          
-         <img class="registration-modal__code-gif" alt="" src="//cdn.shopify.com/s/files/1/0511/9421/t/222/assets/bottle_code_250x250.png"  height="110" /> 
+
+         <img class="registration-modal__code-gif" alt="" src="//cdn.shopify.com/s/files/1/0511/9421/t/222/assets/bottle_code_250x250.png"  height="110" />
         </div>
         <div class="registration-modal__input-wrap code">
           <label for="bottle-registration-code" class="visually-hidden">Enter Code</label>
@@ -129,7 +129,7 @@
               Your browser does not support the video tag.
             </video>
 			{% endcomment %}
-            
+
             {% comment %} we should use a video rather than a gif, but if we must use gifs, here's the img element for gifs: {% endcomment %}
             <img class="registration-modal__suggestion-gif" alt="" src="{{ 'small-sample-gif-motion-elements.gif' | asset_url }}"  height="110" />
 
@@ -155,7 +155,7 @@
         </div>
         <!--
         <div class="registration-modal__date-wrap">
-          
+
           <span class="registration-modal__select-wrap">
             <label for="bottle-registration-day" class="visually-hidden">Day</label>
             <select name="day" id="bottle-registration-day" class="registration-modal__select">
@@ -229,7 +229,7 @@
             </span>
           </span>
         </div>
-        </div>  
+        </div>
         <div class="clearfix"></div>
         <div class="registration-modal__navigation">
           <button type="button" class="registration-modal__btn-alt">Back</button>

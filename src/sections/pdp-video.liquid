@@ -43,6 +43,12 @@
             {%- endif -%}
           </div>
         </div>
+         {% if section.settings.video_loop != blank %}
+        <div class="col-md-6 d-flex">
+          	{{ section.settings.video_loop }}
+          </div>
+  		{%- endif -%}
+
       </div>
     </div>
 
@@ -76,12 +82,13 @@
         "label": "Show Section",
         "default": true
       },
-      {
-        "type": "image_picker",
-        "id": "background",
-        "label": "Background",
-        "info": "700x500"
+  		{
+        "type": "textarea",
+        "id": "video_loop",
+        "label": "Loop Video Embed",
+        "info": "Or use an embed from youtube, vimeo or similar. Copy/paste the embed code here."
       },
+
       {
         "type": "textarea",
         "id": "title",

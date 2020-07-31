@@ -80,6 +80,7 @@ icon-curved-arrow-down:
         </div>
 
         <div class="account-body__tabs">
+
           <div class="body-tab account-dash active-tab">
             <div class="row">
               <div class="col-md-6">
@@ -102,22 +103,24 @@ icon-curved-arrow-down:
                     <span class="account-dash__title-txt">My Bottles</span>
                     <button type="button" class="account-dash__title-button tab-button" tab-body="account-bottles">See All</button>
                   </h3>
-                  <div id="custommer-bottles-short">
-                    <div class="account-dash__bottle" style="display:none">
-                      <div class="account-dash__bottle-wrap" aria-ignore="true">
-                        {% comment %} progress must be in percent, so between 0 and 100. It needs to be in steps of 5, so 5, 10, 15, 20,... that is to reduce the size of the css file - each percent has its own class {% endcomment %}
-                        <div class="account-dash__bottle-progress progress-circle" data-progress="40">
-                          <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water Bottle" class="account-dash__bottle-img" />
-                        </div>
+          <div id="custommer-bottles-short">
+
+                  <div class="account-dash__bottle" style="display:none">
+                    <div class="account-dash__bottle-wrap" aria-ignore="true">
+                      {% comment %} progress must be in percent, so between 0 and 100. It needs to be in steps of 5, so 5, 10, 15, 20,... that is to reduce the size of the css file - each percent has its own class {% endcomment %}
+                      <div class="account-dash__bottle-progress progress-circle" data-progress="40">
+                        <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water Bottle" class="account-dash__bottle-img" />
                       </div>
-                      <div class="account-dash__bottle-content">
-                        <h4 class="account-dash__bottle-title">Bottle #1</h4>
-                        <p class="account-dash__bottle-timer"><span>60</span> days left on Diffuser</p>
-                      </div>
-                      <button type="button" class="account-dash__bottle-more">
-                        <span class="visually-hidden">More options</span>
-                      </button>
                     </div>
+                    <div class="account-dash__bottle-content">
+                      <h4 class="account-dash__bottle-title">Bottle #1</h4>
+                      <p class="account-dash__bottle-timer"><span>60</span> days left on Diffuser</p>
+                    </div>
+                    <button type="button" class="account-dash__bottle-more">
+                      <span class="visually-hidden">More options</span>
+                    </button>
+                  </div>
+
                   </div>
 
                   <div class="account-dash__bottle-btn-wrap">
@@ -398,95 +401,91 @@ icon-curved-arrow-down:
     </button>
 
     <h4 class="registration-modal__title">Choose a New Profile Image</h4>
-    <form id="profile-image-update">
-    <input type="hidden" name="c_id" value="{{ customer.id }}" />
     <div class="clearfix">
       <div class="account-edit__image-checkbox-wrap">
-        <label class="account-edit__image-label" for="profile-background-1">Hi {{ customer.first_name }}!</label>
+        <label class="account-edit__image-label" for="profile-background-1">Hi Jane!</label>
         <input type="radio"
-          id="profile-image-1"
-          name="profile_image"
-          value="image-1"
-          checked="checked"
+          id="profile-background-1"
+          name="profile-image"
+          value="profile-background-1"
           class="account-edit__image-radio"
-          style="background-image:url({{ 'proiflie-image-1.jpg' | asset_img_url: '200x' }})"/>
+          style="background-image:url({{ 'edit-account-workout-routines.png' | asset_url }})"/>
       </div>
 
       <div class="account-edit__image-checkbox-wrap">
-        <label class="account-edit__image-label" for="profile-background-2">Hi {{ customer.first_name }}!</label>
+        <label class="account-edit__image-label" for="profile-background-2">Hi Jane!</label>
         <input type="radio"
-          id="profile-image-2"
-          name="profile_image"
-          value="image-2"
+          id="profile-background-2"
+          name="profile-image"
+          value="profile-background-2"
           class="account-edit__image-radio"
-          style="background-image:url({{ 'proiflie-image-2.jpg' | asset_img_url: '200x' }})"/>
+          style="background-image:url({{ 'edit-account-sustainability.png' | asset_url }})"/>
       </div>
 
       <div class="account-edit__image-checkbox-wrap">
-        <label class="account-edit__image-label" for="profile-background-3">Hi {{ customer.first_name }}!</label>
+        <label class="account-edit__image-label" for="profile-background-3">Hi Jane!</label>
         <input type="radio"
-          id="profile-image-3"
-          name="profile_image"
-          value="image-3"
+          id="profile-background-3"
+          name="profile-image"
+          value="profile-background-3"
           class="account-edit__image-radio"
-          style="background-image:url({{ 'proiflie-image-3.jpg' | asset_img_url: '200x' }})"/>
+          style="background-image:url({{ 'edit-account-alkaline-recipes.png' | asset_url }})"/>
       </div>
 
       <div class="account-edit__image-checkbox-wrap">
-        <label class="account-edit__image-label" for="profile-background-4">Hi {{ customer.first_name }}!</label>
+        <label class="account-edit__image-label" for="profile-background-4">Hi Jane!</label>
         <input type="radio"
-          id="profile-image-4"
-          name="profile_image"
-          value="image-4"
+          id="profile-background-4"
+          name="profile-image"
+          value="profile-background-4"
           class="account-edit__image-radio"
-          style="background-image:url({{ 'proiflie-image-4.jpg' | asset_img_url: '200x' }})"/>
+          style="background-image:url({{ 'edit-account-nature.png' | asset_url }})"/>
       </div>
 
       <div class="account-edit__image-checkbox-wrap">
-        <label class="account-edit__image-label" for="profile-background-5">Hi {{ customer.first_name }}!</label>
+        <label class="account-edit__image-label" for="profile-background-5">Hi Jane!</label>
         <input type="radio"
-          id="profile-image-5"
-          name="profile_image"
-          value="image-5"
+          id="profile-background-5"
+          name="profile-image"
+          value="profile-background-5"
           class="account-edit__image-radio"
-          style="background-image:url({{ 'proiflie-image-5.jpg' | asset_img_url: '200x' }})"/>
+          style="background-image:url({{ 'edit-account-workout-routines-2.png' | asset_url }})"/>
       </div>
 
       <div class="account-edit__image-checkbox-wrap">
-        <label class="account-edit__image-label" for="profile-background-6">Hi {{ customer.first_name }}!</label>
+        <label class="account-edit__image-label" for="profile-background-6">Hi Jane!</label>
         <input type="radio"
-          id="profile-image-6"
-          name="profile_image"
-          value="image-6"
+          id="profile-background-6"
+          name="profile-image"
+          value="profile-background-6"
           class="account-edit__image-radio"
-          style="background-image:url({{ 'proiflie-image-6.jpg' | asset_img_url: '200x' }})"/>
+          style="background-image:url({{ 'edit-account-sustainability-2.png' | asset_url }})"/>
       </div>
 
       <div class="account-edit__image-checkbox-wrap">
-        <label class="account-edit__image-label" for="profile-background-7">Hi {{ customer.first_name }}!</label>
+        <label class="account-edit__image-label" for="profile-background-7">Hi Jane!</label>
         <input type="radio"
-          id="profile-image-7"
-          name="profile_image"
-          value="image-7"
+          id="profile-background-7"
+          name="profile-image"
+          value="profile-background-7"
           class="account-edit__image-radio"
-          style="background-image:url({{ 'proiflie-image-7.jpg' | asset_img_url: '200x' }})"/>
+          style="background-image:url({{ 'edit-account-alkaline-recipes-2.png' | asset_url }})"/>
       </div>
 
       <div class="account-edit__image-checkbox-wrap">
-        <label class="account-edit__image-label" for="profile-background-8">Hi {{ customer.first_name }}!</label>
+        <label class="account-edit__image-label" for="profile-background-8">Hi Jane!</label>
         <input type="radio"
-          id="profile-image-8"
-          name="profile_image"
-          value="image-8"
+          id="profile-background-8"
+          name="profile-image"
+          value="profile-background-8"
           class="account-edit__image-radio"
-          style="background-image:url({{ 'proiflie-image-8.jpg' | asset_img_url: '200x' }})"/>
+          style="background-image:url({{ 'edit-account-nature-2.png' | asset_url }})"/>
       </div>
     </div>
 
     <div class="registration-modal__navigation">
-      <button type="button" id="update-profile-pic" class="registration-modal__btn-wire-alt">Update</button>
+      <button type="button" class="registration-modal__btn-wire-alt">Update</button>
     </div>
-    </form>
   </div>
 </div>
 <!-- Script -->
