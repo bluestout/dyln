@@ -183,6 +183,11 @@
       "step_navigation_next": "Next step"
     }
   },
+  "pre_order": {
+    "product_item": {
+      "buy_button_text": "Pre-Order"
+    }
+  },
   "customer": {
     "account": {
       "title": "My Account",

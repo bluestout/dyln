@@ -1,5 +1,8 @@
 <div class="container" data-tab-container data-pre-order-products>
   <h2 class="pop__title">{{ section.settings.title }}</h2>
+  <p class="pop__content col-lg-none">
+    {{ section.settings.content }}
+  </p>
   {% for block in section.blocks %}
 
   {% assign pop_p = all_products[block.settings.product] %}
@@ -23,7 +26,7 @@
   {% for color in b_p_colors_array %}
     {% assign color_class = value %}
   {% endfor %}
-  <div data-tab="{{ forloop.index }}" {% if forloop.index == 1 %}class="active" {% else %}style="display:none;"{% endif %} data-add-on-parent>
+  <div data-tab="{{ forloop.index }}" {% if forloop.index == 1 %}class="active pop__wrapper" {% else %}style="display:none;"{% endif %} data-add-on-parent>
     <div
       class="pop{% if pop_p.has_only_default_variant %} single{% endif %}"
       data-pi-item
@@ -31,7 +34,8 @@
       data-single-product="{{ pop_p.id }}">
       {% form 'product', pop_p, data-product-form: '', data-product-handle: pop_p.handle, class: "pop__form" %}
         <div class="row">
-          <div class="col-lg-7">
+          <div class="col-lg-1"></div>
+          <div class="col-lg-6">
             <div class="pop__gallery" data-pi-image-gallery="always">
               {% assign first = true %}
               {% assign any_image = false %}
@@ -86,129 +90,132 @@
             </div>
           </div>
           <div class="col-lg-5">
+            <div class="pop__data" data-product-data>
+              <p class="pop__content">
+                {{ section.settings.content }}
+              </p>
 
-            <p class="pop__content">
-              {{ section.settings.content }}
-            </p>
-
-            {% if pop_p.has_only_default_variant %}
-              <input type="hidden" name="id" value="{{ pop_p_def_v.id }}" data-productid="{{ product.id }}"/>
-            {% else %}
-              <select name="id" style="display:none !important;" data-pi-variant-select data-productid="{{ product.id }}">
-                {% for p_i_variant in pop_p.variants %}
-                  <option value="{{ p_i_variant.id }}"
-                    {% unless p_i_variant.available %}disabled="disabled"{% endunless %}
-                    {% if forloop.first %}selected="selected"{% endif %}>
-                    {{ p_i_variant.title }}
-                  </option>
-                {% endfor %}
-              </select>
-            {% endif %}
-
-            <div class="pop__sizes">
-              <h5 class="pop__sizes-title">{{ section.settings.size_label }}</h5>
-              {% for block in section.blocks %}
-                <button type="button" class="pop__sizes-link{% if forloop.index == 1 %} active{% endif %}" data-tab-link="{{ forloop.index }}">{{ block.settings.title }}</button>
-              {% endfor %}
-            </div>
-
-            {% unless pop_p.has_only_default_variant %}
-              {% if pop_p.variants.size > 1 %}
-                <div class="pop__options">
-                  {% for option in pop_p.options_with_values %}
-                    {% assign name_clean = option.name | downcase %}
-                    {% if name_clean == "color" or name_clean == "sleeve color" or name_clean == "sleeve" %}
-                      <span class="pop__options-label" data-color-label>{{ 'products.product.choose_html' | t: option: option.name }}</span>
-                      <div class="pop__colors" data-pi-option="{{ forloop.index }}">
-                        {% for value in option.values %}
-                          {% assign p_i_swatch_name = value | strip | strip_html | strip_newlines | handleize %}
-                          {% assign p_i_class_name = "color-swatch-" | append: p_i_swatch_name %}
-                          {% assign variant_id = "" %}
-                          {% for p_v in pop_p.variants %}
-                            {% if p_v.title == value %}
-                              {% assign variant_id = p_v.id %}
-                              {% break %}
-                            {% endif %}
-                          {% endfor %}
-                          <div class="pop__color-wrap" data-geo-specific-variant="{{ variant_id }}">
-                            <input
-                              class="pop__color-input"
-                              type="radio"
-                              id="{{ pop_p.id }}-option{{ option.position }}-{{ value | handleize }}"
-                              name="options[{{ option.name }}]"
-                              value="{{ value }}"
-                              data-pi-option-value="{{ value }}"
-                              data-pi-option-name="{{ name_clean }}"
-                              data-pi-option-index="{{ option.position }}"
-                              data-geo-variant-id="{{ variant_id }}"
-                              {% if forloop.first %}checked{% endif %}
-                              title="{{ value | remove: '_' }}" />
-                            <label
-                              class="pop__color-label {{ p_i_class_name }}"
-                              for="{{ pop_p.id }}-option{{ option.position }}-{{ value | handleize }}"
-                              title="{{ value | remove: '_' }}">
-                              <span {% comment %} class="hide" {% endcomment %}>{{ value }}</span>
-                            </label>
-                            {% comment %} <span class="pop__exclamation" data-pi-option-exclamation>!</span> {% endcomment %}
-                          </div>
-                        {% endfor %}
-                      </div>
-                    {% else %}
-                      <span class="pop__options-label">{{ 'products.product.choose_html' | t: option: option.name }}</span>
-                      <div class="pop__option" data-pi-option="{{ forloop.index }}">
-                        {% for value in option.values %}
-                          <span class="pop__value-wrap">
-                            <input
-                              class="pop__value-input"
-                              type="radio"
-                              id="{{ pop_p.id }}-option{{ option.position }}-{{ value | handleize }}"
-                              name="options[{{ option.name }}]"
-                              value="{{ value }}"
-                              data-pi-option-value="{{ value }}"
-                              data-pi-option-name="{{ name_clean }}"
-                              data-pi-option-index="{{ option.position }}"
-                              {% if forloop.first %}checked{% endif %} />
-                            <label
-                              class="pop__value-label"
-                              for="{{ pop_p.id }}-option{{ option.position }}-{{ value | handleize }}">
-                              {% assign adjusted_diffuser_title = value %}
-                              {% if adjusted_diffuser_title == "1 Diffuser" %}
-                                {% assign adjusted_diffuser_title = "Single Pack" %}
-                              {% elsif adjusted_diffuser_title contains "Diffusers" %}
-                                {% assign adjusted_diffuser_title = value | replace: ' Diffusers', '-Pack'%}
-                              {% endif %}
-                              {{ adjusted_diffuser_title }}
-                            </label>
-                          </span>
-                        {% endfor %}
-                      </div>
-                    {% endif %}
-
+              {% if pop_p.has_only_default_variant %}
+                <input type="hidden" name="id" value="{{ pop_p_def_v.id }}" data-productid="{{ product.id }}"/>
+              {% else %}
+                <select name="id" style="display:none !important;" data-pi-variant-select data-productid="{{ product.id }}">
+                  {% for p_i_variant in pop_p.variants %}
+                    <option value="{{ p_i_variant.id }}"
+                      {% unless p_i_variant.available %}disabled="disabled"{% endunless %}
+                      {% if forloop.first %}selected="selected"{% endif %}>
+                      {{ p_i_variant.title }}
+                    </option>
                   {% endfor %}
-                </div>
+                </select>
               {% endif %}
-            {% endunless %}
 
-            <div class="pop__price">
-              <div class="pop__price">
-                <span data-pi-price>
-                  {{ pop_p_def_v.price | money | remove: ".00" | strip }}
-                </span>
-                <s data-pi-compare>
-                  {% if pop_p_def_v.compare_at_price > pop_p_def_v.price %}
-                    {{ pop_p_def_v.compare_at_price | money | remove: ".00" | strip }}
-                  {% endif %}
-                </s>
+              <div class="pop__sizes">
+                <h5 class="pop__sizes-title">{{ section.settings.size_label }}</h5>
+                {% for block in section.blocks %}
+                  <a href="{{ size_product.url }}" class="pop__sizes-link{% if forloop.index == 1 %} active{% endif %}" data-tab-link="{{ forloop.index }}">{{ block.settings.title }}</a>
+                {% endfor %}
               </div>
-              <div class="pdp-form__qty-wrap">
-                <label class="hide" for="Quantity">{{ 'products.product.quantity' | t }}</label>
-                <div class="pdp-form__qty-box">
-                  <button type="button" class="pdp-form__qty-button" data-qty-change="#PdpQuantity" data-direction="down">-</button>
-                  <input class="pdp-form__qty-input" type="number" id="PdpQuantity" name="quantity" value="1" min="1" data-qty-input>
-                  <button type="button" class="pdp-form__qty-button" data-qty-change="#PdpQuantity" data-direction="up">+</button>
+
+              {% unless pop_p.has_only_default_variant %}
+                {% if pop_p.variants.size > 1 %}
+                  <div class="pop__options">
+                    {% for option in pop_p.options_with_values %}
+                      {% assign name_clean = option.name | downcase %}
+                      {% if name_clean == "color" or name_clean == "sleeve color" or name_clean == "sleeve" %}
+                        <span class="pop__options-label" data-color-label>{{ 'products.product.choose_html' | t: option: option.name }}</span>
+                        <div class="pop__colors" data-pi-option="{{ forloop.index }}">
+                          {% for value in option.values %}
+                            {% assign p_i_swatch_name = value | strip | strip_html | strip_newlines | handleize %}
+                            {% assign p_i_class_name = "color-swatch-" | append: p_i_swatch_name %}
+                            {% assign variant_id = "" %}
+                            {% for p_v in pop_p.variants %}
+                              {% if p_v.title == value %}
+                                {% assign variant_id = p_v.id %}
+                                {% break %}
+                              {% endif %}
+                            {% endfor %}
+                            <div class="pop__color-wrap" data-geo-specific-variant="{{ variant_id }}">
+                              <input
+                                class="pop__color-input"
+                                type="radio"
+                                id="{{ pop_p.id }}-option{{ option.position }}-{{ value | handleize }}"
+                                name="options[{{ option.name }}]"
+                                value="{{ value }}"
+                                data-pi-option-value="{{ value }}"
+                                data-pi-option-name="{{ name_clean }}"
+                                data-pi-option-index="{{ option.position }}"
+                                data-geo-variant-id="{{ variant_id }}"
+                                {% if forloop.first %}checked{% endif %}
+                                title="{{ value | remove: '_' }}" />
+                              <label
+                                class="pop__color-label {{ p_i_class_name }}"
+                                for="{{ pop_p.id }}-option{{ option.position }}-{{ value | handleize }}"
+                                title="{{ value | remove: '_' }}">
+                                <span {% comment %} class="hide" {% endcomment %}>{{ value }}</span>
+                              </label>
+                              {% comment %} <span class="pop__exclamation" data-pi-option-exclamation>!</span> {% endcomment %}
+                            </div>
+                          {% endfor %}
+                        </div>
+                      {% else %}
+                        <span class="pop__options-label">{{ 'products.product.choose_html' | t: option: option.name }}</span>
+                        <div class="pop__option" data-pi-option="{{ forloop.index }}">
+                          {% for value in option.values %}
+                            <span class="pop__value-wrap">
+                              <input
+                                class="pop__value-input"
+                                type="radio"
+                                id="{{ pop_p.id }}-option{{ option.position }}-{{ value | handleize }}"
+                                name="options[{{ option.name }}]"
+                                value="{{ value }}"
+                                data-pi-option-value="{{ value }}"
+                                data-pi-option-name="{{ name_clean }}"
+                                data-pi-option-index="{{ option.position }}"
+                                {% if forloop.first %}checked{% endif %} />
+                              <label
+                                class="pop__value-label"
+                                for="{{ pop_p.id }}-option{{ option.position }}-{{ value | handleize }}">
+                                {% assign adjusted_diffuser_title = value %}
+                                {% if adjusted_diffuser_title == "1 Diffuser" %}
+                                  {% assign adjusted_diffuser_title = "Single Pack" %}
+                                {% elsif adjusted_diffuser_title contains "Diffusers" %}
+                                  {% assign adjusted_diffuser_title = value | replace: ' Diffusers', '-Pack'%}
+                                {% endif %}
+                                {{ adjusted_diffuser_title }}
+                              </label>
+                            </span>
+                          {% endfor %}
+                        </div>
+                      {% endif %}
+
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              {% endunless %}
+
+              <div class="pop__price">
+                <div class="pop__price-inner">
+                  <span data-pi-price>
+                    {{ pop_p_def_v.price | money | remove: ".00" | strip }}
+                  </span>
+                  <s data-pi-compare>
+                    {% if pop_p_def_v.compare_at_price > pop_p_def_v.price %}
+                      {{ pop_p_def_v.compare_at_price | money | remove: ".00" | strip }}
+                    {% endif %}
+                  </s>
+                </div>
+                <div class="pdp-form__qty-wrap">
+                  <label class="hide" for="Quantity">{{ 'products.product.quantity' | t }}</label>
+                  <div class="pdp-form__qty-box">
+                    <button type="button" class="pdp-form__qty-button" data-qty-change="#PdpQuantity" data-direction="down">-</button>
+                    <input class="pdp-form__qty-input" type="number" id="PdpQuantity" name="quantity" value="1" min="1" data-qty-input>
+                    <button type="button" class="pdp-form__qty-button" data-qty-change="#PdpQuantity" data-direction="up">+</button>
+                  </div>
                 </div>
               </div>
+
             </div>
+
 
             {% comment %} hide visually, but this is still the main button {% endcomment %}
             {% comment %} Because the design needs forms inside forms to work on Shopify, but that's impossible {% endcomment %}
@@ -260,26 +267,28 @@
       {% endform %}
     </div>
 
-    {% if block.settings.add_on_1 != blank or block.settings.add_on_2 != blank %}
-    <div class="pop__add-ons">
-      <h4 class="pop__add-ons-title">{{ section.settings.add_ons_title }}</h4>
-      {% if block.settings.add_on_1 != blank %}
-        {% render 'add-on' with block.settings.add_on_1 %}
-      {% endif %}
-      {% if block.settings.add_on_2 != blank %}
-        {% render 'add-on' with block.settings.add_on_2 %}
-      {% endif %}
-    </div>
-    {% endif %}
+    <div class="pop__right-col" data-product-right-col>
+      {% if block.settings.add_on_1 != blank or block.settings.add_on_2 != blank %}
+      <div class="pop__add-ons" data-pop-add-ons>
+        <h4 class="pop__add-ons-title">{{ section.settings.add_ons_title }}</h4>
+        {% if block.settings.add_on_1 != blank %}
+          {% render 'add-on' with block.settings.add_on_1 %}
+        {% endif %}
+        {% if block.settings.add_on_2 != blank %}
+          {% render 'add-on' with block.settings.add_on_2 %}
+        {% endif %}
+      </div>
 
-    <div class="pop__fake-btn-wrap">
-      <button type="button" class="pop__fake-btn" data-pre-order-button>
-        {% comment %} TODO: remove {% endcomment %}
-        fake Button
-        <span data-pre-order-loaded>{{ section.settings.submit_text }}</span>
-        <span data-pre-order-loaded data-pre-order-count></span>
-        <span data-pre-order-loading class="loading-dots hide"></span>
-      </button>
+    {% endif %}
+      <div class="pop__fake-btn-wrap">
+        <button type="button" class="pop__fake-btn" data-pre-order-button>
+          {% comment %} TODO: remove {% endcomment %}
+          {{ 'pre_order.product_item.buy_button_text' | t }}
+          <span data-pre-order-loaded>{{ section.settings.submit_text }}</span>
+          <span data-pre-order-loaded data-pre-order-count></span>
+          <span data-pre-order-loading class="loading-dots hide"></span>
+        </button>
+      </div>
     </div>
 
     <div class="pop__shipping-note">{{ section.settings.shipping_note }}</div>
@@ -298,7 +307,7 @@
         "label": "Section Title"
       },
       {
-        "type": "textarea",
+        "type": "html",
         "id": "content",
         "label": "content"
       },
