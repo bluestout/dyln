@@ -33,17 +33,7 @@
           {% endif %}
             <div class="pdp-usps__usp">
               <div class="pdp-usps__usp-icon">
-                {% if block.settings.icon == "hydration" %}
-                  {% render 'icon-usp-hydration' %}
-                {% elsif block.settings.icon == "detoxifying" %}
-                  {% render 'icon-detoxifying-spin' %}
-                {% elsif block.settings.icon == "acid-reflux" %}
-                  {% render 'icon-usp-acid-reflux' %}
-                {% elsif block.settings.icon == "spark" %}
-                  {% render 'icon-spark' %}
-                {% elsif block.settings.icon == "flame" %}
-                  {% render 'icon-flame' %}
-                {% endif %}
+                {% render 'icon' with block.settings.icon %}
               </div>
               <p class="pdp-usps__usp-text">
                 {{ block.settings.title }}
@@ -95,7 +85,7 @@
             "type": "text",
             "id": "icon",
             "label": "Icon",
-            "info": "Input an icon name, available icons: hydration, detoxifying, acid-reflux, spark, flame"
+            "info": "Input an icon name, available icons: usp-hydration, detoxifying-spin, acid-reflux, spark, flame"
           },
           {
             "type": "textarea",

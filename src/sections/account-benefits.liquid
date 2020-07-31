@@ -1,13 +1,7 @@
 {% for block in section.blocks %}
   <div class="account-benefits__usp">
     <div class="account-benefits__icon">
-      {%- if block.settings.icon == "star" -%}
-        {%- render 'icon-account-star' -%}
-      {%- elsif block.settings.icon == "reminder" -%}
-        {%- render 'icon-account-reminder' -%}
-      {%- elsif block.settings.icon == "track" -%}
-        {%- render 'icon-account-track' -%}
-      {%- endif -%}
+      {% render 'icon' with block.settings.icon  %}
     </div>
     <div class="account-benefits__content">
       <h4 class="account-benefits__title">{{ block.settings.title }}</h4>
@@ -39,7 +33,7 @@
             "type": "text",
             "id": "icon",
             "label": "Icon",
-            "info": "Icon name to be used. Icons available: star, reminder, track. Copy one of these and paste it in the text field."
+            "info": "Icon name to be used. Icons available: account-star, account-reminder, account-track. Copy one of these and paste it in the text field."
           }
         ]
       }

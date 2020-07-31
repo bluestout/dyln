@@ -80,13 +80,7 @@
             {% if section.settings.usp_title_1 != blank %}
               <div class="c-header__usp">
                 <div class="c-header__icon">
-                  {%- if section.settings.usp_icon_1 == "acid-reflux" -%}
-                    {%- render 'icon-acid-reflux' -%}
-                  {%- elsif section.settings.usp_icon_1 == "detoxifying" -%}
-                    {%- render 'icon-detoxifying' -%}
-                  {%- elsif section.settings.usp_icon_1 == "hydration" -%}
-                    {%- render 'icon-hydration' -%}
-                  {%- endif -%}
+                  {% render 'icon' with section.settings.usp_icon_1 %}
                 </div>
                 <div class="c-header__usp-title">{{ section.settings.usp_title_1 }}</div>
               </div>
@@ -95,13 +89,7 @@
             {% if section.settings.usp_title_2 != blank %}
               <div class="c-header__usp">
                 <div class="c-header__icon">
-                  {%- if section.settings.usp_icon_2 == "acid-reflux" -%}
-                    {%- render 'icon-acid-reflux' -%}
-                  {%- elsif section.settings.usp_icon_2 == "detoxifying" -%}
-                    {%- render 'icon-detoxifying' -%}
-                  {%- elsif section.settings.usp_icon_2 == "hydration" -%}
-                    {%- render 'icon-hydration' -%}
-                  {%- endif -%}
+                  {% render 'icon' with section.settings.usp_icon_2 %}
                 </div>
                 <div class="c-header__usp-title">{{ section.settings.usp_title_2 }}</div>
               </div>
@@ -110,13 +98,7 @@
             {% if section.settings.usp_title_3 != blank %}
               <div class="c-header__usp">
                 <div class="c-header__icon">
-                  {%- if section.settings.usp_icon_3 == "acid-reflux" -%}
-                    {%- render 'icon-acid-reflux' -%}
-                  {%- elsif section.settings.usp_icon_3 == "detoxifying" -%}
-                    {%- render 'icon-detoxifying' -%}
-                  {%- elsif section.settings.usp_icon_3 == "hydration" -%}
-                    {%- render 'icon-hydration' -%}
-                  {%- endif -%}
+                  {% render 'icon' with section.settings.usp_icon_3 %}
                 </div>
                 <div class="c-header__usp-title">{{ section.settings.usp_title_3 }}</div>
               </div>
