@@ -170,21 +170,27 @@
         <h5 class="header-login__benefits-title">{{ section.settings.login_benefit_title }}</h5>
         <div class="header-login__benefits-block">
           <div class="header-login__benefit-b">
-            {% render 'icon' with section.settings.login_benefit_icon_1 %}
+            <div class="header-login__benefit-b-icon">
+              {% render 'icon' with section.settings.login_benefit_icon_1 %}
+            </div>
             <div class="header-login__benefit-b-content">
               <span><strong>{{ section.settings.login_benefit_1 }}</strong></span><br>
               <span>{{ section.settings.login_benefit_content_1 }}</span>
             </div>
           </div>
           <div class="header-login__benefit-b">
-            {% render 'icon' with section.settings.login_benefit_icon_2 %}
+            <div class="header-login__benefit-b-icon">
+              {% render 'icon' with section.settings.login_benefit_icon_2 %}
+            </div>
             <div class="header-login__benefit-b-content">
               <span><strong>{{ section.settings.login_benefit_2 }}</strong></span><br>
               <span>{{ section.settings.login_benefit_content_2 }}</span>
             </div>
           </div>
           <div class="header-login__benefit-b">
-            {% render 'icon' with section.settings.login_benefit_icon_3 %}
+            <div class="header-login__benefit-b-icon">
+              {% render 'icon' with section.settings.login_benefit_icon_3 %}
+            </div>
             <div class="header-login__benefit-b-content">
               <span><strong>{{ section.settings.login_benefit_3 }}</strong></span><br>
               <span>{{ section.settings.login_benefit_content_3 }}</span>
