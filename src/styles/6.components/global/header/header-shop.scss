@@ -150,10 +150,14 @@
       @include font-header(700);
       @include text(16px, 22px, $color-body-text, 0.15px);
       @include transition(color);
+      @include underline($color-main-1, false);
 
       &:hover,
       &:focus {
         color: $color-main-1;
+        &::after {
+          width: 100%;
+        }
       }
     }
 
@@ -161,10 +165,14 @@
       @include font-header(700);
       @include text(14px, 22px, $color-theme-8, 0.63px);
       @include transition(color);
+      @include underline($color-main-1, false);
 
       &:hover,
       &:focus {
         color: $color-main-1;
+        &::after {
+          width: 100%;
+        }
       }
     }
 
@@ -189,6 +197,7 @@
       &:focus {
         .header-shop__link-sub-a-p {
           color: $color-main-1;
+          text-decoration: underline;
         }
       }
     }
@@ -196,7 +205,6 @@
     &__link-sub-a-p {
       @include font-header(500);
       @include text(14px, 20px, $color-body-text, 0.13px);
-      @include transition(color);
     }
 
     &__link-sub-a {
