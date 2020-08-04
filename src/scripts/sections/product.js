@@ -62,6 +62,7 @@ const selectors = {
   userImages: "[data-pdp-user-images]",
   json: "[data-pdp-product-json]",
   jsonOptions: "[data-pdp-product-options]",
+  schemaSettings: "[data-product-schema-settings]",
   video: {
     parent: "[data-pdp-video-parent]",
     content: "[data-pdp-video-non-video]",
@@ -390,6 +391,12 @@ function init() {
 
   handleAtcBar();
 
+  let fading = false;
+  try {
+    const options = JSON.parse($(selectors.schemaSettings).text());
+    fading = options.fade_pdp;
+  } catch (error) { }
+
   if ($(window).width() > 767) {
     if ($gallery.length > 0) {
       $gallery.slick({
@@ -398,6 +405,8 @@ function init() {
         dots: false,
         slidesToShow: 1,
         asNavFor: selectors.galleryIndex,
+        fade: fading,
+        cssEase: 'linear',
       });
       $gallery.find("[data-color]").each((i, item) => {
         $(item).closest(selectors.slick).attr("data-color", $(item).data("color"));
@@ -655,14 +664,6 @@ function handleAtcBar() {
   }
 }
 
-function slickSLiderUnFilter() {
-  try {
-    $(selectors.gallery).slick("slickUnfilter");
-    $(selectors.galleryIndex).slick("slickUnfilter");
-    isSlickFiltered = false;
-  } catch (error) { }
-}
-
 $(selectors.tabs.input).on("input propertychange", handleInputChange);
 // $(document).on("click", selectors.play, handleGalleryPlayClick);
 $(document).on("click", selectors.video.button, handleVideoPlayClick);
@@ -671,9 +672,6 @@ $(document).on("click", selectors.tabs.return, handleSpecsReturnClick);
 $(document).on("click", selectors.atc.more, toggleAtcOptions);
 $(document).on("click", selectors.atc.option, handleAtcOptionClick);
 $(document).on("click", selectors.atc.add, handleAtcSubmit);
-$(document).on("click", "[data-pdp-gal-slick-reset]", slickSLiderUnFilter);
-
-
 
 document.addEventListener("windowScrolledRedux", handleAtcBar);
 

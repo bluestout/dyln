@@ -46,6 +46,7 @@ const selectors = {
   tabByIndex: (index) => `[data-tab="${index}"]`,
   preOrderCheckbox: "[data-pi-add-this]",
   addOnParent: "[data-add-on-parent]",
+  settings: "[data-product-schema-settings]"
 };
 
 function handleOptionClick(event) {
@@ -265,6 +266,12 @@ function init() {
     $(option).css("display", "block");
   });
 
+  let fading = false;
+  try {
+    const options = JSON.parse($(selectors.settings).text());
+    fading = options.fade_pi;
+  } catch (error) { }
+
   $gallery.slick({
     swipeToSlide: true,
     arrows: false,
@@ -273,6 +280,8 @@ function init() {
     centerMode: false,
     infinite: true,
     speed: 300,
+    fade: fading,
+    cssEase: 'linear',
     responsive: [
       {
         breakpoint: 768,
@@ -308,6 +317,8 @@ function init() {
     centerMode: false,
     infinite: true,
     speed: 300,
+    fade: fading,
+    cssEase: 'linear',
     responsive: [
       {
         breakpoint: 992,
@@ -317,7 +328,9 @@ function init() {
           centerMode: false,
           infinite: true,
           dots: false,
-          variableWidth: false
+          variableWidth: false,
+          fade: fading,
+          cssEase: 'linear',
         }
       },
       {
@@ -328,7 +341,9 @@ function init() {
           centerMode: false,
           infinite: true,
           dots: false,
-          variableWidth: false
+          variableWidth: false,
+          fade: fading,
+          cssEase: 'linear',
         }
       }
     ]
@@ -355,6 +370,12 @@ function handlePreOrderTabClick(event) {
     $(option).css("display", "block");
   });
 
+  let fading = false;
+  try {
+    options = JSON.parse($(selectors.settings).text());
+    fading = options.fade;
+  } catch (error) { }
+
   $galleryAlways.slick({
     swipeToSlide: true,
     arrows: true,
@@ -366,6 +387,8 @@ function handlePreOrderTabClick(event) {
     centerMode: false,
     infinite: true,
     speed: 300,
+    fade: fading,
+    cssEase: 'linear',
     responsive: [
       {
         breakpoint: 992,
@@ -375,7 +398,9 @@ function handlePreOrderTabClick(event) {
           centerMode: false,
           infinite: true,
           dots: false,
-          variableWidth: false
+          variableWidth: false,
+          fade: fading,
+          cssEase: 'linear',
         }
       },
       {
@@ -386,7 +411,9 @@ function handlePreOrderTabClick(event) {
           centerMode: false,
           infinite: true,
           dots: false,
-          variableWidth: false
+          variableWidth: false,
+          fade: fading,
+          cssEase: 'linear',
         }
       }
     ]

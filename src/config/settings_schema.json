@@ -4,8 +4,8 @@
     "theme_name": "Dyln",
     "theme_version": "1.0.0",
     "theme_author": "Shopify",
-    "theme_documentation_url": "https:\/\/github.com\/Shopify\/starter-theme",
-    "theme_support_url": "https:\/\/github.com\/Shopify\/starter-theme\/issues"
+    "theme_documentation_url": "https://github.com/Shopify/starter-theme",
+    "theme_support_url": "https://github.com/Shopify/starter-theme/issues"
   },
   {
     "name": "Colors",
@@ -264,7 +264,7 @@
         "type": "image_picker",
         "id": "share_image",
         "label": "Image",
-        "info": "Shown when sharing a link on social media. [Learn more](https:\/\/help.shopify.com\/manual\/using-themes\/troubleshooting\/showing-social-media-thumbnail-images\/) about image thumbnails."
+        "info": "Shown when sharing a link on social media. [Learn more](https://help.shopify.com/manual/using-themes/troubleshooting/showing-social-media-thumbnail-images/) about image thumbnails."
       },
       {
         "type": "header",
@@ -345,7 +345,7 @@
     "settings": [
       {
         "type": "header",
-        "content": "Index \/ Home Page"
+        "content": "Index / Home Page"
       },
       {
         "type": "text",
@@ -366,7 +366,7 @@
       },
       {
         "type": "header",
-        "content": "Landing \/ Full width page"
+        "content": "Landing / Full width page"
       },
       {
         "type": "text",
@@ -625,6 +625,66 @@
         "id": "diff_sub_close_text",
         "label": "Close Button",
         "default": "Close"
+      },
+      {
+        "type": "select",
+        "id": "diff_sub_icon_1",
+        "label": "Icon 1",
+        "options": [
+          {
+            "value": "shipping-truck",
+            "label": "Shipping Truck"
+          },
+          {
+            "value": "circle-savings",
+            "label": "Circle Savings"
+          },
+          {
+            "value": "options",
+            "label": "Options"
+          }
+        ],
+        "info": "Icon to be used."
+      },
+      {
+        "type": "select",
+        "id": "diff_sub_icon_2",
+        "label": "Icon 2",
+        "options": [
+          {
+            "value": "shipping-truck",
+            "label": "Shipping Truck"
+          },
+          {
+            "value": "circle-savings",
+            "label": "Circle Savings"
+          },
+          {
+            "value": "options",
+            "label": "Options"
+          }
+        ],
+        "info": "Icon to be used."
+      },
+      {
+        "type": "select",
+        "id": "diff_sub_icon_3",
+        "label": "Icon 3",
+        "options": [
+          {
+            "value": "shipping-truck",
+            "label": "Shipping Truck"
+          },
+          {
+            "value": "circle-savings",
+            "label": "Circle Savings"
+          },
+          {
+            "value": "options",
+            "label": "Options"
+          }
+        ],
+        "info": "Icon to be used."
       }
     ]
   },
@@ -635,7 +695,7 @@
         "type": "link_list",
         "id": "collections_all_linklist",
         "label": "Collection List Linklist",
-        "info": "Select the menu from which the collections\/all page will be generated"
+        "info": "Select the menu from which the collections/all page will be generated"
       }
     ]
   },
@@ -891,6 +951,25 @@
         "max": 300,
         "step": 10,
         "default": 120
+      }
+    ]
+  },
+  {
+    "name": "Product Settings",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "pdp_fade",
+        "label": "Fade PDP?",
+        "info": "On the main product pages, should the gallery images fade instead of slide?",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "pi_fade",
+        "label": "Fade List?",
+        "info": "On collections and product items, should the variant images fade instead of slide?",
+        "default": false
       }
     ]
   }
