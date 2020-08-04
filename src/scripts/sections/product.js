@@ -183,7 +183,11 @@ register("product", {
       this.renderFeaturedImage(thumbnail.dataset.thumbnailId);
       this.renderActiveThumbnail(thumbnail.dataset.thumbnailId);
     } else if (slick) {
-      $(selectors.galleryIndex).slick("slickGoTo", slick.dataset.slickIndex);
+      if (isSlickFiltered) {
+        $(selectors.galleryIndex).slick("slickGoTo", $(event.target.closest(selectors.slick)).index());
+      } else {
+        $(selectors.galleryIndex).slick("slickGoTo", slick.dataset.slickIndex);
+      }
     }
 
     return;
@@ -245,7 +249,7 @@ register("product", {
     const slickElement = colorElement.closest(selectors.slick);
     const index = slickElement.dataset.slickIndex;
     if (index && gallerySlick) {
-      $(gallerySlick).slick("slickGoTo", index, false);
+      // $(gallerySlick).slick("slickGoTo", index, false);
       $(gallerySlick).slick("slickFilter", `[data-color="${color.trim()}"]`);
       $(galleryIndex).slick("slickFilter", `[data-color="${color.trim()}"]`);
       isSlickFiltered = true;
