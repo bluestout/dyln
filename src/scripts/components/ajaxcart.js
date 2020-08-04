@@ -600,7 +600,12 @@ function handleCartDrawerCheckoutHeight() {
 
 function handleUpsell(cart) {
   const settings = $(selectors.cart.upsell).html();
-  const json = JSON.parse(settings);
+  let json = "";
+  try {
+    json = JSON.parse(settings);
+  } catch (error) {
+    return "";
+  }
   let loop = true;
 
   let pattern = "";
@@ -609,6 +614,11 @@ function handleUpsell(cart) {
   const upsellProductsStatus = {};
   upsellProductsStatus.itemIds = [];
   upsellProductsStatus.count = 0;
+  const limit = json.limit ? json.limit : 3;
+
+  if (limit === 0) {
+    return "";
+  }
 
   for (let i = 0; i < cart.items.length; i++) {
     if (!cartProductIds.includes(cart.items[i].product_id)) {
@@ -619,7 +629,7 @@ function handleUpsell(cart) {
   let validUpsell = false;
 
   for (let i = 0; i < cartProductsWithUpsell.length; i++) {
-    if (upsellProductsStatus.count >= 3) {
+    if (upsellProductsStatus.count >= limit) {
       break;
     }
     loop = true;
@@ -627,15 +637,13 @@ function handleUpsell(cart) {
     const item = cartProductsWithUpsell[i];
 
     for (let j = 0; j < json.products.length; j++) {
-      if (!loop || upsellProductsStatus.count >= 3) {
+      if (!loop || upsellProductsStatus.count >= limit) {
         break;
       }
       const uspellItem = json.products[j];
       const upsoldProduct = uspellItem.upsell_product;
       const upsoldProduct2 = uspellItem.upsell_product_2;
       const upsoldProduct3 = uspellItem.upsell_product_3;
-
-      console.log("index? ", `1${i}${j}`);
 
       if (item.product_id === uspellItem.active_id) {
         if (upsoldProduct && !cartProductIds.includes(upsoldProduct.id) && !upsellProductsStatus.itemIds.includes(upsoldProduct.id)) {

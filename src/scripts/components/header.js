@@ -41,7 +41,6 @@ const selectors = {
   searchInput: "[data-header-search-input]",
   results: "[data-header-search-results]",
   searchOptions: "[data-search-options]",
-  schemaSettings: "[data-search-schema-settings]",
   popTerm: `[data-${datasets.popTerm}]`,
 };
 
@@ -446,11 +445,12 @@ function mouseUpEvent(event) {
 }
 
 function closeLoginOnClickOut(event) {
-  const $clickBlock = $(event.target).closest(selectors.loginBlock);
-  const $clickLink = $(event.target).closest(selectors.linkById(4));
-  const $loginLink = $(selectors.linkById(4));
+  const loginIndex = 4;
+  const $clickBlock = $(event.target).closest(selectors.blockById(loginIndex));
+  const $clickLink = $(event.target).closest(selectors.linkById(loginIndex));
+  const $loginLink = $(selectors.linkById(loginIndex));
   if ($clickBlock.length === 0 && $clickLink.length === 0 && $loginLink.hasClass(classes.active)) {
-    closeHeaderById(4);
+    closeHeaderById(loginIndex);
   }
 }
 

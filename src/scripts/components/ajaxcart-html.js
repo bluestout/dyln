@@ -243,6 +243,14 @@ function quickCartLineItemHtml(product, index) {
   if (isSubscription || isSubscribableProduct) {
     subscriptionHtml = `<div class="cart-drawer__subscription-box">`;
     let customSelectOptionsClassname = "custom-select-options";
+    let firstSubscriptionPrice = formatMoney(product.price, theme.moneyFormat);
+
+    try {
+      firstSubscriptionPrice = formatMoney(
+        subMetadata.map[product.variant_id].discount_variant_price,
+        theme.moneyFormat
+      );
+    } catch (error) { }
 
     customSelectOptionsClassname = "custom-select-options full";
     subscriptionHtml += `<input type="checkbox"
@@ -258,7 +266,7 @@ function quickCartLineItemHtml(product, index) {
       </label>
       <span class="cart-drawer__subscription-box-btn">
         <span data-qc-subscription-price>
-          ${formatMoney(product.price, theme.moneyFormat)}
+          ${firstSubscriptionPrice}
         </span>
         <span><strong>${theme.strings.subscribe}</strong></span>
       </span>`;
