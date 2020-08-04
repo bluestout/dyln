@@ -1,15 +1,15 @@
 <div class="diffusers__usps{% if size == 'large' %} large{% endif %}">
   <div class="diffusers__usp{% if size == 'large' %} large{% endif %}">
-    {% render 'icon-shipping-truck' %}
+    {% render 'icon' with settings.diff_sub_icon_1 %}
     <span>{{ 'products.subscription.free_shipping' | t }}</span>
   </div>
   <div class="diffusers__usp{% if size == 'large' %} large{% endif %}">
-    {% render 'icon-circle-savings' %}
+    {% render 'icon' with settings.diff_sub_icon_2 %}
     <span>{{ 'products.subscription.save' | t }}</span>
   </div>
 
   <div class="diffusers__usp{% if size == 'large' %} large{% endif %}">
-    {% render 'icon-options' %}
+    {% render 'icon' with settings.diff_sub_icon_3 %}
     <span>{{ 'products.subscription.customize' | t }}</span>
   </div>
 </div>
