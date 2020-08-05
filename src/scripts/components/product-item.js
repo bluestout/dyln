@@ -287,7 +287,7 @@ function init() {
         breakpoint: 768,
         settings: {
           centerMode: true,
-          centerPadding: "10%",
+          centerPadding: "25%",
           initialSlide: 0,
         },
       }
@@ -338,7 +338,8 @@ function init() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerMode: false,
+          centerMode: true,
+          centerPadding: "25%",
           infinite: true,
           dots: false,
           variableWidth: false,
