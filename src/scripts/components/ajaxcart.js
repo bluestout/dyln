@@ -328,8 +328,8 @@ function updateQuickCart(cart) {
             <img src="${theme.imageUrls.logoApplePay}" alt="Apple Pay" />
           </span>
           <span class="cart-drawer__payment-bar"></span>
-          <span class="cart-drawer__payment cart-drawer__payment--paypal">
-            <img src="${theme.imageUrls.logoPayPal}" alt="PayPal" />
+          <span class="cart-drawer__payment cart-drawer__payment--googlepay">
+            <img src="${theme.imageUrls.logoGooglePay}" alt="Google Pay" />
           </span>
         </div>
       </div>
