@@ -481,7 +481,7 @@ function addToCartComplete(jqXHR, textStatus) {
   if (textStatus === "success") {
     $.getJSON("/cart.js", (json) => {
       returnCartIfNotEmpty(json);
-      toggleChatBubble(2);
+      toggleChatBubble(1);
       quickCartOpen(true);
     });
   } else if (
