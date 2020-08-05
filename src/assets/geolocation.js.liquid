@@ -174,16 +174,14 @@ window.onload = function () {
               ).attr(attributes.shipping, variantMessageSegment[1]);
             });
             renderSubmitButton(pId);
-          } catch (error) {
-            console.log(error);
-          }
+          } catch (error) { /*console.log(error);*/ }
         });
-        renderSubmitButton();
+        // renderSubmitButton();
         $(selectors.atcBar).removeClass("hide");
       },
       error: function (jqXHR, textStatus, errorThrown) {
         submitButtonLoaded();
-        console.log(textStatus, errorThrown);
+        // console.log(textStatus, errorThrown);
       },
     });
 
@@ -239,7 +237,7 @@ window.onload = function () {
             }, 100);
           },
           error: function (jqXHR, textStatus, errorThrown) {
-            console.log(textStatus, errorThrown);
+            // console.log(textStatus, errorThrown);
           },
         });
       } else {

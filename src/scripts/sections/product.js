@@ -29,6 +29,7 @@ const datasets = {
   atc: {
     option: "atc-option",
   },
+  slickInit: "slick-initialized"
 };
 
 const htmlArrowNext =
@@ -63,6 +64,7 @@ const selectors = {
   json: "[data-pdp-product-json]",
   jsonOptions: "[data-pdp-product-options]",
   schemaSettings: "[data-product-schema-settings]",
+  gorgiasChat: "gorgias-web-messenger-container",
   video: {
     parent: "[data-pdp-video-parent]",
     content: "[data-pdp-video-non-video]",
@@ -234,7 +236,7 @@ register("product", {
     const gallerySlick = this.container.querySelector(selectors.gallery);
     const galleryIndex = this.container.querySelector(selectors.galleryIndex);
 
-    if (gallerySlick && galleryIndex) {
+    if (gallerySlick && galleryIndex && gallerySlick.classList.contains(classes.slickInit)) {
       $(gallerySlick).slick("slickUnfilter");
       $(galleryIndex).slick("slickUnfilter");
     }
@@ -246,10 +248,8 @@ register("product", {
     if (!colorElement) {
       return null;
     }
-    const slickElement = colorElement.closest(selectors.slick);
-    const index = slickElement.dataset.slickIndex;
-    if (index && gallerySlick) {
-      // $(gallerySlick).slick("slickGoTo", index, false);
+
+    if (gallerySlick && galleryIndex && gallerySlick.classList.contains(classes.slickInit)) {
       $(gallerySlick).slick("slickFilter", `[data-color="${color.trim()}"]`);
       $(galleryIndex).slick("slickFilter", `[data-color="${color.trim()}"]`);
       isSlickFiltered = true;
@@ -393,8 +393,6 @@ function init() {
   const $tInput = $(selectors.tabs.input);
   const $userImages = $(selectors.userImages);
 
-  handleAtcBar();
-
   let fading = false;
   try {
     const options = JSON.parse($(selectors.schemaSettings).text());
@@ -519,6 +517,8 @@ function init() {
       ],
     });
   }
+
+  handleAtcBar();
 }
 
 function handleVideoPlayClick(event) {
@@ -657,25 +657,42 @@ function handleAtcBar() {
     return;
   }
 
+  const gorgiasChat = document.getElementById(selectors.gorgiasChat);
+
   const rectangle = form.getBoundingClientRect();
 
   if (rectangle.top < 0) {
     if (!atc.classList.contains(classes.active)) {
       atc.classList.add(classes.active);
     }
+    if (gorgiasChat && !gorgiasChat.classList.contains("gorgias-offset")) {
+      gorgiasChat.classList.add("gorgias-offset");
+    }
   } else if (atc.classList.contains(classes.active)) {
     atc.classList.remove(classes.active);
+    if (gorgiasChat && gorgiasChat.classList.contains("gorgias-offset")) {
+      gorgiasChat.classList.remove("gorgias-offset");
+    }
   }
 }
 
 $(selectors.tabs.input).on("input propertychange", handleInputChange);
-// $(document).on("click", selectors.play, handleGalleryPlayClick);
 $(document).on("click", selectors.video.button, handleVideoPlayClick);
 $(document).on("click", selectors.tabs.element, handleSpecsPlayClick);
 $(document).on("click", selectors.tabs.return, handleSpecsReturnClick);
 $(document).on("click", selectors.atc.more, toggleAtcOptions);
 $(document).on("click", selectors.atc.option, handleAtcOptionClick);
 $(document).on("click", selectors.atc.add, handleAtcSubmit);
+
+let smoochInterval;
+let smoochCount = 0;
+smoochInterval = setInterval(function(){
+  smoochCount++;
+  if (smoochCount >= 15) {
+    handleAtcBar();
+    clearInterval(smoochInterval);
+  }
+}, 1000);
 
 document.addEventListener("windowScrolledRedux", handleAtcBar);
 
