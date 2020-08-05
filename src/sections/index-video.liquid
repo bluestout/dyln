@@ -15,8 +15,8 @@
   <div class="index-video__content-outer">
     <div class="index-video__container container">
       <div class="index-video__row row">
-        <div class="col-xl-2 col-lg-1 d-none d-lg-block"></div>
-        <div class="col-xl-4 col-lg-5 col-md-6 d-flex">
+        <div class="col-xl-1 d-none d-lg-block"></div>
+        <div class="col-xl-5 col-lg-6 d-flex">
           <div class="index-video__content">
             {%- if section.settings.video != blank or section.settings.video_embed != blank -%}
               <button type="button" class="index-video__link d-md-none" data-index-video-open>
@@ -41,31 +41,40 @@
             {%- endif -%}
           </div>
         </div>
-        
-          {% if section.settings.video_loop != blank %}
-        <div class="col-lg-6 col-md-6 d-flex" style="align-self: center;text-align: center;">
-          	{{ section.settings.video_loop }}
+        <div class="col-xl-5 col-lg-6">
+        {%- if section.settings.video_loop != blank -%}
+          <video
+            class="index-video__looped"
+            {% if section.settings.autoplay_loop %}autoplay playsinline muted loop{% else %}controls{% endif %}
+            width="{{ section.settings.video_width_loop }}"
+            height="{{ section.settings.video_height_loop }}"
+            tabindex="-1">
+            <source src="{{- section.settings.video_loop -}}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          {%- elsif section.settings.video_loop_embed != blank -%}
+          <div class="index-video__looped">
+            {{- section.settings.video_loop_embed -}}
           </div>
-  		{%- endif -%}
-        
+        {%- endif -%}
+        </div>
       </div>
-
     </div>
   </div>
 </div>
 
 <div class="index-video__modal-wrap" style="display:none;" data-index-video-modal>
-  <div class="index-video__modal-outer" data-index-video-close></div>
+  <div class="index-video__modal-overlay" data-index-video-close></div>
   <div class="index-video__modal">
     <button class="index-video__modal-close" data-index-video-close tabindex="-1" data-index-video-focusin>
       {% render 'icon-close' %}
       <span class="visually-hidden">{{ 'general.accessibility.close' | t }}</span>
     </button>
-    <div class="container">
+    <div class="index-video__modal-container">
       {%- if section.settings.video != blank -%}
         <video
           class="index-video__video"
-          {% if section.settings.autoplay %}playsinline muted loop{% else %}controls{% endif %}
+          {% if section.settings.autoplay %}autoplay playsinline muted loop{% else %}controls{% endif %}
           width="{{ section.settings.video_width }}"
           height="{{ section.settings.video_height }}"
           tabindex="-1">
@@ -87,7 +96,6 @@
   </div>
 </div>
 
-
 {% schema %}
   {
     "name": "Index Video",
@@ -99,13 +107,7 @@
         "label": "Background",
         "info": "700x500"
       },
-	{
-        "type": "textarea",
-        "id": "video_loop",
-        "label": "Loop Video Embed",
-        "info": "Or use an embed from youtube, vimeo or similar. Copy/paste the embed code here."
-      },
-		{
+		  {
         "type": "textarea",
         "id": "title",
         "label": "Title"
@@ -120,6 +122,51 @@
         "id": "link_text",
         "label": "Link Text",
         "default": "Watch full Video"
+      },
+      {
+        "type": "header",
+        "content": "Looping Video"
+      },
+      {
+        "type": "textarea",
+        "id": "video_loop",
+        "label": "Loop Video",
+        "info": "Upload a video to Shopify files and paste the source url here. Or paste the source url to a video here."
+      },
+	    {
+        "type": "textarea",
+        "id": "video_loop_embed",
+        "label": "Loop Video Embed",
+        "info": "Or use an embed from youtube, vimeo or similar. Copy/paste the embed code here."
+      },
+      {
+        "type": "checkbox",
+        "id": "autoplay_loop",
+        "label": "Autoplay video?",
+        "info": "Mutes and loops video, hides controls, autoplays when modal is opened.",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "video_width_loop",
+        "label": "Video Width",
+        "min": 300,
+        "max": 900,
+        "step": 10,
+        "default": 600
+      },
+      {
+        "type": "range",
+        "id": "video_height_loop",
+        "label": "Video Height",
+        "min": 300,
+        "max": 680,
+        "step": 10,
+        "default": 450
+      },
+      {
+        "type": "header",
+        "content": "Modal Video"
       },
       {
         "type": "textarea",

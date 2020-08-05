@@ -1,7 +1,7 @@
 {% if section.settings.show %}
-<div class="pdp-video__outer" data-pdp-video-parent data-transition-fade data-transition>
+<div class="pdp-video__outer" data-transition-fade data-transition>
   {%- if section.settings.background -%}
-    <div class="pdp-video__bg-outer" data-pdp-video-bg>
+    <div class="pdp-video__bg-outer">
       {%- render 'responsive-image' with
         image: section.settings.background,
         max_width: 700,
@@ -13,7 +13,7 @@
 
       {%- if section.settings.video != blank or section.settings.video_embed != blank -%}
         <div class="text-center">
-          <button type="button" class="pdp-video__button d-md-none" data-pdp-video-button>
+          <button type="button" class="pdp-video__button d-md-none" data-pdp-video-open>
             <span class="pdp-video__button-text">{{- section.settings.link_text -}}</span>
             <span class="pdp-video__button-icon">{%- render 'icon-play' -%}</span>
           </button>
@@ -23,9 +23,9 @@
   {%- endif -%}
 
   <div class="pdp-video__content-outer">
-    <div class="pdp-video__container container" data-pdp-video-non-video>
+    <div class="pdp-video__container container">
       <div class="pdp-video__row row">
-        <div class="col-md-1"></div>
+        <div class="col-md-1 d-none d-md-block"></div>
         <div class="col-md-5 d-flex">
           <div class="pdp-video__content">
             {%- if section.settings.title != blank -%}
@@ -36,18 +36,32 @@
             {%- endif -%}
 
             {%- if section.settings.video != blank or section.settings.video_embed != blank -%}
-              <button type="button" class="pdp-video__button d-none d-md-inline-block" data-pdp-video-button>
+              <button type="button" class="pdp-video__button d-none d-md-inline-block" data-pdp-video-open>
                 <span class="pdp-video__button-text">{{- section.settings.link_text -}}</span>
                 <span class="pdp-video__button-icon">{%- render 'icon-play' -%}</span>
               </button>
             {%- endif -%}
           </div>
         </div>
-         {% if section.settings.video_loop != blank %}
-        <div class="col-md-6 d-flex">
-          	{{ section.settings.video_loop }}
+        {% if section.settings.video_loop != blank %}
+        <div class="col-md-5">
+        {%- if section.settings.video_loop != blank -%}
+          <video
+            class="pdp-video__looped"
+            {% if section.settings.autoplay_loop %}autoplay playsinline muted loop{% else %}controls{% endif %}
+            width="{{ section.settings.video_width_loop }}"
+            height="{{ section.settings.video_height_loop }}"
+            tabindex="-1">
+            <source src="{{- section.settings.video_loop -}}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          {%- elsif section.settings.video_loop_embed != blank -%}
+          <div class="pdp-video__looped">
+            {{- section.settings.video_loop_embed -}}
           </div>
-  		{%- endif -%}
+        {%- endif -%}
+        </div>
+  		  {%- endif -%}
 
       </div>
     </div>
@@ -69,6 +83,41 @@
   </div>
 
 </div>
+
+
+<div class="pdp-video__modal-wrap" style="display:none;" data-pdp-video-modal>
+  <div class="pdp-video__modal-overlay" data-pdp-video-close></div>
+  <div class="pdp-video__modal">
+    <button class="pdp-video__modal-close" data-pdp-video-close tabindex="-1" data-pdp-video-focusin>
+      {% render 'icon-close' %}
+      <span class="visually-hidden">{{ 'general.accessibility.close' | t }}</span>
+    </button>
+    <div class="pdp-video__modal-container">
+      {%- if section.settings.video != blank -%}
+        <video
+          class="pdp-video__video"
+          {% if section.settings.autoplay %}autoplay playsinline muted loop{% else %}controls{% endif %}
+          width="{{ section.settings.video_width }}"
+          height="{{ section.settings.video_height }}"
+          tabindex="-1">
+          <source src="{{- section.settings.video -}}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        {%- elsif section.settings.video_embed != blank -%}
+        <div class="pdp-video__video">
+          {{- section.settings.video_embed -}}
+        </div>
+      {%- endif -%}
+    </div>
+    <button
+      class="visually-hidden"
+      data-pdp-video__-close
+      tabindex="-1">
+      {{ 'general.accessibility.close' | t }}
+    </button>
+  </div>
+</div>
+
 {% endif %}
 
 {% schema %}
@@ -82,13 +131,6 @@
         "label": "Show Section",
         "default": true
       },
-  		{
-        "type": "textarea",
-        "id": "video_loop",
-        "label": "Loop Video Embed",
-        "info": "Or use an embed from youtube, vimeo or similar. Copy/paste the embed code here."
-      },
-
       {
         "type": "textarea",
         "id": "title",
@@ -106,16 +148,86 @@
         "default": "Watch full Video"
       },
       {
+        "type": "header",
+        "content": "Looping Video"
+      },
+      {
+        "type": "textarea",
+        "id": "video_loop",
+        "label": "Loop Video",
+        "info": "Upload a video to Shopify files and paste the source url here. Or paste the source url to a video here."
+      },
+      {
+        "type": "textarea",
+        "id": "video_loop_embed",
+        "label": "Loop Video Embed",
+        "info": "Or use an embed from youtube, vimeo or similar. Copy/paste the embed code here."
+      },
+      {
+        "type": "checkbox",
+        "id": "autoplay_loop",
+        "label": "Autoplay video?",
+        "info": "Mutes and loops video, hides controls, autoplays when modal is opened.",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "video_width_loop",
+        "label": "Video Width",
+        "min": 300,
+        "max": 900,
+        "step": 10,
+        "default": 600
+      },
+      {
+        "type": "range",
+        "id": "video_height_loop",
+        "label": "Video Height",
+        "min": 300,
+        "max": 680,
+        "step": 10,
+        "default": 450
+      },
+      {
+        "type": "header",
+        "content": "Modal Video"
+      },
+      {
         "type": "textarea",
         "id": "video",
         "label": "Video",
-        "info": "Upload a video to Shopify files and paste the source url here."
+        "info": "Upload a video to Shopify files and paste the source url here. Or paste the source url to a video here."
+      },
+      {
+        "type": "checkbox",
+        "id": "autoplay",
+        "label": "Autoplay video?",
+        "info": "Mutes and loops video, hides controls, autoplays when modal is opened.",
+        "default": true
       },
       {
         "type": "textarea",
         "id": "video_embed",
         "label": "Video Embed",
         "info": "Or use an embed from youtube, vimeo or similar. Copy/paste the embed code here."
+      },
+      {
+        "type": "range",
+        "id": "video_width",
+        "label": "Video Width",
+        "min": 300,
+        "max": 900,
+        "step": 10,
+        "default": 600
+      },
+      {
+        "type": "range",
+        "id": "video_height",
+        "label": "Video Height",
+        "min": 300,
+        "max": 680,
+        "step": 10,
+        "default": 450
       }
     ]
   }

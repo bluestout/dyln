@@ -67,10 +67,11 @@ const selectors = {
   gorgiasChat: "gorgias-web-messenger-container",
   video: {
     parent: "[data-pdp-video-parent]",
-    content: "[data-pdp-video-non-video]",
-    wrap: "[data-pdp-video-wrap]",
-    button: "[data-pdp-video-button]",
-    bg: "[data-pdp-video-bg]",
+    open: "[data-pdp-video-open]",
+    modal: "[data-pdp-video-modal]",
+    close: "[data-pdp-video-close]",
+    focusOut: "[data-pdp-video-focusout]",
+    focusIn: "[data-pdp-video-focusin]",
   },
   tabs: {
     elements: "[data-pdp-specs-elements]",
@@ -521,30 +522,6 @@ function init() {
   handleAtcBar();
 }
 
-function handleVideoPlayClick(event) {
-  event.preventDefault();
-  const $source = $(event.currentTarget);
-  const $vParent = $source.closest(selectors.video.parent);
-  const $vWrap = $(selectors.video.wrap);
-  const $vContent = $vParent.find(selectors.video.content);
-  const $vBg = $vParent.find(selectors.video.bg);
-
-  if (
-    $source.length > 0 &&
-    $vParent.length > 0 &&
-    $vWrap.length > 0 &&
-    $vContent.length > 0
-  ) {
-    if ($vBg.length > 0) {
-      $vBg.fadeOut(timing.default);
-    }
-
-    $vContent.fadeOut(timing.default, () => {
-      $vWrap.fadeIn(timing.default);
-    });
-  }
-}
-
 function handleSpecsPlayClick(event) {
   event.preventDefault();
   const $source = $(event.currentTarget);
@@ -676,13 +653,37 @@ function handleAtcBar() {
   }
 }
 
+function handleVideoOpenClick() {
+  const $modal = $(selectors.video.modal);
+  $modal.fadeIn();
+  toggleTabindexInChildren($modal, 1);
+  $(selectors.video.focusIn).focus();
+  const video = $modal.find("video").get(0);
+  if (video && !video.controls) {
+    video.play();
+  }
+}
+
+function handleVideoCloseClick() {
+  const $modal = $(selectors.video.modal);
+  $modal.fadeOut();
+  toggleTabindexInChildren($modal, 2);
+  $(selectors.video.focusOut).focus();
+  const video = $modal.find("video").get(0);
+  if (video && !video.controls) {
+    video.pause();
+    video.currentTime = 0;
+  }
+}
+
 $(selectors.tabs.input).on("input propertychange", handleInputChange);
-$(document).on("click", selectors.video.button, handleVideoPlayClick);
 $(document).on("click", selectors.tabs.element, handleSpecsPlayClick);
 $(document).on("click", selectors.tabs.return, handleSpecsReturnClick);
 $(document).on("click", selectors.atc.more, toggleAtcOptions);
 $(document).on("click", selectors.atc.option, handleAtcOptionClick);
 $(document).on("click", selectors.atc.add, handleAtcSubmit);
+$(document).on("click", selectors.video.open, handleVideoOpenClick);
+$(document).on("click", selectors.video.close, handleVideoCloseClick);
 
 let smoochInterval;
 let smoochCount = 0;
