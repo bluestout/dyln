@@ -49,7 +49,7 @@
                       {% if block.type == "illustration" and block_step_num == i %}
                         {% assign illustration_step = illustration_step | plus: 1 %}
                         {{ block.settings.illustrations_gif }}
-                        {% if block.settings.illustration_content !== "" %}
+                        {% if block.settings.illustration_content != "" %}
                           <p><span>{{ illustration_step }}.</span> {{ block.settings.illustration_content }}</p>
                         {% endif %}
                       {% endif %}
