@@ -5,20 +5,25 @@
       {% assign step_num = section.settings.num_of_steps | plus: 0 %}
       {% assign illustration_step = 0 %}
       {% for i in (1..step_num) %}
+        {% assign has_video = false %}
         <div class="lp-steps__step{% if forloop.first == true %} active-step{% else %} inactive-step{% endif %}" data-step>
           <span class="lp-steps__step-num">{{ i }}</span>
           <div class="lp-steps__step-tab-container" data-tab-container>
             <div class="lp-steps__step-tab-nav">
               {% if section.settings.video_tab %}
-                <a class="lp-steps__step-tab active" data-tab-link="0">
-                  <h4>{{ section.settings.video_tab_title }}</h4>
-                </a>
-              {% endif %}
-
-              {% if section.settings.illustrations_tab %}
-                <a class="lp-steps__step-tab" data-tab-link="1">
-                  <h4>{{ section.settings.illustrations_tab_title }}</h4>
-                </a>
+                {% for block in section.blocks %}
+                {% assign get_better_filters = i | append: '' %}
+                {% if block.settings.step_num == get_better_filters and block.type == "video" and block.settings.video_id != blank %}
+                  <a class="lp-steps__step-tab active" data-tab-link="0">
+                    <h4>{{ section.settings.video_tab_title }}</h4>
+                  </a>
+                  <a class="lp-steps__step-tab" data-tab-link="1">
+                    <h4>{{ section.settings.illustrations_tab_title }}</h4>
+                  </a>
+                  {% assign has_video = true %}
+                {% break %}
+                {% endif %}
+                {% endfor %}
               {% endif %}
             </div>
 
@@ -39,9 +44,12 @@
 
               {% if section.settings.illustrations_tab or section.settings.illustration_header %}
                 {% if block_step_num == i %}
-
                   <div class="col-md-6 col-lg-5">
+                    {% if has_video %}
                     <div class="lp-steps__step-tab-content" data-tab="1">
+                    {% else %}
+                    <div class="lp-steps__step-tab-content active">
+                    {% endif %}
                       {% if block.type == "illustration_header" %}
                         <div id="illustrationHeader">{{ block.settings.illustration_header }}</div>
                       {% endif %}
@@ -57,7 +65,11 @@
                       {% if block.type == "illustration_footer" %}
                         <div id="illustrationFooter">{{ block.settings.illustration_footer }}</div>
                       {% endif %}
+                    {% if has_video %}
                     </div>
+                    {% else %}
+                    </div>
+                    {% endif %}
                   </div>
 
                 {% endif %}
