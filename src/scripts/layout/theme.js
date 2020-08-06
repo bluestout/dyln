@@ -22,6 +22,7 @@ import "../components/custom-select";
 import "../components/contact-sidebar";
 import "../components/jquery.mobile-events";
 import "../components/custom-slider";
+import "../components/product-item";
 
 import { focusHash, bindInPageLinks } from "@shopify/theme-a11y";
 
