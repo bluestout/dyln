@@ -181,6 +181,7 @@
     &__content {
       align-self: center;
       text-align: center;
+      margin: 0 0 20px;
 
       a {
         position: relative;
@@ -204,6 +205,10 @@
       line-height: 20px;
       letter-spacing: 0.95px;
       margin: 0;
+    }
+
+    &__button {
+      margin: 15px 0 0;
     }
 
     &__button-text {

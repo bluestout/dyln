@@ -14,7 +14,7 @@ import { register } from "@shopify/theme-sections";
 import { forceFocus } from "@shopify/theme-a11y";
 import { ProductForm } from "@shopify/theme-product-form";
 import { scrollTo } from "../components/scroll-to";
-import { handleize } from "../components/helpers";
+import { handleize, toggleTabindexInChildren } from "../components/helpers";
 
 const classes = {
   hide: "hide",

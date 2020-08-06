@@ -10,15 +10,6 @@
         image_class: "pdp-video__bg",
         snippet_index: 49
       -%}
-
-      {%- if section.settings.video != blank or section.settings.video_embed != blank -%}
-        <div class="text-center">
-          <button type="button" class="pdp-video__button d-md-none" data-pdp-video-open>
-            <span class="pdp-video__button-text">{{- section.settings.link_text -}}</span>
-            <span class="pdp-video__button-icon">{%- render 'icon-play' -%}</span>
-          </button>
-        </div>
-      {%- endif -%}
     </div>
   {%- endif -%}
 
@@ -55,33 +46,22 @@
             <source src="{{- section.settings.video_loop -}}" type="video/mp4">
             Your browser does not support the video tag.
           </video>
-          {%- elsif section.settings.video_loop_embed != blank -%}
+        {%- elsif section.settings.video_loop_embed != blank -%}
           <div class="pdp-video__looped">
             {{- section.settings.video_loop_embed -}}
           </div>
         {%- endif -%}
+          <div class="text-center">
+            <button type="button" class="pdp-video__button d-md-none" data-pdp-video-open>
+              <span class="pdp-video__button-text">{{- section.settings.link_text -}}</span>
+              <span class="pdp-video__button-icon">{%- render 'icon-play' -%}</span>
+            </button>
+          </div>
         </div>
   		  {%- endif -%}
-
-      </div>
-    </div>
-
-    <div class="pdp-video__video-outer" data-pdp-video-wrap>
-      <div class="container">
-        {%- if section.settings.video != blank -%}
-          <video class="pdp-video__video" controls playsinline width="900">
-            <source src="{{- section.settings.video -}}" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        {%- elsif section.settings.video_embed != blank -%}
-          <div class="pdp-video__video">
-            {{- section.settings.video_embed -}}
-          </div>
-        {%- endif -%}
       </div>
     </div>
   </div>
-
 </div>
 
 
