@@ -15,9 +15,9 @@
     overflow: hidden;
     padding: 0 0 40px;
     background: radial-gradient(
-      ellipse at top,
+      ellipse at 50% -100px,
       rgba($color-theme-19, 0.4) 0%,
-      $color-transparent 30%,
+      $color-transparent 250px,
       $color-transparent 100%
     );
   }
@@ -95,7 +95,7 @@
 
   &__content-outer {
     position: relative;
-    padding: 18px 0 0;
+    padding: 40px 0 0;
     min-height: 500px;
     display: flex;
   }
@@ -179,7 +179,25 @@
       top: -15px;
       right: -15px;
     }
+
+    &__content {
+      margin:  0 0 20px;
+    }
+
+    &__outer {
+      z-index: $z-base;
+      margin: -3px 0 0;
+      overflow: hidden;
+      padding: 0 0 40px;
+      background: radial-gradient(
+        circle at 50% -100px,
+        rgba($color-theme-19, 0.5) 0%,
+        $color-transparent 180px,
+        $color-transparent 100%
+      );
+    }
   }
+
 
   @include media-query($medium-down) {
     padding-top: 120px;
@@ -187,17 +205,6 @@
 
     &__looped {
       max-height: 100vw;
-    }
-
-    &__outer {
-      background: radial-gradient(
-        ellipse at top,
-        rgba($color-theme-19, 0.3) 0%,
-        $color-transparent 60%,
-        $color-transparent 100%
-      );
-      padding: 0;
-      overflow: visible;
     }
 
     &__back-link {
@@ -212,7 +219,7 @@
 
     &__content-outer {
       position: static;
-      padding: 18px 0 0;
+      padding: 30px 0 0;
       min-height: auto;
     }
 
@@ -235,7 +242,7 @@
     }
 
     &__link {
-      margin: 0 0 30px;
+      margin: 15px 0 0;
       display: inline-block;
     }
 
