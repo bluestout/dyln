@@ -306,49 +306,51 @@ function init() {
     $(option).css("display", "block");
   });
 
-  $galleryAlways.slick({
-    swipeToSlide: true,
-    arrows: true,
-    prevArrow: "<div class='slick-prev'></div>",
-    nextArrow: "<div class='slick-next'></div>",
-    dots: false,
-    slidesToShow: 1,
-    centerPadding: "0%",
-    centerMode: false,
-    infinite: true,
-    speed: 300,
-    fade: fading,
-    cssEase: 'linear',
-    responsive: [
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          centerMode: false,
-          infinite: true,
-          dots: false,
-          variableWidth: false,
-          fade: fading,
-          cssEase: 'linear',
+  if ($galleryAlways.length > 0 && !$galleryAlways.hasClass("slick-initialized")) {
+    $galleryAlways.slick({
+      swipeToSlide: true,
+      arrows: true,
+      prevArrow: "<div class='slick-prev'></div>",
+      nextArrow: "<div class='slick-next'></div>",
+      dots: false,
+      slidesToShow: 1,
+      centerPadding: "0%",
+      centerMode: false,
+      infinite: true,
+      speed: 300,
+      fade: fading,
+      cssEase: 'linear',
+      responsive: [
+        {
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            centerMode: false,
+            infinite: true,
+            dots: false,
+            variableWidth: false,
+            fade: fading,
+            cssEase: 'linear',
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            centerMode: true,
+            centerPadding: "25%",
+            infinite: true,
+            dots: false,
+            variableWidth: false,
+            fade: fading,
+            cssEase: 'linear',
+          }
         }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          centerMode: true,
-          centerPadding: "25%",
-          infinite: true,
-          dots: false,
-          variableWidth: false,
-          fade: fading,
-          cssEase: 'linear',
-        }
-      }
-    ]
-  });
+      ]
+    });
+  }
 
   $($galleryAlways).on("afterChange", (event, slick, nextSlide) => {
     const $slide = $(event.currentTarget).find(`[data-slick-index="${nextSlide}"]`);
@@ -376,7 +378,7 @@ function handlePreOrderTabClick(event) {
     options = JSON.parse($(selectors.settings).text());
     fading = options.fade;
   } catch (error) { }
-
+/* 
   $galleryAlways.slick({
     swipeToSlide: true,
     arrows: true,
@@ -418,9 +420,9 @@ function handlePreOrderTabClick(event) {
         }
       }
     ]
-  });
+  }); */
 
-  $($galleryAlways).on("afterChange", (event, slick, nextSlide) => {
+  $galleryAlways.on("afterChange", (event, slick, nextSlide) => {
     const $slide = $(event.currentTarget).find(`[data-slick-index="${nextSlide}"]`);
     const color = $slide.find(selectors.image).data(datasets.image);
     return $slide.closest(selectors.item).find(`[data-${datasets.value}="${color}"]`).click();
