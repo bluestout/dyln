@@ -85,6 +85,9 @@
     "diff_sub_note": "Start automatically receiving your extra Diffusers with Free Shipping so you can continue enjoying the Ultimate Hydration Experience.",
     "diff_sub_ready_text": "I'm ready to subscribe!",
     "diff_sub_close_text": "Close",
+    "diff_sub_icon_1": "shipping-truck",
+    "diff_sub_icon_2": "circle-savings",
+    "diff_sub_icon_3": "options",
     "collections_all_linklist": "list-collections",
     "accessibility_menu": "",
     "contact_s_title": "Need to talk to a human?",
@@ -125,6 +128,8 @@
     "search_field_variant_title": true,
     "search_field_vendor": true,
     "character_limit": 120,
+    "pdp_fade": true,
+    "pi_fade": true,
     "checkout_header_image": "shopify:\/\/shop_images\/Blue-Banner.png",
     "checkout_logo_image": "shopify:\/\/shop_images\/DYLN_White_trans.png",
     "checkout_logo_position": "left",
@@ -348,11 +353,15 @@
       "1581513413625": {
         "type": "index-video",
         "settings": {
-          "background": "shopify:\/\/shop_images\/noback.png",
-          "video_loop": "<style>video::-webkit-media-controls-panel {\n     background-image: linear-gradient(transparent, transparent); !important;\n     float:right!important;\n }\n\n<\/style>\n\n <video width=\"400\" height=\"400\" autoplay=\"\" loop=\"\" plasyinline=\"\" muted=\"\">\n <source src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0511\/9421\/files\/webAutoplay-HowDoesTheDylnBottleWork-480.mp4?v=1595973560\" type=\"video\/mp4\">\n    <source src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0511\/9421\/files\/webAutoplay-HowDoesTheDylnBottleWork.ogv\" type=\"video\/ogg\">\n    <source src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0511\/9421\/files\/webAutoplay-HowDoesTheDylnBottleWork.webm\" type=\"video\/webm\">\n <p>Fallback text.<\/p>\n <\/source><\/source><\/source><\/video>",
+          "background": "shopify:\/\/shop_images\/white.jpg",
           "title": "How does it work?",
           "text": "The magnesium, tourmaline, silica and zinc inside your bottle’s VitaBead Diffuser is what alkalizes your water.",
           "link_text": "Watch full Video",
+          "video_loop": "https:\/\/cdn.shopify.com\/s\/files\/1\/0511\/9421\/files\/webAutoplay-HowDoesTheDylnBottleWork.webm?v=1595642128",
+          "video_loop_embed": "",
+          "autoplay_loop": true,
+          "video_width_loop": 600,
+          "video_height_loop": 450,
           "video": "",
           "autoplay": false,
           "video_embed": "<iframe width=\"560\" height=\"315\" src=\"https:\/\/www.youtube.com\/embed\/V3WX3SoOULI?controls=0&rel=0\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\"><\/iframe>",
@@ -750,7 +759,8 @@
           "1595953443506"
         ],
         "settings": {
-          "title": "Add ons"
+          "title": "Add ons",
+          "limit": 3
         }
       },
       "pdp-gallery": {
@@ -974,12 +984,19 @@
         "type": "pdp-video",
         "settings": {
           "show": true,
-          "video_loop": "<style>video::-webkit-media-controls-panel {\n     background-image: linear-gradient(transparent, transparent); !important;\n     float:right!important;\n }\n\n<\/style>\n\n <video width=\"400\" height=\"400\" autoplay=\"\" loop=\"\" plasyinline=\"\" muted=\"\">\n <source src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0511\/9421\/files\/webAutoplay-HowDoesTheDylnBottleWork-480.mp4?v=1595973560\" type=\"video\/mp4\">\n    <source src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0511\/9421\/files\/webAutoplay-HowDoesTheDylnBottleWork.ogv\" type=\"video\/ogg\">\n    <source src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0511\/9421\/files\/webAutoplay-HowDoesTheDylnBottleWork.webm\" type=\"video\/webm\">\n <p>Fallback text.<\/p>\n <\/source><\/source><\/source><\/video>",
           "title": "How does it work?",
           "text": "The DYLN Patented Bottle System was created to enhance water simply.",
           "link_text": "Watch full Video",
-          "video": "",
-          "video_embed": "<iframe width=\"560\" height=\"315\" src=\"https:\/\/www.youtube.com\/embed\/V3WX3SoOULI?controls=0&rel=0\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\"><\/iframe>"
+          "video_loop": "https:\/\/cdn.shopify.com\/s\/files\/1\/0511\/9421\/files\/webAutoplay-HowDoesTheDylnBottleWork-480.mp4?v=1595973560",
+          "video_loop_embed": "",
+          "autoplay_loop": true,
+          "video_width_loop": 600,
+          "video_height_loop": 450,
+          "video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0511\/9421\/files\/webAutoplay-HowDoesTheDylnBottleWork-480.mp4?v=1595973560",
+          "autoplay": true,
+          "video_embed": "<iframe width=\"560\" height=\"315\" src=\"https:\/\/www.youtube.com\/embed\/V3WX3SoOULI?controls=0&rel=0\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\"><\/iframe>",
+          "video_width": 600,
+          "video_height": 450
         }
       },
       "pdp-tabs-header": {
@@ -2137,6 +2154,13 @@
               "step_title": "Inside the Diffuser Removal Tool travel pouch, you can find the Diffuser already attached to the end of the tool."
             }
           },
+          "1589817112017": {
+            "type": "video",
+            "settings": {
+              "step_num": "1",
+              "video_id": "ar7_Nv9a6sA"
+            }
+          },
           "1595531133528": {
             "type": "illustration",
             "settings": {
@@ -2238,17 +2262,11 @@
               "step_num": "2",
               "video_id": "ar7_Nv9a6sA"
             }
-          },
-          "1596580690427": {
-            "type": "video",
-            "settings": {
-              "step_num": "1",
-              "video_id": "ar7_Nv9a6sA"
-            }
           }
         },
         "block_order": [
           "1589817105930",
+          "1589817112017",
           "1595531133528",
           "1595532017264",
           "1595532158539",
@@ -2261,8 +2279,7 @@
           "1595565813834",
           "1595565866740",
           "1595565933344",
-          "1595963582197",
-          "1596580690427"
+          "1595963582197"
         ],
         "settings": {
           "title": "Follow these easy steps to start…",
