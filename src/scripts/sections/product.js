@@ -19,6 +19,7 @@ import { handleize, toggleTabindexInChildren } from "../components/helpers";
 const classes = {
   hide: "hide",
   active: "active",
+  slickInit: "slick-initialized"
 };
 
 const keyboardKeys = {
@@ -28,8 +29,7 @@ const keyboardKeys = {
 const datasets = {
   atc: {
     option: "atc-option",
-  },
-  slickInit: "slick-initialized"
+  }
 };
 
 const htmlArrowNext =
@@ -393,6 +393,7 @@ function init() {
   const $tFeatures = $(selectors.tabs.features);
   const $tInput = $(selectors.tabs.input);
   const $userImages = $(selectors.userImages);
+  const color = $(`[data-section-type="product"] [name="options[Color]"]:checked`).val();
 
   let fading = false;
   try {
@@ -413,7 +414,11 @@ function init() {
       });
       $gallery.find("[data-color]").each((i, item) => {
         $(item).closest(selectors.slick).attr("data-color", $(item).data("color"));
-      })
+      });
+      if (color) {
+        $gallery.slick("slickFilter", `[data-color="${color.trim()}"]`);
+        isSlickFiltered = true;
+      }
     }
 
     if ($galleryIndex.length > 0) {
@@ -429,8 +434,13 @@ function init() {
       });
       $galleryIndex.find("[data-color]").each((i, item) => {
         $(item).closest(selectors.slick).attr("data-color", $(item).data("color"));
-      })
+      });
+      if (color) {
+        $galleryIndex.slick("slickFilter", `[data-color="${color.trim()}"]`);
+        isSlickFiltered = true;
+      }
     }
+
   }
 
   if ($tFeatures.length > 0) {
