@@ -319,10 +319,6 @@
       }
     }
 
-    &__main-all-link {
-      display: none;
-    }
-
     &__main-text {
       @include font-header(700);
       @include text(20px, 28px, $color-body-text, 1.5px);

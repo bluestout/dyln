@@ -9,10 +9,6 @@
     pointer-events: none;
     width: 100vw;
 
-    &__main-all-link {
-      display: none;
-    }
-
     &__main-link {
       display: inline-block;
       vertical-align: middle;
@@ -326,10 +322,6 @@
     @include transition(background-color);
     display: none;
     margin: 0 0 10px;
-
-    &__main-all-link {
-      display: none;
-    }
 
     &__main-link {
       @include transition(background-color);
