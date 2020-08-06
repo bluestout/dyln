@@ -3,13 +3,14 @@ import {
   formatAndTrimPrice,
   toggleTabindexInChildren,
   toggleChatBubble,
+  getUrlParams
 } from "./helpers";
 import {
   quickCartUpsellHtml,
   quickCartLineItemHtml,
   cartLineItemHtml,
   cartTotalsHtml,
-  emptyCartHtml,
+  emptyCartHtml
 } from "./ajaxcart-html";
 import { subscriptionAjax } from "./subscription";
 
@@ -727,6 +728,26 @@ function handleFreeShippingMessage(cart) {
   }
 }
 
+function openQuickCartOnLoad() {
+  const params = getUrlParams();
+  if (params.opencart) {
+    quickCartOpen(true);
+    let interval;
+    let count = 0;
+    interval = setInterval(() => {
+      const $chat = $("#gorgias-web-messenger-container");
+      if (count >= 20) {
+        clearInterval(interval);
+      }
+      if ($chat.length > 0 && !$chat.hasClass(classes.hide)) {
+        $chat.addClass(classes.hide);
+        clearInterval(interval);
+      }
+    }, 500);
+  }
+  return null;
+}
+
 // on click, remove the item form cart
 $(document).on("click", selectors.remove, ajaxRemoveFromCartButton);
 
@@ -751,8 +772,8 @@ $(document).on(
 // run ajax on page load to get cart contents
 $(document).ready(() => {
   containerLoading(true);
-
   reloadAjax();
+  openQuickCartOnLoad();
 });
 
 function reloadAjax() {
