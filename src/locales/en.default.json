@@ -103,6 +103,7 @@
     },
     "general": {
       "categories": "Categories",
+      "filters": "Filters",
       "hero_title": "DYLN BLOG",
       "recent_articles_title": "Recent Articles",
       "popular_article_title": "Popular Articles",
