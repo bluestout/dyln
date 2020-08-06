@@ -123,7 +123,11 @@ function handleFilterChange($source) {
 
 function handleProductColorSelect(value) {
   const $products = $(selectors.product);
-  $products.find(`[data-${dataSets.piColorValue}="${value}"]`).click();
+  $products.each((index, product) => {
+    $(product).find(`input[value="${value}"]`).click();
+  });
+  // const test = $products.find(`[data-${dataSets.piColorValue}="${value}"]`);
+  // console.log("test", test);
 }
 
 let filterTimerHolder;

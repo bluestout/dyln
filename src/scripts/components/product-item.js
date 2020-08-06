@@ -116,7 +116,9 @@ function handleSlickChange($source) {
   }
 
   if (index > -1) {
-    $parent.find(selectors.slickSlider).slick("slickGoTo", index);
+    setTimeout(() => {
+      $parent.find(selectors.slickSlider).slick("slickGoTo", index);
+    }, 100);
   }
 }
 
@@ -479,7 +481,7 @@ function handlePreOrderButtonClick(event) {
 }
 
 $(document).ready(init);
-$(document).on("click", selectors.value, handleOptionClick);
+$(document).on("click change", selectors.value, handleOptionClick);
 $(document).on("click", selectors.preOrdersTabLink, handlePreOrderTabClick);
 $(document).on("click", selectors.preOrderButton, handlePreOrderButtonClick);
 
