@@ -36,6 +36,8 @@
   &__cat-btn {
     @include no-browser-styling;
     padding: 5px 0;
+    display: inline-block;
+
     &:not(:last-of-type) {
       margin: 0 50px 0 0;
     }
