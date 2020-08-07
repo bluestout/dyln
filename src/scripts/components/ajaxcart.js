@@ -148,7 +148,10 @@ function handleAjaxFrequencyClick(event) {
     const frequency = $this.data("frequency");
     const unit = $this.data("unit");
     const line = $this.data("line");
-    ajaxChangeSubscriptionLineItem(frequency, unit, line);
+    const qty = $this
+      .closest(selectors.quick.item)
+      .find(`${selectors.input}`).val() || 1;
+    ajaxChangeSubscriptionLineItem(frequency, unit, line, qty);
   }
 }
 
@@ -162,6 +165,9 @@ function handleAjaxSubscriptionConversionClick(event) {
     .closest(selectors.quick.item)
     .find(`${selectors.quick.frequency}`)
     .filter(":checked");
+  const qty = $this
+  .closest(selectors.quick.item)
+  .find(`${selectors.input}`).val() || 1;
 
   const frequency = $input.data("frequency");
   const unit = $input.data("unit");
@@ -172,11 +178,11 @@ function handleAjaxSubscriptionConversionClick(event) {
   if (confirm && $input.length > 0 && $input.data("subscription") === "no") {
     containerLoading(true);
     ajaxChangeCartQty(line, 0, true, true);
-    subscriptionAjax(subId, 1, frequency, unit);
+    subscriptionAjax(subId, qty, frequency, unit);
   } else if ($input.data("subscription") === "yes" && !confirm) {
     containerLoading(true);
     ajaxChangeCartQty(line, 0, true, true);
-    ajaxAddToCart({ quantity: 1, id: id });
+    ajaxAddToCart({ quantity: qty, id: id });
   } else if (confirm && $input.length === 0) {
     showMessage(theme.strings.select_frequency_prompt);
     $this
@@ -186,10 +192,11 @@ function handleAjaxSubscriptionConversionClick(event) {
   }
 }
 
-function ajaxChangeSubscriptionLineItem(frequency, unit, line) {
+function ajaxChangeSubscriptionLineItem(frequency, unit, line, qty) {
   containerLoading(true);
   const data = {
     line: line,
+    quantity: qty,
     properties: {
       shipping_interval_frequency: frequency,
       shipping_interval_unit_type: unit,
