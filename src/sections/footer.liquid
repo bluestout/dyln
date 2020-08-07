@@ -108,7 +108,7 @@
   {%- if section.setting.show_lifestyle_on_hp_only == false or template.name == 'index' or template.name == 'blog' -%}
   <div class="site-footer__separator gray"></div>
   {%- else -%}
-    <div class="site-footer__separator"></div>
+  <div class="site-footer__separator"></div>
   {%- endif -%}
 {%- endif -%}
 
@@ -169,36 +169,35 @@
     </div>
   </div>
 </div>
+
 <footer class="site-footer__footer">
-
   <div class="site-footer__wave-middle"></div>
-
   <div class="site-footer__footer-bg">
     <div class="container">
       <div class="row">
         <div class="col-lg-12 order-lg-1 order-1">
           <div class="row" data-tab-container data-accordion-rsp-breakpoint="768">
             {% for link in linklists[section.settings.menu].links %}
-              <div class="col-lg-2 col-md-4 col-12" data-accordion-parent-rsp=true data-accordion-mobile-only="true">
-                <div class="site-footer__p-link-wrap" data-accordion-button-rsp="{{ forloop.index }}">
-                  <a class="site-footer__parent-link" href="{{ link.url }}">
-                    {{ link.title }}
-                    <span class="site-footer__closed">+</span>
-                    <span class="site-footer__open">-</span>
-                  </a>
-                </div>
-                {% if link.links != blank %}
-                  <ul class="site-footer__menu-list active" data-accordion-content-rsp="{{ forloop.index }}">
-                    {% for childlink in link.links %}
-                      <li class="site-footer__menu-item">
-                        <a class="site-footer__menu-link" href="{{ childlink.url }}">
-                          {{ childlink.title }}
-                        </a>
-                      </li>
-                    {% endfor %}
-                  </ul>
-                {% endif %}
+            <div class="col-lg-2 col-md-4 col-12" data-accordion-parent-rsp=true data-accordion-mobile-only="true">
+              <div class="site-footer__p-link-wrap" data-accordion-button-rsp="{{ forloop.index }}">
+                <a class="site-footer__parent-link" href="{{ link.url }}">
+                  {{ link.title }}
+                  <span class="site-footer__closed">+</span>
+                  <span class="site-footer__open">-</span>
+                </a>
               </div>
+              {% if link.links != blank %}
+                <ul class="site-footer__menu-list active" data-accordion-content-rsp="{{ forloop.index }}">
+                  {% for childlink in link.links %}
+                    <li class="site-footer__menu-item">
+                      <a class="site-footer__menu-link" href="{{ childlink.url }}">
+                        {{ childlink.title }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </div>
             {% endfor %}
 
             <div class="col-lg-2 col-md-4">
@@ -227,22 +226,20 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="col-lg-12 d-none d-lg-flex">
-        <div class="footer-copyright">
-          © {{ "now" | date: "%Y" }}, DYLN Inc.
-          {% if section.settings.privacy_policy_url != empty %}
-            | <a href="{{ section.settings.privacy_policy_url }}">Privacy Policy</a>
-          {% endif %}
-          {% if section.settings.terms_agreements_link != empty %}
-            | <a href="{{ section.settings.terms_agreements_link }}">Terms</a>
-          {% endif %}
-          {% if section.settings.ip_link != empty %}
-            | <a href="{{ section.settings.ip_link }}">IP</a>
-          {% endif %}
+        <div class="col-lg-12 d-none d-lg-flex order-lg-2 order-2">
+          <div class="footer-copyright">
+            © {{ "now" | date: "%Y" }}, DYLN Inc.
+            {% if section.settings.privacy_policy_url != empty %}
+              | <a href="{{ section.settings.privacy_policy_url }}">Privacy Policy</a>
+            {% endif %}
+            {% if section.settings.terms_agreements_link != empty %}
+              | <a href="{{ section.settings.terms_agreements_link }}">Terms</a>
+            {% endif %}
+            {% if section.settings.ip_link != empty %}
+              | <a href="{{ section.settings.ip_link }}">IP</a>
+            {% endif %}
+          </div>
         </div>
-      </div>
 
         <div class="col-sm-12 d-flex order-6 d-lg-none justify-content-center">
           <div class="footer-copyright">

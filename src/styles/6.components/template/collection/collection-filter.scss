@@ -2,6 +2,10 @@
   position: relative;
   top: -20px;
 
+  [data-cat-group] {
+    margin: 0 0 10px;
+  }
+
   &__header {
     border-bottom: 1px solid $color-theme-6;
   }
@@ -48,6 +52,12 @@
       path,
       g {
         stroke: $color-main-1;
+      }
+    }
+
+    &:hover {
+      .c-filter__cat-btn-text {
+        color: $color-main-1;
       }
     }
   }
@@ -144,6 +154,12 @@
         width: 100%;
       }
     }
+
+    &:hover {
+      .c-filter__cat-option-text {
+        color: $color-main-1;
+      }
+    }
   }
 
   &__cat-option-icon {
@@ -155,8 +171,14 @@
   &__cat-option-text {
     @include font-header(500);
     @include text(14px, 20px, $color-body-text, 0.83px);
+    @include transition(color);
     display: inline-block;
     vertical-align: middle;
+    white-space: nowrap;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
   }
 
   &__reset-filters {
@@ -204,6 +226,11 @@
     @include text(12px, 17px, $color-body-text, 0.51px);
     display: inline-block;
     vertical-align: middle;
+    white-space: nowrap;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
   }
 
   &__current-icon {

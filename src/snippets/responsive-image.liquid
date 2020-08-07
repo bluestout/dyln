@@ -73,9 +73,9 @@
 {%- assign image_widths = image_widths | strip -%}
 
 {% if span %}
-<span data-image-id="{{ image.id }}" class="ImageWrapper-{{ image.id }}-{{ responsive_image_counter }} responsive-image__wrapper {{ wrapper_class }}" {{ wrapper_attributes }}>
+<span data-image-id="{{ image.id }}" class="ImageWrapper-{{ image.id }}-{{ responsive_image_counter }} responsive-image__wrapper {{ wrapper_class }}"  {{ wrapper_attributes }}>
 {% else %}
-<div data-image-id="{{ image.id }}" class="ImageWrapper-{{ image.id }}-{{ responsive_image_counter }} responsive-image__wrapper {{ wrapper_class }}" {{ wrapper_attributes }}>
+<div data-image-id="{{ image.id }}" class="ImageWrapper-{{ image.id }}-{{ responsive_image_counter }} responsive-image__wrapper {{ wrapper_class }}"  {{ wrapper_attributes }}>
 {% endif %}
 
   <img
