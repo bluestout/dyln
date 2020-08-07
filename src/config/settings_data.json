@@ -1383,7 +1383,7 @@
           "1595584424300": {
             "type": "block",
             "settings": {
-              "product": "",
+              "product": "dyln-insulated-alkaline-water-bottle-40-oz",
               "title": "Select the element you wish to explore",
               "back": "Back to other Product Specs",
               "element_image_1": "shopify:\/\/shop_images\/40ozBottleMeassures-ProductSpecs.jpg",
@@ -1411,7 +1411,7 @@
           "1595586559416": {
             "type": "block",
             "settings": {
-              "product": "",
+              "product": "dyln-insulated-alkaline-water-bottle-21-oz",
               "title": "Select the element you wish to explore",
               "back": "Back to other Product Specs",
               "element_image_1": "shopify:\/\/shop_images\/21ozBottleMeassures-ProductSpecs.jpg",
@@ -1439,7 +1439,7 @@
           "1595586745029": {
             "type": "block",
             "settings": {
-              "product": "",
+              "product": "dyln-insulated-alkaline-water-bottle-16-oz",
               "title": "Select the element you wish to explore",
               "back": "Back to other Product Specs",
               "element_image_1": "shopify:\/\/shop_images\/16ozBottleMeassures-ProductSpecs.jpg",
@@ -2249,17 +2249,10 @@
               "illustration_content": ""
             }
           },
-          "1595963582197": {
+          "1596819327482": {
             "type": "video",
             "settings": {
               "step_num": "2",
-              "video_id": "ar7_Nv9a6sA"
-            }
-          },
-          "1596580690427": {
-            "type": "video",
-            "settings": {
-              "step_num": "1",
               "video_id": "ar7_Nv9a6sA"
             }
           }
@@ -2278,8 +2271,7 @@
           "1595565813834",
           "1595565866740",
           "1595565933344",
-          "1595963582197",
-          "1596580690427"
+          "1596819327482"
         ],
         "settings": {
           "title": "Follow these easy steps to start…",
