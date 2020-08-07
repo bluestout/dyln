@@ -42,6 +42,18 @@
           <span class="c-filter__cat-icon" aria-hidden="true">
             {%- render 'icon-bottle' -%}
           </span>
+        {%- elsif list_c_filter_o.handle contains "cap" -%}
+          <span class="c-filter__cat-icon" aria-hidden="true">
+            {%- render 'icon-caps' -%}
+          </span>
+        {%- elsif list_c_filter_o.handle contains "replace" -%}
+          <span class="c-filter__cat-icon" aria-hidden="true">
+            {%- render 'icon-replacements' -%}
+          </span>
+        {%- elsif list_c_filter_o.handle contains "guards" -%}
+          <span class="c-filter__cat-icon" aria-hidden="true">
+            {%- render 'icon-guards' -%}
+          </span>
         {%- endif -%}
         <span class="c-filter__cat-btn-text">{{ list_c_filter_o.title }}</span>
       </a>
@@ -139,13 +151,13 @@
                     and be sure to add the new size as a tag to the products
                     {%- endcomment -%}
                     {%- if c_size contains "16" -%}
-                      {%- render 'icon-bottle-16' -%}
+                    {%- render 'icon-bottle-16' -%}
                     {%- elsif c_size contains "21" -%}
-                      {%- render 'icon-bottle-21' -%}
+                    {%- render 'icon-bottle-21' -%}
                     {%- elsif c_size contains "32" -%}
-                      {%- render 'icon-bottle-32' -%}
+                    {%- render 'icon-bottle-32' -%}
                     {%- elsif c_size contains "40" -%}
-                      {%- render 'icon-bottle-40' -%}
+                    {%- render 'icon-bottle-40' -%}
                     {%- endif -%}
                   </span>
                   <span class="c-filter__cat-option-text">{{ c_size | remove: 'size-' }}</span>
@@ -161,9 +173,9 @@
                   <span class="c-filter__cat-option-icon" aria-hidden="true">
                     {%- assign c_mouth_clean = c_mouth | handleize -%}
                     {%- if c_mouth_clean contains "standard" -%}
-                      {%- render 'icon-mouth-standard' -%}
+                    {%- render 'icon-mouth-standard' -%}
                     {%- elsif c_mouth_clean contains "wide" -%}
-                      {%- render 'icon-mouth-wide' -%}
+                    {%- render 'icon-mouth-wide' -%}
                     {%- endif -%}
                   </span>
                   <span class="c-filter__cat-option-text">{{ c_mouth | remove: 'mouth-' }}</span>
@@ -175,20 +187,9 @@
           {%- if c_guards.size > 0 -%}
             <div class="c-filter__cat-list" data-cat-sub-list="{{ guard_title }}" style="display: none;">
               {%- for c_guard in c_guards -%}
-                <button type="button" class="c-filter__cat-option" data-cat-option="{{ c_guard }}">
-                  {%- comment -%}
-                  <span class="c-filter__cat-option-icon" aria-hidden="true">
-                    {%- assign c_guard_clean = c_guard | handleize -%}
-                    {%- if c_guard_clean contains "x-small" -%}
-                      {%- render 'icon-guard-x-small' -%}
-                    {%- elsif c_guard_clean contains "medium" -%}
-                      {%- render 'icon-guard-medium' -%}
-                    {%- elsif c_guard_clean contains "large" -%}
-                      {%- render 'icon-guard-large' -%}
-                    {%- endif -%}
-                  </span>
-                  {%- endcomment -%}
-                  <span class="c-filter__cat-option-text">{{ c_guard | remove: 'guard-' | remove: 'size-' }}</span>
+                <button type="button" class="c-filter__cat-option" data-cat-option="{{ c_guard }}"
+                  ><span class="c-filter__cat-option-icon" aria-hidden="true">{%- render 'icon-bottom-guards' -%}</span
+                  ><span class="c-filter__cat-option-text">{{ c_guard | remove: 'guard-' | remove: 'size-' }}</span>
                 </button>
               {%- endfor -%}
             </div>
