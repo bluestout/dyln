@@ -401,46 +401,43 @@ function init() {
     fading = options.fade_pdp;
   } catch (error) { }
 
-  if ($(window).width() > 767) {
-    if ($gallery.length > 0) {
-      $gallery.slick({
-        swipeToSlide: false,
-        arrows: false,
-        dots: false,
-        slidesToShow: 1,
-        asNavFor: selectors.galleryIndex,
-        fade: fading,
-        cssEase: 'linear',
-      });
-      $gallery.find("[data-color]").each((i, item) => {
-        $(item).closest(selectors.slick).attr("data-color", $(item).data("color"));
-      });
-      if (color) {
-        $gallery.slick("slickFilter", `[data-color="${color.trim()}"]`);
-        isSlickFiltered = true;
-      }
+  if ($gallery.length > 0) {
+    $gallery.slick({
+      swipeToSlide: false,
+      arrows: false,
+      dots: false,
+      slidesToShow: 1,
+      asNavFor: selectors.galleryIndex,
+      fade: fading,
+      cssEase: 'linear',
+    });
+    $gallery.find("[data-color]").each((i, item) => {
+      $(item).closest(selectors.slick).attr("data-color", $(item).data("color"));
+    });
+    if (color) {
+      $gallery.slick("slickFilter", `[data-color="${color.trim()}"]`);
+      isSlickFiltered = true;
     }
+  }
 
-    if ($galleryIndex.length > 0) {
-      $galleryIndex.slick({
-        swipeToSlide: true,
-        arrows: true,
-        dots: false,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        asNavFor: selectors.gallery,
-        prevArrow: htmlArrowPrev,
-        nextArrow: htmlArrowNext,
-      });
-      $galleryIndex.find("[data-color]").each((i, item) => {
-        $(item).closest(selectors.slick).attr("data-color", $(item).data("color"));
-      });
-      if (color) {
-        $galleryIndex.slick("slickFilter", `[data-color="${color.trim()}"]`);
-        isSlickFiltered = true;
-      }
+  if ($galleryIndex.length > 0) {
+    $galleryIndex.slick({
+      swipeToSlide: true,
+      arrows: true,
+      dots: false,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      asNavFor: selectors.gallery,
+      prevArrow: htmlArrowPrev,
+      nextArrow: htmlArrowNext,
+    });
+    $galleryIndex.find("[data-color]").each((i, item) => {
+      $(item).closest(selectors.slick).attr("data-color", $(item).data("color"));
+    });
+    if (color) {
+      $galleryIndex.slick("slickFilter", `[data-color="${color.trim()}"]`);
+      isSlickFiltered = true;
     }
-
   }
 
   if ($tFeatures.length > 0) {
