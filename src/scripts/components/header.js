@@ -2,7 +2,6 @@ import $ from "jquery";
 import { toggleTabindexInChildren } from "./helpers";
 import { productImageHtml } from "./ajaxcart-html";
 
-
 const datasets = {
   link: "header-link",
   block: "header-block",
@@ -413,6 +412,7 @@ function articleHtml(article) {
     image = `<span class="main-search__img-wrap">${productImageHtml(article, "200x200")}</span>`
     flexClass = " d-flex";
     openWrap = `<span class="main-search__content-wrap">`;
+    closeWrap = "</span>"
   }
 
   const template =

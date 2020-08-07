@@ -89,8 +89,8 @@
 
   &__item {
     list-style: none;
-    margin: 0 0 30px;
-    padding: 0 0 30px;
+    margin: 0 0 20px;
+    padding: 0 0 20px;
     border-bottom: 1px solid $color-theme-6;
   }
 
@@ -114,6 +114,16 @@
     @include font-header(500);
     @include text(16px, 24px, $color-theme-12, 0.7px);
     display: block;
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  &__block-title {
+    @include font-header(700);
+    @include text(26px, 34px, $color-title, 1px);
+    margin: 0 0 30px;
+    text-align: center;
   }
 
   &__result-price {
@@ -167,8 +177,8 @@
     }
 
     &__item {
-      margin: 0 0 20px;
-      padding: 0 0 20px;
+      margin: 0 0 10px;
+      padding: 0 0 10px;
     }
 
     &__image-link {

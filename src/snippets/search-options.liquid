@@ -104,6 +104,7 @@
 </script>
 <script type="application/ld+json" data-search-schema-settings>
   {
-    "limit": {{ settings.character_limit | json }}
+    "limit": {{ settings.search_character_limit | json }},
+    "overrideDefault": {{ settings.search_override_default | json }}
   }
 </script>

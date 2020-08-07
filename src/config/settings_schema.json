@@ -834,6 +834,12 @@
     "settings": [
       {
         "type": "checkbox",
+        "id": "search_override_default",
+        "label": "Show On Search Page?",
+        "default": false
+      },
+      {
+        "type": "checkbox",
         "id": "search_q_products",
         "label": "Show products?",
         "default": true
@@ -945,7 +951,7 @@
       },
       {
         "type": "range",
-        "id": "character_limit",
+        "id": "search_character_limit",
         "label": "Character Limit",
         "min": 30,
         "max": 300,
