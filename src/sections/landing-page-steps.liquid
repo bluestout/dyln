@@ -9,23 +9,23 @@
         <div class="lp-steps__step{% if forloop.first == true %} active-step{% else %} inactive-step{% endif %}" data-step>
           <span class="lp-steps__step-num">{{ i }}</span>
           <div class="lp-steps__step-tab-container" data-tab-container>
-            <div class="lp-steps__step-tab-nav">
-              {% if section.settings.video_tab %}
-                {% for block in section.blocks %}
-                {% assign get_better_filters = i | append: '' %}
-                {% if block.settings.step_num == get_better_filters and block.type == "video" and block.settings.video_id != blank %}
-                  <a class="lp-steps__step-tab active" data-tab-link="0">
-                    <h4>{{ section.settings.video_tab_title }}</h4>
-                  </a>
-                  <a class="lp-steps__step-tab" data-tab-link="1">
-                    <h4>{{ section.settings.illustrations_tab_title }}</h4>
-                  </a>
-                  {% assign has_video = true %}
-                {% break %}
-                {% endif %}
-                {% endfor %}
+            {% if section.settings.video_tab %}
+              {% for block in section.blocks %}
+              {% assign get_better_filters = i | append: '' %}
+              {% if block.settings.step_num == get_better_filters and block.type == "video" and block.settings.video_id != blank %}
+              <div class="lp-steps__step-tab-nav">
+                <a class="lp-steps__step-tab active" data-tab-link="0">
+                  <h4>{{ section.settings.video_tab_title }}</h4>
+                </a>
+                <a class="lp-steps__step-tab" data-tab-link="1">
+                  <h4>{{ section.settings.illustrations_tab_title }}</h4>
+                </a>
+                {% assign has_video = true %}
+              </div>
+              {% break %}
               {% endif %}
-            </div>
+              {% endfor %}
+            {% endif %}
 
             <div class="lp-steps__step-tab-content-wrapper">
             {% for block in section.blocks %}
