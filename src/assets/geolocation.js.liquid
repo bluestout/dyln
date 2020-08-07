@@ -153,28 +153,34 @@ window.onload = function () {
             const pId = $product.data("single-product");
             const container = `[data-single-product="${pId}"]`;
             const productData = response[pId];
+            // set out of stock status on variants
             for (let i = 0; i < productData.out_of_stock.length; i++) {
               const oosVariant = productData.out_of_stock[i];
               $(selectors.pdpInputByVariantId(container, oosVariant)).addClass(
                 "unavailable"
               );
             }
+            // hide variants hidden in the app
+            for (let i = 0; i < productData.hidden.length; i++) {
+              const hiddenVariant = productData.hidden[i];
+              $(selectors.pdpInputByVariantId(container, hiddenVariant)).remove();
+            }
+            // add notify message to the variant
             $.each(productData.notify, function (i, variantMessage) {
               var variantMessageSegment = variantMessage.split(":");
-              // set ship message attribute
               $(
                 selectors.optionByVariant(container, variantMessageSegment[0])
               ).attr(attributes.shipping, variantMessageSegment[1]);
             });
+            // add shipping message to the variant
             $.each(productData.back_order, function (i, variantMessage) {
               var variantMessageSegment = variantMessage.split(":");
-              // set ship message attribute
               $(
                 selectors.optionByVariant(container, variantMessageSegment[0])
               ).attr(attributes.shipping, variantMessageSegment[1]);
             });
             renderSubmitButton(pId);
-          } catch (error) { /*console.log(error);*/ }
+          } catch (error) { /*console.log("error: ", error);*/ }
         });
         // renderSubmitButton();
         $(selectors.atcBar).removeClass("hide");
