@@ -2,15 +2,16 @@ import $ from "jquery";
 import { handleAjaxAddButtonClick, addToCartComplete } from "./ajaxcart";
 
 const selectors = {
+  parent: "[data-subscription-form-wrap]",
   subToggle: "[data-subscription-toggle]",
-  freqSelect: "#pdp-diffuser-freq-select",
-  freqSelectSelected: "#pdp-diffuser-freq-select option:selected",
+  freqSelect: "[data-diffuser-freq-select]",
+  freqSelectSelected: "[data-diffuser-freq-select] option:selected",
   intervalUnit: `[name="shipping_interval_unit_type"]`,
-  idWrap: "#pdp-diffuser-variant-id-wrap",
-  subVariant: "#pdp-diffuser-variant-id-wrap input",
-  subVariantSelected: "#pdp-diffuser-variant-id-wrap input:checked",
-  subAdd: "#pdp-diffuser-add-subscription",
-  subRegularAdd: "#pdp-diffuser-add-regular",
+  idWrap: "[data-diffuser-variant-id-wrap]",
+  subVariant: "[data-diffuser-variant-id-wrap] input",
+  subVariantSelected: "[data-diffuser-variant-id-wrap] input:checked",
+  subAdd: "[data-diffuser-add-subscription]",
+  subRegularAdd: "[data-diffuser-add-regular]",
   subBlock: "[data-subscription-button-block]",
   subVariantMap: "[data-subscription-variant-map]",
   customOption: "[data-subscription-button-block] .custom-select-option",
@@ -28,34 +29,31 @@ const classes = {
   hide: "hide",
 };
 
-function handleSubBlockToggle() {
-  $(selectors.subBlock).toggleClass("hide");
+function handleSubBlockToggle(event) {
+  $(event.target).closest(selectors.parent).find(selectors.subBlock).toggleClass("hide");
 }
 
-function handleFrequencyChange() {
-  const newFreq = $(`${selectors.freqSelect} option:selected`).text();
-  const $freq = $(selectors.subCurrentFreq);
+function handleFrequencyChange(event) {
+  const newFreq = $(event.target).closest(selectors.parent).find(selectors.freqSelectSelected).text();
+  const $freq = $(event.target).closest(selectors.parent).find(selectors.subCurrentFreq);
   $freq.text(newFreq);
 }
 
-function handleVariantClick() {
+function handleVariantClick(event) {
+  const $parent = $(event.target).closest(selectors.parent);
   try {
-    const variantId = $(`${selectors.idWrap} input:checked`).val();
-    const json = JSON.parse($(selectors.subVariantMap).val());
-    const currency = $(selectors.currency).val();
-    const $subprice = $(selectors.subCurrentPrice);
-    const $regularPrice = $(selectors.subCurrentRegularPrice);
+    const variantId = $parent.find(selectors.subVariantSelected).val();
+    const json = JSON.parse($parent.find(selectors.subVariantMap).val());
+    const currency = $parent.find(selectors.currency).val();
     const newSubPrice = `${currency}${json[variantId].discount_variant_price}`;
-    const newRegularPrice = $(`${selectors.idWrap} input:checked`).data(
-      "price"
-    );
-    $subprice.text(newSubPrice);
-    $regularPrice.text(newRegularPrice);
+    const newRegularPrice = $parent.find(selectors.subVariantSelected).data("price");
+    $parent.find(selectors.subCurrentPrice).text(newSubPrice)
+    $parent.find(selectors.subCurrentRegularPrice).text(newRegularPrice);
   } catch (error) {}
 }
 
-function handleCustomLabelClick() {
-  $(selectors.customSelect).click();
+function handleCustomLabelClick(event) {
+  $(event.target).closest(selectors.parent).find(selectors.customSelect).click();
 }
 
 function toggleLoadingDots() {
@@ -73,16 +71,19 @@ function handleRegularAdd(event) {
   handleAjaxAddButtonClick(event);
 }
 
-function handleSubAdd() {
+function handleSubAdd(event) {
   toggleLoadingDots();
-  addSubscriptionAjax();
+  addSubscriptionAjax($(event.target).closest(selectors.parent));
 }
 
-function addSubscriptionAjax() {
-  const frequency = $(selectors.freqSelectSelected).val();
-  const unit = $(selectors.intervalUnit).val();
-  const variantId = $(selectors.subVariantSelected).val();
-  const mapJson = JSON.parse($(selectors.subVariantMap).val());
+function addSubscriptionAjax($parent) {
+  if ($parent.length === 0) {
+    return null;
+  }
+  const frequency = $parent.find(selectors.freqSelectSelected).val();
+  const unit = $parent.find(selectors.intervalUnit).val();
+  const variantId = $parent.find(selectors.subVariantSelected).val();
+  const mapJson = JSON.parse($parent.find(selectors.subVariantMap).val());
   const newId = mapJson[variantId].discount_variant_id;
   subscriptionAjax(newId, 1, frequency, unit);
 }
