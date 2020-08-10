@@ -120,6 +120,7 @@
 
         &.active {
           display: flex;
+          flex-direction: column;
 
           &:empty {
             display: none !important;
