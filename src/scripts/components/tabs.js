@@ -34,15 +34,12 @@ const variables = {
 };
 
 function tabs(event) {
-  console.log("tabs", event);
   event.preventDefault ? event.preventDefault() : (event.returnValue = false);
   const $this = $(event.currentTarget);
-  console.log("$this", $this);
   if (!$this.hasClass(classes.active)) {
 
     const index = $this.data(datasets.link);
     if ($this.closest(selectors.containerInner).length > 0) {
-      console.log("$this.closest(selectors.containerInner) ", $this.closest(selectors.containerInner));
       const $container = $this.closest(selectors.containerInner);
       const $target = $container.find(selectors.tabByIndex(index));
       $container.find(selectors.link).not($this).each((i, item) => {
@@ -56,7 +53,6 @@ function tabs(event) {
           });
       });
     } else {
-      console.log("$this.closest(selectors.containerInner) ", $this.closest(selectors.containerInner));
       const $container = $this.closest(selectors.container);
       const $target = $container.find(selectors.tabByIndex(index));
       $container.find(selectors.link).not($this).each((i, item) => {
