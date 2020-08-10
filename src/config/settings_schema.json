@@ -627,6 +627,11 @@
         "default": "Close"
       },
       {
+        "type": "text",
+        "id": "diff_sub_icon_1_text",
+        "label": "Label 1"
+      },
+      {
         "type": "select",
         "id": "diff_sub_icon_1",
         "label": "Icon 1",
@@ -647,6 +652,11 @@
         "info": "Icon to be used."
       },
       {
+        "type": "text",
+        "id": "diff_sub_icon_2_text",
+        "label": "Label 2"
+      },
+      {
         "type": "select",
         "id": "diff_sub_icon_2",
         "label": "Icon 2",
@@ -665,6 +675,11 @@
           }
         ],
         "info": "Icon to be used."
+      },
+      {
+        "type": "text",
+        "id": "diff_sub_icon_3_text",
+        "label": "Label 3"
       },
       {
         "type": "select",
