@@ -112,6 +112,7 @@
     "contact_s_help_link_3": "",
     "contact_s_help_link_3_attribute": "onclick=\"Smooch.open();\"",
     "contact_s_help_link_3_text": "Live chat",
+    "search_override_default": true,
     "search_q_products": true,
     "search_q_page": true,
     "search_q_collection": true,
@@ -127,6 +128,7 @@
     "search_field_sku": false,
     "search_field_variant_title": true,
     "search_field_vendor": true,
+    "search_character_limit": 120,
     "pdp_fade": true,
     "pi_fade": true,
     "checkout_header_image": "shopify:\/\/shop_images\/Blue-Banner.png",
@@ -353,7 +355,7 @@
       "1581513413625": {
         "type": "index-video",
         "settings": {
-          "background": "shopify:\/\/shop_images\/noback.png",
+          "background": "",
           "title": "How does it work?",
           "text": "The magnesium, tourmaline, silica and zinc inside your bottle’s VitaBead Diffuser is what alkalizes your water.",
           "link_text": "Watch full Video",
