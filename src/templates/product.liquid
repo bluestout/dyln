@@ -28,17 +28,10 @@
 
         {% section 'pdp-content' %}
 
-        {% assign show_diffusers_products = settings.extra_diffusers_show_where | split: ',' %}
         {% assign show_diffuser_form = false %}
-
-        {% for s_d_product in show_diffusers_products %}
-          {% assign compare_p_id = product.id | append: ' ' | strip %}
-          {% if s_d_product == compare_p_id %}
-            {% assign show_diffuser_form = true %}
-            {% break %}
-          {% endif %}
-        {% endfor %}
-
+        {% if settings.extra_diffusers_show_where contains product.id %}
+          {% assign show_diffuser_form = true %}
+        {% endif %}
         {% if settings.extra_diffusers_product == product.handle %}
           {% render 'subscription-form' with settings.extra_diffusers_product
             current_product_id: product.id
