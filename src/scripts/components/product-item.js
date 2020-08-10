@@ -46,7 +46,8 @@ const selectors = {
   tabByIndex: (index) => `[data-tab="${index}"]`,
   preOrderCheckbox: "[data-pi-add-this]",
   addOnParent: "[data-add-on-parent]",
-  settings: "[data-product-schema-settings]"
+  settings: "[data-product-schema-settings]",
+  hideOnLoad: "[data-pre-order-slick-load]"
 };
 
 function handleOptionClick(event) {
@@ -263,11 +264,38 @@ function onItemHoverOut() {
 
 function init() {
   const $gallery = $(`${selectors.gallery}`);
+  const $galleryAlways = $(`${selectors.galleryAlways}`);
   const $images = $gallery.find(selectors.image);
   $images.each((index, option) => {
     $(option).css("display", "block");
   });
 
+
+  $galleryAlways.on("init", () => {
+    console.log("galleryAlways, init");
+    clearTimeout(slickEventTimer);
+    slickEventTimer = setTimeout(() => {
+      console.log("slickEventTimer");
+      $(selectors.hideOnLoad).each((index, item) => {
+        console.log("data item", item);
+        $(item).css("display", "none");
+      });
+    }, 100);
+  });
+
+  $gallery.on("init", () => {
+    console.log("galleryAlways, init");
+    clearTimeout(slickEventTimer);
+    slickEventTimer = setTimeout(() => {
+      console.log("slickEventTimer");
+      $(selectors.hideOnLoad).each((index, item) => {
+        console.log("data item", item);
+        $(item).css("display", "none");
+      });
+    }, 100);
+  });
+
+  let slickEventTimer;
   let fading = false;
   try {
     const options = JSON.parse($(selectors.settings).text());
@@ -302,7 +330,6 @@ function init() {
     return $slide.closest(selectors.item).find(`[data-${datasets.value}="${color}"]`).click();
   });
 
-  const $galleryAlways = $(`${selectors.galleryAlways}`);
   const $imagesAlways = $galleryAlways.find(selectors.image);
   $imagesAlways.each((index, option) => {
     $(option).css("display", "block");
@@ -359,6 +386,30 @@ function init() {
     const color = $slide.find(selectors.image).data(datasets.image);
     return $slide.closest(selectors.item).find(`[data-${datasets.value}="${color}"]`).click();
   });
+
+  $galleryAlways.on("init", () => {
+    console.log("galleryAlways, init");
+    clearTimeout(slickEventTimer);
+    slickEventTimer = setTimeout(() => {
+      console.log("slickEventTimer");
+      $(selectors.hideOnLoad).$addOns.each((index, item) => {
+        console.log("data item", item);
+        $(item).css("display", "none");
+      });
+    }, 100);
+  });
+
+  $gallery.on("init", () => {
+    console.log("galleryAlways, init");
+    clearTimeout(slickEventTimer);
+    slickEventTimer = setTimeout(() => {
+      console.log("slickEventTimer");
+      $(selectors.hideOnLoad).$addOns.each((index, item) => {
+        console.log("data item", item);
+        $(item).css("display", "none");
+      });
+    }, 100);
+  });
 }
 
 function handlePreOrderTabClick(event) {
@@ -374,55 +425,6 @@ function handlePreOrderTabClick(event) {
   $images.each((index, option) => {
     $(option).css("display", "block");
   });
-
-  let fading = false;
-  try {
-    options = JSON.parse($(selectors.settings).text());
-    fading = options.fade;
-  } catch (error) { }
-/* 
-  $galleryAlways.slick({
-    swipeToSlide: true,
-    arrows: true,
-    prevArrow: "<div class='slick-prev'></div>",
-    nextArrow: "<div class='slick-next'></div>",
-    dots: false,
-    slidesToShow: 1,
-    centerPadding: "0%",
-    centerMode: false,
-    infinite: true,
-    speed: 300,
-    fade: fading,
-    cssEase: 'linear',
-    responsive: [
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          centerMode: false,
-          infinite: true,
-          dots: false,
-          variableWidth: false,
-          fade: fading,
-          cssEase: 'linear',
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          centerMode: false,
-          infinite: true,
-          dots: false,
-          variableWidth: false,
-          fade: fading,
-          cssEase: 'linear',
-        }
-      }
-    ]
-  }); */
 
   $galleryAlways.on("afterChange", (event, slick, nextSlide) => {
     const $slide = $(event.currentTarget).find(`[data-slick-index="${nextSlide}"]`);

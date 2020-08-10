@@ -22,7 +22,7 @@
   {% for color in b_p_colors_array %}
     {% assign color_class = value %}
   {% endfor %}
-  <div data-tab="4{{ forloop.index }}" {% if forloop.index == 1 %}class="active" {% else %}style="display:none;"{% endif %} data-add-on-parent>
+  <div data-tab="4{{ forloop.index }}" {% if forloop.index == 1 %}class="active" {% else %}data-pre-order-slick-load{% endif %} data-add-on-parent>
     <div
       class="pop{% if pop_p.has_only_default_variant %} single{% endif %}"
       data-pi-item
@@ -46,7 +46,7 @@
                         {% assign gallery_attribute = 'data-pi-image="' | append: color  | append: '"' %}
                         {% assign gallery_wrapper = "active pop__g-img-wrap" %}
                       {% else %}
-                        {% assign gallery_attribute = 'style="display:none;"' | append: 'data-pi-image="' | append: color  | append: '"' %}
+                        {% assign gallery_attribute = 'data-pi-image="' | append: color  | append: '"' %}
                         {% assign gallery_wrapper = "pop__g-img-wrap" %}
                       {% endif %}
 
