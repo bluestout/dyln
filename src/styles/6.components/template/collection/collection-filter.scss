@@ -1,6 +1,6 @@
 .c-filter {
   position: relative;
-  top: -20px;
+  top: -10px;
 
   [data-cat-group] {
     margin: 0 0 10px;
@@ -250,6 +250,10 @@
       @include transition(stroke);
       stroke: $color-body-text;
     }
+  }
+
+  @media screen and (min-width: $grid-max + 1px) {
+    top: 0;
   }
 
   @include media-query($medium-down) {
