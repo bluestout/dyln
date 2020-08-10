@@ -1,12 +1,10 @@
 .po-video {
-  @media screen and (width: $grid-medium) {
-    margin-bottom: 40px;
-  }
+  margin: 0 0 40px;
 
   h2 {
     @include font-header(bold);
     @include text(42px, 1.2, $color-black, 0.3px);
-    display: inline-block;
+    display: block;
     margin-bottom: 40px;
     text-align: left;
 
@@ -38,6 +36,10 @@
   @include media-query($medium-down) {
     .only--mobile {
       display: block !important;
+    }
+
+    &__looped {
+      max-height: 100vw;
     }
   }
 

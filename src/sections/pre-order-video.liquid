@@ -10,15 +10,23 @@
           </button>
         </div>
       </div>
-      <div class="col-md-4">
-        {% render 'responsive-image' with
-          image: section.settings.image.src,
-          max_width: 530,
-          max_height: 530,
-          wrapper_class: "po-video__image-wrapper",
-          image_class: "po-video__image"
-          span: true,
-        %}
+      <div class="col-md-5">
+
+        {%- if section.settings.video_loop != blank -%}
+          <video
+            class="po-video__looped"
+            {% if section.settings.autoplay_loop %}autoplay playsinline muted loop{% else %}controls{% endif %}
+            width="{{ section.settings.video_width_loop }}"
+            height="{{ section.settings.video_height_loop }}"
+            tabindex="-1">
+            <source src="{{- section.settings.video_loop -}}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          {%- elsif section.settings.video_loop_embed != blank -%}
+          <div class="index-video__looped">
+            {{- section.settings.video_loop_embed -}}
+          </div>
+        {%- endif -%}
       </div>
       <button type="button" class="po-video__link po-video__link-responsive d-block d-sm-none" data-po-video-open>
         <span class="po-video__link-text">{{- section.settings.video_link_text -}}</span>
@@ -77,11 +85,6 @@
     "label": "Video Link Text"
   },
   {
-    "type": "image_picker",
-    "id": "image",
-    "label": "Foreground Image"
-  },
-  {
     "type": "textarea",
     "id": "video",
     "label": "Video",
@@ -112,6 +115,47 @@
   {
     "type": "range",
     "id": "video_height",
+    "label": "Video Height",
+    "min": 300,
+    "max": 680,
+    "step": 10,
+    "default": 450
+  },
+  {
+    "type": "header",
+    "content": "Looping Video"
+  },
+  {
+    "type": "textarea",
+    "id": "video_loop",
+    "label": "Loop Video",
+    "info": "Upload a video to Shopify files and paste the source url here. Or paste the source url to a video here."
+  },
+  {
+    "type": "textarea",
+    "id": "video_loop_embed",
+    "label": "Loop Video Embed",
+    "info": "Or use an embed from youtube, vimeo or similar. Copy/paste the embed code here."
+  },
+  {
+    "type": "checkbox",
+    "id": "autoplay_loop",
+    "label": "Autoplay video?",
+    "info": "Mutes and loops video, hides controls, autoplays when modal is opened.",
+    "default": true
+  },
+  {
+    "type": "range",
+    "id": "video_width_loop",
+    "label": "Video Width",
+    "min": 300,
+    "max": 900,
+    "step": 10,
+    "default": 600
+  },
+  {
+    "type": "range",
+    "id": "video_height_loop",
     "label": "Video Height",
     "min": 300,
     "max": 680,
