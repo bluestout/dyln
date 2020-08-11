@@ -49,6 +49,7 @@ const selectors = {
   settings: "[data-product-schema-settings]",
   hideOnLoad: "[data-pre-order-slick-load]",
   preOrderCount: "[data-pre-order-count]",
+  formInForm: "[data-pre-order-form-in-form]",
 };
 
 function handleOptionClick(event) {
@@ -125,7 +126,10 @@ function handleSlickChange($source) {
 }
 
 function handleVariantChange($source) {
-  const $parent = $source.closest(selectors.item);
+  let $parent = $source.closest(selectors.item);
+  if ($source.closest(selectors.formInForm).length > 0) {
+    $parent = $source.closest("form");
+  }
   const $jsonElement = $parent.find(selectors.json);
   const $select = $parent.find(selectors.select);
 

@@ -26,7 +26,7 @@
   {% for color in b_p_colors_array %}
     {% assign color_class = value %}
   {% endfor %}
-  <div data-tab="{{ forloop.index }}" {% if forloop.index == 1 %}class="active pop__wrapper" {% else %}data-pre-order-slick-load{% endif %} data-add-on-parent>
+  <div data-tab="{{ forloop.index }}" {% if forloop.index == 1 %}class="active pop__wrapper" {% else %}data-pre-order-slick-load{% endif %} data-add-on-parent data-pre-order-form-in-form>
     <div
       class="pop{% if pop_p.has_only_default_variant %} single{% endif %}"
       data-pi-item
@@ -276,7 +276,7 @@
               <div class="pop__fake-btn-wrap">
                 <button type="button" class="pop__fake-btn" data-pre-order-button>
                   <span data-pre-order-loaded>{{ 'pre_order.product_item.buy_button_text' | t }}</span>
-                  <span data-pre-order-loaded data-pre-order-count>1 item</span>
+                  <span data-pre-order-loaded data-pre-order-count>{{ 'pre_order.items.1_item'| t }}</span>
                   <span data-pre-order-loading class="loading-dots hide"></span>
                 </button>
               </div>
