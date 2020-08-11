@@ -100,98 +100,99 @@
         </span>
       {% endunless %}
     </div>
-    <div class="popa__content-wrapper">
-    <div class="popa_content">
-      <h3 class="popa__title">
-        {{ add_on_p.title }}
-      </h3>
-      <div class="popa__price">
-        <span data-pi-price>
-          {{ add_on_p_def_v.price | money | remove: ".00" | strip }}
-        </span>
-        <s data-pi-compare>
-          {% if add_on_p_def_v.compare_at_price > add_on_p_def_v.price %}
-            {{ add_on_p_def_v.compare_at_price | money | remove: ".00" | strip }}
-          {% endif %}
-        </s>
-      </div>
-    </div>
 
-    {% unless add_on_p.has_only_default_variant %}
-    {% if add_on_p.variants.size > 1 %}
-    <div class="popa__options">
-      {% for option in add_on_p.options_with_values %}
-      {% assign name_clean = option.name | downcase %}
-      {% if name_clean == "color" or name_clean == "sleeve color" or name_clean == "sleeve" %}
-      <span class="popa__options-label">{{ 'products.product.choose_html' | t: option: option.name }}</span>
-      <div class="popa__colors" data-pi-option="{{ forloop.index }}">
-        {% for value in option.values %}
-        {% assign p_i_swatch_name = value | strip | strip_html | strip_newlines | handleize %}
-        {% assign p_i_class_name = "color-swatch-" | append: p_i_swatch_name %}
-        {% assign variant_id = "" %}
-        {% for p_v in add_on_p.variants %}
-          {% if p_v.title == value %}
-            {% assign variant_id = p_v.id %}
-            {% break %}
-          {% endif %}
-        {% endfor %}
-        <div class="popa__color-wrap" data-geo-specific-variant="{{ variant_id }}">
-          <input
-            class="popa__color-input"
-            type="radio"
-            id="{{ add_on_p.id }}-option{{ option.position }}-{{ value | handleize }}"
-            name="options[{{ option.name }}]"
-            value="{{ value }}"
-            data-pi-option-value="{{ value }}"
-            data-pi-option-name="{{ name_clean }}"
-            data-pi-option-index="{{ option.position }}"
-            data-geo-variant-id="{{ variant_id }}"
-            {% if forloop.first %}checked{% endif %}
-            title="{{ value | remove: '_' }}" />
-          <label
-            class="popa__color-label {{ p_i_class_name }}"
-            for="{{ add_on_p.id }}-option{{ option.position }}-{{ value | handleize }}"
-            title="{{ value | remove: '_' }}">
-            <span {% comment %} class="hide" {% endcomment %}>{{ value }}</span>
-          </label>
-        </div>
-        {% endfor %}
-      </div>
-      {% else %}
-      <span class="popa__options-label">{{ 'products.product.choose_html' | t: option: option.name }}</span>
-      <div class="popa__option" data-pi-option="{{ forloop.index }}">
-        {% for value in option.values %}
-        <div class="popa__value-wrap">
-          <input
-            class="popa__value-input"
-            type="radio"
-            id="{{ add_on_p.id }}-option{{ option.position }}-{{ value | handleize }}"
-            name="options[{{ option.name }}]"
-            value="{{ value }}"
-            data-pi-option-value="{{ value }}"
-            data-pi-option-name="{{ name_clean }}"
-            data-pi-option-index="{{ option.position }}"
-            {% if forloop.first %}checked{% endif %} />
-          <label
-            class="popa__value-label"
-            for="{{ add_on_p.id }}-option{{ option.position }}-{{ value | handleize }}">
-            {% assign adjusted_diffuser_title = value %}
-            {% if adjusted_diffuser_title == "1 Diffuser" %}
-              {% assign adjusted_diffuser_title = "Single Pack" %}
-            {% elsif adjusted_diffuser_title contains "Diffusers" %}
-              {% assign adjusted_diffuser_title = value | replace: ' Diffusers', '-Pack'%}
+    <div class="popa__content-wrapper">
+      <div class="popa_content">
+        <h3 class="popa__title">
+          {{ add_on_p.title }}
+        </h3>
+        <div class="popa__price">
+          <span data-pi-price>
+            {{ add_on_p_def_v.price | money | remove: ".00" | strip }}
+          </span>
+          <s data-pi-compare>
+            {% if add_on_p_def_v.compare_at_price > add_on_p_def_v.price %}
+              {{ add_on_p_def_v.compare_at_price | money | remove: ".00" | strip }}
             {% endif %}
-            {{ adjusted_diffuser_title }}
-          </label>
+          </s>
         </div>
+      </div>
+
+      {% unless add_on_p.has_only_default_variant %}
+      {% if add_on_p.variants.size > 1 %}
+      <div class="popa__options">
+        {% for option in add_on_p.options_with_values %}
+        {% assign name_clean = option.name | downcase %}
+        {% if name_clean == "color" or name_clean == "sleeve color" or name_clean == "sleeve" %}
+        <span class="popa__options-label">{{ 'products.product.choose_html' | t: option: option.name }}</span>
+        <div class="popa__colors" data-pi-option="{{ forloop.index }}">
+          {% for value in option.values %}
+          {% assign p_i_swatch_name = value | strip | strip_html | strip_newlines | handleize %}
+          {% assign p_i_class_name = "color-swatch-" | append: p_i_swatch_name %}
+          {% assign variant_id = "" %}
+          {% for p_v in add_on_p.variants %}
+            {% if p_v.title == value %}
+              {% assign variant_id = p_v.id %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+          <div class="popa__color-wrap" data-geo-specific-variant="{{ variant_id }}">
+            <input
+              class="popa__color-input"
+              type="radio"
+              id="{{ add_on_p.id }}-option{{ option.position }}-{{ value | handleize }}"
+              name="options[{{ option.name }}]"
+              value="{{ value }}"
+              data-pi-option-value="{{ value }}"
+              data-pi-option-name="{{ name_clean }}"
+              data-pi-option-index="{{ option.position }}"
+              data-geo-variant-id="{{ variant_id }}"
+              {% if forloop.first %}checked{% endif %}
+              title="{{ value | remove: '_' }}" />
+            <label
+              class="popa__color-label {{ p_i_class_name }}"
+              for="{{ add_on_p.id }}-option{{ option.position }}-{{ value | handleize }}"
+              title="{{ value | remove: '_' }}">
+              <span {% comment %} class="hide" {% endcomment %}>{{ value }}</span>
+            </label>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <span class="popa__options-label">{{ 'products.product.choose_html' | t: option: option.name }}</span>
+        <div class="popa__option" data-pi-option="{{ forloop.index }}">
+          {% for value in option.values %}
+          <div class="popa__value-wrap">
+            <input
+              class="popa__value-input"
+              type="radio"
+              id="{{ add_on_p.id }}-option{{ option.position }}-{{ value | handleize }}"
+              name="options[{{ option.name }}]"
+              value="{{ value }}"
+              data-pi-option-value="{{ value }}"
+              data-pi-option-name="{{ name_clean }}"
+              data-pi-option-index="{{ option.position }}"
+              {% if forloop.first %}checked{% endif %} />
+            <label
+              class="popa__value-label"
+              for="{{ add_on_p.id }}-option{{ option.position }}-{{ value | handleize }}">
+              {% assign adjusted_diffuser_title = value %}
+              {% if adjusted_diffuser_title == "1 Diffuser" %}
+                {% assign adjusted_diffuser_title = "Single Pack" %}
+              {% elsif adjusted_diffuser_title contains "Diffusers" %}
+                {% assign adjusted_diffuser_title = value | replace: ' Diffusers', '-Pack'%}
+              {% endif %}
+              {{ adjusted_diffuser_title }}
+            </label>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
         {% endfor %}
       </div>
       {% endif %}
-      {% endfor %}
+      {% endunless %}
     </div>
-  </div>
-    {% endif %}
-    {% endunless %}
   {% endform %}
 {% if add_on_p != blank and add_on_p.has_only_default_variant == false %}
   <script type="application/json" data-product-json>

@@ -2,11 +2,18 @@
   @include transition(box-shadow);
   position: relative;
   box-shadow: none;
-  padding: 60px 0 25px;
+  padding: 60px 0 0;
   height: 100%;
   text-align: center;
   background-color: $color-white;
-  margin-bottom: 120px;
+
+  @include media-query($large-down) {
+    margin: 0 0 10px;
+  }
+
+  .right-col {
+    padding: 5px 0 0;
+  }
 
   > .container > .pop__content {
     @include media-query($large-up) {
@@ -18,49 +25,23 @@
     position: relative;
   }
 
-  &__right-col {
-    float: right;
-    position: absolute;
-    top: 280px;
-    right: 10%;
-
-    @media screen and (max-width: 1430px) {
-      right: 4%;
-      bottom: 30px;
-    }
-
-    @media screen and (max-width: 1200px) {
-      width: 350px;
-      right: 3%;
-    }
-
-    @media screen and (max-width: 992px) {
-      left: 50%;
-      transform: translateX(-50%);
-      width: 480px;
-    }
-
-    @media screen and (max-width: 480px) {
-      width: 320px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-  }
-
   &__add-ons {
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
-    width: 400px;
+    width: 100%;
     border-radius: 20px;
     overflow: hidden;
     margin: 0 auto;
+    padding: 10px 15px;
 
-    @include media-query($medium-down) {
+    @include media-query($large-down) {
       width: 100%;
     }
 
     &-title {
       @include text(18px, 1.2, $color-theme-1, 0.3px);
-      margin-top: 20px;
+      text-transform: uppercase;
+      text-align: left;
+      margin: 0 0 10px;
     }
   }
 
@@ -371,6 +352,27 @@
       background-color: $color-theme-8;
       background-image: none;
     }
+
+    [data-pre-order-count] {
+      font-size: 18px;
+      line-height: 30px;
+      color:  $color-white;
+      letter-spacing: 1px;
+      margin: 0 0 0 3px;
+      text-transform: none;
+    }
+
+    @include media-query($medium-down) {
+      font-size: 18px;
+      line-height: 24px;
+      letter-spacing: 1px;
+
+      [data-pre-order-count] {
+        font-size: 14px;
+        line-height: 24px;
+        letter-spacing: 0.5px;
+      }
+    }
   }
 
   &__submit-price {
@@ -558,8 +560,6 @@
     &__form {
       position: relative;
       background-color: $color-white;
-      height: 100%;
-      // display: flex;
     }
   }
 
@@ -708,13 +708,15 @@
   @include transition(box-shadow);
   position: relative;
   box-shadow: none;
-  padding: 60px 0 25px;
   height: 100%;
   text-align: center;
   background-color: $color-white;
-  padding-top: 0;
-  padding-bottom: 0;
-  border-bottom: 1px solid #eee;
+  
+  &:not(:last-of-type) {
+    border-bottom: 1px solid $color-theme-29;
+    padding: 0 0 10px;
+    margin: 0 0 10px;
+  }
 
   > form {
     @include media-query($large-down) {
@@ -738,16 +740,13 @@
   &__gallery {
     display: block;
     margin: 0 0 10px;
-
-    @include media-query($large-down) {
-      width: 50%;
-    }
+    width: calc(40% - 45px);
   }
 
   &__confirm {
-    width: 30px;
     position: relative;
     top: -20px;
+    width: 30px;
 
     @include media-query($large-down) {
       top: 50px;
@@ -809,9 +808,13 @@
     @include text(18px, 1.2, $color-black, 0.3px);
     @include underline($color-main-1, false);
     @include transition(color);
-    margin: 0 0 1px;
+    margin: 0 0 2px;
     display: inline-block;
     text-align: left;
+
+    @include media-query($medium-down) {
+      font-size: 14px;
+    }
   }
 
   &__subtitle {
@@ -832,6 +835,7 @@
     @include text(16px, 23px, $color-body-text, 0.95px);
     display: block;
     text-align: left;
+    margin: 0 0 3px;
   }
 
   &__options {
@@ -842,7 +846,8 @@
   &__options-label {
     @include font-header(700);
     @include text(12px, 17px, $color-body-text, 0.71px);
-    margin: 0 0 10px;
+    margin: 0 0 5px;
+    display: inline-block;
 
     &--desktop {
       @include media-query($medium-down) {
@@ -860,14 +865,13 @@
   &__gallery {
     &-img {
       display: block;
-      width: 150px;
+      object-fit: scale-down;
     }
   }
 
   &__content {
     &-wrapper {
-      width: 50%;
-      float: right;
+      width: 60%;
     }
   }
 
@@ -1176,10 +1180,8 @@
     &__form {
       position: relative;
       background-color: $color-white;
-      height: 100%;
       display: flex;
       align-items: center;
-      padding-left: 10px;
     }
   }
 
@@ -1223,10 +1225,6 @@
       font-size: 10px;
       line-height: 16px;
       letter-spacing: 0.6px;
-    }
-
-    &__price {
-      display: none;
     }
 
     &__hover {

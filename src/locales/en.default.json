@@ -195,6 +195,10 @@
       "tab_2": "Extra Diffusers",
       "tab_3": "Sports Caps",
       "tab_4": "Bottom Guards"
+    },
+    "items": {
+      "1_item": "1 item",
+      "more_items": "{{ number }} items"
     }
   },
   "customer": {

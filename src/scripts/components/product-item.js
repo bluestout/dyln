@@ -47,11 +47,12 @@ const selectors = {
   preOrderCheckbox: "[data-pi-add-this]",
   addOnParent: "[data-add-on-parent]",
   settings: "[data-product-schema-settings]",
-  hideOnLoad: "[data-pre-order-slick-load]"
+  hideOnLoad: "[data-pre-order-slick-load]",
+  preOrderCount: "[data-pre-order-count]",
 };
 
 function handleOptionClick(event) {
-  const $source = $(event.currentTarget);
+  const $source = $(event.target);
   const $slick = $source.closest(selectors.item).find(selectors.slickSlider);
   const $slickAlways = $source.closest(selectors.item).find(selectors.galleryAlways);
   const opName = $source.data(datasets.opName);
@@ -243,7 +244,8 @@ function renderProductOptions(variant, $parent) {
   $select.find("option").removeAttr("selected");
   const $newOption = $select.find(`option[value="${variant.id}"]`);
   $newOption.attr("selected", "selected");
-  return $select.change();
+  $select.change();
+  return null;
 }
 
 function onFocusChange() {
@@ -272,24 +274,18 @@ function init() {
 
 
   $galleryAlways.on("init", () => {
-    console.log("galleryAlways, init");
     clearTimeout(slickEventTimer);
     slickEventTimer = setTimeout(() => {
-      console.log("slickEventTimer");
       $(selectors.hideOnLoad).each((index, item) => {
-        console.log("data item", item);
         $(item).css("display", "none");
       });
     }, 100);
   });
 
   $gallery.on("init", () => {
-    console.log("galleryAlways, init");
     clearTimeout(slickEventTimer);
     slickEventTimer = setTimeout(() => {
-      console.log("slickEventTimer");
       $(selectors.hideOnLoad).each((index, item) => {
-        console.log("data item", item);
         $(item).css("display", "none");
       });
     }, 100);
@@ -388,24 +384,18 @@ function init() {
   });
 
   $galleryAlways.on("init", () => {
-    console.log("galleryAlways, init");
     clearTimeout(slickEventTimer);
     slickEventTimer = setTimeout(() => {
-      console.log("slickEventTimer");
       $(selectors.hideOnLoad).$addOns.each((index, item) => {
-        console.log("data item", item);
         $(item).css("display", "none");
       });
     }, 100);
   });
 
   $gallery.on("init", () => {
-    console.log("galleryAlways, init");
     clearTimeout(slickEventTimer);
     slickEventTimer = setTimeout(() => {
-      console.log("slickEventTimer");
       $(selectors.hideOnLoad).$addOns.each((index, item) => {
-        console.log("data item", item);
         $(item).css("display", "none");
       });
     }, 100);
@@ -462,30 +452,28 @@ function handlePreOrderButtonClick(event) {
   $parent.find(selectors.submit).click();
 }
 
-function handlePreOrderButtonClick(event) {
+function handlePreOrderCount(event) {
   const $parent = $(event.currentTarget).closest(selectors.addOnParent);
   const $addOns = $parent.find(selectors.preOrderAddOns);
+  const $countElement = $parent.find(selectors.preOrderCount);
+  let count = 1;
   $addOns.each((index, addon) => {
-    const data = $(addon).find("form").serialize();
-    const checked = $(addon).find(selectors.preOrderCheckbox).prop("checked");
-    if (checked && data) {
-      $.ajax({
-        type: "POST",
-        url: "/cart/add.js",
-        async: false,
-        data: data,
-        dataType: "json",
-        cache: false,
-      });
+    if ($(addon).find(selectors.preOrderCheckbox).prop("checked")){
+      count++;
     }
   });
-  $parent.find(selectors.submit).click();
+  if (count === 1) {
+    $countElement.text(theme.strings.pre_order_1);
+  } else {
+    $countElement.text(theme.strings.pre_order_many.replace("###", count));
+  }
 }
 
 $(document).ready(init);
 $(document).on("click change", selectors.value, handleOptionClick);
 $(document).on("click", selectors.preOrdersTabLink, handlePreOrderTabClick);
 $(document).on("click", selectors.preOrderButton, handlePreOrderButtonClick);
+$(document).on("click change", selectors.preOrderCheckbox, handlePreOrderCount);
 
 $(document).on("focusin", onFocusChange);
 $(document).on("mouseleave", selectors.item, onItemHoverOut);

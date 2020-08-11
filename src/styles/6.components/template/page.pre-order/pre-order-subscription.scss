@@ -23,12 +23,16 @@
 
   &__recomm {
     display: flex;
+    max-width: 400px;
+    justify-content: space-evenly;
+    margin: 0 0 20px;
 
     &-title {
-      width: 100%;
-      display: block;
       @include font-header(bold);
       @include text(15px, 1.2, $color-theme-1, 0.3px);
+      width: 100%;
+      display: block;
+      margin: 0 0 20px;
     }
 
     @include media-query($xl-down) {
@@ -43,8 +47,7 @@
   &__recomm-item {
     display: flex;
     align-items: center;
-    margin: 20px 0;
-    margin-right: 50px;
+    text-align: center;
     flex-direction: column;
 
     @include media-query($small) {

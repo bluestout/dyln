@@ -36,7 +36,9 @@
       search_products: {{ 'general.search.products' | t | json }},
       search_collections: {{ 'general.search.collections' | t | json }},
       search_articles: {{ 'general.search.articles' | t | json }},
-      search_pages: {{ 'general.search.pages' | t | json }}
+      search_pages: {{ 'general.search.pages' | t | json }},
+      pre_order_1: {{ 'pre_order.items.1_item'| t | json }},
+      pre_order_many: {{ 'pre_order.items.more_items' | t: number: "###" | json }}
     },
     moneyFormat: {{ shop.money_format | json }},
     imageUrls: {
