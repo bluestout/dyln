@@ -136,6 +136,66 @@
       }
     }
 
+    .opt-in-sms {
+      @include media-query($large-down) {
+        margin-top: -15px;
+      }
+
+      h1 {
+        display: none;
+      }
+
+      > div > div > div > div {
+        display: none;
+      }
+
+      > div {
+        min-width: auto;
+      }
+
+      > div > div > div > div:nth-of-type(2) {
+        display: block;
+
+        input[name="phone_number"] {
+          color: white;
+          padding: 10px;
+          border: 1px solid white;
+          border-radius: 30px;
+          background-color: rgba(255, 255, 255, 1);
+          padding-left: 70px;
+          width: 270px;
+          font-family: "Open Sans", sans-serif;
+          @include text(15px, 1.2, $color-black, 0px);
+
+          @include media-query($xxl-down) {
+            width: 80%;
+          }
+
+          @include media-query($xl-down) {
+            width: 70%;
+          }
+
+          @include media-query($large-down) {
+            width: 270px;
+          }
+
+          & + p {
+            display: none;
+          }
+        }
+      }
+
+      button {
+        height: 44px;
+        width: 47px;
+        top: 1px;
+
+        @include media-query($medium-down) {
+          top: 1px;
+        }
+      }
+    }
+
     &-opt-in {
       display: none;
 
@@ -225,9 +285,13 @@
   }
 
   .opt-in-sms {
+    > div {
+      overflow: visible;
+    }
+
     button {
       display: inline-block;
-      left: -52px;
+      left: -48px;
       top: 1px;
       line-height: 0;
 
@@ -236,7 +300,8 @@
       }
 
       @include media-query($small) {
-        top: 0;
+        top: 1px;
+        left: -48px;
       }
 
       @media screen and (width: 320px) {
@@ -379,9 +444,9 @@
     height: 40%;
     display: block;
     background-image: linear-gradient(
-      to bottom,
-      $color-transparent 0%,
-      $color-theme-9 100%
+                    to bottom,
+                    $color-transparent 0%,
+                    $color-theme-9 100%
     );
   }
 
