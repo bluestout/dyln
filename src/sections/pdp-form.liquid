@@ -76,7 +76,7 @@
 
   {% for block in section.blocks %}
     {%- if product.handle == block.settings.product -%}
-      <div class="pdp-form__sizes">
+      <div class="pdp-form__sizes d-none d-sm-block">
         <h5 class="pdp-form__sizes-title">{{ section.settings.title }}</h5>
         {% for n in (1..4) %}
         {% assign size_product_name = "product_" | append: n %}

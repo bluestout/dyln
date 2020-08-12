@@ -1,0 +1,135 @@
+.pdp-s-drop {
+  &__button-box {
+    text-align: right;
+    padding: 0;
+    button {
+      @include no-browser-styling;
+      padding: 0;
+    }
+
+    svg {
+      width: 10px;
+      height: 15px;
+    }
+
+    .icon {
+      @include no-font-size;
+      display: block;
+      border-radius: 50%;
+      background-color: $color-main-1;
+      width: 15px;
+      height: 15px;
+    }
+
+    path {
+      stroke: $color-white;
+    }
+  }
+
+
+  &__sizes {
+    z-index: $z-modal;
+    position: fixed;
+    left: 0;
+    top: 56px;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba($color-black, 0.5);
+  }
+
+  &__background {
+    background-color: $color-white;
+    position: relative;
+  }
+
+  &__title-wrap {
+    background: radial-gradient(
+      ellipse at top,
+      rgba($color-theme-19, 0.4) 0%,
+      $color-transparent 20%,
+      $color-transparent 100%
+    );
+    button {
+      @include no-browser-styling;
+      width: 100%;
+      padding: 15px;
+    }
+
+    svg {
+      width: 10px;
+      height: 15px;
+    }
+
+    path {
+      stroke: $color-white;
+    }
+
+    .text {
+      @include font-header(700);
+      @include text(12px,1.42,$color-body-text,0.7px);
+      float: left;
+    }
+
+    .icon {
+      @include no-font-size;
+      border-radius: 50%;
+      transform: rotate(180deg);
+      float: right;
+      background-color: $color-main-1;
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  &__row-wrap {
+    padding: 20px 15px;
+  }
+
+  &__product {
+    text-align: center;
+
+    &:hover,&:focus {
+      .pdp-s-drop__title {
+        color: $color-main-1;
+      }
+    }
+  }
+
+  &__img-wrap {
+    height: 100px !important;
+    margin: 0 0 5px;
+
+    &::before {
+      padding-top: 100px !important;
+    }
+  }
+
+  &__img {
+    object-fit: scale-down;
+    object-position: bottom;
+    height: 100px !important;
+  }
+
+  &__title {
+    @include font-header(700);
+    @include text(10px,12px,$color-body-text,0.1px);
+    @include transition(color);
+    display: block;
+    margin: 0 0 2px;
+  }
+
+  &__price {
+    @include font-header(500);
+    @include text(10px,12px,$color-body-text,0.1px);
+    display: block;
+  }
+}

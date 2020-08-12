@@ -87,8 +87,8 @@
   }
 
   @include media-query($small) {
-    &__title {
-      margin-left: 15px !important;
+    .stamped-fa::before {
+      font-size: 14px;
     }
   }
 }

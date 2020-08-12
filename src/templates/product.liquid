@@ -2,15 +2,18 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <div class="pdp-content d-lg-none">
+        <div class="pdp-content d-lg-none relative">
           <div class="row no-gutters">
             <div class="col-md-12 col-7">
               <h1 class="pdp-content__title">{{ product.title }}</h1>
             </div>
-            <div class="col-md-12 col-5">
+            <div class="col-md-12 col-4">
               <div class="pdp-content__reviews">
                 <span class="stamped-product-reviews-badge" data-id="{{ product.id }}">{{ product.metafields.stamped.badge }}</span>
               </div>
+            </div>
+            <div class="col-1 d-sm-none static">
+              {% section 'pdp-sizes-dropdown' %}
             </div>
           </div>
         </div>

@@ -65,6 +65,8 @@ const selectors = {
   jsonOptions: "[data-pdp-product-options]",
   schemaSettings: "[data-product-schema-settings]",
   gorgiasChat: "gorgias-web-messenger-container",
+  sizesMobile: "[data-pdp-s]",
+  sizesMobileToggle: "[data-pdp-s-toggle]",
   video: {
     parent: "[data-pdp-video-parent]",
     open: "[data-pdp-video-open]",
@@ -699,6 +701,10 @@ $(document).on("click", selectors.atc.option, handleAtcOptionClick);
 $(document).on("click", selectors.atc.add, handleAtcSubmit);
 $(document).on("click", selectors.video.open, handleVideoOpenClick);
 $(document).on("click", selectors.video.close, handleVideoCloseClick);
+$(document).on("click", selectors.sizesMobileToggle, () => {
+  $(selectors.sizesMobile).slideToggle();
+});
+
 
 let smoochInterval;
 let smoochCount = 0;
