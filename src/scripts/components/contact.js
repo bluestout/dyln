@@ -1,4 +1,6 @@
 import $ from "jquery";
+import { getUrlParams } from "./helpers";
+
 
 const datasets = {
   tabs: {
@@ -136,6 +138,24 @@ function searchFaqContentAjax() {
   }
 }
 
+function init() {
+  const params = getUrlParams();
+  if (params.tab) {
+    $(`[data-contact-tab-link="${params.tab}"]`).click();
+  }
+}
+
+function anyLinkClick(event) {
+  if (event.target && event.target.href && event.target.href.indexOf("/contact-us?tab=") > -1) {
+    event.preventDefault();
+    const ref = event.target.href.split("/contact-us?tab=")[1];
+    $(`[data-contact-tab-link="${ref}"]`).click();
+    window.history.replaceState(null, null, `?tab=${ref}`);
+  }
+}
+
+$(document).ready(init);
+$(document).on("click", anyLinkClick);
 $(document).on("change", selectors.select, handleCountryChange);
 $(document).on("click", selectors.tabs.current, handleCurrentTabClick);
 $(document).on("click", selectors.tabs.tab, handleTabClick);

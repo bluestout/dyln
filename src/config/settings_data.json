@@ -1980,35 +1980,40 @@
             "type": "block",
             "settings": {
               "tab": true,
-              "title": "FAQs"
+              "title": "FAQs",
+              "reference": "faqs"
             }
           },
           "1589660684094": {
             "type": "block",
             "settings": {
               "tab": true,
-              "title": "Domestic Shipping"
+              "title": "Domestic Shipping",
+              "reference": "domestic-shipping"
             }
           },
           "1589660694966": {
             "type": "block",
             "settings": {
               "tab": true,
-              "title": "International Shipping"
+              "title": "International Shipping",
+              "reference": "international-shipping"
             }
           },
           "1589660703622": {
             "type": "block",
             "settings": {
               "tab": true,
-              "title": "Returns"
+              "title": "Returns",
+              "reference": "returns"
             }
           },
           "1589660709912": {
             "type": "block",
             "settings": {
               "tab": true,
-              "title": "Contact Us"
+              "title": "Contact Us",
+              "reference": "contact"
             }
           }
         },
