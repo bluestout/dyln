@@ -345,12 +345,12 @@
         "settings": {
           "background": "shopify:\/\/shop_images\/DYLN-HomepageBanner-Product_1.jpg",
           "background_rsp": "shopify:\/\/shop_images\/HomeBanner-Product-Mobile_1.jpg",
-          "title": "Bottled water just became obsolete, create alkaline water on the go.",
+          "title": "<span style=\"font-weight:400!important;\">Alkaline Water equals enhanced hydration.<\/span> <br>\nCreate it on the go.",
           "sublink_url": "",
           "sublink_text": "",
-          "link_url": "shopify:\/\/products\/dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
+          "link_url": "",
           "link_text": "Show me the bottle",
-          "bottom_url": "#",
+          "bottom_url": "shopify:\/\/products\/dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
           "bottom_text": "Watch how it works",
           "bottom_scroll_to": ".index-video"
         }
@@ -380,33 +380,33 @@
           "1581516588474": {
             "type": "usp",
             "settings": {
-              "icon": "usp-hydration",
-              "title": "Hydrate more efficiently",
-              "content": "Alkaline water is more easily absorbed by the body. So, you can drink less water. (But you won’t want to.)"
+              "icon": "detoxifying-spin",
+              "title": "Kickstart your metabolism",
+              "content": "You’ll feel more energetic. Right from your first bottle in the morning. And you’ll carry that (and your DYLN bottle) with you the whole day."
             }
           },
           "1581516610001": {
             "type": "usp",
             "settings": {
-              "icon": "detoxifying-spin",
-              "title": "Detoxify your body",
-              "content": "Detoxifies the body to improve blood circulation and boost the immune system."
+              "icon": "usp-hydration",
+              "title": "Hydrate more efficiently",
+              "content": "Alkaline water is more easily absorbed by the body. So, you can drink less water. (But you won’t want to.)"
             }
           },
           "1581516655817": {
             "type": "usp",
             "settings": {
-              "icon": "usp-acid-reflux",
-              "title": "Combats conditions",
-              "content": "Combats conditions like acid reflux and high blood pressure when drinking enough."
+              "icon": "scale",
+              "title": "Recover faster",
+              "content": "Increases blood flow. So you get more oxygen to your muscles. And you can push harder at the gym."
             }
           },
           "1581516658165": {
             "type": "usp",
             "settings": {
-              "icon": "scale",
-              "title": "Helps control your habits",
-              "content": "Helps to manage a healthy weight and correct body hydration."
+              "icon": "usp-acid-reflux",
+              "title": "Combat acid reflux",
+              "content": "Drink enough Alkaline water and you may experience what some of our customers have. A reduction (or complete elimination) of acid reflux symptoms."
             }
           }
         },
@@ -419,7 +419,7 @@
         "settings": {
           "background": "shopify:\/\/shop_images\/Homepage-AlkalineBenefits.jpg",
           "background_rsp": "shopify:\/\/shop_images\/Homepage-AlkalineBenefits.jpg",
-          "title": "Not all water is <strong>created<\/strong> equal, here is a bit of what <span class=\"brand-blue\"><strong>Alkaline Water<\/strong><\/span> does for you:"
+          "title": "Why is <span class=\"brand-blue\">alkaline water<\/span> better for you?"
         }
       },
       "1581513439176": {
@@ -488,8 +488,8 @@
             "settings": {
               "image": "shopify:\/\/shop_images\/BottleFeatures1.png",
               "title": "Superior water.",
-              "content": "<p><span class=\"brand-blue\"><strong>VitaBeads <\/strong><\/span>in the replaceable Diffuser quickly deliver alkaline & antioxidant water within minutes.<\/p>\n<p><span class=\"brand-blue\"><strong>1 x VitaBead Diffuser and 1 x Removal Tool <\/strong><\/span> included with each DYLN Bottle.<\/p>\n<p><span class=\"brand-blue\"><strong>300 L or 3 months<\/strong><\/span> of average use until you have to replace your Diffuser.<\/p>",
-              "bottom": "<p>Diffuser Subscription available <a href=\"\/collections\/extra-diffusers\">here.<\/a><\/p>"
+              "content": "<p><span class=\"brand-blue\"><strong>The replaceable VitaBead Diffuser<\/strong><\/span> quickly delivers alkaline & antioxidant water.<\/p>\n<p><span class=\"brand-blue\"><strong>One VitaBead Diffuser & One Removal Tool<\/strong><\/span>  are included with each DYLN Bottle.<\/p>\n<p><span class=\"brand-blue\"><strong>300 liters of Alkaline Water<\/strong><\/span> until you have to replace your VitaBead Diffuser.<\/p>",
+              "bottom": ""
             }
           },
           "1581519592416": {
@@ -497,8 +497,8 @@
             "settings": {
               "image": "shopify:\/\/shop_images\/BottleFeatures3.png",
               "title": "Superior design.",
-              "content": "<p><span class=\"brand-green\"><strong>Ergonomic design<\/strong><\/span> made to fit perfectly in your hand<\/p>\n<p><span class=\"brand-green\"><strong>316 Surgical-grade<\/strong><\/span> stainless steel interior.<\/p>\n<p><span class=\"brand-green\"><strong>3 layered insulation<\/strong><\/span> to keep your water cold for up to 24 hrs.<\/p>",
-              "bottom": "<p>Check out the bottle’s <a href=\"\/products\/dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth\">Tech Specs.<\/a><\/p>"
+              "content": "<p><span class=\"brand-green\"><strong>Ergonomic design<\/strong><\/span> made to fit perfectly in your hand<\/p>\n<p><span class=\"brand-green\"><strong>316 Surgical-grade stainless steel <\/strong><\/span>interior. Built to last a lifetime.<\/p>\n<p><span class=\"brand-green\"><strong>3 layered insulation<\/strong><\/span> to keep your water cold for up to 24 hrs.<\/p>",
+              "bottom": "<p>Check out the DYLN Insulated Bottle’s tech specs <a href=\"\/products\/dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth\">here<\/a><\/p>"
             }
           }
         },
@@ -2539,8 +2539,8 @@
       "blog-header": {
         "type": "blog-header",
         "settings": {
-          "title": "DYLN Blog",
-          "content": "Having a balanced life means taking care of yourself inside and out…",
+          "title": "Inspired Blog",
+          "content": "We are passionate about all things health, sustainable and wellness related, read more about the DYLN Lifestyle in our Inspired Blog.",
           "background": "shopify:\/\/shop_images\/BlogBanner_Desktop1920x643px_1.jpg"
         }
       },
@@ -2835,7 +2835,7 @@
         "settings": {
           "enabled": true,
           "main_title": "The Bottle",
-          "title": "The only bottle that can transform your water into refreshing Alkaline Water.",
+          "title": "The only bottle that can transform your water into refreshing Alkaline Water",
           "subtitle": "<a href=\"#\" data-scroll-to=\".index-video\">See how<\/a>",
           "content": "The DYLN Bottle turns every sip into “ahhh”.",
           "link": "shopify:\/\/collections\/dyln-bottles",
@@ -2844,7 +2844,7 @@
           "video_width": 600,
           "video_height": 450,
           "video_embed": "<style>video::-webkit-media-controls-panel {\n     background-image: linear-gradient(transparent, transparent); !important;\n     float:right!important;\n }\n\n<\/style>\n\n <video width=\"400\" height=\"400\" autoplay=\"\" loop=\"\" plasyinline=\"\" muted=\"\">\n <source src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0511\/9421\/files\/webAutoplay-HowDoesTheDylnBottleWork-480.mp4?v=1595973560\" type=\"video\/mp4\">\n    <source src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0511\/9421\/files\/webAutoplay-HowDoesTheDylnBottleWork.ogv\" type=\"video\/ogg\">\n    <source src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0511\/9421\/files\/webAutoplay-HowDoesTheDylnBottleWork.webm\" type=\"video\/webm\">\n <p>Fallback text.<\/p>\n <\/source><\/source><\/source><\/video>",
-          "usp_title": "Fill your water bottle and in 15-20 minutes, your water will become:",
+          "usp_title": "Fill the DYLN Bottle and within minutes your water will become:",
           "usp_icon_1": "antioxidant",
           "usp_title_1": "Crisp, refreshing taste",
           "usp_content_1": "After switching to the DYLN Bottle, many customers report drinking up to 3 times more water every day.",
@@ -3052,12 +3052,16 @@
         "settings": {
           "title": "How does it work?",
           "video_link_text": "Watch full video",
-          "image": "shopify:\/\/shop_images\/video-image.png",
           "video": "",
           "autoplay": true,
-          "video_embed": "<iframe src=\"https:\/\/www.youtube.com\/embed\/PHVhV5h7pbA\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\" width=\"560\" height=\"315\" frameborder=\"0\"><\/iframe>",
+          "video_embed": "<iframe src=\"https:\/\/www.youtube.com\/embed\/PHVhV5h7pbA\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\" width=\"800\" height=\"450\" frameborder=\"0\"><\/iframe>",
           "video_width": 600,
-          "video_height": 450
+          "video_height": 450,
+          "video_loop": "https:\/\/cdn.shopify.com\/s\/files\/1\/0511\/9421\/files\/webAutoplay-HowDoesTheDylnBottleWork.webm?v=1595642128",
+          "video_loop_embed": "",
+          "autoplay_loop": true,
+          "video_width_loop": 600,
+          "video_height_loop": 450
         }
       },
       "pre-order-on-the-go": {
