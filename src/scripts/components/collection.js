@@ -2,7 +2,6 @@ import $ from "jquery";
 
 const dataSets = {
   catOptionBtn: "cat-option",
-  catOptionWrap: "cat-sub-wrap",
   piColorValue: "pi-option-value",
   piOptionValue: "pi-option-value",
   piSizeValue: "pi-option-size",
@@ -11,6 +10,7 @@ const dataSets = {
   subBtn: "cat-sub-button",
   currentFilter: "cat-current-item",
   currentType: "cat-current-type",
+  colorStatus: "cat-color-value",
 };
 
 const selectors = {
@@ -22,11 +22,11 @@ const selectors = {
   subBtn: `[data-${dataSets.subBtn}]`,
   subList: `[data-${dataSets.subList}]`,
   catOptionBtn: `[data-${dataSets.catOptionBtn}]`,
-  catOptionWrap: `[data-${dataSets.catOptionWrap}]`,
   currentParent: "[data-cat-current]",
   currentFilter: `[data-${dataSets.currentFilter}]`,
   currentType: `[data-${dataSets.currentType}]`,
   filterReset: "[data-cat-filter-reset]",
+  colorStatus: `[data-${dataSets.colorStatus}]`,
 };
 
 const icons = {
@@ -117,19 +117,27 @@ function handleFilterChange($source) {
   const $parent = $source.closest(selectors.subList);
   const type = $parent.data(dataSets.subList);
 
+  $(selectors.colorStatus).data(dataSets.colorStatus, value);
+
+  handleFilterCatButtonStatus($source);
+
+  handleCurrentFilterBtn(value, type);
+
   if (type === strings.color) {
     handleProductColorSelect(value);
   }
 
-  handleFilterCatButtonStatus($source);
-
-  return handleCurrentFilterBtn(value, type);
+  return null;
 }
 
 function handleProductColorSelect(value) {
   const $products = $(selectors.product);
   $products.each((index, product) => {
-    $(product).find(`input[value="${value}"]`).click();
+    if ($(product).closest(selectors.product).is(":visible")) {
+      setTimeout(() => {
+        $(product).find(`input[value="${value}"]`).click();
+      }, 20);
+    }
   });
 }
 
@@ -152,6 +160,7 @@ function filterLogic(timer) {
         const colorValue = getCurrentFilterValueByType(strings.color);
         const sizeValue = getCurrentFilterValueByType(strings.size);
         const guardValue = getCurrentFilterValueByType(strings.guard);
+        const colorData = $(selectors.colorStatus).data(dataSets.colorStatus);
 
         hasSize = checkIfProductContainsOption($pItem, sizeValue);
         hasMouth = checkIfProductContainsOption($pItem, mouthValue);
@@ -160,9 +169,11 @@ function filterLogic(timer) {
 
         if (hasColor && hasMouth && hasSize && hasGuard) {
           $pItem.closest(selectors.productCol).fadeIn(timers.product);
+          handleProductColorSelect(colorData);
           activeCount++;
         } else {
           $pItem.closest(selectors.productCol).fadeOut(timers.product);
+          handleProductColorSelect(colorData);
         }
       }
 
