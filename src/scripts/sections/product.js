@@ -681,6 +681,14 @@ function handleVideoCloseClick() {
     video.pause();
     video.currentTime = 0;
   }
+  iframeReset();
+}
+
+function iframeReset() {
+  const $iframeVideo = $(`${selectors.video.modal} iframe[src*="youtube.com/embed"]`);
+  $iframeVideo.each(function() {
+    this.src = this.src;
+  });
 }
 
 $(selectors.tabs.input).on("input propertychange", handleInputChange);
