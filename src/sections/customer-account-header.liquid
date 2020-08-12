@@ -78,15 +78,17 @@
                   <span class="account-header__status-txt">DYLN Points earned</span>
                 </div>
 
-                <div class="account-header__status-item">
-                  <span class="account-header__status-badge account-header__status-badge--primary">
-                    <span class="account-header__status-icon" aria-ignore="true">
-                      <svg width="13" height="16" viewBox="0 0 13 16" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0 1)" fill="none" fill-rule="evenodd"><circle stroke="#FFF" stroke-width="1.5" cx="6.429" cy="8.571" r="5.679"/><circle fill="#FFF" cx="6.429" cy="8.571" r="1"/><path stroke="#FFF" stroke-width="1.5" stroke-linecap="square" d="M4.286.536h4.285M6.429.536v2.143"/><path stroke="#FFF" stroke-width="1.5" stroke-linecap="round" d="M4.728 6.429l1.701 2.142"/></g></svg>
+                {% comment %}
+                  <div class="account-header__status-item">
+                    <span class="account-header__status-badge account-header__status-badge--primary">
+                      <span class="account-header__status-icon" aria-ignore="true">
+                        <svg width="13" height="16" viewBox="0 0 13 16" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0 1)" fill="none" fill-rule="evenodd"><circle stroke="#FFF" stroke-width="1.5" cx="6.429" cy="8.571" r="5.679"/><circle fill="#FFF" cx="6.429" cy="8.571" r="1"/><path stroke="#FFF" stroke-width="1.5" stroke-linecap="square" d="M4.286.536h4.285M6.429.536v2.143"/><path stroke="#FFF" stroke-width="1.5" stroke-linecap="round" d="M4.728 6.429l1.701 2.142"/></g></svg>
+                      </span>
+                      <span class="account-header__status-number">60</span>
                     </span>
-                    <span class="account-header__status-number">60</span>
-                  </span>
-                  <span class="account-header__status-txt">Days left on your Diffuser</span>
-                </div>
+                    <span class="account-header__status-txt">Days left on your Diffuser</span>
+                  </div>
+                 {% endcomment %}
 
                 <div class="account-header__status-item">
                   {% if orders[0] == blank %}
