@@ -5,7 +5,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 900;
+  z-index: $z-overlay-content;
   height: auto;
   min-width: 500px;
 
@@ -103,7 +103,7 @@
     height: 100%;
     background-color: black;
     opacity: 0.7;
-    z-index: 100;
+    z-index: $z-overlay-content;
     display: none;
 
     &.modal-closed {
