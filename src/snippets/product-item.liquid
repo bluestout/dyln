@@ -36,7 +36,7 @@
         data-pi-item-link>
         <span class="product-item__gallery" data-pi-image-gallery>
           <a href="{{ block_p.url }}" class="product-item__gallery-img">
-            {% render 'responsive-image' with
+            {% render 'responsive-image-no-lazy' with
               image: block_p.featured_image,
               max_width: 300,
               max_height: 450,
@@ -94,7 +94,7 @@
                   {% endif %}
 
                   <a class="product-item__gallery-img" href="{{ block_p.url }}">
-                    {% render 'responsive-image' with
+                    {% render 'responsive-image-no-lazy' with
                       image: block_p_img,
                       max_width: 300,
                       max_height: 450,
@@ -115,7 +115,7 @@
 
           {% unless any_image %}
             <a href="{{ block_p.url }}" class="product-item__gallery-img">
-              {% render 'responsive-image' with
+              {% render 'responsive-image-no-lazy' with
                 image: block_p.featured_image,
                 max_width: 300,
                 max_height: 450,
