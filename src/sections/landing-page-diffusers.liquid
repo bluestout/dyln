@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row justify-content-center">
       {% assign e_product = all_products[section.settings.extra_product] %}
-      <div class="col-md-4">
+      <div class="col-lg-4 col-md-4">
         <div class="lp-diffusers__header">
           {% render 'responsive-image' with
             image: section.settings.diffuser_product_image,
@@ -19,24 +19,23 @@
           {% endif %}
         </div>
       </div>
-
-      <div class="lp-diffusers__description">
-        <p>{{ section.settings.note }}</p>
+      <div class="col-lg-5 col-md-6 col-sm-6 col-10">
+        <div class="lp-diffusers__description">
+          <p>{{ section.settings.note }}</p>
+        </div>
+        {% unless section.settings.extra_product == product.handle %}
+          {% render 'subscription-form' with section.settings.extra_product
+            current_product_id: product.id
+            show_extras: false,
+            hide_price: true,
+            index: 2
+          %}
+        {% endunless %}
       </div>
-
-      {% unless section.settings.extra_product == product.handle %}
-        {% render 'subscription-form' with section.settings.extra_product
-          current_product_id: product.id
-          show_extras: false,
-          hide_price: true,
-          index: 2
-        %}
-      {% endunless %}
+      <div class="col-lg-1 col-md-1"></div>
     </div>
   </div>
 {% endif %}
-
-
 
 {% schema %}
   {

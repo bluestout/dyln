@@ -37,7 +37,11 @@
         top: -15px;
         width: 50px;
         height: 120px;
-        transform: rotate(-40deg);
+        transform: rotate(-60deg);
+      }
+
+      @include media-query($small) {
+        right: 0;
       }
     }
   }
