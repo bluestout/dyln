@@ -51,12 +51,15 @@ $(document).ready(() => {
 
   setTimeout(function () {
     var input = document.querySelector("input[name='phone_number']");
-    var iti = window.intlTelInput(input, {
-      separateDialCode: true,
-      onlyCountries: ["us"],
-      autoPlaceholder: "off",
-      utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.3/build/js/utils.js",
-    });
+    let iti;
+    try {
+      iti = window.intlTelInput(input, {
+        separateDialCode: true,
+        onlyCountries: ["us"],
+        autoPlaceholder: "off",
+        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.3/build/js/utils.js",
+      });
+    } catch (error) {}
 
     // store the instance variable so we can access it in the console e.g. window.iti.getNumber()
     window.iti = iti;
