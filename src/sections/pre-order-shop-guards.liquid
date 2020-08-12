@@ -51,7 +51,7 @@
                       {% endif %}
 
                       <div class="pop__gallery-img">
-                        {% render 'responsive-image' with
+                        {% render 'responsive-image-no-lazy' with
                           image: pop_p_img,
                           max_width: 600,
                           max_height: 600,
@@ -72,7 +72,7 @@
 
               {% unless any_image %}
                 <div class="pop__gallery-img">
-                  {% render 'responsive-image' with
+                  {% render 'responsive-image-no-lazy' with
                     image: pop_p.featured_image,
                     max_width: 600,
                     max_height: 600,

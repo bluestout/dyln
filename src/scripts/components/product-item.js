@@ -390,7 +390,7 @@ function init() {
   $galleryAlways.on("init", () => {
     clearTimeout(slickEventTimer);
     slickEventTimer = setTimeout(() => {
-      $(selectors.hideOnLoad).$addOns.each((index, item) => {
+      $(selectors.hideOnLoad).each((index, item) => {
         $(item).css("display", "none");
       });
     }, 100);
@@ -399,7 +399,7 @@ function init() {
   $gallery.on("init", () => {
     clearTimeout(slickEventTimer);
     slickEventTimer = setTimeout(() => {
-      $(selectors.hideOnLoad).$addOns.each((index, item) => {
+      $(selectors.hideOnLoad).each((index, item) => {
         $(item).css("display", "none");
       });
     }, 100);
