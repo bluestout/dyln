@@ -55,14 +55,14 @@
                       {% endif %}
 
                       <div class="pop__gallery-img">
-                        {% render 'responsive-image' with
+                        {% render 'responsive-image-no-lazy' with
                           image: pop_p_img,
                           max_width: 600,
                           max_height: 600,
                           wrapper_class: gallery_wrapper,
                           image_class: "pop__gallery-img",
                           wrapper_attributes: gallery_attribute,
-                          snippet_index: 57,
+                          snippet_index: 79,
                         %}
                       </div>
 
@@ -76,14 +76,14 @@
 
               {% unless any_image %}
                 <div class="pop__gallery-img">
-                  {% render 'responsive-image' with
+                  {% render 'responsive-image-no-lazy' with
                     image: pop_p.featured_image,
                     max_width: 600,
                     max_height: 600,
                     wrapper_class: "pop__g-img-wrap",
                     image_class: "pop__gallery-img"
                     span: true,
-                    snippet_index: 58,
+                    snippet_index: 82,
                   %}
                 </div>
               {% endunless %}
