@@ -1,7 +1,7 @@
 <div class="pop">
   <div class="row justify-content-center">
     <div class="col-xl-2"></div>
-    <div class="col-xl-4 col-lg-6 d-flex justify-content-center">
+    <div class="col-xl-5 col-lg-6 d-flex justify-content-center">
       {% render 'responsive-image-no-lazy' with
         image: section.settings.diffuser_product_image,
         max_width: 700,
@@ -11,11 +11,10 @@
         snippet_index: 63
       %}
     </div>
-    <div class="col-xl-3 col-lg-6">
-      {% render 'responsive-image-no-lazy' with settings.extra_diffusers_product
-        current_product_id: product.id
+    <div class="col-xl-4 col-lg-6">
+      {% render 'subscription-form' with settings.extra_diffusers_product
         show_extras: true,
-        note: settings.extra_diffusers_note,,
+        note: settings.extra_diffusers_note,
         index: 4
       %}
     </div>

@@ -78,9 +78,11 @@
 <div class="ImageWrapper-{{ image.id }}-{{ responsive_image_counter }} responsive-image__wrapper {{ wrapper_class }}"  {{ wrapper_attributes }}>
 {% endif %}
 
+{% assign max_width_string = max_width | append: 'x' %}
+
   <img
     class="Image-{{ image.id }}-{{ responsive_image_counter }} responsive-image__image {{ image_class }}"
-    src="{{ image | img_url: '300x' }}"
+    src="{{ image | img_url: max_width_string }}"
     data-src="{{ img_url }}"
     data-widths="[{{ image_widths }}]"
     data-aspectratio="{{ image.aspect_ratio }}"
