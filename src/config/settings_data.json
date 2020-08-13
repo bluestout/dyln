@@ -1106,10 +1106,10 @@
         },
         "block_order": [
           "1585675966927",
-          "1592675641339",
           "1595677067722",
           "1595677100534",
           "1595677164941",
+          "1592675641339",
           "1595677276068",
           "1595948775462",
           "1595948782712"
@@ -2811,7 +2811,7 @@
         "type": "header-announcement",
         "settings": {
           "enabled": true,
-          "home_page_only": true,
+          "home_page_only": false,
           "text": "<strong>FREE SHIPPING<\/strong> <br class=\"d-md-none\">  on orders of $100 or more",
           "d_link_1": "\/account",
           "d_link_text_1": "Be a member",
@@ -2877,7 +2877,7 @@
           "featured_image": "shopify:\/\/shop_images\/NewBottleSizes.png",
           "featured_link": "shopify:\/\/collections\/dyln-bottles",
           "featured_link_text": "Shop",
-          "all_link": "shopify:\/\/collections\/shop-all",
+          "all_link": "shopify:\/\/collections\/dyln-living-alkaline-stainless-steel-water-bottle",
           "all_link_text": "Shop All"
         }
       },
