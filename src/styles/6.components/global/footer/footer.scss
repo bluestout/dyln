@@ -172,10 +172,6 @@
             width: 100%;
           }
 
-          @include media-query($xl-down) {
-            width: 100%;
-          }
-
           @include media-query($large-down) {
             width: 270px;
           }
@@ -715,6 +711,12 @@
     .icon-divider svg {
       margin: 10px;
       margin-bottom: 30px;
+    }
+
+    #liveChat {
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     a {
