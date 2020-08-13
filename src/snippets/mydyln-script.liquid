@@ -340,6 +340,7 @@ $(function(){
     var cUrl = '/a/dyl/get-product-by-code';
     var code = $('#bottle-registration-code').val().trim();
     if(code != ''){
+    $('#bottle-registration-code').val(code);
     $.ajax({
       url: cUrl,
       type: 'GET',
@@ -524,9 +525,9 @@ $(function(){
           if(!response){
             //console.log('not found');
           }else{
-            //console.log(response);
+            console.log(response);
             $('.registration-modal__page-title i').text(response.nickname);
-            $('registration-modal__page-txt.replace-date span').text(response.replace_date);
+            $('.registration-modal__page-txt.replace-date span').text(response.replace_date);
             $('.registration-modal__page.step-thanks .registration-modal__btn-final').attr('data-id', response.id);
             regProcessNext($this);
           }
@@ -820,11 +821,11 @@ $(function(){
   $("#edit-profile--phone").on('focusout', function(){
     var $this = $(this);
     if(iti.isValidNumber()){
-      //console.log('Valid Number: ' + iti.getNumber());
+      console.log('Valid Number: ' + iti.getNumber());
       $this.next('span').remove();
       $('#customer_phone').val(iti.getNumber());
     }else{
-      //console.log('InValid Number: ' + iti.getNumber());
+      console.log('InValid Number: ' + iti.getNumber());
       $this.after('<span class="phone-error">Invalid Number</span>');
       $('#customer_phone').val('');
       $this.focus();
@@ -1162,7 +1163,7 @@ $(function(){
 
   //edit-profile--phone
   var inputCE = document.querySelector("#profile-contact-phone");
-  var iti = window.intlTelInput(inputCE, {
+  var itil = window.intlTelInput(inputCE, {
     // any initialisation options go here
     separateDialCode: true,
     initialCountry: CustomerCountry,
@@ -1172,12 +1173,12 @@ $(function(){
 
   $("#profile-contact-phone").on('focusout', function(){
     var $this = $(this);
-    if(iti.isValidNumber()){
-      //console.log('Valid Number: ' + iti.getNumber());
+    if(itil.isValidNumber()){
+      //console.log('Valid Number: ' + itil.getNumber());
       $this.next('span').remove();
-      $('#customer_phone_contact').val(iti.getNumber());
+      $('#customer_phone_contact').val(itil.getNumber());
     }else{
-      //console.log('InValid Number: ' + iti.getNumber());
+      //console.log('InValid Number: ' + itil.getNumber());
       $('#customer_phone_contact').val('');
       $this.focus();
     }
@@ -1379,7 +1380,9 @@ $(function(){
         dataType: 'json',
         success: function (response) {
           // console.log(response);
+          if(response.subscriptions){
           renderSubscriptions(response.subscriptions);
+          }
         },
         error: function(jqXHR, textStatus, errorThrown) {
           // console.log(textStatus, errorThrown);
@@ -1462,7 +1465,7 @@ $(function(){
       $('.account-edit-option #body-weight').fadeIn();
       $('.account-edit-option .lab-weight').fadeIn();
       var presentVal = $this.attr('data-val');
-      if(presentVal != ''){
+      if(typeof presentVal != "undefined"){
         var pV = presentVal.split('-');
         var StartSlide = parseInt(pV[0]) - 20;
         inItSlider('.account-edit-option #body-weight', 5, StartSlide);
@@ -1474,14 +1477,14 @@ $(function(){
       $('.account-edit-option #body-height').fadeIn();
       $('.account-edit-option .lab-height').fadeIn();
       var presentVal = $this.attr('data-val');
-      if(presentVal != ''){
+      if(typeof presentVal != "undefined"){
         var pS = presentVal.split('-');
         //console.log(pS[0]);
         var StSl= ((parseInt(pS[0]) * 12) + parseInt(pS[1])) - 36;
         // console.log(StSl);
         inItSlider('.account-edit-option #body-height', 5, StSl);
       }else{
-        inItSlider('.account-edit-option #body-height', 5, 44);
+        inItSlider('.account-edit-option #body-height', 5, 34);
       }
 
     }
