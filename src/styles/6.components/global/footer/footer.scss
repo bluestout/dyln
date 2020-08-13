@@ -164,15 +164,16 @@
           background-color: rgba(255, 255, 255, 1);
           padding-left: 70px;
           width: 270px;
+          height: 47px;
           font-family: "Open Sans", sans-serif;
           @include text(15px, 1.2, $color-black, 0px);
 
           @include media-query($xxl-down) {
-            width: 80%;
+            width: 100%;
           }
 
           @include media-query($xl-down) {
-            width: 70%;
+            width: 100%;
           }
 
           @include media-query($large-down) {
@@ -285,29 +286,31 @@
   }
 
   .opt-in-sms {
+    position: relative;
+
+    @include media-query($small) {
+      width: 100%;
+      top: 5px;
+    }
+
     > div {
       overflow: visible;
     }
 
     button {
       display: inline-block;
-      left: -48px;
-      top: 1px;
       line-height: 0;
+      position: absolute;
+      left: 222px;
+      z-index: 99999; /* because of SMSBump injected z-index */
+      top: 11.5px;
 
-      @include media-query($xl-up) {
-        top: 0;
+      @include media-query($xxl-down) {
+        left: 191px
       }
 
-      @include media-query($small) {
-        top: 1px;
-        left: -48px;
-      }
-
-      @media screen and (width: 320px) {
+      @include media-query($large-down) {
         left: 222px;
-        top: 2px;
-        position: absolute;
       }
     }
 
