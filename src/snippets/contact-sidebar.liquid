@@ -26,13 +26,13 @@
 
           <div class="contact-sidebar__modal-buttons">
             {% if settings.contact_s_modal_1_button_1_text != blank %}
-              <a class="contact-sidebar__modal-button" href="{{ settings.modal_1_button_1 }}">
+              <a class="contact-sidebar__modal-button" href="{{ settings.contact_s_modal_1_button_1 }}">
                 <span class="contact-sidebar__modal-b-i">{% render 'icon-phone' %}</span>
                 <span class="contact-sidebar__modal-b-t">{{ settings.contact_s_modal_1_button_1_text }}</span>
               </a>
             {% endif %}
             {% if settings.contact_s_modal_1_button_2_text != blank %}
-              <a class="contact-sidebar__modal-button" href="{{ settings.modal_1_button_2 }}">
+              <a class="contact-sidebar__modal-button" href="{{ settings.contact_s_modal_1_button_2 }}">
                 <span class="contact-sidebar__modal-b-i">{% render 'icon-phone' %}</span>
                 <span class="contact-sidebar__modal-b-t">{{ settings.contact_s_modal_1_button_2_text }}</span>
               </a>
@@ -71,13 +71,13 @@
           <div class="contact-sidebar__modal-buttons">
             {% if settings.contact_s_modal_2_button_1_text != blank %}
               <a class="contact-sidebar__modal-button" href="{{ settings.contact_s_modal_2_button_1 }}">
-                <span class="contact-sidebar__modal-b-i">{% render 'icon-phone' %}</span>
+                <span class="contact-sidebar__modal-b-i">{% render 'icon-mail' %}</span>
                 <span class="contact-sidebar__modal-b-t">{{ settings.contact_s_modal_2_button_1_text }}</span>
               </a>
             {% endif %}
             {% if settings.contact_s_modal_2_button_2_text != blank %}
               <a class="contact-sidebar__modal-button" href="{{ settings.contact_s_modal_2_button_2 }}">
-                <span class="contact-sidebar__modal-b-i">{% render 'icon-phone' %}</span>
+                <span class="contact-sidebar__modal-b-i">{% render 'icon-mail' %}</span>
                 <span class="contact-sidebar__modal-b-t">{{ settings.contact_s_modal_2_button_2_text }}</span>
               </a>
             {% endif %}
