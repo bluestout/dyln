@@ -22,8 +22,9 @@
   {% for color in b_p_colors_array %}
     {% assign color_class = value %}
   {% endfor %}
+  {% comment %} force image pre-load {% endcomment %}
+  {% for color in b_p_colors_array %}{% for pop_p_img in pop_p.images %}{% if pop_p_img.alt contains color %}{% render 'responsive-image-no-lazy' with image: pop_p_img, max_width: 600, max_height: 600, wrapper_attributes: "data-pre-order-slick-load", snippet_index: 90 %}{% endif %}{% endfor %}{% endfor %}
   <div data-tab="3{{ forloop.index }}" {% if forloop.index == 1 %}class="active"{% else %}data-pre-order-slick-load{% endif %} data-add-on-parent>
-
     <div
       class="pop{% if pop_p.has_only_default_variant %} single{% endif %}"
       data-pi-item
