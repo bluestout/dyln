@@ -163,6 +163,11 @@
     align-self: center;
   }
 
+  &__upsell-gallery img {
+    max-width: 92px;
+    object-fit: scale-down;
+  }
+
   &__upsell-content {
     width: calc(50% - 55px);
     align-self: center;

@@ -74,6 +74,8 @@ const selectors = {
     loading: "[data-upsell-loading]",
     input: "[data-upsell-input]",
     price: "[data-upsell-price]",
+    galleryImage: "[data-upsell-gallery-image]",
+    galleryImageByValue: (value) => `[data-upsell-gallery-image="${value}"]`,
     inputById: (id) =>
       `${selectors.upsell.input}[data-${datasets.upsell.id}="${id}"]`,
   },
@@ -475,14 +477,26 @@ function handleAjaxUpsellInputClick(event) {
   const $parent = $source.closest(selectors.upsell.wrap);
   const id = $source.data(datasets.upsell.id);
   const price = $source.data(datasets.upsell.price);
+  const value = $source.val();
   $parent.find(selectors.upsell.select).val(id);
 
+  renderUpsellGallery($parent, value);
   renderUpsellPrice($parent, price);
 }
 
 function renderUpsellPrice($upsell, price) {
   const $price = $upsell.find(selectors.upsell.price);
   $price.text(price);
+}
+
+function renderUpsellGallery($parent, value) {
+  const $newImage = $parent.find(selectors.upsell.galleryImageByValue(value));
+  const $currentImage = $parent.find(`${selectors.upsell.galleryImage}:visible`);
+  if ($currentImage.length > 0 && $newImage.length > 0) {
+    $currentImage.fadeOut("fast", () => {
+      $newImage.fadeIn("fast");
+    });
+  }
 }
 
 function addToCartComplete(jqXHR, textStatus) {
@@ -615,6 +629,8 @@ function handleUpsell(cart) {
     return "";
   }
   let loop = true;
+
+  console.log("products json: ", json);
 
   let pattern = "";
   const cartProductIds = [];
