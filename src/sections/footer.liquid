@@ -201,7 +201,7 @@
               <div class="site-footer__reach-out">
                 <a href="tel:{{ section.settings.contact_phone }}" class="site-footer__reach-out-tel">{{ section.settings.contact_phone }}</a>
                 <a href="mailto:{{ section.settings.contact_mail }}">{{ section.settings.contact_mail }}</a>
-                <a onclick="Smooch.open()" href="">{{ 'layout.footer.live_chat' | t }}</a>
+                <a id="liveChat" onclick="Smooch.open()"">{{ 'layout.footer.live_chat' | t }}</a>
                 <div class="d-flex justify-content-center justify-content-lg-start">
                   {% render 'social-links' %}
                 </div>
