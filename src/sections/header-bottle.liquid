@@ -44,6 +44,15 @@
           {% endif %}
             <div class="header-bottle__content-wrap">
               <h2 class="header-bottle__c-title desktop">{{ section.settings.title }}</h2>
+              <style>
+                @media (min-width:992px) {
+                  .header-bottle .header-bottle__c-title.desktop {
+                    font-size: {{ section.settings.title_font_size | append: 'px' }};
+                    line-height: 1.3;
+                    color: {{ section.settings.title_color }};
+                  }
+                }
+              </style>
               <a href="#" class="header-bottle__c-subtitle desktop" data-scroll-to=".index-video">See how</a>
               <div class="header-bottle__c-content">{{ section.settings.content }}</div>
               {% if section.settings.link_text != blank %}
@@ -155,6 +164,22 @@
         "type": "textarea",
         "id": "title",
         "label": "Title"
+      },
+      {
+        "type": "color",
+        "id": "title_color",
+        "label": "Title Color",
+        "default": "#00aedb"
+      },
+      {
+        "type": "range",
+        "id": "title_font_size",
+        "min": 12,
+        "max": 60,
+        "step": 1,
+        "unit": "px",
+        "label": "Title Font Size",
+        "default": 40
       },
       {
         "type": "textarea",

@@ -8,6 +8,7 @@
     opacity: 0;
     pointer-events: none;
     width: 100vw;
+    height: 100vh;
 
     &__main-link {
       display: inline-block;
@@ -96,7 +97,15 @@
       position: relative;
       z-index: $z-base;
       background-color: $color-background;
-      padding: 60px 0 0;
+      padding: 20px 0 0;
+      max-height: calc(100vh - 80px);
+      overflow-y: auto;
+    }
+
+
+    &__video {
+      text-align: center;
+      margin: 0 auto 10px;
     }
 
     &__c-title {
@@ -314,7 +323,7 @@
 
     &__video {
       text-align: center;
-      margin: 0 auto 20px;
+      margin: 0 auto 10px;
     }
 
     &__content-wrap {
