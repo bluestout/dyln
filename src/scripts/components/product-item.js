@@ -52,6 +52,7 @@ const selectors = {
   formInForm: "[data-pre-order-form-in-form]",
 };
 
+// let slickEventTimer;
 function handleOptionClick(event) {
   const $source = $(event.target);
   const $slick = $source.closest(selectors.item).find(selectors.slickSlider);
@@ -268,6 +269,12 @@ function onItemHoverOut() {
   $allItems.removeClass("active");
 }
 
+function slickHideOnLoad() {
+  $(selectors.hideOnLoad).each((index, item) => {
+    $(item).css("display", "none");
+  });
+}
+
 function init() {
   const $gallery = $(`${selectors.gallery}`);
   const $galleryAlways = $(`${selectors.galleryAlways}`);
@@ -276,26 +283,6 @@ function init() {
     $(option).css("display", "block");
   });
 
-
-  $galleryAlways.on("init", () => {
-    clearTimeout(slickEventTimer);
-    slickEventTimer = setTimeout(() => {
-      $(selectors.hideOnLoad).each((index, item) => {
-        $(item).css("display", "none");
-      });
-    }, 100);
-  });
-
-  $gallery.on("init", () => {
-    clearTimeout(slickEventTimer);
-    slickEventTimer = setTimeout(() => {
-      $(selectors.hideOnLoad).each((index, item) => {
-        $(item).css("display", "none");
-      });
-    }, 100);
-  });
-
-  let slickEventTimer;
   let fading = false;
   try {
     const options = JSON.parse($(selectors.settings).text());
@@ -386,24 +373,6 @@ function init() {
     const color = $slide.find(selectors.image).data(datasets.image);
     return $slide.closest(selectors.item).find(`[data-${datasets.value}="${color}"]`).click();
   });
-
-  $galleryAlways.on("init", () => {
-    clearTimeout(slickEventTimer);
-    slickEventTimer = setTimeout(() => {
-      $(selectors.hideOnLoad).each((index, item) => {
-        $(item).css("display", "none");
-      });
-    }, 100);
-  });
-
-  $gallery.on("init", () => {
-    clearTimeout(slickEventTimer);
-    slickEventTimer = setTimeout(() => {
-      $(selectors.hideOnLoad).each((index, item) => {
-        $(item).css("display", "none");
-      });
-    }, 100);
-  });
 }
 
 function handlePreOrderTabClick(event) {
@@ -478,6 +447,6 @@ $(document).on("click change", selectors.value, handleOptionClick);
 $(document).on("click", selectors.preOrdersTabLink, handlePreOrderTabClick);
 $(document).on("click", selectors.preOrderButton, handlePreOrderButtonClick);
 $(document).on("click change", selectors.preOrderCheckbox, handlePreOrderCount);
-
 $(document).on("focusin", onFocusChange);
 $(document).on("mouseleave", selectors.item, onItemHoverOut);
+document.addEventListener("pageTransitionStart", slickHideOnLoad);

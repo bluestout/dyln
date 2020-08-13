@@ -198,6 +198,7 @@
       }, 250);
 
       setTimeout(function() {
+        document.dispatchEvent(new Event("pageTransitionStart"));
         document.querySelector("[data-page-transition]").classList.add("inactive");
       }, 2500);
       setTimeout(function() {

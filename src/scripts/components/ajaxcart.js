@@ -630,8 +630,6 @@ function handleUpsell(cart) {
   }
   let loop = true;
 
-  console.log("products json: ", json);
-
   let pattern = "";
   const cartProductIds = [];
   const cartProductsWithUpsell = [];
