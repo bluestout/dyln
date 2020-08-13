@@ -47,7 +47,11 @@
               <a href="#" class="header-bottle__c-subtitle desktop" data-scroll-to=".index-video">See how</a>
               <div class="header-bottle__c-content">{{ section.settings.content }}</div>
               {% if section.settings.link_text != blank %}
-                <a class="header-bottle__c-link" href="{{ section.settings.link }}" tabindex="-1">{{ section.settings.link_text }}</a>
+                <a
+                  class="header-bottle__c-link"
+                  href="{{ section.settings.link }}"
+                  style="color:{{ section.settings.link_text_color }}; background-color:{{ section.settings.link_bg_color }}; font-size:{{ section.settings.link_font_size }}px; font-weight:{{ section.settings.link_font_weight }}; line-height: 1.25; background-image: none; box-shadow:none;"
+                  tabindex="-1">{{ section.settings.link_text }}</a>
               {% endif %}
             </div>
           {% if section.settings.video_embed != blank or section.settings.video != blank %}
@@ -163,6 +167,10 @@
         "label": "Content"
       },
       {
+        "type": "header",
+        "content": "Main Button Settings"
+      },
+      {
         "type": "url",
         "id": "link",
         "label": "Link URL"
@@ -171,6 +179,47 @@
         "type": "text",
         "id": "link_text",
         "label": "Link Text"
+      },
+      {
+        "type": "color",
+        "id": "link_text_color",
+        "label": "Link Text Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "link_bg_color",
+        "label": "Link Background Color",
+        "default": "#00d7ef"
+      },
+      {
+        "type": "range",
+        "id": "link_font_size",
+        "label": "Link Font Size",
+        "min": 10,
+        "max": 30,
+        "step": 1,
+        "default": 14
+      },
+      {
+        "type": "select",
+        "id": "link_font_weight",
+        "label": "Link Font Size",
+        "default": "700",
+        "options": [
+          {
+            "value": "400",
+            "label": "Regular"
+          },
+          {
+            "value": "500",
+            "label": "Medium"
+          },
+          {
+            "value": "700",
+            "label": "bold"
+          }
+        ]
       },
       {
         "type": "textarea",
