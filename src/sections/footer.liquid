@@ -156,7 +156,6 @@
             </div>
           </div>
         </div>
-
         <div class="site-footer__newsletter-opt-in opt-in-sms" data-phone-input>
           <script type="text/javascript" src="https://dhv2ziothpgrr.cloudfront.net/59511/form_13428.js?ver=1593707386"></script>
           <button type="submit" data-phone-submit>{% render 'icon-send' %}</button>
@@ -201,7 +200,7 @@
               <div class="site-footer__reach-out">
                 <a href="tel:{{ section.settings.contact_phone }}" class="site-footer__reach-out-tel">{{ section.settings.contact_phone }}</a>
                 <a href="mailto:{{ section.settings.contact_mail }}">{{ section.settings.contact_mail }}</a>
-                <a id="liveChat" onclick="Smooch.open()"">{{ 'layout.footer.live_chat' | t }}</a>
+                <a id="liveChat" onclick="Smooch.open()">{{ 'layout.footer.live_chat' | t }}</a>
                 <div class="d-flex justify-content-center justify-content-lg-start">
                   {% render 'social-links' %}
                 </div>

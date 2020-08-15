@@ -17,7 +17,8 @@ const classes = {
 function triggerSmsSubmission(event) {
   event.preventDefault();
 
-  $(".opt-in-sms").find("button[type='button']").trigger("click");
+  let smsButton = $(".opt-in-sms").find("button[type='submit']")[1];
+  $(smsButton).trigger("click");
 }
 
 function moveCustomBtn() {
