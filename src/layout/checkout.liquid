@@ -111,6 +111,17 @@
             text-align: center;
         }
 
+      .order-summary--is-expanded {
+      	display:block !important;
+        height: auto !important;
+        padding-top: 10px !important;
+      }
+            .order-summary--is-collapsed {
+            	display: none !important;
+              height: auto !important;
+              padding-top: 10px !important;
+            }
+
         @media (max-width: 999px) {
             .mobile-breadcrumb {
                 display: block;
@@ -217,5 +228,6 @@
         });
     }
 </script>
+  {% include 'stamped-checkout-slider' %}
 </body>
 </html>
