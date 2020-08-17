@@ -991,6 +991,12 @@
         "label": "Fade List?",
         "info": "On collections and product items, should the variant images fade instead of slide?",
         "default": false
+      },
+      {
+        "type": "color",
+        "id": "pi_oos_color",
+        "label": "Product OOS Note Color",
+        "default": "#ff3737"
       }
     ]
   }

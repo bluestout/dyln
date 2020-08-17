@@ -76,7 +76,7 @@
 
   {% for block in section.blocks %}
     {%- if product.handle == block.settings.product -%}
-      <div class="pdp-form__sizes d-none d-sm-block">
+      <div class="pdp-form__sizes">
         <h5 class="pdp-form__sizes-title">{{ section.settings.title }}</h5>
         {% for n in (1..4) %}
         {% assign size_product_name = "product_" | append: n %}
@@ -151,7 +151,7 @@
       <span data-add-to-cart-loading class="loading-dots"></span>
   </button>
 
-  <p class="product-form__sold-out-notice hide" data-geo-shipping-note></p>
+  <p class="product-form__sold-out-notice hide pi_oos_color" data-geo-shipping-note></p>
 
 {% endform %}
 

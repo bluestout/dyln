@@ -9,7 +9,9 @@
     margin: 5px 0;
 
     @include media-query($small) {
-      @include text(11px, 1.2, $color-theme-18, 0.65px);
+      font-size: 11px;
+      line-height: 1.2;
+      letter-spacing: 0.65px;
     }
   }
 

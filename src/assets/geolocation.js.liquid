@@ -179,6 +179,13 @@ window.onload = function () {
                 selectors.optionByVariant(container, variantMessageSegment[0])
               ).attr(attributes.shipping, variantMessageSegment[1]);
             });
+            // add shipping message to the variant
+            $.each(productData.pre_order, function (i, variantMessage) {
+              var variantMessageSegment = variantMessage.split(":");
+              $(
+                selectors.optionByVariant(container, variantMessageSegment[0])
+              ).attr(attributes.shipping, variantMessageSegment[1]);
+            });
             renderSubmitButton(pId);
           } catch (error) { /*console.log("error: ", error);*/ }
         });
