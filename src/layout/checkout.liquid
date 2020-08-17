@@ -144,37 +144,32 @@
 </div>
 
 {{ order_summary_toggle }}
+
 <div class="content" data-content>
     <div class="wrap">
-        <div class="main">
-            <header class="main__header" role="banner">
-                {{ content_for_logo }}
-
-    <div class="content" data-content>
-      <div class="wrap">
-        <div class="main" role="main">
-          <div class="main__header">
-            {{ content_for_logo }}
-            {{ breadcrumb }}
-            {{ alternative_payment_methods }}
-          </div>
-          <div class="main__content">
-            {{ content_for_layout }}
-          </div>
-          <div class="main__footer">
-            {{ content_for_footer }}
-          </div>
+    <div class="main" role="main">
+        <div class="main__header">
+        {{ content_for_logo }}
+        {{ breadcrumb }}
+        {{ alternative_payment_methods }}
         </div>
-        <div class="sidebar" role="complementary">
-          <div class="sidebar__header">
-            {{ content_for_logo }}
-          </div>
-          <div class="sidebar__content">
-            {{ content_for_order_summary }}
-          </div>
+        <div class="main__content">
+        {{ content_for_layout }}
         </div>
-      </div>
+        <div class="main__footer">
+        {{ content_for_footer }}
+        </div>
     </div>
+    <div class="sidebar" role="complementary">
+        <div class="sidebar__header">
+        {{ content_for_logo }}
+        </div>
+        <div class="sidebar__content">
+        {{ content_for_order_summary }}
+        </div>
+    </div>
+    </div>
+</div>
 
 {{ tracking_code }}
 
