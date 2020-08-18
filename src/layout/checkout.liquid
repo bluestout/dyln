@@ -177,8 +177,10 @@
     let cartLinks = document.querySelectorAll(".breadcrumb__link");
     for (let cartLinksIndex = 0; cartLinksIndex < cartLinks.length; cartLinksIndex++) {
         cartLinks[cartLinksIndex].addEventListener("click", function(event) {
-            event.preventDefault();
-            window.location = "/collections/all?opencart=1";
+            if (event.originalTarget && event.originalTarget.href && event.originalTarget.href.indexOf("cart") > -1) {
+                event.preventDefault();
+                window.location = "/collections/all?opencart=1";
+            }
         });
     }
 </script>
