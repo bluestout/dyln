@@ -249,10 +249,10 @@
   @include media-query($medium-down) {
     &__outer {
       background: radial-gradient(
-                      ellipse at top,
-                      rgba($color-theme-19, 0.3) 0%,
-                      $color-transparent 60%,
-                      $color-transparent 100%
+        ellipse at top,
+        rgba($color-theme-19, 0.3) 0%,
+        $color-transparent 60%,
+        $color-transparent 100%
       );
       padding: 0;
       overflow: visible;
@@ -307,10 +307,6 @@
         width: 18px;
         height: 18px;
       }
-    }
-
-    &__modal {
-      padding: 15px;
     }
 
     &__modal-close {

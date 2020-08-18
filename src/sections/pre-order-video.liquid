@@ -17,9 +17,10 @@
             class="po-video__looped"
             {% if section.settings.autoplay_loop %}autoplay playsinline muted loop{% else %}controls{% endif %}
             width="{{ section.settings.video_width_loop }}"
-            height="{{ section.settings.video_height_loop }}"
-            tabindex="-1">
+            height="{{ section.settings.video_height_loop }}">
+            <source src="{{- section.settings.video_loop -}}" type="video/webm">
             <source src="{{- section.settings.video_loop -}}" type="video/mp4">
+            <source src="{{- section.settings.video_loop -}}" type="video/ogg">
             Your browser does not support the video tag.
           </video>
           {%- elsif section.settings.video_loop_embed != blank -%}
@@ -165,3 +166,4 @@
   ]
   }
 {% endschema %}
+
