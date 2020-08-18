@@ -22,8 +22,6 @@
   {% for color in b_p_colors_array %}
     {% assign color_class = value %}
   {% endfor %}
-  {% comment %} force image pre-load {% endcomment %}
-  {% for color in b_p_colors_array %}{% for pop_p_img in pop_p.images %}{% if pop_p_img.alt contains color %}{% render 'responsive-image-no-lazy' with image: pop_p_img, max_width: 600, max_height: 600, wrapper_attributes: "data-pre-order-slick-load", snippet_index: 90 %}{% endif %}{% endfor %}{% endfor %}
   <div data-tab="3{{ forloop.index }}" {% if forloop.index == 1 %}class="active"{% else %}data-pre-order-slick-load{% endif %} data-add-on-parent>
     <div
       class="pop{% if pop_p.has_only_default_variant %} single{% endif %}"
@@ -34,7 +32,7 @@
         <div class="row">
           <div class="col-xl-2"></div>
           <div class="col-xl-5 col-lg-6">
-            <div class="pop__gallery" data-pi-image-gallery="always">
+            <div class="pop__gallery" data-pi-image-gallery-onload>
               {% assign first = true %}
               {% assign any_image = false %}
 
@@ -51,17 +49,8 @@
                         {% assign gallery_attribute = 'data-pi-image="' | append: color  | append: '"' %}
                         {% assign gallery_wrapper = "pop__g-img-wrap" %}
                       {% endif %}
-
-                      <div class="pop__gallery-img">
-                        {% render 'responsive-image-no-lazy' with
-                          image: pop_p_img,
-                          max_width: 600,
-                          max_height: 600,
-                          wrapper_class: gallery_wrapper,
-                          image_class: "pop__gallery-img",
-                          wrapper_attributes: gallery_attribute,
-                          snippet_index: 84,
-                        %}
+                      <div class="{{ gallery_wrapper }}" {{ gallery_attribute }}>
+                        <img src="{{ pop_p_img | img_url: '600x' }}" alt="{{ image.alt | escape }}">
                       </div>
 
                       {% assign first = false %}
@@ -73,16 +62,8 @@
               {% endfor %}
 
               {% unless any_image %}
-                <div class="pop__gallery-img">
-                  {% render 'responsive-image-no-lazy' with
-                    image: pop_p.featured_image,
-                    max_width: 600,
-                    max_height: 600,
-                    wrapper_class: "pop__g-img-wrap",
-                    image_class: "pop__gallery-img"
-                    span: true,
-                    snippet_index: 86,
-                  %}
+                <div class="{{ gallery_wrapper }}" {{ gallery_attribute }}>
+                  <img src="{{ pop_p.featured_image | img_url: '600x' }}" alt="{{ image.alt | escape }}">
                 </div>
               {% endunless %}
             </div>

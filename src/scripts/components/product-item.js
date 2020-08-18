@@ -21,7 +21,7 @@ const datasets = {
 const selectors = {
   value: `[data-${datasets.value}]`,
   gallery: `[data-${datasets.gallery}]`,
-  galleryAlways: `[data-${datasets.gallery}="always"]`,
+  galleryAlways: `[data-${datasets.gallery}-always]`,
   current: `.${classes.active}[data-${datasets.image}]`,
   image: `[data-${datasets.image}]`,
   item: "[data-pi-item]",
@@ -325,7 +325,7 @@ function init() {
   if ($galleryAlways.length > 0 && !$galleryAlways.hasClass("slick-initialized")) {
     $galleryAlways.slick({
       swipeToSlide: true,
-      arrows: true,
+      arrows: false,
       prevArrow: "<div class='slick-prev'></div>",
       nextArrow: "<div class='slick-next'></div>",
       dots: false,
@@ -358,7 +358,6 @@ function init() {
             centerMode: true,
             centerPadding: "25%",
             infinite: true,
-            dots: false,
             variableWidth: false,
             fade: fading,
             cssEase: 'linear',
@@ -431,7 +430,7 @@ function handlePreOrderCount(event) {
   const $countElement = $parent.find(selectors.preOrderCount);
   let count = 1;
   $addOns.each((index, addon) => {
-    if ($(addon).find(selectors.preOrderCheckbox).prop("checked")){
+    if ($(addon).find(selectors.preOrderCheckbox).prop("checked")) {
       count++;
     }
   });
