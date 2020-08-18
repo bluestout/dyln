@@ -34,7 +34,11 @@
           {% endfor %}
         </div>
       </div>
-      <a href="{{ section.settings.cta_link }}" class="po-guard__btn">{{ section.settings.cta_text }}</a>
+      <a href="{{ section.settings.cta_link }}"
+        class="po-guard__btn"
+        {% if section.settings.cta_scroll_to != blank %}
+          data-scroll-to="{{ section.settings.bottom_scroll_to }}"
+        {% endif %}>{{ section.settings.cta_text }}</a>
     </div>
   </div>
 </div>
@@ -73,6 +77,12 @@
         "type": "url",
         "id": "cta_link",
         "label": "CTA Link"
+      },
+      {
+        "type": "text",
+        "id": "cta_scroll_to",
+        "label": "Link ScrollTo",
+        "info": "If a html selector is input here, the link will smooth scroll to that selector instead of going to an url."
       }
     ],
     "blocks":[
