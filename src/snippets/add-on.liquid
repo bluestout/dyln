@@ -47,7 +47,7 @@
       </label>
     </div>
 
-    <div class="popa__gallery" data-pi-image-gallery>
+    <div class="popa__gallery" data-pi-image-gallery-onload data-arrows="false">
       {% assign first = true %}
       {% assign any_image = false %}
 
@@ -141,7 +141,7 @@
               class="popa__color-input"
               type="radio"
               id="{{ add_on_p.id }}-option{{ option.position }}-{{ value | handleize }}"
-              name="options[{{ option.name }}]"
+              name="options[{{ option.name }}]-{{ index }}"
               value="{{ value }}"
               data-pi-option-value="{{ value }}"
               data-pi-option-name="{{ name_clean }}"
@@ -167,7 +167,7 @@
               class="popa__value-input"
               type="radio"
               id="{{ add_on_p.id }}-option{{ option.position }}-{{ value | handleize }}"
-              name="options[{{ option.name }}]"
+              name="options[{{ option.name }}]-{{ index }}"
               value="{{ value }}"
               data-pi-option-value="{{ value }}"
               data-pi-option-name="{{ name_clean }}"

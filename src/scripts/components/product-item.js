@@ -21,7 +21,6 @@ const datasets = {
 const selectors = {
   value: `[data-${datasets.value}]`,
   gallery: `[data-${datasets.gallery}]`,
-  galleryAlways: `[data-${datasets.gallery}-always]`,
   current: `.${classes.active}[data-${datasets.image}]`,
   image: `[data-${datasets.image}]`,
   item: "[data-pi-item]",
@@ -56,7 +55,6 @@ const selectors = {
 function handleOptionClick(event) {
   const $source = $(event.target);
   const $slick = $source.closest(selectors.item).find(selectors.slickSlider);
-  const $slickAlways = $source.closest(selectors.item).find(selectors.galleryAlways);
   const opName = $source.data(datasets.opName);
 
   if ($source.length === 0 || !opName) {
@@ -64,7 +62,7 @@ function handleOptionClick(event) {
   }
 
   if (opName === "color" || opName === "sleeve") {
-    if ($slick.length > 0 || $slickAlways.length > 0) {
+    if ($slick.length > 0) {
       handleSlickChange($source);
     } else {
       handleColorChange($source);
@@ -277,7 +275,6 @@ function slickHideOnLoad() {
 
 function init() {
   const $gallery = $(`${selectors.gallery}`);
-  const $galleryAlways = $(`${selectors.galleryAlways}`);
   const $images = $gallery.find(selectors.image);
   $images.each((index, option) => {
     $(option).css("display", "block");
@@ -312,83 +309,6 @@ function init() {
   });
 
   $($gallery).on("afterChange", (event, slick, nextSlide) => {
-    const $slide = $(event.currentTarget).find(`[data-slick-index="${nextSlide}"]`);
-    const color = $slide.find(selectors.image).data(datasets.image);
-    return $slide.closest(selectors.item).find(`[data-${datasets.value}="${color}"]`).click();
-  });
-
-  const $imagesAlways = $galleryAlways.find(selectors.image);
-  $imagesAlways.each((index, option) => {
-    $(option).css("display", "block");
-  });
-
-  if ($galleryAlways.length > 0 && !$galleryAlways.hasClass("slick-initialized")) {
-    $galleryAlways.slick({
-      swipeToSlide: true,
-      arrows: false,
-      prevArrow: "<div class='slick-prev'></div>",
-      nextArrow: "<div class='slick-next'></div>",
-      dots: false,
-      slidesToShow: 1,
-      centerPadding: "0%",
-      centerMode: false,
-      infinite: true,
-      speed: 300,
-      fade: fading,
-      cssEase: 'linear',
-      responsive: [
-        {
-          breakpoint: 992,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            centerMode: false,
-            infinite: true,
-            dots: false,
-            variableWidth: false,
-            fade: fading,
-            cssEase: 'linear',
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            centerMode: true,
-            centerPadding: "25%",
-            infinite: true,
-            variableWidth: false,
-            fade: fading,
-            cssEase: 'linear',
-          }
-        }
-      ]
-    });
-  }
-
-  $($galleryAlways).on("afterChange", (event, slick, nextSlide) => {
-    const $slide = $(event.currentTarget).find(`[data-slick-index="${nextSlide}"]`);
-    const color = $slide.find(selectors.image).data(datasets.image);
-    return $slide.closest(selectors.item).find(`[data-${datasets.value}="${color}"]`).click();
-  });
-}
-
-function handlePreOrderTabClick(event) {
-  const $source = $(event.currentTarget);
-  const index = $source.data("tab-link");
-  const $tab = $source.closest(selectors.preOrders).find(selectors.tabByIndex(index));
-  if ($tab.length > 0) {
-    $tab.find(`${selectors.value}`).first().click();
-  }
-
-  const $galleryAlways = $(`${selectors.galleryAlways}`);
-  const $images = $galleryAlways.find(selectors.image);
-  $images.each((index, option) => {
-    $(option).css("display", "block");
-  });
-
-  $galleryAlways.on("afterChange", (event, slick, nextSlide) => {
     const $slide = $(event.currentTarget).find(`[data-slick-index="${nextSlide}"]`);
     const color = $slide.find(selectors.image).data(datasets.image);
     return $slide.closest(selectors.item).find(`[data-${datasets.value}="${color}"]`).click();

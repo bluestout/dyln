@@ -1,10 +1,10 @@
-<div class="container" data-tab-container data-pre-order-products>
+<div class="container" data-po-tab-container data-pre-order-products>
   <h2 class="pop__title">{{ section.settings.title }}</h2>
   <p class="pop__content col-lg-none">
     {{ section.settings.content }}
   </p>
+  {% assign block_index = 1 %}
   {% for block in section.blocks %}
-
   {% assign pop_p = all_products[block.settings.product] %}
   {% assign pop_p_def_v = pop_p.selected_or_first_available_variant %}
   {% assign pop_p_img = "" %}
@@ -26,17 +26,20 @@
   {% for color in b_p_colors_array %}
     {% assign color_class = value %}
   {% endfor %}
-  <div data-tab="{{ forloop.index }}" {% if forloop.index == 1 %}class="active pop__wrapper" {% else %}data-pre-order-slick-load{% endif %} data-add-on-parent data-pre-order-form-in-form>
+  <div data-po-tab="{{ forloop.index }}" {% if forloop.index == 1 %}class="active pop__wrapper" {% else %}data-pre-order-slick-load{% endif %} data-add-on-parent data-pre-order-form-in-form>
     <div
       class="pop{% if pop_p.has_only_default_variant %} single{% endif %}"
       data-pi-item
-      data-pi-static-class="pop{% if pop_p.has_only_default_variant %} single{% endif %}"
       data-single-product="{{ pop_p.id }}">
       <div class="pop__form">
         <div class="row">
           <div class="col-lg-1"></div>
           <div class="col-lg-5">
-            <div class="pop__gallery" data-pi-image-gallery-onload>
+            {% assign init_slick_attribute = "" %}
+            {% if block_index == 1 %}
+              {% assign init_slick_attribute = 'data-init="true"' %}
+            {% endif %}
+            <div class="pop__gallery" data-pi-image-gallery-onload data-arrows="true" {{ init_slick_attribute }}>
               {% assign first = true %}
               {% assign any_image = false %}
 
@@ -103,7 +106,7 @@
                 <div class="pop__sizes">
                   <h5 class="pop__sizes-title">{{ section.settings.size_label }}</h5>
                   {% for block in section.blocks %}
-                    <a href="{{ size_product.url }}" class="pop__sizes-link{% if forloop.index == 1 %} active{% endif %}" data-tab-link="{{ forloop.index }}">{{ block.settings.title }}</a>
+                    <a href="{{ size_product.url }}" class="pop__sizes-link{% if forloop.index == 1 %} active{% endif %} {% if forloop.index == block_index %} block-active{% endif %}" data-po-tab-link="{{ forloop.index }}">{{ block.settings.title }}</a>
                   {% endfor %}
                 </div>
 
@@ -255,11 +258,13 @@
               {% if block.settings.add_on_1 != blank or block.settings.add_on_2 != blank %}
               <div class="pop__add-ons">
                 <h4 class="pop__add-ons-title">{{ section.settings.add_ons_title }}</h4>
+                {% assign add_on_index = block_index | append: '-1' %}
                 {% if block.settings.add_on_1 != blank %}
-                  {% render 'add-on' with block.settings.add_on_1 %}
+                  {% render 'add-on' with block.settings.add_on_1 index: add_on_index %}
                 {% endif %}
+                {% assign add_on_index = block_index | append: '-2' %}
                 {% if block.settings.add_on_2 != blank %}
-                  {% render 'add-on' with block.settings.add_on_2 %}
+                  {% render 'add-on' with block.settings.add_on_2 index: add_on_index %}
                 {% endif %}
               </div>
               {% endif %}
@@ -277,6 +282,7 @@
       </div>
     </div>
   </div>
+  {% assign block_index = block_index | plus: 1 %}
   {% endfor %}
 </div>
 

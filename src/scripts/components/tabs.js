@@ -20,14 +20,11 @@ const selectors = {
   tab: `[data-${datasets.tab}]`,
   link: `[data-${datasets.link}]`,
   tabByIndex: (index) => `[data-${datasets.tab}="${index}"]`,
-  linkByIndex: (index) => `[data-${datasets.link}="${index}"]`,
-  slickOnLoad: "[data-pi-image-gallery-onload]",
-  settings: "[data-product-schema-settings]",
+  linkByIndex: (index) => `[data-${datasets.link}="${index}"]`
 };
 
 const classes = {
   active: "active",
-  slickInit: "slick-initialized"
 };
 
 const variables = {
@@ -53,7 +50,6 @@ function tabs(event) {
         $(item).removeClass(classes.active)
           .fadeOut(variables.timing, () => {
             $target.fadeIn(variables.timing).addClass(classes.active);
-            slickLoad($target);
           });
       });
     } else {
@@ -70,7 +66,6 @@ function tabs(event) {
           $(item).removeClass(classes.active)
             .fadeOut(variables.timing, () => {
               $target.fadeIn(variables.timing).addClass(classes.active);
-              slickLoad($target);
             });
         }
       });
@@ -89,67 +84,6 @@ function tabs(event) {
     );
   }
 }
-
-function slickLoad($target) {
-  let $slicks
-
-  if ($target.find(selectors.containerInner).length > 0) {
-    $slicks = $target.find(selectors.containerInner).first().find(selectors.slickOnLoad).first();
-  } else {
-    $slicks = $target.find(selectors.slickOnLoad);
-  }
-  let fading = false;
-  try {
-    const options = JSON.parse($(selectors.settings).text());
-    fading = options.fade_pi;
-  } catch (error) { }
-  $slicks.each((index, slick) => {
-    if (!$(slick).hasClass(classes.slickInit)) {
-      $(slick).slick({
-        swipeToSlide: true,
-        arrows: false,
-        dots: false,
-        slidesToShow: 1,
-        centerPadding: "0%",
-        centerMode: false,
-        infinite: true,
-        speed: 300,
-        fade: fading,
-        cssEase: 'linear',
-        responsive: [
-          {
-            breakpoint: 992,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
-              centerMode: false,
-              infinite: true,
-              dots: false,
-              variableWidth: false,
-              fade: fading,
-              cssEase: 'linear',
-            }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
-              centerMode: true,
-              centerPadding: "25%",
-              infinite: true,
-              variableWidth: false,
-              fade: fading,
-              cssEase: 'linear',
-            }
-          }
-        ]
-      });
-    }
-  });
-}
-
-
 
 function checkTabHash() {
   const urlParams = getUrlParams();
