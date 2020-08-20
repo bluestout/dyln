@@ -47,57 +47,61 @@
       </label>
     </div>
 
-    <div class="popa__gallery" data-add-on-image-gallery-onload {{ init_attribute }}>
-      {% assign first = true %}
-      {% assign any_image = false %}
 
-      {% for color in b_p_colors_array %}
-        {% assign color_satisfied = false %}
-        {% for add_on_p_img in add_on_p.images %}
-          {% unless color_satisfied  %}
-            {% if add_on_p_img.alt contains color %}
+    <div class="popa__gallery">
+      {% comment %} double div for re-slicking {% endcomment %}
+      <div data-add-on-image-gallery-onload {{ init_attribute }}>
+        {% assign first = true %}
+        {% assign any_image = false %}
 
-              {% assign gallery_attribute = 'data-add-on-image="' | append: color  | append: '"' %}
-              {% if first %}
-                {% assign gallery_wrapper = "active popa__g-img-wrap" %}
-              {% else %}
-                {% assign gallery_wrapper = "popa__g-img-wrap" %}
+        {% for color in b_p_colors_array %}
+          {% assign color_satisfied = false %}
+          {% for add_on_p_img in add_on_p.images %}
+            {% unless color_satisfied  %}
+              {% if add_on_p_img.alt contains color %}
+
+                {% assign gallery_attribute = 'data-add-on-image="' | append: color  | append: '"' %}
+                {% if first %}
+                  {% assign gallery_wrapper = "active popa__g-img-wrap" %}
+                {% else %}
+                  {% assign gallery_wrapper = "popa__g-img-wrap" %}
+                {% endif %}
+
+                <span class="popa__gallery-img">
+                  {% render 'responsive-image' with
+                    image: add_on_p_img,
+                    max_width: 300,
+                    max_height: 450,
+                    wrapper_class: gallery_wrapper,
+                    image_class: "popa__gallery-img",
+                    wrapper_attributes: gallery_attribute,
+                    span: true,
+                    snippet_index: 83
+                  %}
+                </span>
+
+                {% assign first = false %}
+                {% assign color_satisfied = true %}
+                {% assign any_image = true %}
               {% endif %}
-
-              <span class="popa__gallery-img">
-                {% render 'responsive-image' with
-                  image: add_on_p_img,
-                  max_width: 300,
-                  max_height: 450,
-                  wrapper_class: gallery_wrapper,
-                  image_class: "popa__gallery-img",
-                  wrapper_attributes: gallery_attribute,
-                  span: true,
-                  snippet_index: 83
-                %}
-              </span>
-
-              {% assign first = false %}
-              {% assign color_satisfied = true %}
-              {% assign any_image = true %}
-            {% endif %}
-          {% endunless %}
+            {% endunless %}
+          {% endfor %}
         {% endfor %}
-      {% endfor %}
 
-      {% unless any_image %}
-        <span class="popa__gallery-img">
-          {% render 'responsive-image' with
-            image: add_on_p.featured_image,
-            max_width: 300,
-            max_height: 450,
-            wrapper_class: "popa__g-img-wrap",
-            image_class: "popa__gallery-img"
-            span: true,
-            snippet_index: 60
-          %}
-        </span>
-      {% endunless %}
+        {% unless any_image %}
+          <span class="popa__gallery-img">
+            {% render 'responsive-image' with
+              image: add_on_p.featured_image,
+              max_width: 300,
+              max_height: 450,
+              wrapper_class: "popa__g-img-wrap",
+              image_class: "popa__gallery-img"
+              span: true,
+              snippet_index: 60
+            %}
+          </span>
+        {% endunless %}
+      </div>
     </div>
 
     <div class="popa__content-wrapper">
