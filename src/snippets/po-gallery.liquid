@@ -1,0 +1,55 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
+
+<div class="pdp-gallery__images" data-pdp-gallery>
+  {% for image in product.images %}
+
+    {% unless image.alt contains "featured-collection-image" or image.alt contains "featured-collection-image-2" %}
+    {% assign img_color = "" %}
+      {% if image.alt contains "color:" %}
+        {% assign img_alt_split_at_color = image.alt | split: 'color:'  %}
+        {% assign img_color = img_alt_split_at_color[1] %}
+      {% endif %}
+      {% capture wrapper_class %}pdp-gallery__img-wrap{% unless featured_image == image %}{% endunless %}{% endcapture %}
+      {% capture wrapper_attributes %}data-product-image-wrapper{% if img_color.size > 0 %} data-gallery-image-color="{{ img_color }}"{% endif %}{% endcapture %}
+
+      <div
+              class="pdp-gallery__image-item"
+      >
+        {% render 'responsive-image' with
+          image: image,
+          max_width: 700,
+          max_height: 700,
+          image_attributes: "data-product-featured-image",
+          wrapper_class: wrapper_class,
+          image_class: "pdp-gallery__img",
+          wrapper_attributes: wrapper_attributes,
+          snippet_index: 39,
+        %}
+      </div>
+
+    {% endunless %}
+  {% endfor %}
+
+  {% if product.metafields.info.video_mp4 != blank %}
+    <div class="pdp-gallery__image-item video">
+      <div class="pdp-gallery__video-wrap">
+        <video
+                playsinline
+                controls
+                width="620"
+                height="465">
+          <source src="{{- section.settings.video -}}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+    {% elsif product.metafields.info.video != blank %}
+    <div class="pdp-gallery__image-item video">
+      <div class="pdp-gallery__video-wrap">
+        {{ product.metafields.info.video }}
+      </div>
+    </div>
+  {% endif %}
+</div>
+

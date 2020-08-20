@@ -8,6 +8,9 @@
           {%- if section.settings.title != blank -%}
             <h1>{{ section.settings.title }}</h1>
           {% endif %}
+          {%- if section.settings.subtitle != blank -%}
+            <h3>{{ section.settings.subtitle }}</h3>
+          {% endif %}
 
           {% if section.settings.btn_text != blank %}
             <a href="{{ section.settings.btn_link }}" data-anchor-btn>{{- section.settings.btn_text -}}</a>
@@ -28,6 +31,12 @@
     "id": "title",
     "label": "Title"
   },
+  {
+    "type": "richtext",
+    "id": "subtitle",
+    "label": "Second Title"
+  },
+
   {
     "type": "image_picker",
     "id": "background",

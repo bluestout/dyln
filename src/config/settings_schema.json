@@ -4,8 +4,9 @@
     "theme_name": "Dyln",
     "theme_version": "1.0.0",
     "theme_author": "Shopify",
-    "theme_documentation_url": "https://github.com/Shopify/starter-theme",
-    "theme_support_url": "https://github.com/Shopify/starter-theme/issues"
+    "theme_documentation_url": "https:\/\/github.com\/Shopify\/starter-theme",
+    "theme_support_url": "https:\/\/github.com\/Shopify\/starter-theme\/issues",
+    "theme_packaged_with": "@shopify\/slate-tools@1.0.0-beta.15"
   },
   {
     "name": "Colors",
@@ -264,7 +265,7 @@
         "type": "image_picker",
         "id": "share_image",
         "label": "Image",
-        "info": "Shown when sharing a link on social media. [Learn more](https://help.shopify.com/manual/using-themes/troubleshooting/showing-social-media-thumbnail-images/) about image thumbnails."
+        "info": "Shown when sharing a link on social media. [Learn more](https:\/\/help.shopify.com\/manual\/using-themes\/troubleshooting\/showing-social-media-thumbnail-images\/) about image thumbnails."
       },
       {
         "type": "header",
@@ -345,7 +346,7 @@
     "settings": [
       {
         "type": "header",
-        "content": "Index / Home Page"
+        "content": "Index \/ Home Page"
       },
       {
         "type": "text",
@@ -366,7 +367,7 @@
       },
       {
         "type": "header",
-        "content": "Landing / Full width page"
+        "content": "Landing \/ Full width page"
       },
       {
         "type": "text",
@@ -710,7 +711,7 @@
         "type": "link_list",
         "id": "collections_all_linklist",
         "label": "Collection List Linklist",
-        "info": "Select the menu from which the collections/all page will be generated"
+        "info": "Select the menu from which the collections\/all page will be generated"
       }
     ]
   },
