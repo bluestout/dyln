@@ -33,8 +33,12 @@
           <div class="col-xl-2"></div>
           <div class="col-xl-5 col-lg-6">
             <h3 class="pop__title pop__title--upper">{{ pop_p.title }}</h3>
+            {% assign init_slick_attribute = "" %}
+            {% if forloop.index == 1 %}
+              {% assign init_slick_attribute = 'data-init="true"' %}
+            {% endif %}
+            <div class="pop__gallery" data-pi-image-gallery-onload data-arrows="true" {{ init_slick_attribute }}>
 
-            <div class="pop__gallery" data-pi-image-gallery-onload data-arrows="true">
               {% assign first = true %}
               {% assign any_image = false %}
 

@@ -259,12 +259,16 @@
               <div class="pop__add-ons">
                 <h4 class="pop__add-ons-title">{{ section.settings.add_ons_title }}</h4>
                 {% assign add_on_index = block_index | append: '-1' %}
+                {% assign add_on_init_slick_attribute = "" %}
+                {% if block_index == 1 %}
+                  {% assign add_on_init_slick_attribute = 'data-init="true"' %}
+                {% endif %}
                 {% if block.settings.add_on_1 != blank %}
-                  {% render 'add-on' with block.settings.add_on_1 index: add_on_index %}
+                  {% render 'add-on' with block.settings.add_on_1, index: add_on_index, init_attribute: add_on_init_slick_attribute %}
                 {% endif %}
                 {% assign add_on_index = block_index | append: '-2' %}
                 {% if block.settings.add_on_2 != blank %}
-                  {% render 'add-on' with block.settings.add_on_2 index: add_on_index %}
+                  {% render 'add-on' with block.settings.add_on_2, index: add_on_index, init_attribute: add_on_init_slick_attribute %}
                 {% endif %}
               </div>
               {% endif %}

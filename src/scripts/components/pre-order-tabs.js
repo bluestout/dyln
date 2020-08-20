@@ -14,6 +14,10 @@ const datasets = {
   link: "po-tab-link",
   image: "pi-image",
   value: "pi-option-value",
+  addOn: {
+    image: "add-on-image",
+    value: "add-on-option-value",
+  }
 };
 
 const htmlArrowNext = `<button type='button' class='slick-next slick-arrow'></button>`;
@@ -22,6 +26,7 @@ const htmlArrowPrev = `<button type='button' class='slick-prev slick-arrow'></bu
 const selectors = {
   image: `[data-${datasets.image}]`,
   item: "[data-pi-item]",
+  addOn: "[data-pop-add-on]",
   container: "[data-po-tab-container]",
   containerInner: "[data-po-tab-container-inner]",
   tab: `[data-${datasets.tab}]`,
@@ -30,7 +35,12 @@ const selectors = {
   linkByIndex: (index) => `[data-${datasets.link}="${index}"]`,
   slickOnLoad: "[data-pi-image-gallery-onload]",
   slickOnLoadInitial: `[data-pi-image-gallery-onload][data-init="true"]`,
+  addOnSlickOnLoad: "[data-add-on-image-gallery-onload]",
+  addOnSlickOnLoadInitial: `[data-add-on-image-gallery-onload][data-init="true"]`,
   settings: "[data-product-schema-settings]",
+  addOn: {
+    image: `[data-${datasets.addOn.image}]`,
+  }
 };
 
 const classes = {
@@ -96,6 +106,7 @@ function tabs(event) {
 
 function slickLoad($target) {
   let $slicks;
+  let $addOnSlicks;
 
   if (!$target || $target.length === 0) {
     return null;
@@ -103,11 +114,17 @@ function slickLoad($target) {
 
   if ($target.find(selectors.containerInner).length > 0) {
     $slicks = $target.find(selectors.containerInner).first().find(selectors.slickOnLoad).first();
+    $addOnSlicks = $target.find(selectors.containerInner).first().find(selectors.addOnSlickOnLoad).first();
   } else {
     $slicks = $target.find(selectors.slickOnLoad);
+    $addOnSlicks = $target.find(selectors.addOnSlickOnLoad);
   }
   $slicks.each((index, slick) => {
     slickInit($(slick));
+  });
+
+  $addOnSlicks.each((index, slick) => {
+    slickInitAddOn($(slick));
   });
 }
 
@@ -144,10 +161,42 @@ function slickInit($item) {
   }
 }
 
+function slickInitAddOn($item) {
+  if (!$item || $item.length === 0) {
+    return null;
+  }
+  if (!$item.hasClass(classes.slickInit)) {
+    let fading = false;
+    try {
+      const options = JSON.parse($(selectors.settings).text());
+      fading = options.fade_pi;
+    } catch (error) { }
+
+    $item.slick({
+      swipeToSlide: true,
+      arrows: false,
+      dots: false,
+      slidesToShow: 1,
+      speed: 300,
+      fade: fading,
+      cssEase: 'linear'
+    });
+
+    $item.on("afterChange", (event, slick, nextSlide) => {
+      const $slide = $(event.currentTarget).find(`[data-slick-index="${nextSlide}"]`);
+      const color = $slide.find(selectors.image).data(datasets.addOn.image);
+      return $slide.closest(selectors.addOn).find(`[data-${datasets.addOn.value}="${color}"]`).click();
+    });
+  }
+}
+
 function init() {
   checkTabHash();
   $(selectors.slickOnLoadInitial).each((index, item) => {
     slickInit($(item));
+  });
+  $(selectors.addOnSlickOnLoadInitial).each((index, item) => {
+    slickInitAddOn($(item));
   });
 }
 
