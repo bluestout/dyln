@@ -665,7 +665,8 @@
           "1595524783693",
           "1596100102213"
         ],
-        "settings": {}
+        "settings": {
+        }
       },
       "cart-upsell": {
         "type": "cart-upsell",
@@ -770,15 +771,18 @@
       },
       "pdp-gallery": {
         "type": "pdp-gallery",
-        "settings": {}
+        "settings": {
+        }
       },
       "pdp-gallery-index": {
         "type": "pdp-gallery-index",
-        "settings": {}
+        "settings": {
+        }
       },
       "pdp-content": {
         "type": "pdp-content",
-        "settings": {}
+        "settings": {
+        }
       },
       "pdp-form": {
         "type": "pdp-form",
@@ -927,7 +931,8 @@
       },
       "pdp-diffusers": {
         "type": "pdp-diffusers",
-        "settings": {}
+        "settings": {
+        }
       },
       "pdp-usps": {
         "type": "pdp-usps",
@@ -1110,7 +1115,8 @@
           "1595948775462",
           "1595948782712"
         ],
-        "settings": {}
+        "settings": {
+        }
       },
       "pdp-tab-features": {
         "type": "pdp-tab-features",
@@ -1273,7 +1279,8 @@
           "1595588721870",
           "1595588959888"
         ],
-        "settings": {}
+        "settings": {
+        }
       },
       "pdp-tab-included": {
         "type": "pdp-tab-included",
@@ -1345,7 +1352,8 @@
           "1595613501411",
           "1595613553470"
         ],
-        "settings": {}
+        "settings": {
+        }
       },
       "pdp-tab-specs": {
         "type": "pdp-tab-specs",
@@ -1469,7 +1477,8 @@
           "1595586559416",
           "1595586745029"
         ],
-        "settings": {}
+        "settings": {
+        }
       },
       "pdp-related": {
         "type": "pdp-related",
@@ -1683,7 +1692,8 @@
       },
       "collection-filter": {
         "type": "collection-filter",
-        "settings": {}
+        "settings": {
+        }
       },
       "contact-header": {
         "type": "contact-header",
@@ -1910,7 +1920,8 @@
           "1587565633412",
           "1587565638251"
         ],
-        "settings": {}
+        "settings": {
+        }
       },
       "page-header": {
         "type": "page-header",
@@ -1927,32 +1938,7 @@
         "block_order": [
           "1588874838535"
         ],
-        "settings": {}
-      },
-      "contact-sidebar": {
-        "type": "contact-sidebar",
         "settings": {
-          "title": "Need to talk to a human?",
-          "help_link_1": "",
-          "help_1_is_modal": true,
-          "help_link_1_text": "Lets talk",
-          "modal_1_title": "Lets talk",
-          "modal_1_button_1": "tel:1-949-209-9401",
-          "modal_1_button_1_text": "<strong>Support<\/strong> 1-949-209-9401",
-          "modal_1_button_2": "tel:1-949-209-9401",
-          "modal_1_button_2_text": "<strong>Sales<\/strong> 1-949-209-9401",
-          "modal_1_note": "Business hours from 9:00 am to 5:00 pm PST",
-          "help_link_2": "",
-          "help_2_is_modal": true,
-          "help_link_2_text": "Email us",
-          "modal_2_title": "Email us",
-          "modal_2_button_1": "mailto:support@dyln.co",
-          "modal_2_button_1_text": "support@dyln.co",
-          "modal_2_button_2": "mailto:sales@dyln.co",
-          "modal_2_button_2_text": "sales@dyln.co",
-          "modal_2_note": "",
-          "help_link_3": "#",
-          "help_link_3_text": "Live chat"
         }
       },
       "contact-tabs-header": {
@@ -2006,7 +1992,8 @@
           "1589660703622",
           "1589660709912"
         ],
-        "settings": {}
+        "settings": {
+        }
       },
       "contact-form": {
         "type": "contact-form",
@@ -2740,7 +2727,8 @@
           "1591493117918",
           "1591493121450"
         ],
-        "settings": {}
+        "settings": {
+        }
       },
       "faq-header": {
         "type": "faq-header",
@@ -2800,13 +2788,13 @@
         "settings": {
           "enabled": true,
           "home_page_only": false,
-          "text": "<strong>FREE SHIPPING<\/strong> <br class=\"d-md-none\">  on orders of $75 or more",
+          "text": "<strong>NEW Bottle Sizes & Add-Ons<\/strong> <button id=\"adpopup\" class=\"btn btn-lg\"> GET 15% OFF<\/button>",
           "d_link_1": "shopify:\/\/pages\/dyln-insulated-alkaline-water-bottle",
-          "d_link_text_1": "Create Alkaline Water",
+          "d_link_text_1": "",
           "d_link_2": "shopify:\/\/products\/dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
-          "d_link_text_2": "Shop Now",
-          "m_link": "shopify:\/\/products\/dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
-          "m_link_text": "Shop",
+          "d_link_text_2": "",
+          "m_link": "#",
+          "m_link_text": "GET 15% OFF",
           "text_ca": "<strong>FREE SHIPPING<\/strong> <br class=\"d-md-none\">  on CA orders of $100 or more",
           "d_link_1_ca": "shopify:\/\/pages\/dyln-insulated-alkaline-water-bottle",
           "d_link_text_1_ca": "Create Alkaline Water",
@@ -3744,15 +3732,18 @@
           "blocks": {
             "collection-list-0": {
               "type": "collection",
-              "settings": {}
+              "settings": {
+              }
             },
             "collection-list-1": {
               "type": "collection",
-              "settings": {}
+              "settings": {
+              }
             },
             "collection-list-2": {
               "type": "collection",
-              "settings": {}
+              "settings": {
+              }
             }
           },
           "block_order": [
@@ -3760,7 +3751,8 @@
             "collection-list-1",
             "collection-list-2"
           ],
-          "settings": {}
+          "settings": {
+          }
         },
         "featured-collection": {
           "type": "featured-collection",
@@ -3770,7 +3762,8 @@
         },
         "featured-product": {
           "type": "featured-product",
-          "settings": {}
+          "settings": {
+          }
         }
       },
       "content_for_index": [
