@@ -36,7 +36,9 @@
               </div>
             {% endfor  %}
           </div>
-          <a href="#" class="po-hydro-optim__subscribe-btn">{{ section.settings.btn_text }}</a>
+          <a href="{{ section.settings.btn_link }}" class="po-hydro-optim__subscribe-btn"
+          {% if section.settings.cta_tab_id != blank %}data-po-tab-open="{{ section.settings.cta_tab_id }}"{% endif %}
+          {% if section.settings.cta_scroll_to != blank %}data-scroll-to="{{ section.settings.cta_scroll_to }}"{% endif %}>{{ section.settings.btn_text }}</a>
         </div>
       </div>
     </div>
@@ -84,6 +86,18 @@
     "type": "url",
     "id": "btn_link",
     "label": "Button Link"
+  },
+  {
+    "type": "text",
+    "id": "cta_scroll_to",
+    "label": "Link ScrollTo",
+    "info": "If a html selector is input here, the link will smooth scroll to that selector instead of going to an url."
+  },
+  {
+    "type": "text",
+    "id": "cta_tab_id",
+    "label": "Link Tab Open",
+    "info": "If the link should open a shop all tab, insert the id of the shop tab here. (index is top tab followed by inner tab index, so Bottles, size 16 is index 11, Sports caps, standard is 32, Extra diffusers is 2)"
   }
   ],
   "blocks":[

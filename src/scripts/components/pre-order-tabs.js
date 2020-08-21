@@ -45,6 +45,7 @@ const selectors = {
   addOnSlickOnLoadInitial: `[data-add-on-image-gallery-onload][data-init="true"]`,
   activeSlick: ".slick-initialized.slick-slider",
   settings: "[data-product-schema-settings]",
+  openTab: "[data-po-tab-open]",
   addOn: {
     image: `[data-${datasets.addOn.image}]`,
   }
@@ -230,5 +231,13 @@ function checkTabHash() {
   }
 }
 
+function openSpecificTab(event) {
+  console.log("target", $(event.target));
+  console.log("target data", $(event.target).data("po-tab-open"));
+  $(selectors.linkByIndex($(event.target).data("po-tab-open"))).click();
+}
+
 $(document).on("click", selectors.link, tabs);
+$(document).on("click", selectors.openTab, openSpecificTab);
+
 $(document).ready(init);
