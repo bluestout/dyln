@@ -45,6 +45,14 @@
     }
   }
 
+  &__shipping-notice {
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+    @include font-header(normal);
+    @include text(14px, 1.4, $color-theme-8, 0.3px);
+  }
+
   &__image-link {
     display: block;
     padding: 0 15px;
@@ -796,6 +804,7 @@
       width: 25px;
       background-color: white;
       border: 2px solid $color-theme-2;
+      border-radius: 3px;
 
       &::after {
         content: "";
@@ -804,14 +813,12 @@
       }
 
       &:after {
-        left: 9px;
-        top: 5px;
-        width: 5px;
-        height: 10px;
+        left: 7px;
+        top: 2px;
+        width: 8px;
+        height: 15px;
         border: solid white;
         border-width: 0 3px 3px 0;
-        -webkit-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
         transform: rotate(45deg);
       }
     }

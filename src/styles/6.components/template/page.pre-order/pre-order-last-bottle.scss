@@ -57,6 +57,10 @@
       position: relative;
       left: 0;
     }
+
+    @include media-query($small) {
+      width: 450px;
+    }
   }
 
   &__left-image-wrapper {

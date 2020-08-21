@@ -199,9 +199,9 @@
                   <div class="pdp-form__qty-wrap">
                     <label class="hide" for="Quantity">{{ 'products.product.quantity' | t }}</label>
                     <div class="pdp-form__qty-box">
-                      <button type="button" class="pdp-form__qty-button" data-qty-change="#PdpQuantity" data-direction="down">-</button>
-                      <input class="pdp-form__qty-input" type="number" id="PdpQuantity" name="quantity" value="1" min="1" data-qty-input>
-                      <button type="button" class="pdp-form__qty-button" data-qty-change="#PdpQuantity" data-direction="up">+</button>
+                      <button type="button" class="pdp-form__qty-button" data-qty-change="#PdpQuantity_{{ block_index }}" data-direction="down">-</button>
+                      <input class="pdp-form__qty-input" type="number" id="PdpQuantity_{{ block_index }}" name="quantity" value="1" min="1" data-qty-input>
+                      <button type="button" class="pdp-form__qty-button" data-qty-change="#PdpQuantity_{{ block_index }}" data-direction="up">+</button>
                     </div>
                   </div>
                 </div>
@@ -276,7 +276,9 @@
                   <span data-pre-order-loading class="loading-dots hide"></span>
                 </button>
               </div>
-              <div class="pop__shipping-notice">{{ section.settings.shipping_note }}</div>
+              <div class="pop__shipping-notice">
+                <p>{{ section.settings.shipping_note }}</p>
+              </div>
             </div>
           </div>
         </div>

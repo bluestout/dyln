@@ -36,9 +36,7 @@
               </div>
             {% endfor  %}
           </div>
-          <a href="{{ section.settings.btn_link }}" class="po-hydro-optim__subscribe-btn"
-          {% if section.settings.cta_tab_id != blank %}data-po-tab-open="{{ section.settings.cta_tab_id }}"{% endif %}
-          {% if section.settings.cta_scroll_to != blank %}data-scroll-to="{{ section.settings.cta_scroll_to }}"{% endif %}>{{ section.settings.btn_text }}</a>
+          <a href="{{ section.settings.btn_link }}" class="po-hydro-optim__subscribe-btn" data-scroll-to=".po-subscription">{{ section.settings.btn_text }}</a>
         </div>
       </div>
     </div>

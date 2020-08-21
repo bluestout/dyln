@@ -1,6 +1,7 @@
 <div data-po-tab-container-inner>
   {% for block in section.blocks %}
 
+  {% assign block_index = 1 %}
   {% assign pop_p = all_products[block.settings.product] %}
   {% assign pop_p_def_v = pop_p.selected_or_first_available_variant %}
   {% assign pop_p_img = "" %}
@@ -191,9 +192,9 @@
               <div class="pdp-form__qty-wrap">
                 <label class="hide" for="Quantity">{{ 'products.product.quantity' | t }}</label>
                 <div class="pdp-form__qty-box">
-                  <button type="button" class="pdp-form__qty-button" data-qty-change="#BottlesQuantity" data-direction="down">-</button>
-                  <input class="pdp-form__qty-input" type="number" id="BottlesQuantity" name="quantity" value="1" min="1" data-qty-input>
-                  <button type="button" class="pdp-form__qty-button" data-qty-change="#BottlesQuantity" data-direction="up">+</button>
+                  <button type="button" class="pdp-form__qty-button" data-qty-change="#BottlesQuantity_{{ forloop.index }}}" data-direction="down">-</button>
+                  <input class="pdp-form__qty-input" type="number" id="BottlesQuantity_{{ forloop.index }}" name="quantity" value="1" min="1" data-qty-input>
+                  <button type="button" class="pdp-form__qty-button" data-qty-change="#BottlesQuantity_{{ forloop.index }}" data-direction="up">+</button>
                 </div>
               </div>
             </div>
@@ -236,6 +237,7 @@
       {% endform %}
     </div>
   </div>
+  {% assign block_index = block_index | plus: 1 %}
   {% endfor %}
 </div>
 

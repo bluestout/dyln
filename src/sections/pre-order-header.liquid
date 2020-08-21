@@ -1,4 +1,4 @@
-<div class="container-fluid d-flex" style="background-image:url('{{ section.settings.background.src | image_url }}')"​​​​​​>
+<div class="container-fluid d-flex" style="background-image:url('{{ section.settings.background.src | image_url }}')"​​​​​​ data-mobile-bg="{{ section.settings.background_mobile.src | image_url }}">
   <div class="container">
     <div class="pre-order-header__container d-flex">
       <div class="col-md-2 d-none d-lg-block"></div>
@@ -13,7 +13,7 @@
           {% endif %}
 
           {% if section.settings.btn_text != blank %}
-            <a href="{{ section.settings.btn_link }}" data-anchor-btn>{{- section.settings.btn_text -}}</a>
+            <a href="{{ section.settings.btn_link }}" data-scroll-to=".pop" data-anchor-btn>{{- section.settings.btn_text -}}</a>
           {% endif %}
         </div>
       </div>

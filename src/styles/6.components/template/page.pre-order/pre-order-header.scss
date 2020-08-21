@@ -5,6 +5,11 @@
   > div {
     background-size: cover;
     background-position: right;
+
+    @include media-query($medium-down) {
+      background-size: unset;
+      background-position: 0 60px;
+    }
   }
 
   &__container {
@@ -56,5 +61,15 @@
 
   &__content {
     width: 100%;
+
+    h3 {
+      padding-top: 10px;
+      color: white;
+      text-align: left;
+
+      @include media-query($medium-down) {
+        text-align: center;
+      }
+    }
   }
 }
