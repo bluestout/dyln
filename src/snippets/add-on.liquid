@@ -197,23 +197,22 @@
       {% endunless %}
     </div>
     {% if add_on_p != blank and add_on_p.has_only_default_variant == false %}
-      <script type="application/json" data-product-json>
-        {
-          "variants": [
-            {% for add_on_p_j_v in add_on_p.variants %}
-              {
-                "id": {{ add_on_p_j_v.id | json }},
-                "price": {{ add_on_p_j_v.price | json }},
-                "compare_at": {{ add_on_p_j_v.compare_at_price | json }},
-                "available": {{ add_on_p_j_v.available | json }},
-                "Option1": {{ add_on_p_j_v.option1 | json }},
-                "Option2": {{ add_on_p_j_v.option2 | json }},
-                "Option3": {{ add_on_p_j_v.option3 | json }}
-              }{% unless forloop.last %},{% endunless %}
-            {% endfor %}
-          ]
-        }
-      </script>
+    <script type="application/json" data-product-json>
+      {
+        "variants": [
+          {% for pop_p_j_v in pop_p.variants %}{
+              "id": {{ pop_p_j_v.id | json }},
+              "price": {{ pop_p_j_v.price | json }},
+              "compare_at": {{ pop_p_j_v.compare_at_price | json }},
+              "available": {{ pop_p_j_v.available | json }},
+              "Option1": {{ pop_p_j_v.option1 | json }},
+              "Option2": {{ pop_p_j_v.option2 | json }},
+              "Option3": {{ pop_p_j_v.option3 | json }}
+            }{% unless forloop.last %},{% endunless %}{% endfor %}
+        ],
+        {% for pop_p_j_v in pop_p.variants %}"{{ pop_p_j_v.id }}": {{ pop_p_j_v.option1 | append: ',' | append: pop_p_j_v.option2  | append: ',' | append: pop_p_j_v.option3 | json }}{% unless forloop.last %},{% endunless %}{% endfor %}
+      }
+    </script>
     {% endif %}
   {% endform %}
 </div>

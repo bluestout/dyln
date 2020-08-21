@@ -30,6 +30,8 @@ window.onload = function () {
     addLoaded: (container) => `${container} [data-add-to-cart-loaded]`,
     addLoading: (container) => `${container} [data-add-to-cart-loading]`,
     atcBar: "[data-atc-bar]",
+    json: (container) => `${container} [data-product-json]`,
+    imageByVariantName: (container, name) => `${container} [data-pi-image="${name}"]`,
   };
 
   var attributes = {
@@ -148,10 +150,16 @@ window.onload = function () {
         var $products = $("[data-single-product]");
         $(selectors.availabilityData).val(JSON.stringify(response));
         $products.each(function () {
+          const $product = $(this);
+          const pId = $product.data("single-product");
+          const container = `[data-single-product="${pId}"]`;
+          let variants;
           try {
-            const $product = $(this);
-            const pId = $product.data("single-product");
-            const container = `[data-single-product="${pId}"]`;
+            variants = JSON.parse($(selectors.json(container)).html());
+          } catch (error) {
+            variants = [];
+          }
+          try {
             const productData = response[pId];
             // set out of stock status on variants
             for (let i = 0; i < productData.out_of_stock.length; i++) {
@@ -164,6 +172,18 @@ window.onload = function () {
             for (let i = 0; i < productData.hidden.length; i++) {
               const hiddenVariant = productData.hidden[i];
               $(selectors.pdpInputByVariantId(container, hiddenVariant)).remove();
+              // hide images hidden linked to to hidden variants
+              try {
+                const colorNames = variants[hiddenVariant].split(",");
+                for (let i = 0; i < colorNames.length; i++) {
+                  const $imageSelector = $(selectors.imageByVariantName(container, colorNames[i]));
+                  if ($imageSelector.closest(".slick-slider").length > 0) {
+                    $imageSelector.closest(".slick-slider").slick("slickRemove", $imageSelector.closest(".slick-slide").data("slick-index"));
+                  } else {
+                    $imageSelector.remove();
+                  }
+                }
+              } catch (error) { }
             }
             // add notify message to the variant
             $.each(productData.notify, function (i, variantMessage) {

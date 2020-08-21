@@ -23,9 +23,6 @@
   {% endfor %}
 
   {% assign b_p_colors_array = pop_p_colors | split: ',' %}
-  {% for color in b_p_colors_array %}
-    {% assign color_class = value %}
-  {% endfor %}
   <div data-po-tab="{{ forloop.index }}" {% if forloop.index == 1 %}class="active pop__wrapper" {% else %}data-pre-order-slick-load{% endif %} data-add-on-parent data-pre-order-form-in-form>
     <div
       class="pop{% if pop_p.has_only_default_variant %} single{% endif %}"
@@ -128,6 +125,7 @@
                                   {% break %}
                                 {% endif %}
                               {% endfor %}
+                              {% comment %} geolocation.js will remove unavailable options {% endcomment %}
                               <div class="pop__color-wrap" data-geo-specific-variant="{{ variant_id }}">
                                 <input
                                   class="pop__color-input"
@@ -238,8 +236,7 @@
                 <script type="application/json" data-product-json>
                   {
                     "variants": [
-                      {% for pop_p_j_v in pop_p.variants %}
-                        {
+                      {% for pop_p_j_v in pop_p.variants %}{
                           "id": {{ pop_p_j_v.id | json }},
                           "price": {{ pop_p_j_v.price | json }},
                           "compare_at": {{ pop_p_j_v.compare_at_price | json }},
@@ -247,9 +244,9 @@
                           "Option1": {{ pop_p_j_v.option1 | json }},
                           "Option2": {{ pop_p_j_v.option2 | json }},
                           "Option3": {{ pop_p_j_v.option3 | json }}
-                        }{% unless forloop.last %},{% endunless %}
-                      {% endfor %}
-                    ]
+                        }{% unless forloop.last %},{% endunless %}{% endfor %}
+                    ],
+                    {% for pop_p_j_v in pop_p.variants %}"{{ pop_p_j_v.id }}": {{ pop_p_j_v.option1 | append: ',' | append: pop_p_j_v.option2  | append: ',' | append: pop_p_j_v.option3 | json }}{% unless forloop.last %},{% endunless %}{% endfor %}
                   }
                 </script>
               {% endif %}
