@@ -3142,7 +3142,9 @@
           "image": "shopify:\/\/shop_images\/hydration-optim-image.png",
           "content": "Get your VitaBead Diffusers auto-shipped to your doorstep. Choose the frequency of your shipment, change it, pause it. Anytime!",
           "btn_text": "SAVE ON EVERY DIFFUSER",
-          "btn_link": ""
+          "btn_link": "",
+          "cta_scroll_to": ".pre-order-shop",
+          "cta_tab_id": "2"
         }
       },
       "pre-order-testimonials": {
@@ -3282,7 +3284,8 @@
           "right_image": "shopify:\/\/shop_images\/SportsC-bottle.png",
           "cta_text": "Pre-Order",
           "cta_link": "shopify:\/\/collections\/sports-caps",
-          "cta_scroll_to": ""
+          "cta_scroll_to": ".pre-order-shop",
+          "cta_tab_id": "3"
         }
       },
       "pre-order-guard": {
@@ -3330,7 +3333,8 @@
           "right_image": "shopify:\/\/shop_images\/bottom-guard-preorder.png",
           "cta_text": "Pre-Order",
           "cta_link": "shopify:\/\/collections\/bottom-guards",
-          "cta_scroll_to": ""
+          "cta_scroll_to": ".pre-order-shop",
+          "cta_tab_id": "4"
         }
       },
       "pre-order-product": {
@@ -3434,8 +3438,7 @@
           "shipping_notice_text": "",
           "shipping_notice_btn_text": "",
           "shipping_notice_btn_link": "https:\/\/www.dyln.co\/pages\/pre-order#shopify-section-pre-order-product",
-          "footer_cta_text": "SHOP NOW",
-          "cta_link": "#shopify-section-pre-order-product"
+          "footer_cta_text": "SHOP NOW"
         }
       },
       "pre-order-shop-bottles": {

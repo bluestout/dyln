@@ -1,13 +1,34 @@
 .po-footer {
-  background: rgb(103, 227, 169);
-  background: linear-gradient(
-    270deg,
-    rgba(103, 227, 169, 1) 0%,
-    rgba(102, 204, 235, 1) 100%
-  );
-  padding: 40px 0;
-  padding-bottom: 20px;
-  color: $color-white;
+  &__container {
+    @include transition(opacity);
+    z-index: $z-atc;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100px;
+    pointer-events: none;
+    padding: 40px 0;
+    padding-bottom: 20px;
+    color: $color-white;
+    background: rgb(103, 227, 169);
+    background: linear-gradient(
+      270deg,
+      rgba(103, 227, 169, 1) 0%,
+      rgba(102, 204, 235, 1) 100%
+    );
+
+    &:not(.active) {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    &.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
 
   &__content {
     width: 50%;
