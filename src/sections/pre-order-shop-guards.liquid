@@ -185,9 +185,9 @@
               <div class="pdp-form__qty-wrap">
                 <label class="hide" for="Quantity">{{ 'products.product.quantity' | t }}</label>
                 <div class="pdp-form__qty-box">
-                  <button type="button" class="pdp-form__qty-button" data-qty-change="#GuardsQuantity" data-direction="down">-</button>
-                  <input class="pdp-form__qty-input" type="number" id="GuardsQuantity" name="quantity" value="1" min="1" data-qty-input>
-                  <button type="button" class="pdp-form__qty-button" data-qty-change="#GuardsQuantity" data-direction="up">+</button>
+                  <button type="button" class="pdp-form__qty-button" data-qty-change="#GuardsQuantity_{{ forloop.index }}" data-direction="down">-</button>
+                  <input class="pdp-form__qty-input" type="number" id="GuardsQuantity_{{ forloop.index }}" name="quantity" value="1" min="1" data-qty-input>
+                  <button type="button" class="pdp-form__qty-button" data-qty-change="#GuardsQuantity_{{ forloop.index }}" data-direction="up">+</button>
                 </div>
               </div>
             </div>
