@@ -3385,7 +3385,7 @@
         ],
         "settings": {
           "title": "Build your perfect DYLN Bottle",
-          "content": "Bring Alkaline Water with you wherever you go. And keep your water cold for up to 24 hours.  See all features\n\n<a href=\"#\">See more bottle features<\/a>",
+          "content": "Bring Alkaline Water with you wherever you go. And keep your water cold for up to 24 hours.  See all features\n\n<a href=\"#\" data-scroll-to=\"#pre-order-last-bottle-anchor\">See more bottle features<\/a>",
           "size_label": "Size",
           "add_ons_title": "Upgrades",
           "shipping_note": ""
