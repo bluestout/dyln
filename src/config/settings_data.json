@@ -3023,7 +3023,7 @@
         "settings": {
           "title": "Why is Alkaline Water important?",
           "content": "<p><\/p>\n<p><strong>The modern diet is broken.<\/strong><\/p>\n<p>It&rsquo;s littered with fast food, soft drinks, and all the processed junk you could ever want. It&rsquo;s difficult to get what your body really needs.<\/p>\n<p><\/p>\n<p><strong>Alkaline water can help. <\/strong><\/p>\n<p><\/p>\n<p>Like fruits and vegetables, alkaline water is full of antioxidants. It can reduce inflammation and aid digestion. Just with a sip of water.<\/p>",
-          "image": "shopify:\/\/shop_images\/pHchart-Mobile.png"
+          "image": "shopify:\/\/shop_images\/alkaline-water-ph.png"
         }
       },
       "pre-order-last-bottle": {
@@ -3438,7 +3438,10 @@
           "shipping_notice_text": "",
           "shipping_notice_btn_text": "",
           "shipping_notice_btn_link": "https:\/\/www.dyln.co\/pages\/pre-order#shopify-section-pre-order-product",
-          "footer_cta_text": "SHOP NOW"
+          "footer_cta_text": "SHOP NOW",
+          "cta_link": "",
+          "cta_scroll_to": "",
+          "cta_tab_id": ""
         }
       },
       "pre-order-shop-bottles": {
@@ -3509,8 +3512,8 @@
             "settings": {
               "product": "standard-mouth-sports-cap-with-straw",
               "title": "Standard-Mouth",
-              "content": "tetet",
-              "note": "teteteetet"
+              "content": "",
+              "note": ""
             }
           }
         },
