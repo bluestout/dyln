@@ -14,7 +14,7 @@ function reChargeProcessCart() {
           var paramLinker = '';
         }
         var paramCustomer = '{% if customer %}&customer_id={{ customer.id }}&customer_email={{ customer.email }}{% endif %}';
-        window.location = "https://checkout.rechargeapps.com/r/checkout?" + paramDomain +  paramCart + paramLinker + paramCustomer;
+        window.location = "https://checkout.dyln.co/r/checkout?" + paramDomain +  paramCart + paramLinker + paramCustomer;
       } else {
         window.location = '/checkout';
       }

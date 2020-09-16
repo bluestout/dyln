@@ -2,7 +2,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js" integrity="sha256-QQRUO4QtEKgzJoMMdtkBecbAQkssGCNGBnniwoShRCQ=" crossorigin="anonymous"></script>
-<script type="text/javascript">  
+<script type="text/javascript">
   // Custom JS
 $(function(){
   var Documentwidth = $(window).width();
@@ -15,8 +15,8 @@ $(function(){
     $('.account-body__header-tabs .account-body__header-tab').removeClass('active');
     $('.account-body__header-tabs .account-body__header-tab[tab-body='+tabBody+']').addClass('active');
       $('.account-body__tabs .body-tab').removeClass('active-tab');
-    $('.account-body__tabs .'+tabBody).addClass('active-tab');    
-    
+    $('.account-body__tabs .'+tabBody).addClass('active-tab');
+
   }
   $(window).on('resize', function (){
       Documentwidth = $(window).width();
@@ -48,7 +48,7 @@ $(function(){
       $this.addClass('active');
       $('.account-body__tabs .body-tab').removeClass('active-tab');
     $('.account-body__tabs .'+tabBody).addClass('active-tab');
-      window.history.replaceState(null, null, "?tab="+tabBody); 
+      window.history.replaceState(null, null, "?tab="+tabBody);
     }
   });
   // internal tab-button
@@ -57,17 +57,17 @@ $(function(){
      $('.account-body__header-tabs .account-body__header-tab[tab-body='+tabBody+']').click();
      return false;
   });
-    
- // change to subscribe option
-$('#subscription-wrap .diffusers__sub-btn').click(); 
-$('#subscription-wrap .diffusers__sub-back').html('<strong>Not ready for a Subscription?</strong><br><span>Shop one time purchase:</span>');
-//  console.log('Button Text:'+ $('#subscription-wrap .custom-select-styled').text());  
-//$('#subscription-wrap .custom-select-styled').click();  
-//$('#subscription-wrap .custom-select-option').find('button[rel="3"]').click();
-//console.log('selected '+$('#subscription-wrap .custom-select-option').find('button[rel="3"]').attr('rel'));
-  
+
+  // change to subscribe option
+  $('#subscription-wrap .diffusers__sub-btn').click();
+  $('#subscription-wrap .diffusers__sub-back').html('<strong>Not ready for a Subscription?</strong><br><span>Shop one time purchase:</span>');
+  //  console.log('Button Text:'+ $('#subscription-wrap .custom-select-styled').text());
+  //$('#subscription-wrap .custom-select-styled').click();
+  //$('#subscription-wrap .custom-select-option').find('button[rel="3"]').click();
+  //console.log('selected '+$('#subscription-wrap .custom-select-option').find('button[rel="3"]').attr('rel'));
+
   // check Customer
-  
+
     var cUrl = '/a/dyl/'+CustomerShopifyId+'/check';
     $.ajax({
       url: cUrl,
@@ -77,11 +77,11 @@ $('#subscription-wrap .diffusers__sub-back').html('<strong>Not ready for a Subsc
         //console.log(response);
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        console.log(textStatus, errorThrown);
+        // console.log(textStatus, errorThrown);
       }
     });
-  
-// List Customer bottles  
+
+  // List Customer bottles
     var customerId = $('input[name="customer_id"]').val();
     var delUrl = '/a/dyl/'+CustomerShopifyId+'/bottles';
     $.ajax({
@@ -105,23 +105,22 @@ $('#subscription-wrap .diffusers__sub-back').html('<strong>Not ready for a Subsc
             btl_names += nickName + ',';
           }
           // Dashboard 2 bottles
-          var dataHtml = BottleTemplate(2, key, val);                    
+          var dataHtml = BottleTemplate(2, key, val);
           $('#custommer-bottles-short').append(dataHtml);
-          // Bottles Page 
-          var dataHtml = BottleTemplate(50, key, val);                    
-          $('#custommer-bottles').append(dataHtml);          
+          // Bottles Page
+          var dataHtml = BottleTemplate(50, key, val);
+          $('#custommer-bottles').append(dataHtml);
         });
           $('#btl-names').val(btl_names);
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        console.log(textStatus, errorThrown);
-
+        // console.log(textStatus, errorThrown);
       }
 
 
-    }); 
-  
+    });
+
   function BottleTemplate(count, key, val){
       var obj = JSON.stringify(val);
       var refillsRemaining = val.refills_remaining;
@@ -131,9 +130,9 @@ $('#subscription-wrap .diffusers__sub-back').html('<strong>Not ready for a Subsc
       }else{
         percentProgress = Math.round(((refillsRemaining / 325) * 100));
       }
-      
-      var progressT = round5(percentProgress); 
-    
+
+      var progressT = round5(percentProgress);
+
       var progressClass ='progress-'+percentProgress;
       var bottleImgFull = val.bottle_img.split(".png");
       var bottleImg = bottleImgFull[0]+'_300x.png';
@@ -153,41 +152,41 @@ $('#subscription-wrap .diffusers__sub-back').html('<strong>Not ready for a Subsc
         if(val.days_remaining > 0){
         dataHtml += '<p class="account-dash__bottle-timer"><span>'+val.days_remaining+'</span> days left on Diffuser</p></div>';
         }else{
-        dataHtml += '<p class="account-dash__bottle-timer bottle-expired"><span>'+val.expired+'</span> days Expired on Diffuser</p></div>';  
+        dataHtml += '<p class="account-dash__bottle-timer bottle-expired"><span>'+val.expired+'</span> days Expired on Diffuser</p></div>';
         }
         dataHtml += '<button type="button" class="account-dash__bottle-more"><span class="visually-hidden">More options</span></button></div>';
       }
-    
+
     return dataHtml;
-    
+
   }
-  
-function round5(x)
-{
-    return Math.ceil(x/5)*5;
-}  
-  
-  // get avilable variant  
-function getproductAvailabilityData(country, productId){
-    var cUrl = '/a/dyl/get-product-availability';
-    $.ajax({
-      url: cUrl,
-      type: 'GET',
-      data: {'country': country, 'product_id': productId },
-      dataType: 'json',
-      success: function (response) {
-        //console.log(response); 
-      },
-      error: function(jqXHR, textStatus, errorThrown) {
-        //console.log(textStatus, errorThrown);
-      }
-    });
-}
-  // test product 
+
+  function round5(x)
+  {
+      return Math.ceil(x/5)*5;
+  }
+
+  // get avilable variant
+  function getproductAvailabilityData(country, productId){
+      var cUrl = '/a/dyl/get-product-availability';
+      $.ajax({
+        url: cUrl,
+        type: 'GET',
+        data: {'country': country, 'product_id': productId },
+        dataType: 'json',
+        success: function (response) {
+          //console.log(response);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          //console.log(textStatus, errorThrown);
+        }
+      });
+  }
+  // test product
   // Country-region Senyx USA('other') | 4PX - HK('px') | 4PX - CA('ca')
   //getproductAvailabilityData('other', '1920834338904');
-  
-// Bottle details
+
+  // Bottle details
   $(document).on('click', '.account-dash__bottle-more', function(){
     var btlObj = JSON.parse($(this).parents('.account-dash__bottle').attr('data-bottle'));
     BottleDetails(btlObj);
@@ -204,7 +203,7 @@ function getproductAvailabilityData(country, productId){
     $Wrap.find('.account-bottle__title').text(nickName);
     $Wrap.find('.account-bottle__code strong').text(obj.code);
     $Wrap.find('.btn-update-now').attr('data-id', obj.id);
-    
+
     if(obj.color === null){
       var btlColor = obj.finish;
     }else{
@@ -215,7 +214,7 @@ function getproductAvailabilityData(country, productId){
     $Wrap.find('.account-bottle__info-color .account-bottle__info-value').text(btlColor);
     $Wrap.find('.account-bottle__time-diffuser').text(def_rep_day[2]+'/'+def_rep_day[1]+'/'+def_rep_day[0]);
     $WrapT.find('.account-bottle__replace-date').text(def_rep_day[2]+'/'+def_rep_day[1]+'/'+def_rep_day[0]);
- 
+
     $Wrap.find('.days-left').text(obj.days_remaining);
     $WrapT.find('.new-days-left').text(obj.days_remaining);
     $Wrap.find('.refills-left').text(obj.refills_remaining);
@@ -226,13 +225,13 @@ function getproductAvailabilityData(country, productId){
     $WrapT.find('.new-refil-per-day').text(obj.refill_frequency);
     $Wrap.find('.refil-per-week').text(obj.days_used);
     $WrapT.find('.new-refil-per-week').text(obj.days_used);
-    var refStatus = obj.refill_frequency * obj.days_used; 
+    var refStatus = obj.refill_frequency * obj.days_used;
     if(obj.days_used > 6){
       $Wrap.find('.account-bottle__hydro-status').text('Super Hydration!');
       $WrapEdit.find('.h-level').text('Super Hydration!');
       $WrapT.find('.new-h-level').text('Super Hydration!');
       $WrapT.find('#new-h-level-wrap').removeClass();
-      $WrapT.find('#new-h-level-wrap').addClass('good');      
+      $WrapT.find('#new-h-level-wrap').addClass('good');
       $WrapEdit.find('#h-level-wrap').removeClass();
       $WrapEdit.find('#h-level-wrap').addClass('good');
       $Wrap.find('.account-bottle__hydration').removeClass('low');
@@ -243,23 +242,23 @@ function getproductAvailabilityData(country, productId){
       $WrapEdit.find('.h-level').text('Low Hydration');
       $WrapT.find('.new-h-level').text('Low Hydration');
       $WrapT.find('#new-h-level-wrap').removeClass();
-      $WrapT.find('#new-h-level-wrap').addClass('low');       
+      $WrapT.find('#new-h-level-wrap').addClass('low');
       $WrapEdit.find('#h-level-wrap').removeClass();
-      $WrapEdit.find('#h-level-wrap').addClass('low');      
+      $WrapEdit.find('#h-level-wrap').addClass('low');
       $Wrap.find('.account-bottle__hydration').removeClass('good');
       $Wrap.find('.account-bottle__hydration').removeClass('poor');
-      $Wrap.find('.account-bottle__hydration').addClass('low');      
+      $Wrap.find('.account-bottle__hydration').addClass('low');
     }else{
       $Wrap.find('.account-bottle__hydro-status').text('Poor Hydration!');
       $WrapEdit.find('.h-level').text('Poor Hydration!');
       $WrapT.find('.new-h-level').text('Low Hydration');
       $WrapT.find('#new-h-level-wrap').removeClass();
-      $WrapT.find('#new-h-level-wrap').addClass('poor');      
+      $WrapT.find('#new-h-level-wrap').addClass('poor');
       $WrapEdit.find('#h-level-wrap').removeClass();
-      $WrapEdit.find('#h-level-wrap').addClass('poor');         
+      $WrapEdit.find('#h-level-wrap').addClass('poor');
       $Wrap.find('.account-bottle__hydration').removeClass('good');
       $Wrap.find('.account-bottle__hydration').removeClass('low');
-      $Wrap.find('.account-bottle__hydration').addClass('poor');        
+      $Wrap.find('.account-bottle__hydration').addClass('poor');
     }
     var refillsRemaining = obj.refills_remaining;
     if(obj.product_id == 1){
@@ -267,14 +266,14 @@ function getproductAvailabilityData(country, productId){
     }else{
       var percentProgress = Math.round(((refillsRemaining / 325) * 100));
     }
-    var progressT = round5(percentProgress); 
+    var progressT = round5(percentProgress);
     $Wrap.find('.account-bottle__diff-progress').attr('data-progress', progressT);
     $Wrap.find('.account-bottle__button-delete').attr('data-id', obj.id);
     $('.account-bottle.popup').fadeIn();
-    
+
     //scrollBottom();
     //console.log(obj.id);
-    
+
     $WrapEdit.find('.account-bottle__edit-title').text(nickName);
     $WrapEdit.find('.code').text(obj.code);
     $WrapEdit.find('.color').text(btlColor);
@@ -285,32 +284,32 @@ function getproductAvailabilityData(country, productId){
     $WrapEdit.find('.refil-per-week').val(obj.days_used);
     $WrapEdit.find('.account-bottle__edit-update').attr('data-id', obj.id);
     $WrapEdit.find('.account-bottle__edit-image-wrap img').attr('src', bottleImg);
-    
-    
-    
+
+
+
   }
-  
+
   // close popup
   $('.pop-close').click(function(){
     $(this).parents('.popup').fadeOut();
   });
-  // edit bottle 
+  // edit bottle
   $('.edit_pop_bottle').click(function(){
-    // 
+    //
     $('.account-bottle__body').fadeOut('fast');
     $('.account-bottle__edit').delay(500).fadeIn('slow');
   });
-  // edit bottle 
+  // edit bottle
   $('.account-bottle__edit-cancel').click(function(){
-    // 
+    //
     $('.account-bottle__edit').fadeOut('fast');
     $('.account-bottle__body').delay(500).fadeIn('slow');
-    
+
   });
-  
 
 
-    
+
+
   // Order see more/ see less account-orders__btn-more
   $('.account-orders__btn-more').click(function(){
     var $this = $(this);
@@ -323,7 +322,7 @@ function getproductAvailabilityData(country, productId){
       $this.text('See Less');
     }
   });
-  
+
   // register bottles popup
   $('.btn-action-register-bottle').click(function(){
     $('.registration-modal').fadeIn();
@@ -333,7 +332,7 @@ function getproductAvailabilityData(country, productId){
    $('.registration-modal__page #bottle-registration-code').keyup(function(){
         $(this).val($(this).val().toUpperCase());
     });
-  
+
   // get bottle information with bottle code
   $('.registration-modal__page.step_code .registration-modal__btn-next').click(function(){
     $('#registration-modal__form .registration-modal__message span').text('');
@@ -341,6 +340,7 @@ function getproductAvailabilityData(country, productId){
     var cUrl = '/a/dyl/get-product-by-code';
     var code = $('#bottle-registration-code').val().trim();
     if(code != ''){
+    $('#bottle-registration-code').val(code);
     $.ajax({
       url: cUrl,
       type: 'GET',
@@ -357,15 +357,15 @@ function getproductAvailabilityData(country, productId){
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        console.log(textStatus, errorThrown);
+        // console.log(textStatus, errorThrown);
       }
     });
     }else{
       $('#registration-modal__form .registration-modal__message span').text('Please Add Procuct Code');
     }
-      
+
   });
-  
+
   function setRegisterBottleInfo(response){
     var $registerForm = $('#registration-modal__form');
     var code = response.code;
@@ -392,11 +392,11 @@ function getproductAvailabilityData(country, productId){
       var imgfull = imgBtl.split('.png');
       var imgSm = imgfull[0] + '_300x.png';
       $registerForm.find('.reg-btl-img').not('.btl-finish').attr('src', imgSm);
-      
-      
+
+
     }
   }
-  
+
  // chose Color
   $('#registration-modal__form #product-color-var li').click(function(){
     var $this = $(this);
@@ -408,7 +408,7 @@ function getproductAvailabilityData(country, productId){
       $('#registration-modal__form #product_variant').val($this.attr('data-id'));
     }
   });
-  
+
   //color next
   $('.registration-modal__page.step_color .registration-modal__btn-next').click(function(){
     var $this = $(this);
@@ -418,9 +418,9 @@ function getproductAvailabilityData(country, productId){
       $('#registration-modal__form .registration-modal__message span').text('');
       regProcessNext($this);
     }
-  
+
   });
-  
+
   // register bottle nickname
   $('.registration-modal__page.step-nickname .registration-modal__btn-next').click(function(){
     $('#registration-modal__form .registration-modal__message span').text('');
@@ -429,16 +429,16 @@ function getproductAvailabilityData(country, productId){
     if(nickName == ''){
       return false;
     }else{
-      var names = $('#btl-names').val().toUpperCase().split(','); 
+      var names = $('#btl-names').val().toUpperCase().split(',');
       if(names.indexOf(nickName) == -1) {
         regProcessNext($this);
       }else{
         $('#registration-modal__form .registration-modal__message span').text('Dublicate bottle name');
       }
     }
-    
+
   });
-  
+
     // back button register bottle
   $('.registration-modal__page .registration-modal__btn-alt').click(function(){
     var $this = $(this);
@@ -449,9 +449,9 @@ function getproductAvailabilityData(country, productId){
       }else{
        $('.registration-modal__progress .process-2').removeClass('active');
         $('.registration-modal__progress').removeClass('pg50');
-      }    
+      }
       $(this).parents('.registration-modal__page').fadeOut('fast');
-      $(this).parents('.registration-modal__page').prev('.registration-modal__page').slideUp( 300 ).delay( 300 ).fadeIn('slow');  
+      $(this).parents('.registration-modal__page').prev('.registration-modal__page').slideUp( 300 ).delay( 300 ).fadeIn('slow');
   });
  // register btl process nextnext
   function regProcessNext($this){
@@ -460,13 +460,13 @@ function getproductAvailabilityData(country, productId){
           $('.registration-modal__progress').addClass('pg50');
           $('.registration-modal__progress .process-2').addClass('active');
       }else{
-       $('.registration-modal__progress').addClass('pg100'); 
+       $('.registration-modal__progress').addClass('pg100');
        $('.registration-modal__progress .process-3').addClass('active');
       }
      $this.parents('.registration-modal__page').fadeOut('fast');
-     $this.parents('.registration-modal__page').next('.registration-modal__page').slideUp( 300 ).delay( 300 ).fadeIn('slow');    
+     $this.parents('.registration-modal__page').next('.registration-modal__page').slideUp( 300 ).delay( 300 ).fadeIn('slow');
   }
-  
+
   // set hydration
   $('.step-usage #bottle-registration-days-per-week').change(function(){
     var $this = $(this);
@@ -481,16 +481,16 @@ function getproductAvailabilityData(country, productId){
       $this.addClass('low');
       $('.registration-modal__input-warning span.hydration-text').text('Low Hydration');
       $('.registration-modal__input-warning span.hydration-text').parents('#reg-hl').removeClass();
-      $('.registration-modal__input-warning span.hydration-text').parents('#reg-hl').addClass('low');     
+      $('.registration-modal__input-warning span.hydration-text').parents('#reg-hl').addClass('low');
     }else{
          $this.removeClass('low');
          $this.addClass('poor');
       $('.registration-modal__input-warning span.hydration-text').text('Poor Hydration');
         $('.registration-modal__input-warning span.hydration-text').parents('#reg-hl').removeClass();
-        $('.registration-modal__input-warning span.hydration-text').parents('#reg-hl').addClass('poor');      
+        $('.registration-modal__input-warning span.hydration-text').parents('#reg-hl').addClass('poor');
     }
   });
-  
+
   // register bottle
   $('.registration-modal__done').click(function(){
     $('#registration-modal__form .registration-modal__message span').text('');
@@ -525,20 +525,20 @@ function getproductAvailabilityData(country, productId){
           if(!response){
             //console.log('not found');
           }else{
-            //console.log(response);
+            console.log(response);
             $('.registration-modal__page-title i').text(response.nickname);
-            $('registration-modal__page-txt.replace-date span').text(response.replace_date);
+            $('.registration-modal__page-txt.replace-date span').text(response.replace_date);
             $('.registration-modal__page.step-thanks .registration-modal__btn-final').attr('data-id', response.id);
             regProcessNext($this);
           }
         },
         error: function(jqXHR, textStatus, errorThrown) {
-          console.log(textStatus, errorThrown);
+          // console.log(textStatus, errorThrown);
         }
-      });      
+      });
     }
   });
-  
+
   function getTwoDigitDateFormat(monthOrDate) {
   return (monthOrDate < 10) ? '0' + monthOrDate : '' + monthOrDate;
   }
@@ -550,25 +550,25 @@ function getproductAvailabilityData(country, productId){
 
   var currentDate = todayDateTime.getFullYear() + "-" + twoDigitMonth + "-" + twoDigitDate;
   var currentDateD = twoDigitDate + "/" + twoDigitMonth + "/" + todayDateTime.getFullYear();
-  $('#purchase_date').datepicker({ 
+  $('#purchase_date').datepicker({
     maxDate: currentDate,
     dateFormat: 'yy-mm-dd'
   });
-  
-  $('#dif-update-date-now').val(currentDateD); 
+
+  $('#dif-update-date-now').val(currentDateD);
   $('#dif-update-date-now').datepicker({
     maxDate: currentDateD,
     dateFormat: 'dd/mm/yy'
   });
-  
-  // Phone number 
+
+  // Phone number
   var inputP = document.querySelector("#bottle-registration--phone");
   window.intlTelInput(inputP, {
     // any initialisation options go here
     Type: true,
     initialCountry: CustomerCountry
   });
-  
+
   // register thanks
   $('.registration-modal__page.step-thanks .registration-modal__btn-final').click(function(){
     $('#registration-modal__form .registration-modal__message span').text('');
@@ -584,11 +584,11 @@ function getproductAvailabilityData(country, productId){
         AddPhoneToBottle(btlID, phone);
       }else{
         $('#registration-modal__form .registration-modal__message span').text('Please Enter Phone Nuimber');
-      }      
-      
+      }
+
     }
   });
-  
+
   $('.registration-modal__page .registration-modal__cancel').click(function(){
     location.reload(true);
   });
@@ -610,19 +610,19 @@ function getproductAvailabilityData(country, productId){
           }
         },
         error: function(jqXHR, textStatus, errorThrown) {
-          console.log(textStatus, errorThrown);
+          // console.log(textStatus, errorThrown);
         }
       });
   }
-  
+
   // Delete Bottle
   $('.account-bottle__button-delete').click(function(){
-    var $this = $(this); 
+    var $this = $(this);
     if (confirm('Are you sure ? You Like to Delete')) {
       var btlID = $this.attr('data-id');
       DeleteBottle(btlID);
     }
-  });  
+  });
   function DeleteBottle(id){
       var cUrl = '/a/dyl/'+CustomerShopifyId+'/delete-bottle';
       var data = {'btl_id': id };
@@ -639,18 +639,18 @@ function getproductAvailabilityData(country, productId){
           }
         },
         error: function(jqXHR, textStatus, errorThrown) {
-          console.log(textStatus, errorThrown);
+          // console.log(textStatus, errorThrown);
         }
-      });    
+      });
   }
-  
+
   // Update Bottle
   $('.account-bottle__edit-update').click(function(){
     var $this = $(this);
     if($this.hasClass('btn-disable')){
-    
+
     }else{
-    var btlID = $this.attr('data-id'); 
+    var btlID = $this.attr('data-id');
     var $WrapEdit = $('.account-bottle__edit');
     var day = $WrapEdit.find('.register-day').val();
     var month = $WrapEdit.find('.register-month').val();
@@ -663,7 +663,7 @@ function getproductAvailabilityData(country, productId){
     }
     //console.log("New date: "+sDate+" refil_per_day: "+refil_per_day+ " refil_per_week: "+refil_per_week );
   });
-    
+
   function UpdateBottle(data){
       var cUrl = '/a/dyl/'+CustomerShopifyId+'/update-bottle';
       var data = data;
@@ -681,11 +681,11 @@ function getproductAvailabilityData(country, productId){
           }
         },
         error: function(jqXHR, textStatus, errorThrown) {
-          console.log(textStatus, errorThrown);
+          // console.log(textStatus, errorThrown);
         }
-      });  
+      });
   }
-  
+
   $('.account-bottle__edit #bottle-registration-days-per-week').on('change', function(){
     var $this = $(this);
     var $lab = $(this).next('.registration-modal__input-warning').find('.h-level');
@@ -697,47 +697,47 @@ function getproductAvailabilityData(country, productId){
       $lab.parents('#h-level-wrap').addClass('good');
     }else if(($this.val() > 4) && ($this.val() <= 6)){
       $this.removeClass('poor');
-      $this.addClass('low');      
+      $this.addClass('low');
       $lab.text('Low Hydration');
       $lab.parents('#h-level-wrap').removeClass();
-      $lab.parents('#h-level-wrap').addClass('low');    
+      $lab.parents('#h-level-wrap').addClass('low');
     }else{
       $this.removeClass('low');
-      $this.addClass('poor');      
+      $this.addClass('poor');
       $lab.text('Poor Hydration');
       $lab.parents('#h-level-wrap').removeClass();
-      $lab.parents('#h-level-wrap').addClass('poor');      
+      $lab.parents('#h-level-wrap').addClass('poor');
     }
   });
-  
+
   $('#bottle-registration-refills, #bottle-registration-refills-edit').on('change', function(){
     var $this = $(this);
     if($this.val() >= 3){
       $this.removeClass('low');
-      $this.removeClass('poor');    
+      $this.removeClass('poor');
     }else if($this.val() == 2){
       $this.removeClass('poor');
-      $this.addClass('low');     
+      $this.addClass('low');
     }else{
       $this.removeClass('low');
-      $this.addClass('poor');    
+      $this.addClass('poor');
     }
   });
-  
+
   $('#bottle-registration-exercise').on('change', function(){
     var $this = $(this);
     if($this.val() >= 5){
       $this.removeClass('low');
-      $this.removeClass('poor');    
+      $this.removeClass('poor');
     }else if($this.val() > 2 && $this.val() < 5){
       $this.removeClass('poor');
-      $this.addClass('low');     
+      $this.addClass('low');
     }else{
       $this.removeClass('low');
-      $this.addClass('poor');    
-    }  
+      $this.addClass('poor');
+    }
   });
-  
+
  // update deffuser now
   $('.btn-update-now').click(function(){
     var $this = $(this);
@@ -759,10 +759,10 @@ function getproductAvailabilityData(country, productId){
     var data = { 'id': $Btn.attr('data-id'), 'date': $this.val() };
     ReplaceDiffuser(data);
   });
-  
+
   // show thank you
   function showThankYou(obj){
-    console.log(obj);
+    // console.log(obj);
     $('.account-bottle.popup .account-bottle__body').fadeOut('fast');
     $('.account-bottle.popup .thank-you').delay(300).fadeIn('slow');
   }
@@ -775,10 +775,10 @@ function getproductAvailabilityData(country, productId){
   $('.reload-exit').click(function(){
     location.reload(true);
   });
-  
+
   // replace diffuder data
   function ReplaceDiffuser(Data){
-    console.log(Data);
+    // console.log(Data);
       var cUrl = '/a/dyl/'+CustomerShopifyId+'/replace-dif';
       var data = Data;
       $.ajax({
@@ -789,26 +789,26 @@ function getproductAvailabilityData(country, productId){
         success: function (response) {
           //console.log(response);
           if(!response){
-            
+
           }else{
             BottleDetails(response);
             showThankYou(response);
-      
+
           }
         },
         error: function(jqXHR, textStatus, errorThrown) {
-          console.log(textStatus, errorThrown);
+          // console.log(textStatus, errorThrown);
         }
-      });    
+      });
   }
-  
-  
+
+
   // Profile edit button
   $('button.account-profile__edit.profile-edit').click(function(){
     $('.customer-edit-profile').fadeIn();
     scrollBottom();
   });
-  
+
   //edit-profile--phone
   var inputE = document.querySelector("#edit-profile--phone");
   var iti = window.intlTelInput(inputE, {
@@ -821,11 +821,11 @@ function getproductAvailabilityData(country, productId){
   $("#edit-profile--phone").on('focusout', function(){
     var $this = $(this);
     if(iti.isValidNumber()){
-      //console.log('Valid Number: ' + iti.getNumber());
+      console.log('Valid Number: ' + iti.getNumber());
       $this.next('span').remove();
       $('#customer_phone').val(iti.getNumber());
     }else{
-      //console.log('InValid Number: ' + iti.getNumber());
+      console.log('InValid Number: ' + iti.getNumber());
       $this.after('<span class="phone-error">Invalid Number</span>');
       $('#customer_phone').val('');
       $this.focus();
@@ -855,15 +855,15 @@ function getproductAvailabilityData(country, productId){
       var step = $this.parents('.step').attr('data-step');
       if(step == 1){
         $('.profile-pg').addClass('pg50');
-        $('.profile-pg .pg2').addClass('active');        
+        $('.profile-pg .pg2').addClass('active');
       }else{
         $('.profile-pg').addClass('pg100');
-        $('.profile-pg .pg3').addClass('active');      
+        $('.profile-pg .pg3').addClass('active');
       }
       $this.parents('.step').fadeOut('fast');
       $this.parents('.step').next('.step').delay(500).fadeIn('slow');
     }
-    
+
   });
   // profile back
   $('.profile-edti-btn-back').click(function(){
@@ -872,21 +872,21 @@ function getproductAvailabilityData(country, productId){
       if(step == 3){
         $('.profile-pg').removeClass('pg100');
         $('.profile-pg').addClass('pg50');
-        $('.profile-pg .pg3').removeClass('active');        
+        $('.profile-pg .pg3').removeClass('active');
       }else{
         $('.profile-pg').removeClass('pg50');
-        $('.profile-pg .pg2').removeClass('active');     
-      }    
+        $('.profile-pg .pg2').removeClass('active');
+      }
     $('.account-form-message').text('');
       $this.parents('.step').fadeOut('fast');
-      $this.parents('.step').prev('.step').delay(500).fadeIn('slow');    
+      $this.parents('.step').prev('.step').delay(500).fadeIn('slow');
   });
-  
+
   // profile cancle
   $('.profile-edti-btn-cancle').click(function(){
     $(this).parents('.popup').fadeOut();
   });
-  
+
   // Profile done
   $('.step_interest .profile-edti-btn-done').click(function(){
     var $this = $(this);
@@ -902,12 +902,12 @@ function getproductAvailabilityData(country, productId){
           interests.push($(this).val());
         }
       });
-      
-      //console.log(interests); 
+
+      //console.log(interests);
       if(interests.length >= 3){
       // process submit
         var $wrap = $('.customer-edit-profile.popup');
-        var cPhone = $wrap.find('#customer_phone').val(); 
+        var cPhone = $wrap.find('#customer_phone').val();
         var cDob = $wrap.find('select[name="year"]').val()+'-'+$wrap.find('select[name="month"]').val()+'-'+$wrap.find('select[name="day"]').val();
         var cGender = $wrap.find('#customer-gender').val();
         var cWeight = $wrap.find('#body-weight-lab').val();
@@ -915,24 +915,24 @@ function getproductAvailabilityData(country, productId){
         var cExercise = $wrap.find('input[name="exercise"]').val();
         var cInterests = interests.toString();
         var cData = {
-          'phone': cPhone, 
-          'birth_day': cDob, 
-          'gender': cGender, 
-          'weight': cWeight, 
-          'height': cHeight, 
-          'exercise_per_week': cExercise, 
+          'phone': cPhone,
+          'birth_day': cDob,
+          'gender': cGender,
+          'weight': cWeight,
+          'height': cHeight,
+          'exercise_per_week': cExercise,
           'interests': cInterests
         };
-        
+
         UpdateCustomerProfile(cData);
-        
+
       }else{
         $('.account-form-message').text('Please Select 3+ Interests');
         $this.removeClass('btn-disable');
       }
     }
   });
-  
+
   // Customer Info
     var urlToRequest = '/a/dyl/'+CustomerShopifyId+'/all-info';
     $.ajax({
@@ -940,14 +940,14 @@ function getproductAvailabilityData(country, productId){
       type: 'GET',
       dataType: 'json',
       success: function (response) {
-        console.log(response);
+        // console.log(response);
         DisplayCustomerInfo(response);
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        console.log(textStatus, errorThrown);
+        // console.log(textStatus, errorThrown);
       }
     });
-  
+
   // function update customer info
   function UpdateCustomerProfile(Data){
     var urlToRequest = '/a/dyl/'+CustomerShopifyId+'/customer-profile-update';
@@ -965,19 +965,19 @@ function getproductAvailabilityData(country, productId){
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        console.log(textStatus, errorThrown);
+        // console.log(textStatus, errorThrown);
       }
-    });   
+    });
   }
-  
+
   // display profile inforamtions
   function DisplayCustomerInfo(data){
-   
+
     var $wrap = $('.customer-edit-profile.popup');
     if(!data.birthday){
       $('.account-profile__info.birth-day span').text('');
     }else{
-      var Dob = data.birthday.split('-');  
+      var Dob = data.birthday.split('-');
       $wrap.find('select[name="year"]').val(Dob[0]).change();
       $wrap.find('select[name="month"]').val(Dob[1]).change();
       $wrap.find('select[name="day"]').val(Dob[2]).change();
@@ -987,7 +987,7 @@ function getproductAvailabilityData(country, productId){
     if(!data.gender){
       $('.account-profile__info.gender').text('');
     }else{
-     $('.account-profile__info.gender').text(data.gender); 
+     $('.account-profile__info.gender').text(data.gender);
      $wrap.find('#customer-gender').val(data.gender);
       if(data.gender == 'Male'){
         $wrap.find('#gender-male').click();
@@ -996,26 +996,26 @@ function getproductAvailabilityData(country, productId){
       }
     }
     if(!data.weight){
-      
+
     }else{
       var cWeight = data.weight.split('-');
       $wrap.find('#body-weight-lab').val(data.weight);
       $wrap.find('.bod-weight span').html('Weight: '+cWeight[0] +' '+cWeight[1]);
       $wrap.find('.bod-weight').attr('data-val', data.weight);
-      $('.account-profile__info.weight span').html(cWeight[0] +' '+cWeight[1]);    
-    } 
-    
+      $('.account-profile__info.weight span').html(cWeight[0] +' '+cWeight[1]);
+    }
+
     if(!data.height){
       $('.account-profile__info.height span').text('');
     }else{
-      var cHeight = data.height.split('-'); 
+      var cHeight = data.height.split('-');
       $wrap.find('#body-height-feet').val(data.height);
       $wrap.find('.bod-height span').html('Height: '+cHeight[0] +'\''+cHeight[1]+'"');
       $wrap.find('.bod-height').attr('data-val', data.height);
       $('.account-profile__info.height span').html(cHeight[0]+"'"+cHeight[1]+'"');
-    }    
+    }
     $wrap.find('input[name="exercise"]').val(data.exercise_per_week);
-    
+
     // set all interests
     if(!data.interests){
     }else{
@@ -1024,7 +1024,7 @@ function getproductAvailabilityData(country, productId){
     $('.step_interest input[name="interests"][value="'+cInterests[i]+'"]').click();
       }
     }
-    
+
     // set Notifications
     if(data.notification.email_diffuser_replacement == 1){
       $('.account-profile__checkbox-wrap').find('#diffuser-replacement').prop( "checked", true );
@@ -1035,11 +1035,59 @@ function getproductAvailabilityData(country, productId){
 
     if(data.notification.newsletter == 1){
       $('.account-profile__checkbox-wrap').find('#newsletter').prop( "checked", true );
-    }     
+    }
+    
+    // Profile image
+    if(data.profile_img == 'image-9' || data.profile_img == 'image-1'){
+      var Selector = 'proiflie-image-1';
+    }else{
+      Selector = 'profile-'+data.profile_img;
+      var Img = 'proiflie-'+data.profile_img+'.jpg';
+      SetProfileImage(Selector, Img);
+    }
+
+  }
+  
+  // set profile Image
+  function SetProfileImage(Selector, Img){
+    $('#profile-image-update').find('#'+Selector).click();
+    var FullImg = 'https://cdn.shopify.com/s/files/1/0511/9421/t/231/assets/'+Img;
+    $('.account-header__background').attr('src', FullImg);
+    $('.profile-bg').each(function(){
+     $(this).css('background-image','url('+FullImg+')');
+    })
     
   }
   
-  
+  // update Profile image
+  $('#update-profile-pic').click(function(){
+    var $this = $(this);
+    $this.text('Updating...');
+    var $form = $this.parents('form');
+    var Data = $form.serialize();    
+    var urlToRequest = '/a/dyl/'+CustomerShopifyId+'/update-profile-image';
+    console.log(Data);
+    $.ajax({
+      url: urlToRequest,
+      type: 'GET',
+      data: Data,
+      dataType: 'json',
+      success: function (response) {
+       //console.log(response);
+        if(response.success){
+          location.reload(true);
+        }else{
+
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        // console.log(textStatus, errorThrown);
+      }
+    });    
+    
+  });
+
+
   // Update Email settings
   function UpdateNotify(Data){
     var urlToRequest = '/a/dyl/'+CustomerShopifyId+'/update-notification';
@@ -1053,13 +1101,13 @@ function getproductAvailabilityData(country, productId){
         if(response.success){
           $('.account-profile__checkbox-wrap input[type="checkbox"]').prop('disabled', false);
         }else{
-          
+
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        console.log(textStatus, errorThrown);
+        // console.log(textStatus, errorThrown);
       }
-    });  
+    });
   }
   $('.account-profile__checkbox-wrap input[type="checkbox"]').on('change', function(){
     var $this = $(this);
@@ -1068,22 +1116,22 @@ function getproductAvailabilityData(country, productId){
     //console.log(Data);
     $('.account-profile__checkbox-wrap input[type="checkbox"]').attr('disabled', 'disabled');
     UpdateNotify(Data);
-    
+
   });
-  
-/*========================== Reset Password ========================= */
+
+  /*========================== Reset Password ========================= */
   $('.account-profile__update-password').click(function(){
     $('.reset-password-pop').fadeIn();
     $('.account-edit__inner #ResetPassword').val('');
-    $('.account-edit__inner #PasswordConfirmation').val('');    
+    $('.account-edit__inner #PasswordConfirmation').val('');
   });
-  
+
   //
   $('#reset-pass-btn').click(function(){
     var $this = $(this);
     var $Form = $this.parents('form');
     if(($Form.find('#ResetPassword').val() != '') && ($Form.find('#ResetPassword').val() == $Form.find('#PasswordConfirmation').val())){
-      // process 
+      // process
       var urlToRequest = '/a/dyl/'+CustomerShopifyId+'/update-pass';
       var Data = $Form.serialize();
       $.ajax({
@@ -1094,50 +1142,50 @@ function getproductAvailabilityData(country, productId){
         success: function (response) {
           //console.log(response);
           if(response.success){
-            
+
           }else{
 
           }
         },
         error: function(jqXHR, textStatus, errorThrown) {
-          console.log(textStatus, errorThrown);
+          // console.log(textStatus, errorThrown);
         }
-      });      
+      });
       return false;
     }
   });
-  
-// Customer contact info edit
+
+  // Customer contact info edit
   $('.account-profile__edit.edit-contact').click(function(){
     $('.account-edit.profile-contact-pop').fadeIn();
     scrollBottom();
   });
-  
+
   //edit-profile--phone
   var inputCE = document.querySelector("#profile-contact-phone");
-  var iti = window.intlTelInput(inputCE, {
+  var itil = window.intlTelInput(inputCE, {
     // any initialisation options go here
     separateDialCode: true,
     initialCountry: CustomerCountry,
     formatOnDisplay: true,
     utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.min.js'
-  });  
+  });
 
   $("#profile-contact-phone").on('focusout', function(){
     var $this = $(this);
-    if(iti.isValidNumber()){
-      //console.log('Valid Number: ' + iti.getNumber());
+    if(itil.isValidNumber()){
+      //console.log('Valid Number: ' + itil.getNumber());
       $this.next('span').remove();
-      $('#customer_phone_contact').val(iti.getNumber());
+      $('#customer_phone_contact').val(itil.getNumber());
     }else{
-      //console.log('InValid Number: ' + iti.getNumber());
+      //console.log('InValid Number: ' + itil.getNumber());
       $('#customer_phone_contact').val('');
       $this.focus();
     }
   });
-  
-// edit profile update
-  $('#profile-contact-btn').click(function(){ 
+
+  // edit profile update
+  $('#profile-contact-btn').click(function(){
    var $this = $(this);
     if($this.hasClass('btn-disable')){
     }else{
@@ -1159,27 +1207,27 @@ function getproductAvailabilityData(country, productId){
         dataType: 'json',
         success: function (response) {
           if(!response){
-            
+
              }else{
              location.reload(true);
              }
         },
         error: function(jqXHR, textStatus, errorThrown) {
-          console.log(textStatus, errorThrown);
+          // console.log(textStatus, errorThrown);
         }
-      });    
+      });
     }
     }
-    
+
   });
-  
-  // address section  
+
+  // address section
   $('.account-profile__button-add.open-address-pop').click(function(){
     $('.account-edit.address-new-pop').fadeIn();
     scrollBottom();
-  });  
-    
-  
+  });
+
+
   // address field set
   $('.address-field').each(function(){
     var $this = $(this);
@@ -1188,13 +1236,13 @@ function getproductAvailabilityData(country, productId){
       //console.log('Country: '+ $this.attr('data-default'));
     }
   });
-  
-  $('.address-field').on('change', function(){      
-       var $from= $(this).parents('form');       
+
+  $('.address-field').on('change', function(){
+       var $from= $(this).parents('form');
        var provinces = JSON.parse($(this).find('option:selected').attr('data-provinces'));
        //console.log(provinces.length);
        if(provinces.length == 0){
-        $from.find('.province-field').addClass('vs-hidden'); 
+        $from.find('.province-field').addClass('vs-hidden');
        }else{
          //console.log(provinces);
          var $provinceField = $from.find('.province-field');
@@ -1214,14 +1262,14 @@ function getproductAvailabilityData(country, productId){
       $(this).addClass('vs-hidden');
     }
   });
-// update uddress
+  // update uddress
   $('.update-address').click(function(){
     $('.address-edit-pop span.address-form-message').text('');
     var $this = $(this);
     var btnText = $this.text();
     $this.text('Updating...');
     if($this.hasClass('btn-disable')){
-      
+
     }else{
       $this.addClass('btn-disable');
         var submit = true;
@@ -1241,9 +1289,9 @@ function getproductAvailabilityData(country, productId){
         addEditAddress(Data, url);
       }
     }
-    
+
   });
-// edit Address
+  // edit Address
   function addEditAddress(Data, url){
     var urlToRequest = url;
       $.ajax({
@@ -1254,12 +1302,12 @@ function getproductAvailabilityData(country, productId){
           location.reload(true);
         },
         error: function(jqXHR, textStatus, errorThrown) {
-          console.log(textStatus, errorThrown);
+          // console.log(textStatus, errorThrown);
         }
-      });     
+      });
   }
-  
-  // edit address 
+
+  // edit address
   $('.account-profile__edit.edit-address').click(function(){
   var $this = $(this);
     var $formWrap= 'edit_address_'+$this.attr('data-id');
@@ -1268,15 +1316,15 @@ function getproductAvailabilityData(country, productId){
     $('.address-edit-pop').fadeIn();
     scrollBottom();
   });
-  
-// add address
+
+  // add address
   $('.add-new-address').click(function(){
     $('.address-new-pop span.address-form-message').text('');
     var $this = $(this);
     var btnText = $this.text();
     $this.text('Adding...');
     if($this.hasClass('btn-disable')){
-      
+
     }else{
       $this.addClass('btn-disable');
         var submit = true;
@@ -1296,18 +1344,18 @@ function getproductAvailabilityData(country, productId){
         addEditAddress(Data, url);
       }
     }
-    
+
   });
-  
-// delete address
+
+  // delete address
   $('.account__button-delete.del-address').click(function(){
     var $this = $(this);
     if (confirm('Are you sure ? You Like to Delete')) {
       var btlID = $this.attr('data-id');
       DeleteAddress(btlID);
-    }  
+    }
   });
-  
+
   function DeleteAddress(ID){
     var urlToRequest = '/account/addresses/'+ID;
       $.ajax({
@@ -1318,51 +1366,98 @@ function getproductAvailabilityData(country, productId){
           location.reload(true);
         },
         error: function(jqXHR, textStatus, errorThrown) {
-          console.log(textStatus, errorThrown);
+          // console.log(textStatus, errorThrown);
         }
-      });    
+      });
   }
-  
+
   //subscriptions
   function getCustomerSubs(){
-      var checkUrlSub = '/a/dyl/'+CustomerShopifyId+'/get-subs'; 
+      var checkUrlSub = '/a/dyl/'+CustomerShopifyId+'/get-subs';
       $.ajax({
         url: checkUrlSub,
         type: 'GET',
         dataType: 'json',
         success: function (response) {
-            console.log('sub-data');
-      console.log(response);
+          // console.log(response);
+          if(response.subscriptions){
+          renderSubscriptions(response.subscriptions);
+          }
         },
         error: function(jqXHR, textStatus, errorThrown) {
-          console.log(textStatus, errorThrown);
+          // console.log(textStatus, errorThrown);
         }
-      });  
+      });
   }
+
+  function renderSubscriptions(data) {
+    let subs = "";
+    for (let i = 0; i < data.length; i++) {
+      if (i >= 5) break;
+      const sub = data[i];
+      const now = new Date();
+      const scheduled = new Date(sub.next_charge_scheduled_at);
+      const time = now.getTime() - scheduled.getTime();
+      const days = Math.abs(Math.floor(time / 86400000));
+      subs +=
+      `<div class="account-dash__sub">
+        <div class="account-dash__sub-wrap" aria-ignore="true">
+          <div class="account-dash__sub-progress">
+            <img src="{{ 'dyln-account-diffuser.png' | asset_url }}" alt="Image of DYLN diffuser" class="account-dash__sub-img" />
+          </div>
+        </div>
+        <div class="account-dash__sub-content">
+          <h4 class="account-dash__sub-title">
+            ${sub.quantity > 1 ? '<strong>' + sub.quantity + ' x </strong>' : ''}
+            <strong>${sub.variant_title}</strong>
+            <span>every ${sub.order_interval_frequency}</span>
+            <strong>${sub.order_interval_unit}${parseInt(sub.order_interval_frequency) > 1 ? "s" : "" }</strong>
+          </h4>
+          <p class="account-dash__sub-timer">
+            <span>${days}</span> days until next shipment
+          </p>
+        </div>
+      </div>`;
+    }
+    if (subs === "") {
+      subs =
+      `<div class="account-dash__bottle no-bottles">
+        <h4>You have no subscriptions</h4>
+      </div>`
+    } else {
+      subs +=
+      `<div class="account-dash__sub-btn-wrap">
+        <a href="/tools/recurring/login/" type="button" class="account-dash__sub-btn">
+          <span class="account-dash__sub-btn-text">Add Products to next Shipment</span>
+        </a>
+      </div>`;
+    }
+    $("[data-account-page-subs]").html(subs);
+  }
+
  // update subscription
   function ReUpdateSubs(Data){
-      var checkUrlSub = '/a/dyl/'+CustomerShopifyId+'/update-subs'; 
+      var checkUrlSub = '/a/dyl/'+CustomerShopifyId+'/update-subs';
       $.ajax({
         url: checkUrlSub,
         type: 'GET',
         data: Data,
         dataType: 'json',
         success: function (response) {
-            console.log('Update-data');
-      console.log(response);
+          // console.log(response);
         },
         error: function(jqXHR, textStatus, errorThrown) {
-          console.log(textStatus, errorThrown);
+          // console.log(textStatus, errorThrown);
         }
-      });    
+      });
   }
-  
+
   var Data = { 'subscription_id': '89009279', 'type': 'order_interval_frequency', 'val': '3' };
   //ReUpdateSubs(Data);
-  
+
  var mySwiper = undefined;
 
-// profile height weight
+  // profile height weight
   $('.account-edit__modal-option-btn').click(function(){
     var $this = $(this);
     $('.account-edit-option').fadeIn().delay( 500 );
@@ -1370,30 +1465,30 @@ function getproductAvailabilityData(country, productId){
       $('.account-edit-option #body-weight').fadeIn();
       $('.account-edit-option .lab-weight').fadeIn();
       var presentVal = $this.attr('data-val');
-      if(presentVal != ''){
+      if(typeof presentVal != "undefined"){
         var pV = presentVal.split('-');
         var StartSlide = parseInt(pV[0]) - 20;
         inItSlider('.account-edit-option #body-weight', 5, StartSlide);
       }else{
         inItSlider('.account-edit-option #body-weight', 5, 40);
       }
-      
+
     }else{
       $('.account-edit-option #body-height').fadeIn();
       $('.account-edit-option .lab-height').fadeIn();
       var presentVal = $this.attr('data-val');
-      if(presentVal != ''){
+      if(typeof presentVal != "undefined"){
         var pS = presentVal.split('-');
         //console.log(pS[0]);
         var StSl= ((parseInt(pS[0]) * 12) + parseInt(pS[1])) - 36;
-        console.log(StSl);
+        // console.log(StSl);
         inItSlider('.account-edit-option #body-height', 5, StSl);
       }else{
-        inItSlider('.account-edit-option #body-height', 5, 44);
+        inItSlider('.account-edit-option #body-height', 5, 34);
       }
-          
+
     }
-    
+
     //inItSlider('.swiper-container', 5, 40);
   });
 
@@ -1404,10 +1499,10 @@ function getproductAvailabilityData(country, productId){
       direction: 'vertical',
       centeredSlides: true,
       spaceBetween: 2,
-    });  
-    mySwiper.slideTo(StartSlide, 0);  
+    });
+    mySwiper.slideTo(StartSlide, 0);
   }
-  
+
   $('.account-edit-option__cancel').click(function(){
      mySwiper.destroy();
      mySwiper = undefined;
@@ -1415,7 +1510,7 @@ function getproductAvailabilityData(country, productId){
     $('.account-edit-option .swiper-container').fadeOut();
     $('.account-edit-option .account-edit-option__label').fadeOut();
   });
-  
+
   // done click
   $('.account-edit-option__body .account-edit-option__btn').click(function(){
     if($('#body-weight').hasClass('swiper-container-initialized')){
@@ -1427,29 +1522,31 @@ function getproductAvailabilityData(country, productId){
       $('.bod-weight span').text('Weight: '+wVal+wLab);
       $('.bod-weight').attr('data-val', wV);
       $('#body-weight-lab').val(wV);
-      
+
     }else{
       var hV = $('.swiper-slide-active').attr('data-val');
       var hVal = hV.split('-');
       //console.log(hV);
       $('.bod-height span').text('Height: '+hVal[0]+'\''+hVal[1]+'"');
       $('.bod-height').attr('data-val', hV);
-      $('#body-height-feet').val(hV);           
+      $('#body-height-feet').val(hV);
     }
      mySwiper.destroy();
      mySwiper = undefined;
     $('.account-edit-option').fadeOut();
     $('.account-edit-option .swiper-container').fadeOut();
-    $('.account-edit-option .account-edit-option__label').fadeOut();    
+    $('.account-edit-option .account-edit-option__label').fadeOut();
   });
-  
+
   $('.lab-weight button').click(function(){
     $('.lab-weight button').removeClass('active');
-    $(this).addClass('active');    
+    $(this).addClass('active');
   });
-  
+
   $('.account-header__edit').click(function(){
     $('.image-edit').fadeIn();
-  });  
+  });
+
+  getCustomerSubs();
 })
 </script>

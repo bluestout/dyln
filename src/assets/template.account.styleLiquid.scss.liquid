@@ -834,6 +834,7 @@ $z-top: 10;
   background-color: $color-theme-4;
   margin: 0 0 3px;
   text-align: center;
+  border:none;
 }
 
 .account-sidebar__link-icon {
@@ -2412,7 +2413,6 @@ $half: round($loops / 2);
       background-color: $color-main-2;
     }
   }
-  
   .good {
     .color {
       color: $color-main-2;
@@ -2420,7 +2420,7 @@ $half: round($loops / 2);
     .bg-color {
       background-color: $color-main-2;
     }
-  }  
+  }
 
   &.low {
     .color {
@@ -2430,7 +2430,6 @@ $half: round($loops / 2);
       background-color: $color-theme-23;
     }
   }
-  
   .low {
     .color {
       color: $color-theme-23;
@@ -2438,7 +2437,7 @@ $half: round($loops / 2);
     .bg-color {
       background-color: $color-theme-23;
     }
-  }  
+  }
 
   &.poor {
     .color {
@@ -2448,7 +2447,6 @@ $half: round($loops / 2);
       background-color: $color-theme-18;
     }
   }
-  
   .poor {
     .color {
       color: $color-theme-18;
@@ -2456,8 +2454,8 @@ $half: round($loops / 2);
     .bg-color {
       background-color: $color-theme-18;
     }
-  }  
-  
+  }
+
 }
 
 .account-bottle__hydro-icon-wrap {
@@ -3977,15 +3975,12 @@ $half: round($loops / 2);
 * To view and modify this theme, visit http://jqueryui.com/themeroller/?bgShadowXPos=&bgOverlayXPos=&bgErrorXPos=&bgHighlightXPos=&bgContentXPos=&bgHeaderXPos=&bgActiveXPos=&bgHoverXPos=&bgDefaultXPos=&bgShadowYPos=&bgOverlayYPos=&bgErrorYPos=&bgHighlightYPos=&bgContentYPos=&bgHeaderYPos=&bgActiveYPos=&bgHoverYPos=&bgDefaultYPos=&bgShadowRepeat=&bgOverlayRepeat=&bgErrorRepeat=&bgHighlightRepeat=&bgContentRepeat=&bgHeaderRepeat=&bgActiveRepeat=&bgHoverRepeat=&bgDefaultRepeat=&iconsHover=url(%22images%2Fui-icons_555555_256x240.png%22)&iconsHighlight=url(%22images%2Fui-icons_777620_256x240.png%22)&iconsHeader=url(%22images%2Fui-icons_444444_256x240.png%22)&iconsError=url(%22images%2Fui-icons_cc0000_256x240.png%22)&iconsDefault=url(%22images%2Fui-icons_777777_256x240.png%22)&iconsContent=url(%22images%2Fui-icons_444444_256x240.png%22)&iconsActive=url(%22images%2Fui-icons_ffffff_256x240.png%22)&bgImgUrlShadow=&bgImgUrlOverlay=&bgImgUrlHover=&bgImgUrlHighlight=&bgImgUrlHeader=&bgImgUrlError=&bgImgUrlDefault=&bgImgUrlContent=&bgImgUrlActive=&opacityFilterShadow=Alpha(Opacity%3D30)&opacityFilterOverlay=Alpha(Opacity%3D30)&opacityShadowPerc=30&opacityOverlayPerc=30&iconColorHover=%23555555&iconColorHighlight=%23777620&iconColorHeader=%23444444&iconColorError=%23cc0000&iconColorDefault=%23777777&iconColorContent=%23444444&iconColorActive=%23ffffff&bgImgOpacityShadow=0&bgImgOpacityOverlay=0&bgImgOpacityError=95&bgImgOpacityHighlight=55&bgImgOpacityContent=75&bgImgOpacityHeader=75&bgImgOpacityActive=65&bgImgOpacityHover=75&bgImgOpacityDefault=75&bgTextureShadow=flat&bgTextureOverlay=flat&bgTextureError=flat&bgTextureHighlight=flat&bgTextureContent=flat&bgTextureHeader=flat&bgTextureActive=flat&bgTextureHover=flat&bgTextureDefault=flat&cornerRadius=3px&fwDefault=normal&ffDefault=Arial%2CHelvetica%2Csans-serif&fsDefault=1em&cornerRadiusShadow=8px&thicknessShadow=5px&offsetLeftShadow=0px&offsetTopShadow=0px&opacityShadow=.3&bgColorShadow=%23666666&opacityOverlay=.3&bgColorOverlay=%23aaaaaa&fcError=%235f3f3f&borderColorError=%23f1a899&bgColorError=%23fddfdf&fcHighlight=%23777620&borderColorHighlight=%23dad55e&bgColorHighlight=%23fffa90&fcContent=%23333333&borderColorContent=%23dddddd&bgColorContent=%23ffffff&fcHeader=%23333333&borderColorHeader=%23dddddd&bgColorHeader=%23e9e9e9&fcActive=%23ffffff&borderColorActive=%23003eff&bgColorActive=%23007fff&fcHover=%232b2b2b&borderColorHover=%23cccccc&bgColorHover=%23ededed&fcDefault=%23454545&borderColorDefault=%23c5c5c5&bgColorDefault=%23f6f6f6
 * Copyright jQuery Foundation and other contributors; Licensed MIT */
 
-@import url('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/css/intlTelInput.min.css');
-  
 button:focus {
     outline: none;
 }
 .account-body__tabs .body-tab{
   display: none;
-} 
+}
 
 .account-body__tabs .body-tab.active-tab{
   display: block;
@@ -4004,23 +3999,23 @@ button:focus {
     background-position: center;
     background-size:36px;
 }
-  
+
 #product-color-var li.dyln-blue .f-color{
   background-image: url("{{ 'color-blue.webp' | asset_url }}");
 }
-  
+
 #product-color-var li.charcoal .f-color{
   background-image: url("{{ 'color-gray.webp' | asset_url }}");
 }
-  
+
 #product-color-var li.lime-green .f-color{
   background-image: url("{{ 'color-green.webp' | asset_url }}");
 }
 
 #product-color-var li.tango-orange .f-color{
- background-image: url("{{ 'color-orange1.webp' | asset_url }}"); 
+ background-image: url("{{ 'color-orange1.webp' | asset_url }}");
 }
-  
+
 #product-color-var li.neon-pink .f-color{
   background-image: url("{{ 'color-pink.webp' | asset_url }}");
 }
@@ -4031,7 +4026,7 @@ button:focus {
 
 #product-color-var li.crimson-red .f-color{
   background-image: url("{{ 'crimson-red1.webp' | asset_url }}");
-}  
+}
 
 #product-color-var li span.new-sleeve-icon, #nproduct-color-var li span.new-sleeve-icon{
   position:absolute;
@@ -4042,12 +4037,12 @@ button:focus {
   background-image: none;
   background-repeat: no-repeat;
   background-size: 25px auto;
-}  
- 
+}
+
 #product-color-var li.var-active .f-color, #nproduct-color-var li.var-active .f-color{
     background-position: center;
     background-size:40px;
-} 
+}
 
 .no-ios #product-color-var li:hover > .ptool-tips, .no-ios #product-type-var li:hover > .ptool-tips{
   display: inline-block;
@@ -4056,7 +4051,7 @@ button:focus {
   display: inline-block;
 }
 
-// datepicker 
+// datepicker
 #purchase_date{
     max-width: 250px;
     border-bottom: 2px solid #00aedb;
@@ -4097,7 +4092,7 @@ button:focus {
   width: 100%;
   left: 0;
   font-size: 12px;
-  color: red;  
+  color: red;
 }
 
 span.input-wrap {
@@ -4177,7 +4172,7 @@ button#profile-contact-btn {
     position: relative;
     text-align: left;
 }
-.address-form .form-block input, 
+.address-form .form-block input,
 .address-form .form-block select {
     padding: 7px 10px;
     border-bottom: 2px solid #00aedb;
@@ -4259,7 +4254,6 @@ button.account-profile__button-add.open-address-pop {
 }
 .body-tab.account-bottles #custommer-bottles{
   padding-right: 10px
-  
 }
 
 #subscription-wrap .pdp-form__price.pdp-form__price--sub {
@@ -4290,7 +4284,7 @@ button.account-profile__button-add.open-address-pop {
   font-size: 13px;
   line-height: 25px;
 }
-#subscription-wrap .diffusers__regular-text, 
+#subscription-wrap .diffusers__regular-text,
 #subscription-wrap .diffusers__regular-price{
  font-size:14px;
 }
@@ -4411,45 +4405,52 @@ input.low[type=range]::range-track{
 
 input.low[type=range]::-webkit-slider-runnable-track{
   background-color: #ffb300;
-  border-color: #ffb300;  
+  border-color: #ffb300;
 }
 
 input.low[type=range]::-moz-range-track{
   background-color: #ffb300;
-  border-color: #ffb300;  
+  border-color: #ffb300;
 }
 
 input.low[type=range]::-ms-track{
   background-color: #ffb300;
-  border-color: #ffb300;  
+  border-color: #ffb300;
 }
 
 input.poor[type=range]::range-track{
   background-color: #ff3737;
   border-color: #ff3737;
-  
 }
 
 input.poor[type=range]::-webkit-slider-runnable-track{
   background-color: #ff3737;
-  border-color: #ff3737;  
+  border-color: #ff3737;
 }
 
 input.poor[type=range]::-moz-range-track{
   background-color: #ff3737;
-  border-color: #ff3737;  
+  border-color: #ff3737;
 }
 
 input.poor[type=range]::-ms-track{
   background-color: #ff3737;
-  border-color: #ff3737;  
+  border-color: #ff3737;
 }
 .all-pop-close{
   display:none;
 }
-
-@media screen and (max-width: 768px){
-  
+.profile-bg .account-header__wave{
+ display:none;
+}
+@media screen and (max-width: 767px){
+  .account-header__wave{
+    bottom: 30px;
+  }
+  .profile-bg .account-header__wave {
+      display: block;
+      bottom: -42px;
+  }    
 }
 @media screen and (max-width: 380px){
   .account-header__status-badge, .account-header__status-num-alt{
@@ -4458,6 +4459,6 @@ input.poor[type=range]::-ms-track{
   }
 .account-header__status .account-header__status-item .account-header__status-badge span {
     padding: 0 2px;
-}  
+}
 
 }

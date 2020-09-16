@@ -87,20 +87,42 @@
     "diff_sub_close_text": "Close",
     "collections_all_linklist": "list-collections",
     "accessibility_menu": "",
-    "checkout_header_image": "",
-    "checkout_logo_image": "shopify://shop_images/logo-dyln.png",
+    "contact_s_title": "Need to talk to a human?",
+    "contact_s_help_link_1": "",
+    "contact_s_help_1_is_modal": true,
+    "contact_s_help_link_1_text": "Lets talk",
+    "contact_s_modal_1_title": "Lets talk",
+    "contact_s_modal_1_button_1": "tel:1-949-209-9401",
+    "contact_s_modal_1_button_1_text": "<strong>Support</strong> 1-949-209-9401",
+    "contact_s_modal_1_button_2": "tel:1-949-209-9401",
+    "contact_s_modal_1_button_2_text": "<strong>Sales</strong> 1-949-209-9401",
+    "contact_s_modal_1_note": "Business hours from 9:00 am to 5:00 pm PST",
+    "contact_s_help_link_2": "",
+    "contact_s_help_2_is_modal": true,
+    "contact_s_help_link_2_text": "Email us",
+    "contact_s_modal_2_title": "Email us",
+    "contact_s_modal_2_button_1": "mailto:support@dyln.co",
+    "contact_s_modal_2_button_1_text": "support@dyln.co",
+    "contact_s_modal_2_button_2": "mailto:support@dyln.co",
+    "contact_s_modal_2_button_2_text": "sales@dyln.co",
+    "contact_s_modal_2_note": "",
+    "contact_s_help_link_3": "",
+    "contact_s_help_link_3_attribute": "onclick=\"Smooch.open();\"",
+    "contact_s_help_link_3_text": "Live chat",
+    "checkout_header_image": "shopify://shop_images/Blue-Banner.png",
+    "checkout_logo_image": "shopify://shop_images/DYLN_White_trans.png",
     "checkout_logo_position": "left",
-    "checkout_logo_size": "medium",
+    "checkout_logo_size": "large",
     "checkout_body_background_image": "",
-    "checkout_body_background_color": "#fff",
+    "checkout_body_background_color": "#ffffff",
     "checkout_input_background_color_mode": "white",
     "checkout_sidebar_background_image": "",
-    "checkout_sidebar_background_color": "#fafafa",
-    "checkout_heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
-    "checkout_body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
-    "checkout_accent_color": "#197bbd",
-    "checkout_button_color": "#197bbd",
-    "checkout_error_color": "#e32c2b",
+    "checkout_sidebar_background_color": "#fdfdfd",
+    "checkout_heading_font": "Open Sans",
+    "checkout_body_font": "Open Sans",
+    "checkout_accent_color": "#00aedb",
+    "checkout_button_color": "#14e06e",
+    "checkout_error_color": "#ff3737",
     "canada_inv": true,
     "canada_inv_na": "",
     "canada_default": true,
@@ -225,7 +247,8 @@
           "title": "How does it work?",
           "text": "The DYLN Patented Bottle System was created to enhance water simply.",
           "link_text": "Watch full Video",
-          "video": "",
+          "video": "https://cdn.shopify.com/s/files/1/0511/9421/files/webAutoplay-HowDoesTheDylnBottleWork__480x480.mp4?v=1594059684",
+          "autoplay": false,
           "video_embed": "<iframe src=\"https://www.youtube.com/embed/PHVhV5h7pbA\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\" width=\"560\" height=\"315\" frameborder=\"0\"></iframe>",
           "video_width": 600,
           "video_height": 450
@@ -285,13 +308,13 @@
           "1581526771835": {
             "type": "product",
             "settings": {
-              "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
+              "product": "16-oz-insulated-dyln-water-bottle"
             }
           },
           "1593635998765": {
             "type": "product",
             "settings": {
-              "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
+              "product": "21oz-insulated-dyln-water-bottle"
             }
           },
           "1593635959842": {
@@ -303,7 +326,7 @@
           "1581526781483": {
             "type": "product",
             "settings": {
-              "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth"
+              "product": "40oz-insulated-dyln-water-bottle"
             }
           },
           "1581526789016": {
@@ -390,7 +413,7 @@
           "1585386409216": {
             "type": "story",
             "settings": {
-              "image": "shopify://shop_images/dyln-homepage-bottle-with-dog.jpg",
+              "image": "shopify://shop_images/Review-CustomerImages_Placeholder2.png",
               "title": "Wonderful product in the market",
               "content": "Trying to gather more funds to purchase for my mum, sister and aunt.<br>\nGod bless you for inventing this wonderful product onto the market.",
               "rating": 5,
@@ -400,7 +423,7 @@
           "1585386425104": {
             "type": "story",
             "settings": {
-              "image": "shopify://shop_images/dyln-homepage-man-drinking-from-bottle-mountain.jpg",
+              "image": "shopify://shop_images/Review-CustomerImages_Placeholder5.png",
               "title": "Less fatigue and always on the go",
               "content": "For just these few days, I'm no more constipated.<br>\nTrying to gather more funds to purchase for my mum, sister and aunt.",
               "rating": 4,
@@ -410,7 +433,7 @@
           "1585386440881": {
             "type": "story",
             "settings": {
-              "image": "shopify://shop_images/dyln-homepage-woman-showing-bottle.jpg",
+              "image": "shopify://shop_images/Review-CustomerImages_Placeholder6.png",
               "title": "I get so hydrated and satisfied",
               "content": "For just these few days, I'm no more constipated.<br>\nTrying to gather more funds to purchase for my mum, sister and aunt.",
               "rating": 2,
@@ -538,6 +561,14 @@
               "swatch_image": "",
               "swatch_color": "#d034c0"
             }
+          },
+          "1595397608238": {
+            "type": "color",
+            "settings": {
+              "title": "Pearl",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-pearl-grey.png",
+              "swatch_color": "#eceae5"
+            }
           }
         },
         "block_order": [
@@ -552,7 +583,8 @@
           "1585392704087",
           "1585392716036",
           "1585392728341",
-          "1585392739263"
+          "1585392739263",
+          "1595397608238"
         ],
         "settings": {}
       },
@@ -593,18 +625,65 @@
             "type": "Product",
             "settings": {
               "product": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
-              "product_1": "dyln-living-alkaline-stainless-steel-water-bottle",
+              "product_1": "16-oz-insulated-dyln-water-bottle",
               "product_title_1": "16 oz",
-              "product_2": "",
-              "product_title_2": "",
-              "product_3": "",
-              "product_title_3": "",
+              "product_2": "21oz-insulated-dyln-water-bottle",
+              "product_title_2": "21 oz",
+              "product_3": "40oz-insulated-dyln-water-bottle",
+              "product_title_3": "40 oz",
+              "product_4": "",
+              "product_title_4": ""
+            }
+          },
+          "1595361494771": {
+            "type": "Product",
+            "settings": {
+              "product": "16-oz-insulated-dyln-water-bottle",
+              "product_1": "21oz-insulated-dyln-water-bottle",
+              "product_title_1": "21 oz",
+              "product_2": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
+              "product_title_2": "32 oz",
+              "product_3": "40oz-insulated-dyln-water-bottle",
+              "product_title_3": "40 oz",
+              "product_4": "",
+              "product_title_4": ""
+            }
+          },
+          "1595361524612": {
+            "type": "Product",
+            "settings": {
+              "product": "21oz-insulated-dyln-water-bottle",
+              "product_1": "16-oz-insulated-dyln-water-bottle",
+              "product_title_1": "16 oz",
+              "product_2": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
+              "product_title_2": "32 oz",
+              "product_3": "40oz-insulated-dyln-water-bottle",
+              "product_title_3": "40 oz",
+              "product_4": "",
+              "product_title_4": ""
+            }
+          },
+          "1595361573518": {
+            "type": "Product",
+            "settings": {
+              "product": "40oz-insulated-dyln-water-bottle",
+              "product_1": "16-oz-insulated-dyln-water-bottle",
+              "product_title_1": "16 oz",
+              "product_2": "21oz-insulated-dyln-water-bottle",
+              "product_title_2": "21 oz",
+              "product_3": "dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth",
+              "product_title_3": "32 oz",
               "product_4": "",
               "product_title_4": ""
             }
           }
         },
-        "block_order": ["1587021726467"],
+        "block_order": [
+          "1587021726467",
+          "1595361494771",
+          "1595361524612",
+          "1595361573518"
+        ],
         "settings": {
           "title": "Choose Size"
         }
@@ -1305,17 +1384,6 @@
         ],
         "settings": {}
       },
-      "contact-dom-ship": {
-        "type": "contact-dom-ship",
-        "settings": {
-          "title": "",
-          "description": ""
-        }
-      },
-      "contact-intl-ship": {
-        "type": "contact-intl-ship",
-        "settings": {}
-      },
       "contact-form": {
         "type": "contact-form",
         "settings": {
@@ -1625,6 +1693,7 @@
         "settings": {
           "title": "Diffuser Title here",
           "extra_product": "extra-vitabead-diffusers",
+          "diffuser_product_image": "",
           "note": "<p>We recommend replacing your Diffuser every 3 months but go ahead and <strong>customize quantity and frequency.</strong></p>"
         }
       },
@@ -2004,6 +2073,9 @@
           "link": "",
           "link_text": "View Bottles",
           "video": "<iframe src=\"https://www.youtube.com/embed/NpEaa2P7qZI\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\" width=\"560\" height=\"315\" frameborder=\"0\"></iframe>",
+          "video_width": 600,
+          "video_height": 450,
+          "video_embed": "",
           "usp_title": "Fill your water bottle and in 15-20 minutes, your water will become:",
           "usp_icon_1": "",
           "usp_title_1": "Alkaline",

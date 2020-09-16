@@ -72,10 +72,7 @@ icon-curved-arrow-down:
             My Bottles
             <span class="account-body__header-dash"></span>
           </button>
-          <button type="button" class="account-body__header-tab" tab-body="account-subscriptions">
-            My Subscriptions
-            <span class="account-body__header-dash"></span>
-          </button>
+          <a class="account-body__header-tab" href="/tools/recurring/login/">My Subscriptions<span class="account-body__header-dash"></span></a>
           <button type="button" class="account-body__header-tab" tab-body="account-profile">
             Profile
             <span class="account-body__header-dash"></span>
@@ -105,25 +102,23 @@ icon-curved-arrow-down:
                     <span class="account-dash__title-txt">My Bottles</span>
                     <button type="button" class="account-dash__title-button tab-button" tab-body="account-bottles">See All</button>
                   </h3>
-          <div id="custommer-bottles-short">
-                  
-                  <div class="account-dash__bottle" style="display:none">
-                    <div class="account-dash__bottle-wrap" aria-ignore="true">
-                      {% comment %} progress must be in percent, so between 0 and 100. It needs to be in steps of 5, so 5, 10, 15, 20,... that is to reduce the size of the css file - each percent has its own class {% endcomment %}
-                      <div class="account-dash__bottle-progress progress-circle" data-progress="40">
-                        <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water Bottle" class="account-dash__bottle-img" />
+                  <div id="custommer-bottles-short">
+                    <div class="account-dash__bottle" style="display:none">
+                      <div class="account-dash__bottle-wrap" aria-ignore="true">
+                        {% comment %} progress must be in percent, so between 0 and 100. It needs to be in steps of 5, so 5, 10, 15, 20,... that is to reduce the size of the css file - each percent has its own class {% endcomment %}
+                        <div class="account-dash__bottle-progress progress-circle" data-progress="40">
+                          <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water Bottle" class="account-dash__bottle-img" />
+                        </div>
                       </div>
+                      <div class="account-dash__bottle-content">
+                        <h4 class="account-dash__bottle-title">Bottle #1</h4>
+                        <p class="account-dash__bottle-timer"><span>60</span> days left on Diffuser</p>
+                      </div>
+                      <button type="button" class="account-dash__bottle-more">
+                        <span class="visually-hidden">More options</span>
+                      </button>
                     </div>
-                    <div class="account-dash__bottle-content">
-                      <h4 class="account-dash__bottle-title">Bottle #1</h4>
-                      <p class="account-dash__bottle-timer"><span>60</span> days left on Diffuser</p>
-                    </div>
-                    <button type="button" class="account-dash__bottle-more">
-                      <span class="visually-hidden">More options</span>
-                    </button>
                   </div>
-          
-                  </div>  
 
                   <div class="account-dash__bottle-btn-wrap">
                     <button type="button" class="account-dash__bottle-btn btn-action-register-bottle">
@@ -141,57 +136,10 @@ icon-curved-arrow-down:
                     <button type="button" class="account-dash__title-button tab-button" tab-body="account-subscriptions">See All</button>
                   </h3>
 
-                  <div class="account-dash__sub">
-                    <div class="account-dash__sub-wrap" aria-ignore="true">
-                      <div class="account-dash__sub-progress">
-                        <img src="{{ 'dyln-account-diffuser.png' | asset_url }}" alt="Image of DYLN diffuser" class="account-dash__sub-img" />
-                      </div>
+                  <div data-account-page-subs>
+                    <div class="account-dash__bottle no-bottles">
+                      <h4>You have no subscriptions</h4>
                     </div>
-                    <div class="account-dash__sub-content">
-                      <h4 class="account-dash__sub-title">
-                        <strong>4-pack</strong>
-                        <span>every</span>
-                        <strong>6 months</strong>
-                      </h4>
-                      <p class="account-dash__sub-timer">
-                        <span>66</span> days until next shipment
-                      </p>
-                    </div>
-                    <button type="button" class="account-dash__sub-more">
-                      <span class="visually-hidden">More options</span>
-                      <span class="account-dash__sub-icon">
-                        <svg width="23" height="21" viewBox="0 0 23 21" xmlns="http://www.w3.org/2000/svg"><g transform="translate(1 1)" stroke="#00AEDB" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linecap="square" d="M2.5.076v12.737M2.5 17.728v1.292M10.625 6.478v12.669M10.625.152v1.326M18.75 13.353v5.794M18.75.076v8.369"/><circle cx="18.75" cy="10.853" r="2.5"/><circle cx="10.625" cy="3.978" r="2.5"/><circle cx="2.5" cy="15.228" r="2.5"/></g></svg>
-                      </span>
-                    </button>
-                  </div>
-
-                  <div class="account-dash__sub" style="display:none">
-                    <div class="account-dash__sub-wrap" aria-ignore="true">
-                      <div class="account-dash__sub-progress">
-                        <img src="#" alt="Image of DYLN diffuser" class="account-dash__sub-img" />
-                      </div>
-                    </div>
-                    <div class="account-dash__sub-content">
-                      <h4 class="account-dash__sub-title">
-                        <strong>4-pack</strong>
-                        <span>every</span>
-                        <strong>6 months</strong>
-                      </h4>
-                      <p class="account-dash__sub-timer">
-                        <span>66</span> days until next shipment
-                      </p>
-                    </div>
-                    <button type="button" class="account-dash__sub-more">
-                      <span class="visually-hidden">More options</span>
-                      <span class="account-dash__sub-icon">
-                      </span>
-                    </button>
-                  </div>
-
-                  <div class="account-dash__sub-btn-wrap">
-                    <button type="button" class="account-dash__sub-btn">
-                      <span class="account-dash__sub-btn-text">Add Products to next Shipment</span>
-                    </button>
                   </div>
                 </div>
               </div>
@@ -213,8 +161,8 @@ icon-curved-arrow-down:
                   <span class="account-dash__title-txt">My Orders</span>
                   <a href="" class="account-dash__title-button tab-button" tab-body="account-orders">Order History</a>
                 </h3>
-        {% if customer.orders_count > 0 %}
-                {% assign count_order = 0 %} 
+                {% if customer.orders_count > 0 %}
+                {% assign count_order = 0 %}
                 {% for order in customer.orders %}
                 {% assign count_order = count_order | plus: 1 %}
                 {% if count_order <= 3 %}
@@ -224,11 +172,11 @@ icon-curved-arrow-down:
                   <p class="account-dash__order-date">Placed on {{ created_at}}</p>
                 </div>
                 {% endif %}
-        {% endfor %}
+                {% endfor %}
                 {% else %}
                 <div class="account-dash__order">
                   <a href="#" class="account-dash__order-number">No Order Found</a>
-                </div>                
+                </div>
                 {% endif %}
               </div>
 
@@ -238,141 +186,142 @@ icon-curved-arrow-down:
 
           <div class="body-tab account-points">
             {% comment %} Whole section will come from an external source {% endcomment %}
-            <div class="row">
-              <div class="col-md-6">
-                <div class="account-points__earned-amount">
-                  <span><svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg></span>
-                  &nbsp;
-                  <span>300</span>
-                </div>
-                <h3 class="account-points__earned-header">DYLN Points earned</h3>
-                <p class="account-points__description">Intro/ Description: There are many ways to get DYLN Points which can earn you all kinds of rewards. </p>
-                <div class="account-points__shadow">
-                  <div class="account-points__banner-wrap">
-                    <h4 class="account-points__banner-title">Your Rewards as a Bronze Member</h4>
-                    <div class="account-points__banner-line">
-                      <span class="account-points__banner-icon"><svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(-1 0 0 1 31 1)" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M6 4.209V1a1 1 0 011-1h14a1 1 0 011 1v13.667a1 1 0 01-1 1H6h0M27.343 4.384l-5.093.25.25 10.25 7.25-.25v-4.348l-2.407-5.902z" stroke="#00AEDB"/><ellipse stroke="#00AEDB" fill="#FFF" cx="11.667" cy="15.833" rx="2.25" ry="2.205"/><ellipse stroke="#00AEDB" fill="#FFF" cx="23" cy="15.833" rx="2.25" ry="2.205"/><path stroke="#66CCEB" stroke-linecap="square" d="M7.5 13h-4M7.5 11h-7M7.5 9h-5M7.5 7h-2"/></g></svg></span>
-                      <span class="account-points__banner-text">Pay Regular Shipping and get Express Shipping</span>
+            <div id="stamped-rewards-widget" data-widget-type="rewards-referral-modal" data-customer-email="{{ customer.email }}" data-customer-first-name="{{ customer.first_name }}" data-style-color-background="#ffffff" data-style-color-button="#20d480" data-style-color-link="#00aedb"></div> 
+            <div id="stamped-rewards-widget" data-widget-type="rewards-summary" ></div>
+            <div id="stamped-rewards-widget" data-widget-type="rewards-how-it-works" ></div>
+            <div id="stamped-rewards-widget" data-widget-type="rewards-earnings" ></div>
+            <div id="stamped-rewards-widget" data-widget-type="rewards-spendings" ></div>
+            <div id="stamped-rewards-widget" data-widget-type="rewards-referral" ></div>
+            {% comment %} 
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="account-points__earned-amount">
+                    <span><svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg></span>
+                    &nbsp;
+                    <span>300</span>
+                  </div>
+                  <h3 class="account-points__earned-header">DYLN Points earned</h3>
+                  <p class="account-points__description">Intro/ Description: There are many ways to get DYLN Points which can earn you all kinds of rewards. </p>
+                  <div class="account-points__shadow">
+                    <div class="account-points__banner-wrap">
+                      <h4 class="account-points__banner-title">Your Rewards as a Bronze Member</h4>
+                      <div class="account-points__banner-line">
+                        <span class="account-points__banner-icon"><svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(-1 0 0 1 31 1)" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M6 4.209V1a1 1 0 011-1h14a1 1 0 011 1v13.667a1 1 0 01-1 1H6h0M27.343 4.384l-5.093.25.25 10.25 7.25-.25v-4.348l-2.407-5.902z" stroke="#00AEDB"/><ellipse stroke="#00AEDB" fill="#FFF" cx="11.667" cy="15.833" rx="2.25" ry="2.205"/><ellipse stroke="#00AEDB" fill="#FFF" cx="23" cy="15.833" rx="2.25" ry="2.205"/><path stroke="#66CCEB" stroke-linecap="square" d="M7.5 13h-4M7.5 11h-7M7.5 9h-5M7.5 7h-2"/></g></svg></span>
+                        <span class="account-points__banner-text">Pay Regular Shipping and get Express Shipping</span>
+                      </div>
+                      <div class="account-points__banner-line">
+                        <span class="account-points__banner-icon"><svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(-1 0 0 1 31 1)" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M6 4.209V1a1 1 0 011-1h14a1 1 0 011 1v13.667a1 1 0 01-1 1H6h0M27.343 4.384l-5.093.25.25 10.25 7.25-.25v-4.348l-2.407-5.902z" stroke="#00AEDB"/><ellipse stroke="#00AEDB" fill="#FFF" cx="11.667" cy="15.833" rx="2.25" ry="2.205"/><ellipse stroke="#00AEDB" fill="#FFF" cx="23" cy="15.833" rx="2.25" ry="2.205"/><path stroke="#66CCEB" stroke-linecap="square" d="M7.5 13h-4M7.5 11h-7M7.5 9h-5M7.5 7h-2"/></g></svg></span>
+                        <span class="account-points__banner-text">5% off all your orders</span>
+                      </div>
                     </div>
-                    <div class="account-points__banner-line">
-                      <span class="account-points__banner-icon"><svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(-1 0 0 1 31 1)" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M6 4.209V1a1 1 0 011-1h14a1 1 0 011 1v13.667a1 1 0 01-1 1H6h0M27.343 4.384l-5.093.25.25 10.25 7.25-.25v-4.348l-2.407-5.902z" stroke="#00AEDB"/><ellipse stroke="#00AEDB" fill="#FFF" cx="11.667" cy="15.833" rx="2.25" ry="2.205"/><ellipse stroke="#00AEDB" fill="#FFF" cx="23" cy="15.833" rx="2.25" ry="2.205"/><path stroke="#66CCEB" stroke-linecap="square" d="M7.5 13h-4M7.5 11h-7M7.5 9h-5M7.5 7h-2"/></g></svg></span>
-                      <span class="account-points__banner-text">5% off all your orders</span>
+                    <div class="account-points__memberships-wrap">
+                      <div class="account-points__gold-member-gap">
+                        You are <strong>500</strong> DYLN Points <br>away from becoming a <strong>GOLD MEMBER</strong>
+                      </div>
+                      <div class="account-points__btn-refer-wrap">
+                        <button class="account-points__btn-refer">
+                          <strong>Refer a Friend</strong>
+                          <span>Get</span>
+                          <span><svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg></span>
+                          <span>150</span>
+                        </button>
+                      </div>
+                      <div class="account-points__member-type">
+                        <h4 class="account-points__member-title">
+                          <strong>Silver Member</strong>
+                          <span><svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg></span>
+                          <span>400</span>
+                        </h4>
+                        <div class="account-points__member-line">
+                          <span class="account-points__member-icon"><svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(-1 0 0 1 31 1)" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M6 4.209V1a1 1 0 011-1h14a1 1 0 011 1v13.667a1 1 0 01-1 1H6h0M27.343 4.384l-5.093.25.25 10.25 7.25-.25v-4.348l-2.407-5.902z" stroke="#00AEDB"/><ellipse stroke="#00AEDB" fill="#FFF" cx="11.667" cy="15.833" rx="2.25" ry="2.205"/><ellipse stroke="#00AEDB" fill="#FFF" cx="23" cy="15.833" rx="2.25" ry="2.205"/><path stroke="#66CCEB" stroke-linecap="square" d="M7.5 13h-4M7.5 11h-7M7.5 9h-5M7.5 7h-2"/></g></svg></span>
+                          <span class="account-points__member-text">Pay Regular Shipping and get Express Shipping</span>
+                        </div>
+                        <div class="account-points__member-line">
+                          <span class="account-points__member-icon"><svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(-1 0 0 1 31 1)" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M6 4.209V1a1 1 0 011-1h14a1 1 0 011 1v13.667a1 1 0 01-1 1H6h0M27.343 4.384l-5.093.25.25 10.25 7.25-.25v-4.348l-2.407-5.902z" stroke="#00AEDB"/><ellipse stroke="#00AEDB" fill="#FFF" cx="11.667" cy="15.833" rx="2.25" ry="2.205"/><ellipse stroke="#00AEDB" fill="#FFF" cx="23" cy="15.833" rx="2.25" ry="2.205"/><path stroke="#66CCEB" stroke-linecap="square" d="M7.5 13h-4M7.5 11h-7M7.5 9h-5M7.5 7h-2"/></g></svg></span>
+                          <span class="account-points__member-text">10% off All your Orders</span>
+                        </div>
+                      </div>
+                      <div class="account-points__member-type">
+                        <h4 class="account-points__member-title">
+                          <strong>Gold Member</strong>
+                          <span><svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg></span>
+                          <span>800</span>
+                        </h4>
+                        <div class="account-points__member-line">
+                          <span class="account-points__member-icon"><svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(-1 0 0 1 31 1)" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M6 4.209V1a1 1 0 011-1h14a1 1 0 011 1v13.667a1 1 0 01-1 1H6h0M27.343 4.384l-5.093.25.25 10.25 7.25-.25v-4.348l-2.407-5.902z" stroke="#00AEDB"/><ellipse stroke="#00AEDB" fill="#FFF" cx="11.667" cy="15.833" rx="2.25" ry="2.205"/><ellipse stroke="#00AEDB" fill="#FFF" cx="23" cy="15.833" rx="2.25" ry="2.205"/><path stroke="#66CCEB" stroke-linecap="square" d="M7.5 13h-4M7.5 11h-7M7.5 9h-5M7.5 7h-2"/></g></svg></span>
+                          <span class="account-points__member-text">Pay Regular Shipping and get Express Shipping</span>
+                        </div>
+                        <div class="account-points__member-line">
+                          <span class="account-points__member-icon"><svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(-1 0 0 1 31 1)" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M6 4.209V1a1 1 0 011-1h14a1 1 0 011 1v13.667a1 1 0 01-1 1H6h0M27.343 4.384l-5.093.25.25 10.25 7.25-.25v-4.348l-2.407-5.902z" stroke="#00AEDB"/><ellipse stroke="#00AEDB" fill="#FFF" cx="11.667" cy="15.833" rx="2.25" ry="2.205"/><ellipse stroke="#00AEDB" fill="#FFF" cx="23" cy="15.833" rx="2.25" ry="2.205"/><path stroke="#66CCEB" stroke-linecap="square" d="M7.5 13h-4M7.5 11h-7M7.5 9h-5M7.5 7h-2"/></g></svg></span>
+                          <span class="account-points__member-text">10% off All your Orders</span>
+                        </div>
+                        <div class="account-points__member-line">
+                          <span class="account-points__member-icon"><svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(-1 0 0 1 31 1)" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M6 4.209V1a1 1 0 011-1h14a1 1 0 011 1v13.667a1 1 0 01-1 1H6h0M27.343 4.384l-5.093.25.25 10.25 7.25-.25v-4.348l-2.407-5.902z" stroke="#00AEDB"/><ellipse stroke="#00AEDB" fill="#FFF" cx="11.667" cy="15.833" rx="2.25" ry="2.205"/><ellipse stroke="#00AEDB" fill="#FFF" cx="23" cy="15.833" rx="2.25" ry="2.205"/><path stroke="#66CCEB" stroke-linecap="square" d="M7.5 13h-4M7.5 11h-7M7.5 9h-5M7.5 7h-2"/></g></svg></span>
+                          <span class="account-points__member-text">1 Free Accessory for your bottle</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div class="account-points__memberships-wrap">
-                    <div class="account-points__gold-member-gap">
-                      You are <strong>500</strong> DYLN Points <br>away from becoming a <strong>GOLD MEMBER</strong>
+                </div>
+                <div class="col-md-6">
+                  <h3 class="account-points__earn-title">Earn more DYLN Points</h3>
+                  <div class="account-points__earn-block">
+                    <div class="account-points__earn-left">
+                      <span><svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg></span>
+                      &nbsp;
+                      <span>150</span>
                     </div>
-                    <div class="account-points__btn-refer-wrap">
-                      <button class="account-points__btn-refer">
-                        <strong>Refer a Friend</strong>
-                        <span>Get</span>
-                        <span><svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg></span>
-                        <span>150</span>
-                      </button>
+                    <div class="account-points__earn-right">
+                      <div class="account-points__earn-line">Refer a Friend</div>
                     </div>
-                    <div class="account-points__member-type">
-                      <h4 class="account-points__member-title">
-                        <strong>Silver Member</strong>
-                        <span><svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg></span>
-                        <span>400</span>
-                      </h4>
-                      <div class="account-points__member-line">
-                        <span class="account-points__member-icon"><svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(-1 0 0 1 31 1)" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M6 4.209V1a1 1 0 011-1h14a1 1 0 011 1v13.667a1 1 0 01-1 1H6h0M27.343 4.384l-5.093.25.25 10.25 7.25-.25v-4.348l-2.407-5.902z" stroke="#00AEDB"/><ellipse stroke="#00AEDB" fill="#FFF" cx="11.667" cy="15.833" rx="2.25" ry="2.205"/><ellipse stroke="#00AEDB" fill="#FFF" cx="23" cy="15.833" rx="2.25" ry="2.205"/><path stroke="#66CCEB" stroke-linecap="square" d="M7.5 13h-4M7.5 11h-7M7.5 9h-5M7.5 7h-2"/></g></svg></span>
-                        <span class="account-points__member-text">Pay Regular Shipping and get Express Shipping</span>
-                      </div>
-                      <div class="account-points__member-line">
-                        <span class="account-points__member-icon"><svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(-1 0 0 1 31 1)" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M6 4.209V1a1 1 0 011-1h14a1 1 0 011 1v13.667a1 1 0 01-1 1H6h0M27.343 4.384l-5.093.25.25 10.25 7.25-.25v-4.348l-2.407-5.902z" stroke="#00AEDB"/><ellipse stroke="#00AEDB" fill="#FFF" cx="11.667" cy="15.833" rx="2.25" ry="2.205"/><ellipse stroke="#00AEDB" fill="#FFF" cx="23" cy="15.833" rx="2.25" ry="2.205"/><path stroke="#66CCEB" stroke-linecap="square" d="M7.5 13h-4M7.5 11h-7M7.5 9h-5M7.5 7h-2"/></g></svg></span>
-                        <span class="account-points__member-text">10% off All your Orders</span>
-                      </div>
+                  </div>
+                  <div class="account-points__earn-block">
+                    <div class="account-points__earn-left">
+                      <span><svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg></span>
+                      &nbsp;
+                      <span>100</span>
                     </div>
-                    <div class="account-points__member-type">
-                      <h4 class="account-points__member-title">
-                        <strong>Gold Member</strong>
-                        <span><svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg></span>
-                        <span>800</span>
-                      </h4>
-                      <div class="account-points__member-line">
-                        <span class="account-points__member-icon"><svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(-1 0 0 1 31 1)" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M6 4.209V1a1 1 0 011-1h14a1 1 0 011 1v13.667a1 1 0 01-1 1H6h0M27.343 4.384l-5.093.25.25 10.25 7.25-.25v-4.348l-2.407-5.902z" stroke="#00AEDB"/><ellipse stroke="#00AEDB" fill="#FFF" cx="11.667" cy="15.833" rx="2.25" ry="2.205"/><ellipse stroke="#00AEDB" fill="#FFF" cx="23" cy="15.833" rx="2.25" ry="2.205"/><path stroke="#66CCEB" stroke-linecap="square" d="M7.5 13h-4M7.5 11h-7M7.5 9h-5M7.5 7h-2"/></g></svg></span>
-                        <span class="account-points__member-text">Pay Regular Shipping and get Express Shipping</span>
+                    <div class="account-points__earn-right">
+                      <div class="account-points__earn-line">Join our Newsletter</div>
+                      <div class="account-points__earn-line">Write a Review</div>
+                      <div class="account-points__earn-line">Share on Social Media</div>
+                    </div>
+                  </div>
+                  <div class="account-points__earn-block">
+                    <div class="account-points__earn-left">
+                      <span><svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg></span>
+                      &nbsp;
+                      <span>100</span>
+                    </div>
+                    <div class="account-points__earn-right">
+                      <div class="account-points__earn-line">Like us on Facebook</div>
+                      <div class="account-points__earn-line">Follow us on Instagram</div>
+                      <div class="account-points__earn-line">Follow us on Youtube</div>
+                      <div class="account-points__earn-line">Follow us on Twitter</div>
+                    </div>
+                  </div>
+                  <h4 class="account-points__rewards-note">Look out for the <strong class="brand-blue">Rewards Tab</strong> on your Cart while you Checkout</h4>
+                  <div class="account-points__shadow">
+                    <div class="account-points__status">
+                      <div class="account-points__status-left">
+                        <div class="account-points__status-number">
+                          <span><svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg></span>
+                          <span>300</span>
+                        </div>
+                        <div class="account-points__status-text">DYLN Points</div>
                       </div>
-                      <div class="account-points__member-line">
-                        <span class="account-points__member-icon"><svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(-1 0 0 1 31 1)" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M6 4.209V1a1 1 0 011-1h14a1 1 0 011 1v13.667a1 1 0 01-1 1H6h0M27.343 4.384l-5.093.25.25 10.25 7.25-.25v-4.348l-2.407-5.902z" stroke="#00AEDB"/><ellipse stroke="#00AEDB" fill="#FFF" cx="11.667" cy="15.833" rx="2.25" ry="2.205"/><ellipse stroke="#00AEDB" fill="#FFF" cx="23" cy="15.833" rx="2.25" ry="2.205"/><path stroke="#66CCEB" stroke-linecap="square" d="M7.5 13h-4M7.5 11h-7M7.5 9h-5M7.5 7h-2"/></g></svg></span>
-                        <span class="account-points__member-text">10% off All your Orders</span>
-                      </div>
-                      <div class="account-points__member-line">
-                        <span class="account-points__member-icon"><svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(-1 0 0 1 31 1)" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M6 4.209V1a1 1 0 011-1h14a1 1 0 011 1v13.667a1 1 0 01-1 1H6h0M27.343 4.384l-5.093.25.25 10.25 7.25-.25v-4.348l-2.407-5.902z" stroke="#00AEDB"/><ellipse stroke="#00AEDB" fill="#FFF" cx="11.667" cy="15.833" rx="2.25" ry="2.205"/><ellipse stroke="#00AEDB" fill="#FFF" cx="23" cy="15.833" rx="2.25" ry="2.205"/><path stroke="#66CCEB" stroke-linecap="square" d="M7.5 13h-4M7.5 11h-7M7.5 9h-5M7.5 7h-2"/></g></svg></span>
-                        <span class="account-points__member-text">1 Free Accessory for your bottle</span>
+                      <div class="account-points__status-right">
+                        <button type="button" class="account-points__status-btn">Choose Reward <span aria-ignore="true">></span></button>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
-                <h3 class="account-points__earn-title">Earn more DYLN Points</h3>
-                <div class="account-points__earn-block">
-                  <div class="account-points__earn-left">
-                    <span><svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg></span>
-                    &nbsp;
-                    <span>150</span>
-                  </div>
-                  <div class="account-points__earn-right">
-                    <div class="account-points__earn-line">Refer a Friend</div>
-                  </div>
-                </div>
-                <div class="account-points__earn-block">
-                  <div class="account-points__earn-left">
-                    <span><svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg></span>
-                    &nbsp;
-                    <span>100</span>
-                  </div>
-                  <div class="account-points__earn-right">
-                    <div class="account-points__earn-line">Join our Newsletter</div>
-                    <div class="account-points__earn-line">Write a Review</div>
-                    <div class="account-points__earn-line">Share on Social Media</div>
-                  </div>
-                </div>
-                <div class="account-points__earn-block">
-                  <div class="account-points__earn-left">
-                    <span><svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg></span>
-                    &nbsp;
-                    <span>100</span>
-                  </div>
-                  <div class="account-points__earn-right">
-                    <div class="account-points__earn-line">Like us on Facebook</div>
-                    <div class="account-points__earn-line">Follow us on Instagram</div>
-                    <div class="account-points__earn-line">Follow us on Youtube</div>
-                    <div class="account-points__earn-line">Follow us on Twitter</div>
-                  </div>
-                </div>
-                <h4 class="account-points__rewards-note">Look out for the <strong class="brand-blue">Rewards Tab</strong> on your Cart while you Checkout</h4>
-                <div class="account-points__shadow">
-                  <div class="account-points__status">
-                    <div class="account-points__status-left">
-                      <div class="account-points__status-number">
-                        <span><svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg></span>
-                        <span>300</span>
-                      </div>
-                      <div class="account-points__status-text">DYLN Points</div>
-                    </div>
-                    <div class="account-points__status-right">
-                      <button type="button" class="account-points__status-btn">Choose Reward <span aria-ignore="true">></span></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+             {% endcomment %}
           </div>
-          {% comment %} points end {% endcomment %}
-      {% render 'account-orders-tab' %}
-          {% comment %} orders end {% endcomment %}
-      {% render 'customer-bottles-tab' %}
-          {% comment %} bottles end {% endcomment %}
-
-          <div class="body-tab account-subscriptions">Account Subscriptions</div>
-          {% comment %} subscription end {% endcomment %}
-      {% render 'customer-profile-tab' %}
-          {% comment %} profile end {% endcomment %}
+          {% render 'account-orders-tab' %}
+          {% render 'customer-bottles-tab' %}
+          {% render 'customer-profile-tab' %}
         </div>
         <!-- popups will be here -->
         <div id="popup-continer">
@@ -382,7 +331,7 @@ icon-curved-arrow-down:
             <span aria-ignore="true">
               <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><g stroke="#00AEDB" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M1.333 1.333L11 11M10.667 1.333L1 11"/></g></svg>
             </span>
-          </button>            
+          </button>
           </div>
           {% comment %} Register bottle {% endcomment %}
           {% render 'register-bottle-popup' %}
@@ -393,7 +342,7 @@ icon-curved-arrow-down:
           {% comment %} Custom styling for the profile body input{% endcomment %}
       {% comment %} Bottle modal {% endcomment %}
           {% render 'edit-bottle-popup' %}
-          {% include 'address-form' %}         
+          {% include 'address-form' %}
         </div> <!-- end popup wrap -->
       </div>
     </div>
@@ -409,7 +358,7 @@ icon-curved-arrow-down:
           <div class="swiper-wrapper">
           {% for i in (20..300) %}
             <div class="swiper-slide" data-val="{{i}}">{{i}}</div>
-          {% endfor %}  
+          {% endfor %}
           </div>
         </div>
         <div class="swiper-container" id="body-height" style="display:none">
@@ -417,10 +366,10 @@ icon-curved-arrow-down:
           {% for i in (3..7) %}
             {% for j in (0..11) %}
               <div class="swiper-slide" data-val="{{i}}-{{j}}">{{i}}'{{j}}"</div>
-            {% endfor %}          
+            {% endfor %}
           {% endfor %}
           </div>
-        </div>  
+        </div>
         <span class="account-edit-option__label lab-weight" style="display:none">
           <button class="active" type="button">Kg</button>&nbsp;
           <span>|</span>&nbsp;
@@ -428,7 +377,7 @@ icon-curved-arrow-down:
         </span>
         <span class="account-edit-option__label lab-height" style="display:none">
           <button class="active" type="button">Feet</button>
-        </span>        
+        </span>
       </div>
       <button type="button" class="account-edit-option__btn">Done</button>
       <div></div>
@@ -436,7 +385,6 @@ icon-curved-arrow-down:
     </div>
   </div>
 </div>
-
 
 {% comment %} Choose profile image modal {% endcomment %}
 <div class="image-edit popup" style="display:none;">
@@ -450,92 +398,96 @@ icon-curved-arrow-down:
     </button>
 
     <h4 class="registration-modal__title">Choose a New Profile Image</h4>
+    <form id="profile-image-update">
+    <input type="hidden" name="c_id" value="{{ customer.id }}" />
     <div class="clearfix">
       <div class="account-edit__image-checkbox-wrap">
-        <label class="account-edit__image-label" for="profile-background-1">Hi Jane!</label>
+        <label class="account-edit__image-label" for="profile-background-1">Hi {{ customer.first_name }}!</label>
         <input type="radio"
-          id="profile-background-1"
-          name="profile-image"
-          value="profile-background-1"
+          id="profile-image-1"
+          name="profile_image"
+          value="image-1"
+          checked="checked"
           class="account-edit__image-radio"
-          style="background-image:url({{ 'edit-account-workout-routines.png' | asset_url }})"/>
+          style="background-image:url({{ 'proiflie-image-1.jpg' | asset_img_url: '200x' }})"/>
       </div>
 
       <div class="account-edit__image-checkbox-wrap">
-        <label class="account-edit__image-label" for="profile-background-2">Hi Jane!</label>
+        <label class="account-edit__image-label" for="profile-background-2">Hi {{ customer.first_name }}!</label>
         <input type="radio"
-          id="profile-background-2"
-          name="profile-image"
-          value="profile-background-2"
+          id="profile-image-2"
+          name="profile_image"
+          value="image-2"
           class="account-edit__image-radio"
-          style="background-image:url({{ 'edit-account-sustainability.png' | asset_url }})"/>
+          style="background-image:url({{ 'proiflie-image-2.jpg' | asset_img_url: '200x' }})"/>
       </div>
 
       <div class="account-edit__image-checkbox-wrap">
-        <label class="account-edit__image-label" for="profile-background-3">Hi Jane!</label>
+        <label class="account-edit__image-label" for="profile-background-3">Hi {{ customer.first_name }}!</label>
         <input type="radio"
-          id="profile-background-3"
-          name="profile-image"
-          value="profile-background-3"
+          id="profile-image-3"
+          name="profile_image"
+          value="image-3"
           class="account-edit__image-radio"
-          style="background-image:url({{ 'edit-account-alkaline-recipes.png' | asset_url }})"/>
+          style="background-image:url({{ 'proiflie-image-3.jpg' | asset_img_url: '200x' }})"/>
       </div>
 
       <div class="account-edit__image-checkbox-wrap">
-        <label class="account-edit__image-label" for="profile-background-4">Hi Jane!</label>
+        <label class="account-edit__image-label" for="profile-background-4">Hi {{ customer.first_name }}!</label>
         <input type="radio"
-          id="profile-background-4"
-          name="profile-image"
-          value="profile-background-4"
+          id="profile-image-4"
+          name="profile_image"
+          value="image-4"
           class="account-edit__image-radio"
-          style="background-image:url({{ 'edit-account-nature.png' | asset_url }})"/>
+          style="background-image:url({{ 'proiflie-image-4.jpg' | asset_img_url: '200x' }})"/>
       </div>
 
       <div class="account-edit__image-checkbox-wrap">
-        <label class="account-edit__image-label" for="profile-background-5">Hi Jane!</label>
+        <label class="account-edit__image-label" for="profile-background-5">Hi {{ customer.first_name }}!</label>
         <input type="radio"
-          id="profile-background-5"
-          name="profile-image"
-          value="profile-background-5"
+          id="profile-image-5"
+          name="profile_image"
+          value="image-5"
           class="account-edit__image-radio"
-          style="background-image:url({{ 'edit-account-workout-routines-2.png' | asset_url }})"/>
+          style="background-image:url({{ 'proiflie-image-5.jpg' | asset_img_url: '200x' }})"/>
       </div>
 
       <div class="account-edit__image-checkbox-wrap">
-        <label class="account-edit__image-label" for="profile-background-6">Hi Jane!</label>
+        <label class="account-edit__image-label" for="profile-background-6">Hi {{ customer.first_name }}!</label>
         <input type="radio"
-          id="profile-background-6"
-          name="profile-image"
-          value="profile-background-6"
+          id="profile-image-6"
+          name="profile_image"
+          value="image-6"
           class="account-edit__image-radio"
-          style="background-image:url({{ 'edit-account-sustainability-2.png' | asset_url }})"/>
+          style="background-image:url({{ 'proiflie-image-6.jpg' | asset_img_url: '200x' }})"/>
       </div>
 
       <div class="account-edit__image-checkbox-wrap">
-        <label class="account-edit__image-label" for="profile-background-7">Hi Jane!</label>
+        <label class="account-edit__image-label" for="profile-background-7">Hi {{ customer.first_name }}!</label>
         <input type="radio"
-          id="profile-background-7"
-          name="profile-image"
-          value="profile-background-7"
+          id="profile-image-7"
+          name="profile_image"
+          value="image-7"
           class="account-edit__image-radio"
-          style="background-image:url({{ 'edit-account-alkaline-recipes-2.png' | asset_url }})"/>
+          style="background-image:url({{ 'proiflie-image-7.jpg' | asset_img_url: '200x' }})"/>
       </div>
 
       <div class="account-edit__image-checkbox-wrap">
-        <label class="account-edit__image-label" for="profile-background-8">Hi Jane!</label>
+        <label class="account-edit__image-label" for="profile-background-8">Hi {{ customer.first_name }}!</label>
         <input type="radio"
-          id="profile-background-8"
-          name="profile-image"
-          value="profile-background-8"
+          id="profile-image-8"
+          name="profile_image"
+          value="image-8"
           class="account-edit__image-radio"
-          style="background-image:url({{ 'edit-account-nature-2.png' | asset_url }})"/>
+          style="background-image:url({{ 'proiflie-image-8.jpg' | asset_img_url: '200x' }})"/>
       </div>
     </div>
 
     <div class="registration-modal__navigation">
-      <button type="button" class="registration-modal__btn-wire-alt">Update</button>
+      <button type="button" id="update-profile-pic" class="registration-modal__btn-wire-alt">Update</button>
     </div>
+    </form>
   </div>
 </div>
-<!-- Script -->  
+<!-- Script -->
 {% render 'mydyln-script' %}
