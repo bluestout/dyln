@@ -3,8 +3,11 @@
   justify-content: center;
 
   button {
+    @include button(solid, square, 1);
     @include font-body(bold);
-    @include text(20px, 1.2, $color-theme-1, 1px);
+    @include text(20px, 1.2, $color-white, 1px);
+    margin: 0 10px;
+    padding: 9px 20px;
 
     &.disabled {
       color: $color-theme-19;
@@ -13,5 +16,12 @@
 
   @include media-query($medium-up) {
     display: none;
+  }
+
+  @include media-query($small) {
+    button {
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
   }
 }

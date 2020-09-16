@@ -30,6 +30,14 @@ function handleVideoCloseClick() {
     video.pause();
     video.currentTime = 0;
   }
+  iframeReset();
+}
+
+function iframeReset() {
+  const $iframeVideo = $(`${selectors.videoModal} iframe[src*="youtube.com/embed"]`);
+  $iframeVideo.each(function() {
+    this.src = this.src;
+  });
 }
 
 $(document).on("click", selectors.videoOpen, handleVideoOpenClick);

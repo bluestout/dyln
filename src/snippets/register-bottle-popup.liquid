@@ -9,7 +9,6 @@
         </span>
       </button>
 
-      {% comment %} modal header is the same, just the data points change {% endcomment %}
       <div class="registration-modal__header">
         <h3 class="registration-modal__title profile-bg" style="background-image:url('{{ 'proiflie-image-1.jpg' | asset_url }}');">Bottle Registration <div class="account-header__wave"></div></h3>
         <div class="registration-modal__progress">
@@ -25,15 +24,8 @@
       <div class="registration-modal__page step_code" data-step="1">
         <h4 class="registration-modal__page-title">Insert the 3-digit or 4-digit code on the bottom of your bottle.</h4>
         <div class="registration-modal__code-video-wrap">
-          {% comment %} 
-          <video class="registration-modal__code-video"  height="110" autoplay muted loop playsinline>
-            <source src="{{ 'small-sample-video.mp4' | asset_url }}" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-          {% endcomment %}
-          {% comment %} we should use a video rather than a gif, but if we must use gifs, here's the img element for gifs, you can just remove the video and uncomment the img {% endcomment %}
-          
-         <img class="registration-modal__code-gif" alt="" src="//cdn.shopify.com/s/files/1/0511/9421/t/222/assets/bottle_code_250x250.png"  height="110" /> 
+
+         <img class="registration-modal__code-gif" alt="" src="//cdn.shopify.com/s/files/1/0511/9421/t/222/assets/bottle_code_250x250.png"  height="110" />
         </div>
         <div class="registration-modal__input-wrap code">
           <label for="bottle-registration-code" class="visually-hidden">Enter Code</label>
@@ -53,11 +45,6 @@
           <div class="registration-modal__image-wrap btl-finish-warap text-center">
             <img class="btl-finish reg-btl-img" mt-src="//cdn.shopify.com/s/files/1/0511/9421/t/222/assets/bottle_matte_200x200.png" cm-src="//cdn.shopify.com/s/files/1/0511/9421/t/222/assets/bottle_chrome_200x200.png" alt="" src=""  height="110" />
           </div>
-          <!--
-          <div class="registration-modal__suggestion-wrap">
-            <img class="btl-finish registration-modal__suggestion-gif reg-btl-img" mt-src="//cdn.shopify.com/s/files/1/0511/9421/t/222/assets/bottle_matte_200x200.png" cm-src="//cdn.shopify.com/s/files/1/0511/9421/t/222/assets/bottle_chrome_200x200.png" alt="" src=""  height="110" />
-          </div>
-      -->
         </div>
         <div class="vr-slave-color">
           <ul id="product-color-var" class="mattes">
@@ -120,17 +107,8 @@
         <div class="registration-modal__page-content">
           <div class="registration-modal__image-wrap">
             <img src="" class="reg-btl-img" alt="Image of DYLN water bottle" class="registration-modal__image" />
-            <!-- <span class="registration-modal__image-txt">32 oz</span> -->
           </div>
           <div class="registration-modal__suggestion-wrap">
-            {% comment %}
-            <video class="registration-modal__suggestion-video" width="190" height="40" autoplay muted loop playsinline>
-              <source src="{{ 'small-sample-video.mp4' | asset_url }}" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-      {% endcomment %}
-            
-            {% comment %} we should use a video rather than a gif, but if we must use gifs, here's the img element for gifs: {% endcomment %}
             <img class="registration-modal__suggestion-gif" alt="" src="{{ 'small-sample-gif-motion-elements.gif' | asset_url }}"  height="110" />
 
             <label for="bottle-registration-nickname" class="visually-hidden">Enter Bottle Name</label>
@@ -153,51 +131,6 @@
         <div class="registration-modal__date-wrap text-center">
           <input type="text" class="required" id="purchase_date" name="register_date" placeholder="Select Date">
         </div>
-        <!--
-        <div class="registration-modal__date-wrap">
-          
-          <span class="registration-modal__select-wrap">
-            <label for="bottle-registration-day" class="visually-hidden">Day</label>
-            <select name="day" id="bottle-registration-day" class="registration-modal__select">
-              <option value="" disabled selected hidden>00</option>
-              {% for n in (1..31) %}
-              <option value="{{ n }}">{% if n < 10 %}0{% endif %}{{ n }}</option>
-              {% endfor %}
-            </select>
-            <svg class="registration-modal__select-icon" width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
-          </span>
-          <span class="registration-modal__select-wrap">
-            <label for="bottle-registration-month" class="visually-hidden">Month</label>
-            <select name="month" id="bottle-registration-month" class="registration-modal__select">
-              <option value="" disabled selected hidden>Month</option>
-              <option value="1">January</option>
-              <option value="2">February</option>
-              <option value="3">March</option>
-              <option value="4">April</option>
-              <option value="5">May</option>
-              <option value="6">June</option>
-              <option value="7">July</option>
-              <option value="8">August</option>
-              <option value="9">September</option>
-              <option value="10">October</option>
-              <option value="11">November</option>
-              <option value="12">December</option>
-            </select>
-            <svg class="registration-modal__select-icon" width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
-          </span>
-          <span class="registration-modal__select-wrap">
-            <label for="bottle-registration-month" class="visually-hidden">Year</label>
-            <select name="year" id="bottle-registration-year" class="registration-modal__select">
-              <option value="" disabled selected hidden>0000</option>
-              {% for n in (2016..2020) %}
-                <option value="n">{{ n }}</option>
-              {% endfor %}
-            </select>
-            <svg class="registration-modal__select-icon" width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
-          </span>
-
-        </div>
-        -->
         <div class="registration-modal__refills">
           <label class="registration-modal__page-txt" for="bottle-registration-refills">Refills per day</label>
           <div class="registration-modal__range-scale">
@@ -229,7 +162,7 @@
             </span>
           </span>
         </div>
-        </div>  
+        </div>
         <div class="clearfix"></div>
         <div class="registration-modal__navigation">
           <button type="button" class="registration-modal__btn-alt">Back</button>
@@ -251,16 +184,6 @@
         </div>
         <div class="registration-modal__navigation">
           <div class="registration-modal__phone-wrap">
-            <!--
-            <div class="registration-modal__input-wrap country">
-              <label for="bottle-registration-country" class="visually-hidden">Country</label>
-              <select name="country" id="bottle-registration-country" class="registration-modal__country-select">
-                {% comment %} Not sure which countries will be needed here {% endcomment %}
-                {% comment %} I have a small js script for custom selects, the only way to add images into an input is via a custom select that uses js{% endcomment %}
-                <option value="usa"></option>
-              </select>
-            </div>
-      -->
             <div class="registration-modal__input-wrap phone">
               <label for="bottle-registration-phone" class="visually-hidden">Phone Number</label>
               <input type="phone" id="bottle-registration--phone" class="registration-modal__input" placeholder="000 000 0000"/>

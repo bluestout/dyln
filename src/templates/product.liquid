@@ -2,15 +2,18 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <div class="pdp-content d-lg-none">
+        <div class="pdp-content d-lg-none relative">
           <div class="row no-gutters">
             <div class="col-md-12 col-7">
               <h1 class="pdp-content__title">{{ product.title }}</h1>
             </div>
-            <div class="col-md-12 col-5">
+            <div class="col-md-12 col-4">
               <div class="pdp-content__reviews">
                 <span class="stamped-product-reviews-badge" data-id="{{ product.id }}">{{ product.metafields.stamped.badge }}</span>
               </div>
+            </div>
+            <div class="col-1 d-sm-none static">
+              {% section 'pdp-sizes-dropdown' %}
             </div>
           </div>
         </div>
@@ -28,22 +31,16 @@
 
         {% section 'pdp-content' %}
 
-        {% assign show_diffusers_products = settings.extra_diffusers_show_where | split: ',' %}
         {% assign show_diffuser_form = false %}
-
-        {% for s_d_product in show_diffusers_products %}
-          {% assign compare_p_id = product.id | append: ' ' | strip %}
-          {% if s_d_product == compare_p_id %}
-            {% assign show_diffuser_form = true %}
-            {% break %}
-          {% endif %}
-        {% endfor %}
-
+        {% if settings.extra_diffusers_show_where contains product.id %}
+          {% assign show_diffuser_form = true %}
+        {% endif %}
         {% if settings.extra_diffusers_product == product.handle %}
           {% render 'subscription-form' with settings.extra_diffusers_product
             current_product_id: product.id
             show_extras: true,
             note: settings.extra_diffusers_note,
+            index: 8,
           %}
         {% else %}
           {% section 'pdp-form' %}
@@ -57,6 +54,7 @@
               title: settings.extra_diffusers_title,
               note: settings.extra_diffusers_note
               hide_price: true
+              index: 9,
             %}
           {% endunless %}
         {% endif %}

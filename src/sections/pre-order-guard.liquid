@@ -10,7 +10,7 @@
           max_height: 680,
           wrapper_class: "po-guard__image-container",
           image_class: "po-guard__image",
-          snippet_index: 35
+          snippet_index: 72
         -%}
         <div class="col-md-3"></div>
         <div class="col-md-4">
@@ -27,14 +27,17 @@
                 max_height: 52,
                 wrapper_class: "po-guard__featured-image-container",
                 image_class: "po-guard__featured-image",
-                snippet_index: 35
+                snippet_index: 73
               -%}
               <p>{{ block.settings.featured_item_title }}</p>
             </div>
           {% endfor %}
         </div>
       </div>
-      <a href="{{ section.settings.cta_link }}" class="po-guard__btn">{{ section.settings.cta_text }}</a>
+      <a href="{{ section.settings.cta_link }}"
+        class="po-guard__btn"
+          {% if section.settings.cta_tab_id != blank %}data-po-tab-open="{{ section.settings.cta_tab_id }}"{% endif %}
+          {% if section.settings.cta_scroll_to != blank %}data-scroll-to="{{ section.settings.cta_scroll_to }}"{% endif %}>{{ section.settings.cta_text }}</a>
     </div>
   </div>
 </div>
@@ -73,6 +76,18 @@
         "type": "url",
         "id": "cta_link",
         "label": "CTA Link"
+      },
+      {
+        "type": "text",
+        "id": "cta_scroll_to",
+        "label": "Link ScrollTo",
+        "info": "If a html selector is input here, the link will smooth scroll to that selector instead of going to an url."
+      },
+      {
+        "type": "text",
+        "id": "cta_tab_id",
+        "label": "Link Tab Open",
+        "info": "If the link should open a shop all tab, insert the id of the shop tab here. (index is top tab followed by inner tab index, so Bottles, size 16 is index 11, Sports caps, standard is 32, Extra diffusers is 2)"
       }
     ],
     "blocks":[

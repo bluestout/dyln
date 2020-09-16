@@ -1,10 +1,10 @@
-<div class="body-tab account-orders"> 
+<div class="body-tab account-orders">
   <div class="account-orders__new-wrap">
     <a href="https://www.dyln.co/products/dyln-insulated-alkaline-water-bottle-32-oz-wide-mouth">
     <button type="button" class="account-orders__btn-new">Place new Order</button>
-    </a>  
+    </a>
   </div>
-  
+
   {% if customer.orders_count > 0 %}
   {%- assign order_count = 0 %}
   {% for order in customer.orders %}
@@ -38,15 +38,15 @@
           <div class="account-orders__info brand-blue last"><a href="{{ fulfillments.tracking_url }}" target="_blank">{{ fulfillments.tracking_company}} #{{ fulfillments.tracking_number }}</a></div>
           {% else %}
           <h4 class="account-orders__subtitle">Tracking</h4>
-          <div class="account-orders__info brand-blue last">Wating For Shipping</div>          
+          <div class="account-orders__info brand-blue last">Wating For Shipping</div>
           {% endif %}
         </div>
-        </div>  
+        </div>
       </div>
       <div class="col-md-6">
         <div class="order-right-wrap" {% if order_count > 0 %} style="display:none" {% endif %}>
         <h4 class="account-orders__item-title last">Order Content</h4>
-         {% for line_item in order.line_items %} 
+         {% for line_item in order.line_items %}
         <div class="account-orders__item">
           <div class="account-orders__item-left">
             <img src="{{ line_item.image | img_url: '220x' }}" alt="Image of DYLN water bottle" class="account-orders__item-image" />
@@ -74,7 +74,7 @@
             <div class="account-orders__totals-label"><strong>{{ order.subtotal_price | money }}</strong></div>
             <div class="account-orders__totals-label">{{ order.tax_price | money }}</div>
             <div class="account-orders__totals-label">{{ order.shipping_price | money }}</div>
-            
+
             <div class="account-orders__totals-label"><strong>{{ order.total_price | money }}</strong></div>
             <div class="account-orders__totals-label brand-blue">{{ order.total_discounts | money }}</div>
           </div>

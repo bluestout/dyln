@@ -14,11 +14,12 @@ import { register } from "@shopify/theme-sections";
 import { forceFocus } from "@shopify/theme-a11y";
 import { ProductForm } from "@shopify/theme-product-form";
 import { scrollTo } from "../components/scroll-to";
-import { handleize } from "../components/helpers";
+import { handleize, toggleTabindexInChildren } from "../components/helpers";
 
 const classes = {
   hide: "hide",
   active: "active",
+  slickInit: "slick-initialized"
 };
 
 const keyboardKeys = {
@@ -28,7 +29,7 @@ const keyboardKeys = {
 const datasets = {
   atc: {
     option: "atc-option",
-  },
+  }
 };
 
 const htmlArrowNext =
@@ -62,12 +63,17 @@ const selectors = {
   userImages: "[data-pdp-user-images]",
   json: "[data-pdp-product-json]",
   jsonOptions: "[data-pdp-product-options]",
+  schemaSettings: "[data-product-schema-settings]",
+  gorgiasChat: "gorgias-web-messenger-container",
+  sizesMobile: "[data-pdp-s]",
+  sizesMobileToggle: "[data-pdp-s-toggle]",
   video: {
     parent: "[data-pdp-video-parent]",
-    content: "[data-pdp-video-non-video]",
-    wrap: "[data-pdp-video-wrap]",
-    button: "[data-pdp-video-button]",
-    bg: "[data-pdp-video-bg]",
+    open: "[data-pdp-video-open]",
+    modal: "[data-pdp-video-modal]",
+    close: "[data-pdp-video-close]",
+    focusOut: "[data-pdp-video-focusout]",
+    focusIn: "[data-pdp-video-focusin]",
   },
   tabs: {
     elements: "[data-pdp-specs-elements]",
@@ -100,6 +106,8 @@ const timing = {
 };
 
 const productFormOptionChange = new Event("productFormOptionChange");
+
+let isSlickFiltered = false;
 
 register("product", {
   onLoad() {
@@ -180,7 +188,11 @@ register("product", {
       this.renderFeaturedImage(thumbnail.dataset.thumbnailId);
       this.renderActiveThumbnail(thumbnail.dataset.thumbnailId);
     } else if (slick) {
-      $(selectors.galleryIndex).slick("slickGoTo", slick.dataset.slickIndex);
+      if (isSlickFiltered) {
+        $(selectors.galleryIndex).slick("slickGoTo", $(event.target.closest(selectors.slick)).index());
+      } else {
+        $(selectors.galleryIndex).slick("slickGoTo", slick.dataset.slickIndex);
+      }
     }
 
     return;
@@ -224,6 +236,14 @@ register("product", {
       return null;
     }
 
+    const gallerySlick = this.container.querySelector(selectors.gallery);
+    const galleryIndex = this.container.querySelector(selectors.galleryIndex);
+
+    if (gallerySlick && galleryIndex && gallerySlick.classList.contains(classes.slickInit)) {
+      $(gallerySlick).slick("slickUnfilter");
+      $(galleryIndex).slick("slickUnfilter");
+    }
+
     const colorElement = this.container.querySelector(
       selectors.galleryByColor(color)
     );
@@ -231,11 +251,11 @@ register("product", {
     if (!colorElement) {
       return null;
     }
-    const slickElement = colorElement.closest(selectors.slick);
-    const index = slickElement.dataset.slickIndex;
-    const gallerySlick = this.container.querySelector(selectors.gallery);
-    if (index && gallerySlick) {
-      $(gallerySlick).slick("slickGoTo", index, false);
+
+    if (gallerySlick && galleryIndex && gallerySlick.classList.contains(classes.slickInit)) {
+      $(gallerySlick).slick("slickFilter", `[data-color="${color.trim()}"]`);
+      $(galleryIndex).slick("slickFilter", `[data-color="${color.trim()}"]`);
+      isSlickFiltered = true;
     }
   },
 
@@ -375,31 +395,50 @@ function init() {
   const $tFeatures = $(selectors.tabs.features);
   const $tInput = $(selectors.tabs.input);
   const $userImages = $(selectors.userImages);
+  const color = $(`[data-section-type="product"] [name="options[Color]"]:checked`).val();
 
-  handleAtcBar();
+  let fading = false;
+  try {
+    const options = JSON.parse($(selectors.schemaSettings).text());
+    fading = options.fade_pdp;
+  } catch (error) { }
 
-  if ($(window).width() > 767) {
-    if ($gallery.length > 0) {
-      $gallery.slick({
-        swipeToSlide: false,
-        arrows: false,
-        dots: false,
-        slidesToShow: 1,
-        asNavFor: selectors.galleryIndex,
-      });
+  if ($gallery.length > 0) {
+    $gallery.slick({
+      swipeToSlide: false,
+      arrows: false,
+      dots: false,
+      slidesToShow: 1,
+      asNavFor: selectors.galleryIndex,
+      fade: fading,
+      cssEase: 'linear',
+    });
+    $gallery.find("[data-color]").each((i, item) => {
+      $(item).closest(selectors.slick).attr("data-color", $(item).data("color"));
+    });
+    if (color) {
+      $gallery.slick("slickFilter", `[data-color="${color.trim()}"]`);
+      isSlickFiltered = true;
     }
+  }
 
-    if ($galleryIndex.length > 0) {
-      $galleryIndex.slick({
-        swipeToSlide: true,
-        arrows: true,
-        dots: false,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        asNavFor: selectors.gallery,
-        prevArrow: htmlArrowPrev,
-        nextArrow: htmlArrowNext,
-      });
+  if ($galleryIndex.length > 0) {
+    $galleryIndex.slick({
+      swipeToSlide: true,
+      arrows: true,
+      dots: false,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      asNavFor: selectors.gallery,
+      prevArrow: htmlArrowPrev,
+      nextArrow: htmlArrowNext,
+    });
+    $galleryIndex.find("[data-color]").each((i, item) => {
+      $(item).closest(selectors.slick).attr("data-color", $(item).data("color"));
+    });
+    if (color) {
+      $galleryIndex.slick("slickFilter", `[data-color="${color.trim()}"]`);
+      isSlickFiltered = true;
     }
   }
 
@@ -488,30 +527,8 @@ function init() {
       ],
     });
   }
-}
 
-function handleVideoPlayClick(event) {
-  event.preventDefault();
-  const $source = $(event.currentTarget);
-  const $vParent = $source.closest(selectors.video.parent);
-  const $vWrap = $(selectors.video.wrap);
-  const $vContent = $vParent.find(selectors.video.content);
-  const $vBg = $vParent.find(selectors.video.bg);
-
-  if (
-    $source.length > 0 &&
-    $vParent.length > 0 &&
-    $vWrap.length > 0 &&
-    $vContent.length > 0
-  ) {
-    if ($vBg.length > 0) {
-      $vBg.fadeOut(timing.default);
-    }
-
-    $vContent.fadeOut(timing.default, () => {
-      $vWrap.fadeIn(timing.default);
-    });
-  }
+  handleAtcBar();
 }
 
 function handleSpecsPlayClick(event) {
@@ -626,26 +643,78 @@ function handleAtcBar() {
     return;
   }
 
+  const gorgiasChat = document.getElementById(selectors.gorgiasChat);
+
   const rectangle = form.getBoundingClientRect();
 
   if (rectangle.top < 0) {
     if (!atc.classList.contains(classes.active)) {
       atc.classList.add(classes.active);
     }
+    if (gorgiasChat && !gorgiasChat.classList.contains("gorgias-offset")) {
+      gorgiasChat.classList.add("gorgias-offset");
+    }
   } else if (atc.classList.contains(classes.active)) {
     atc.classList.remove(classes.active);
+    if (gorgiasChat && gorgiasChat.classList.contains("gorgias-offset")) {
+      gorgiasChat.classList.remove("gorgias-offset");
+    }
   }
 }
 
-$(selectors.tabs.input).on("input propertychange", handleInputChange);
+function handleVideoOpenClick() {
+  const $modal = $(selectors.video.modal);
+  $modal.fadeIn();
+  toggleTabindexInChildren($modal, 1);
+  $(selectors.video.focusIn).focus();
+  const video = $modal.find("video").get(0);
+  if (video && !video.controls) {
+    video.play();
+  }
+}
 
-// $(document).on("click", selectors.play, handleGalleryPlayClick);
-$(document).on("click", selectors.video.button, handleVideoPlayClick);
+function handleVideoCloseClick() {
+  const $modal = $(selectors.video.modal);
+  $modal.fadeOut();
+  toggleTabindexInChildren($modal, 2);
+  $(selectors.video.focusOut).focus();
+  const video = $modal.find("video").get(0);
+  if (video && !video.controls) {
+    video.pause();
+    video.currentTime = 0;
+  }
+  iframeReset();
+}
+
+function iframeReset() {
+  const $iframeVideo = $(`${selectors.video.modal} iframe[src*="youtube.com/embed"]`);
+  $iframeVideo.each(function() {
+    this.src = this.src;
+  });
+}
+
+$(selectors.tabs.input).on("input propertychange", handleInputChange);
 $(document).on("click", selectors.tabs.element, handleSpecsPlayClick);
 $(document).on("click", selectors.tabs.return, handleSpecsReturnClick);
 $(document).on("click", selectors.atc.more, toggleAtcOptions);
 $(document).on("click", selectors.atc.option, handleAtcOptionClick);
 $(document).on("click", selectors.atc.add, handleAtcSubmit);
+$(document).on("click", selectors.video.open, handleVideoOpenClick);
+$(document).on("click", selectors.video.close, handleVideoCloseClick);
+$(document).on("click", selectors.sizesMobileToggle, () => {
+  $(selectors.sizesMobile).slideToggle();
+});
+
+
+let smoochInterval;
+let smoochCount = 0;
+smoochInterval = setInterval(function(){
+  smoochCount++;
+  if (smoochCount >= 15) {
+    handleAtcBar();
+    clearInterval(smoochInterval);
+  }
+}, 1000);
 
 document.addEventListener("windowScrolledRedux", handleAtcBar);
 

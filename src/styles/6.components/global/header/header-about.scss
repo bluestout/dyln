@@ -105,8 +105,15 @@
     &__menu-link {
       @include font-header(500);
       @include text(20px, 30px, $color-body-text, 0.18px);
+      @include underline($color-main-1);
+      @include transition(color);
       margin: 0 40px 10px;
       display: inline-block;
+
+      &:hover,
+      &:focus {
+        color: $color-main-1;
+      }
     }
 
     &__close {
@@ -139,10 +146,6 @@
     @include transition(background-color);
     display: none;
     padding: 0 0 5px;
-
-    &__main-all-link {
-      display: none;
-    }
 
     &__main-link {
       @include transition(background-color);

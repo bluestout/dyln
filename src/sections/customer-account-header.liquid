@@ -52,55 +52,42 @@
           <div class="row no-gutters">
             <div class="col-lg-6 account-header__col-offset">
               <h1 class="account-header__title">Welcome {{ customer.first_name }}</h1>
-              {% comment %} Not sure what the account rank colors will be, I assume
-                account-header__badge--gold, account-header__badge--bronze
-                classes for other ranks
-               {% endcomment %}
-              <div class="account-header__badge account-header__badge--silver">Silver Member</div>
+				<div class="account-header__badge" data-account-tier-badge></div>
               <p class="account-header__description">Use this page to keep track of your points, orders and Diffusers…</p>
             </div>
             <div class="col-lg-6 align-self-center">
               <div class="account-header__status">
                 <div class="account-header__status-item">
-                  {% comment %}
-                  I added classes for different colors:
-                  account-header__status-badge--primary : dyln blue
-                  account-header__status-badge--secondary : dyln green
-                  account-header__status-badge--alert : theme yellow
-                  account-header__status-badge--warning : theme red
-                  {% endcomment %}
                   <span class="account-header__status-badge account-header__status-badge--primary">
                     <span class="account-header__status-icon" aria-ignore="true">
                       <svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg>
                     </span>
-                    <span class="account-header__status-number" id="stamped-rewards-points-placeholder">300</span>
+                    <span class="account-header__status-number" id="stamped-rewards-points-placeholder">0</span>
                   </span>
                   <span class="account-header__status-txt">DYLN Points earned</span>
                 </div>
-
                 <div class="account-header__status-item">
-                  <span class="account-header__status-badge account-header__status-badge--primary">
-                    <span class="account-header__status-icon" aria-ignore="true">
-                      <svg width="13" height="16" viewBox="0 0 13 16" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0 1)" fill="none" fill-rule="evenodd"><circle stroke="#FFF" stroke-width="1.5" cx="6.429" cy="8.571" r="5.679"/><circle fill="#FFF" cx="6.429" cy="8.571" r="1"/><path stroke="#FFF" stroke-width="1.5" stroke-linecap="square" d="M4.286.536h4.285M6.429.536v2.143"/><path stroke="#FFF" stroke-width="1.5" stroke-linecap="round" d="M4.728 6.429l1.701 2.142"/></g></svg>
+                  {% if orders[0] == blank %}
+                    <span class="account-header__status-badge account-header__status-badge--warning">
+                      <span class="account-header__status-num-alt">No Orders</span>
                     </span>
-                    <span class="account-header__status-number">60</span>
-                  </span>
-                  <span class="account-header__status-txt">Days left on your Diffuser</span>
-                </div>
-
-                <div class="account-header__status-item">
-                  <span class="account-header__status-badge account-header__status-badge--primary">
-                    <span class="account-header__status-icon" aria-ignore="true">
-                      <svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg"><g stroke="#FFF" stroke-width="1.5" fill="none" fill-rule="evenodd"><circle cx="7.5" cy="7.5" r="6.75"/><path d="M4.5 7.75l2.474 2.474 4.089-4.974"/></g></svg>
-                    </span>
-                    {% comment %}
-                    the design does not show what icon to use for non-delivered status, so I added the stopwatch icon for "in progress" below if you're gonna add an IF/ELSE statement:
-                    <span class="account-header__status-icon" aria-ignore="true">
-                      <svg width="13" height="16" viewBox="0 0 13 16" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0 1)" fill="none" fill-rule="evenodd"><circle stroke="#FFF" stroke-width="1.5" cx="6.429" cy="8.571" r="5.679"/><circle fill="#FFF" cx="6.429" cy="8.571" r="1"/><path stroke="#FFF" stroke-width="1.5" stroke-linecap="square" d="M4.286.536h4.285M6.429.536v2.143"/><path stroke="#FFF" stroke-width="1.5" stroke-linecap="round" d="M4.728 6.429l1.701 2.142"/></g></svg>
-                    </span>
-                    {% endcomment %}
-                    <span class="account-header__status-num-alt">Delivered</span>
-                  </span>
+                  {% else %}
+                    {% if orders[0].fulfillment_status == "Fulfilled" %}
+                      <span class="account-header__status-badge account-header__status-badge--primary">
+                        <span class="account-header__status-icon" aria-ignore="true">
+                          <svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg"><g stroke="#FFF" stroke-width="1.5" fill="none" fill-rule="evenodd"><circle cx="7.5" cy="7.5" r="6.75"/><path d="M4.5 7.75l2.474 2.474 4.089-4.974"/></g></svg>
+                        </span>
+                        <span class="account-header__status-num-alt">Delivered</span>
+                      </span>
+                    {% else %}
+                      <span class="account-header__status-badge account-header__status-badge--alert">
+                        <span class="account-header__status-icon" aria-ignore="true">
+                          <svg width="13" height="16" viewBox="0 0 13 16" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0 1)" fill="none" fill-rule="evenodd"><circle stroke="#FFF" stroke-width="1.5" cx="6.429" cy="8.571" r="5.679"/><circle fill="#FFF" cx="6.429" cy="8.571" r="1"/><path stroke="#FFF" stroke-width="1.5" stroke-linecap="square" d="M4.286.536h4.285M6.429.536v2.143"/><path stroke="#FFF" stroke-width="1.5" stroke-linecap="round" d="M4.728 6.429l1.701 2.142"/></g></svg>
+                        </span>
+                        <span class="account-header__status-num-alt">In Progress</span>
+                      </span>
+                    {% endif %}
+                  {% endif %}
                   <span class="account-header__status-txt">Last order Status</span>
                 </div>
               </div>
@@ -114,15 +101,10 @@
 
   <div class="account-header__wave"></div>
 </section>
+
 {% schema %}
   {
     "name": "Customer Account Header",
     "settings": []
   }
 {% endschema %}
-
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
-{% endjavascript %}

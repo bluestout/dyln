@@ -1,25 +1,25 @@
-<div class="container-fluid">
-  <div class="container">
-    <div class="row">
-      <div class="po-on-the-go__container">
-        <div class="col-md-3 col-lg-4">
-          <h2>{{ section.settings.title }}</h2>
-        </div>
-        <div class="col-md-9 col-md-8 d-flex justify-content-center align-items-center flex-wrap">
-          {% for block in section.blocks %}
-            <div class="col-xs-12 col-md-3 text-center">
-              {%- render 'responsive-image' with
-                image: block.settings.featured_step_icon.src,
-                max_width: 1024,
-                max_height: 1024,
-                wrapper_class: "po-on-the-go__image-container",
-                image_class: "po-on-the-go__image",
-                snippet_index: 35
-              -%}
-              <h3>{{ block.settings.featured_step_title }}</h3>
-              <p>{{ block.settings.featured_step_content }}</p>
-            </div>
-          {% endfor %}
+<div class="container">
+  <div class="po-on-the-go__container">
+    <div class="row align-items-center">
+      <div class="col-md-3 col-lg-4">
+        <h2>{{ section.settings.title }}</h2>
+      </div>
+      <div class="col-md-9 col-lg-8">
+        <div class="row justify-content-center align-items-center flex-wrap">
+        {% for block in section.blocks %}
+          <div class="col-xs-12 col-md-3 text-center">
+            {%- render 'responsive-image' with
+              image: block.settings.featured_step_icon.src,
+              max_width: 1024,
+              max_height: 1024,
+              wrapper_class: "po-on-the-go__image-container",
+              image_class: "po-on-the-go__image",
+              snippet_index: 77
+            -%}
+            <h3>{{ block.settings.featured_step_title }}</h3>
+            <p>{{ block.settings.featured_step_content }}</p>
+          </div>
+        {% endfor %}
         </div>
       </div>
     </div>

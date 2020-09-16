@@ -136,6 +136,63 @@
       }
     }
 
+    .opt-in-sms {
+      @include media-query($large-down) {
+        margin-top: -15px;
+      }
+
+      h1 {
+        display: none;
+      }
+
+      > div > div > div > div {
+        display: none;
+      }
+
+      > div {
+        min-width: auto;
+      }
+
+      > div > div > div > div:nth-of-type(2) {
+        display: block;
+
+        input[name="phone_number"] {
+          color: white;
+          padding: 10px;
+          border: 1px solid white;
+          border-radius: 30px;
+          background-color: rgba(255, 255, 255, 1);
+          padding-left: 70px;
+          width: 270px;
+          height: 47px;
+          font-family: "Open Sans", sans-serif;
+          @include text(15px, 1.2, $color-black, 0px);
+
+          @include media-query($xxl-down) {
+            width: 100%;
+          }
+
+          @include media-query($large-down) {
+            width: 270px;
+          }
+
+          & + p {
+            display: none;
+          }
+        }
+      }
+
+      button {
+        height: 44px;
+        width: 47px;
+        top: 1px;
+
+        @include media-query($medium-down) {
+          top: 1px;
+        }
+      }
+    }
+
     &-opt-in {
       display: none;
 
@@ -225,24 +282,31 @@
   }
 
   .opt-in-sms {
+    position: relative;
+
+    @include media-query($small) {
+      width: 100%;
+      top: 5px;
+    }
+
+    > div {
+      overflow: visible;
+    }
+
     button {
       display: inline-block;
-      left: -52px;
-      top: 1px;
       line-height: 0;
+      position: absolute;
+      left: 222px;
+      z-index: 99999; /* because of SMSBump injected z-index */
+      top: 11.5px;
 
-      @include media-query($xl-up) {
-        top: 0;
+      @include media-query($xxl-down) {
+        left: 191px
       }
 
-      @include media-query($small) {
-        top: 0;
-      }
-
-      @media screen and (width: 320px) {
+      @include media-query($large-down) {
         left: 222px;
-        top: 2px;
-        position: absolute;
       }
     }
 
@@ -316,10 +380,6 @@
     float: left;
     padding: 0 10px 0 0;
 
-    &:first-of-type {
-      display: none;
-    }
-
     &.active {
       color: $color-body-text;
     }
@@ -330,21 +390,48 @@
     flex-flow: row nowrap;
     overflow-x: scroll;
     overflow-y: hidden;
+
+    scrollbar-width: thin;
+    padding: 10px 10px 15px;
+    margin: -10px -10px 0;
+
+    &::-webkit-scrollbar {
+      width: 20px;
+      height: 7px;
+      margin-top: 5px;
+      -webkit-appearance: none;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: $color-transparent;
+      -webkit-appearance: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $color-theme-7;
+      border-radius: 6px;
+      border: 1px solid $color-transparent;
+      -webkit-appearance: none;
+    }
   }
 
   &__lf-article {
     position: relative;
+    top: 0;
     width: 312px;
     height: 312px;
     flex: 0 0 312px;
     margin-right: 15px;
-    transform: translateY(0);
-    transition: ease-in-out transform 0.3s;
+    @include transition(top, box-shadow);
 
     &:hover,
     &:focus {
-      transform: translateY(-20px);
-      transition: ease-in-out transform 0.3s;
+      top: -6px;
+      box-shadow: 0 0 4px 2px rgba($color-theme-7, 0.2);
+    }
+
+    &:active {
+      box-shadow: none;
     }
   }
 
@@ -356,9 +443,9 @@
     height: 40%;
     display: block;
     background-image: linear-gradient(
-      to bottom,
-      $color-transparent 0%,
-      $color-theme-9 100%
+                    to bottom,
+                    $color-transparent 0%,
+                    $color-theme-9 100%
     );
   }
 
@@ -626,6 +713,12 @@
       margin-bottom: 30px;
     }
 
+    #liveChat {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
     a {
       @include font-body;
       @include text(14px, 24px, $color-white, 0.16px);
@@ -690,30 +783,6 @@
         display: none;
       }
     }
-  }
-}
-
-.site-footer__lf-list {
-  scrollbar-width: thin;
-  padding-bottom: 15px;
-
-  &::-webkit-scrollbar {
-    width: 20px;
-    height: 7px;
-    margin-top: 5px;
-    -webkit-appearance: none;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: $color-transparent;
-    -webkit-appearance: none;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: $color-black;
-    border-radius: 6px;
-    border: 1px solid $color-transparent;
-    -webkit-appearance: none;
   }
 }
 

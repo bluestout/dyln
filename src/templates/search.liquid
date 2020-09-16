@@ -1,5 +1,35 @@
+{% if settings.search_override_default %}
+  <div class="search-page" data-search-override-defaults>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+          <h1 class="search-page__title">
+            {{ 'general.search.title' | t }}
+          </h1>
+        </div>
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+          <form action="/search" method="get" role="search" class="search-page__form">
+            <label for="Search" class="visually-hidden">
+              {{ 'general.search.placeholder' | t }}
+            </label>
+            <input type="search"
+              name="q"
+              id="Search"
+              value="{{ search.terms | escape }}"
+              placeholder="{{ 'general.search.placeholder' | t }}" />
+            <button type="submit">
+              <span>{{ 'general.search.submit' | t }}</span>
+            </button>
+          </form>
+        </div>
+      </div>
+      <div data-search-page-results></div>
+    </div>
+  </div>
+{% else %}
 {% paginate search.results by 10 %}
-
 <div class="search-page">
   <div class="container">
     <div class="row justify-content-center">
@@ -38,9 +68,9 @@
       {% else %}
         <h2 class="visually-hidden">{{ 'general.search.heading' | t: count: search.results_count }}</h2>
         <hr>
-        <ul class="search-page__list">
+        <div class="search-page__list">
           {% for item in search.results %}
-            <li class="search-page__item">
+            <div class="search-page__item">
               {% if item.object_type == 'product' %}
                 <a class="search-page__result-link" href="{{ item.url }}" title="{{ item.title }}">
                   <span class="row">
@@ -137,9 +167,9 @@
                   </span>
                 </a>
               {% endif %}
-            </li>
+            </div>
           {% endfor %}
-        </ul>
+        </div>
 
         {% if paginate.pages > 1 %}
           {% render 'pagination' with paginate %}
@@ -148,5 +178,5 @@
     {% endif %}
   </div>
 </div>
-
 {% endpaginate %}
+{% endif %}

@@ -6,12 +6,26 @@ const selectors = {
   buttonSlider: "[data-button-slider]",
   emailInput: "[data-email-input]",
   phoneInput: "[data-phone-input]",
+  submitPhone: "[data-phone-submit]"
 };
 
 const classes = {
   right: "right",
   active: "active",
 };
+
+function triggerSmsSubmission(event) {
+  event.preventDefault();
+
+  let smsButton = $(".opt-in-sms").find("button[type='submit']")[1];
+  $(smsButton).trigger("click");
+}
+
+function moveCustomBtn() {
+  setTimeout(function () {
+    $("[data-phone-submit]").insertAfter($(".XIWpM"));
+  }, 1500);
+}
 
 function handleSmsOptInClick() {
   $(selectors.buttonSlider).addClass(classes.right);
@@ -32,14 +46,23 @@ function handleEmailOptInClick() {
 $(document).ready(() => {
   $(selectors.smsOptIn).on("click", handleSmsOptInClick);
   $(selectors.emailOptIn).on("click", handleEmailOptInClick);
+  $(selectors.submitPhone).on("click", triggerSmsSubmission);
 
-  var input = document.querySelector("#phone");
-  var iti = window.intlTelInput(input, {
-    separateDialCode: true,
-    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.3/build/js/utils.js",
-  });
+  moveCustomBtn();
 
-  // store the instance variable so we can access it in the console e.g. window.iti.getNumber()
-  window.iti = iti;
+  setTimeout(function () {
+    var input = document.querySelector("input[name='phone_number']");
+    let iti;
+    try {
+      iti = window.intlTelInput(input, {
+        separateDialCode: true,
+        onlyCountries: ["us"],
+        autoPlaceholder: "off",
+        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.3/build/js/utils.js",
+      });
+    } catch (error) {}
 
+    // store the instance variable so we can access it in the console e.g. window.iti.getNumber()
+    window.iti = iti;
+  }, 1000);
 });

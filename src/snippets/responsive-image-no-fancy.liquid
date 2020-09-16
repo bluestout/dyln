@@ -1,0 +1,26 @@
+{% comment %} everything the same as on responsive image, just no fancy styling or js {% endcomment %}
+{%- capture responsive_image_counter %}{% increment responsive_image_counter %}{% endcapture -%}
+{% if snippet_index %}{% assign responsive_image_counter = snippet_index %}{% endif %}
+
+{%- if image.aspect_ratio <= 1 -%}{%- assign max_height_image = image.height | at_most: max_height -%}{%- assign max_width_image = max_height_image | times: image.aspect_ratio -%}{%- else -%}{%- assign max_width_image = image.width | at_most: max_width -%}{%- assign max_height_image = max_width_image | divided_by: image.aspect_ratio -%}{%- endif -%}
+{%- assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+{%- assign image_widths = '180,360,540,720,900,1080,1296,1512,1728,1944,2160,2376,2592,2808,3024' | split: ',' -%}
+{%- capture image_widths -%}{%- for width in image_widths -%}{%- assign width_num = width | plus: 0 | round -%}{%- if image.width >= width_num -%}{{ width_num }},{%- endif -%}{%- endfor -%}{{ image.width }}{%- endcapture -%}
+{%- assign image_widths = image_widths | strip -%}
+{% if span %}<span class="ImageWrapper-{{ image.id }}-{{ responsive_image_counter }} {{ wrapper_class }}"  {{ wrapper_attributes }}>{% else %}<div class="ImageWrapper-{{ image.id }}-{{ responsive_image_counter }} responsive-image__wrapper {{ wrapper_class }}"  {{ wrapper_attributes }}>{% endif %}
+<style>
+  .Image-{{ image.id }}-{{ responsive_image_counter }} {max-height: {{ max_height_image }}px;}
+  {%- comment -%}{%- endcomment -%}
+</style>
+{% assign max_width_string = max_width | append: 'x' %}
+  <img
+    class="Image-{{ image.id }}-{{ responsive_image_counter }}{{ image_class }}"
+    src="{{ image | img_url: max_width_string }}"
+    tabindex="-1"
+    alt="{{ image.alt | escape }}"
+    height="{{ max_height_image }}"
+    style="object-fit: scale-down;"
+    {{ image_attributes }}/>
+<noscript><img class="{{ image_class }}" src="{{ image | img_url: '2048x2048' }}" alt="{{ image.alt | escape }}"></noscript>
+{% if span %}</span>{% else %}</div>{% endif %}
+

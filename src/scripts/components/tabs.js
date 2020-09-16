@@ -20,7 +20,7 @@ const selectors = {
   tab: `[data-${datasets.tab}]`,
   link: `[data-${datasets.link}]`,
   tabByIndex: (index) => `[data-${datasets.tab}="${index}"]`,
-  linkByIndex: (index) => `[data-${datasets.link}="${index}"]`,
+  linkByIndex: (index) => `[data-${datasets.link}="${index}"]`
 };
 
 const classes = {
@@ -37,8 +37,9 @@ function tabs(event) {
   event.preventDefault ? event.preventDefault() : (event.returnValue = false);
   const $this = $(event.currentTarget);
   if (!$this.hasClass(classes.active)) {
+
     const index = $this.data(datasets.link);
-    if ($this.closest(selectors.containerInner) > 0) {
+    if ($this.closest(selectors.containerInner).length > 0) {
       const $container = $this.closest(selectors.containerInner);
       const $target = $container.find(selectors.tabByIndex(index));
       $container.find(selectors.link).not($this).each((i, item) => {

@@ -17,13 +17,8 @@
 @import "./pre-order-product";
 @import "./pre-order-shop";
 
-
 &#pre-order {
   overflow-x: hidden;
-
-  .site-footer {
-    display: none;
-  }
 
   .site-header__main {
     background-color: transparent;
@@ -75,7 +70,7 @@
 
   .site-header.fixed {
     .site-header__main {
-      background-color: rgba(255, 255, 255, 0.90);
+      background-color: rgba(255, 255, 255, 0.9);
     }
 
     .header-about__main-text,
@@ -104,7 +99,7 @@
 }
 
 .po-subscription {
-  box-shadow: 0px 10px 100px #EEE;
+  box-shadow: 0px 10px 100px #eee;
 }
 
 .pre-order-shop {

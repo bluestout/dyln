@@ -1,0 +1,18 @@
+{% if settings.extra_diffusers_product %}
+
+  {% render 'subscription-form' with settings.extra_diffusers_product
+    current_product_id: product.id
+    show_extras: true,
+    title: settings.extra_diffusers_title,
+    note: settings.extra_diffusers_note,,
+    index: 3
+  %}
+
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Product Diffusers",
+    "class": "pdp-diffusers"
+  }
+{% endschema %}

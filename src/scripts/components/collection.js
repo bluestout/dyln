@@ -2,14 +2,15 @@ import $ from "jquery";
 
 const dataSets = {
   catOptionBtn: "cat-option",
-  catOptionWrap: "cat-sub-wrap",
   piColorValue: "pi-option-value",
+  piOptionValue: "pi-option-value",
   piSizeValue: "pi-option-size",
   piMouthValue: "pi-option-mouth",
   subList: "cat-sub-list",
   subBtn: "cat-sub-button",
   currentFilter: "cat-current-item",
   currentType: "cat-current-type",
+  colorStatus: "cat-color-value",
 };
 
 const selectors = {
@@ -17,14 +18,15 @@ const selectors = {
   productCol: "[data-pi-item-col]",
   main: "[data-cat-button]",
   list: "[data-cat-list]",
+  group: "[data-cat-group]",
   subBtn: `[data-${dataSets.subBtn}]`,
   subList: `[data-${dataSets.subList}]`,
   catOptionBtn: `[data-${dataSets.catOptionBtn}]`,
-  catOptionWrap: `[data-${dataSets.catOptionWrap}]`,
   currentParent: "[data-cat-current]",
   currentFilter: `[data-${dataSets.currentFilter}]`,
   currentType: `[data-${dataSets.currentType}]`,
   filterReset: "[data-cat-filter-reset]",
+  colorStatus: `[data-${dataSets.colorStatus}]`,
 };
 
 const icons = {
@@ -41,11 +43,12 @@ const strings = {
   mouth: "Mouth",
   color: "Color",
   noFilter: "No filter",
+  guard: "Guard",
 };
 
 const timers = {
   currentF: 250,
-  product: 600,
+  product: 400,
   filterL: 250,
   filterDefault: 300,
   resetDefault: 300,
@@ -56,16 +59,17 @@ function handleCatButtonClick(event) {
   event.preventDefault();
 
   const $source = $(event.currentTarget);
+  const $parent = $source.closest(selectors.group);
   $source.toggleClass(classNames.active);
-  $(document)
+  $parent
     .find(selectors.list)
     .slideToggle(timers.filterL);
 
-  $(document)
+  $parent
     .find(selectors.subList)
     .slideUp(timers.filterL);
 
-  $(document)
+  $parent
     .find(selectors.subBtn)
     .removeClass(classNames.active);
 
@@ -75,16 +79,17 @@ function handleCatButtonClick(event) {
 function handleCatSubButtonClick(event) {
   event.preventDefault();
   const $source = $(event.currentTarget);
+  const $parent = $source.closest(selectors.group);
 
   const type = $source.data(dataSets.subBtn);
-  const $list = $(document).find(`[data-${dataSets.subList}="${type}"]`);
+  const $list = $parent.find(`[data-${dataSets.subList}="${type}"]`);
 
-  $(document)
+  $parent
     .find(selectors.subList)
     .not($list)
     .slideUp(timers.filterL);
 
-  $(document)
+  $parent
     .find(selectors.subBtn)
     .not($source)
     .removeClass(classNames.active);
@@ -112,18 +117,28 @@ function handleFilterChange($source) {
   const $parent = $source.closest(selectors.subList);
   const type = $parent.data(dataSets.subList);
 
+  $(selectors.colorStatus).data(dataSets.colorStatus, value);
+
+  handleFilterCatButtonStatus($source);
+
+  handleCurrentFilterBtn(value, type);
+
   if (type === strings.color) {
     handleProductColorSelect(value);
   }
 
-  handleFilterCatButtonStatus($source);
-
-  return handleCurrentFilterBtn(value, type);
+  return null;
 }
 
 function handleProductColorSelect(value) {
   const $products = $(selectors.product);
-  $products.find(`[data-${dataSets.piColorValue}="${value}"]`).click();
+  $products.each((index, product) => {
+    if ($(product).closest(selectors.product).is(":visible")) {
+      setTimeout(() => {
+        $(product).find(`input[value="${value}"]`).click();
+      }, 20);
+    }
+  });
 }
 
 let filterTimerHolder;
@@ -139,20 +154,26 @@ function filterLogic(timer) {
         let hasColor = true;
         let hasMouth = true;
         let hasSize = true;
+        let hasGuard = true;
 
         const mouthValue = getCurrentFilterValueByType(strings.mouth);
         const colorValue = getCurrentFilterValueByType(strings.color);
         const sizeValue = getCurrentFilterValueByType(strings.size);
+        const guardValue = getCurrentFilterValueByType(strings.guard);
+        const colorData = $(selectors.colorStatus).data(dataSets.colorStatus);
 
-        hasSize = checkIfProductHasSize($pItem, sizeValue);
-        hasMouth = checkIfProductHasMouth($pItem, mouthValue);
-        hasColor = checkIfProductHasColor($pItem, colorValue);
+        hasSize = checkIfProductContainsOption($pItem, sizeValue);
+        hasMouth = checkIfProductContainsOption($pItem, mouthValue);
+        hasColor = checkIfProductContainsOption($pItem, colorValue);
+        hasGuard = checkIfProductContainsOption($pItem, guardValue);
 
-        if (hasColor && hasMouth && hasSize) {
-          $pItem.closest(selectors.productCol).slideDown(timers.product);
+        if (hasColor && hasMouth && hasSize && hasGuard) {
+          $pItem.closest(selectors.productCol).fadeIn(timers.product);
+          handleProductColorSelect(colorData);
           activeCount++;
         } else {
-          $pItem.closest(selectors.productCol).slideUp(timers.product);
+          $pItem.closest(selectors.productCol).fadeOut(timers.product);
+          handleProductColorSelect(colorData);
         }
       }
 
@@ -177,48 +198,16 @@ function getCurrentFilterValueByType(type) {
   return value;
 }
 
-function checkIfProductHasColor($item, value) {
+function checkIfProductContainsOption($item, value) {
   if (value === strings.noFilter) {
     return true;
   }
 
   const $requiredOption = $item.find(
-    `[data-${dataSets.piColorValue}="${value}"]`
+    `[data-${dataSets.piOptionValue}="${value}"]`
   );
 
-  if ($requiredOption.length && $requiredOption.length > 0) {
-    return true;
-  }
-
-  return false;
-}
-
-function checkIfProductHasSize($item, value) {
-  if (value === strings.noFilter) {
-    return true;
-  }
-
-  const $requiredOption = $item.find(
-    `[data-${dataSets.piSizeValue}="${value}"]`
-  );
-
-  if ($requiredOption.length && $requiredOption.length > 0) {
-    return true;
-  }
-
-  return false;
-}
-
-function checkIfProductHasMouth($item, value) {
-  if (value === strings.noFilter) {
-    return true;
-  }
-
-  const $requiredOption = $item.find(
-    `[data-${dataSets.piMouthValue}="${value}"]`
-  );
-
-  if ($requiredOption.length && $requiredOption.length > 0) {
+  if ($requiredOption.length > 0) {
     return true;
   }
 
@@ -312,7 +301,7 @@ function getCurrentButtonPattern(value, type) {
   }
 
   const icon = icons.close;
-  const valueClean = value.replace("size-", "").replace("mouth-", "");
+  const valueClean = value.replace("size-", "").replace("mouth-", "").replace("guard-", "");
 
   const pattern = `<button type="button" class="c-filter__current-filter" data-cat-current-item="${value}" data-cat-current-type="${type}">
     <span class="c-filter__current-title">${valueClean}</span>

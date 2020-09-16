@@ -4,8 +4,9 @@
     "theme_name": "Dyln",
     "theme_version": "1.0.0",
     "theme_author": "Shopify",
-    "theme_documentation_url": "https://github.com/Shopify/starter-theme",
-    "theme_support_url": "https://github.com/Shopify/starter-theme/issues"
+    "theme_documentation_url": "https:\/\/github.com\/Shopify\/starter-theme",
+    "theme_support_url": "https:\/\/github.com\/Shopify\/starter-theme\/issues",
+    "theme_packaged_with": "@shopify\/slate-tools@1.0.0-beta.15"
   },
   {
     "name": "Colors",
@@ -264,7 +265,7 @@
         "type": "image_picker",
         "id": "share_image",
         "label": "Image",
-        "info": "Shown when sharing a link on social media. [Learn more](https://help.shopify.com/manual/using-themes/troubleshooting/showing-social-media-thumbnail-images/) about image thumbnails."
+        "info": "Shown when sharing a link on social media. [Learn more](https:\/\/help.shopify.com\/manual\/using-themes\/troubleshooting\/showing-social-media-thumbnail-images\/) about image thumbnails."
       },
       {
         "type": "header",
@@ -343,7 +344,10 @@
   {
     "name": "Facebook Share meta",
     "settings": [
-      { "type": "header", "content": "Index / Home Page" },
+      {
+        "type": "header",
+        "content": "Index \/ Home Page"
+      },
       {
         "type": "text",
         "id": "index_fb_title",
@@ -356,8 +360,15 @@
         "label": "description",
         "default": "Stay hydrated with the patented ergonomic DYLN Living Water Bottle made from surgical-grade stainless steel and features a carrying handle."
       },
-      { "type": "image_picker", "id": "index_fb_img", "label": "Image" },
-      { "type": "header", "content": "Landing / Full width page" },
+      {
+        "type": "image_picker",
+        "id": "index_fb_img",
+        "label": "Image"
+      },
+      {
+        "type": "header",
+        "content": "Landing \/ Full width page"
+      },
       {
         "type": "text",
         "id": "la_fb_title",
@@ -370,8 +381,15 @@
         "label": "Description",
         "default": "Stay hydrated with the patented ergonomic DYLN Living Water Bottle made from surgical-grade stainless steel and features a carrying handle."
       },
-      { "type": "image_picker", "id": "la_fb_img", "label": "Image" },
-      { "type": "header", "content": "Product" },
+      {
+        "type": "image_picker",
+        "id": "la_fb_img",
+        "label": "Image"
+      },
+      {
+        "type": "header",
+        "content": "Product"
+      },
       {
         "type": "text",
         "id": "pd_fb_title",
@@ -384,7 +402,11 @@
         "label": "description",
         "default": "Stay hydrated with the patented ergonomic DYLN Living Water Bottle made from surgical-grade stainless steel and features a carrying handle."
       },
-      { "type": "image_picker", "id": "pd_fb_img", "label": "Image" }
+      {
+        "type": "image_picker",
+        "id": "pd_fb_img",
+        "label": "Image"
+      }
     ]
   },
   {
@@ -604,6 +626,81 @@
         "id": "diff_sub_close_text",
         "label": "Close Button",
         "default": "Close"
+      },
+      {
+        "type": "text",
+        "id": "diff_sub_icon_1_text",
+        "label": "Label 1"
+      },
+      {
+        "type": "select",
+        "id": "diff_sub_icon_1",
+        "label": "Icon 1",
+        "options": [
+          {
+            "value": "shipping-truck",
+            "label": "Shipping Truck"
+          },
+          {
+            "value": "circle-savings",
+            "label": "Circle Savings"
+          },
+          {
+            "value": "options",
+            "label": "Options"
+          }
+        ],
+        "info": "Icon to be used."
+      },
+      {
+        "type": "text",
+        "id": "diff_sub_icon_2_text",
+        "label": "Label 2"
+      },
+      {
+        "type": "select",
+        "id": "diff_sub_icon_2",
+        "label": "Icon 2",
+        "options": [
+          {
+            "value": "shipping-truck",
+            "label": "Shipping Truck"
+          },
+          {
+            "value": "circle-savings",
+            "label": "Circle Savings"
+          },
+          {
+            "value": "options",
+            "label": "Options"
+          }
+        ],
+        "info": "Icon to be used."
+      },
+      {
+        "type": "text",
+        "id": "diff_sub_icon_3_text",
+        "label": "Label 3"
+      },
+      {
+        "type": "select",
+        "id": "diff_sub_icon_3",
+        "label": "Icon 3",
+        "options": [
+          {
+            "value": "shipping-truck",
+            "label": "Shipping Truck"
+          },
+          {
+            "value": "circle-savings",
+            "label": "Circle Savings"
+          },
+          {
+            "value": "options",
+            "label": "Options"
+          }
+        ],
+        "info": "Icon to be used."
       }
     ]
   },
@@ -614,7 +711,7 @@
         "type": "link_list",
         "id": "collections_all_linklist",
         "label": "Collection List Linklist",
-        "info": "Select the menu from which the collections/all page will be generated"
+        "info": "Select the menu from which the collections\/all page will be generated"
       }
     ]
   },
@@ -753,6 +850,12 @@
     "settings": [
       {
         "type": "checkbox",
+        "id": "search_override_default",
+        "label": "Show On Search Page?",
+        "default": false
+      },
+      {
+        "type": "checkbox",
         "id": "search_q_products",
         "label": "Show products?",
         "default": true
@@ -864,12 +967,37 @@
       },
       {
         "type": "range",
-        "id": "character_limit",
+        "id": "search_character_limit",
         "label": "Character Limit",
         "min": 30,
         "max": 300,
         "step": 10,
         "default": 120
+      }
+    ]
+  },
+  {
+    "name": "Product Settings",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "pdp_fade",
+        "label": "Fade PDP?",
+        "info": "On the main product pages, should the gallery images fade instead of slide?",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "pi_fade",
+        "label": "Fade List?",
+        "info": "On collections and product items, should the variant images fade instead of slide?",
+        "default": false
+      },
+      {
+        "type": "color",
+        "id": "pi_oos_color",
+        "label": "Product OOS Note Color",
+        "default": "#ff3737"
       }
     ]
   }

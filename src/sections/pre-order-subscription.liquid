@@ -9,6 +9,11 @@
             <h3 class="po-subscription__title">{{ section.settings.title }}</h3>
           </div>
         {% endif %}
+        {% if section.settings.description != blank %}
+          <div class="po-subscription__description subscription-desc--mobile">
+            <p>{{ section.settings.description }}</p>
+          </div>
+        {% endif %}
       </div>
 
       <div class="col-md-4">
@@ -19,7 +24,7 @@
             max_height: 700,
             wrapper_class: "po-subscription__featured-image",
             span: true,
-            snippet_index: 34
+            snippet_index: 64
           %}
 
           {% if section.settings-title != blank %}
@@ -29,15 +34,19 @@
       </div>
       <div class="col-md-6 col-lg-5">
 
-        <div class="po-subscription__description">
-          <p>{{ section.settings.description }}</p>
-        </div>
+        {% if section.settings.description != blank %}
+          <div class="po-subscription__description subscription-desc--desktop">
+            <p>{{ section.settings.description }}</p>
+          </div>
+        {% endif %}
 
         {% unless section.settings.extra_product == product.handle %}
+          <p class="po-subscription__choose-size">Choose size:</p>
           {% render 'subscription-form' with section.settings.extra_product
             current_product_id: product.id
             show_extras: false,
-            hide_price: true
+            hide_price: true,
+            index: 5
           %}
         {% endunless %}
 

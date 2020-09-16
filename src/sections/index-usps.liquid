@@ -15,15 +15,7 @@
               <div class="index-usps__usp">
                 <button class="index-usps__usp-btn" data-accordion-button="{{ forloop.index }}">
                   <span class="index-usps__usp-icon">
-                    {% if usp.settings.icon == "acid-reflux" %}
-                      {% render 'icon-usp-acid-reflux' %}
-                    {% elsif usp.settings.icon == "detoxifying-spin" %}
-                      {% render 'icon-detoxifying-spin' %}
-                    {% elsif usp.settings.icon == "hydration" %}
-                      {% render 'icon-usp-hydration' %}
-                    {% elsif usp.settings.icon == "scale" %}
-                      {% render 'icon-scale' %}
-                    {% endif %}
+                    {% render 'icon' with usp.settings.icon %}
                   </span>
                   <span class="index-usps__usp-title">
                     {{ usp.settings.title }}

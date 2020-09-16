@@ -1,5 +1,4 @@
 import $ from "jquery";
-import section from "@shopify/theme-sections/section";
 
 const selectors = {
   productData: "[data-product-data]",

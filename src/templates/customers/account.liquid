@@ -1,51 +1,7 @@
-{% comment %} Not sure how icons will be managed, and what part of this will be in the app, so I kept icons as svg. I will replace them with snippets later if possible {% endcomment %}
-{% comment %}
-for reference
-points:
-<svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg>
-squiggle:
-<svg width="37" height="4" viewBox="0 0 37 4" xmlns="http://www.w3.org/2000/svg"><path d="M1 1c3.838 1.892 11.726 2.538 18.334 1.52C25.942 1.502 31.284 1 36 2.52" stroke="#FFF" stroke-width="1.5" fill="none" fill-rule="evenodd"/></svg>
-pencil/edit:
-<svg width="16" height="24" viewBox="0 0 16 24" xmlns="http://www.w3.org/2000/svg"><g stroke="#FFF" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linejoin="round" d="M11.387.838l3.608 2.083-10 17.32-3.713 2.355.105-4.438z"/><path stroke-linecap="square" d="M9.247 5.376l2.887 1.667"/></g></svg>
-stopwatch:
-<svg width="13" height="16" viewBox="0 0 13 16" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0 1)" fill="none" fill-rule="evenodd"><circle stroke="#FFF" stroke-width="1.5" cx="6.429" cy="8.571" r="5.679"/><circle fill="#FFF" cx="6.429" cy="8.571" r="1"/><path stroke="#FFF" stroke-width="1.5" stroke-linecap="square" d="M4.286.536h4.285M6.429.536v2.143"/><path stroke="#FFF" stroke-width="1.5" stroke-linecap="round" d="M4.728 6.429l1.701 2.142"/></g></svg>
-checkmark-circle:
-<svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg"><g stroke="#FFF" stroke-width="1.5" fill="none" fill-rule="evenodd"><circle cx="7.5" cy="7.5" r="6.75"/><path d="M4.5 7.75l2.474 2.474 4.089-4.974"/></g></svg>
-icon-options:
-<svg width="23" height="21" viewBox="0 0 23 21" xmlns="http://www.w3.org/2000/svg"><g transform="translate(1 1)" stroke="#00AEDB" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linecap="square" d="M2.5.076v12.737M2.5 17.728v1.292M10.625 6.478v12.669M10.625.152v1.326M18.75 13.353v5.794M18.75.076v8.369"/><circle cx="18.75" cy="10.853" r="2.5"/><circle cx="10.625" cy="3.978" r="2.5"/><circle cx="2.5" cy="15.228" r="2.5"/></g></svg>
-alter-circle:
-<svg width="11" height="12" viewBox="0 0 11 12" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0 1)" fill="none" fill-rule="evenodd"><circle stroke="#FFB300" cx="5.5" cy="5" r="5"/><path d="M5 2.503c0-.145.046-.266.137-.36A.48.48 0 015.5 2a.48.48 0 01.363.142.498.498 0 01.137.36c0 .142-.046.26-.137.356A.48.48 0 015.5 3a.48.48 0 01-.363-.142A.491.491 0 015 2.503zM6 4v4H5V4h1z" fill="#FFB300" fill-rule="nonzero"/></g></svg>
-icon-chevron-down:
-<svg width="12" height="5" viewBox="0 0 12 5" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l5 5 5-5" stroke="#333C41" fill="none" fill-rule="evenodd" stroke-linecap="round"/></svg>
-icon-close:
-<svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><g stroke="#00AEDB" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M1.333 1.333L11 11M10.667 1.333L1 11"/></g></svg>
-icon-trash:
-<svg width="19" height="21" viewBox="0 0 19 21" xmlns="http://www.w3.org/2000/svg"><g stroke="#00AEDB" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linejoin="round" d="M2.335 4.772h13.636l-.909 15.455H3.244z"/><path stroke-linecap="round" stroke-linejoin="round" d="M.971 4.772h16.364"/><path stroke-linejoin="round" d="M5.971 1.136h6.364v3.636H5.971z"/><path stroke-linecap="round" d="M6.198 7.954v9.091M8.926 7.954v9.091M11.653 7.954v9.091"/></g></svg>
-icon-good-hydration:
-<svg width="49" height="61" viewBox="0 0 49 61" xmlns="http://www.w3.org/2000/svg"><g stroke="#20D480" fill="none" fill-rule="evenodd"><path d="M24.033 2.975C9.191 17.212 1.531 28.485 1.531 36.9a22.43 22.43 0 006.59 15.91 22.43 22.43 0 0015.91 6.59 22.43 22.43 0 0015.91-6.59 22.43 22.43 0 006.59-15.91c0-8.415-7.66-19.687-22.498-33.925z" stroke-width="3"/><path stroke-width="1.5" d="M14.031 36.808l7.184 9.092 13.816-20"/></g></svg>
-icon-low-hydration:
-<svg width="49" height="61" viewBox="0 0 49 61" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M23.914 2.078C9.13 16.313 1.5 27.585 1.5 36c0 6.214 2.509 11.84 6.566 15.912 4.055 4.07 9.657 6.588 15.845 6.588 6.189 0 11.79-2.518 15.846-6.588A22.474 22.474 0 0046.323 36c0-8.414-7.63-19.685-22.41-33.922z" stroke="#E7F0F2" stroke-width="3"/><path d="M22.453 59c13.367 0 24.203-10.491 24.203-23.433 0-6.887-5.14-15.743-15.423-26.567" stroke="#FFB300" stroke-width="3"/><path stroke="#FFB300" stroke-width="1.5" d="M13.705 36.363L20.995 45l14.02-19"/></g></svg>
-icon-poor-hydration:
-<svg width="49" height="61" viewBox="0 0 49 61" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M23.914 2.078C9.13 16.313 1.5 27.585 1.5 36c0 6.214 2.509 11.84 6.566 15.912 4.055 4.07 9.657 6.588 15.845 6.588 6.189 0 11.79-2.518 15.846-6.588A22.474 22.474 0 0046.323 36c0-8.414-7.63-19.685-22.41-33.922z" stroke="#E7F0F2" stroke-width="3"/><path stroke="#D83E0E" stroke-width="1.5" d="M13.705 36.363L20.995 45l14.02-19"/><path d="M22.453 59c13.367 0 24.203-10.297 24.203-23" stroke="#D83E0E" stroke-width="3"/></g></svg>
-icon-phone:
-<svg width="19" height="32" viewBox="0 0 19 32" xmlns="http://www.w3.org/2000/svg"><path d="M17.457 28.965l-1.766-6.59a1 1 0 00-1.224-.707l-2.753.738a1 1 0 01-.903-.201c-1.087-.915-1.997-2.744-2.733-5.487-.727-2.714-.824-4.613-.292-5.697a1 1 0 01.64-.525l2.843-.762a1 1 0 00.707-1.225l-1.766-6.59a1 1 0 00-1.225-.707l-1.414.38c-1.168.312-9.248 2.477-5.433 16.717 3.816 14.24 11.894 12.61 13.197 12.26l1.415-.38a1 1 0 00.707-1.224z" stroke="#333C41" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>
-icon-mail:
-<svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="translate(1 1)" stroke="#333C41" stroke-width="2" fill="none" fill-rule="evenodd"><rect width="30" height="18" rx="1"/><path stroke-linecap="round" d="M.896.808L15 11.388 29.112.808"/></g></svg>
-icon-location-pin
-<svg width="16" height="21" viewBox="0 0 16 21" xmlns="http://www.w3.org/2000/svg"><g transform="translate(.937)" stroke="#00AEDB" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M7.063.75a6.293 6.293 0 00-4.464 1.849A6.293 6.293 0 00.75 7.063c0 2.412 2.152 6.614 6.313 12.626 4.16-6.012 6.313-10.214 6.313-12.626a6.293 6.293 0 00-1.85-4.464A6.293 6.293 0 007.064.75z"/><circle cx="7.063" cy="7.4" r="2.25"/></g></svg>
-icon-delivery:
-<svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(-1 0 0 1 31 1)" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M6 4.209V1a1 1 0 011-1h14a1 1 0 011 1v13.667a1 1 0 01-1 1H6h0M27.343 4.384l-5.093.25.25 10.25 7.25-.25v-4.348l-2.407-5.902z" stroke="#00AEDB"/><ellipse stroke="#00AEDB" fill="#FFF" cx="11.667" cy="15.833" rx="2.25" ry="2.205"/><ellipse stroke="#00AEDB" fill="#FFF" cx="23" cy="15.833" rx="2.25" ry="2.205"/><path stroke="#66CCEB" stroke-linecap="square" d="M7.5 13h-4M7.5 11h-7M7.5 9h-5M7.5 7h-2"/></g></svg>
-icon-plus-circled:
-<svg width="18" height="17" viewBox="0 0 18 17" xmlns="http://www.w3.org/2000/svg"><g transform="translate(1 1)" stroke="#FFF" stroke-width="2" fill="none" fill-rule="evenodd"><circle cx="8.25" cy="7.5" r="7.5"/><path stroke-linecap="round" d="M8.25 4.5v6M11.25 7.5h-6"/></g></svg>
-icon-circle-close:
-<svg width="21" height="20" viewBox="0 0 21 20" xmlns="http://www.w3.org/2000/svg"><g transform="translate(1 1)" stroke="#00AEDB" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linecap="square" d="M6.076 6.167l6.89 6.89"/><ellipse cx="9.5" cy="9.167" rx="9.5" ry="9"/><path stroke-linecap="square" d="M13 6.167l-7 7"/></g></svg>
-icon-circle-savings:
-<svg width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg"><g transform="translate(1 1)" fill="none" fill-rule="evenodd"><ellipse stroke="#00AEDB" stroke-width="1.5" cx="9.5" cy="9.183" rx="9.5" ry="9.183"/><text font-family="Poppins-Medium, Poppins" font-size="12" font-weight="400" letter-spacing=".109" fill="#00AEDB"><tspan x="5.863" y="13">$</tspan></text></g></svg>
-icon-curved-arrow-down:
-<svg width="29" height="38" viewBox="0 0 29 38" xmlns="http://www.w3.org/2000/svg"><g stroke="#00AEDB" stroke-width="2" fill="none" fill-rule="evenodd"><path d="M15.968 3.214c3.306 8.855 1.164 17.848-6.424 26.978"/><path stroke-linecap="round" d="M9.878 19.125L8.854 30.742l10.732-4.563"/></g></svg>
-{% endcomment %}
-
 {% section 'customer-account-header' %}
+{% for tag in customer.tags %}
+{% if tag == 'Active Subscriber' or 'Subscription card declined' or 'Inactive Subscriber' %}{% assign is_subscription_customer = true %}{% break %}{% endif %}
+{% endfor %}
 
 <div class="container account-container">
   <div class="row">
@@ -72,7 +28,9 @@ icon-curved-arrow-down:
             My Bottles
             <span class="account-body__header-dash"></span>
           </button>
+          {% if is_subscription_customer %}
           <a class="account-body__header-tab" href="/tools/recurring/login/">My Subscriptions<span class="account-body__header-dash"></span></a>
+          {% endif %}
           <button type="button" class="account-body__header-tab" tab-body="account-profile">
             Profile
             <span class="account-body__header-dash"></span>
@@ -80,6 +38,7 @@ icon-curved-arrow-down:
         </div>
 
         <div class="account-body__tabs">
+
           <div class="body-tab account-dash active-tab">
             <div class="row">
               <div class="col-md-6">
@@ -102,13 +61,13 @@ icon-curved-arrow-down:
                     <span class="account-dash__title-txt">My Bottles</span>
                     <button type="button" class="account-dash__title-button tab-button" tab-body="account-bottles">See All</button>
                   </h3>
-                  <div id="custommer-bottles-short">
-                    <div class="account-dash__bottle" style="display:none">
-                      <div class="account-dash__bottle-wrap" aria-ignore="true">
-                        {% comment %} progress must be in percent, so between 0 and 100. It needs to be in steps of 5, so 5, 10, 15, 20,... that is to reduce the size of the css file - each percent has its own class {% endcomment %}
-                        <div class="account-dash__bottle-progress progress-circle" data-progress="40">
-                          <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water Bottle" class="account-dash__bottle-img" />
-                        </div>
+          <div id="custommer-bottles-short">
+
+                  <div class="account-dash__bottle" style="display:none">
+                    <div class="account-dash__bottle-wrap" aria-ignore="true">
+                      {% comment %} progress must be in percent, so between 0 and 100. It needs to be in steps of 5, so 5, 10, 15, 20,... that is to reduce the size of the css file - each percent has its own class {% endcomment %}
+                      <div class="account-dash__bottle-progress progress-circle" data-progress="40">
+                        <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water Bottle" class="account-dash__bottle-img" />
                       </div>
                       <div class="account-dash__bottle-content">
                         <h4 class="account-dash__bottle-title">Bottle #1</h4>
@@ -118,6 +77,8 @@ icon-curved-arrow-down:
                         <span class="visually-hidden">More options</span>
                       </button>
                     </div>
+                  </div>
+
                   </div>
 
                   <div class="account-dash__bottle-btn-wrap">
@@ -192,132 +153,6 @@ icon-curved-arrow-down:
             <div id="stamped-rewards-widget" data-widget-type="rewards-earnings" ></div>
             <div id="stamped-rewards-widget" data-widget-type="rewards-spendings" ></div>
             <div id="stamped-rewards-widget" data-widget-type="rewards-referral" ></div>
-            {% comment %} 
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="account-points__earned-amount">
-                    <span><svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg></span>
-                    &nbsp;
-                    <span>300</span>
-                  </div>
-                  <h3 class="account-points__earned-header">DYLN Points earned</h3>
-                  <p class="account-points__description">Intro/ Description: There are many ways to get DYLN Points which can earn you all kinds of rewards. </p>
-                  <div class="account-points__shadow">
-                    <div class="account-points__banner-wrap">
-                      <h4 class="account-points__banner-title">Your Rewards as a Bronze Member</h4>
-                      <div class="account-points__banner-line">
-                        <span class="account-points__banner-icon"><svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(-1 0 0 1 31 1)" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M6 4.209V1a1 1 0 011-1h14a1 1 0 011 1v13.667a1 1 0 01-1 1H6h0M27.343 4.384l-5.093.25.25 10.25 7.25-.25v-4.348l-2.407-5.902z" stroke="#00AEDB"/><ellipse stroke="#00AEDB" fill="#FFF" cx="11.667" cy="15.833" rx="2.25" ry="2.205"/><ellipse stroke="#00AEDB" fill="#FFF" cx="23" cy="15.833" rx="2.25" ry="2.205"/><path stroke="#66CCEB" stroke-linecap="square" d="M7.5 13h-4M7.5 11h-7M7.5 9h-5M7.5 7h-2"/></g></svg></span>
-                        <span class="account-points__banner-text">Pay Regular Shipping and get Express Shipping</span>
-                      </div>
-                      <div class="account-points__banner-line">
-                        <span class="account-points__banner-icon"><svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(-1 0 0 1 31 1)" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M6 4.209V1a1 1 0 011-1h14a1 1 0 011 1v13.667a1 1 0 01-1 1H6h0M27.343 4.384l-5.093.25.25 10.25 7.25-.25v-4.348l-2.407-5.902z" stroke="#00AEDB"/><ellipse stroke="#00AEDB" fill="#FFF" cx="11.667" cy="15.833" rx="2.25" ry="2.205"/><ellipse stroke="#00AEDB" fill="#FFF" cx="23" cy="15.833" rx="2.25" ry="2.205"/><path stroke="#66CCEB" stroke-linecap="square" d="M7.5 13h-4M7.5 11h-7M7.5 9h-5M7.5 7h-2"/></g></svg></span>
-                        <span class="account-points__banner-text">5% off all your orders</span>
-                      </div>
-                    </div>
-                    <div class="account-points__memberships-wrap">
-                      <div class="account-points__gold-member-gap">
-                        You are <strong>500</strong> DYLN Points <br>away from becoming a <strong>GOLD MEMBER</strong>
-                      </div>
-                      <div class="account-points__btn-refer-wrap">
-                        <button class="account-points__btn-refer">
-                          <strong>Refer a Friend</strong>
-                          <span>Get</span>
-                          <span><svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg></span>
-                          <span>150</span>
-                        </button>
-                      </div>
-                      <div class="account-points__member-type">
-                        <h4 class="account-points__member-title">
-                          <strong>Silver Member</strong>
-                          <span><svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg></span>
-                          <span>400</span>
-                        </h4>
-                        <div class="account-points__member-line">
-                          <span class="account-points__member-icon"><svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(-1 0 0 1 31 1)" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M6 4.209V1a1 1 0 011-1h14a1 1 0 011 1v13.667a1 1 0 01-1 1H6h0M27.343 4.384l-5.093.25.25 10.25 7.25-.25v-4.348l-2.407-5.902z" stroke="#00AEDB"/><ellipse stroke="#00AEDB" fill="#FFF" cx="11.667" cy="15.833" rx="2.25" ry="2.205"/><ellipse stroke="#00AEDB" fill="#FFF" cx="23" cy="15.833" rx="2.25" ry="2.205"/><path stroke="#66CCEB" stroke-linecap="square" d="M7.5 13h-4M7.5 11h-7M7.5 9h-5M7.5 7h-2"/></g></svg></span>
-                          <span class="account-points__member-text">Pay Regular Shipping and get Express Shipping</span>
-                        </div>
-                        <div class="account-points__member-line">
-                          <span class="account-points__member-icon"><svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(-1 0 0 1 31 1)" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M6 4.209V1a1 1 0 011-1h14a1 1 0 011 1v13.667a1 1 0 01-1 1H6h0M27.343 4.384l-5.093.25.25 10.25 7.25-.25v-4.348l-2.407-5.902z" stroke="#00AEDB"/><ellipse stroke="#00AEDB" fill="#FFF" cx="11.667" cy="15.833" rx="2.25" ry="2.205"/><ellipse stroke="#00AEDB" fill="#FFF" cx="23" cy="15.833" rx="2.25" ry="2.205"/><path stroke="#66CCEB" stroke-linecap="square" d="M7.5 13h-4M7.5 11h-7M7.5 9h-5M7.5 7h-2"/></g></svg></span>
-                          <span class="account-points__member-text">10% off All your Orders</span>
-                        </div>
-                      </div>
-                      <div class="account-points__member-type">
-                        <h4 class="account-points__member-title">
-                          <strong>Gold Member</strong>
-                          <span><svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg></span>
-                          <span>800</span>
-                        </h4>
-                        <div class="account-points__member-line">
-                          <span class="account-points__member-icon"><svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(-1 0 0 1 31 1)" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M6 4.209V1a1 1 0 011-1h14a1 1 0 011 1v13.667a1 1 0 01-1 1H6h0M27.343 4.384l-5.093.25.25 10.25 7.25-.25v-4.348l-2.407-5.902z" stroke="#00AEDB"/><ellipse stroke="#00AEDB" fill="#FFF" cx="11.667" cy="15.833" rx="2.25" ry="2.205"/><ellipse stroke="#00AEDB" fill="#FFF" cx="23" cy="15.833" rx="2.25" ry="2.205"/><path stroke="#66CCEB" stroke-linecap="square" d="M7.5 13h-4M7.5 11h-7M7.5 9h-5M7.5 7h-2"/></g></svg></span>
-                          <span class="account-points__member-text">Pay Regular Shipping and get Express Shipping</span>
-                        </div>
-                        <div class="account-points__member-line">
-                          <span class="account-points__member-icon"><svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(-1 0 0 1 31 1)" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M6 4.209V1a1 1 0 011-1h14a1 1 0 011 1v13.667a1 1 0 01-1 1H6h0M27.343 4.384l-5.093.25.25 10.25 7.25-.25v-4.348l-2.407-5.902z" stroke="#00AEDB"/><ellipse stroke="#00AEDB" fill="#FFF" cx="11.667" cy="15.833" rx="2.25" ry="2.205"/><ellipse stroke="#00AEDB" fill="#FFF" cx="23" cy="15.833" rx="2.25" ry="2.205"/><path stroke="#66CCEB" stroke-linecap="square" d="M7.5 13h-4M7.5 11h-7M7.5 9h-5M7.5 7h-2"/></g></svg></span>
-                          <span class="account-points__member-text">10% off All your Orders</span>
-                        </div>
-                        <div class="account-points__member-line">
-                          <span class="account-points__member-icon"><svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(-1 0 0 1 31 1)" stroke-width="1.5" fill="none" fill-rule="evenodd"><path d="M6 4.209V1a1 1 0 011-1h14a1 1 0 011 1v13.667a1 1 0 01-1 1H6h0M27.343 4.384l-5.093.25.25 10.25 7.25-.25v-4.348l-2.407-5.902z" stroke="#00AEDB"/><ellipse stroke="#00AEDB" fill="#FFF" cx="11.667" cy="15.833" rx="2.25" ry="2.205"/><ellipse stroke="#00AEDB" fill="#FFF" cx="23" cy="15.833" rx="2.25" ry="2.205"/><path stroke="#66CCEB" stroke-linecap="square" d="M7.5 13h-4M7.5 11h-7M7.5 9h-5M7.5 7h-2"/></g></svg></span>
-                          <span class="account-points__member-text">1 Free Accessory for your bottle</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <h3 class="account-points__earn-title">Earn more DYLN Points</h3>
-                  <div class="account-points__earn-block">
-                    <div class="account-points__earn-left">
-                      <span><svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg></span>
-                      &nbsp;
-                      <span>150</span>
-                    </div>
-                    <div class="account-points__earn-right">
-                      <div class="account-points__earn-line">Refer a Friend</div>
-                    </div>
-                  </div>
-                  <div class="account-points__earn-block">
-                    <div class="account-points__earn-left">
-                      <span><svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg></span>
-                      &nbsp;
-                      <span>100</span>
-                    </div>
-                    <div class="account-points__earn-right">
-                      <div class="account-points__earn-line">Join our Newsletter</div>
-                      <div class="account-points__earn-line">Write a Review</div>
-                      <div class="account-points__earn-line">Share on Social Media</div>
-                    </div>
-                  </div>
-                  <div class="account-points__earn-block">
-                    <div class="account-points__earn-left">
-                      <span><svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg></span>
-                      &nbsp;
-                      <span>100</span>
-                    </div>
-                    <div class="account-points__earn-right">
-                      <div class="account-points__earn-line">Like us on Facebook</div>
-                      <div class="account-points__earn-line">Follow us on Instagram</div>
-                      <div class="account-points__earn-line">Follow us on Youtube</div>
-                      <div class="account-points__earn-line">Follow us on Twitter</div>
-                    </div>
-                  </div>
-                  <h4 class="account-points__rewards-note">Look out for the <strong class="brand-blue">Rewards Tab</strong> on your Cart while you Checkout</h4>
-                  <div class="account-points__shadow">
-                    <div class="account-points__status">
-                      <div class="account-points__status-left">
-                        <div class="account-points__status-number">
-                          <span><svg width="12" height="15" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M6 1.04C2.574 4.366.75 7.003.75 9c0 1.45.588 2.762 1.538 3.712A5.234 5.234 0 006 14.25c1.45 0 2.762-.588 3.712-1.538A5.234 5.234 0 0011.25 9c0-1.997-1.824-4.634-5.25-7.96z" stroke="#FFF" stroke-width="1.5"/><path fill="#FFF" d="M6 10.5l-1.763.927.336-1.963-1.426-1.391 1.971-.287L6 6l.882 1.786 1.971.287-1.426 1.391.336 1.963z"/></g></svg></span>
-                          <span>300</span>
-                        </div>
-                        <div class="account-points__status-text">DYLN Points</div>
-                      </div>
-                      <div class="account-points__status-right">
-                        <button type="button" class="account-points__status-btn">Choose Reward <span aria-ignore="true">></span></button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-             {% endcomment %}
           </div>
           {% render 'account-orders-tab' %}
           {% render 'customer-bottles-tab' %}
@@ -340,7 +175,7 @@ icon-curved-arrow-down:
           {% render 'edit-profile-contact-popup' %}
           {% render 'reset-password-popup' %}
           {% comment %} Custom styling for the profile body input{% endcomment %}
-      {% comment %} Bottle modal {% endcomment %}
+          {% comment %} Bottle modal {% endcomment %}
           {% render 'edit-bottle-popup' %}
           {% include 'address-form' %}
         </div> <!-- end popup wrap -->

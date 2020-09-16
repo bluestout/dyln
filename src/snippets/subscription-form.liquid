@@ -13,7 +13,7 @@
       {% render 'subscription-title' with title, note: note %}
     {% endif %}
   {% endunless %}
-
+  <div data-subscription-form-wrap>
   {% form 'product', e_product, data-product-form: '', data-product-handle: e_product.handle, data-enable-history-state: 'true', class: "pdp-form__form"%}
     <input name="subscription_variant_map" value={{ sub_variants_map | json }} type="hidden" data-subscription-variant-map />
 
@@ -41,9 +41,9 @@
           {% elsif e_var.title contains "Diffusers" %}
             {% assign e_var_title = e_var.title | replace: ' Diffusers', '-Pack'%}
           {% endif %}
-          <div class="diffusers__variant" id="pdp-diffuser-variant-id-wrap">
-            <input class="diffusers__input" id="option-extra-{{ forloop.index }}" type="radio" name="id" value="{{ e_var.id }}" data-price={{ e_var.price | money }} {% if forloop.first %} checked="checked"{% endif %}/>
-            <label class="diffusers__label {% if sub_only %} standalone{% endif %}" for="option-extra-{{ forloop.index }}">{{ e_var_title }}</label>
+          <div class="diffusers__variant" id="pdp-diffuser-variant-id-wrap-{{ index }}" data-diffuser-variant-id-wrap>
+            <input class="diffusers__input" id="option-extra-{{ forloop.index }}-{{ index }}" type="radio" name="id" value="{{ e_var.id }}" data-price={{ e_var.price | money }} {% if forloop.first %} checked="checked"{% endif %}/>
+            <label class="diffusers__label {% if sub_only %} standalone{% endif %}" for="option-extra-{{ forloop.index }}-{{ index }}">{{ e_var_title }}</label>
           </div>
         {% endfor %}
       </div>
@@ -60,7 +60,8 @@
 
       <div class="diffusers__btn-wrap" data-subscription-button-block>
         <button
-          id="pdp-diffuser-add-regular"
+          id="pdp-diffuser-add-regular-{{ index }}"
+          data-diffuser-add-regular
           class="diffusers__regular-btn"
           type="button">
           <span class="diffusers__regular-price" data-subscription-regular-price data-subscription-loaded>{{ e_current_variant.price | money }}</span>
@@ -92,7 +93,8 @@
     <div class="diffusers__btn-wrap hide" data-subscription-button-block>
     {% endif %}
       <button
-        id="pdp-diffuser-add-subscription"
+        id="pdp-diffuser-add-subscription-{{ index }}"
+        data-diffuser-add-subscription
         class="diffusers__regular-btn"
         type="button">
         <span class="diffusers__regular-price" data-subscription-current-price data-subscription-loaded>
@@ -105,7 +107,7 @@
       </button>
 
       <div class="diffusers__sub-btn{% if sub_only %} standalone{% endif %}">
-        <select name="shipping_interval_frequency" id="pdp-diffuser-freq-select" data-custom>
+        <select name="shipping_interval_frequency" data-diffuser-freq-select id="pdp-diffuser-freq-select-{{ index }}" data-custom>
           {% for i_frequency in interval_frequencies %}
             <option value="{{ i_frequency }}">
               {% render 'subscription-frequency' with i_frequency as frequency, interval: interval_unit_type %}
@@ -113,7 +115,7 @@
           {% endfor %}
         </select>
         <div class="no-pointer">
-          <label for="pdp-diffuser-freq-select" data-subscription-custom-label>{{ 'products.subscription.change_frequency' | t }}</label>
+          <label for="pdp-diffuser-freq-select-{{ index }}" data-subscription-custom-label>{{ 'products.subscription.change_frequency' | t }}</label>
         </div>
       </div>
 
@@ -137,4 +139,5 @@
       </div>
     {% endif %}
   {% endform %}
+  </div>
 {% endif %}

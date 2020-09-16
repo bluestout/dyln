@@ -86,8 +86,70 @@
 
   &__video {
     object-fit: cover;
-    margin: 0 auto;
+    margin: auto;
     display: inline-block;
+  }
+
+  &__modal-wrap {
+    z-index: $z-contact-modal;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color-black, 0.5);
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  &__modal-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__modal {
+    @include no-font-size;
+    position: relative;
+    z-index: $z-contact-modal;
+    background-color: $color-background;
+    flex: 0 0 auto;
+    width: auto;
+    margin: auto;
+    padding: 0;
+  }
+
+  &__modal-container {
+    max-width: 900px;
+  }
+
+  &__modal-close {
+    @include no-font-size;
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    padding: 2px;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    background: $color-transparent;
+
+    g {
+      stroke: $color-white;
+    }
+  }
+
+  @include media-query($large-down) {
+    &__modal {
+      max-width: calc(100vw - 30px);
+    }
+
+    &__modal-close {
+      top: -15px;
+      right: -15px;
+    }
   }
 
   @include media-query($medium-down) {
@@ -119,6 +181,7 @@
     &__content {
       align-self: center;
       text-align: center;
+      margin: 0 0 20px;
 
       a {
         position: relative;
@@ -144,6 +207,10 @@
       margin: 0;
     }
 
+    &__button {
+      margin: 15px 0 0;
+    }
+
     &__button-text {
       font-size: 12px;
       line-height: 17px;
@@ -167,6 +234,10 @@
       object-fit: cover;
       margin: 0 auto;
       display: inline-block;
+    }
+
+    &__looped {
+      max-height: 100vw;
     }
   }
 }

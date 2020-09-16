@@ -46,13 +46,7 @@
         {% for block in section.blocks %}
           <div class="faq-footer__usp">
             <div class="faq-footer__usp-icon">
-              {% if block.settings.icon == "blue-reminder" %}
-                {% render 'icon-blue-reminder' %}
-              {% elsif block.settings.icon == "bottle-silhouette" %}
-                {% render 'icon-bottle-silhouette' %}
-              {% elsif block.settings.icon == "star" %}
-                {% render 'icon-blue-star' %}
-              {% endif %}
+              {% render 'icon' with block.settings.icon %}
             </div>
             <div class="faq-footer__usp-content">
               <h4>{{ block.settings.title }}</h4>
@@ -153,7 +147,7 @@
                 "label": "Bottle silhouette"
               },
               {
-                "value": "star",
+                "value": "blue-star",
                 "label": "Star"
               }
             ],

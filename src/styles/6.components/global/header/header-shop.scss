@@ -9,10 +9,6 @@
     pointer-events: none;
     width: 100vw;
 
-    &__main-all-link {
-      display: none;
-    }
-
     &__main-link {
       display: inline-block;
       vertical-align: middle;
@@ -149,11 +145,31 @@
     &__link-top {
       @include font-header(700);
       @include text(16px, 22px, $color-body-text, 0.15px);
+      @include transition(color);
+      @include underline($color-main-1, false);
+
+      &:hover,
+      &:focus {
+        color: $color-main-1;
+        &::after {
+          width: 100%;
+        }
+      }
     }
 
     &__shop-all {
       @include font-header(700);
       @include text(14px, 22px, $color-theme-8, 0.63px);
+      @include transition(color);
+      @include underline($color-main-1, false);
+
+      &:hover,
+      &:focus {
+        color: $color-main-1;
+        &::after {
+          width: 100%;
+        }
+      }
     }
 
     &__link-list {
@@ -172,6 +188,14 @@
         width: 16.6%;
         align-self: flex-end;
       }
+
+      &:hover,
+      &:focus {
+        .header-shop__link-sub-a-p {
+          color: $color-main-1;
+          text-decoration: underline;
+        }
+      }
     }
 
     &__link-sub-a-p {
@@ -181,11 +205,23 @@
 
     &__link-sub-a {
       @include font-header(500);
-      @include text(16px, 30px, $color-body-text, 0.15px);
+      @include text(16px, 24px, $color-body-text, 0.15px);
+      @include underline($color-main-1, false);
+      @include transition(color);
       display: inline-block;
+      margin: 3px 0;
 
       &.brand {
         color: $color-main-1;
+      }
+
+      &:hover,
+      &:focus {
+        color: $color-main-1;
+
+        &::after {
+          width: 100%;
+        }
       }
     }
 
@@ -286,10 +322,6 @@
     @include transition(background-color);
     display: none;
     margin: 0 0 10px;
-
-    &__main-all-link {
-      display: none;
-    }
 
     &__main-link {
       @include transition(background-color);

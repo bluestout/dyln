@@ -23,7 +23,7 @@ function onScroll() {
 
   checkIfInView();
 
-  return false;
+  return null;
 }
 
 function checkIfInView() {
@@ -31,7 +31,7 @@ function checkIfInView() {
   let windowTopPosition = $window.scrollTop();
   let windowBottomPosition = windowTopPosition + windowHeight;
 
-  $.each($animatedElements, function() {
+  $.each($animatedElements, function () {
     const $this = $(this);
     const elementHeight = $($this).outerHeight();
     const elementTopPosition = $($this).offset().top;

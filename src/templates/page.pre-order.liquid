@@ -8,6 +8,8 @@
 
 {% section 'pre-order-product' %}
 
+<div data-po-atc-anchor></div>
+
 {% section 'pre-order-subscription' %}
 
 {% section 'pre-order-why-alkaline' %}
@@ -30,26 +32,26 @@
 
 {% section 'pre-order-hydro-optim' %}
 
-<section class="pre-order-shop" data-tab-container data-pre-order-products>
+<section class="pre-order-shop" data-po-tab-container data-pre-order-products>
   <div class="container">
     <h2>{{ 'pre_order.shop_all.title' | t }}</h2>
     <div class="pre-order-shop__banner">
-      <button type="button" class="active" data-tab-link="1">{{ 'pre_order.shop_all.tab_1' | t }}</button>
-      <button type="button" data-tab-link="2">{{ 'pre_order.shop_all.tab_2' | t }}</button>
-      <button type="button" data-tab-link="3">{{ 'pre_order.shop_all.tab_3' | t }}</button>
-      <button type="button" data-tab-link="4">{{ 'pre_order.shop_all.tab_4' | t }}</button>
+      <button type="button" class="active" data-po-tab-link="1">{{ 'pre_order.shop_all.tab_1' | t }}</button>
+      <button type="button" data-po-tab-link="2">{{ 'pre_order.shop_all.tab_2' | t }}</button>
+      <button type="button" data-po-tab-link="3">{{ 'pre_order.shop_all.tab_3' | t }}</button>
+      <button type="button" data-po-tab-link="4">{{ 'pre_order.shop_all.tab_4' | t }}</button>
     </div>
     <div class="pre-order-shop__products">
-      <div class="pre-order-shop__block active" data-tab="1">
+      <div class="pre-order-shop__block active" data-po-tab="1">
         {% section 'pre-order-shop-bottles' %}
       </div>
-      <div class="pre-order-shop__block" data-tab="2" style="display:none;">
+      <div class="pre-order-shop__block" data-po-tab="2" data-pre-order-slick-load>
         {% section 'pre-order-shop-diffusers' %}
       </div>
-      <div class="pre-order-shop__block" data-tab="3" style="display:none;">
+      <div class="pre-order-shop__block" data-po-tab="3" data-pre-order-slick-load>
         {% section 'pre-order-shop-caps' %}
       </div>
-      <div class="pre-order-shop__block" data-tab="4" style="display:none;">
+      <div class="pre-order-shop__block" data-po-tab="4" data-pre-order-slick-load>
         {% section 'pre-order-shop-guards' %}
       </div>
     </div>

@@ -1,8 +1,4 @@
 {% if section.settings.enabled %}
-  {% if section.settings.all_link_text != blank %}
-    <a href="{{ section.settings.all_link }}" class="header-shop__main-all-link">{{ section.settings.all_link_text }}</a>
-  {% endif %}
-
   <a class="header-shop__main-link" href="#" data-header-link="2">
     <span class="header-shop__main-text">{{ section.settings.title }}</span>
     <span class="header-shop__main-icon" aria-hidden="true">
@@ -71,8 +67,9 @@
                       data-accordion-button-rsp="{{ forloop.index }}"
                       tabindex="-1">
                       {{ link.title }}
-                    {% if is_prominent == true %}
-                      <a class="header-shop__shop-all" href="{{ link.url }}" tabindex="-1">{{ 'header.shop.shop_all' | t }}</a>
+                    </a>
+                    {% if section.settings.all_link_text != blank %}
+                      <a class="header-shop__shop-all" href="{{ section.settings.all_link }}" tabindex="-1">{{ section.settings.all_link_text }}</a>
                     {% endif %}
                   </div>
                   {% if link.links != blank %}

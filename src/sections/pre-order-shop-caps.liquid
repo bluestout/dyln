@@ -1,4 +1,4 @@
-<div data-tab-container-inner>
+<div data-po-tab-container-inner>
   {% for block in section.blocks %}
 
   {% assign pop_p = all_products[block.settings.product] %}
@@ -22,17 +22,16 @@
   {% for color in b_p_colors_array %}
     {% assign color_class = value %}
   {% endfor %}
-  <div data-tab="3{{ forloop.index }}" {% if forloop.index == 1 %}class="active" {% else %}style="display:none;"{% endif %} data-add-on-parent>
+  <div data-po-tab="3{{ forloop.index }}" {% if forloop.index == 1 %}class="active"{% else %}data-pre-order-slick-load{% endif %} data-add-on-parent>
     <div
       class="pop{% if pop_p.has_only_default_variant %} single{% endif %}"
       data-pi-item
-      data-pi-static-class="pop{% if pop_p.has_only_default_variant %} single{% endif %}"
       data-single-product="{{ pop_p.id }}">
       {% form 'product', pop_p, data-product-form: '', data-product-handle: pop_p.handle, class: "pop__form" %}
         <div class="row">
-          <div class="col-lg-2"></div>
-          <div class="col-lg-5">
-            <div class="pop__gallery" data-pi-image-gallery="always">
+          <div class="col-xl-2"></div>
+          <div class="col-xl-5 col-lg-6">
+            <div class="pop__gallery" data-pi-image-gallery-onload data-arrows="true">
               {% assign first = true %}
               {% assign any_image = false %}
 
@@ -46,20 +45,11 @@
                         {% assign gallery_attribute = 'data-pi-image="' | append: color  | append: '"' %}
                         {% assign gallery_wrapper = "active pop__g-img-wrap" %}
                       {% else %}
-                        {% assign gallery_attribute = 'style="display:none;"' | append: 'data-pi-image="' | append: color  | append: '"' %}
+                        {% assign gallery_attribute = 'data-pi-image="' | append: color  | append: '"' %}
                         {% assign gallery_wrapper = "pop__g-img-wrap" %}
                       {% endif %}
-
-                      <div class="pop__gallery-img">
-                        {% render 'responsive-image' with
-                          image: pop_p_img,
-                          max_width: 300,
-                          max_height: 450,
-                          wrapper_class: gallery_wrapper,
-                          image_class: "pop__gallery-img",
-                          wrapper_attributes: gallery_attribute,
-                          snippet_index: 61,
-                        %}
+                      <div class="{{ gallery_wrapper }}" {{ gallery_attribute }}>
+                        <img src="{{ pop_p_img | img_url: '600x' }}" alt="{{ image.alt | escape }}">
                       </div>
 
                       {% assign first = false %}
@@ -71,22 +61,14 @@
               {% endfor %}
 
               {% unless any_image %}
-                <div class="pop__gallery-img">
-                  {% render 'responsive-image' with
-                    image: pop_p.featured_image,
-                    max_width: 300,
-                    max_height: 450,
-                    wrapper_class: "pop__g-img-wrap",
-                    image_class: "pop__gallery-img"
-                    span: true,
-                    snippet_index: 62,
-                  %}
+                <div class="{{ gallery_wrapper }}" {{ gallery_attribute }}>
+                  <img src="{{ pop_p.featured_image | img_url: '600x' }}" alt="{{ image.alt | escape }}">
                 </div>
               {% endunless %}
             </div>
           </div>
-          <div class="col-lg-3">
 
+          <div class="col-xl-4 col-lg-6">
             {% if pop_p.has_only_default_variant %}
               <input type="hidden" name="id" value="{{ pop_p_def_v.id }}" data-productid="{{ product.id }}"/>
             {% else %}
@@ -108,7 +90,7 @@
             <div class="pop__sizes">
               <h5 class="pop__sizes-title">{{ section.settings.product_label }}</h5>
               {% for block in section.blocks %}
-                <a href="#" class="pop__sizes-link{% if forloop.index == 1 %} active{% endif %}" data-tab-link="3{{ forloop.index }}">{{ block.settings.title }}</a>
+                <a href="#" class="pop__sizes-link{% if forloop.index == 1 %} active{% endif %}" data-po-tab-link="3{{ forloop.index }}">{{ block.settings.title }}</a>
               {% endfor %}
               <div class="pop__note">{{ block.settings.note }}</div>
             </div>
@@ -227,23 +209,22 @@
             <input type="hidden" data-current-product-id value="{{ pop_p.id }}" />
 
             {% if pop_p != blank and pop_p.has_only_default_variant == false %}
-              <script type="application/json" data-product-json>
-                {
-                  "variants": [
-                    {% for pop_p_j_v in pop_p.variants %}
-                      {
-                        "id": {{ pop_p_j_v.id | json }},
-                        "price": {{ pop_p_j_v.price | json }},
-                        "compare_at": {{ pop_p_j_v.compare_at_price | json }},
-                        "available": {{ pop_p_j_v.available | json }},
-                        "Option1": {{ pop_p_j_v.option1 | json }},
-                        "Option2": {{ pop_p_j_v.option2 | json }},
-                        "Option3": {{ pop_p_j_v.option3 | json }}
-                      }{% unless forloop.last %},{% endunless %}
-                    {% endfor %}
-                  ]
-                }
-              </script>
+            <script type="application/json" data-product-json>
+              {
+                "variants": [
+                  {% for pop_p_j_v in pop_p.variants %}{
+                      "id": {{ pop_p_j_v.id | json }},
+                      "price": {{ pop_p_j_v.price | json }},
+                      "compare_at": {{ pop_p_j_v.compare_at_price | json }},
+                      "available": {{ pop_p_j_v.available | json }},
+                      "Option1": {{ pop_p_j_v.option1 | json }},
+                      "Option2": {{ pop_p_j_v.option2 | json }},
+                      "Option3": {{ pop_p_j_v.option3 | json }}
+                    }{% unless forloop.last %},{% endunless %}{% endfor %}
+                ],
+                {% for pop_p_j_v in pop_p.variants %}"{{ pop_p_j_v.id }}": {{ pop_p_j_v.option1 | append: ',' | append: pop_p_j_v.option2  | append: ',' | append: pop_p_j_v.option3 | json }}{% unless forloop.last %},{% endunless %}{% endfor %}
+              }
+            </script>
             {% endif %}
           </div>
         </div>

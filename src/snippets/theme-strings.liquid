@@ -31,17 +31,21 @@
       select_frequency: {{ 'products.subscription.select_frequency' | t | json }},
       select_frequency_prompt: {{ 'products.subscription.select_frequency_prompt' | t | json }},
       on_sale: {{ 'products.product.on_sale' | t | json }},
+      sold_out: {{ 'products.product.sold_out' | t | json }},
       regular_price: {{ 'products.product.regular_price' | t | json }},
       search_products: {{ 'general.search.products' | t | json }},
       search_collections: {{ 'general.search.collections' | t | json }},
       search_articles: {{ 'general.search.articles' | t | json }},
-      search_pages: {{ 'general.search.pages' | t | json }}
+      search_pages: {{ 'general.search.pages' | t | json }},
+      pre_order_1: {{ 'pre_order.items.1_item'| t | json }},
+      pre_order_many: {{ 'pre_order.items.more_items' | t: number: "###" | json }}
     },
     moneyFormat: {{ shop.money_format | json }},
     imageUrls: {
       logoAmazon: {{ 'logo-amazon-pay-big.png' | asset_url | json }},
       logoGooglePay: {{ 'logo-google-pay-big.png' | asset_url | json }},
-      logoPayPal: {{ 'logo-paypal-big.png' | asset_url | json }}
+      logoPayPal: {{ 'logo-paypal-big.png' | asset_url | json }},
+      logoApplePay: {{ 'logo-apple-pay.png' | asset_url | json }}
     },
     currency: {
       name: {{ cart.currency.name | json }},

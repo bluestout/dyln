@@ -19,7 +19,7 @@
                 {% for lf_tag in lf_tags %}
                   {% assign index = forloop.index | plus: 1 %}
                   <a
-                    {% if section.settings.lf_recent == empty and forloop.first %}
+                    {% if section.settings.lf_recent == blank and forloop.first %}
                     class="site-footer__lf-link active"
                     {% else %}
                     class="site-footer__lf-link"
@@ -62,7 +62,7 @@
                   {% assign count = 0 %}
                   {% assign index = forloop.index | plus: 1 %}
                   <div
-                    {% if section.settings.lf_recent == empty and forloop.first %}
+                    {% if section.settings.lf_recent == blank and forloop.first %}
                     class="site-footer__lf-list active"
                     {% else %}
                     class="site-footer__lf-list" style="display:none;"
@@ -108,7 +108,7 @@
   {%- if section.setting.show_lifestyle_on_hp_only == false or template.name == 'index' or template.name == 'blog' -%}
   <div class="site-footer__separator gray"></div>
   {%- else -%}
-    <div class="site-footer__separator"></div>
+  <div class="site-footer__separator"></div>
   {%- endif -%}
 {%- endif -%}
 
@@ -156,49 +156,43 @@
             </div>
           </div>
         </div>
-
         <div class="site-footer__newsletter-opt-in opt-in-sms" data-phone-input>
-          {% comment %}
-            TODO: Add SMS API
-          {% endcomment %}
-          <label for="phone" class="visually-hidden">{{ 'layout.footer.telephone_label' | t }}</label>
-          <input type="tel" id="phone" placeholder="{{ section.settings.telephone_placeholder }}">
-          <button type="submit">{% render 'icon-send' %}</button>
+          <script type="text/javascript" src="https://dhv2ziothpgrr.cloudfront.net/59511/form_13428.js?ver=1593707386"></script>
+          <button type="submit" data-phone-submit>{% render 'icon-send' %}</button>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 <footer class="site-footer__footer">
-
   <div class="site-footer__wave-middle"></div>
-
   <div class="site-footer__footer-bg">
     <div class="container">
       <div class="row">
         <div class="col-lg-12 order-lg-1 order-1">
           <div class="row" data-tab-container data-accordion-rsp-breakpoint="768">
             {% for link in linklists[section.settings.menu].links %}
-              <div class="col-lg-2 col-md-4 col-12" data-accordion-parent-rsp=true data-accordion-mobile-only="true">
-                <div class="site-footer__p-link-wrap" data-accordion-button-rsp="{{ forloop.index }}">
-                  <a class="site-footer__parent-link" href="{{ link.url }}">
-                    {{ link.title }}
-                    <span class="site-footer__closed">+</span>
-                    <span class="site-footer__open">-</span>
-                  </a>
-                </div>
-                {% if link.links != blank %}
-                  <ul class="site-footer__menu-list active" data-accordion-content-rsp="{{ forloop.index }}">
-                    {% for childlink in link.links %}
-                      <li class="site-footer__menu-item">
-                        <a class="site-footer__menu-link" href="{{ childlink.url }}">
-                          {{ childlink.title }}
-                        </a>
-                      </li>
-                    {% endfor %}
-                  </ul>
-                {% endif %}
+            <div class="col-lg-2 col-md-4 col-12" data-accordion-parent-rsp=true data-accordion-mobile-only="true">
+              <div class="site-footer__p-link-wrap" data-accordion-button-rsp="{{ forloop.index }}">
+                <a class="site-footer__parent-link" href="{{ link.url }}">
+                  {{ link.title }}
+                  <span class="site-footer__closed">+</span>
+                  <span class="site-footer__open">-</span>
+                </a>
               </div>
+              {% if link.links != blank %}
+                <ul class="site-footer__menu-list active" data-accordion-content-rsp="{{ forloop.index }}">
+                  {% for childlink in link.links %}
+                    <li class="site-footer__menu-item">
+                      <a class="site-footer__menu-link" href="{{ childlink.url }}">
+                        {{ childlink.title }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </div>
             {% endfor %}
 
             <div class="col-lg-2 col-md-4">
@@ -206,7 +200,7 @@
               <div class="site-footer__reach-out">
                 <a href="tel:{{ section.settings.contact_phone }}" class="site-footer__reach-out-tel">{{ section.settings.contact_phone }}</a>
                 <a href="mailto:{{ section.settings.contact_mail }}">{{ section.settings.contact_mail }}</a>
-                <a onclick="Smooch.open()" href="">{{ 'layout.footer.live_chat' | t }}</a>
+                <a id="liveChat" onclick="Smooch.open()">{{ 'layout.footer.live_chat' | t }}</a>
                 <div class="d-flex justify-content-center justify-content-lg-start">
                   {% render 'social-links' %}
                 </div>
@@ -227,22 +221,20 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="col-lg-12 d-none d-lg-flex">
-        <div class="footer-copyright">
-          © {{ "now" | date: "%Y" }}, DYLN Inc.
-          {% if section.settings.privacy_policy_url != empty %}
-            | <a href="{{ section.settings.privacy_policy_url }}">Privacy Policy</a>
-          {% endif %}
-          {% if section.settings.terms_agreements_link != empty %}
-            | <a href="{{ section.settings.terms_agreements_link }}">Terms</a>
-          {% endif %}
-          {% if section.settings.ip_link != empty %}
-            | <a href="{{ section.settings.ip_link }}">IP</a>
-          {% endif %}
+        <div class="col-lg-12 d-none d-lg-flex order-lg-2 order-2">
+          <div class="footer-copyright">
+            © {{ "now" | date: "%Y" }}, DYLN Inc.
+            {% if section.settings.privacy_policy_url != empty %}
+              | <a href="{{ section.settings.privacy_policy_url }}">Privacy Policy</a>
+            {% endif %}
+            {% if section.settings.terms_agreements_link != empty %}
+              | <a href="{{ section.settings.terms_agreements_link }}">Terms</a>
+            {% endif %}
+            {% if section.settings.ip_link != empty %}
+              | <a href="{{ section.settings.ip_link }}">IP</a>
+            {% endif %}
+          </div>
         </div>
-      </div>
 
         <div class="col-sm-12 d-flex order-6 d-lg-none justify-content-center">
           <div class="footer-copyright">
@@ -353,6 +345,12 @@
         "label": "Home page only",
         "info": "Show Lifestyle Section only on home page?",
         "default": true
+      },
+      {
+        "type": "text",
+        "id": "lf_recent",
+        "label": "Recent Blogs Header",
+        "default": "Recent"
       },
       {
         "type": "text",

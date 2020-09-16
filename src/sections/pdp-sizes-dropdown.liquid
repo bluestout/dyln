@@ -1,0 +1,122 @@
+{% for block in section.blocks %}
+{%- if product.handle == block.settings.product -%}
+<div class="pdp-s-drop__button-box">
+  <button type="button" data-pdp-s-toggle>
+    <span class="icon">{% render 'icon-chevron-down-thick' %}</span>
+    <span class="visually-hidden">Toggle size selection</span>
+  </button>
+</div>
+
+<div class="pdp-s-drop__sizes" data-pdp-s>
+  <div class="pdp-s-drop__overlay" data-pdp-s-toggle></div>
+  <div class="pdp-s-drop__background">
+    <div class="pdp-s-drop__title-wrap">
+      <button type="button" data-pdp-s-toggle>
+        <span class="text">{{ section.settings.title }}</span>
+        <span class="icon">{% render 'icon-chevron-down-thick' %}</span>
+      </button>
+    </div>
+    <div class="pdp-s-drop__row-wrap">
+      <div class="row no-gutters">
+        {% for n in (1..4) %}
+        {% assign size_product_name = "product_" | append: n %}
+        {% assign size_title_name = "product_title_" | append: n %}
+        {% assign size_product = all_products[block.settings[size_product_name]] %}
+        {% assign size_title = block.settings[size_title_name] %}
+          <div class="col">
+            <a class="pdp-s-drop__product" href="{{ size_product.url }}">
+              {% render 'responsive-image' with
+                image: size_product.featured_image,
+                max_width: 200,
+                max_height: 200,
+                image_attributes: "data-product-featured-image",
+                wrapper_class: "pdp-s-drop__img-wrap",
+                image_class: "pdp-s-drop__img",
+                snippet_index: 80,
+                span: true
+              %}
+              {% if size_title != blank %}
+              <span class="pdp-s-drop__title">{{ size_title }}</span>
+              {% else %}
+              <span class="pdp-s-drop__title">{{ size_product.title }}</span>
+              {% endif %}
+              <span class="pdp-s-drop__price">{{ size_product.price | money_without_trailing_zeros }}</span>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% break %}
+{% endif %}
+{% endfor %}
+
+{% schema %}
+  {
+    "name": "Product sizes Mobile",
+    "class": "pdp-s-drop",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+        "default": "Select Size"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "Product",
+        "name": "Product",
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product",
+            "info": "On which product to show the extra sizes?"
+          },
+          {
+            "type": "product",
+            "id": "product_1",
+            "label": "Product 1"
+          },
+          {
+            "type": "textarea",
+            "id": "product_title_1",
+            "label": "Product 1 title"
+          },
+          {
+            "type": "product",
+            "id": "product_2",
+            "label": "Product 2"
+          },
+          {
+            "type": "textarea",
+            "id": "product_title_2",
+            "label": "Product 2 title"
+          },
+          {
+            "type": "product",
+            "id": "product_3",
+            "label": "Product 3"
+          },
+          {
+            "type": "textarea",
+            "id": "product_title_3",
+            "label": "Product 3 title"
+          },
+          {
+            "type": "product",
+            "id": "product_4",
+            "label": "Product 4"
+          },
+          {
+            "type": "textarea",
+            "id": "product_title_4",
+            "label": "Product 4 title"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -2,11 +2,18 @@
   @include transition(box-shadow);
   position: relative;
   box-shadow: none;
-  padding: 60px 0 25px;
+  padding: 60px 0 0;
   height: 100%;
   text-align: center;
   background-color: $color-white;
-  margin-bottom: 120px;
+
+  @include media-query($large-down) {
+    margin: 0 0 10px;
+  }
+
+  .right-col {
+    padding: 5px 0 0;
+  }
 
   > .container > .pop__content {
     @include media-query($large-up) {
@@ -18,50 +25,32 @@
     position: relative;
   }
 
-  &__right-col {
-    float: right;
-    position: absolute;
-    top: 280px;
-    right: 10%;
-
-    @media screen and (max-width: 1430px) {
-      right: 4%;
-      bottom: 30px;
-    }
-
-    @media screen and (max-width: 1200px) {
-      width: 350px;
-      right: 3%;
-    }
-
-    @media screen and (max-width: 992px) {
-      left: 50%;
-      transform: translateX(-50%);
-      width: 480px;
-    }
-
-    @media screen and (max-width: 480px) {
-      width: 320px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-  }
-
   &__add-ons {
-    box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
-    width: 400px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
     border-radius: 20px;
     overflow: hidden;
     margin: 0 auto;
+    padding: 10px 15px;
 
-    @include media-query($medium-down) {
+    @include media-query($large-down) {
       width: 100%;
     }
 
     &-title {
       @include text(18px, 1.2, $color-theme-1, 0.3px);
-      margin-top: 20px;
+      text-transform: uppercase;
+      text-align: left;
+      margin: 0 0 10px;
     }
+  }
+
+  &__shipping-notice {
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+    @include font-header(normal);
+    @include text(14px, 1.4, $color-theme-8, 0.3px);
   }
 
   &__image-link {
@@ -78,15 +67,19 @@
   }
 
   .slick-prev {
+    @include no-font-size;
+    z-index: $z-base;
+    position: absolute;
+    top: 50%;
+    left: 40px;
+    background: transparent;
     background-image: url("data:image/svg+xml,%3Csvg width='20' height='36' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18.113 35.244L1.21 18.34 19.285 1.06' stroke='%23333C41' stroke-width='1.5' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-size: contain;
     width: 25px;
     height: 23px;
-    position: absolute;
-    top: 50%;
     transform: translateY(-50%);
-    left: 40px;
+    border: none;
 
     @include media-query($large-down) {
       left: 20px;
@@ -94,15 +87,19 @@
   }
 
   .slick-next {
+    @include no-font-size;
+    z-index: $z-base;
+    position: absolute;
+    top: 50%;
+    right: 40px;
+    background: transparent;
     background-image: url("data:image/svg+xml,%3Csvg width='20' height='36' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18.113 35.244L1.21 18.34 19.285 1.06' stroke='%23333C41' stroke-width='1.5' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-size: contain;
     width: 25px;
     height: 23px;
     transform: translateY(-50%) rotate(180deg);
-    position: absolute;
-    top: 50%;
-    right: 40px;
+    border: none;
 
     @include media-query($large-down) {
       right: 20px;
@@ -138,7 +135,8 @@
 
     @include media-query($large-down) {
       text-align: center;
-      margin-top: 20px;
+      margin-top: 10px;
+      margin-bottom: 10px;
       @include font-body(normal);
       @include text(16px, 1.2, $color-black, 0.3px);
     }
@@ -176,7 +174,16 @@
     @include underline($color-main-1);
     @include transition(color);
 
-    &:hover {
+    &.active {
+      color: $color-main-1;
+    }
+
+    &.block-active {
+      color: $color-main-1;
+    }
+
+    &:hover,
+    &:focus {
       color: $color-main-1;
     }
 
@@ -354,7 +361,6 @@
     }
   }
 
-
   &__fake-btn-wrap {
     margin-top: 40px;
   }
@@ -371,6 +377,27 @@
     &:disabled {
       background-color: $color-theme-8;
       background-image: none;
+    }
+
+    [data-pre-order-count] {
+      font-size: 18px;
+      line-height: 30px;
+      color: $color-white;
+      letter-spacing: 1px;
+      margin: 0 0 0 3px;
+      text-transform: none;
+    }
+
+    @include media-query($medium-down) {
+      font-size: 18px;
+      line-height: 24px;
+      letter-spacing: 1px;
+
+      [data-pre-order-count] {
+        font-size: 14px;
+        line-height: 24px;
+        letter-spacing: 0.5px;
+      }
     }
   }
 
@@ -515,6 +542,8 @@
   }
 
   @include media-query($large-up) {
+    min-height: 600px;
+
     &:hover,
     &:focus,
     &.active {
@@ -559,8 +588,6 @@
     &__form {
       position: relative;
       background-color: $color-white;
-      height: 100%;
-      // display: flex;
     }
   }
 
@@ -703,19 +730,35 @@
       line-height: 30px;
     }
   }
+
+  &__g-img-wrap {
+    max-width: 100%;
+    max-height: 600px;
+    text-align: center;
+    font-size: 0;
+    line-height: 0;
+  }
+  &__g-img-wrap img {
+    max-width: 100%;
+    max-height: 600px;
+    object-fit: cover;
+    display: inline-block;
+  }
 }
 
 .popa {
   @include transition(box-shadow);
   position: relative;
   box-shadow: none;
-  padding: 60px 0 25px;
   height: 100%;
   text-align: center;
   background-color: $color-white;
-  padding-top: 0;
-  padding-bottom: 0;
-  border-bottom: 1px solid #EEE;
+
+  &:not(:last-of-type) {
+    border-bottom: 1px solid $color-theme-29;
+    padding: 0 0 10px;
+    margin: 0 0 10px;
+  }
 
   > form {
     @include media-query($large-down) {
@@ -739,16 +782,13 @@
   &__gallery {
     display: block;
     margin: 0 0 10px;
-
-    @include media-query($large-down) {
-      width: 50%;
-    }
+    width: calc(40% - 45px);
   }
 
   &__confirm {
-    width: 30px;
     position: relative;
     top: -20px;
+    width: 30px;
 
     @include media-query($large-down) {
       top: 50px;
@@ -764,6 +804,7 @@
       width: 25px;
       background-color: white;
       border: 2px solid $color-theme-2;
+      border-radius: 3px;
 
       &::after {
         content: "";
@@ -772,14 +813,12 @@
       }
 
       &:after {
-        left: 9px;
-        top: 5px;
-        width: 5px;
-        height: 10px;
+        left: 7px;
+        top: 2px;
+        width: 8px;
+        height: 15px;
         border: solid white;
         border-width: 0 3px 3px 0;
-        -webkit-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
         transform: rotate(45deg);
       }
     }
@@ -810,9 +849,13 @@
     @include text(18px, 1.2, $color-black, 0.3px);
     @include underline($color-main-1, false);
     @include transition(color);
-    margin: 0 0 1px;
+    margin: 0 0 2px;
     display: inline-block;
     text-align: left;
+
+    @include media-query($medium-down) {
+      font-size: 14px;
+    }
   }
 
   &__subtitle {
@@ -833,6 +876,7 @@
     @include text(16px, 23px, $color-body-text, 0.95px);
     display: block;
     text-align: left;
+    margin: 0 0 3px;
   }
 
   &__options {
@@ -843,7 +887,8 @@
   &__options-label {
     @include font-header(700);
     @include text(12px, 17px, $color-body-text, 0.71px);
-    margin: 0 0 10px;
+    margin: 0 0 5px;
+    display: inline-block;
 
     &--desktop {
       @include media-query($medium-down) {
@@ -861,14 +906,13 @@
   &__gallery {
     &-img {
       display: block;
-      width: 150px;
+      object-fit: scale-down;
     }
   }
 
   &__content {
     &-wrapper {
-      width: 50%;
-      float: right;
+      width: 60%;
     }
   }
 
@@ -1177,10 +1221,8 @@
     &__form {
       position: relative;
       background-color: $color-white;
-      height: 100%;
       display: flex;
       align-items: center;
-      padding-left: 10px;
     }
   }
 
@@ -1224,10 +1266,6 @@
       font-size: 10px;
       line-height: 16px;
       letter-spacing: 0.6px;
-    }
-
-    &__price {
-      display: none;
     }
 
     &__hover {
@@ -1346,4 +1384,11 @@
     display: inline-block;
     vertical-align: middle;
   }
+}
+
+[data-pi-image-gallery-onload] > .pop__g-img-wrap:not(:first-of-type) {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  top: 0;
 }

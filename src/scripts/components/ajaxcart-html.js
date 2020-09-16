@@ -24,9 +24,12 @@ function quickCartUpsellHtml(product, url, index) {
   if (!product || !index) {
     return;
   }
+
   let pattern = "";
   let options = "";
   let optionsWrap = "";
+
+  const galleryImages = [];
 
   if (product.variants) {
     for (let k = 0; k < product.variants.length; k++) {
@@ -42,6 +45,7 @@ function quickCartUpsellHtml(product, url, index) {
       `;
     }
 
+
     for (let k = 0; k < product.options.length; k++) {
       const option = product.options[k].trim().toLowerCase();
       const optionlabel = `option${k + 1}`;
@@ -56,6 +60,17 @@ function quickCartUpsellHtml(product, url, index) {
               handleize(variant.title.trim().toLowerCase())
             );
             const swatch = `color-swatch-${colorHandle}`;
+
+            for (let k = 0; k < product.media.length; k++) {
+              const mediaElement = product.media[k];
+              if (mediaElement.alt && mediaElement.alt.indexOf(variant[optionlabel]) > -1) {
+                galleryImages.push({
+                  src: mediaElement.src,
+                  value: variant[optionlabel]
+                });
+                break;
+              }
+            }
             let checkedStatus = "";
             if (variant.available && !isChecked) {
               checkedStatus = `checked="checked"`;
@@ -63,14 +78,14 @@ function quickCartUpsellHtml(product, url, index) {
             }
             colorInputs += `<label
                 class="visually-hidden"
-                for="cu-${k}-${option}-${j}"
+                for="cu-${option}-${index}"
                 tabindex="-1">
                 ${variant.title}
               </label>`;
             colorInputs += `<input type="radio"
               tabindex="-1"
-              id="cu-${k}-${option}-${j}"
-              name="cu-${k}-${option}"
+              id="cu-${option}-${index}"
+              name="cu-${option}-${index}"
               value="${variant[optionlabel]}"
               class="cart-drawer__upsell-radio-color ${swatch}"
               data-price="${formatAndTrimPrice(variant.price)}"
@@ -95,8 +110,8 @@ function quickCartUpsellHtml(product, url, index) {
             }
             amountInputs += `<input type="radio"
               tabindex="-1"
-              id="cu-${k}-${option}-${j}"
-              name="cu-${k}-${option}"
+              id="cu-${option}-${index}"
+              name="cu-${option}-${index}"
               value="${adjustDiffuserText(variant[optionlabel])}"
               class="cart-drawer__upsell-radio-input"
               data-price="${formatAndTrimPrice(variant.price)}"
@@ -106,7 +121,7 @@ function quickCartUpsellHtml(product, url, index) {
               ${variant.available ? "" : `disabled="disabled"`} />`;
             amountInputs += `<label
               class="cart-drawer__upsell-label"
-              for="cu-${k}-${option}-${j}"
+              for="cu-${option}-${index}"
               tabindex="-1">
               ${adjustDiffuserText(variant[optionlabel])}
             </label>`;
@@ -124,6 +139,20 @@ function quickCartUpsellHtml(product, url, index) {
       : "";
   const linkHref = url ? `href="${url}"` : `href="/products/${product.handle}"`;
 
+  let gallery = "";
+
+  if (galleryImages.length > 0) {
+    gallery = `<div class="cart-drawer__upsell-gallery">`;
+    for (let i = 0; i < galleryImages.length; i++) {
+      gallery += upsellImageHtml(galleryImages[i], i);
+    }
+    gallery += "</div>";
+  }
+
+  if (gallery.length <= 51) {
+    gallery = `<a ${linkHref} class="cart-drawer__upsell-image" tabindex="-1">${productImageHtml(product)}</a>`
+  }
+
   pattern = `
   <div class="cart-drawer__item-upsell" data-upsell-wrap>
     <input
@@ -131,9 +160,7 @@ function quickCartUpsellHtml(product, url, index) {
       id="upsellQuantity${index}"
       name="quantity"
       value="1" tabindex="-1"/>
-    <a ${linkHref} class="cart-drawer__upsell-image" tabindex="-1">
-      ${productImageHtml(product)}
-    </a>
+    ${gallery}
     <a ${linkHref} class="cart-drawer__upsell-content" tabindex="-1">
       <h4 class="cart-drawer__upsell-item-title">${product.title}</h4>
       <p class="cart-drawer__upsell-text">
@@ -243,6 +270,14 @@ function quickCartLineItemHtml(product, index) {
   if (isSubscription || isSubscribableProduct) {
     subscriptionHtml = `<div class="cart-drawer__subscription-box">`;
     let customSelectOptionsClassname = "custom-select-options";
+    let firstSubscriptionPrice = formatMoney(product.price, theme.moneyFormat);
+
+    try {
+      firstSubscriptionPrice = formatMoney(
+        subMetadata.map[product.variant_id].discount_variant_price,
+        theme.moneyFormat
+      );
+    } catch (error) { }
 
     customSelectOptionsClassname = "custom-select-options full";
     subscriptionHtml += `<input type="checkbox"
@@ -258,7 +293,7 @@ function quickCartLineItemHtml(product, index) {
       </label>
       <span class="cart-drawer__subscription-box-btn">
         <span data-qc-subscription-price>
-          ${formatMoney(product.price, theme.moneyFormat)}
+          ${firstSubscriptionPrice}
         </span>
         <span><strong>${theme.strings.subscribe}</strong></span>
       </span>`;
@@ -581,6 +616,19 @@ function productImageHtml(product, format, className) {
   }
   if (image.length > 0) {
     return `<img src="${image}" ${domClass} alt="${alt}" />`;
+  }
+}
+
+function upsellImageHtml(object, index) {
+  try {
+    const image = resizeImage(object.src, "240x240");
+    let attributes = "";
+    if (index > 0) {
+      attributes = `style="display:none;"`
+    }
+    return `<img src="${image}" ${attributes} data-upsell-gallery-image="${object.value}" alt="${object.value}" />`;
+  } catch (error) {
+    return "";
   }
 }
 

@@ -26,7 +26,6 @@ $(function(){
     if(Documentwidth < 768){
       $('.account-body__tabs').delay(300).fadeOut();
       $('html, body').animate({ scrollTop: 400 });
-      //$('html, body').animate({scrollTop: Documentheight - 600}, 'slow');
     }
   }
   var CustomerShopifyId = '{{ customer.id }}';
@@ -61,13 +60,8 @@ $(function(){
   // change to subscribe option
   $('#subscription-wrap .diffusers__sub-btn').click();
   $('#subscription-wrap .diffusers__sub-back').html('<strong>Not ready for a Subscription?</strong><br><span>Shop one time purchase:</span>');
-  //  console.log('Button Text:'+ $('#subscription-wrap .custom-select-styled').text());
-  //$('#subscription-wrap .custom-select-styled').click();
-  //$('#subscription-wrap .custom-select-option').find('button[rel="3"]').click();
-  //console.log('selected '+$('#subscription-wrap .custom-select-option').find('button[rel="3"]').attr('rel'));
 
-  // check Customer
-
+    // check Customer
     var cUrl = '/a/dyl/'+CustomerShopifyId+'/check';
     $.ajax({
       url: cUrl,
@@ -90,11 +84,9 @@ $(function(){
       dataType: 'json',
       success: function (response) {
         // you will get response from your php page (what you echo or print)
-        //console.log(response);
         if(response.no_bottle){
           $('#custommer-bottles-short, #custommer-bottles').append('<div class="account-dash__bottle no-bottles"><h4>No Bottle Registered yet</h4></div>')
         }else{
-          //console.log(response.bottles.length);
           var number_of_bottles = response.bottles.length - 1;
           var btl_names = '';
         $.each(response.bottles, function(key, val) {
@@ -114,9 +106,7 @@ $(function(){
           $('#btl-names').val(btl_names);
         }
       },
-      error: function(jqXHR, textStatus, errorThrown) {
-        // console.log(textStatus, errorThrown);
-      }
+      error: function(jqXHR, textStatus, errorThrown) {}
 
 
     });
@@ -182,15 +172,11 @@ $(function(){
         }
       });
   }
-  // test product
-  // Country-region Senyx USA('other') | 4PX - HK('px') | 4PX - CA('ca')
-  //getproductAvailabilityData('other', '1920834338904');
 
   // Bottle details
   $(document).on('click', '.account-dash__bottle-more', function(){
     var btlObj = JSON.parse($(this).parents('.account-dash__bottle').attr('data-bottle'));
     BottleDetails(btlObj);
-    //console.log(btlObj);
   });
   function BottleDetails(obj){
     var bottleImgFull = obj.bottle_img.split(".png");
@@ -271,9 +257,6 @@ $(function(){
     $Wrap.find('.account-bottle__button-delete').attr('data-id', obj.id);
     $('.account-bottle.popup').fadeIn();
 
-    //scrollBottom();
-    //console.log(obj.id);
-
     $WrapEdit.find('.account-bottle__edit-title').text(nickName);
     $WrapEdit.find('.code').text(obj.code);
     $WrapEdit.find('.color').text(btlColor);
@@ -284,9 +267,6 @@ $(function(){
     $WrapEdit.find('.refil-per-week').val(obj.days_used);
     $WrapEdit.find('.account-bottle__edit-update').attr('data-id', obj.id);
     $WrapEdit.find('.account-bottle__edit-image-wrap img').attr('src', bottleImg);
-
-
-
   }
 
   // close popup
@@ -304,11 +284,7 @@ $(function(){
     //
     $('.account-bottle__edit').fadeOut('fast');
     $('.account-bottle__body').delay(500).fadeIn('slow');
-
   });
-
-
-
 
   // Order see more/ see less account-orders__btn-more
   $('.account-orders__btn-more').click(function(){
@@ -348,16 +324,13 @@ $(function(){
       dataType: 'json',
       success: function (response) {
         if(!response){
-          //console.log('not found');
           $('#registration-modal__form .registration-modal__message span').text('Invalid Code');
         }else{
-          //console.log(response);
-      setRegisterBottleInfo(response);
+          setRegisterBottleInfo(response);
           regProcessNext($this);
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        // console.log(textStatus, errorThrown);
       }
     });
     }else{
@@ -392,8 +365,6 @@ $(function(){
       var imgfull = imgBtl.split('.png');
       var imgSm = imgfull[0] + '_300x.png';
       $registerForm.find('.reg-btl-img').not('.btl-finish').attr('src', imgSm);
-
-
     }
   }
 
@@ -418,7 +389,6 @@ $(function(){
       $('#registration-modal__form .registration-modal__message span').text('');
       regProcessNext($this);
     }
-
   });
 
   // register bottle nickname
@@ -436,7 +406,6 @@ $(function(){
         $('#registration-modal__form .registration-modal__message span').text('Dublicate bottle name');
       }
     }
-
   });
 
     // back button register bottle
@@ -523,18 +492,14 @@ $(function(){
         dataType: 'json',
         success: function (response) {
           if(!response){
-            //console.log('not found');
           }else{
-            console.log(response);
             $('.registration-modal__page-title i').text(response.nickname);
             $('.registration-modal__page-txt.replace-date span').text(response.replace_date);
             $('.registration-modal__page.step-thanks .registration-modal__btn-final').attr('data-id', response.id);
             regProcessNext($this);
           }
         },
-        error: function(jqXHR, textStatus, errorThrown) {
-          // console.log(textStatus, errorThrown);
-        }
+        error: function(jqXHR, textStatus, errorThrown) {}
       });
     }
   });
@@ -602,16 +567,11 @@ $(function(){
         data: data,
         dataType: 'json',
         success: function (response) {
-          if(!response){
-            //console.log('not found');
-          }else{
-            //console.log(response);
+          if(!response){}else{
             location.reload(true);
           }
         },
-        error: function(jqXHR, textStatus, errorThrown) {
-          // console.log(textStatus, errorThrown);
-        }
+        error: function(jqXHR, textStatus, errorThrown) {}
       });
   }
 
@@ -634,13 +594,9 @@ $(function(){
         success: function (response) {
           if(response.success){
             location.reload(true);
-          }else{
-      //console.log('not found');
-          }
+          }else{}
         },
-        error: function(jqXHR, textStatus, errorThrown) {
-          // console.log(textStatus, errorThrown);
-        }
+        error: function(jqXHR, textStatus, errorThrown) {}
       });
   }
 
@@ -661,7 +617,6 @@ $(function(){
       var data = {'btl_customer': CustomerShopifyId, 'btl_id': btlID,'refill_start_date': sDate, 'days_used': refil_per_week, 'refill_frequency': refil_per_day};
       UpdateBottle(data);
     }
-    //console.log("New date: "+sDate+" refil_per_day: "+refil_per_day+ " refil_per_week: "+refil_per_week );
   });
 
   function UpdateBottle(data){
@@ -673,16 +628,11 @@ $(function(){
         data: data,
         dataType: 'json',
         success: function (response) {
-          //console.log(response);
           if(response.success){
             location.reload(true);
-          }else{
-      //console.log('not found');
-          }
+          }else{}
         },
-        error: function(jqXHR, textStatus, errorThrown) {
-          // console.log(textStatus, errorThrown);
-        }
+        error: function(jqXHR, textStatus, errorThrown) {}
       });
   }
 
@@ -762,7 +712,6 @@ $(function(){
 
   // show thank you
   function showThankYou(obj){
-    // console.log(obj);
     $('.account-bottle.popup .account-bottle__body').fadeOut('fast');
     $('.account-bottle.popup .thank-you').delay(300).fadeIn('slow');
   }
@@ -778,7 +727,6 @@ $(function(){
 
   // replace diffuder data
   function ReplaceDiffuser(Data){
-    // console.log(Data);
       var cUrl = '/a/dyl/'+CustomerShopifyId+'/replace-dif';
       var data = Data;
       $.ajax({
@@ -787,18 +735,13 @@ $(function(){
         data: data,
         dataType: 'json',
         success: function (response) {
-          //console.log(response);
           if(!response){
-
           }else{
             BottleDetails(response);
             showThankYou(response);
-
           }
         },
-        error: function(jqXHR, textStatus, errorThrown) {
-          // console.log(textStatus, errorThrown);
-        }
+        error: function(jqXHR, textStatus, errorThrown) {}
       });
   }
 
@@ -821,11 +764,9 @@ $(function(){
   $("#edit-profile--phone").on('focusout', function(){
     var $this = $(this);
     if(iti.isValidNumber()){
-      console.log('Valid Number: ' + iti.getNumber());
       $this.next('span').remove();
       $('#customer_phone').val(iti.getNumber());
     }else{
-      console.log('InValid Number: ' + iti.getNumber());
       $this.after('<span class="phone-error">Invalid Number</span>');
       $('#customer_phone').val('');
       $this.focus();
@@ -833,7 +774,6 @@ $(function(){
   });
   // change gender
   $('.account-edit__input-wrap input[name="gender"]').on('change', function(){
-    //console.log($(this).val());
     $('#customer-gender').val($(this).val());
   });
   // profile next
@@ -845,7 +785,6 @@ $(function(){
     var next = true;
     $parent.find('.required').each(function(){
       if($(this).val() == ''){
-        //console.log($(this));
         next = false;
         $('.account-form-message').text('Please fill' + $(this).attr('id'));
         return false;
@@ -903,7 +842,6 @@ $(function(){
         }
       });
 
-      //console.log(interests);
       if(interests.length >= 3){
       // process submit
         var $wrap = $('.customer-edit-profile.popup');
@@ -923,9 +861,7 @@ $(function(){
           'exercise_per_week': cExercise,
           'interests': cInterests
         };
-
         UpdateCustomerProfile(cData);
-
       }else{
         $('.account-form-message').text('Please Select 3+ Interests');
         $this.removeClass('btn-disable');
@@ -940,12 +876,9 @@ $(function(){
       type: 'GET',
       dataType: 'json',
       success: function (response) {
-        // console.log(response);
         DisplayCustomerInfo(response);
       },
-      error: function(jqXHR, textStatus, errorThrown) {
-        // console.log(textStatus, errorThrown);
-      }
+      error: function(jqXHR, textStatus, errorThrown) {}
     });
 
   // function update customer info
@@ -957,16 +890,13 @@ $(function(){
       data: Data,
       dataType: 'json',
       success: function (response) {
-       // console.log(response);
         if(response.success){
           location.reload(true);
         }else{
           $('.account-form-message').text('Something Wrong Please refresh and try again');
         }
       },
-      error: function(jqXHR, textStatus, errorThrown) {
-        // console.log(textStatus, errorThrown);
-      }
+      error: function(jqXHR, textStatus, errorThrown) {}
     });
   }
 
@@ -1036,7 +966,6 @@ $(function(){
     if(data.notification.newsletter == 1){
       $('.account-profile__checkbox-wrap').find('#newsletter').prop( "checked", true );
     }
-    
     // Profile image
     if(data.profile_img == 'image-9' || data.profile_img == 'image-1'){
       var Selector = 'proiflie-image-1';
@@ -1047,7 +976,7 @@ $(function(){
     }
 
   }
-  
+
   // set profile Image
   function SetProfileImage(Selector, Img){
     $('#profile-image-update').find('#'+Selector).click();
@@ -1056,35 +985,32 @@ $(function(){
     $('.profile-bg').each(function(){
      $(this).css('background-image','url('+FullImg+')');
     })
-    
+
   }
-  
+
   // update Profile image
   $('#update-profile-pic').click(function(){
     var $this = $(this);
     $this.text('Updating...');
     var $form = $this.parents('form');
-    var Data = $form.serialize();    
+    var Data = $form.serialize();
     var urlToRequest = '/a/dyl/'+CustomerShopifyId+'/update-profile-image';
-    console.log(Data);
+    // console.log(Data);
     $.ajax({
       url: urlToRequest,
       type: 'GET',
       data: Data,
       dataType: 'json',
       success: function (response) {
-       //console.log(response);
         if(response.success){
           location.reload(true);
         }else{
 
         }
       },
-      error: function(jqXHR, textStatus, errorThrown) {
-        // console.log(textStatus, errorThrown);
-      }
-    });    
-    
+      error: function(jqXHR, textStatus, errorThrown) {}
+    });
+
   });
 
 
@@ -1097,23 +1023,19 @@ $(function(){
       data: Data,
       dataType: 'json',
       success: function (response) {
-       //console.log(response);
         if(response.success){
           $('.account-profile__checkbox-wrap input[type="checkbox"]').prop('disabled', false);
         }else{
 
         }
       },
-      error: function(jqXHR, textStatus, errorThrown) {
-        // console.log(textStatus, errorThrown);
-      }
+      error: function(jqXHR, textStatus, errorThrown) {}
     });
   }
   $('.account-profile__checkbox-wrap input[type="checkbox"]').on('change', function(){
     var $this = $(this);
     var $form = $this.parents('form');
     var Data = $form.serialize();
-    //console.log(Data);
     $('.account-profile__checkbox-wrap input[type="checkbox"]').attr('disabled', 'disabled');
     UpdateNotify(Data);
 
@@ -1140,16 +1062,9 @@ $(function(){
         data: Data,
         dataType: 'json',
         success: function (response) {
-          //console.log(response);
-          if(response.success){
-
-          }else{
-
-          }
+          if(response.success){}else{}
         },
-        error: function(jqXHR, textStatus, errorThrown) {
-          // console.log(textStatus, errorThrown);
-        }
+        error: function(jqXHR, textStatus, errorThrown) {}
       });
       return false;
     }
@@ -1174,11 +1089,9 @@ $(function(){
   $("#profile-contact-phone").on('focusout', function(){
     var $this = $(this);
     if(itil.isValidNumber()){
-      //console.log('Valid Number: ' + itil.getNumber());
       $this.next('span').remove();
       $('#customer_phone_contact').val(itil.getNumber());
     }else{
-      //console.log('InValid Number: ' + itil.getNumber());
       $('#customer_phone_contact').val('');
       $this.focus();
     }
@@ -1207,14 +1120,11 @@ $(function(){
         dataType: 'json',
         success: function (response) {
           if(!response){
-
-             }else{
-             location.reload(true);
-             }
+            }else{
+            location.reload(true);
+            }
         },
-        error: function(jqXHR, textStatus, errorThrown) {
-          // console.log(textStatus, errorThrown);
-        }
+        error: function(jqXHR, textStatus, errorThrown) {}
       });
     }
     }
@@ -1233,18 +1143,15 @@ $(function(){
     var $this = $(this);
     if($this.attr('data-default') !=''){
     $this.val($this.attr('data-default')).change();
-      //console.log('Country: '+ $this.attr('data-default'));
     }
   });
 
   $('.address-field').on('change', function(){
        var $from= $(this).parents('form');
        var provinces = JSON.parse($(this).find('option:selected').attr('data-provinces'));
-       //console.log(provinces.length);
        if(provinces.length == 0){
         $from.find('.province-field').addClass('vs-hidden');
        }else{
-         //console.log(provinces);
          var $provinceField = $from.find('.province-field');
          $provinceField.empty();
          jQuery.each(provinces, function(i, v){
@@ -1301,9 +1208,7 @@ $(function(){
         success: function (response) {
           location.reload(true);
         },
-        error: function(jqXHR, textStatus, errorThrown) {
-          // console.log(textStatus, errorThrown);
-        }
+        error: function(jqXHR, textStatus, errorThrown) {}
       });
   }
 
@@ -1365,9 +1270,7 @@ $(function(){
         success: function (response) {
           location.reload(true);
         },
-        error: function(jqXHR, textStatus, errorThrown) {
-          // console.log(textStatus, errorThrown);
-        }
+        error: function(jqXHR, textStatus, errorThrown) {}
       });
   }
 
@@ -1379,14 +1282,11 @@ $(function(){
         type: 'GET',
         dataType: 'json',
         success: function (response) {
-          // console.log(response);
           if(response.subscriptions){
           renderSubscriptions(response.subscriptions);
           }
         },
-        error: function(jqXHR, textStatus, errorThrown) {
-          // console.log(textStatus, errorThrown);
-        }
+        error: function(jqXHR, textStatus, errorThrown) {}
       });
   }
 
@@ -1443,12 +1343,8 @@ $(function(){
         type: 'GET',
         data: Data,
         dataType: 'json',
-        success: function (response) {
-          // console.log(response);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-          // console.log(textStatus, errorThrown);
-        }
+        success: function (response) {},
+        error: function(jqXHR, textStatus, errorThrown) {}
       });
   }
 
@@ -1479,17 +1375,12 @@ $(function(){
       var presentVal = $this.attr('data-val');
       if(typeof presentVal != "undefined"){
         var pS = presentVal.split('-');
-        //console.log(pS[0]);
         var StSl= ((parseInt(pS[0]) * 12) + parseInt(pS[1])) - 36;
-        // console.log(StSl);
         inItSlider('.account-edit-option #body-height', 5, StSl);
       }else{
         inItSlider('.account-edit-option #body-height', 5, 34);
       }
-
     }
-
-    //inItSlider('.swiper-container', 5, 40);
   });
 
   function inItSlider(Class, PerView, StartSlide){
@@ -1518,7 +1409,6 @@ $(function(){
       var wVal = $('.swiper-slide-active').attr('data-val');
       var wLab = $('.lab-weight button.active').text();
       var wV = wVal+'-'+wLab;
-      //console.log(wVal);
       $('.bod-weight span').text('Weight: '+wVal+wLab);
       $('.bod-weight').attr('data-val', wV);
       $('#body-weight-lab').val(wV);
@@ -1526,7 +1416,6 @@ $(function(){
     }else{
       var hV = $('.swiper-slide-active').attr('data-val');
       var hVal = hV.split('-');
-      //console.log(hV);
       $('.bod-height span').text('Height: '+hVal[0]+'\''+hVal[1]+'"');
       $('.bod-height').attr('data-val', hV);
       $('#body-height-feet').val(hV);
@@ -1548,5 +1437,51 @@ $(function(){
   });
 
   getCustomerSubs();
+
+  // check user vip tier, add badge color and vip tier name
+  function StampedRewards() {
+    try {
+      let rewards = StampedFn.getDataRewards();
+      let tierId = rewards.customer.vipTierId;
+      let vipTiers = rewards.campaigns.vip_tiers;
+      let vipTitle = "";
+      let vipTier = -1;
+      for (let i = 0; i < vipTiers.length; i++) {
+        if (vipTiers[i].id === tierId) {
+          vipTitle = vipTiers[i].title;
+          vipTier = vipTiers[i].id;
+          break;
+        }
+      }
+      let tierElements = document.querySelectorAll("[data-account-tier-badge]");
+      if (vipTier > -1) {
+        for (let i = 0; i < tierElements.length; i++) {
+          tierElements[i].textContent = vipTitle + " Member";
+          if (vipTier === 129) {
+            tierElements[i].classList.add("account-header__badge--silver");
+          } else if (vipTier === 130) {
+            tierElements[i].classList.add("account-header__badge--gold");
+          }
+        }
+      }
+    } catch (error) {
+      const tierElements = document.querySelectorAll("[data-account-tier-badge]");
+      for (let i = 0; i < tierElements.length; i++) {
+        tierElements[i].remove();
+      }
+    }
+  }
+
+  // Stamped rewards, trim "Points" text from widget
+  $(document).on("DOMNodeInserted", function (event) {
+    if (event.target.id === "stamped-rewards-points-placeholder") {
+      const textElement = document.getElementById("stamped-rewards-points-placeholder");
+      if (textElement.textContent.indexOf("Points") > -1) {
+        textElement.textContent = textElement.textContent.replace("Points", "").trim();
+      }
+      StampedRewards();
+    }
+  });
 })
+
 </script>

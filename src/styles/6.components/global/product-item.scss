@@ -2,7 +2,7 @@
   @include transition(box-shadow);
   position: relative;
   box-shadow: none;
-  padding: 60px 0 25px;
+  padding: 80px 0 25px;
   height: 100%;
   text-align: center;
   background-color: $color-white;
@@ -58,15 +58,14 @@
 
   &__gallery {
     display: block;
-    margin: 0 0 10px;
+    margin: 0 0 20px;
   }
 
   &__title {
     @include font-header(500);
-    @include text(16px, 23px, $color-title, 0.95px);
+    @include text(16px, 24px, $color-title, 0.95px);
     @include underline($color-main-1, false);
     @include transition(color);
-    margin: 0 0 1px;
     display: inline-block;
   }
 
@@ -79,24 +78,30 @@
 
   &__size {
     @include font-header(700);
-    @include text(12px, 18px, $color-body-text, 0.7px);
+    @include text(16px, 24px, $color-main-1, 0.95px);
     display: block;
   }
 
   &__price {
     @include font-header(700);
-    @include text(16px, 23px, $color-body-text, 0.95px);
+    @include text(16px, 24px, $color-body-text, 0.95px);
     display: block;
   }
 
   &__options {
-    margin: 0 0 5px;
+    margin: 0 -7px 5px;
   }
 
   &__options-label {
     @include font-header(700);
     @include text(12px, 17px, $color-body-text, 0.71px);
-    margin: 0 0 10px;
+    margin: 0 0 8px;
+    display: inline-block;
+
+    .current {
+      color: $color-theme-8;
+      margin: 0 0 0 8px;
+    }
 
     &--desktop {
       @include media-query($medium-down) {
@@ -116,7 +121,7 @@
   }
 
   &__colors {
-    margin: 0 0 15px;
+    margin: 0 0 20px;
   }
 
   &__current-color {
@@ -141,9 +146,9 @@
   &__color-input {
     @include transition(box-shadow);
     @include no-browser-styling;
-    width: 34px;
-    height: 34px;
-    padding: 4px;
+    width: 32px;
+    height: 32px;
+    padding: 2px;
     background-color: $color-white;
     border-radius: 50%;
     cursor: pointer;
@@ -164,8 +169,8 @@
 
   &__color-label {
     position: absolute;
-    left: 4px;
-    top: 4px;
+    left: 3px;
+    top: 3px;
     width: 26px;
     height: 26px;
     border-radius: 50%;
@@ -221,7 +226,7 @@
 
   &__submit-btn {
     @include button(solid, square, 1);
-    padding: 13px 0;
+    padding: 11px 0;
     border-radius: 3px;
     width: 100%;
 
@@ -406,7 +411,7 @@
       opacity: 0;
       pointer-events: none;
       background-color: $color-white;
-      padding: 0 15px 25px;
+      padding: 15px 15px 25px;
 
       &.subscription {
         top: calc(100% - 45px);
@@ -482,7 +487,8 @@
       font-size: 10px;
       line-height: 14px;
       letter-spacing: 0.59px;
-      margin: 0 0 2px;
+      margin: 5px 0 10px;
+      display: block;
     }
 
     &__option {

@@ -52,23 +52,23 @@
           <button class="account-profile__edit edit-address" data-id="{{ address.id }}">
               <svg width="16" height="24" viewBox="0 0 16 24" xmlns="http://www.w3.org/2000/svg"><g stroke="#FFF" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linejoin="round" d="M11.387.838l3.608 2.083-10 17.32-3.713 2.355.105-4.438z"/><path stroke-linecap="square" d="M9.247 5.376l2.887 1.667"/></g></svg>
            </button>
-          
+
           <button type="button" class="account__button-delete del-address" data-id="{{ address.id }}">
             <span class="visually-hidden"></span>
             <svg width="19" height="21" viewBox="0 0 19 21" xmlns="http://www.w3.org/2000/svg"><g stroke="#00AEDB" stroke-width="1.5" fill="none" fill-rule="evenodd"><path stroke-linejoin="round" d="M2.335 4.772h13.636l-.909 15.455H3.244z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M.971 4.772h16.364"></path><path stroke-linejoin="round" d="M5.971 1.136h6.364v3.636H5.971z"></path><path stroke-linecap="round" d="M6.198 7.954v9.091M8.926 7.954v9.091M11.653 7.954v9.091"></path></g></svg>
           </button>
-         
+
           </span>
           <strong>{{ address.first_name }} {{ address.last_name }}</strong><br>
           <span>{{ address.address1 }}, {{ address.address2 }}</span><br>
           <span>{{ address.city }}, {{ address.province_code }} {{ address.zip }}</span><br>
           <span>{{ address.country }}</span><br>
-          <!--<span class="account-profile__info-flag"><img src="{{ 'flag-circle-usa.png' | asset_url }}" alt="Country Flag image" /></span> --> 
+          <!--<span class="account-profile__info-flag"><img src="{{ 'flag-circle-usa.png' | asset_url }}" alt="Country Flag image" /></span> -->
           <span>{{ address.phone }}</span>
         </p>
-      </div>  
+      </div>
       <div class="clearfix"></div>
-      </div>  
+      </div>
       {% endfor %}
       <!--
       <div class="account-profile__info-left">

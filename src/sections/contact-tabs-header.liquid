@@ -13,7 +13,8 @@
         type="button"
         class="contact-tabs-header__link{{ active_tab_class }}"
         data-tab-link={{ forloop.index }}
-        data-c-tab="{{ block.settings.title }}">
+        data-c-tab="{{ block.settings.title }}"
+        data-contact-tab-link="{{ block.settings.reference }}">
         {{ block.settings.title }}
       </button>
     {% endif %}
@@ -48,6 +49,11 @@
             "type": "textarea",
             "id": "title",
             "label": "Tab Title"
+          },
+          {
+            "type": "text",
+            "id": "reference",
+            "label": "Reference"
           }
         ]
       }

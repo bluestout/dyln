@@ -14,8 +14,8 @@
 
   &__item {
     position: relative;
-    padding: 0 0 25px;
-    margin: 0 15px 15px;
+    padding: 0 0 20px;
+    margin: 0 15px 20px;
     display: flex;
 
     &:not(:last-of-type) {
@@ -23,8 +23,8 @@
         content: "";
         position: absolute;
         bottom: 0;
-        left: 15px;
-        width: calc(100% - 30px);
+        left: 0;
+        width: 100%;
         height: 1px;
         background-color: $color-theme-6;
       }
@@ -32,21 +32,28 @@
   }
 
   &__image-wrap {
-    max-width: 100px;
-    padding: 0 30px 0 0;
+    width: 100px;
+    padding: 0;
+    display: flex;
+    align-self: center;
   }
 
   &__image-link {
+    @include no-font-size;
     display: block;
+    margin: auto;
   }
 
   &__image {
     object-fit: cover;
+    max-width: 80px;
   }
 
   &__item-content {
-    padding: 20px 0 0;
+    padding: 0;
     width: calc(100% - 101px);
+    margin: 0 0 0 30px;
+    align-self: center;
   }
 
   &__item-link {
@@ -55,13 +62,13 @@
 
   &__item-title {
     @include font-header(700);
-    @include text(16px, 23px, $color-title, 0.95px);
+    @include text(16px, 20px, $color-title, 0.95px);
     margin: 0;
   }
 
   &__variant {
-    @include text(16px, 23px, $color-title, 0.95px);
-    margin: 0 0 10px;
+    @include text(16px, 20px, $color-title, 0.95px);
+    margin: 0 0 14px;
   }
 
   &__qty-wrap {
@@ -79,7 +86,7 @@
   &__item-qty {
     @include no-font-size;
     display: block;
-    border: 2px solid $color-theme-8;
+    border: 1px solid $color-theme-8;
     border-radius: 20px;
     padding: 0 10px;
     float: left;
@@ -87,10 +94,10 @@
 
   &__item-button {
     @include font-header(700);
-    @include text(18px, 30px, $color-body-text, 1.06px);
+    @include text(18px, 29px, $color-body-text, 1.06px);
     @include no-browser-styling;
     width: 20px;
-    height: 30px;
+    height: 29px;
     text-align: center;
     padding: 0;
     display: inline-block;
@@ -99,11 +106,11 @@
 
   &__item-input {
     @include font-header(500);
-    @include text(21px, 30px, $color-body-text, 1.24px);
+    @include text(21px, 29px, $color-body-text, 1.24px);
     @include no-browser-styling;
     @include no-input-spinner;
-    width: 40px;
-    height: 30px;
+    width: 26px;
+    height: 29px;
     text-align: center;
     display: inline-block;
     vertical-align: middle;
@@ -111,9 +118,10 @@
 
   &__item-price {
     @include font-header(500);
-    @include text(16px, 34px, $color-title, 0.95px);
+    @include text(16px, 31px, $color-title, 0.95px);
     float: right;
-    height: 34px;
+    height: 31px;
+    margin: 0 15px 0 0;
   }
 
   .strike-line {
@@ -136,7 +144,6 @@
     text-transform: uppercase;
     margin: 0 0 15px;
     padding: 0 15px;
-    display: none;
   }
 
   &__item-upsell {
@@ -154,6 +161,11 @@
     max-width: 92px;
     margin: 0 10px 0 0;
     align-self: center;
+  }
+
+  &__upsell-gallery img {
+    max-width: 92px;
+    object-fit: scale-down;
   }
 
   &__upsell-content {
@@ -214,6 +226,7 @@
   }
 
   &__upsell-input-wrap {
+    position: relative;
     text-align: center;
     width: 48%;
     float: left;
@@ -226,17 +239,20 @@
     @include font-header(500);
     @include text(12px, 20px, $color-body-text, 1px);
     display: inline-block;
+    pointer-events: none;
   }
 
   &__upsell-radio-input {
     @include no-browser-styling;
-    height: 1px;
-    width: 1px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: inline-block;
 
     &:not(:disabled) {
-      + .cart-drawer__upsell-label {
-        cursor: pointer;
-      }
+      cursor: pointer;
 
       &:hover {
         + .cart-drawer__upsell-label {
@@ -256,9 +272,9 @@
     }
 
     &:disabled {
+      cursor: not-allowed;
       + .cart-drawer__upsell-label {
         color: $color-theme-8;
-        cursor: not-allowed;
       }
     }
   }
@@ -345,18 +361,6 @@
       vertical-align: middle;
     }
 
-    &:not(:last-of-type) {
-      &::after {
-        content: "";
-        margin: 0 0 0 35px;
-        width: 1px;
-        height: 30px;
-        background-color: $color-theme-6;
-        display: inline-block;
-        vertical-align: middle;
-      }
-    }
-
     &--amazon {
       img {
         top: 3px;
@@ -376,6 +380,21 @@
         max-width: 68px;
       }
     }
+
+    &--applepay {
+      img {
+        max-width: 50px;
+      }
+    }
+  }
+
+  &__payment-bar {
+    @include no-font-size;
+    height: 30px;
+    width: 1px;
+    background-color: $color-theme-6;
+    display: inline-block;
+    vertical-align: middle;
   }
 
   &__payments-title {
@@ -527,13 +546,17 @@
       padding: 0 8px 0 0;
     }
 
+    &__items-wrap {
+      max-height: initial;
+    }
+
     &__item-content {
       width: calc(100% - 71px);
-      padding: 10px 0 0;
     }
 
     &__item {
-      padding: 0 0 10px;
+      padding: 0 0 15px;
+      margin: 0 15px 15px;
     }
 
     &__item-title {
@@ -654,41 +677,6 @@
       margin: 0 10px 0 0;
     }
 
-    &__upsell-radio-input {
-      @include no-browser-styling;
-      height: 1px;
-      width: 1px;
-
-      &:not(:disabled) {
-        + .cart-drawer__upsell-label {
-          cursor: pointer;
-        }
-
-        &:hover {
-          + .cart-drawer__upsell-label {
-            color: $color-main-1;
-          }
-        }
-
-        &:checked {
-          + .cart-drawer__upsell-label {
-            color: $color-main-1;
-
-            &::after {
-              width: 100%;
-            }
-          }
-        }
-      }
-
-      &:disabled {
-        + .cart-drawer__upsell-label {
-          color: $color-theme-8;
-          cursor: not-allowed;
-        }
-      }
-    }
-
     &__upsell-selectbox {
       margin: 0 0 5px;
     }
@@ -774,9 +762,16 @@
           max-width: 54px;
         }
       }
+
+      &--applepay {
+        img {
+          max-width: 40px;
+        }
+      }
     }
 
     &__payments-title {
+      display: none;
       font-size: 10px;
       line-height: 12px;
       letter-spacing: 0.5px;

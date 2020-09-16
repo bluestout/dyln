@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div data-po-atc class="po-footer__container">
   <div class="container">
     <div class="row">
       <div class="po-footer__content">
@@ -7,14 +7,9 @@
       </div>
 
       <div class="po-footer__submit-wrap">
-        <button
-                type="submit"
-                class="product-item__submit-btn"
-                data-pi-submit
-                data-geo-submit
-                data-add-to-cart
-                {% unless block_p_def_v.available %}disabled="disabled"{% endunless %}
-        >{{ section.settings.footer_cta_text }}</button>
+        <a href="{{ section.settings.cta_link }}" class="product-item__submit-btn"
+        {% if section.settings.cta_tab_id != blank %}data-po-tab-open="{{ section.settings.cta_tab_id }}"{% endif %}
+        {% if section.settings.cta_scroll_to != blank %}data-scroll-to="{{ section.settings.cta_scroll_to }}"{% endif %}>{{ section.settings.footer_cta_text }}</a>
       </div>
 
       <div class="po-footer__shipping-notice">
@@ -67,6 +62,23 @@
     "type": "text",
     "id": "footer_cta_text",
     "label": "Footer CTA Text"
+    },
+ 	{
+    "type": "url",
+    "id": "cta_link",
+    "label": "CTA Button Link"
+    },
+    {
+      "type": "text",
+      "id": "cta_scroll_to",
+      "label": "Link ScrollTo",
+      "info": "If a html selector is input here, the link will smooth scroll to that selector instead of going to an url."
+    },
+    {
+      "type": "text",
+      "id": "cta_tab_id",
+      "label": "Link Tab Open",
+      "info": "If the link should open a shop all tab, insert the id of the shop tab here. (index is top tab followed by inner tab index, so Bottles, size 16 is index 11, Sports caps, standard is 32, Extra diffusers is 2)"
     }
   ]
   }

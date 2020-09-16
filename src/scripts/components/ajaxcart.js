@@ -3,13 +3,14 @@ import {
   formatAndTrimPrice,
   toggleTabindexInChildren,
   toggleChatBubble,
+  getUrlParams
 } from "./helpers";
 import {
   quickCartUpsellHtml,
   quickCartLineItemHtml,
   cartLineItemHtml,
   cartTotalsHtml,
-  emptyCartHtml,
+  emptyCartHtml
 } from "./ajaxcart-html";
 import { subscriptionAjax } from "./subscription";
 
@@ -73,6 +74,8 @@ const selectors = {
     loading: "[data-upsell-loading]",
     input: "[data-upsell-input]",
     price: "[data-upsell-price]",
+    galleryImage: "[data-upsell-gallery-image]",
+    galleryImageByValue: (value) => `[data-upsell-gallery-image="${value}"]`,
     inputById: (id) =>
       `${selectors.upsell.input}[data-${datasets.upsell.id}="${id}"]`,
   },
@@ -147,7 +150,10 @@ function handleAjaxFrequencyClick(event) {
     const frequency = $this.data("frequency");
     const unit = $this.data("unit");
     const line = $this.data("line");
-    ajaxChangeSubscriptionLineItem(frequency, unit, line);
+    const qty = $this
+      .closest(selectors.quick.item)
+      .find(`${selectors.input}`).val() || 1;
+    ajaxChangeSubscriptionLineItem(frequency, unit, line, qty);
   }
 }
 
@@ -161,6 +167,9 @@ function handleAjaxSubscriptionConversionClick(event) {
     .closest(selectors.quick.item)
     .find(`${selectors.quick.frequency}`)
     .filter(":checked");
+  const qty = $this
+  .closest(selectors.quick.item)
+  .find(`${selectors.input}`).val() || 1;
 
   const frequency = $input.data("frequency");
   const unit = $input.data("unit");
@@ -171,11 +180,11 @@ function handleAjaxSubscriptionConversionClick(event) {
   if (confirm && $input.length > 0 && $input.data("subscription") === "no") {
     containerLoading(true);
     ajaxChangeCartQty(line, 0, true, true);
-    subscriptionAjax(subId, 1, frequency, unit);
+    subscriptionAjax(subId, qty, frequency, unit);
   } else if ($input.data("subscription") === "yes" && !confirm) {
     containerLoading(true);
     ajaxChangeCartQty(line, 0, true, true);
-    ajaxAddToCart({ quantity: 1, id: id });
+    ajaxAddToCart({ quantity: qty, id: id });
   } else if (confirm && $input.length === 0) {
     showMessage(theme.strings.select_frequency_prompt);
     $this
@@ -185,10 +194,11 @@ function handleAjaxSubscriptionConversionClick(event) {
   }
 }
 
-function ajaxChangeSubscriptionLineItem(frequency, unit, line) {
+function ajaxChangeSubscriptionLineItem(frequency, unit, line, qty) {
   containerLoading(true);
   const data = {
     line: line,
+    quantity: qty,
     properties: {
       shipping_interval_frequency: frequency,
       shipping_interval_unit_type: unit,
@@ -319,11 +329,17 @@ function updateQuickCart(cart) {
           <span class="cart-drawer__payment cart-drawer__payment--amazon">
             <img src="${theme.imageUrls.logoAmazon}" alt="Amazon Pay" />
           </span>
-          <span class="cart-drawer__payment cart-drawer__payment--googlepay">
-            <img src="${theme.imageUrls.logoGooglePay}" alt="Google Pay" />
-          </span>
+          <span class="cart-drawer__payment-bar"></span>
           <span class="cart-drawer__payment cart-drawer__payment--paypal">
             <img src="${theme.imageUrls.logoPayPal}" alt="PayPal" />
+          </span>
+          <span class="cart-drawer__payment-bar"></span>
+          <span class="cart-drawer__payment cart-drawer__payment--applepay">
+            <img src="${theme.imageUrls.logoApplePay}" alt="Apple Pay" />
+          </span>
+          <span class="cart-drawer__payment-bar"></span>
+          <span class="cart-drawer__payment cart-drawer__payment--googlepay">
+            <img src="${theme.imageUrls.logoGooglePay}" alt="Google Pay" />
           </span>
         </div>
       </div>
@@ -461,8 +477,10 @@ function handleAjaxUpsellInputClick(event) {
   const $parent = $source.closest(selectors.upsell.wrap);
   const id = $source.data(datasets.upsell.id);
   const price = $source.data(datasets.upsell.price);
+  const value = $source.val();
   $parent.find(selectors.upsell.select).val(id);
 
+  renderUpsellGallery($parent, value);
   renderUpsellPrice($parent, price);
 }
 
@@ -471,11 +489,21 @@ function renderUpsellPrice($upsell, price) {
   $price.text(price);
 }
 
+function renderUpsellGallery($parent, value) {
+  const $newImage = $parent.find(selectors.upsell.galleryImageByValue(value));
+  const $currentImage = $parent.find(`${selectors.upsell.galleryImage}:visible`);
+  if ($currentImage.length > 0 && $newImage.length > 0) {
+    $currentImage.fadeOut("fast", () => {
+      $newImage.fadeIn("fast");
+    });
+  }
+}
+
 function addToCartComplete(jqXHR, textStatus) {
   if (textStatus === "success") {
     $.getJSON("/cart.js", (json) => {
       returnCartIfNotEmpty(json);
-      toggleChatBubble(2);
+      toggleChatBubble(1);
       quickCartOpen(true);
     });
   } else if (
@@ -594,12 +622,25 @@ function handleCartDrawerCheckoutHeight() {
 
 function handleUpsell(cart) {
   const settings = $(selectors.cart.upsell).html();
-  const json = JSON.parse(settings);
+  let json = "";
+  try {
+    json = JSON.parse(settings);
+  } catch (error) {
+    return "";
+  }
   let loop = true;
 
   let pattern = "";
   const cartProductIds = [];
   const cartProductsWithUpsell = [];
+  const upsellProductsStatus = {};
+  upsellProductsStatus.itemIds = [];
+  upsellProductsStatus.count = 0;
+  const limit = json.limit ? json.limit : 3;
+
+  if (limit === 0) {
+    return "";
+  }
 
   for (let i = 0; i < cart.items.length; i++) {
     if (!cartProductIds.includes(cart.items[i].product_id)) {
@@ -607,14 +648,18 @@ function handleUpsell(cart) {
       cartProductsWithUpsell.push(cart.items[i]);
     }
   }
+  let validUpsell = false;
 
   for (let i = 0; i < cartProductsWithUpsell.length; i++) {
+    if (upsellProductsStatus.count >= limit) {
+      break;
+    }
     loop = true;
 
     const item = cartProductsWithUpsell[i];
 
     for (let j = 0; j < json.products.length; j++) {
-      if (!loop) {
+      if (!loop || upsellProductsStatus.count >= limit) {
         break;
       }
       const uspellItem = json.products[j];
@@ -623,31 +668,43 @@ function handleUpsell(cart) {
       const upsoldProduct3 = uspellItem.upsell_product_3;
 
       if (item.product_id === uspellItem.active_id) {
-        pattern += `<h5 class="cart-drawer__upsell-title">${json.header}</h5>`;
-        if (upsoldProduct && !cartProductIds.includes(upsoldProduct.id)) {
+        if (upsoldProduct && !cartProductIds.includes(upsoldProduct.id) && !upsellProductsStatus.itemIds.includes(upsoldProduct.id)) {
           pattern += quickCartUpsellHtml(
             upsoldProduct,
             uspellItem.upsell_url,
-            1
+            `1${i}${j}`
           );
+          upsellProductsStatus.itemIds.push(upsoldProduct.id);
+          upsellProductsStatus.count++;
+          validUpsell = true;
         }
-        if (upsoldProduct2 && !cartProductIds.includes(upsoldProduct2.id)) {
+        if (upsoldProduct2 && !cartProductIds.includes(upsoldProduct2.id) && !upsellProductsStatus.itemIds.includes(upsoldProduct2.id)) {
           pattern += quickCartUpsellHtml(
             upsoldProduct2,
             uspellItem.upsell_url_2,
-            2
+            `2${i}${j}`
           );
+          upsellProductsStatus.itemIds.push(upsoldProduct2.id);
+          upsellProductsStatus.count++;
+          validUpsell = true;
         }
-        if (upsoldProduct3 && !cartProductIds.includes(upsoldProduct3.id)) {
+        if (upsoldProduct3 && !cartProductIds.includes(upsoldProduct3.id) && !upsellProductsStatus.itemIds.includes(upsoldProduct3.id)) {
           pattern += quickCartUpsellHtml(
             upsoldProduct3,
             uspellItem.upsell_url_3,
-            3
+            `3${i}${j}`
           );
+          upsellProductsStatus.itemIds.push(upsoldProduct3.id);
+          upsellProductsStatus.count++;
+          validUpsell = true;
         }
         loop = false;
       }
     }
+  }
+
+  if (validUpsell) {
+    pattern = `<h5 class="cart-drawer__upsell-title">${json.header}</h5>` + pattern;
   }
   return pattern;
 }
@@ -692,6 +749,26 @@ function handleFreeShippingMessage(cart) {
   }
 }
 
+function openQuickCartOnLoad() {
+  const params = getUrlParams();
+  if (params.opencart) {
+    quickCartOpen(true);
+    let interval;
+    let count = 0;
+    interval = setInterval(() => {
+      const $chat = $("#gorgias-web-messenger-container");
+      if (count >= 20) {
+        clearInterval(interval);
+      }
+      if ($chat.length > 0 && !$chat.hasClass(classes.hide)) {
+        $chat.addClass(classes.hide);
+        clearInterval(interval);
+      }
+    }, 500);
+  }
+  return null;
+}
+
 // on click, remove the item form cart
 $(document).on("click", selectors.remove, ajaxRemoveFromCartButton);
 
@@ -716,8 +793,8 @@ $(document).on(
 // run ajax on page load to get cart contents
 $(document).ready(() => {
   containerLoading(true);
-
   reloadAjax();
+  openQuickCartOnLoad();
 });
 
 function reloadAjax() {

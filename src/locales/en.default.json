@@ -29,7 +29,7 @@
       "signup_form_email_placeholder": "Your email",
       "signup_form_submit": "Submit",
       "signup_form_success": "We will send you an email right before we open!",
-      "admin_link_html": "Are you the store owner? <a href=\"/admin\">Log in here</a>",
+      "admin_link_html": "Are you the store owner? <a href=\"\/admin\">Log in here<\/a>",
       "password_link": "Enter using password",
       "powered_by_shopify_html": "This shop will be powered by {{ shopify }}"
     },
@@ -57,7 +57,7 @@
         "one": "{{ count }} result for \"{{ terms }}\"",
         "other": "{{ count }} results for \"{{ terms }}\""
       },
-      "no_results_html": "Please try a different search term or go back to the <a href=\"/\">homepage</a>.",
+      "no_results_html": "Please try a different search term or go back to the <a href=\"\/\">homepage<\/a>.",
       "no_results_for": "No results for ",
       "products": "Products:",
       "collections": "Collections:",
@@ -103,6 +103,7 @@
     },
     "general": {
       "categories": "Categories",
+      "filters": "Filters",
       "hero_title": "DYLN BLOG",
       "recent_articles_title": "Recent Articles",
       "popular_article_title": "Popular Articles",
@@ -125,11 +126,11 @@
       "checkout": "Checkout",
       "empty": "Your cart is empty.",
       "cookies_required": "Enable cookies to use the shopping cart",
-      "continue_browsing_html": "Continue browsing <a href=\"/collections/all\">here</a>.",
+      "continue_browsing_html": "Continue browsing <a href=\"\/collections\/all\">here<\/a>.",
       "item_quantity": "Item quantity",
       "savings": "You're saving",
       "add_ons": "Add ons",
-      "pay_using": "Pay using:"
+      "pay_using": "Express Pay:"
     },
     "label": {
       "product": "Product",
@@ -140,9 +141,9 @@
       "original_price": "Original price"
     },
     "shipping": {
-      "free_shipping_reached_html": "Yay! your oder gets <strong>Free Shipping!</strong>",
-      "free_shipping_unreached_html": "Hey, you are {{ price }} away from <strong>Free Shipping!</strong>",
-      "free_shipping_empty_html": "<strong>Get Free Shipping</strong> when you spend ${{ price }} or more",
+      "free_shipping_reached_html": "Yay! your oder gets <strong>Free Shipping!<\/strong>",
+      "free_shipping_unreached_html": "Hey, you are {{ price }} away from <strong>Free Shipping!<\/strong>",
+      "free_shipping_empty_html": "<strong>Get Free Shipping<\/strong> when you spend ${{ price }} or more",
       "free": "FREE!",
       "shipping": "Shipping"
     }
@@ -151,7 +152,8 @@
     "general": {
       "no_matches": "Sorry, there are no products in this collection",
       "link_title": "Browse our {{ title }} collection",
-      "categories": "Categories"
+      "categories": "Categories",
+      "filters": "Filters"
     },
     "filters": {
       "size": "Size",
@@ -193,6 +195,10 @@
       "tab_2": "Extra Diffusers",
       "tab_3": "Sports Caps",
       "tab_4": "Bottom Guards"
+    },
+    "items": {
+      "1_item": "1 item",
+      "more_items": "{{ number }} items"
     }
   },
   "customer": {
@@ -223,7 +229,7 @@
       "city": "City",
       "country": "Country",
       "province": "Province",
-      "zip": "Postal/Zip Code",
+      "zip": "Postal\/Zip Code",
       "phone": "Phone",
       "set_default": "Set as default address",
       "add": "Add Address",
@@ -243,7 +249,7 @@
       "cancel": "Return to Store",
       "guest_title": "Continue as a guest",
       "guest_continue": "Continue",
-      "welcome_title": "Welcome Back!/ Log In",
+      "welcome_title": "Welcome Back!\/ Log In",
       "create_account": "Create your DYLN Account"
     },
     "orders": {
@@ -303,7 +309,7 @@
       "password": "Password",
       "submit": "Create Account",
       "cancel": "Return to Store",
-      "already_have_account_html": "Already have an account? <a href='/account/login/'>Log In</a>",
+      "already_have_account_html": "Already have an account? <a href='\/account\/login\/'>Log In<\/a>",
       "already_have_account": "Already have an account?",
       "benefits_await": "Your Benefits Await!"
     }

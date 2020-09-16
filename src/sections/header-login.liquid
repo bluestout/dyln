@@ -68,37 +68,19 @@
         <div class="header-login__benefits-inline">
           {% if section.settings.login_benefit_1 != blank %}
             <div class="header-login__benefit-i">
-              {% if section.settings.login_benefit_icon_1 == "star" %}
-              {% render 'icon-blue-star' %}
-              {% elsif section.settings.login_benefit_icon_1 == "blue-reminder" %}
-              {% render 'icon-blue-reminder' %}
-              {% elsif section.settings.login_benefit_icon_1 == "track" %}
-              {% render 'icon-track' %}
-              {% endif %}
+              {% render 'icon' with section.settings.login_benefit_icon_1 %}
               <div><span>{{ section.settings.login_benefit_1 }}</span></div>
             </div>
           {% endif %}
           {% if section.settings.login_benefit_2 != blank %}
             <div class="header-login__benefit-i">
-              {% if section.settings.login_benefit_icon_2 == "star" %}
-              {% render 'icon-blue-star' %}
-              {% elsif section.settings.login_benefit_icon_2 == "blue-reminder" %}
-              {% render 'icon-blue-reminder' %}
-              {% elsif section.settings.login_benefit_icon_2 == "track" %}
-              {% render 'icon-track' %}
-              {% endif %}
+              {% render 'icon' with section.settings.login_benefit_icon_2 %}
               <div><span>{{ section.settings.login_benefit_2 }}</span></div>
             </div>
           {% endif %}
           {% if section.settings.login_benefit_3 != blank %}
             <div class="header-login__benefit-i">
-              {% if section.settings.login_benefit_icon_3 == "star" %}
-              {% render 'icon-blue-star' %}
-              {% elsif section.settings.login_benefit_icon_3 == "blue-reminder" %}
-              {% render 'icon-blue-reminder' %}
-              {% elsif section.settings.login_benefit_icon_3 == "track" %}
-              {% render 'icon-track' %}
-              {% endif %}
+              {% render 'icon' with section.settings.login_benefit_icon_3 %}
               <div><span>{{ section.settings.login_benefit_3 }}</span></div>
             </div>
           {% endif %}
@@ -188,39 +170,27 @@
         <h5 class="header-login__benefits-title">{{ section.settings.login_benefit_title }}</h5>
         <div class="header-login__benefits-block">
           <div class="header-login__benefit-b">
-            {% if section.settings.login_benefit_icon_1 == "star" %}
-              <div class="header-login__benefit-b-icon">{% render 'icon-blue-star' %}</div>
-              {% elsif section.settings.login_benefit_icon_1 == "blue-reminder" %}
-              <div class="header-login__benefit-b-icon">{% render 'icon-blue-reminder' %}</div>
-              {% elsif section.settings.login_benefit_icon_1 == "track" %}
-              <div class="header-login__benefit-b-icon">{% render 'icon-track' %}</div>
-            {% endif %}
+            <div class="header-login__benefit-b-icon">
+              {% render 'icon' with section.settings.login_benefit_icon_1 %}
+            </div>
             <div class="header-login__benefit-b-content">
               <span><strong>{{ section.settings.login_benefit_1 }}</strong></span><br>
               <span>{{ section.settings.login_benefit_content_1 }}</span>
             </div>
           </div>
           <div class="header-login__benefit-b">
-            {% if section.settings.login_benefit_icon_2 == "star" %}
-              <div class="header-login__benefit-b-icon">{% render 'icon-blue-star' %}</div>
-              {% elsif section.settings.login_benefit_icon_2 == "blue-reminder" %}
-              <div class="header-login__benefit-b-icon">{% render 'icon-blue-reminder' %}</div>
-              {% elsif section.settings.login_benefit_icon_2 == "track" %}
-              <div class="header-login__benefit-b-icon">{% render 'icon-track' %}</div>
-            {% endif %}
+            <div class="header-login__benefit-b-icon">
+              {% render 'icon' with section.settings.login_benefit_icon_2 %}
+            </div>
             <div class="header-login__benefit-b-content">
               <span><strong>{{ section.settings.login_benefit_2 }}</strong></span><br>
               <span>{{ section.settings.login_benefit_content_2 }}</span>
             </div>
           </div>
           <div class="header-login__benefit-b">
-            {% if section.settings.login_benefit_icon_3 == "star" %}
-              <div class="header-login__benefit-b-icon">{% render 'icon-blue-star' %}</div>
-              {% elsif section.settings.login_benefit_icon_3 == "blue-reminder" %}
-              <div class="header-login__benefit-b-icon">{% render 'icon-blue-reminder' %}</div>
-              {% elsif section.settings.login_benefit_icon_3 == "track" %}
-              <div class="header-login__benefit-b-icon">{% render 'icon-track' %}</div>
-            {% endif %}
+            <div class="header-login__benefit-b-icon">
+              {% render 'icon' with section.settings.login_benefit_icon_3 %}
+            </div>
             <div class="header-login__benefit-b-content">
               <span><strong>{{ section.settings.login_benefit_3 }}</strong></span><br>
               <span>{{ section.settings.login_benefit_content_3 }}</span>
@@ -307,7 +277,7 @@
             "label": "Track Order"
           },
           {
-            "value": "star",
+            "value": "blue-star",
             "label": "Star"
           }
         ],
@@ -337,7 +307,7 @@
             "label": "Track Order"
           },
           {
-            "value": "star",
+            "value": "blue-star",
             "label": "Star"
           }
         ],
@@ -367,7 +337,7 @@
             "label": "Track Order"
           },
           {
-            "value": "star",
+            "value": "blue-star",
             "label": "Star"
           }
         ],
