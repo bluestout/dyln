@@ -34,7 +34,7 @@
     "@shopify/theme-variants": "^1.0.0-alpha.8",
     "bootstrap": "^4.5.0",
     "jquery": "^3.5.1",
-    "lazysizes": "^4.1.1",
+    "lazysizes": "^5.2.1",
     "lodash-es": "^4.17.15",
     "normalize.css": "^7.0.0",
     "qrcode": "^1.4.4",
