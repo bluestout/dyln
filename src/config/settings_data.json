@@ -138,7 +138,7 @@
     "checkout_header_image": "shopify:\/\/shop_images\/Blue-Banner.png",
     "checkout_logo_image": "shopify:\/\/shop_images\/DYLN-INSPIRED-FINAL.png",
     "checkout_logo_position": "left",
-    "checkout_logo_size": "medium",
+    "checkout_logo_size": "large",
     "checkout_body_background_image": "",
     "checkout_body_background_color": "#ffffff",
     "checkout_input_background_color_mode": "white",
@@ -652,6 +652,14 @@
               "title": "Royal Purple",
               "swatch_image": "shopify:\/\/shop_images\/dyln-product-swatch-color-royal-purple.png",
               "swatch_color": ""
+            }
+          },
+          "1595397608238": {
+            "type": "color",
+            "settings": {
+              "title": "Pearl",
+              "swatch_image": "shopify://shop_images/dyln-product-swatch-color-pearl-grey.png",
+              "swatch_color": "#eceae5"
             }
           }
         },

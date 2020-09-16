@@ -214,7 +214,7 @@
                             class="product-item__color-label {{ p_i_class_name }}"
                             for="{{ block_p.id }}-option{{ option.position }}-{{ value | handleize }}"
                             title="{{ value | remove: '_' }}">
-                            <span {% comment %} class="hide" {% endcomment %}>{{ value }}</span>
+                            <span>{{ value }}</span>
                           </label>
                           <span class="product-item__exclamation" data-pi-option-exclamation>!</span>
                         </div>
