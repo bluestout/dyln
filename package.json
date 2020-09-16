@@ -43,12 +43,17 @@
   "resolutions": {
     "acorn": "^6.4.1",
     "kind-of": "^6.0.3",
-    "serialize-javascript": "^2.1.1",
+    "serialize-javascript": "^3.1.0",
     "set-value": "^2.0.1",
     "lodash.template": "^4.5.0",
     "js-yaml": "^3.13.1",
     "axios": "^0.18.1",
-    "mem": "^4.0.0"
+    "mem": "^4.0.0",
+    "yargs-parser": "13.1.2",
+    "decompress": "4.2.1",
+    "http-proxy": " 1.18.1",
+    "bl": "1.2.3",
+    "dot-prop": "4.2.1"
   },
   "scripts": {
     "start": "slate-tools start --env=dev",
