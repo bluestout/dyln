@@ -1,6 +1,6 @@
 <div class="container">
   {% if section.settings.title != blank %}
-    <h2 class="index-shop__title">
+    <h2 class="index-shop__title" data-title="title">
       {{ section.settings.title }}
     </h2>
   {% endif %}
@@ -31,17 +31,15 @@
                 {% assign block_image = block.settings.image %}
               {% else %}
                 {% assign block_image = block_coll.image %}
-              {% endif %}
-
+              {% endif %}	
               {% render 'responsive-image' with
                 image: block_image,
-                max_width: 300,
-                max_height: 300,
+                max_width: 500,
+                max_height: 500,
                 wrapper_class: "index-shop__c-img-wrap",
                 image_class: "index-shop__c-img",
                 snippet_index: 29
               %}
-
               {% assign block_title = "Shop " | append: block_coll.title %}
               {% if block.settings.title != blank %}
                 {% assign block_title = block.settings.title %}

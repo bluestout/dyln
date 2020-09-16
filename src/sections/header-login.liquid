@@ -1,8 +1,31 @@
 {% if section.settings.login_enabled %}
   {% if customer %}
-    <a class="header-login__main-link" href="/account">
+    <a class="header-login__main-link" href="#" data-header-link="4">
       <span class="header-login__main-text">{{ section.settings.login_title }}</span>
+      <span class="header-login__main-icon" aria-hidden="true">
+        {% render 'icon-plus-vertical' %}
+        {% render 'icon-plus-horizontal' %}
+      </span>
     </a>
+    <div class="header-login logged-in" data-header-block="4">
+      <div data-header-login-block>
+        <button class="header-login__close" data-header-block-close="4" tabindex="-1">
+          {% render 'icon-close' %}
+          <span class="visually-hidden">{{ 'general.accessibility.close' | t }}</span>
+        </button>
+        <ul class="customer-links">
+          <li><a href="/account">My Account</a></li>
+          <li><a href="/account?tab=account-points">DYLN Points</a></li>
+          <li><a href="/account?tab=account-bottles">My Bottles</a></li>
+          <li><a href="/tools/recurring/login/">My Subscriptions</a></li>
+          <li><a href="/account?tab=account-orders">Orders</a></li>
+        </ul>
+        <a href="/account?tab=account-bottles&reg=1" class="nav-register-new">Register your new bottle</a>
+        <div class="logged-out-link">
+          <a href="/account/login/logout">Log Out</a>
+        </div>
+      </div>
+    </div>
   {% else %}
     <a class="header-login__main-link" href="#" data-header-link="4">
       <span class="header-login__main-text">{{ section.settings.login_title }}</span>

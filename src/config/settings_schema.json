@@ -155,6 +155,40 @@
     ]
   },
   {
+    "name": "Add To Cart Button",
+    "settings": [
+      {
+        "type": "text",
+        "id": "default_add_to_cart_button",
+        "label": "DEFAULT Button",
+        "default": "ADD TO CART"
+      },
+      {
+        "type": "text",
+        "id": "pre_add_to_cart_button",
+        "label": "PRE-ORDER Button",
+        "default": "ADD TO CART"
+      },
+      {
+        "type": "text",
+        "id": "back_add_to_cart_button",
+        "label": "BACK ORDER Button",
+        "default": "BUY ON BACKORDER"
+      }
+    ]
+  },
+  {
+    "name": "Old Bottle Popup",
+    "settings": [
+      {
+        "type": "html",
+        "id": "old_btl_popup_text",
+        "label": "PopUp Text",
+        "default": "Discontinued product"
+      }
+    ]
+  },
+  {
     "name": "Default Page Styling",
     "settings": [
       {

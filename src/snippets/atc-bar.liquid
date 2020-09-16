@@ -8,9 +8,16 @@
           {% for value in option.values %}
             {% assign color_handle = value | strip | strip_html | strip_newlines | handleize %}
             {% assign swatch = "color-swatch-" | append: color_handle %}
-            <span class="atc-bar__color-wrap">
+            {% assign variant_id = "" %}
+            {% for p_v in product.variants %}
+              {% if p_v.title == value %}
+                {% assign variant_id = p_v.id %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+            <span class="atc-bar__color-wrap atc-bat__option" atc-bar-geo-variant="{{ variant_id }}">
               <input
-                id="Atc-Option{{ option.position }}-{{ value }}"
+                id="Atc-Option{{ option.position }}-{{ value | handleize }}"
                 class="atc-bar__color-input {{ swatch }}"
                 type="radio"
                 name="atc-bar-color"

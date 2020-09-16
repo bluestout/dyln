@@ -59,6 +59,18 @@
           </header>
 
           <div class="article__content">
+            <div class="article_image">
+            {% if article.image.src %}
+              <img src="{{ article.image.src | img_url: '900x' }}">
+            {% else %}
+              {% if article.content contains "<img" %}
+              {% assign src = article.content | split: 'src="' %}
+              {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn'; | replace: 'http:http://';, 'http://'; | remove: 'https:' %}
+              <img src="{{ src }}">
+              {% endif %}
+            {% endif %}
+            </div>
+
             {{ article.content }}
           </div>
 
@@ -92,7 +104,7 @@
             */
             (function() { // DON'T EDIT BELOW THIS LINE
               var d = document, s = d.createElement('script');
-              s.src = 'https://dyln-test.disqus.com/embed.js';
+              s.src = 'https://dylninspired.disqus.com/embed.js';
               s.setAttribute('data-timestamp', +new Date());
               (d.head || d.body).appendChild(s);
             })();

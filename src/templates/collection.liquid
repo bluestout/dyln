@@ -17,3 +17,14 @@
 {% section 'diffusers' %}
 
 {% section 'user-stories' %}
+
+<script type="text/javascript">
+$( '.product-item__submit-btn' ).click(function() {
+fbq('track', 'AddToCart', {
+    value: {{ product.price | money_without_currency }},
+    currency: '{{ shop.currency }}',
+    content_ids: '[{{ product.id }}]',
+	content_name: '{{ product.title }}',
+	content_type: 'product_group',
+  });
+</script>

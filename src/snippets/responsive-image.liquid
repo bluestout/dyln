@@ -78,14 +78,15 @@
 <div data-image-id="{{ image.id }}" class="ImageWrapper-{{ image.id }}-{{ responsive_image_counter }} responsive-image__wrapper {{ wrapper_class }}"  {{ wrapper_attributes }}>
 {% endif %}
 
-  <img
+  <img test="1"
     class="Image-{{ image.id }}-{{ responsive_image_counter }} responsive-image__image lazyload {{ image_class }}"
-    src="{{ image | img_url: '300x' }}"
+    src="{{ image | img_url: '500x' }}"
     data-src="{{ img_url }}"
     data-widths="[{{ image_widths }}]"
     data-aspectratio="{{ image.aspect_ratio }}"
     data-sizes="auto"
     tabindex="-1"
+    data-test="1"
     alt="{{ image.alt | escape }}"
     height="{{ max_height_image }}"
     {{ image_attributes }}/>

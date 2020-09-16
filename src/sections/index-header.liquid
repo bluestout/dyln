@@ -34,9 +34,11 @@
             {%- if section.settings.title != blank -%}
               <h2 class="index-header__title">{{- section.settings.title -}}</h2>
             {%- endif -%}
+            
             {%- if section.settings.sublink_text != blank -%}
+            <a href="{{- section.settings.sublink_url -}}" class="index-header__inline-link">{{- section.settings.sublink_text -}}</a>
             {%- endif -%}
-              <a href="{{ section.settings.sublink }}" class="index-header__inline-link">{{- section.settings.sublink_text -}}Why alkaline?</a>
+           
             {%- if section.settings.link_text != blank -%}
               <div class="index-header__link-wrap d-none d-md-block">
                 <a class="index-header__link" href="{{- section.settings.link_url -}}">{{- section.settings.link_text -}}</a>

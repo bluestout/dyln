@@ -23,7 +23,7 @@
 {% endfor %}
 
 <div
-  class="product-item{% if block_p.has_only_default_variant %} single{% endif %}"
+  class="product-item{% if block_p.has_only_default_variant %} single{% endif %} {%if block_p.handle contains 'dyln-insulated-alkaline' %} bottle-product-area{% endif %}"
   data-pi-item
   data-pi-static-class="product-item{% if block_p.has_only_default_variant %} single{% endif %}"
   data-single-product="{{ block_p.id }}">
@@ -34,12 +34,12 @@
         class="product-item__image-link"
         title="{{ 'products.product.view_details' | t }}"
         data-pi-item-link>
-        <span class="product-item__gallery" data-pi-image-gallery>
+        <span class="product-item__gallery" data-pi-image-gallery data-gal="1">
           <a href="{{ block_p.url }}" class="product-item__gallery-img">
             {% render 'responsive-image-no-lazy' with
               image: block_p.featured_image,
-              max_width: 300,
-              max_height: 450,
+              max_width: 500,
+              max_height: 650,
               wrapper_class: "product-item__g-img-wrap",
               image_class: "product-item__gallery-img"
               span: true,
@@ -96,8 +96,8 @@
                   <a class="product-item__gallery-img" href="{{ block_p.url }}">
                     {% render 'responsive-image-no-lazy' with
                       image: block_p_img,
-                      max_width: 300,
-                      max_height: 450,
+                      max_width: 500,
+                      max_height: 650,
                       wrapper_class: gallery_wrapper,
                       image_class: "product-item__gallery-img",
                       wrapper_attributes: gallery_attribute,
@@ -117,8 +117,8 @@
             <a href="{{ block_p.url }}" class="product-item__gallery-img">
               {% render 'responsive-image-no-lazy' with
                 image: block_p.featured_image,
-                max_width: 300,
-                max_height: 450,
+                max_width: 500,
+                max_height: 650,
                 wrapper_class: "product-item__g-img-wrap",
                 image_class: "product-item__gallery-img"
                 span: true
@@ -214,7 +214,7 @@
                             class="product-item__color-label {{ p_i_class_name }}"
                             for="{{ block_p.id }}-option{{ option.position }}-{{ value | handleize }}"
                             title="{{ value | remove: '_' }}">
-                            <span>{{ value }}</span>
+                            <span {% comment %} class="hide" {% endcomment %}>{{ value }}</span>
                           </label>
                           <span class="product-item__exclamation" data-pi-option-exclamation>!</span>
                         </div>
@@ -300,21 +300,22 @@
   {% endif %}
 
   {% if block_p != blank and block_p.has_only_default_variant == false %}
-  <script type="application/json" data-product-json>
-    {
-      "variants": [
-        {% for block_p_v in block_p.variants %}{
-            "id": {{ block_p_v.id | json }},
-            "price": {{ block_p_v.price | json }},
-            "compare_at": {{ block_p_v.compare_at_price | json }},
-            "available": {{ block_p_v.available | json }},
-            "Option1": {{ block_p_v.option1 | json }},
-            "Option2": {{ block_p_v.option2 | json }},
-            "Option3": {{ block_p_v.option3 | json }}
-          }{% unless forloop.last %},{% endunless %}{% endfor %}
-      ],
-      {% for block_p_v in block_p.variants %}"{{ pop_p_j_v.id }}": {{ block_p_v.option1 | append: ',' | append: block_p_v.option2  | append: ',' | append: block_p_v.option3 | json }}{% unless forloop.last %},{% endunless %}{% endfor %}
-    }
-  </script>
+    <script type="application/json" data-product-json>
+      {
+        "variants": [
+          {% for block_p_j_v in block_p.variants %}
+            {
+              "id": {{ block_p_j_v.id | json }},
+              "price": {{ block_p_j_v.price | json }},
+              "compare_at": {{ block_p_j_v.compare_at_price | json }},
+              "available": {{ block_p_j_v.available | json }},
+              "Option1": {{ block_p_j_v.option1 | json }},
+              "Option2": {{ block_p_j_v.option2 | json }},
+              "Option3": {{ block_p_j_v.option3 | json }}
+            }{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ]
+      }
+    </script>
   {% endif %}
 </div>

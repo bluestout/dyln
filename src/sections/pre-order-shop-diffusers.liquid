@@ -12,6 +12,8 @@
       %}
     </div>
     <div class="col-xl-4 col-lg-6">
+      <h2>{{ section.settings.title }}</h2>
+      <div class="description">{{ section.settings.content_area }}</div>
       {% render 'subscription-form' with settings.extra_diffusers_product
         show_extras: true,
         note: settings.extra_diffusers_note,
@@ -30,6 +32,17 @@
       "type": "image_picker",
       "id": "diffuser_product_image",
       "label": "Custom Diffuser Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "content_area",
+      "label": "Content",
+      "info": "Add a description here. You can include HTML"
     }
   ]
   }

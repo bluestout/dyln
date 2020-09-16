@@ -69,11 +69,15 @@
             </span>
           {% endfor %}
         {% endif %}
-
       </div>
+
     {% endfor %}
   {% endunless %}
-
+    <div class="ship-message-wrap">
+      <p class="product-form__sold-out-notice hide pi_oos_color" data-geo-shipping-note></p>
+      <span class="ship-info-pop-btn"><svg width="11" height="12" viewBox="0 0 11 12" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0 1)" fill="none" fill-rule="evenodd"><circle stroke="#00aedb" cx="5.5" cy="5" r="5"></circle><path d="M5 2.503c0-.145.046-.266.137-.36A.48.48 0 015.5 2a.48.48 0 01.363.142.498.498 0 01.137.36c0 .142-.046.26-.137.356A.48.48 0 015.5 3a.48.48 0 01-.363-.142A.491.491 0 015 2.503zM6 4v4H5V4h1z" fill="#00aedb" fill-rule="nonzero"></path></g></svg></span>
+      <div style="hidden" class="ship-info-details"></div>
+    </div>
   {% for block in section.blocks %}
     {%- if product.handle == block.settings.product -%}
       <div class="pdp-form__sizes">
@@ -151,7 +155,9 @@
       <span data-add-to-cart-loading class="loading-dots"></span>
   </button>
 
-  <p class="product-form__sold-out-notice hide pi_oos_color" data-geo-shipping-note></p>
+  <!--<p class="product-form__sold-out-notice hide pi_oos_color" data-geo-shipping-note></p> -->
+
+
 
 {% endform %}
 
@@ -159,7 +165,7 @@
 
 {% comment %} <!-- Insert QuadPay Widget --> {% endcomment %}
 <div>
-  <quadpay-widget amount={{ current_variant.price | divided_by: 100 }} ></quadpay-widget>
+  <quadpay-widget amount={{ current_variant.price | divided_by: 100.00 }} ></quadpay-widget>
   <div class="product-form__sold-out-gradient" style="background-image:url({{ 'out-of-stock-gradient.png' | asset_url }})"></div>
 </div>
 

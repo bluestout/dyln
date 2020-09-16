@@ -11,12 +11,21 @@ $(function(){
   var Url = $(location).attr('href');
   if((Url.indexOf('tab=') != -1) && (Url.indexOf('/account') != -1)){
     var Tab = Url.split('tab=');
-    var tabBody = Tab[1];
+    if(Tab[1].includes('&reg=1')){
+      var tabBody = Tab[1].replace('&reg=1', '');
+    }else{
+      var tabBody = Tab[1];
+    }
+
     $('.account-body__header-tabs .account-body__header-tab').removeClass('active');
     $('.account-body__header-tabs .account-body__header-tab[tab-body='+tabBody+']').addClass('active');
       $('.account-body__tabs .body-tab').removeClass('active-tab');
     $('.account-body__tabs .'+tabBody).addClass('active-tab');
 
+  }
+  if((Url.indexOf('&reg=1') != -1) && (Url.indexOf('/account') != -1)){
+    //console.log('click');
+    setTimeout(function(){ $('.btn-action-register-bottle').click(); }, 3000);
   }
   $(window).on('resize', function (){
       Documentwidth = $(window).width();
@@ -142,7 +151,7 @@ $(function(){
         if(val.days_remaining > 0){
         dataHtml += '<p class="account-dash__bottle-timer"><span>'+val.days_remaining+'</span> days left on Diffuser</p></div>';
         }else{
-        dataHtml += '<p class="account-dash__bottle-timer bottle-expired"><span>'+val.expired+'</span> days Expired on Diffuser</p></div>';
+        dataHtml += '<p class="account-dash__bottle-timer bottle-expired">Expired <span>'+val.expired+'</span> days ago</p></div>';
         }
         dataHtml += '<button type="button" class="account-dash__bottle-more"><span class="visually-hidden">More options</span></button></div>';
       }
@@ -966,6 +975,7 @@ $(function(){
     if(data.notification.newsletter == 1){
       $('.account-profile__checkbox-wrap').find('#newsletter').prop( "checked", true );
     }
+
     // Profile image
     if(data.profile_img == 'image-9' || data.profile_img == 'image-1'){
       var Selector = 'proiflie-image-1';
@@ -980,7 +990,7 @@ $(function(){
   // set profile Image
   function SetProfileImage(Selector, Img){
     $('#profile-image-update').find('#'+Selector).click();
-    var FullImg = 'https://cdn.shopify.com/s/files/1/0511/9421/t/231/assets/'+Img;
+    var FullImg = 'https://cdn.shopify.com/s/files/1/0511/9421/t/246/assets/'+Img;
     $('.account-header__background').attr('src', FullImg);
     $('.profile-bg').each(function(){
      $(this).css('background-image','url('+FullImg+')');
@@ -1442,6 +1452,7 @@ $(function(){
   function StampedRewards() {
     try {
       let rewards = StampedFn.getDataRewards();
+      console.log(rewards);
       let tierId = rewards.customer.vipTierId;
       let vipTiers = rewards.campaigns.vip_tiers;
       let vipTitle = "";
@@ -1482,6 +1493,24 @@ $(function(){
       StampedRewards();
     }
   });
-})
 
+  // Rewards update
+  function RewCustom(Data){
+      var checkUrlSub = 'https://stamped.io/api/v2/14101/rewards/add/custom';
+      $.ajax({
+        url: checkUrlSub,
+        type: 'POST',
+        data: Data,
+        success: function (response) {
+            console.log('Custom rewards...');
+        	console.log(response);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {}
+      });
+  }
+
+  var rData = '{ "email": "rakibul@dyln.co", "campaignId": 1}';
+  //RewCustom(rData);
+
+})
 </script>

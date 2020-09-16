@@ -8,8 +8,6 @@
 
 {% section 'pre-order-product' %}
 
-<div data-po-atc-anchor></div>
-
 {% section 'pre-order-subscription' %}
 
 {% section 'pre-order-why-alkaline' %}
@@ -36,10 +34,10 @@
   <div class="container">
     <h2>{{ 'pre_order.shop_all.title' | t }}</h2>
     <div class="pre-order-shop__banner">
-      <button type="button" class="active" data-po-tab-link="1">{{ 'pre_order.shop_all.tab_1' | t }}</button>
-      <button type="button" data-po-tab-link="2">{{ 'pre_order.shop_all.tab_2' | t }}</button>
-      <button type="button" data-po-tab-link="3">{{ 'pre_order.shop_all.tab_3' | t }}</button>
-      <button type="button" data-po-tab-link="4">{{ 'pre_order.shop_all.tab_4' | t }}</button>
+      <button type="button" class="active" data-po-tab-link="1"><div class="tabname">{{ 'pre_order.shop_all.tab_1' | t }}</div></button>
+      <button type="button" data-po-tab-link="2"><div class="tabname">{{ 'pre_order.shop_all.tab_2' | t }}</div></button>
+      <button type="button" data-po-tab-link="3"><div class="tabname">{{ 'pre_order.shop_all.tab_3' | t }}</div></button>
+      <button type="button" data-po-tab-link="4"><div class="tabname">{{ 'pre_order.shop_all.tab_4' | t }}</div></button>
     </div>
     <div class="pre-order-shop__products">
       <div class="pre-order-shop__block active" data-po-tab="1">

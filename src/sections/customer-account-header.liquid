@@ -1,8 +1,8 @@
 <section class="account-header">
   <div class="account-header__background-wrap">
     <img
-      class="account-header__background profile-bg"
-      src="{{ 'proiflie-image-1.jpg' | asset_url }}"
+      class="account-header__background"
+      src="{{ 'dyln-account-leaf-background.min.png' | asset_url }}"
       alt="Large image of a green leaf close-up" />
   </div>
   <div class="account-header__bar-wrap">
@@ -67,26 +67,31 @@
                   <span class="account-header__status-txt">DYLN Points earned</span>
                 </div>
                 <div class="account-header__status-item">
-                  {% if orders[0] == blank %}
-                    <span class="account-header__status-badge account-header__status-badge--warning">
+                  {% if customer.orders[0] == blank %}
+                    <span class="account-header__status-badge account-header__status-badge--warning last-order-bg">
                       <span class="account-header__status-num-alt">No Orders</span>
                     </span>
-                  {% else %}
-                    {% if orders[0].fulfillment_status == "Fulfilled" %}
+                    {% elsif customer.orders[0].order.cancelled %}
+                      <span class="account-header__status-badge account-header__status-badge--warning">
+                        <span class="account-header__status-icon" aria-ignore="true">
+                          <svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg"><g stroke="#FFF" stroke-width="1.5" fill="none" fill-rule="evenodd"><circle cx="7.5" cy="7.5" r="6.75"/><path d="M4.5 7.75l2.474 2.474 4.089-4.974"/></g></svg>
+                        </span>
+                        <span class="account-header__status-num-alt">Cancelled</span>
+                      </span>
+                    {% elsif customer.orders[0].order.fulfillment_status == 'fulfilled' %}
                       <span class="account-header__status-badge account-header__status-badge--primary">
                         <span class="account-header__status-icon" aria-ignore="true">
                           <svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg"><g stroke="#FFF" stroke-width="1.5" fill="none" fill-rule="evenodd"><circle cx="7.5" cy="7.5" r="6.75"/><path d="M4.5 7.75l2.474 2.474 4.089-4.974"/></g></svg>
                         </span>
                         <span class="account-header__status-num-alt">Delivered</span>
-                      </span>
+                      </span>                  
                     {% else %}
                       <span class="account-header__status-badge account-header__status-badge--alert">
                         <span class="account-header__status-icon" aria-ignore="true">
                           <svg width="13" height="16" viewBox="0 0 13 16" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0 1)" fill="none" fill-rule="evenodd"><circle stroke="#FFF" stroke-width="1.5" cx="6.429" cy="8.571" r="5.679"/><circle fill="#FFF" cx="6.429" cy="8.571" r="1"/><path stroke="#FFF" stroke-width="1.5" stroke-linecap="square" d="M4.286.536h4.285M6.429.536v2.143"/><path stroke="#FFF" stroke-width="1.5" stroke-linecap="round" d="M4.728 6.429l1.701 2.142"/></g></svg>
                         </span>
-                        <span class="account-header__status-num-alt">In Progress</span>
+                        <span class="account-header__status-num-alt">Processing</span>
                       </span>
-                    {% endif %}
                   {% endif %}
                   <span class="account-header__status-txt">Last order Status</span>
                 </div>

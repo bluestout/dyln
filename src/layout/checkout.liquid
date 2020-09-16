@@ -18,6 +18,10 @@
         <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
     {%- endif -%}
     {% render 'script-tags', layout: 'checkout' %}
+{% comment %}
+    {% render 'weglot_hreftags' %}
+    {% render 'weglot_switcher' %}
+  {% endcomment %}
 
     <script
             src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -31,6 +35,9 @@
             padding-bottom: 1em;
             text-align:center;
         }
+      li.reduction-code:nth-child(2){
+       display:none;
+      }
         .link {
             font-family: Poppins;
             font-size: 12px;
@@ -68,6 +75,9 @@
         .mobile-logo .logo.logo--left {
             text-align: center;
         }
+
+
+        /*.product__description__property.order-summary__small-text {display:none;}*/
 
         @media (max-width: 999px) {
             .mobile-breadcrumb {
@@ -120,15 +130,24 @@
                 padding-bottom: 8px;
             }
         }
+    header.banner .wrap span, header.banner .wrap strong {
+        font-weight: 700;
+        font-size: 13px;
+    }
+      header.banner .wrap a{
+        font-size: 13px;
+        font-weight: 600;
+      }
     </style>
 </head>
 <body>
 {{ skip_to_content_link }}
 
-<header class="banner" data-header role="banner">
-    <div class="wrap">
-        <span class="text">Secure Checkout</span><svg class="lock" width='20' height='22' viewBox='0 0 20 22' xmlns='http://www.w3.org/2000/svg'><g transform='translate(.573 1.784)' fill='none' fill-rule='evenodd'><rect stroke='#FFF' stroke-width='2' x='1' y='7.703' width='16.958' height='11.405' rx='2'/><path d='M3.991 7.122V4.608C3.991 2.063 6.071 0 8.635 0h1.688c2.565 0 4.644 2.063 4.644 4.608v2.514' stroke='#FFF' stroke-width='2' stroke-linejoin='round'/><ellipse fill='#FFF' cx='9.479' cy='12.149' rx='2.494' ry='2.095'/><path stroke='#FFF' stroke-width='2' stroke-linecap='round' d='M9.479 13.405v2.466'/></g></svg><br class="break"><svg class="squiggle" width="37" height="4" viewBox="0 0 37 4" xmlns="http://www.w3.org/2000/svg"><path d="M1 1c3.838 1.892 11.726 2.538 18.334 1.52C25.942 1.502 31.284 1 36 2.52" stroke="#FFF" stroke-width="1.5" fill="none" fill-rule="evenodd"/></svg><a class="link" href="tel:+1-949-558-2300">Support: <strong>+1-949-558-2300</strong></a>
+<header class="banner" data-header role="banner" style="background: none #f4f4f4; font-family: Poppins;">
+    <div class="wrap" style="color: #333c41;">
+        <span class="text" style="color: #333c41;">Secure Checkout</span><svg class="lock" width='20' height='22' viewBox='0 0 20 22' xmlns='http://www.w3.org/2000/svg'><g transform='translate(.573 1.784)' fill='none' fill-rule='evenodd'><rect stroke='#333c41' stroke-width='2' x='1' y='7.703' width='16.958' height='11.405' rx='2'/><path d='M3.991 7.122V4.608C3.991 2.063 6.071 0 8.635 0h1.688c2.565 0 4.644 2.063 4.644 4.608v2.514' stroke='#333c41' stroke-width='2' stroke-linejoin='round'/><ellipse fill='#333c41' cx='9.479' cy='12.149' rx='2.494' ry='2.095'/><path stroke='#333c41' stroke-width='2' stroke-linecap='round' d='M9.479 13.405v2.466'/></g></svg><br class="break"><svg class="squiggle" width="37" height="4" viewBox="0 0 37 4" xmlns="http://www.w3.org/2000/svg"><path d="M1 1c3.838 1.892 11.726 2.538 18.334 1.52C25.942 1.502 31.284 1 36 2.52" stroke="#333c41" stroke-width="1.5" fill="none" fill-rule="evenodd"/></svg><a style="color:#333c41" class="link" href="tel:+1-949-558-2300">Support: <strong style="color:#00aedb">+1-949-558-2300</strong></a>
     </div>
+</header>
 
 <div class="mobile-logo">
     {{ content_for_logo }}
@@ -164,9 +183,42 @@
         </div>
     </div>
     </div>
+</div>
 
 {{ tracking_code }}
-
+<script>
+  $(function(){
+    //console.log('loded');
+    function removeDiscount(){
+      console.log('Remove Discount');
+    $('.reduction-code').each(function(){
+     var $this = $(this);
+      if($this.find('.reduction-code__text').text().includes('$0.00')){
+        $this.fadeOut();
+      }
+    });
+    }
+    //removeDiscount();
+    /*
+    $('.edit_checkout').submit(function(){
+      console.log('Discount');
+      //setTimeout(removeDiscount, 6000);
+    });
+    */
+    var totalDisvount = '{{ checkout.discounts_amount | money }}';
+    var dicountHtml = '<tr class="total-line total-line--discounttotal"><th class="total-line__name" scope="row">Total Savings</th>';
+    dicountHtml += '<td class="total-line__price"><span class="order-summary__emphasis">'+totalDisvount+'</span></td></tr>';
+    function setDiscount(dicountHtml){
+      $('.total-line--subtotal').find('.cart-drawer__total-discount').remove();
+      $('.total-line--subtotal').before(dicountHtml);
+    }
+    //setDiscount(dicountHtml);
+    $('.edit_checkout').submit(function(){
+      //console.log('Discount');
+      //setTimeout(setDiscount(dicountHtml), 6000);
+    });
+  });
+</script>
 <script>
     let cartLinks = document.querySelectorAll(".breadcrumb__link");
     for (let cartLinksIndex = 0; cartLinksIndex < cartLinks.length; cartLinksIndex++) {
@@ -178,5 +230,6 @@
         });
     }
 </script>
+{% comment %} {% include 'stamped-checkout-slider' %} {% endcomment %}
 </body>
 </html>

@@ -30,12 +30,11 @@ window.onload = function () {
     addLoaded: (container) => `${container} [data-add-to-cart-loaded]`,
     addLoading: (container) => `${container} [data-add-to-cart-loading]`,
     atcBar: "[data-atc-bar]",
-    json: (container) => `${container} [data-product-json]`,
-    imageByVariantName: (container, name) => `${container} [data-pi-image="${name}"]`,
   };
 
   var attributes = {
     shipping: "data-ship-message",
+    button: "data-submit-button",
   };
 
   var geoLocationComplete = new Event("geoLocationComplete");
@@ -83,10 +82,14 @@ window.onload = function () {
     var shippingMessage = $(selectors.currentOption(container))
       .first()
       .attr(attributes.shipping);
+    var buttonText = $(selectors.currentOption(container))
+      .first()
+      .attr(attributes.button);    
     var $atcBarButton = $(selectors.atcAdd);
     var $atcCurrent = $(selectors.atcCurrent);
     var $soldOutForm = $(selectors.soldOutForm(container)).first();
     var $shippingNote = $(selectors.shippingNote(container)).first();
+    
 
     if (typeof shippingMessage !== "undefined") {
       $shippingNote.text(shippingMessage);
@@ -94,6 +97,10 @@ window.onload = function () {
     } else {
       $shippingNote.addClass("hide");
     }
+    
+
+    
+    
 
     if (uVariants) {
       var currentVariantIsUnavailable = isCurrentVariantUnavailable(
@@ -113,15 +120,18 @@ window.onload = function () {
         }
       } else {
         //current variant is available
-        $submitButton.removeAttr("disabled");
-        $submitButtonText.text(theme.strings.addToCart);
+        $submitButton.removeAttr("disabled");      
         $soldOutForm.fadeOut();
+        $atcBarButton.text('{{ settings.default_add_to_cart_button }}');
         if (isPdp) {
           $atcCurrent.removeClass("unavailable");
           $atcBarButton.removeAttr("disabled");
-          $atcBarButton.text(theme.strings.add);
+          $atcBarButton.text('{{ settings.default_add_to_cart_button }}');
           $atcBarButton.removeClass("unavailable");
         }
+        if(typeof buttonText !== "undefined"){
+         $submitButtonText.text(buttonText);
+        }        
       }
     }
   }
@@ -150,16 +160,10 @@ window.onload = function () {
         var $products = $("[data-single-product]");
         $(selectors.availabilityData).val(JSON.stringify(response));
         $products.each(function () {
-          const $product = $(this);
-          const pId = $product.data("single-product");
-          const container = `[data-single-product="${pId}"]`;
-          let variants;
           try {
-            variants = JSON.parse($(selectors.json(container)).html());
-          } catch (error) {
-            variants = [];
-          }
-          try {
+            const $product = $(this);
+            const pId = $product.data("single-product");
+            const container = `[data-single-product="${pId}"]`;
             const productData = response[pId];
             // set out of stock status on variants
             for (let i = 0; i < productData.out_of_stock.length; i++) {
@@ -172,18 +176,14 @@ window.onload = function () {
             for (let i = 0; i < productData.hidden.length; i++) {
               const hiddenVariant = productData.hidden[i];
               $(selectors.pdpInputByVariantId(container, hiddenVariant)).remove();
-              // hide images hidden linked to to hidden variants
-              try {
-                const colorNames = variants[hiddenVariant].split(",");
-                for (let i = 0; i < colorNames.length; i++) {
-                  const $imageSelector = $(selectors.imageByVariantName(container, colorNames[i]));
-                  if ($imageSelector.closest(".slick-slider").length > 0) {
-                    $imageSelector.closest(".slick-slider").slick("slickRemove", $imageSelector.closest(".slick-slide").data("slick-index"));
-                  } else {
-                    $imageSelector.remove();
-                  }
-                }
-              } catch (error) { }
+              //var $cls = $(selectors.pdpInputByVariantId(container, hiddenVariant)).find('input').val().toLowerCase().replace(' ', '-');
+              if($('body').hasClass('template-product')){
+                console.log(hiddenVariant);
+                $('.atc-bat__option[atc-bar-geo-variant='+hiddenVariant+']').addClass('removed');
+              }
+             
+              //console.log('cls')
+              //console.log($cls);
             }
             // add notify message to the variant
             $.each(productData.notify, function (i, variantMessage) {
@@ -198,6 +198,11 @@ window.onload = function () {
               $(
                 selectors.optionByVariant(container, variantMessageSegment[0])
               ).attr(attributes.shipping, variantMessageSegment[1]);
+              // add back-order button text
+              $(
+                selectors.optionByVariant(container, variantMessageSegment[0])
+              ).attr(attributes.button, '{{ settings.back_add_to_cart_button }}');
+              
             });
             // add shipping message to the variant
             $.each(productData.pre_order, function (i, variantMessage) {
@@ -205,6 +210,12 @@ window.onload = function () {
               $(
                 selectors.optionByVariant(container, variantMessageSegment[0])
               ).attr(attributes.shipping, variantMessageSegment[1]);
+              // add pre-order button text
+              
+              $(
+                selectors.optionByVariant(container, variantMessageSegment[0])
+              ).attr(attributes.button, '{{ settings.pre_add_to_cart_button }}');
+              
             });
             renderSubmitButton(pId);
           } catch (error) { /*console.log("error: ", error);*/ }

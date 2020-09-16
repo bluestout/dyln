@@ -8,7 +8,7 @@
     <div class="col-xl-2 col-lg-3 order-2 order-lg-1">
     {% render 'customer-account-sidebar' %}
     </div>
-    <div class="col-xl-8 col-lg-9 order-1 order-lg-2">
+<div class="col-xl-8 col-lg-9 order-1 order-lg-2">
       <div class="account-body">
         {% comment %} open class only has an effect on mobile {% endcomment %}
         <div class="account-body__header-tabs">
@@ -28,9 +28,7 @@
             My Bottles
             <span class="account-body__header-dash"></span>
           </button>
-          {% if is_subscription_customer %}
           <a class="account-body__header-tab" href="/tools/recurring/login/">My Subscriptions<span class="account-body__header-dash"></span></a>
-          {% endif %}
           <button type="button" class="account-body__header-tab" tab-body="account-profile">
             Profile
             <span class="account-body__header-dash"></span>
@@ -69,14 +67,14 @@
                       <div class="account-dash__bottle-progress progress-circle" data-progress="40">
                         <img src="{{ 'dyln-account-bottle-pearl.png' | asset_url }}" alt="Image of DYLN water Bottle" class="account-dash__bottle-img" />
                       </div>
-                      <div class="account-dash__bottle-content">
-                        <h4 class="account-dash__bottle-title">Bottle #1</h4>
-                        <p class="account-dash__bottle-timer"><span>60</span> days left on Diffuser</p>
-                      </div>
-                      <button type="button" class="account-dash__bottle-more">
-                        <span class="visually-hidden">More options</span>
-                      </button>
                     </div>
+                    <div class="account-dash__bottle-content">
+                      <h4 class="account-dash__bottle-title">Bottle #1</h4>
+                      <p class="account-dash__bottle-timer"><span>60</span> days left on Diffuser</p>
+                    </div>
+                    <button type="button" class="account-dash__bottle-more">
+                      <span class="visually-hidden">More options</span>
+                    </button>
                   </div>
 
                   </div>
@@ -147,7 +145,7 @@
 
           <div class="body-tab account-points">
             {% comment %} Whole section will come from an external source {% endcomment %}
-            <div id="stamped-rewards-widget" data-widget-type="rewards-referral-modal" data-customer-email="{{ customer.email }}" data-customer-first-name="{{ customer.first_name }}" data-style-color-background="#ffffff" data-style-color-button="#20d480" data-style-color-link="#00aedb"></div> 
+            <div id="stamped-rewards-widget" data-widget-type="rewards-referral-modal" data-customer-email="{{ customer.email }}" data-customer-first-name="{{ customer.first_name }}" data-style-color-background="#ffffff" data-style-color-button="#20d480" data-style-color-link="#00aedb"></div>
             <div id="stamped-rewards-widget" data-widget-type="rewards-summary" ></div>
             <div id="stamped-rewards-widget" data-widget-type="rewards-how-it-works" ></div>
             <div id="stamped-rewards-widget" data-widget-type="rewards-earnings" ></div>
@@ -175,15 +173,14 @@
           {% render 'edit-profile-contact-popup' %}
           {% render 'reset-password-popup' %}
           {% comment %} Custom styling for the profile body input{% endcomment %}
-          {% comment %} Bottle modal {% endcomment %}
+      {% comment %} Bottle modal {% endcomment %}
           {% render 'edit-bottle-popup' %}
           {% include 'address-form' %}
         </div> <!-- end popup wrap -->
       </div>
-    </div>
+  </div>
   </div>
 </div>
-
 <div class="account-edit-option" style="display:none;">
   <div class="account-edit-option__overlay"></div>
   <div class="account-edit-option__inner">
@@ -220,7 +217,6 @@
     </div>
   </div>
 </div>
-
 {% comment %} Choose profile image modal {% endcomment %}
 <div class="image-edit popup" style="display:none;">
   <div class="image-edit__overlay"></div>

@@ -19,12 +19,7 @@
               </div>
               {% if section.settings.video != blank %}
                 <div class="header-bottle__video">
-                  <video
-                    playsinline
-                    controls
-                    width="{{ section.settings.video_width }}"
-                    height="{{ section.settings.video_height }}"
-                    tabindex="-1">
+                  <video autoplay loop muted playsinline>
                     <source src="{{- section.settings.video -}}" type="video/mp4">
                     Your browser does not support the video tag.
                   </video>
@@ -53,7 +48,7 @@
                   }
                 }
               </style>
-              <a href="#" class="header-bottle__c-subtitle desktop" data-scroll-to=".index-video">See how</a>
+              <a href="{{ section.settings.subtitle_link }}" class="header-bottle__c-subtitle desktop">{{ section.settings.subtitle }}</a>
               <div class="header-bottle__c-content">{{ section.settings.content }}</div>
               {% if section.settings.link_text != blank %}
                 <a
@@ -186,6 +181,11 @@
         "id": "subtitle",
         "label": "Subtitle"
       },
+	    {
+        "type": "url",
+        "id": "subtitle_link",
+        "label": "Subtitle Link URL"
+      },
       {
         "type": "textarea",
         "id": "content",
@@ -276,6 +276,7 @@
         "label": "Video Embed",
         "info": "Or use an embed from youtube, vimeo or similar. Copy/paste the embed code here."
       },
+
       {
         "type": "textarea",
         "id": "usp_title",

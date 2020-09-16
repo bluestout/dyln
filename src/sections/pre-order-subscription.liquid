@@ -9,11 +9,6 @@
             <h3 class="po-subscription__title">{{ section.settings.title }}</h3>
           </div>
         {% endif %}
-        {% if section.settings.description != blank %}
-          <div class="po-subscription__description subscription-desc--mobile">
-            <p>{{ section.settings.description }}</p>
-          </div>
-        {% endif %}
       </div>
 
       <div class="col-md-4">
@@ -34,14 +29,11 @@
       </div>
       <div class="col-md-6 col-lg-5">
 
-        {% if section.settings.description != blank %}
-          <div class="po-subscription__description subscription-desc--desktop">
-            <p>{{ section.settings.description }}</p>
-          </div>
-        {% endif %}
+        <div class="po-subscription__description">
+          <p>{{ section.settings.description }}</p>
+        </div>
 
         {% unless section.settings.extra_product == product.handle %}
-          <p class="po-subscription__choose-size">Choose size:</p>
           {% render 'subscription-form' with section.settings.extra_product
             current_product_id: product.id
             show_extras: false,

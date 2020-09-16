@@ -15,5 +15,26 @@
         collections: '{{ product.collections | map: "title" | join: "," }}',
         tags: '{{ product.tags | join: "," }}'
       }
+
+    wpShopifyTracking.cartInfo =
+      {
+        product: '{{ product.title }}',
+        price_cents: '{{ product.price }}',
+        product_type: '{{product.category}}',
+        tags: ['{{product.tags}}'],
+        collections: ['{{ product.collections | map: "title" | join: "," }}'],
+        sku: '{{ product.variants[0].sku }}'
+       }
+
+      document.addEventListener("DOMContentLoaded", function(event) {
+        var addToCartBtn = document.querySelector('button[id^="AddToCart-"]');
+        if (addToCartBtn) {
+          addToCartBtn.addEventListener('click', function () {
+            if (typeof Wishpond !== 'undefined') {
+              Wishpond.Tracker.track('shopify_product_added_to_cart', wpShopifyTracking.cartInfo);
+            }
+          });
+        }
+      });
   {% endif %}
 </script>

@@ -23,6 +23,9 @@
   {% endfor %}
 
   {% assign b_p_colors_array = pop_p_colors | split: ',' %}
+  {% for color in b_p_colors_array %}
+    {% assign color_class = value %}
+  {% endfor %}
   <div data-po-tab="{{ forloop.index }}" {% if forloop.index == 1 %}class="active pop__wrapper" {% else %}data-pre-order-slick-load{% endif %} data-add-on-parent data-pre-order-form-in-form>
     <div
       class="pop{% if pop_p.has_only_default_variant %} single{% endif %}"
@@ -125,7 +128,6 @@
                                   {% break %}
                                 {% endif %}
                               {% endfor %}
-                              {% comment %} geolocation.js will remove unavailable options {% endcomment %}
                               <div class="pop__color-wrap" data-geo-specific-variant="{{ variant_id }}">
                                 <input
                                   class="pop__color-input"
@@ -199,9 +201,9 @@
                   <div class="pdp-form__qty-wrap">
                     <label class="hide" for="Quantity">{{ 'products.product.quantity' | t }}</label>
                     <div class="pdp-form__qty-box">
-                      <button type="button" class="pdp-form__qty-button" data-qty-change="#PdpQuantity_{{ block_index }}" data-direction="down">-</button>
-                      <input class="pdp-form__qty-input" type="number" id="PdpQuantity_{{ block_index }}" name="quantity" value="1" min="1" data-qty-input>
-                      <button type="button" class="pdp-form__qty-button" data-qty-change="#PdpQuantity_{{ block_index }}" data-direction="up">+</button>
+                      <button type="button" class="pdp-form__qty-button" data-qty-change="#PdpQuantity" data-direction="down">-</button>
+                      <input class="pdp-form__qty-input" type="number" id="PdpQuantity" name="quantity" value="1" min="1" data-qty-input>
+                      <button type="button" class="pdp-form__qty-button" data-qty-change="#PdpQuantity" data-direction="up">+</button>
                     </div>
                   </div>
                 </div>
@@ -236,7 +238,8 @@
                 <script type="application/json" data-product-json>
                   {
                     "variants": [
-                      {% for pop_p_j_v in pop_p.variants %}{
+                      {% for pop_p_j_v in pop_p.variants %}
+                        {
                           "id": {{ pop_p_j_v.id | json }},
                           "price": {{ pop_p_j_v.price | json }},
                           "compare_at": {{ pop_p_j_v.compare_at_price | json }},
@@ -244,9 +247,9 @@
                           "Option1": {{ pop_p_j_v.option1 | json }},
                           "Option2": {{ pop_p_j_v.option2 | json }},
                           "Option3": {{ pop_p_j_v.option3 | json }}
-                        }{% unless forloop.last %},{% endunless %}{% endfor %}
-                    ],
-                    {% for pop_p_j_v in pop_p.variants %}"{{ pop_p_j_v.id }}": {{ pop_p_j_v.option1 | append: ',' | append: pop_p_j_v.option2  | append: ',' | append: pop_p_j_v.option3 | json }}{% unless forloop.last %},{% endunless %}{% endfor %}
+                        }{% unless forloop.last %},{% endunless %}
+                      {% endfor %}
+                    ]
                   }
                 </script>
               {% endif %}
@@ -271,14 +274,12 @@
               {% endif %}
               <div class="pop__fake-btn-wrap">
                 <button type="button" class="pop__fake-btn" data-pre-order-button>
-                  <span data-pre-order-loaded>{{ 'pre_order.product_item.buy_button_text' | t }}</span>
+                  <span data-pre-order-loaded>{{ settings.pre_add_to_cart_button }}</span>
                   <span data-pre-order-loaded data-pre-order-count>{{ 'pre_order.items.1_item'| t }}</span>
                   <span data-pre-order-loading class="loading-dots hide"></span>
                 </button>
               </div>
-              <div class="pop__shipping-notice">
-                <p>{{ section.settings.shipping_note }}</p>
-              </div>
+              <div class="pop__shipping-notice">{{ section.settings.shipping_note }}</div>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
 
-<div class="pdp-gallery__images" data-pdp-gallery>
+<div class="pdp-gallery__images" pd-handle="{{ product.handle }}" pd-id="{{ product.id }}" fe-img="{{ featured_image | img_url: '500x' }}" data-pdp-gallery >
   {% for image in product.images %}
 
     {% unless image.alt contains "featured-collection-image" or image.alt contains "featured-collection-image-2" %}
@@ -16,11 +16,11 @@
       <div
         class="pdp-gallery__image-item"
         data-color="{{- img_color -}}"
-        >
+        img-src="{{ image | img_url: '500x'  }}">
         {% render 'responsive-image' with
           image: image,
-          max_width: 700,
-          max_height: 700,
+          max_width: 500,
+          max_height: 500,
           image_attributes: "data-product-featured-image",
           wrapper_class: wrapper_class,
           image_class: "pdp-gallery__img",
